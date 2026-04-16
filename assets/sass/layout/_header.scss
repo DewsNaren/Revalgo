@@ -1,0 +1,121 @@
+@use "../base/reset" as *;
+@use "../abstracts/index" as *;
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:  clamp(12px, $fs-23px, $fs-23px) clamp(12px, $fs-24px, $fs-24px) clamp(10px, $fs-23px, $fs-23px)  clamp(15px, $fs-25px, $fs-25px) ;
+    box-shadow: $box-shadow-2;
+    .logo{
+        display: inline-block;
+        width:clamp(98px, $fs-177px, $fs-177px);
+        img{
+            width: 100%;
+        }
+            
+    }
+    .search-wrapper{
+        width: 40.3%;
+        border: 1px solid $grey-61;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding:clamp(7px, $fs-10px, $fs-10px) clamp(8px, $fs-14px, $fs-14px);
+        gap: clamp(7px, $fs-10px, $fs-10px);
+        margin-left:clamp(15px, $fs-45px, $fs-45px);
+        border-radius: 5px;
+        input{
+            flex: 1;
+            border: none;
+            font-size:clamp(12px, $fs-17px, $fs-17px);
+            outline: none;
+            
+        }
+        label img{
+            filter: invert(0);
+            width: clamp(12px, $fs-17px, $fs-17px);
+        }
+
+    }
+    nav{
+        display: flex;
+        align-items: center;
+        ul{
+            display: flex;
+            gap:clamp(12px, $fs-40px, $fs-40px);
+            li{
+                list-style-type: none;
+
+                &.profile-container{
+                    display: flex;
+                    position: relative;
+                    gap: clamp(10px, $fs-20px, $fs-20px);
+                    cursor: pointer;
+                    .profile-img-wrapper{
+                        width: clamp(17px, $fs-42px, $fs-42px);
+                        height: clamp(17px, $fs-42px, $fs-42px);
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background-color: $grey-93;
+                        img{
+                            width: clamp(13px, $fs-24px, $fs-24px);
+                        }
+                    }
+                    .profile-toggle{
+                        border: none;
+                        background-color: transparent;
+
+                        img{
+                           width:  clamp(17px, $fs-20px, $fs-20px);
+                        }
+                    }
+                    .profile-menu{
+                        position: absolute;
+                        top: 105%;
+                        right: 0;
+                        background: white;
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                        display: none;
+                        width: 120px;
+                        z-index: 4;
+                        cursor: pointer;
+                        left: 50%;
+                        transform: translateX(-50%);
+                    }
+                    .profile-menu.active{
+                        display: block;
+                    }
+                    .profile-menu a {
+                        padding: 10px 10px;
+                        text-decoration: none;
+                        color: #333;
+                        display: block;
+                        text-align: center;
+                        font-size: clamp(11px, 0.84vw, 16px);
+                    }
+                }
+
+                a{  
+                    display: inline-block;
+                    img{
+                        filter: invert(1);
+                        width: clamp(13px, $fs-24px, $fs-24px);
+                    }
+
+                    &.new-quote-btn{
+                        font-size: clamp(11px, $fs-14px, $fs-14px);
+                        padding:7px clamp(12px, $fs-24px, $fs-24px);
+                        color: $white-80;
+                        background-color: $blue-87;
+                        margin-left:clamp(5px, $fs-10px, $fs-10px);
+                        cursor: pointer;
+                    }
+                } 
+            }
+        }
+    }
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Revalgo | Dashboard</title>
+        <link rel="stylesheet" href="./assets/css/style.css">
+        <link rel="stylesheet" href="./assets/vendor/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./assets/vendor/fontawesome/css/all.min.css">
+    </head>
+    
+    <body>
+        <header>
+            <a href="./login.html" class="logo"><img src="./assets/images/login/Revalgo White Background.png" alt="Revalgo White"></a>
+            <div class="search-wrapper">
+                <input type="text" id="search-quote" class="search-quote" name="search-quote" placeholder="PO#, Order#, Customer# / Name">
+                <label for="search-quote" ><img src="./assets/images/dashboard/Search icon.png" alt="Search icon"></label>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="new-quote-btn">New Quote</a></li>
+                    <li><a href="#"><img src="./assets/images/global/home.png" alt="home"></a></li>
+                    <li><a href="#"><img src="./assets/images/global/bell.png" alt="bell"></a></li>
+                    <li><a href="#"><img src="./assets/images/global/settings.png" alt="settings"></a></li>
+                    <li class="profile-container">
+                        <div class="profile-img-wrapper">
+                            <img src="./assets/images/global/user.png" class="user-profile" alt="profile"/>
+                        </div>
+                                
+                        <button type="button" class="profile-toggle">
+                        <img
+                            src="./assets/images/global/down-arrow.png"
+                            class="down-arrow"
+                            alt="down-arrow"
+                        />
+                        </button>
+                            <div class="profile-menu">
+                            <a href="#" class="login-btn">LogIn</a>
+                            <a href="#" class="logout-btn">Logout</a>
+                        </div>
+                    </li>
+                </ul>
+
+            </nav>
+        </header>
+        <main class="dashboard-wrapper">
+            <div class="dashboard-header-wrapper">
+                <div class="header-container">
+                    <h2 class="text-uppercase">Dashboard</h2>
+
+                    <div class="dropdown-wrapper">
+                        <div class="date-filter">
+                            <div class="date-dropdown">
+                                <div class="date-text">Last 6 Months <img src="./assets/images/dashboard/down-arrow-blue.png" alt="down-arrow-blue"></div>
+                                <ul class="dropdown-menu">
+                                <li data-value="yesterday">Yesterday</li>
+                                <li data-value="today">Today</li>
+                                <li data-value="lastMonth">Last Month</li>
+                                <li data-value="last6Months">Last 6 Months</li>
+                                <li data-value="custom">Custom</li>
+                                </ul>
+                            </div>
+
+                            <!-- Calendar -->
+                            <div class="date-picker">
+                                <div class="input-wrapper">
+                                    <input type="text" id="startInput" placeholder="Start Date" readonly>
+                                    <input type="text" id="endInput" placeholder="End Date" readonly>
+                                </div>
+                                
+                                <div class="calendar" id="calendar"></div>
+
+                            </div>
+                        </div>
+
+                        <div class="widget-btn">
+                            <div class="widget-text">
+                                + Add/ Remove Widget
+                            </div>
+                    
+                            <ul class="widget-dropdown-menu">
+                                <p>Select Widget</p>
+                                <li><input type="checkbox"> select All</li>
+                                <li><input type="checkbox"> Recent Orders</li>
+                                <li><input type="checkbox"> Trend</li>
+                                <li><input type="checkbox"> Accuracy</li>
+                                <li><input type="checkbox"> Top Transactions</li>
+                            </ul>
+
+                        </div>
+                    
+                    </div>
+                </div>
+                <div class="stats-container">
+
+                </div>
+            </div>
+        </main>
+        <script src="./assets/js/dashboard.js"></script>
+    </body>
+</html>
+        
