@@ -53,9 +53,10 @@
                             <div class="date-dropdown">
                                 <div class="date-text">Last 6 Months <img src="./assets/images/dashboard/down-arrow-blue.png" alt="down-arrow-blue"></div>
                                 <ul class="dropdown-menu">
-                                <li data-value="yesterday">Yesterday</li>
                                 <li data-value="today">Today</li>
-                                <li data-value="lastMonth">Last Month</li>
+                                <li data-value="yesterday">Yesterday</li>
+                                <li data-value="lastWeek">Last Week</li>
+                                <li data-value="lastMonth">Last 30 Days</li>
                                 <li data-value="last6Months">Last 6 Months</li>
                                 <li data-value="custom">Custom</li>
                                 </ul>
@@ -64,11 +65,48 @@
                             <!-- Calendar -->
                             <div class="date-picker">
                                 <div class="input-wrapper">
-                                    <input type="text" id="startInput" placeholder="Start Date" readonly>
-                                    <input type="text" id="endInput" placeholder="End Date" readonly>
+                                    <span  class="start-date start">14/04/2026</span>-
+                                    <span  class="end-date end">16/04/2026</span>
                                 </div>
                                 
-                                <div class="calendar" id="calendar"></div>
+                                <div class="calendar" id="calendar">
+                                    <div class="top-wrapper">
+                                        <div class="month-selector">
+                                            <button type="button" class="arrow prev-month">
+                                                <img src="./assets/images/global/left-arrow.png" alt="left arrow" />
+                                            </button>
+                                            <div class="year-wrapper">
+                                                <span class="month-name"></span>
+                                                <span class="year"></span>
+                                            </div>
+                                            <button type="button" class="arrow next-month">
+                                                <img src="./assets/images/global/right-arrow.png" alt="right arrow" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="content">
+                                        <div class="days">
+                                            <span class="day">S</span>
+                                            <span class="day">M</span>
+                                            <span class="day">T</span>
+                                            <span class="day">W</span>
+                                            <span class="day">T</span>
+                                            <span class="day">F</span>
+                                            <span class="day">S</span>
+                                        </div>
+                                        <div class="dates">
+                                            <button class="date faded" type="button">30</button>
+                                            <button class="date faded" type="button">31</button>
+                                            <button class="date" type="button">1</button>
+                                            <button class="date" type="button">2</button>
+                                            <button class="date" type="button">3</button>
+                                            <button class="date" type="button">4</button>
+                                            <button class="date" type="button">5</button>
+                                            <button class="date" type="button">6</button>
+                                    
+                                        </div>
+                                    </div>
+                                </div>
 
                             </div>
                         </div>
@@ -91,8 +129,93 @@
                     
                     </div>
                 </div>
-                <div class="stats-container">
-
+                <div class="stats-wrapper">
+                    <div class="stat-container">
+                        <div class="img-wrapper">
+                            <img src="./assets/images/dashboard/cart.png" alt="cart">
+                        </div>
+                        <div class="stat-content">
+                            <p class="stat-title">Total Quotes</p>
+                            <p class="stat-text total-quote">525</p>
+                        </div>
+                    </div>
+                    <div class="stat-container">
+                        <div class="img-wrapper">
+                            <img src="./assets/images/dashboard/quality.png" alt="quality">
+                        </div>
+                        <div class="stat-content">
+                            <p class="stat-title">Approved Quotes</p>
+                            <p class="stat-text approved-quote">525</p>
+                        </div>
+                    </div> 
+                    <div class="stat-container">
+                        <div class="img-wrapper">
+                            <img src="./assets/images/dashboard/pending.png" alt="pending">
+                        </div>
+                        <div class="stat-content">
+                            <p class="stat-title">Pending Quotes</p>
+                            <p class="stat-text pending-quote">45</p>
+                        </div>
+                    </div> 
+                    <div class="stat-container">
+                        <div class="img-wrapper">
+                            <img src="./assets/images/dashboard/coin.png" alt="coin">
+                        </div>
+                        <div class="stat-content">
+                            <p class="stat-title">Total Revenue</p>
+                            <p class="stat-text total-revenue">525</p>
+                        </div>
+                    </div>                                            
+                </div>
+            </div>
+            <div class="dashboard-body-wrapper">
+                <div class="quotes-container">
+                    <h3>Recent Quotes</h3>
+                    <div class="table-wrapper">
+                        <div class="top-container">
+                            <div class="btn-container">
+                                <button type="button" class="pend-btn">Pending <span class="apprv-count">22</span></button>
+                                <button type="button" class="apprv-btn">Approved <span class="apprv-count">22</span></button>
+                                <button type="button">Deleted <span class="del-count">22</span></button>
+                                <button type="button">All <span class="all-count">22</span></button>
+                            </div>
+                            <div class="filter-wrapper">
+                                <div class="search-container">
+                                    <input type="text" id="search-table-quote" class="search-table-quote" name="search-table-quote" placeholder="Search">
+                                    <label for="search-table-quote" ><img src="./assets/images/dashboard/Search icon.png" alt="Search icon"></label>
+                                </div>
+                                <div class="filter-container">
+                                    <div class="filter-text"><img src="./assets/images/dashboard/Filter_Icon.png" alt="filter icon">Filter</div>
+                                    <div class="filter-dropdown">
+                                        <ul>
+                                            <li> Name (A-Z)</li>
+                                            <li> Name (Z-A)</li>
+                                            <li> Date</li>
+                                            <li> Default</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <button type="button" class="export-btn"><img src="./assets/images/dashboard/Export_icon.png" alt="Export icon"></button>
+                                <button type="button" class="expand-btn"><img src="./assets/images/dashboard/Expand_icon.png" alt="Expand icon"></button>
+                            </div>
+                        </div>
+                        <table class="quote-table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Quote Id <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></th>
+                                    <th>Customer Name / Numaber <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></th>
+                                    <th>Received Date <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></th>
+                                    <th>Approved Date <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></th>
+                                    <th>Status <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></th>
+                                    <th>Total Line No <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></th>
+                                    <th>Total price <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></th>
+                                    <th></th>
+                                </tr>
+                                
+                            </thead>
+                        </table>
+                    </div>
                 </div>
             </div>
         </main>

@@ -7,10 +7,12 @@
   background-color: $white-f5;
   padding: clamp(20px, $fs-35px, $fs-35px) clamp(12px, $fs-24px, $fs-24px);
   .dashboard-header-wrapper {
+    margin-bottom: clamp(23px, $fs-46px, $fs-46px);
     .header-container {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        margin-bottom: clamp(24px, $fs-48px, $fs-48px);
       h2 {
         color: $black-90;
         font-weight: 600;
@@ -43,7 +45,7 @@
                 display: none;
                 list-style: none;
                 border: 1px solid #ccc;
-                padding: 0;
+                padding: clamp(12px, $fs-15px, $fs-15px) clamp(12px, $fs-15px, $fs-15px) 6px;
                 margin: 0;
                 position: absolute;
                 width: fit-content;
@@ -52,47 +54,168 @@
                 margin-top: clamp(6px,$fs-10px, $fs-10px);
 
                 & li {
-                    padding: 10px;
+                    padding: 10px 10px 5px 8px;
+                    font-size: clamp(11px, $fs-14px, $fs-14px);
                     cursor: pointer;
                 }
 
                 &:hover {
                     background: #f0f0f0;
                 }
+
+                &.active{
+                    display: block;
+                }
             }
 
             .date-picker {
                 position: absolute;
                 display: none;
+                right: 0;
+                margin-top: clamp(5px, $fs-10px, $fs-10px);
+                border: 1px solid #ccc;
+                border-radius: clamp(5px, $fs-10px, $fs-10px);
+                background-color: $white;
+                padding:clamp(7px, $fs-14px, $fs-14px) clamp(11px, $fs-22px, $fs-22px);
+                width: 152%;
                 .input-wrapper{
                     display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: clamp(5px, $fs-10px, $fs-10px);
+                    padding-bottom: clamp(5px, $fs-10px, $fs-10px);
+                    margin-bottom: clamp(5px, $fs-10px, $fs-10px);
+                    border-bottom: 1px solid #ddd;
+                    span {
+                        padding: 6px 8px;
+                        text-align: center;
+                        cursor: pointer;
+                        border-radius: 6px;
+                        color: $grey-c2;
+                        font-size: clamp(9px,$fs-14px, $fs-14px);
+                        &:hover {
+                            background: #eee;
+                        }
+                        &.active {
+                            background-color: $blue-ff;
+                            color: $blue-de;
+                        }
+                    
+                    
+                }
                 }
                 .calendar {
-                    display: grid;
-                    grid-template-columns: repeat(7, 1fr);
-                    gap: 5px;
-                    padding: 10px;
-                    background: white;
-                    border-radius: 10px;
+                   .top-wrapper {
+                        margin-bottom: 20px;
+                           
+                        .month-selector {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            position: relative;
+                            .year-wrapper{
+                                display: flex;
+                                align-items: center;
+                                font-size: clamp(14px, $fs-16px, $fs-16px);
+                                gap: clamp(17px, $fs-38px, $fs-38px);
+                                .month-name,.year{
+                                    color: $grey-5c;
+                                    font-weight: 500;
+                                }
+
+                            }
+                            .arrow {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                border: none;
+                                background-color: $white;
+                                width: clamp(14px, $fs-25px, $fs-25px);
+                                height: clamp(14px, $fs-25px, $fs-25px);
+                                border-radius: 12px;
+                                img {
+                                    width: clamp(12px, $fs-20px, $fs-20px);
+                                }
+                            }
+                        }
+                    }
+                    .content{
+                        visibility: visible;
+                        .days {
+                            display: grid;
+                            grid-template-columns: repeat(7, 1fr);
+                            grid-row-gap: 15px;
+                            margin-top: 15px;
+                            margin-bottom: 20px;
+
+                            .day {
+                                color: $black;
+                                font-weight: 500;
+                                font-size: $fs-14px;
+                                justify-self: center;
+                            }
+                        }
+                        .dates {
+                            display: grid;
+                            grid-template-columns: repeat(7, 1fr);
+                            grid-row-gap: clamp(5px, $fs-14px, $fs-14px);
+                            grid-column-gap: clamp(5px, $fs-10px, $fs-10px);
+                        }
+                        .date {
+                            justify-self: center;
+                            border: none;
+                            margin: 0;
+                            padding: 0;
+                            width: clamp(18px, $fs-29px, $fs-29px);
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background-color: transparent;
+                            border: 1px solid transparent;
+                            border-radius: 50%;
+                            cursor: pointer;
+                            display: block;
+                            font-size: clamp(10px, $fs-15px, $fs-15px);
+                            font-weight: 500;
+                            color: $grey-5c;
+                            &:focus {
+                                background-color: $blue-ff;
+                                color: $blue-de;
+                            }
+                            &.faded {
+                                color: $grey-a6;
+                                &:focus {
+                                    background-color: $blue-ff;
+                                    color: $blue-de;
+                                    pointer-events: none;
+                                    font-weight: 500;
+                                    background-color: transparent;
+                                }
+                            }
+                            &.current-date {
+                                background-color: $blue-ff;
+                                color: $blue-de;
+                            }
+                            &:hover,&.current-day {
+                                background-color: $blue-ff;
+                                color: $blue-de;
+                                font-weight: 500;
+                            }
+                                    
+                        }
+                        
+                                
+                        &.not-active{
+                            visibility: hidden;
+                        }
+                    }
+                       
                 }
 
-            .day {
-                padding: 8px;
-                text-align: center;
-                cursor: pointer;
-                border-radius: 6px;
-                &:hover {
-                background: #eee;
+                &.active{
+                    display: block;
                 }
-                &.start,
-                &.end {
-                background: #4f6df5;
-                color: white;
-                }
-                &.in-range {
-                background: #dfe5ff;
-                }
-            }
+
             }
         }
         .widget-btn{
@@ -106,18 +229,309 @@
             .widget-dropdown-menu{
                 display: none;
                 position: absolute;
-                background: #fff;
+                background: $white;
                 border: 1px solid #ccc;
                 border-radius: 10px;
                 top: 100%;
-                margin-top: 5px;
-                padding: 10px;
+                margin-top:  clamp(12px, $fs-15px, $fs-15px);
+                padding: clamp(12px, $fs-20px, $fs-20px) clamp(9px, $fs-15px, $fs-15px) clamp(16px, $fs-25px, $fs-25px) ;
+                right: 0;
                 list-style: none;
-                width: 200px;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                width: 151%;
+
+                p{
+                    color: $black;
+                    opacity: 0.8;
+                    font-size: clamp(14px, $fs-17px, $fs-17px);
+                    font-weight: 500;
+                    padding-bottom: clamp(5px, $fs-10px, $fs-10px);
+                    border-bottom: 1px solid #ddd;
+                    margin-bottom: clamp(5px, $fs-10px, $fs-10px);
+                    line-height: 1;
+                }
+
+                li{
+                    font-size: clamp(11px, $fs-15px, $fs-15px);
+                    margin-bottom: clamp(8px, $fs-14px, $fs-14px);
+                    display: flex;
+                    align-items: center;
+                    gap: clamp(5px, $fs-10px, $fs-10px);
+                    color: $black-80;
+                    input{
+                        appearance: none;
+                        width: clamp(10px, $fs-18px, $fs-18px);
+                        height: clamp(10px, $fs-18px, $fs-18px);
+                        border: 1px solid $blue-87;
+                        border-radius: 5px;
+                        position: relative;
+                        accent-color: $blue-87;
+                        &:checked {
+                            background-color: $blue-87;
+
+                            &:checked::after {
+                                content: "✔";
+                                position: absolute;
+                                font-size: clamp(10px, $fs-14px, $fs-14px);
+                                left: 2px;
+                                top: -2px; 
+                                color: $white; 
+                            }
+
+                        }
+                    }
+                    
+                }
+                
+
+                &.active{
+                    display: block;
+                }
             }
         }
     }
     }
+    .stats-wrapper{
+        display: flex;
+        align-items: center;
+        gap: clamp(28px, $fs-58px, $fs-58px);
+
+        .stat-container{
+            display: flex;
+            gap: clamp(10px, $fs-20px, $fs-20px);
+            .img-wrapper{
+               width:  clamp(26px, $fs-57px, $fs-57px);
+               height:  clamp(26px, $fs-57px, $fs-57px);
+               border-radius: 50%;
+               background-color: $blue-f8;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               img{
+                width: clamp(17px, $fs-24px, $fs-24px);
+               }
+
+            }
+            .stat-content{
+                .stat-title{
+                    font-size: clamp(12px, $fs-18px, $fs-18px);
+                    color: $black;
+                    font-weight: 500;
+                    opacity: 0.84;
+                    margin-bottom: clamp(6px, $fs-10px, $fs-10px);
+                }
+                .stat-text{
+                    font-size: clamp(16px, $fs-25px, $fs-25px);
+                    color: $black;
+                    text-align: center;
+                    font-weight: 600;
+                    opacity: 0.8;
+                    margin-bottom: 0;
+                }
+            }
+            &:first-of-type{
+                margin-right: clamp(10px, $fs-20px, $fs-20px);
+            }
+        }
+    }
   }
+  .dashboard-body-wrapper {
+    .quotes-container{
+        width: 62%;
+        
+        h3{
+            font-size: clamp(14px, $fs-22px, $fs-22px);
+            font-weight: normal;
+            color: $black;
+            opacity: 0.95;
+        }
+        .table-wrapper{
+            border: 1px solid #ccc;
+            padding: clamp(12px, $fs-24px, $fs-24px) clamp(12px, $fs-24px, $fs-24px);
+            border-radius: clamp(3px, $fs-10px, $fs-10px);
+            background-color: $white;
+
+            .top-container{
+                padding-bottom: clamp(5px, $fs-10px, $fs-10px);
+                border-bottom: 1px solid #ddd;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .btn-container{
+                    display:flex;
+                    align-items: center;
+                    gap: clamp(10px, $fs-18px, $fs-18px);
+                    button{
+                        border: none;
+                        background-color: transparent;
+                        font-size: clamp(10px, $fs-14px, $fs-14px);
+                        display: inline-flex;
+                        align-items: center;
+                        gap: clamp(8px, $fs-12px, $fs-12px);
+                        position: relative;
+                        span{
+                            font-size: clamp(7px, $fs-10px, $fs-10px);
+                            width:clamp(10px, $fs-20px, $fs-20px);
+                            height:clamp(10px, $fs-20px, $fs-20px);
+                            border-radius: 50%;
+                            display: inline-flex;
+                            align-items: center;
+                            justify-content: center;
+                            background-color: #d5d5d5;
+                            opacity: 0.8;
+                        }
+                        &::after{
+                            position: absolute;
+                            content: '';
+                            left: 10%;
+                            width: 50%;
+                            height: 1px;
+                            background-color: $blue-85;
+                            bottom: calc(clamp(10px, $fs-15px, $fs-15px)*-1);
+                            transform: translateX(-50%) scale(0);
+                            transition: transform 0.3s ease;
+
+                        }
+                        &.active{
+                            color: $blue-85;
+                            span{
+                                background-color: $blue-87;
+                                color: $white;
+                            }
+                            &::after{
+                                transform: scale(1);
+                            }
+
+                        }
+                    }
+                }
+                .filter-wrapper{
+                    display: flex;
+                    align-items: center;
+
+                    gap: clamp(5px, $fs-10px, $fs-10px);
+
+                    .search-container{
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        border: 1px solid rgba(0,0,0,0.3);
+                        padding: 4px clamp(9px, $fs-15px, $fs-15px);
+                        width: clamp(160px, $fs-237px, $fs-237px);
+                        border-radius: 3px;
+                        input{
+                            border: none;
+                            outline: none;
+                            font-size: clamp(10px, $fs-12px, $fs-12px);
+
+                            &::placeholder{
+                                font-size: clamp(10px, $fs-12px, $fs-12px);
+                            }
+                        }
+                        label img{
+                            width: (12px, $fs-16px, $fs-16px);
+                        }
+
+                    }
+                    .filter-container{
+                        position: relative;
+                        .filter-text{
+                            display: flex;
+                            align-items: center;
+                            gap: clamp(6px, $fs-10px, $fs-10px);
+                            font-size: clamp(10px, $fs-12px, $fs-12px);
+                            color: $grey-61;
+                            img{
+                                width: (15px, $fs-19px, $fs-19px);
+                            }
+                        }
+                        border: 1px solid rgba(0,0,0,0.3);
+                        padding: 4px clamp(9px, $fs-15px, $fs-15px);
+                        border-radius: 3px;
+
+                        .filter-dropdown {
+                            display: none;
+                            list-style: none;
+                            border: 1px solid #ccc;
+                            padding: clamp(10px, $fs-15px, $fs-15px) 0;
+                            margin: 0;
+                            position: absolute;
+                            background-color: $white;
+                            top: 100%;
+                            right: 0;
+                            width: max-content;
+                            margin-top: clamp(6px,$fs-10px, $fs-10px);
+                            ul{
+                                padding-left: 0;
+                                list-style-type: none;
+                                margin-bottom: 0;
+                                display: flex;
+                                flex-direction: column;
+                                gap:clamp(6px,$fs-10px, $fs-10px);
+
+                                & li {
+                                    padding: clamp(5px, $fs-10px, $fs-10px) clamp(12px, $fs-40px, $fs-40px);
+                                    font-size: clamp(11px, $fs-14px, $fs-14px);
+                                    cursor: pointer;
+                                    &:hover {
+                                        background: #f0f0f0;
+                                    }
+                                }
+
+                                
+                            }
+
+                            &.active{
+                                display: block;
+                            }
+
+                        }
+
+                        
+                    }
+                    .export-btn{
+                        border: none;
+                        background-color: transparent;
+                        margin-left:clamp(9px, $fs-15px, $fs-15px);
+                        img{
+                            width: (15px, $fs-19px, $fs-19px);
+                        }
+                    }
+                    .expand-btn{
+                        border: none;
+                        background-color: transparent;
+                        margin-left:clamp(9px, $fs-15px, $fs-15px);
+                        img{
+                            width: (15px, $fs-19px, $fs-19px);
+                        }
+                    }
+
+                }
+            }
+            .quote-table{
+                width: 100%;
+                thead{
+                    tr{
+                        width: 100%;
+                        display: inline-flex;
+                        gap:  clamp(10px, $fs-12px, $fs-12px);
+                        justify-content: space-between;
+                        padding: clamp(10px, $fs-15px, $fs-15px) clamp(10px, $fs-15px, $fs-15px) clamp(10px, $fs-15px, $fs-15px) 0;
+                        border-bottom: 1px solid rgba(0,0,0,0.6);
+                        th{
+                            display: inline-flex;
+                            align-items: center;
+                            font-weight: normal;
+                            font-size: clamp(10px, $fs-15px, $fs-15px);
+                            gap: clamp(10px, $fs-15px, $fs-15px);
+                            color: $black-90;
+                            font-weight: 500; 
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+  }
+
 }

@@ -2,21 +2,24 @@ const dateText = document.querySelector(".date-text");
 const menu = document.querySelector(".dropdown-menu");
 
 dateText.addEventListener("click", () => {
-  menu.style.display = menu.style.display === "block" ? "none" : "block";
+  if(!datePicker.classList.contains("active")){
+    menu.classList.toggle("active");
+  }
+  
 });
 
 menu.addEventListener("click", (e) => {
   if (e.target.tagName === "LI") {
     const value = e.target.dataset.value;
     dateText.childNodes[0].data = e.target.textContent;
-    menu.style.display = "none";
+    menu.classList.remove("active");
 
     handleSelection(value);
   }
 });
 
 function handleSelection(value) {
-  calendar.style.display = "none";
+  datePicker.classList.remove("active");
 
   const today = new Date();
   let start, end;
@@ -29,6 +32,21 @@ function handleSelection(value) {
     case "yesterday":
       start = end = new Date(today.setDate(today.getDate() - 1));
       break;
+    case "lastWeek": {
+      const current = new Date();
+
+      const day = current.getDay();
+      const diff = (day === 0 ? 6 : day - 1); 
+
+
+      end = new Date(current);
+      end.setDate(current.getDate() - diff - 1);
+
+   
+      start = new Date(end);
+      start.setDate(end.getDate() - 6);
+      break;
+    }
 
     case "lastMonth":
       start = new Date(today.getFullYear(), today.getMonth() - 1, 1);
@@ -41,7 +59,7 @@ function handleSelection(value) {
       break;
 
     case "custom":
-      calendar.style.display = "block";
+      datePicker.classList.add("active");
       return;
   }
 
@@ -49,24 +67,24 @@ function handleSelection(value) {
   console.log("End:", end);
 }
 
-const startInput = document.getElementById("startInput");
-const endInput = document.getElementById("endInput");
-const calendar = document.getElementById("calendar");
+const startDate = document.querySelector(".start-date");
+const endDate = document.querySelector(".end-date");
+const datePicker = document.querySelector(".date-picker");
 
-let activeInput = null; // track which input is clicked
+let activeDate = null; 
 
-startInput.addEventListener("click", () => {
-  activeInput = "start";
+startDate.addEventListener("click", () => {
+  activeDate = "start";
   showCalendar();
 });
 
-endInput.addEventListener("click", () => {
-  activeInput = "end";
+endDate.addEventListener("click", () => {
+  activeDate = "end";
   showCalendar();
 });
 
 function showCalendar() {
-  calendar.style.display = "block";
+  datePicker.classList.add("active");
 }
 
 function format(date) {
@@ -76,13 +94,13 @@ function format(date) {
 function selectDate(year, month, day) {
   const selected = new Date(year, month, day);
 
-  if (activeInput === "start") {
-    startInput.value = format(selected);
+  if (activeDate === "start") {
+    startDate.value = format(selected);
   }
 
-  if (activeInput === "end") {
-    endInput.value = format(selected);
+  if (activeDate === "end") {
+    endDate.value = format(selected);
   }
 
-  calendar.style.display = "none"; // close after selection
+  datePicker.classList.remove("active");
 }

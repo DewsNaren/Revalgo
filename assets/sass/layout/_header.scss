@@ -42,9 +42,12 @@ header{
         align-items: center;
         ul{
             display: flex;
+            align-items: center;
             gap:clamp(12px, $fs-40px, $fs-40px);
+            margin-bottom: 0;
             li{
                 list-style-type: none;
+                font-size: clamp(12px, $fs-16px, $fs-16px);
 
                 &.profile-container{
                     display: flex;
@@ -111,7 +114,7 @@ header{
                         padding:7px clamp(12px, $fs-24px, $fs-24px);
                         color: $white-80;
                         background-color: $blue-87;
-                        margin-left:clamp(5px, $fs-10px, $fs-10px);
+                        margin-right:clamp(5px, $fs-10px, $fs-10px);
                         cursor: pointer;
                     }
                 } 
