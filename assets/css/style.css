@@ -340,10 +340,17 @@ header nav ul li a.new-quote-btn {
   cursor: pointer;
 }
 
+body {
+  height: 100vh;
+  overflow: hidden;
+}
+
 .dashboard-wrapper {
   margin-top: 6px;
   background-color: #f5f5f5;
   padding: clamp(20px, 1.8vw, 1.8vw) clamp(12px, 1.25vw, 1.25vw);
+  display: flex;
+  flex-direction: column;
 }
 .dashboard-wrapper .dashboard-header-wrapper {
   margin-bottom: clamp(23px, 2.4vw, 2.4vw);
@@ -398,7 +405,7 @@ header nav ul li a.new-quote-btn {
   font-size: clamp(11px, 0.73vw, 0.73vw);
   cursor: pointer;
 }
-.dashboard-wrapper .dashboard-header-wrapper .header-container .dropdown-wrapper .date-filter .dropdown-menu:hover {
+.dashboard-wrapper .dashboard-header-wrapper .header-container .dropdown-wrapper .date-filter .dropdown-menu li:hover {
   background: #f0f0f0;
 }
 .dashboard-wrapper .dashboard-header-wrapper .header-container .dropdown-wrapper .date-filter .dropdown-menu.active {
@@ -641,8 +648,18 @@ header nav ul li a.new-quote-btn {
 .dashboard-wrapper .dashboard-header-wrapper .stats-wrapper .stat-container:first-of-type {
   margin-right: clamp(10px, 1.05vw, 1.05vw);
 }
+.dashboard-wrapper .dashboard-body-wrapper {
+  display: flex;
+  gap: clamp(20px, 2.067vw, 2.067vw);
+  flex: 1;
+  overflow: hidden;
+  height: 100%;
+}
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container {
   width: 62%;
+  height: calc(100% - clamp(20px, 1.965vw, 1.965vw));
+  display: flex;
+  flex-direction: column;
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container h3 {
   font-size: clamp(14px, 1.15vw, 1.15vw);
@@ -655,6 +672,10 @@ header nav ul li a.new-quote-btn {
   padding: clamp(12px, 1.25vw, 1.25vw) clamp(12px, 1.25vw, 1.25vw);
   border-radius: clamp(3px, 0.521vw, 0.521vw);
   background-color: white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .top-container {
   padding-bottom: clamp(5px, 0.521vw, 0.521vw);
@@ -802,23 +823,230 @@ header nav ul li a.new-quote-btn {
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table {
   width: 100%;
+  table-layout: fixed;
+  height: calc(100% - clamp(20px, 1.71vw, 1.71vw));
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  flex-shrink: 0;
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr {
-  width: 100%;
-  display: inline-flex;
-  gap: clamp(10px, 0.63vw, 0.63vw);
-  justify-content: space-between;
-  padding: clamp(10px, 0.79vw, 0.79vw) clamp(10px, 0.79vw, 0.79vw) clamp(10px, 0.79vw, 0.79vw) 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.6);
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th {
-  display: inline-flex;
-  align-items: center;
-  font-weight: normal;
   font-size: clamp(10px, 0.79vw, 0.79vw);
-  gap: clamp(10px, 0.79vw, 0.79vw);
   color: rgba(0, 0, 0, 0.9);
   font-weight: 500;
+  padding: clamp(8px, 0.521vw, 0.521vw) clamp(10px, 0.79vw, 0.79vw) clamp(8px, 0.521vw, 0.521vw) 0;
+  text-align: left;
+}
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th span {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(7px, 0.79vw, 0.79vw);
+  font-size: clamp(10px, 0.79vw, 0.79vw);
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 500;
+}
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:first-of-type, .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:last-of-type {
+  width: 1.65vw;
+}
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(3) {
+  width: 13.5vw;
+}
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(4) {
+  width: 7.89vw;
+}
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(5) {
+  width: 8.5vw;
+}
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(7) {
+  width: clamp(80px, 5.2vw, 5.2vw);
+}
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody {
+  display: block;
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 10px;
+}
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td {
+  font-size: clamp(10px, 0.73vw, 0.73vw);
+  padding: 5px clamp(10px, 0.79vw, 0.79vw) 5px 0;
+  border-bottom: 1px solid #ccc;
+}
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:first-of-type img, .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:last-of-type img {
+  width: 0.83vw;
+}
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:first-of-type, .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:last-of-type {
+  width: 1.65vw;
+}
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(3) {
+  width: 13.5vw;
+}
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(4) {
+  width: 7.89vw;
+}
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(5) {
+  width: 8.5vw;
+}
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(7) {
+  width: clamp(80px, 5.2vw, 5.2vw);
+  padding-left: clamp(10px, 0.79vw, 0.79vw);
+}
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(8) {
+  font-weight: 500;
+}
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr:last-of-type td {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody::-webkit-scrollbar {
+  width: 4px;
+}
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody::-webkit-scrollbar-thumb {
+  background: rgba(161, 161, 161, 0.5);
+  border-radius: 4px;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper {
+  flex: 1;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container {
+  display: flex;
+  gap: clamp(7px, 0.73vw, 0.73vw);
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .trend-chart-wrapper {
+  width: 55.3%;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .trend-chart-wrapper h4 {
+  font-size: clamp(15px, 1.25vw, 1.25vw);
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: clamp(6px, 0.63vw, 0.63vw);
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .trend-chart-wrapper .trend-chart-container {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  height: 13.7vw;
+  background-color: white;
+  border-radius: clamp(5px, 0.79vw, 0.79vw);
+  padding: clamp(6px, 0.63vw, 0.63vw) clamp(10px, 1.05vw, 1.05vw) 0;
+  display: flex;
+  flex-direction: column;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .trend-chart-wrapper .trend-chart-container .chart-header .export-btn-container {
+  display: flex;
+  justify-content: flex-end;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .trend-chart-wrapper .trend-chart-container .chart-header .export-btn-container button {
+  border: none;
+  background-color: transparent;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .trend-chart-wrapper .trend-chart-container .chart-header .export-btn-container button img {
+  width: clamp(12px, 0.83vw, 0.83vw);
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .trend-chart-wrapper .trend-chart-container .chart-header .header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-right: clamp(6px, 0.63vw, 0.63vw);
+  padding-bottom: clamp(10px, 1.05vw, 1.05vw);
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .trend-chart-wrapper .trend-chart-container .chart-header .header-content p {
+  margin-bottom: 0;
+  line-height: 1;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .trend-chart-wrapper .trend-chart-container .chart-header .header-content .count {
+  font-size: clamp(13px, 1.15vw, 1.15vw);
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: 3px;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .trend-chart-wrapper .trend-chart-container .chart-header .header-content .text {
+  font-size: clamp(10px, 0.63vw, 0.63vw);
+  font-weight: 500;
+  opacity: 0.9;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .trend-chart-wrapper .trend-chart-container .chart-header .legend-container .legend {
+  display: flex;
+  align-items: center;
+  gap: clamp(6px, 0.521vw, 0.521vw);
+  font-size: clamp(10px, 0.63vw, 0.63vw);
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .trend-chart-wrapper .trend-chart-container .chart-header .legend-container .legend span {
+  width: 11px;
+  height: 6px;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .trend-chart-wrapper .trend-chart-container .chart-header .legend-container .legend.total-legend {
+  margin-bottom: 7px;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .trend-chart-wrapper .trend-chart-container .chart-header .legend-container .legend.total-legend span {
+  background-color: #ff09b5;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .trend-chart-wrapper .trend-chart-container .chart-header .legend-container .legend.approved-legend span {
+  background-color: #49b4ff;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .trend-chart-wrapper .trend-chart-container .chart-header .legend-container .legend.inactive {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .trend-chart-wrapper .trend-chart-container .chart-header .legend-container .legend.inactive span {
+  filter: invert(0);
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .trend-chart-wrapper .trend-chart-container .trend-chart {
+  flex: 1;
+  height: 100%;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .trend-chart-wrapper .trend-chart-container .trend-chart .trend-x-label, .dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .trend-chart-wrapper .trend-chart-container .trend-chart .trend-y-label {
+  font-size: clamp(10px, 0.63vw, 0.63vw);
+  opacity: 0.9;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .accuracy-chart-wrapper {
+  width: 44.7%;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .accuracy-chart-wrapper h4 {
+  font-size: clamp(15px, 1.25vw, 1.25vw);
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: clamp(6px, 0.63vw, 0.63vw);
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .accuracy-chart-wrapper .accuracy-chart-container {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  height: 13.7vw;
+  background-color: white;
+  border-radius: clamp(5px, 0.79vw, 0.79vw);
+  padding: clamp(6px, 0.63vw, 0.63vw) clamp(10px, 1.05vw, 1.05vw);
+  display: flex;
+  flex-direction: column;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .accuracy-chart-wrapper .accuracy-chart-container .chart-header .export-btn-container {
+  display: flex;
+  justify-content: flex-end;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .accuracy-chart-wrapper .accuracy-chart-container .chart-header .export-btn-container button {
+  border: none;
+  background-color: transparent;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .accuracy-chart-wrapper .accuracy-chart-container .chart-header .export-btn-container button img {
+  width: clamp(12px, 0.83vw, 0.83vw);
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .accuracy-chart-wrapper .accuracy-chart-container .accuracy-chart {
+  flex: 1;
+  height: 100%;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .accuracy-chart-wrapper .accuracy-chart-container .accur-label {
+  font-size: clamp(15px, 1.45vw, 1.45vw);
+  font-weight: normal;
+  position: absolute;
 }
 
 /*# sourceMappingURL=style.css.map */
