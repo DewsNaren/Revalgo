@@ -4,9 +4,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Revalgo | Dashboard</title>
-        <link rel="stylesheet" href="./assets/css/style.css">
+        
         <link rel="stylesheet" href="./assets/vendor/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="./assets/vendor/fontawesome/css/all.min.css">
+        <link rel="stylesheet" href="./assets/css/style.css">
     </head>
     
     <body>
@@ -171,7 +172,7 @@
             <div class="dashboard-body-wrapper">
                 <div class="quotes-container">
                     <h3>Recent Quotes</h3>
-                    <div class="table-wrapper">
+                    <div class="table-wrapper" >
                         <div class="top-container">
                             <div class="btn-container">
                                 <button type="button" class="pend-btn">Pending <span class="apprv-count">22</span></button>
@@ -196,7 +197,7 @@
                                     </div>
                                 </div>
                                 <button type="button" class="export-btn"><img src="./assets/images/dashboard/Export_icon.png" alt="Export icon"></button>
-                                <button type="button" class="expand-btn"><img src="./assets/images/dashboard/Expand_icon.png" alt="Expand icon"></button>
+                                <button type="button" class="expand-btn" data-type="table" data-target=".quotes-container"><img src="./assets/images/dashboard/Expand_icon.png" alt="Expand icon"></button>
                             </div>
                         </div>
                         <table class="quote-table">
@@ -302,7 +303,7 @@
                                     <td>$18,54.1.11</td>
                                     <td><img src="./assets/images/dashboard/Add_icon.png" alt="add"></td>
                                 </tr>   
-<tr>
+                                <tr>
                                     <td><img src="./assets/images/dashboard/Call_icon.png" alt="call"></td>
                                     <td><a href="#">#76556566555</a></td>
                                     <td>McKesson Corporation / 8948475656548</td>
@@ -324,7 +325,7 @@
                             <div class="trend-chart-container">
                                 <div class="chart-header">
                                     <div class="export-btn-container">
-                                        <button><img src="./assets/images/dashboard/Expand_icon.png" alt="expand icon"></button>
+                                        <button type="button" class="expand-btn" data-type="chart" data-target=".trend-chart-container" ><img src="./assets/images/dashboard/Expand_icon.png" alt="expand icon"></button>
                                     </div>
                                     
                                     <div class="header-content">
@@ -348,19 +349,78 @@
                             <div class="accuracy-chart-container">
                                 <div class="chart-header">
                                     <div class="export-btn-container">
-                                        <button><img src="./assets/images/dashboard/Expand_icon.png" alt="expand icon"></button>
+                                        <button type="button" class="expand-btn" data-type="chart" data-target=".accuracy-chart-container"><img src="./assets/images/dashboard/Expand_icon.png" alt="expand icon"></button>
                                     </div>
                                 </div>
-                                <div id="accuracy-chart">
+                                <div class="accuracy-chart" id="accuracy-chart">
 
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="transaction-wrapper">
+                        <div class="btn-container">
+                            <button class="dropdown-btn">
+                                <img src="./assets/images/dashboard/down-arrow-blue.png" alt="down-arrow">
+                                Top Transactions
+                            </button>
+                            <button class="view-more-btn expand-btn" class="expand-btn" data-type="table" data-target=".transaction-table">
+                                View More
+                            </button>
+                        </div>
+                        <table class="transaction-table">
+                            <thead>
+                                <th>Customer</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>View Communications</td>
+                                     <td>JP Morgan Chase</td>
+                                      <td>$500</td>
+                                </tr>
+                                 <tr>
+                                    <td>View Communications</td>
+                                     <td>JP Morgan Chase</td>
+                                      <td>$500</td>
+                                </tr>
+                                 <tr>
+                                    <td>View Communications</td>
+                                     <td>JP Morgan Chase</td>
+                                      <td>$500</td>
+                                </tr>
+                                 <tr>
+                                    <td>View Communications</td>
+                                     <td>JP Morgan Chase</td>
+                                      <td>$500</td>
+                                </tr>
+                                 <tr>
+                                    <td>View Communications</td>
+                                     <td>JP Morgan Chase</td>
+                                      <td>$500</td>
+                                </tr>
+                                 <tr>
+                                    <td>View Communications</td>
+                                     <td>JP Morgan Chase</td>
+                                      <td>$500</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-
             </div>
         </main>
+        <div class="expand-overlay">
+            <div class="expand-modal table">
+                <button class="close-modal-btn"><img src="./assets/images/global/close-modal.webp" alt="close"></button>
+                <div class="expand-modal-content">
+
+                </div>
+            </div>
+        </div>
+
         <script src="https://code.highcharts.com/highcharts.js"></script>
         <script src="https://code.highcharts.com/highcharts-more.js"></script>
         <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>

@@ -657,7 +657,7 @@ body {
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container {
   width: 62%;
-  height: calc(100% - clamp(20px, 1.965vw, 1.965vw));
+  max-height: calc(100% - clamp(20px, 1.965vw, 1.965vw));
   display: flex;
   flex-direction: column;
 }
@@ -672,10 +672,9 @@ body {
   padding: clamp(12px, 1.25vw, 1.25vw) clamp(12px, 1.25vw, 1.25vw);
   border-radius: clamp(3px, 0.521vw, 0.521vw);
   background-color: white;
-  height: 100%;
+  max-height: 100%;
   display: flex;
   flex-direction: column;
-  flex: 1;
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .top-container {
   padding-bottom: clamp(5px, 0.521vw, 0.521vw);
@@ -919,6 +918,10 @@ body {
 }
 .dashboard-wrapper .dashboard-body-wrapper .chart-wrapper {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 1.25vw, 1.25vw);
+  height: 100%;
 }
 .dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container {
   display: flex;
@@ -1006,6 +1009,7 @@ body {
 .dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .trend-chart-wrapper .trend-chart-container .trend-chart {
   flex: 1;
   height: 100%;
+  width: 100%;
 }
 .dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .trend-chart-wrapper .trend-chart-container .trend-chart .trend-x-label, .dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .trend-chart-wrapper .trend-chart-container .trend-chart .trend-y-label {
   font-size: clamp(10px, 0.63vw, 0.63vw);
@@ -1042,11 +1046,520 @@ body {
 .dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .accuracy-chart-wrapper .accuracy-chart-container .accuracy-chart {
   flex: 1;
   height: 100%;
+  width: 100% !important;
+  position: relative;
 }
-.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .accuracy-chart-wrapper .accuracy-chart-container .accur-label {
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .accuracy-chart-wrapper .accuracy-chart-container .accuracy-chart .highcharts-background,
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .accuracy-chart-wrapper .accuracy-chart-container .accuracy-chart .highcharts-plot-background,
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .accuracy-chart-wrapper .accuracy-chart-container .accuracy-chart .highcharts-plot-border,
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .accuracy-chart-wrapper .accuracy-chart-container .accuracy-chart .highcharts-data-labels,
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .accuracy-chart-wrapper .accuracy-chart-container .accuracy-chart .highcharts-pane,
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .accuracy-chart-wrapper .accuracy-chart-container .accuracy-chart .highcharts-yaxis {
+  fill: transparent;
+  background-color: transparent;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .accuracy-chart-wrapper .accuracy-chart-container .accuracy-chart .highcharts-tooltip {
+  fill: #ffffff;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .accuracy-chart-wrapper .accuracy-chart-container .accuracy-chart .highcharts-tooltip text {
+  font-size: 0.8em;
+  fill: rgb(51, 51, 51);
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .accuracy-chart-wrapper .accuracy-chart-container .accuracy-chart .highcharts-tooltip tspan {
+  font-size: 0.8em;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .accuracy-chart-wrapper .accuracy-chart-container .accuracy-chart .highcharts-tooltip tspan:nth-of-type(2) {
+  font-size: 0.9em;
+  color: #154787;
+  fill: #154787;
+  font-weight: bold;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .accuracy-chart-wrapper .accuracy-chart-container .accuracy-chart .highcharts-root {
+  width: 100% !important;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .accuracy-chart-wrapper .accuracy-chart-container .accuracy-chart .highcharts-dial {
+  fill: black;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .accuracy-chart-wrapper .accuracy-chart-container .accuracy-chart .highcharts-pivot {
+  fill: white;
+  stroke: black;
+  stroke-width: 2;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .accuracy-chart-wrapper .accuracy-chart-container .accuracy-chart .gauge-label {
+  font-size: clamp(10px, 0.73vw, 0.73vw);
+  color: #333;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .accuracy-chart-wrapper .accuracy-chart-container .accuracy-chart .accur-label {
   font-size: clamp(15px, 1.45vw, 1.45vw);
   font-weight: normal;
   position: absolute;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: clamp(20px, 3.13vw, 3.13vw);
+  padding-bottom: clamp(7px, 0.79vw, 0.79vw);
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .btn-container button {
+  background-color: transparent;
+  border: none;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .btn-container button.dropdown-btn img {
+  width: clamp(13px, 1.15vw, 1.15vw);
+  margin-right: 5px;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .btn-container button.dropdown-btn {
+  font-size: clamp(13px, 1.15vw, 1.15vw);
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .btn-container button.view-more-btn {
+  font-size: clamp(11px, 0.79vw, 0.79vw);
+  color: #154787;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .transaction-table {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  min-height: 0;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .transaction-table thead {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  flex-shrink: 0;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .transaction-table thead tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .transaction-table thead tr th {
+  font-size: clamp(10px, 0.83vw, 0.83vw);
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 500;
+  padding: clamp(6px, 0.521vw, 0.521vw) clamp(10px, 0.79vw, 0.79vw) clamp(8px, 0.521vw, 0.521vw) 0;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .transaction-table thead tr th:first-of-type {
+  padding-left: clamp(8px, 0.79vw, 0.79vw);
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .transaction-table tbody {
+  display: block;
+  flex: 1;
+  overflow-y: auto;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .transaction-table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .transaction-table tbody tr td {
+  font-size: clamp(10px, 0.73vw, 0.73vw);
+  padding: clamp(6px, 0.521vw, 0.521vw) clamp(10px, 0.79vw, 0.79vw) clamp(6px, 0.521vw, 0.521vw) 0;
+  border-bottom: 1px solid #ccc;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .transaction-table tbody tr td:last-of-type {
+  font-weight: 400;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .transaction-table tbody::-webkit-scrollbar {
+  width: 4px;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .transaction-table tbody::-webkit-scrollbar-thumb {
+  background: rgba(161, 161, 161, 0.5);
+  border-radius: 4px;
+}
+
+.expand-overlay {
+  position: fixed;
+  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.7);
+  inset: auto 0 0 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.expand-overlay .expand-modal {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 85%;
+  position: relative;
+  padding: clamp(12px, 1.25vw, 1.25vw) clamp(12px, 1.25vw, 1.25vw);
+  border-radius: clamp(3px, 0.521vw, 0.521vw);
+}
+.expand-overlay .expand-modal .close-modal-btn {
+  position: absolute;
+  align-self: flex-end;
+  border: none;
+  background-color: transparent;
+  top: clamp(12px, 1.25vw, 1.25vw);
+  z-index: 4;
+}
+.expand-overlay .expand-modal .close-modal-btn img {
+  width: clamp(15px, 1.45vw, 1.45vw);
+}
+.expand-overlay .expand-modal.table {
+  width: 72%;
+}
+.expand-overlay .expand-modal.table .expand-modal-content {
+  display: flex;
+  flex: 1;
+  max-height: 100%;
+  min-height: 0;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container {
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container h3 {
+  font-size: clamp(14px, 1.15vw, 1.15vw);
+  font-weight: normal;
+  color: black;
+  opacity: 0.95;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper {
+  background-color: white;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container {
+  padding-bottom: clamp(5px, 0.521vw, 0.521vw);
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .btn-container {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 0.93vw, 0.93vw);
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .btn-container button {
+  border: none;
+  background-color: transparent;
+  font-size: clamp(10px, 0.73vw, 0.73vw);
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(8px, 0.63vw, 0.63vw);
+  position: relative;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .btn-container button span {
+  font-size: clamp(7px, 0.521vw, 0.521vw);
+  width: clamp(10px, 1.05vw, 1.05vw);
+  height: clamp(10px, 1.05vw, 1.05vw);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d5d5d5;
+  opacity: 0.8;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .btn-container button::after {
+  position: absolute;
+  content: "";
+  left: 10%;
+  width: 50%;
+  height: 1px;
+  background-color: #015685;
+  bottom: calc(clamp(10px, 0.79vw, 0.79vw) * -1);
+  transform: translateX(-50%) scale(0);
+  transition: transform 0.3s ease;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .btn-container button.active {
+  color: #015685;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .btn-container button.active span {
+  background-color: #154787;
+  color: white;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .btn-container button.active::after {
+  transform: scale(1);
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper {
+  display: flex;
+  align-items: center;
+  gap: clamp(5px, 0.521vw, 0.521vw);
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .search-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 4px clamp(9px, 0.79vw, 0.79vw);
+  width: clamp(160px, 12.35vw, 12.35vw);
+  border-radius: 3px;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .search-container input {
+  border: none;
+  outline: none;
+  font-size: clamp(10px, 0.63vw, 0.63vw);
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .search-container input::placeholder {
+  font-size: clamp(10px, 0.63vw, 0.63vw);
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .search-container label img {
+  width: 12px, 0.83vw, 0.83vw;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .filter-container {
+  position: relative;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .filter-container .filter-text {
+  display: flex;
+  align-items: center;
+  gap: clamp(6px, 0.521vw, 0.521vw);
+  font-size: clamp(10px, 0.63vw, 0.63vw);
+  color: #616161;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .filter-container .filter-text img {
+  width: 15px, 0.989vw, 0.989vw;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .filter-container {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 4px clamp(9px, 0.79vw, 0.79vw);
+  border-radius: 3px;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .filter-container .filter-dropdown {
+  display: none;
+  list-style: none;
+  border: 1px solid #ccc;
+  padding: clamp(10px, 0.79vw, 0.79vw) 0;
+  margin: 0;
+  position: absolute;
+  background-color: white;
+  top: 100%;
+  right: 0;
+  width: max-content;
+  margin-top: clamp(6px, 0.521vw, 0.521vw);
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .filter-container .filter-dropdown ul {
+  padding-left: 0;
+  list-style-type: none;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(6px, 0.521vw, 0.521vw);
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .filter-container .filter-dropdown ul li {
+  padding: clamp(5px, 0.521vw, 0.521vw) clamp(12px, 2.067vw, 2.067vw);
+  font-size: clamp(11px, 0.73vw, 0.73vw);
+  cursor: pointer;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .filter-container .filter-dropdown ul li:hover {
+  background: #f0f0f0;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .filter-container .filter-dropdown.active {
+  display: block;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .export-btn {
+  border: none;
+  background-color: transparent;
+  margin-left: clamp(9px, 0.79vw, 0.79vw);
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .export-btn img {
+  width: 15px, 0.989vw, 0.989vw;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .expand-btn {
+  border: none;
+  background-color: transparent;
+  margin-left: clamp(9px, 0.79vw, 0.79vw);
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .expand-btn img {
+  width: 15px, 0.989vw, 0.989vw;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table {
+  width: 100%;
+  table-layout: fixed;
+  height: calc(100% - clamp(20px, 1.965vw, 1.965vw));
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  flex-shrink: 0;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th {
+  font-size: clamp(10px, 0.79vw, 0.79vw);
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 500;
+  padding: clamp(8px, 0.521vw, 0.521vw) clamp(10px, 0.79vw, 0.79vw) clamp(8px, 0.521vw, 0.521vw) 0;
+  text-align: left;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th span {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(7px, 0.79vw, 0.79vw);
+  font-size: clamp(10px, 0.79vw, 0.79vw);
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 500;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th:first-of-type, .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th:last-of-type {
+  width: 1.65vw;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(3) {
+  width: 13.5vw;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(4) {
+  width: 7.89vw;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(5) {
+  width: 8.5vw;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(7) {
+  width: clamp(80px, 5.2vw, 5.2vw);
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody {
+  display: block;
+  flex: 1;
+  overflow-y: auto;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td {
+  font-size: clamp(10px, 0.73vw, 0.73vw);
+  padding: 5px clamp(10px, 0.79vw, 0.79vw) 5px 0;
+  border-bottom: 1px solid #ccc;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:first-of-type img, .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:last-of-type img {
+  width: 0.83vw;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:first-of-type, .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:last-of-type {
+  width: 1.65vw;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(3) {
+  width: 13.5vw;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(4) {
+  width: 7.89vw;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(5) {
+  width: 8.5vw;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(7) {
+  width: clamp(80px, 5.2vw, 5.2vw);
+  padding-left: clamp(10px, 0.79vw, 0.79vw);
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(8) {
+  font-weight: 500;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr:last-of-type td {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody::-webkit-scrollbar {
+  width: 4px;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody::-webkit-scrollbar-thumb {
+  background: rgba(161, 161, 161, 0.5);
+  border-radius: 4px;
+}
+.expand-overlay .expand-modal.chart {
+  width: 35%;
+  padding: clamp(6px, 0.63vw, 0.63vw) clamp(10px, 1.05vw, 1.05vw) 0;
+}
+.expand-overlay .expand-modal.chart .trend-chart-container {
+  height: 100%;
+  max-height: 30vw;
+  background-color: white;
+  border-radius: clamp(5px, 0.79vw, 0.79vw);
+  display: flex;
+  flex-direction: column;
+}
+.expand-overlay .expand-modal.chart .trend-chart-container .chart-header .export-btn-container {
+  display: flex;
+  justify-content: flex-end;
+}
+.expand-overlay .expand-modal.chart .trend-chart-container .chart-header .export-btn-container button {
+  border: none;
+  background-color: transparent;
+  display: none;
+}
+.expand-overlay .expand-modal.chart .trend-chart-container .chart-header .export-btn-container button img {
+  width: clamp(12px, 0.83vw, 0.83vw);
+}
+.expand-overlay .expand-modal.chart .trend-chart-container .chart-header .header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-right: clamp(6px, 0.63vw, 0.63vw);
+  padding-bottom: clamp(10px, 1.05vw, 1.05vw);
+}
+.expand-overlay .expand-modal.chart .trend-chart-container .chart-header .header-content p {
+  margin-bottom: 0;
+  line-height: 1;
+}
+.expand-overlay .expand-modal.chart .trend-chart-container .chart-header .header-content .count {
+  font-size: clamp(13px, 1.15vw, 1.15vw);
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: 3px;
+}
+.expand-overlay .expand-modal.chart .trend-chart-container .chart-header .header-content .text {
+  font-size: clamp(10px, 0.63vw, 0.63vw);
+  font-weight: 500;
+  opacity: 0.9;
+}
+.expand-overlay .expand-modal.chart .trend-chart-container .chart-header .legend-container .legend {
+  display: flex;
+  align-items: center;
+  gap: clamp(6px, 0.521vw, 0.521vw);
+  font-size: clamp(10px, 0.63vw, 0.63vw);
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+}
+.expand-overlay .expand-modal.chart .trend-chart-container .chart-header .legend-container .legend span {
+  width: 11px;
+  height: 6px;
+}
+.expand-overlay .expand-modal.chart .trend-chart-container .chart-header .legend-container .legend.total-legend {
+  margin-bottom: 7px;
+}
+.expand-overlay .expand-modal.chart .trend-chart-container .chart-header .legend-container .legend.total-legend span {
+  background-color: #ff09b5;
+}
+.expand-overlay .expand-modal.chart .trend-chart-container .chart-header .legend-container .legend.approved-legend span {
+  background-color: #49b4ff;
+}
+.expand-overlay .expand-modal.chart .trend-chart-container .chart-header .legend-container .legend.inactive {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+.expand-overlay .expand-modal.chart .trend-chart-container .chart-header .legend-container .legend.inactive span {
+  filter: invert(0);
+}
+.expand-overlay .expand-modal.chart .trend-chart-container .trend-chart {
+  flex: 1;
+  height: 100%;
+  width: 100%;
+}
+.expand-overlay .expand-modal.chart .trend-chart-container .trend-chart .trend-x-label, .expand-overlay .expand-modal.chart .trend-chart-container .trend-chart .trend-y-label {
+  font-size: clamp(10px, 0.63vw, 0.63vw);
+  opacity: 0.9;
+}
+.expand-overlay.active {
+  display: flex;
 }
 
 /*# sourceMappingURL=style.css.map */
