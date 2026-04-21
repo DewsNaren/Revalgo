@@ -116,6 +116,10 @@ header{
                         background-color: $blue-87;
                         margin-right:clamp(5px, $fs-10px, $fs-10px);
                         cursor: pointer;
+
+                        &:hover{
+                            background-color: $blue-85;
+                        }
                     }
                 } 
             }

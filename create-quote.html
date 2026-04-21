@@ -43,19 +43,251 @@
             </nav>
         </header>
         <main class="create-quote-wrapper">
-            <div class="create-quote-container">
-                <button type="button" class="back-create-btn"><img src="./assets/images/global/arrow-left-blue-1.png" alt="left arrow">Create Quote</button>
-            </div>  
-            <div class="create-input-wrapper">
-                <div class="btn-container">
-                    <button type="button" class="new-btn"><img src="./assets/images/create_quote/png/create quote_new icon_Black.png" class="img-grey" alt="Create Quote">
-                        <img src="./assets/images/create_quote/png/create quote_new icon_Blue.png" class="img-blue" alt="Create Quote"> New
-                    </button>
-                     <button type="button" class="exist-btn"><img src="./assets/images/create_quote/png/create quote_existing icon_Grey.png" class="img-grey" alt="Create Quote">
-                        <img src="./assets/images/create_quote/png/create quote_Existing icon_Blue.png" class="img-blue" alt="Create Quote"> From Existing
-                    </button>
+            <div class="top-btn-wrapper">
+                <button type="button" class="back-create-btn"><img src="./assets/images/global/arrow-left-blue-1.png" alt="left arrow">#7DB38FED</button>
+                <div class="approve-btn-container active">
+                    <button type="button" class="add-note-btn">Add Note</button>
+                    <button type="button" class="approve-btn">Approve Quote</button>
                 </div>
             </div>
+                
+            <div class="create-input-wrapper">
+                <div class="btn-container">
+                    <button type="button" class="new-btn"><img src="./assets/images/create_quote/create quote_new icon_Black.png" class="img-grey" alt="Create Quote">
+                        <img src="./assets/images/create_quote/create quote_new icon_Blue.png" class="img-blue" alt="Create Quote"> New
+                    </button>
+                    <button type="button" class="exist-btn"><img src="./assets/images/create_quote/create quote_existing icon_Grey.png" class="img-grey" alt="Create Quote">
+                        <img src="./assets/images/create_quote/create quote_Existing icon_Blue.png" class="img-blue" alt="Create Quote"> From Existing
+                    </button>
+                </div>
+                <div class="input-container">
+                    <div class="input-inner-container">
+                        <input type="text" name="create-quote-input" placeholder="Enter Customer Name / Account Number">
+                        <button type="button" class="search-quote-btn"><img src="./assets/images/global/search-icon-black.png" alt="search icon"></button>
+                        <div class="quote-dropdown">
+                            <ul>
+                                <li>#7DB38FED</li>
+                                <li>#7D38BF</li>
+                                <li>#7D38BFA</li>
+                                <li>#7D38BF0</li>
+                            </ul>
+                        </div>
+                    </div>
+                        
+                        
+                    <button type="button" class="create-quote-btn">Create Quote</button>
+                </div>
+            </div>
+            <div class="quick-order-wrapper">
+                <div class="quick-info-wrapper">
+                    <div class="info">
+                        <p class="header">Bill To</p>
+                        <div class="details">
+                            <p class="name">Astral India Pvt ltd</p>
+                            <p class="address">606,knolwood,brick <br> NJ 096478</p>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <p class="header">Ship To <button type="button" class="edit-btn"><img src="./assets/images/global/Edit icon.png" alt="Edit icon"></button></p>
+                        <div class="details">
+                            <p class="name"></p>
+                            <p class="address"></p>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <p class="header">PO No <button type="button" class="edit-btn"><img src="./assets/images/global/Edit icon.png" alt="Edit icon"></button></p>
+                        <div class="details">
+                            <p class="po-no-text">-</p>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <p class="header">Job No <button type="button" class="edit-btn"><img src="./assets/images/global/Edit icon.png" alt="Edit icon"></button></p>
+                        <div class="details">
+                            <p class="job-no-text text">-</p>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <p class="header">Buyer <button type="button" class="edit-btn"><img src="./assets/images/global/Edit icon.png" alt="Edit icon"></button></p>
+                        <div class="details">
+                            <p class="buyer-text text">-</p>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <p class="header">Deleivery Date <button type="button" class="edit-btn"><img src="./assets/images/global/Edit icon.png" alt="Edit icon"></button></p>
+                        <div class="details">
+                            <p class="deleivery-text"></p>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <p class="header">#Lines</p>
+                        <div class="details">
+                            <p class="line-text"></p>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <p class="header">Total Price</p>
+                        <div class="details">
+                            <p class="price-text"></p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="quick-content-wrapper">
+                    <div class="left-wrapper">
+                        <div class="header-wrapper">
+                            <div class="btn-container">
+                                <button type="button" class="quick-order-btn">Quick Order</button>
+                                <button type="button" class="upload-btn active">Upload</button>
+                            </div>
+                            <button type="button" class="mail-expand-btn"><img src="./assets/images/global/email_Expand_icon.png" alt="expand icon"></button>
+                            
+                        </div>
+                        <div class="body-wrapper">
+                            <div class="table-wrapper">
+                                <div class="table-header">
+                                    <p class="quantity-header">Qty</p>
+                                    <p class="description-header">Description</p>
+                                </div>
+                                <div class="table-body">
+                                    <div class="table-row">
+                                        <div class="qty-input-wrapper">
+                                            <input type="text" class="qty">
+                                        </div>
+
+                                        <div class="desc-wrapper">
+                                            <input type="text" class="desc-input">
+                                            <div class="dropdown">
+                                                <ul>
+                                                    <li>hell el! here</li>
+                                                    <li>hell el! here</li>
+                                                    <li>hell el! here</li>
+                                                    <li>hell el! here</li>
+                                                    <li>hell el! here</li>
+                                                    <li>hell el! here</li>
+                                                    <li>hell el! here</li>
+                                                    <li>hell el! here</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="table-row">
+                                        <div class="qty-input-wrapper">
+                                            <input type="text" class="qty" value="4">
+                                        </div>
+
+                                        <div class="desc-wrapper">
+                                            <input type="text" class="desc-input">
+                                            <div class="dropdown"></div>
+                                        </div>
+                                    </div>
+                                    <div class="table-row">
+                                        <div class="qty-input-wrapper">
+                                            <input type="text" class="qty">
+                                        </div>
+
+                                        <div class="desc-wrapper">
+                                            <input type="text" class="desc-input">
+                                            <div class="dropdown"></div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="table-row">
+                                        <div class="qty-input-wrapper">
+                                            <input type="text" class="qty">
+                                        </div>
+
+                                        <div class="desc-wrapper">
+                                            <input type="text" class="desc-input">
+                                            <div class="dropdown"></div>
+                                        </div>
+                                    </div>
+                                    <div class="table-row">
+                                        <div class="qty-input-wrapper">
+                                            <input type="text" class="qty">
+                                        </div>
+
+                                        <div class="desc-wrapper">
+                                            <input type="text" class="desc-input">
+                                            <div class="dropdown"></div>
+                                        </div>
+                                    </div>
+                                    <div class="table-row">
+                                        <div class="qty-input-wrapper">
+                                            <input type="text" class="qty">
+                                        </div>
+                                        
+
+                                        <div class="desc-wrapper">
+                                            <input type="text" class="desc-input">
+                                            <div class="dropdown"></div>
+                                        </div>
+                                    </div>
+                                    <div class="table-row">
+                                        <div class="qty-input-wrapper">
+                                            <input type="text" class="qty">
+                                        </div>
+
+                                        <div class="desc-wrapper">
+                                            <input type="text" class="desc-input">
+                                            <div class="dropdown"></div>
+                                        </div>
+                                    </div>
+                                    <div class="table-row">
+                                        <div class="qty-input-wrapper">
+                                            <input type="text" class="qty">
+                                        </div>
+
+                                        <div class="desc-wrapper">
+                                            <input type="text" class="desc-input">
+                                            <div class="dropdown">
+                                                <ul>
+                                                    <li>hell el! here</li>
+                                                    <li>hell el! here</li>
+                                                    <li>hell el! here</li>
+                                                    <li>hell el! here</li>
+                                                    <li>hell el! here</li>
+                                                    <li>hell el! here</li>
+                                                    <li>hell el! here</li>
+                                                    <li>hell el! here</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="upload-btn-container">
+                                <button type="button" class="upload-btn">Upload</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right-wrapper">
+                        <div class="display-table">
+                            <div class="table-row header-wrapper">
+                                <div></div>
+                                <div><input type="checkbox"></div>
+                                <div>Line No</div>
+                                <div>Qty Requested</div>
+                                <div>Requested / Suggested Product</div>
+                                <div>Score</div>
+                                <div>Available Qty</div>
+                                <div>Unit Cost</div>
+                                <div>Margin</div>
+                                <div>Selling Price</div>
+                                <div>Total Cost</div>
+                            </div>
+                            <div class="add-btn-container">
+                                <button type="button"><img src="./assets/images/create_quote/add item_icon.png" alt="add"></button>
+                                <p class="text">Click here to Add Item</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>  
+            </div>
+            
+            </div>
         </main>
+
+        <script src="./assets/js/create-quote.js"></script>
     </body>
 </html>
