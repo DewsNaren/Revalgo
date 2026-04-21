@@ -42,7 +42,7 @@ body{
                 justify-content: space-between;
                 padding-bottom: 5px;
                 border-bottom: 1px solid $blue-87;
-                font-size: clamp(12px, $fs-15px, $fs-15px);
+                font-size: clamp(11px, $fs-15px, $fs-15px);
                 img {
                 width: clamp(12px, $fs-22px, $fs-22px);
                 }
@@ -234,7 +234,7 @@ body{
             // justify-content: space-between;
             padding: 5px 7px;
             border: 1px solid $blue-87;
-            font-size: clamp(12px, $fs-15px, $fs-15px);
+            font-size: clamp(11px, $fs-15px, $fs-15px);
             .widget-dropdown-menu{
                 display: none;
                 position: absolute;
@@ -452,7 +452,7 @@ body{
                             }
                         }
                         label img{
-                            width: (12px, $fs-16px, $fs-16px);
+                            width: clamp(12px, $fs-16px, $fs-16px);
                         }
 
                     }
@@ -517,7 +517,7 @@ body{
                         background-color: transparent;
                         margin-left:clamp(9px, $fs-15px, $fs-15px);
                         img{
-                            width: (15px, $fs-19px, $fs-19px);
+                            width: clamp(15px, $fs-19px, $fs-19px);
                         }
                     }
                     .expand-btn{
@@ -525,7 +525,7 @@ body{
                         background-color: transparent;
                         margin-left:clamp(9px, $fs-15px, $fs-15px);
                         img{
-                            width: (15px, $fs-19px, $fs-19px);
+                            width: clamp(15px, $fs-19px, $fs-19px);
                         }
                     }
 
@@ -538,7 +538,7 @@ body{
                
                 display: flex;
                 flex-direction: column;
-               flex: 1;
+                flex: 1;
 
                 thead {
                     display: table;
@@ -573,13 +573,16 @@ body{
                                 width: $fs-250px;
                             }
                             &:nth-of-type(4) {
-                                width: $fs-152px;
+                                width: $fs-160px;
                             }
                             &:nth-of-type(5){
                                 width: $fs-160px;
                             }
                             &:nth-of-type(7){
-                                width: clamp(80px,$fs-100px, $fs-100px);
+                                width: clamp(75px,$fs-100px, $fs-100px);
+                            }
+                            &:nth-of-type(8){
+                                width: clamp(104px,$fs-120px, $fs-120px);
                             }
                         }
                     }
@@ -611,21 +614,26 @@ body{
                             &:last-of-type {
                                 width: $fs-32px;
                             }
+                            a.quote-id-data{
+                                color: $blue-87;
+                                font-weight: 500;
+                            }
                             &:nth-of-type(3){
                                 width: $fs-250px;
                             }
                             &:nth-of-type(4) {
-                                width: $fs-152px;
+                                width: $fs-160px;
                             }
                             &:nth-of-type(5){
                                 width: $fs-160px;
                             }
                             &:nth-of-type(7){
-                                width: clamp(80px,$fs-100px, $fs-100px);
+                                width: clamp(75px,$fs-100px, $fs-100px);
                                 padding-left: clamp(10px,$fs-15px, $fs-15px);
                             }
                              &:nth-of-type(8){
                                font-weight: 500;
+                               width: clamp(104px,$fs-120px, $fs-120px);
                             }
                             
 
@@ -913,7 +921,12 @@ body{
                             font-weight: 500;
                             padding: clamp(6px, $fs-10px, $fs-10px) clamp(10px, $fs-15px, $fs-15px) clamp(8px, $fs-10px, $fs-10px) 0;
                             &:first-of-type{
+                                width: clamp(150px,$fs-311px,$fs-311px);
                                 padding-left:  clamp(8px, $fs-15px, $fs-15px);
+                            }
+                             &:nth-of-type(2){
+                                width: clamp(110px,$fs-220px,$fs-220px);
+                                    
                             }
                         }
                     }
@@ -931,7 +944,15 @@ body{
                             font-size: clamp(10px, $fs-14px, $fs-14px);
                             padding:clamp(6px, $fs-10px, $fs-10px) clamp(10px, $fs-15px, $fs-15px) clamp(6px, $fs-10px, $fs-10px) 0;
                             border-bottom: 1px solid #ccc;
+                            &:first-of-type{
+                                width: clamp(160px,$fs-311px,$fs-311px);
+                            }
+                            &:nth-of-type(2){
+                                width: clamp(110px,$fs-220px,$fs-220px);
+                                    
+                            }
                             &:last-of-type{
+                                // width: clamp(100px,$fs-194px,$fs-194px);
                                 font-weight: 400;
                             }
                         }
@@ -972,7 +993,7 @@ body{
         display: flex;
         flex-direction: column;
         align-items: center;
-
+        margin-top: 10px;
         
         max-height: 85%;
         position: relative;
@@ -988,12 +1009,11 @@ body{
             top: clamp(12px, $fs-24px, $fs-24px);
             z-index: 4;
             img{
-                width: clamp(15px, $fs-28px, $fs-28px) 
+                width: clamp(14px, $fs-24px, $fs-24px);
             }
         }
         
         &.table{
-            
             width:72%;
             .expand-modal-content{
                 display: flex;   
@@ -1002,7 +1022,7 @@ body{
                 min-height: 0;
                 .quotes-container{
                     max-height: 100%;
-                    display: flex;
+                    display: none;
                     flex-direction: column;
                      min-height: 0; 
                     h3{
@@ -1020,7 +1040,7 @@ body{
                         min-height: 0;
                 
                         .top-container{
-                            padding-bottom: clamp(5px, $fs-10px, $fs-10px);
+                            padding-bottom: clamp(8px, $fs-15px, $fs-15px);
                             border-bottom: 1px solid #ddd;
                             display: flex;
                             align-items: center;
@@ -1033,15 +1053,15 @@ body{
                                 button{
                                     border: none;
                                     background-color: transparent;
-                                    font-size: clamp(10px, $fs-14px, $fs-14px);
+                                    font-size: clamp(10px, $fs-16px, $fs-16px);
                                     display: inline-flex;
                                     align-items: center;
-                                    gap: clamp(8px, $fs-12px, $fs-12px);
+                                    gap: clamp(9px, $fs-20px, $fs-20px);
                                     position: relative;
                                     span{
                                         font-size: clamp(7px, $fs-10px, $fs-10px);
-                                        width:clamp(10px, $fs-20px, $fs-20px);
-                                        height:clamp(10px, $fs-20px, $fs-20px);
+                                        width:clamp(10px, $fs-22px, $fs-22px);
+                                        height:clamp(10px, $fs-22px, $fs-22px);
                                         border-radius: 50%;
                                         display: inline-flex;
                                         align-items: center;
@@ -1085,20 +1105,20 @@ body{
                                     align-items: center;
                                     justify-content: space-between;
                                     border: 1px solid rgba(0,0,0,0.3);
-                                    padding: 4px clamp(9px, $fs-15px, $fs-15px);
-                                    width: clamp(160px, $fs-237px, $fs-237px);
+                                    padding: 6px clamp(9px, $fs-15px, $fs-15px);
+                                    width: clamp(180px, $fs-278px, $fs-278px);
                                     border-radius: 3px;
                                     input{
                                         border: none;
                                         outline: none;
-                                        font-size: clamp(10px, $fs-12px, $fs-12px);
+                                        font-size: clamp(10px, $fs-14px, $fs-14px);
 
                                         &::placeholder{
-                                            font-size: clamp(10px, $fs-12px, $fs-12px);
+                                            font-size: clamp(10px, $fs-14px, $fs-14px);
                                         }
                                     }
                                     label img{
-                                        width: (12px, $fs-16px, $fs-16px);
+                                        width: clamp(12px, $fs-16px, $fs-16px);
                                     }
 
                                 }
@@ -1108,21 +1128,21 @@ body{
                                         display: flex;
                                         align-items: center;
                                         gap: clamp(6px, $fs-10px, $fs-10px);
-                                        font-size: clamp(10px, $fs-12px, $fs-12px);
+                                        font-size: clamp(10px, $fs-14px, $fs-14px);
                                         color: $grey-61;
                                         img{
-                                            width: (15px, $fs-19px, $fs-19px);
+                                            width: clamp(15px, $fs-19px, $fs-19px);
                                         }
                                     }
                                     border: 1px solid rgba(0,0,0,0.3);
-                                    padding: 4px clamp(9px, $fs-15px, $fs-15px);
+                                    padding: 6px clamp(9px, $fs-15px, $fs-15px);
                                     border-radius: 3px;
 
                                     .filter-dropdown {
                                         display: none;
                                         list-style: none;
                                         border: 1px solid #ccc;
-                                        padding: clamp(10px, $fs-15px, $fs-15px) 0;
+                                        padding: clamp(10px, $fs-18px, $fs-18px) 0;
                                         margin: 0;
                                         position: absolute;
                                         background-color: $white;
@@ -1136,11 +1156,11 @@ body{
                                             margin-bottom: 0;
                                             display: flex;
                                             flex-direction: column;
-                                            gap:clamp(6px,$fs-10px, $fs-10px);
+                                            gap:clamp(7px,$fs-12px, $fs-12px);
 
                                             & li {
-                                                padding: clamp(5px, $fs-10px, $fs-10px) clamp(12px, $fs-40px, $fs-40px);
-                                                font-size: clamp(11px, $fs-14px, $fs-14px);
+                                                padding: clamp(7px, $fs-14px, $fs-14px) clamp(12px, $fs-42px, $fs-42px);
+                                                font-size: clamp(11px, $fs-15px, $fs-15px);
                                                 cursor: pointer;
                                                 &:hover {
                                                     background: #f0f0f0;
@@ -1163,16 +1183,11 @@ body{
                                     background-color: transparent;
                                     margin-left:clamp(9px, $fs-15px, $fs-15px);
                                     img{
-                                        width: (15px, $fs-19px, $fs-19px);
+                                        width: clamp(15px, $fs-22px, $fs-22px);
                                     }
                                 }
                                 .expand-btn{
-                                    border: none;
-                                    background-color: transparent;
-                                    margin-left:clamp(9px, $fs-15px, $fs-15px);
-                                    img{
-                                        width: (15px, $fs-19px, $fs-19px);
-                                    }
+                                    display: none;
                                 }
 
                             }
@@ -1198,34 +1213,33 @@ body{
                                         font-size: clamp(10px, $fs-15px, $fs-15px);
                                         color: $black-90;
                                         font-weight: 500;
-                                        padding: clamp(8px, $fs-10px, $fs-10px) clamp(10px, $fs-15px, $fs-15px) clamp(8px, $fs-10px, $fs-10px) 0;
+                                        padding: clamp(8px, $fs-10px, $fs-10px) clamp(10px, $fs-20px, $fs-20px) clamp(8px, $fs-10px, $fs-10px) 0;
                                         text-align: left;
 
                                         span {
-
                                             display: inline-flex;
                                             align-items: center;
-                                            gap: clamp(7px, $fs-15px, $fs-15px);
-                                            font-size: clamp(10px, $fs-15px, $fs-15px);
+                                            gap: clamp(7px, $fs-17px, $fs-17px);
+                                            font-size: clamp(10px, $fs-16px, $fs-16px);
                                             color: $black-90;
                                             font-weight: 500;
                                         }
 
                                         &:first-of-type,
                                         &:last-of-type {
-                                            width: $fs-32px;
+                                            width: $fs-52px;
                                         }
                                         &:nth-of-type(3){
-                                            width: $fs-250px;
+                                            width: $fs-278px;
                                         }
                                         &:nth-of-type(4) {
-                                            width: $fs-152px;
+                                            width: $fs-170px;
                                         }
                                         &:nth-of-type(5){
-                                            width: $fs-160px;
+                                            width: $fs-170px;
                                         }
                                         &:nth-of-type(7){
-                                            width: clamp(80px,$fs-100px, $fs-100px);
+                                            width: clamp(80px,$fs-120px, $fs-120px);
                                         }
                                     }
                                 }
@@ -1241,26 +1255,30 @@ body{
                                     width: 100%;
                                     table-layout: fixed;
                                     td{
-                                        font-size: clamp(10px, $fs-14px, $fs-14px);
+                                        font-size: clamp(10px, $fs-15px, $fs-15px);
                                         padding:5px clamp(10px, $fs-15px, $fs-15px) 5px 0;
+                                        color: rgba(0,0,0,0.85);
                                         border-bottom: 1px solid #ccc;
                                         
                                         &:first-of-type, &:last-of-type{
-                            
-                                            // width: $fs-16px;
                                             img{
-                                                width: $fs-16px;
+                                                width: $fs-18px;
                                             }
                                         }
                                         &:first-of-type,
                                         &:last-of-type {
-                                            width: $fs-32px;
+                                            width: $fs-52px;
                                         }
+                                        a.quote-id-data{
+                                            color: $blue-87;
+                                            font-weight: 500;
+                                        }
+                                       
                                         &:nth-of-type(3){
-                                            width: $fs-250px;
+                                            width: $fs-278px;
                                         }
                                         &:nth-of-type(4) {
-                                            width: $fs-152px;
+                                            width: $fs-160px;
                                         }
                                         &:nth-of-type(5){
                                             width: $fs-160px;
@@ -1294,55 +1312,181 @@ body{
                         }
 
                     }
+                    &.active{
+                        display: flex;
+                    }
+                }
+                .transaction-wrapper{
+                    display: flex;
+                    flex-direction: column;
+                    flex: 1;
+                    min-height: 0;
+                    .btn-container{
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        padding-right: clamp(20px, $fs-60px, $fs-60px); 
+                        padding-bottom:clamp(7px,$fs-15px, $fs-15px);
+                        padding-top: 0;
+                        button{
+                            background-color: transparent;
+                            border: none;
+                           
+                            &.dropdown-btn{
+                                img{
+                                    width: clamp(13px, $fs-24px, $fs-24px);
+                                    margin-right: 5px;
+                                }
+                                font-size: clamp(13px, $fs-26px, $fs-26px);
+                            }
+                            &.view-more-btn{
+                                font-size: clamp(11px, $fs-15px, $fs-15px);
+                                color: $blue-87;
+                                 display: none;
+                            }
+
+
+                        }
+                        
+                    }
+                    .transaction-table{
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        flex: 1;
+                        height: 100%;
+                        min-height: 0;
+                        thead{
+                            display: table;
+                            width: 100%;
+                            table-layout: fixed;
+                            flex-shrink: 0;
+                            tr{
+                                border-bottom: 1px solid rgba(0,0,0,0.6);
+                                th{
+                                    font-size: clamp(13px, $fs-19px, $fs-19px);
+                                    color: $black-80;
+                                    font-weight: 500;
+                                    padding: clamp(8px, $fs-14px, $fs-14px) clamp(10px, $fs-19px, $fs-19px) clamp(8px, $fs-14px, $fs-14px) 0;
+                                    &:first-of-type{
+                                        padding-left:  clamp(10px, $fs-19px, $fs-19px);
+                                    }
+                                }
+                            }
+                        }
+                        tbody{
+                            display: block;
+                            flex: 1;
+                            overflow-y: auto;
+                            tr{
+                                display: table;
+                                width: 100%;
+                                table-layout: fixed;
+                                
+                                td{
+                                    font-size: clamp(11px, $fs-16px, $fs-16px);
+                                    padding:clamp(6px, $fs-14px, $fs-14px) clamp(10px, $fs-18px, $fs-18px) clamp(6px, $fs-14px, $fs-14px) 0;
+                                    border-bottom: 1px solid #ccc;
+                                    &:last-of-type{
+                                        font-weight: 400;
+                                    }
+                                }
+                            }
+                            &::-webkit-scrollbar {
+                                width: 4px;
+                            }
+
+                            &::-webkit-scrollbar-thumb {
+                                background: rgba(161, 161, 161, 0.5);
+                                border-radius: 4px;
+                            
+                            }
+                        }
+                    
+
+                    }
+
+                    &.active{
+                        display: flex;
+                    }
+            
+
+                }
+                .trend-chart-wrapper{
+                    display: none;
+                }
+                .accuracy-chart-wrapper{
+                    display: none;
                 }
             }
         }
         &.chart{
             width:35%;
-            padding:clamp(6px,$fs-12px, $fs-12px) clamp(10px,$fs-20px, $fs-20px)  0;
-            .trend-chart-container{
-                    // border: 1px solid $black-20;
-                    height: 100%;
-                    max-height: $fs-576px;
+            padding:clamp(6px,$fs-22px, $fs-22px) clamp(7px,$fs-15px, $fs-15px);
+            align-items: unset;
+            .close-modal-btn{
+                padding-right: clamp(5px,$fs-10px, $fs-10px)
+            }
+            .expand-modal-content{
+                min-height: 0;
+                max-height: 100%;
+                display: flex;
+            
+            
+            .quotes-container{
+                display: none;
+            }
 
+            .transaction-wrapper{
+                display: none;
+            }
+            .trend-chart-wrapper{
+                width: 100%;
+                display: none;
+                flex-direction: column;
+                height: 100%;
+                flex: 1;
+                min-height: 0;
+                h4{
+                    font-size: clamp(15px,$fs-24px, $fs-24px);
+                    color: $black-80;
+                    margin-bottom:  clamp(6px,$fs-12px, $fs-12px);
+                    padding-left:  clamp(5px,$fs-10px, $fs-10px);
+                }
+                .trend-chart-container{
+                    height: 100%;
+                    max-height: $fs-400px;
+                    flex: 1;
+                    overflow-y: auto;
                     background-color: $white;
-                    border-radius:  clamp(5px,$fs-15px, $fs-15px);
-                    // padding:clamp(6px,$fs-12px, $fs-12px) clamp(10px,$fs-20px, $fs-20px)  0;
+                    // border-radius:  clamp(5px,$fs-15px, $fs-15px);
+                    padding:clamp(8px,$fs-15px, $fs-15px) 0  clamp(12px, $fs-24px, $fs-24px) 0;
                     display: flex;
                     flex-direction: column;
+                    min-height: 0;
                     .chart-header{
                         .export-btn-container{
                             display: flex;
                             justify-content: flex-end;
-                        
-                            button{
-                                
-                                border: none;
-                                background-color: transparent;
-                                display: none;
-                                img{
-                                    width: clamp(12px,$fs-16px, $fs-16px);
-                                }
-                            }
+                            display: none;
                         }
                         .header-content{
                            display: flex;
                            justify-content: space-between;
                            align-items: flex-end;
-                           padding-right: clamp(6px,$fs-12px, $fs-12px);
-                           padding-bottom: clamp(10px,$fs-20px, $fs-20px);
+                           padding: 0 clamp(16px,$fs-37px, $fs-37px) clamp(25px,$fs-52px, $fs-52px) clamp(7px,$fs-10px, $fs-10px);
                             p{
                                 margin-bottom: 0;
                                 line-height: 1;
                             }
                             .count{
-                                font-size:clamp(13px,$fs-22px, $fs-22px); 
+                                font-size:clamp(17px,$fs-37px, $fs-37px); 
                                 font-weight: 600;
                                 color: $black-80;
                                 margin-bottom: 3px;
                             }
                             .text{
-                                font-size: clamp(10px,$fs-12px, $fs-12px);
+                                font-size: clamp(12px,$fs-20px, $fs-20px);
                                 font-weight: 500;
                                 opacity: 0.9;
                             }
@@ -1351,18 +1495,18 @@ body{
                             .legend{
                                 display: flex;
                                 align-items: center;
-                                gap: clamp(6px,$fs-10px, $fs-10px);
-                                font-size: clamp(10px,$fs-12px, $fs-12px);
+                                gap: clamp(8px,$fs-15px, $fs-15px);
+                                font-size: clamp(13px,$fs-21px, $fs-21px);
                                 font-weight: 500;
                                 color: $black-80;
                                 cursor: pointer;
                                 span{
-                                    width: 11px;
-                                    height: 6px;
+                                    width: clamp(14px,$fs-20px, $fs-20px);
+                                    height: 9px;
 
                                 }
                                 &.total-legend{
-                                    margin-bottom: 7px;
+                                    margin-bottom: clamp(5px,$fs-10px, $fs-10px);
                                     span{
                                         background-color: $pink-b5;
                                     }
@@ -1389,14 +1533,139 @@ body{
                         flex: 1;
                         height: 100%;
                         width: 100%;
+                        
+                        // > div{
+                        //      width: 100% !important;
+                        //       height: 100% !important;
+                        // }
+                        // .highcharts-root{
+                        //     width: 100% !important;
+                        //     height: 100% !important;
 
+                        // }
                         .trend-x-label,.trend-y-label{
-                            font-size: clamp(10px,$fs-12px, $fs-12px);
-                            opacity: 0.9;
+                            font-size: clamp(12px,$fs-21px, $fs-21px);
+                            // opacity: 0.9;
+                            // font-weight: 500;
+                            color: $black-80;
+                        }
+                        .highcharts-yaxis-labels span{
+                            left: 5px !important;
                         }
 
                     }
                 }
+                &.active{
+                    display: flex;
+                }
+
+            }
+            .accuracy-chart-wrapper{
+                width: 100%;
+                display: none;
+                flex-direction: column;
+                height: 100%;
+                flex: 1;
+                min-height: 0;
+
+                h4{
+                    font-size: clamp(15px,$fs-24px, $fs-24px);
+                    color: $black-80;
+                    margin-bottom:  clamp(6px,$fs-12px, $fs-12px);
+                    padding-left:  clamp(5px,$fs-10px, $fs-10px);
+
+                }
+                .accuracy-chart-container{
+                    height: 100%;
+                    max-height: $fs-400px;
+                    flex: 1;
+                    overflow-y: auto;
+                    max-height: $fs-400px;
+                    background-color: $white;
+                    // border-radius:  clamp(5px,$fs-15px, $fs-15px);
+                    padding:clamp(6px,$fs-12px, $fs-12px) clamp(10px,$fs-20px, $fs-20px) ;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    .chart-header{
+                        .export-btn-container{
+                            display: none;
+                            
+                        } 
+                    }
+                    .accuracy-chart{
+                        flex: 1;
+                        height: 90%;
+                        width: 90% !important;
+                        position: relative;
+                        .highcharts-background,
+                        .highcharts-plot-background,
+                        .highcharts-plot-border,
+                         .highcharts-data-labels,
+                        .highcharts-pane,
+                        .highcharts-yaxis {
+                            fill: transparent;
+                            background-color: transparent ;
+                        }
+                        .highcharts-tooltip {
+                            fill: #ffffff;
+                            text{
+                                font-size: 0.8em;
+                                fill: rgb(51, 51, 51);
+                            }
+                            tspan{
+                                font-size: 0.8em;
+
+                                &:nth-of-type(2){
+                                    font-size: 0.9em;
+                                    color: $blue-87;
+                                    fill: $blue-87;
+                                    font-weight: bold;
+                                }
+                              
+                            }
+
+
+                        }                     
+                       
+                        .highcharts-root{
+                            width: 100% !important;
+                        }
+
+                        .highcharts-dial {
+                            fill: black;
+                        }
+
+                        .highcharts-pivot {
+                            fill: white;
+                            stroke: black;
+                            stroke-width: 2;
+                        }
+                        .gauge-label {
+                            font-size: clamp(10px, $fs-17px, $fs-17px); 
+                            color: #333;
+                            font-weight: 500;
+                            white-space: nowrap;
+                        }
+                         .accur-label{
+                            font-size:  clamp(18px,$fs-32px, $fs-32px);
+                            font-weight: normal;
+                            position: absolute;
+                            color: #141313;
+                            
+                            // margin-top: clamp(5px,$fs-85px, $fs-85px);
+                        }
+                        
+                    }
+                   
+
+                }
+                &.active{
+                    display: flex;
+                }
+            }
+            }
+
         }
         
     }
@@ -1407,3 +1676,139 @@ body{
 }
 
 
+@media screen and (max-width:1600px){
+    .dashboard-wrapper{
+        .dashboard-header-wrapper {
+            margin-bottom: clamp(20px, $fs-40px, $fs-40px);
+             .dashboard-body-wrapper{
+                .quotes-container{
+                .table-wrapper{
+                    .quote-table {
+                        thead tr th span{
+                            img{
+                                width: 10px;
+                            }
+         
+                            
+                        }
+
+                    }
+                    
+                }
+            }
+        }
+        }
+    }
+}
+
+
+@media screen and (max-width:1400px){
+    .dashboard-wrapper{
+    padding: clamp(12px, $fs-25px, $fs-25px) clamp(12px, $fs-20px, $fs-20px);
+        .dashboard-header-wrapper {
+            margin-bottom: clamp(15px, $fs-30px, $fs-30px)
+        }
+        .dashboard-body-wrapper{
+            .quotes-container{
+                .table-wrapper{
+                    padding: clamp(8px, $fs-20px, $fs-20px) clamp(8px, $fs-20px, $fs-20px);
+                    .top-container{
+                        .filter-wrapper{
+                            .search-container{
+                                label{
+                                    line-height: 1.1;
+                                }
+                            }
+                        }
+                    }
+                    .quote-table {
+                        thead tr th{
+                            span{
+                                img{
+                                    width: 9px;
+                                }
+                                
+                            }
+                            
+                            &:nth-of-type(8){
+                                width: clamp(90px,$fs-120px, $fs-120px);
+                            }
+                        } 
+                        tbody tr td{
+                           
+                            &:nth-of-type(8){
+                                width: clamp(90px,$fs-120px, $fs-120px);
+                            }
+                        } 
+
+                 
+                    }
+                    
+                }
+            }
+            .chart-wrapper .transaction-wrapper{
+                .btn-container {
+                    padding-bottom:clamp(5px,$fs-12px, $fs-12px);
+                }
+                .transaction-table thead tr th{
+                     padding: clamp(4px, $fs-8px, $fs-8px) clamp(7px, $fs-14px, $fs-14px) clamp(4px, $fs-8px, $fs-8px) 0;
+                }
+            } 
+        }
+    }
+}
+
+
+@media screen and (max-width:1300px){
+    .dashboard-wrapper{
+    padding: clamp(12px, $fs-25px, $fs-25px) clamp(12px, $fs-20px, $fs-20px);
+        .dashboard-header-wrapper {
+            margin-bottom: clamp(15px, $fs-30px, $fs-30px)
+        }
+        .dashboard-body-wrapper{
+            .quotes-container{
+                .table-wrapper{
+                    padding: clamp(8px, $fs-20px, $fs-20px) clamp(8px, $fs-20px, $fs-20px);
+                    .quote-table {
+                        thead tr th{
+                            padding: clamp(7px, $fs-10px, $fs-10px) clamp(9px, $fs-15px, $fs-15px) clamp(7px, $fs-10px, $fs-10px) 0;
+                            
+                            span{
+                                gap: 5px;
+                                img{
+                                    width: 8px;
+                                }
+                                font-size: 9px; 
+
+                            }
+                            &:first-of-type,
+                            &:last-of-type {
+                                width: $fs-40px;
+                            }
+                             &:nth-of-type(3){
+                                width: clamp(65px, $fs-237px,$fs-237px);
+                            }
+                             &:nth-of-type(7){
+                                width: clamp(65px,$fs-90px, $fs-90px);
+                            }
+                        }
+                        tbody tr td{
+                            font-size: 9px;
+                            &:first-of-type,
+                            &:last-of-type {
+                                width: $fs-40px;
+                            }
+                             &:nth-of-type(3){
+                                width: clamp(65px, $fs-237px,$fs-237px);
+                            }
+                             &:nth-of-type(7){
+                                width: clamp(65px,$fs-90px, $fs-90px);
+                            }
+                        }
+                    }
+                    
+                }
+            }
+        }
+    }
+}

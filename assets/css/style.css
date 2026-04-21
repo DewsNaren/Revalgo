@@ -383,7 +383,7 @@ body {
   justify-content: space-between;
   padding-bottom: 5px;
   border-bottom: 1px solid #154787;
-  font-size: clamp(12px, 0.79vw, 0.79vw);
+  font-size: clamp(11px, 0.79vw, 0.79vw);
 }
 .dashboard-wrapper .dashboard-header-wrapper .header-container .dropdown-wrapper .date-filter .date-dropdown .date-text img {
   width: clamp(12px, 1.15vw, 1.15vw);
@@ -553,7 +553,7 @@ body {
   display: inline-flex;
   padding: 5px 7px;
   border: 1px solid #154787;
-  font-size: clamp(12px, 0.79vw, 0.79vw);
+  font-size: clamp(11px, 0.79vw, 0.79vw);
 }
 .dashboard-wrapper .dashboard-header-wrapper .header-container .dropdown-wrapper .widget-btn .widget-dropdown-menu {
   display: none;
@@ -752,7 +752,7 @@ body {
   font-size: clamp(10px, 0.63vw, 0.63vw);
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .top-container .filter-wrapper .search-container label img {
-  width: 12px, 0.83vw, 0.83vw;
+  width: clamp(12px, 0.83vw, 0.83vw);
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .top-container .filter-wrapper .filter-container {
   position: relative;
@@ -810,7 +810,7 @@ body {
   margin-left: clamp(9px, 0.79vw, 0.79vw);
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .top-container .filter-wrapper .export-btn img {
-  width: 15px, 0.989vw, 0.989vw;
+  width: clamp(15px, 0.989vw, 0.989vw);
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .top-container .filter-wrapper .expand-btn {
   border: none;
@@ -818,7 +818,7 @@ body {
   margin-left: clamp(9px, 0.79vw, 0.79vw);
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .top-container .filter-wrapper .expand-btn img {
-  width: 15px, 0.989vw, 0.989vw;
+  width: clamp(15px, 0.989vw, 0.989vw);
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table {
   width: 100%;
@@ -859,13 +859,16 @@ body {
   width: 13.5vw;
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(4) {
-  width: 7.89vw;
+  width: 8.5vw;
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(5) {
   width: 8.5vw;
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(7) {
-  width: clamp(80px, 5.2vw, 5.2vw);
+  width: clamp(75px, 5.2vw, 5.2vw);
+}
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(8) {
+  width: clamp(104px, 6.25vw, 6.25vw);
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody {
   display: block;
@@ -889,21 +892,26 @@ body {
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:first-of-type, .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:last-of-type {
   width: 1.65vw;
 }
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td a.quote-id-data {
+  color: #154787;
+  font-weight: 500;
+}
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(3) {
   width: 13.5vw;
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(4) {
-  width: 7.89vw;
+  width: 8.5vw;
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(5) {
   width: 8.5vw;
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(7) {
-  width: clamp(80px, 5.2vw, 5.2vw);
+  width: clamp(75px, 5.2vw, 5.2vw);
   padding-left: clamp(10px, 0.79vw, 0.79vw);
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(8) {
   font-weight: 500;
+  width: clamp(104px, 6.25vw, 6.25vw);
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr:last-of-type td {
   border-bottom: none;
@@ -1148,7 +1156,11 @@ body {
   padding: clamp(6px, 0.521vw, 0.521vw) clamp(10px, 0.79vw, 0.79vw) clamp(8px, 0.521vw, 0.521vw) 0;
 }
 .dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .transaction-table thead tr th:first-of-type {
+  width: clamp(150px, 16.2vw, 16.2vw);
   padding-left: clamp(8px, 0.79vw, 0.79vw);
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .transaction-table thead tr th:nth-of-type(2) {
+  width: clamp(110px, 11.46vw, 11.46vw);
 }
 .dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .transaction-table tbody {
   display: block;
@@ -1164,6 +1176,12 @@ body {
   font-size: clamp(10px, 0.73vw, 0.73vw);
   padding: clamp(6px, 0.521vw, 0.521vw) clamp(10px, 0.79vw, 0.79vw) clamp(6px, 0.521vw, 0.521vw) 0;
   border-bottom: 1px solid #ccc;
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .transaction-table tbody tr td:first-of-type {
+  width: clamp(160px, 16.2vw, 16.2vw);
+}
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .transaction-table tbody tr td:nth-of-type(2) {
+  width: clamp(110px, 11.46vw, 11.46vw);
 }
 .dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .transaction-table tbody tr td:last-of-type {
   font-weight: 400;
@@ -1190,6 +1208,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 10px;
   max-height: 85%;
   position: relative;
   padding: clamp(12px, 1.25vw, 1.25vw) clamp(12px, 1.25vw, 1.25vw);
@@ -1204,7 +1223,7 @@ body {
   z-index: 4;
 }
 .expand-overlay .expand-modal .close-modal-btn img {
-  width: clamp(15px, 1.45vw, 1.45vw);
+  width: clamp(14px, 1.25vw, 1.25vw);
 }
 .expand-overlay .expand-modal.table {
   width: 72%;
@@ -1217,7 +1236,7 @@ body {
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container {
   max-height: 100%;
-  display: flex;
+  display: none;
   flex-direction: column;
   min-height: 0;
 }
@@ -1236,7 +1255,7 @@ body {
   min-height: 0;
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container {
-  padding-bottom: clamp(5px, 0.521vw, 0.521vw);
+  padding-bottom: clamp(8px, 0.79vw, 0.79vw);
   border-bottom: 1px solid #ddd;
   display: flex;
   align-items: center;
@@ -1250,16 +1269,16 @@ body {
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .btn-container button {
   border: none;
   background-color: transparent;
-  font-size: clamp(10px, 0.73vw, 0.73vw);
+  font-size: clamp(10px, 0.83vw, 0.83vw);
   display: inline-flex;
   align-items: center;
-  gap: clamp(8px, 0.63vw, 0.63vw);
+  gap: clamp(9px, 1.05vw, 1.05vw);
   position: relative;
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .btn-container button span {
   font-size: clamp(7px, 0.521vw, 0.521vw);
-  width: clamp(10px, 1.05vw, 1.05vw);
-  height: clamp(10px, 1.05vw, 1.05vw);
+  width: clamp(10px, 1.15vw, 1.15vw);
+  height: clamp(10px, 1.15vw, 1.15vw);
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
@@ -1298,20 +1317,20 @@ body {
   align-items: center;
   justify-content: space-between;
   border: 1px solid rgba(0, 0, 0, 0.3);
-  padding: 4px clamp(9px, 0.79vw, 0.79vw);
-  width: clamp(160px, 12.35vw, 12.35vw);
+  padding: 6px clamp(9px, 0.79vw, 0.79vw);
+  width: clamp(180px, 14.5vw, 14.5vw);
   border-radius: 3px;
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .search-container input {
   border: none;
   outline: none;
-  font-size: clamp(10px, 0.63vw, 0.63vw);
+  font-size: clamp(10px, 0.73vw, 0.73vw);
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .search-container input::placeholder {
-  font-size: clamp(10px, 0.63vw, 0.63vw);
+  font-size: clamp(10px, 0.73vw, 0.73vw);
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .search-container label img {
-  width: 12px, 0.83vw, 0.83vw;
+  width: clamp(12px, 0.83vw, 0.83vw);
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .filter-container {
   position: relative;
@@ -1320,22 +1339,22 @@ body {
   display: flex;
   align-items: center;
   gap: clamp(6px, 0.521vw, 0.521vw);
-  font-size: clamp(10px, 0.63vw, 0.63vw);
+  font-size: clamp(10px, 0.73vw, 0.73vw);
   color: #616161;
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .filter-container .filter-text img {
-  width: 15px, 0.989vw, 0.989vw;
+  width: clamp(15px, 0.989vw, 0.989vw);
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .filter-container {
   border: 1px solid rgba(0, 0, 0, 0.3);
-  padding: 4px clamp(9px, 0.79vw, 0.79vw);
+  padding: 6px clamp(9px, 0.79vw, 0.79vw);
   border-radius: 3px;
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .filter-container .filter-dropdown {
   display: none;
   list-style: none;
   border: 1px solid #ccc;
-  padding: clamp(10px, 0.79vw, 0.79vw) 0;
+  padding: clamp(10px, 0.93vw, 0.93vw) 0;
   margin: 0;
   position: absolute;
   background-color: white;
@@ -1350,11 +1369,11 @@ body {
   margin-bottom: 0;
   display: flex;
   flex-direction: column;
-  gap: clamp(6px, 0.521vw, 0.521vw);
+  gap: clamp(7px, 0.63vw, 0.63vw);
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .filter-container .filter-dropdown ul li {
-  padding: clamp(5px, 0.521vw, 0.521vw) clamp(12px, 2.067vw, 2.067vw);
-  font-size: clamp(11px, 0.73vw, 0.73vw);
+  padding: clamp(7px, 0.73vw, 0.73vw) clamp(12px, 2.2vw, 2.2vw);
+  font-size: clamp(11px, 0.79vw, 0.79vw);
   cursor: pointer;
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .filter-container .filter-dropdown ul li:hover {
@@ -1369,15 +1388,10 @@ body {
   margin-left: clamp(9px, 0.79vw, 0.79vw);
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .export-btn img {
-  width: 15px, 0.989vw, 0.989vw;
+  width: clamp(15px, 1.15vw, 1.15vw);
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .expand-btn {
-  border: none;
-  background-color: transparent;
-  margin-left: clamp(9px, 0.79vw, 0.79vw);
-}
-.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .expand-btn img {
-  width: 15px, 0.989vw, 0.989vw;
+  display: none;
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table {
   width: 100%;
@@ -1400,31 +1414,31 @@ body {
   font-size: clamp(10px, 0.79vw, 0.79vw);
   color: rgba(0, 0, 0, 0.9);
   font-weight: 500;
-  padding: clamp(8px, 0.521vw, 0.521vw) clamp(10px, 0.79vw, 0.79vw) clamp(8px, 0.521vw, 0.521vw) 0;
+  padding: clamp(8px, 0.521vw, 0.521vw) clamp(10px, 1.05vw, 1.05vw) clamp(8px, 0.521vw, 0.521vw) 0;
   text-align: left;
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th span {
   display: inline-flex;
   align-items: center;
-  gap: clamp(7px, 0.79vw, 0.79vw);
-  font-size: clamp(10px, 0.79vw, 0.79vw);
+  gap: clamp(7px, 0.89vw, 0.89vw);
+  font-size: clamp(10px, 0.83vw, 0.83vw);
   color: rgba(0, 0, 0, 0.9);
   font-weight: 500;
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th:first-of-type, .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th:last-of-type {
-  width: 1.65vw;
+  width: 2.75vw;
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(3) {
-  width: 13.5vw;
+  width: 14.5vw;
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(4) {
-  width: 7.89vw;
+  width: 8.89vw;
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(5) {
-  width: 8.5vw;
+  width: 8.89vw;
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(7) {
-  width: clamp(80px, 5.2vw, 5.2vw);
+  width: clamp(80px, 6.25vw, 6.25vw);
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody {
   display: block;
@@ -1437,21 +1451,26 @@ body {
   table-layout: fixed;
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td {
-  font-size: clamp(10px, 0.73vw, 0.73vw);
+  font-size: clamp(10px, 0.79vw, 0.79vw);
   padding: 5px clamp(10px, 0.79vw, 0.79vw) 5px 0;
+  color: rgba(0, 0, 0, 0.85);
   border-bottom: 1px solid #ccc;
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:first-of-type img, .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:last-of-type img {
-  width: 0.83vw;
+  width: 0.93vw;
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:first-of-type, .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:last-of-type {
-  width: 1.65vw;
+  width: 2.75vw;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td a.quote-id-data {
+  color: #154787;
+  font-weight: 500;
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(3) {
-  width: 13.5vw;
+  width: 14.5vw;
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(4) {
-  width: 7.89vw;
+  width: 8.5vw;
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(5) {
   width: 8.5vw;
@@ -1474,92 +1493,453 @@ body {
   background: rgba(161, 161, 161, 0.5);
   border-radius: 4px;
 }
-.expand-overlay .expand-modal.chart {
-  width: 35%;
-  padding: clamp(6px, 0.63vw, 0.63vw) clamp(10px, 1.05vw, 1.05vw) 0;
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container.active {
+  display: flex;
 }
-.expand-overlay .expand-modal.chart .trend-chart-container {
-  height: 100%;
-  max-height: 30vw;
-  background-color: white;
-  border-radius: clamp(5px, 0.79vw, 0.79vw);
+.expand-overlay .expand-modal.table .expand-modal-content .transaction-wrapper {
   display: flex;
   flex-direction: column;
+  flex: 1;
+  min-height: 0;
 }
-.expand-overlay .expand-modal.chart .trend-chart-container .chart-header .export-btn-container {
+.expand-overlay .expand-modal.table .expand-modal-content .transaction-wrapper .btn-container {
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: clamp(20px, 3.13vw, 3.13vw);
+  padding-bottom: clamp(7px, 0.79vw, 0.79vw);
+  padding-top: 0;
 }
-.expand-overlay .expand-modal.chart .trend-chart-container .chart-header .export-btn-container button {
-  border: none;
+.expand-overlay .expand-modal.table .expand-modal-content .transaction-wrapper .btn-container button {
   background-color: transparent;
+  border: none;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .transaction-wrapper .btn-container button.dropdown-btn img {
+  width: clamp(13px, 1.25vw, 1.25vw);
+  margin-right: 5px;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .transaction-wrapper .btn-container button.dropdown-btn {
+  font-size: clamp(13px, 1.36vw, 1.36vw);
+}
+.expand-overlay .expand-modal.table .expand-modal-content .transaction-wrapper .btn-container button.view-more-btn {
+  font-size: clamp(11px, 0.79vw, 0.79vw);
+  color: #154787;
   display: none;
 }
-.expand-overlay .expand-modal.chart .trend-chart-container .chart-header .export-btn-container button img {
-  width: clamp(12px, 0.83vw, 0.83vw);
+.expand-overlay .expand-modal.table .expand-modal-content .transaction-wrapper .transaction-table {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  min-height: 0;
 }
-.expand-overlay .expand-modal.chart .trend-chart-container .chart-header .header-content {
+.expand-overlay .expand-modal.table .expand-modal-content .transaction-wrapper .transaction-table thead {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  flex-shrink: 0;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .transaction-wrapper .transaction-table thead tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+}
+.expand-overlay .expand-modal.table .expand-modal-content .transaction-wrapper .transaction-table thead tr th {
+  font-size: clamp(13px, 0.989vw, 0.989vw);
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 500;
+  padding: clamp(8px, 0.73vw, 0.73vw) clamp(10px, 0.989vw, 0.989vw) clamp(8px, 0.73vw, 0.73vw) 0;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .transaction-wrapper .transaction-table thead tr th:first-of-type {
+  padding-left: clamp(10px, 0.989vw, 0.989vw);
+}
+.expand-overlay .expand-modal.table .expand-modal-content .transaction-wrapper .transaction-table tbody {
+  display: block;
+  flex: 1;
+  overflow-y: auto;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .transaction-wrapper .transaction-table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .transaction-wrapper .transaction-table tbody tr td {
+  font-size: clamp(11px, 0.83vw, 0.83vw);
+  padding: clamp(6px, 0.73vw, 0.73vw) clamp(10px, 0.93vw, 0.93vw) clamp(6px, 0.73vw, 0.73vw) 0;
+  border-bottom: 1px solid #ccc;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .transaction-wrapper .transaction-table tbody tr td:last-of-type {
+  font-weight: 400;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .transaction-wrapper .transaction-table tbody::-webkit-scrollbar {
+  width: 4px;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .transaction-wrapper .transaction-table tbody::-webkit-scrollbar-thumb {
+  background: rgba(161, 161, 161, 0.5);
+  border-radius: 4px;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .transaction-wrapper.active {
+  display: flex;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .trend-chart-wrapper {
+  display: none;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .accuracy-chart-wrapper {
+  display: none;
+}
+.expand-overlay .expand-modal.chart {
+  width: 35%;
+  padding: clamp(6px, 1.15vw, 1.15vw) clamp(7px, 0.79vw, 0.79vw);
+  align-items: unset;
+}
+.expand-overlay .expand-modal.chart .close-modal-btn {
+  padding-right: clamp(5px, 0.521vw, 0.521vw);
+}
+.expand-overlay .expand-modal.chart .expand-modal-content {
+  min-height: 0;
+  max-height: 100%;
+  display: flex;
+}
+.expand-overlay .expand-modal.chart .expand-modal-content .quotes-container {
+  display: none;
+}
+.expand-overlay .expand-modal.chart .expand-modal-content .transaction-wrapper {
+  display: none;
+}
+.expand-overlay .expand-modal.chart .expand-modal-content .trend-chart-wrapper {
+  width: 100%;
+  display: none;
+  flex-direction: column;
+  height: 100%;
+  flex: 1;
+  min-height: 0;
+}
+.expand-overlay .expand-modal.chart .expand-modal-content .trend-chart-wrapper h4 {
+  font-size: clamp(15px, 1.25vw, 1.25vw);
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: clamp(6px, 0.63vw, 0.63vw);
+  padding-left: clamp(5px, 0.521vw, 0.521vw);
+}
+.expand-overlay .expand-modal.chart .expand-modal-content .trend-chart-wrapper .trend-chart-container {
+  height: 100%;
+  max-height: 21vw;
+  flex: 1;
+  overflow-y: auto;
+  background-color: white;
+  padding: clamp(8px, 0.79vw, 0.79vw) 0 clamp(12px, 1.25vw, 1.25vw) 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.expand-overlay .expand-modal.chart .expand-modal-content .trend-chart-wrapper .trend-chart-container .chart-header .export-btn-container {
+  display: flex;
+  justify-content: flex-end;
+  display: none;
+}
+.expand-overlay .expand-modal.chart .expand-modal-content .trend-chart-wrapper .trend-chart-container .chart-header .header-content {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding-right: clamp(6px, 0.63vw, 0.63vw);
-  padding-bottom: clamp(10px, 1.05vw, 1.05vw);
+  padding: 0 clamp(16px, 1.965vw, 1.965vw) clamp(25px, 2.75vw, 2.75vw) clamp(7px, 0.521vw, 0.521vw);
 }
-.expand-overlay .expand-modal.chart .trend-chart-container .chart-header .header-content p {
+.expand-overlay .expand-modal.chart .expand-modal-content .trend-chart-wrapper .trend-chart-container .chart-header .header-content p {
   margin-bottom: 0;
   line-height: 1;
 }
-.expand-overlay .expand-modal.chart .trend-chart-container .chart-header .header-content .count {
-  font-size: clamp(13px, 1.15vw, 1.15vw);
+.expand-overlay .expand-modal.chart .expand-modal-content .trend-chart-wrapper .trend-chart-container .chart-header .header-content .count {
+  font-size: clamp(17px, 1.965vw, 1.965vw);
   font-weight: 600;
   color: rgba(0, 0, 0, 0.8);
   margin-bottom: 3px;
 }
-.expand-overlay .expand-modal.chart .trend-chart-container .chart-header .header-content .text {
-  font-size: clamp(10px, 0.63vw, 0.63vw);
+.expand-overlay .expand-modal.chart .expand-modal-content .trend-chart-wrapper .trend-chart-container .chart-header .header-content .text {
+  font-size: clamp(12px, 1.05vw, 1.05vw);
   font-weight: 500;
   opacity: 0.9;
 }
-.expand-overlay .expand-modal.chart .trend-chart-container .chart-header .legend-container .legend {
+.expand-overlay .expand-modal.chart .expand-modal-content .trend-chart-wrapper .trend-chart-container .chart-header .legend-container .legend {
   display: flex;
   align-items: center;
-  gap: clamp(6px, 0.521vw, 0.521vw);
-  font-size: clamp(10px, 0.63vw, 0.63vw);
+  gap: clamp(8px, 0.79vw, 0.79vw);
+  font-size: clamp(13px, 1.1vw, 1.1vw);
   font-weight: 500;
   color: rgba(0, 0, 0, 0.8);
   cursor: pointer;
 }
-.expand-overlay .expand-modal.chart .trend-chart-container .chart-header .legend-container .legend span {
-  width: 11px;
-  height: 6px;
+.expand-overlay .expand-modal.chart .expand-modal-content .trend-chart-wrapper .trend-chart-container .chart-header .legend-container .legend span {
+  width: clamp(14px, 1.05vw, 1.05vw);
+  height: 9px;
 }
-.expand-overlay .expand-modal.chart .trend-chart-container .chart-header .legend-container .legend.total-legend {
-  margin-bottom: 7px;
+.expand-overlay .expand-modal.chart .expand-modal-content .trend-chart-wrapper .trend-chart-container .chart-header .legend-container .legend.total-legend {
+  margin-bottom: clamp(5px, 0.521vw, 0.521vw);
 }
-.expand-overlay .expand-modal.chart .trend-chart-container .chart-header .legend-container .legend.total-legend span {
+.expand-overlay .expand-modal.chart .expand-modal-content .trend-chart-wrapper .trend-chart-container .chart-header .legend-container .legend.total-legend span {
   background-color: #ff09b5;
 }
-.expand-overlay .expand-modal.chart .trend-chart-container .chart-header .legend-container .legend.approved-legend span {
+.expand-overlay .expand-modal.chart .expand-modal-content .trend-chart-wrapper .trend-chart-container .chart-header .legend-container .legend.approved-legend span {
   background-color: #49b4ff;
 }
-.expand-overlay .expand-modal.chart .trend-chart-container .chart-header .legend-container .legend.inactive {
+.expand-overlay .expand-modal.chart .expand-modal-content .trend-chart-wrapper .trend-chart-container .chart-header .legend-container .legend.inactive {
   text-decoration: line-through;
   opacity: 0.6;
 }
-.expand-overlay .expand-modal.chart .trend-chart-container .chart-header .legend-container .legend.inactive span {
+.expand-overlay .expand-modal.chart .expand-modal-content .trend-chart-wrapper .trend-chart-container .chart-header .legend-container .legend.inactive span {
   filter: invert(0);
 }
-.expand-overlay .expand-modal.chart .trend-chart-container .trend-chart {
+.expand-overlay .expand-modal.chart .expand-modal-content .trend-chart-wrapper .trend-chart-container .trend-chart {
   flex: 1;
   height: 100%;
   width: 100%;
 }
-.expand-overlay .expand-modal.chart .trend-chart-container .trend-chart .trend-x-label, .expand-overlay .expand-modal.chart .trend-chart-container .trend-chart .trend-y-label {
-  font-size: clamp(10px, 0.63vw, 0.63vw);
-  opacity: 0.9;
+.expand-overlay .expand-modal.chart .expand-modal-content .trend-chart-wrapper .trend-chart-container .trend-chart .trend-x-label, .expand-overlay .expand-modal.chart .expand-modal-content .trend-chart-wrapper .trend-chart-container .trend-chart .trend-y-label {
+  font-size: clamp(12px, 1.1vw, 1.1vw);
+  color: rgba(0, 0, 0, 0.8);
+}
+.expand-overlay .expand-modal.chart .expand-modal-content .trend-chart-wrapper .trend-chart-container .trend-chart .highcharts-yaxis-labels span {
+  left: 5px !important;
+}
+.expand-overlay .expand-modal.chart .expand-modal-content .trend-chart-wrapper.active {
+  display: flex;
+}
+.expand-overlay .expand-modal.chart .expand-modal-content .accuracy-chart-wrapper {
+  width: 100%;
+  display: none;
+  flex-direction: column;
+  height: 100%;
+  flex: 1;
+  min-height: 0;
+}
+.expand-overlay .expand-modal.chart .expand-modal-content .accuracy-chart-wrapper h4 {
+  font-size: clamp(15px, 1.25vw, 1.25vw);
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: clamp(6px, 0.63vw, 0.63vw);
+  padding-left: clamp(5px, 0.521vw, 0.521vw);
+}
+.expand-overlay .expand-modal.chart .expand-modal-content .accuracy-chart-wrapper .accuracy-chart-container {
+  height: 100%;
+  max-height: 21vw;
+  flex: 1;
+  overflow-y: auto;
+  max-height: 21vw;
+  background-color: white;
+  padding: clamp(6px, 0.63vw, 0.63vw) clamp(10px, 1.05vw, 1.05vw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.expand-overlay .expand-modal.chart .expand-modal-content .accuracy-chart-wrapper .accuracy-chart-container .chart-header .export-btn-container {
+  display: none;
+}
+.expand-overlay .expand-modal.chart .expand-modal-content .accuracy-chart-wrapper .accuracy-chart-container .accuracy-chart {
+  flex: 1;
+  height: 90%;
+  width: 90% !important;
+  position: relative;
+}
+.expand-overlay .expand-modal.chart .expand-modal-content .accuracy-chart-wrapper .accuracy-chart-container .accuracy-chart .highcharts-background,
+.expand-overlay .expand-modal.chart .expand-modal-content .accuracy-chart-wrapper .accuracy-chart-container .accuracy-chart .highcharts-plot-background,
+.expand-overlay .expand-modal.chart .expand-modal-content .accuracy-chart-wrapper .accuracy-chart-container .accuracy-chart .highcharts-plot-border,
+.expand-overlay .expand-modal.chart .expand-modal-content .accuracy-chart-wrapper .accuracy-chart-container .accuracy-chart .highcharts-data-labels,
+.expand-overlay .expand-modal.chart .expand-modal-content .accuracy-chart-wrapper .accuracy-chart-container .accuracy-chart .highcharts-pane,
+.expand-overlay .expand-modal.chart .expand-modal-content .accuracy-chart-wrapper .accuracy-chart-container .accuracy-chart .highcharts-yaxis {
+  fill: transparent;
+  background-color: transparent;
+}
+.expand-overlay .expand-modal.chart .expand-modal-content .accuracy-chart-wrapper .accuracy-chart-container .accuracy-chart .highcharts-tooltip {
+  fill: #ffffff;
+}
+.expand-overlay .expand-modal.chart .expand-modal-content .accuracy-chart-wrapper .accuracy-chart-container .accuracy-chart .highcharts-tooltip text {
+  font-size: 0.8em;
+  fill: rgb(51, 51, 51);
+}
+.expand-overlay .expand-modal.chart .expand-modal-content .accuracy-chart-wrapper .accuracy-chart-container .accuracy-chart .highcharts-tooltip tspan {
+  font-size: 0.8em;
+}
+.expand-overlay .expand-modal.chart .expand-modal-content .accuracy-chart-wrapper .accuracy-chart-container .accuracy-chart .highcharts-tooltip tspan:nth-of-type(2) {
+  font-size: 0.9em;
+  color: #154787;
+  fill: #154787;
+  font-weight: bold;
+}
+.expand-overlay .expand-modal.chart .expand-modal-content .accuracy-chart-wrapper .accuracy-chart-container .accuracy-chart .highcharts-root {
+  width: 100% !important;
+}
+.expand-overlay .expand-modal.chart .expand-modal-content .accuracy-chart-wrapper .accuracy-chart-container .accuracy-chart .highcharts-dial {
+  fill: black;
+}
+.expand-overlay .expand-modal.chart .expand-modal-content .accuracy-chart-wrapper .accuracy-chart-container .accuracy-chart .highcharts-pivot {
+  fill: white;
+  stroke: black;
+  stroke-width: 2;
+}
+.expand-overlay .expand-modal.chart .expand-modal-content .accuracy-chart-wrapper .accuracy-chart-container .accuracy-chart .gauge-label {
+  font-size: clamp(10px, 0.89vw, 0.89vw);
+  color: #333;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.expand-overlay .expand-modal.chart .expand-modal-content .accuracy-chart-wrapper .accuracy-chart-container .accuracy-chart .accur-label {
+  font-size: clamp(18px, 1.65vw, 1.65vw);
+  font-weight: normal;
+  position: absolute;
+  color: #141313;
+}
+.expand-overlay .expand-modal.chart .expand-modal-content .accuracy-chart-wrapper.active {
+  display: flex;
 }
 .expand-overlay.active {
   display: flex;
+}
+
+@media screen and (max-width: 1600px) {
+  .dashboard-wrapper .dashboard-header-wrapper {
+    margin-bottom: clamp(20px, 2.067vw, 2.067vw);
+  }
+  .dashboard-wrapper .dashboard-header-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th span img {
+    width: 10px;
+  }
+}
+@media screen and (max-width: 1400px) {
+  .dashboard-wrapper {
+    padding: clamp(12px, 1.304vw, 1.304vw) clamp(12px, 1.05vw, 1.05vw);
+  }
+  .dashboard-wrapper .dashboard-header-wrapper {
+    margin-bottom: clamp(15px, 1.57vw, 1.57vw);
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper {
+    padding: clamp(8px, 1.05vw, 1.05vw) clamp(8px, 1.05vw, 1.05vw);
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .top-container .filter-wrapper .search-container label {
+    line-height: 1.1;
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th span img {
+    width: 9px;
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(8) {
+    width: clamp(90px, 6.25vw, 6.25vw);
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(8) {
+    width: clamp(90px, 6.25vw, 6.25vw);
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .btn-container {
+    padding-bottom: clamp(5px, 0.63vw, 0.63vw);
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .transaction-table thead tr th {
+    padding: clamp(4px, 0.43vw, 0.43vw) clamp(7px, 0.73vw, 0.73vw) clamp(4px, 0.43vw, 0.43vw) 0;
+  }
+}
+@media screen and (max-width: 1300px) {
+  .dashboard-wrapper {
+    padding: clamp(12px, 1.304vw, 1.304vw) clamp(12px, 1.05vw, 1.05vw);
+  }
+  .dashboard-wrapper .dashboard-header-wrapper {
+    margin-bottom: clamp(15px, 1.57vw, 1.57vw);
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper {
+    padding: clamp(8px, 1.05vw, 1.05vw) clamp(8px, 1.05vw, 1.05vw);
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th {
+    padding: clamp(7px, 0.521vw, 0.521vw) clamp(9px, 0.79vw, 0.79vw) clamp(7px, 0.521vw, 0.521vw) 0;
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th span {
+    gap: 5px;
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th span img {
+    width: 8px;
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th span {
+    font-size: 9px;
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:first-of-type, .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:last-of-type {
+    width: 2.067vw;
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(3) {
+    width: clamp(65px, 12.35vw, 12.35vw);
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(7) {
+    width: clamp(65px, 4.69vw, 4.69vw);
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td {
+    font-size: 9px;
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:first-of-type, .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:last-of-type {
+    width: 2.067vw;
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(3) {
+    width: clamp(65px, 12.35vw, 12.35vw);
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(7) {
+    width: clamp(65px, 4.69vw, 4.69vw);
+  }
+}
+.create-quote-wrapper {
+  margin-top: 6px;
+  padding: clamp(20px, 1.8vw, 1.8vw) clamp(12px, 1.15vw, 1.15vw);
+  display: flex;
+  flex-direction: column;
+}
+.create-quote-wrapper .back-create-btn {
+  background-color: transparent;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(5px, 0.79vw, 0.79vw);
+  color: rgba(0, 0, 0, 0.95);
+  font-weight: 600;
+  font-size: clamp(20px, 1.8vw, 1.8vw);
+  margin-bottom: clamp(20px, 3.13vw, 3.13vw);
+}
+.create-quote-wrapper .back-create-btn img {
+  width: clamp(20px, 1.57vw, 1.57vw);
+}
+.create-quote-wrapper .create-input-wrapper .btn-container {
+  display: flex;
+  justify-content: center;
+  gap: clamp(12px, 1.304vw, 1.304vw);
+}
+.create-quote-wrapper .create-input-wrapper .btn-container button {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(12px, 1.304vw, 1.304vw);
+  padding: clamp(25px, 2.61vw, 2.61vw);
+  font-size: clamp(13px, 1.25vw, 1.25vw);
+  font-weight: 500;
+  color: #818080;
+  width: 19.532vw;
+  border: none;
+  background-color: white;
+  border-radius: clamp(12px, 0.83vw, 0.83vw);
+  box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.1);
+}
+.create-quote-wrapper .create-input-wrapper .btn-container button img {
+  width: clamp(25px, 3.04vw, 3.04vw);
+}
+.create-quote-wrapper .create-input-wrapper .btn-container button img.img-blue {
+  display: none;
+}
+.create-quote-wrapper .create-input-wrapper .btn-container button:after {
+  position: absolute;
+  content: "";
+  bottom: calc(clamp(12px, 1.45vw, 1.45vw) * -1);
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: clamp(12px, 1.45vw, 1.45vw) solid transparent;
+  border-right: clamp(12px, 1.45vw, 1.45vw) solid transparent;
+  border-top: clamp(12px, 1.45vw, 1.45vw) solid #e6f1ff;
+  visibility: hidden;
+}
+.create-quote-wrapper .create-input-wrapper .btn-container button:hover {
+  background-color: #e6f1ff;
+}
+.create-quote-wrapper .create-input-wrapper .btn-container button:hover img.img-grey {
+  display: none;
+}
+.create-quote-wrapper .create-input-wrapper .btn-container button:hover img.img-blue {
+  display: inline;
+}
+.create-quote-wrapper .create-input-wrapper .btn-container button:hover::after {
+  visibility: visible;
 }
 
 /*# sourceMappingURL=style.css.map */

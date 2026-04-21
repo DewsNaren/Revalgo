@@ -1,0 +1,93 @@
+@use "../base/reset" as *;
+@use "../abstracts/index" as *;
+@use "../layout/header" as *;
+
+.create-quote-wrapper{
+  margin-top: 6px;
+  padding: clamp(20px, $fs-35px, $fs-35px) clamp(12px, $fs-22px, $fs-22px);
+  display: flex;
+  flex-direction: column;
+
+  .back-create-btn{
+    background-color: transparent;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap:clamp(5px, $fs-15px, $fs-15px);
+    color: rgba(0,0,0,0.95);
+    font-weight: 600;
+    font-size: clamp(20px, $fs-35px, $fs-35px);
+    margin-bottom: clamp(20px, $fs-60px, $fs-60px);
+    img{
+        width: clamp(20px, $fs-30px, $fs-30px);
+    }
+
+  }
+  .create-input-wrapper{
+    .btn-container{
+        display: flex;
+        justify-content: center;
+        gap:clamp(12px, $fs-25px, $fs-25px);
+
+        button{
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap:clamp(12px, $fs-25px, $fs-25px);
+            padding:clamp(25px, $fs-50px, $fs-50px);
+            font-size:clamp(13px, $fs-24px, $fs-24px);
+            font-weight: 500;
+            color: #818080;
+            width: $fs-375px;
+            border: none;
+            background-color: $white;
+            border-radius: clamp(12px, $fs-16px, $fs-16px);
+            box-shadow: $box-shadow-3;
+            img{
+                width:clamp(25px, $fs-58px, $fs-58px);
+
+                &.img-blue{
+                    display: none;
+                }
+
+            }
+            &:after{
+                position: absolute;
+                content: '';
+                bottom: calc(clamp(12px, $fs-28px, $fs-28px)*-1);
+                left: 50%;
+                transform: translateX(-50%);
+                border-left: clamp(12px, $fs-28px, $fs-28px) solid transparent;
+                border-right: clamp(12px, $fs-28px, $fs-28px) solid transparent;
+                border-top: clamp(12px, $fs-28px, $fs-28px) solid #e6f1ff; 
+                // box-shadow: $box-shadow-3;
+                visibility: hidden;
+
+            }
+
+
+            &:hover{
+                background-color: $blue-1ff;
+                img{
+
+                    &.img-grey{
+                        display: none;
+                    }
+                     &.img-blue{
+                        display: inline;
+                    }
+
+                    
+                }
+                &::after{
+                    visibility: visible;
+                }
+            }
+
+        }
+
+    }
+
+  }
+}
