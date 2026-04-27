@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Revalgo | Create Quote</title> 
+        <link rel="stylesheet" href="./assets/vendor/bootstrap/css/bootstrap.min.css">
+        <!-- <link rel="stylesheet" href="./assets/vendor/fontawesome/css/all.min.css"> -->
+        <link rel="stylesheet" href="./assets/css/style.css">
+    </head>
+    <body>
+        <header>
+            <a href="./login.html" class="logo"><img src="./assets/images/login/Revalgo White Background.png" alt="Revalgo White"></a>
+            <div class="search-wrapper">
+                <input type="text" id="search-quote" class="search-quote" name="search-quote" placeholder="PO#, Order#, Customer# / Name">
+                <label for="search-quote" ><img src="./assets/images/dashboard/Search icon.png" alt="Search icon"></label>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="new-quote-btn">New Quote</a></li>
+                    <li><a href="#"><img src="./assets/images/global/home.png" alt="home"></a></li>
+                    <li><a href="#"><img src="./assets/images/global/bell.png" alt="bell"></a></li>
+                    <li><a href="#"><img src="./assets/images/global/settings.png" alt="settings"></a></li>
+                    <li class="profile-container">
+                        <div class="profile-img-wrapper">
+                            <img src="./assets/images/global/user.png" class="user-profile" alt="profile"/>
+                        </div>
+                                
+                        <button type="button" class="profile-toggle">
+                        <img
+                            src="./assets/images/global/down-arrow.png"
+                            class="down-arrow"
+                            alt="down-arrow"
+                        />
+                        </button>
+                            <div class="profile-menu">
+                            <a href="#" class="login-btn">LogIn</a>
+                            <a href="#" class="logout-btn">Logout</a>
+                        </div>
+                    </li>
+                </ul>
+
+            </nav>
+        </header>
+        <main class="exist-quote-wrapper">
+            <div class="top-btn-wrapper">
+                <div class="back-btn-container">
+                    <button type="button" class="back-create-btn"><img src="./assets/images/global/arrow-left-blue-1.png" class="back-arrow-img" alt="left arrow">Create Quote <img src="./assets/images/global/delete_icon.png" class="delete-img" alt="delete icon"></button>
+                    <p class="old-quote-id">(Old Quote ID #7DB38FED)</p>
+                </div>
+                
+                <div class="approve-btn-container active">
+                    <button type="button" class="add-note-btn">Add Note</button>
+                    <button type="button" class="approve-btn">Approve Quote</button>
+                </div>
+            </div>
+            <div class="exist-quote-filter-wrapper">
+                <div class="btn-container">
+                      <button type="button" class="new-btn"><img src="./assets/images/create_quote/create quote_new icon_Black.png" class="img-grey" alt="Create Quote">
+                        <img src="./assets/images/create_quote/create quote_new icon_Blue.png" class="img-blue" alt="Create Quote"> New
+                    </button>
+                    <button type="button" class="exist-btn active"><img src="./assets/images/create_quote/create quote_existing icon_Grey.png" class="img-grey" alt="Create Quote">
+                        <img src="./assets/images/create_quote/create quote_Existing icon_Blue.png" class="img-blue" alt="Create Quote"> From Existing
+                    </button>
+                </div>
+                <div class="filter-outer-wrapper">
+                    <div class="header-wrapper">
+                        <h2>search results for <span class="filter-id">"rev0005"</span></h2>
+                        <p class="total-item">20 items</p>
+                    </div>
+                    
+                    <div class="filter-inner-wrapper">
+                        <div class="filter-wrapper">
+                            <h3 class="filter-header">Filters <img class="down-arrow"src="./assets/images/dashboard/down-arrow-blue.png"alt="down arrow"/></h3>
+                            <div class="filter-container">
+                                <div class="filter-subheader">
+                                    <h3>- Status</h3>
+                                    <div class="control-btn-container">
+                                        <button type="button" class="select-btn">Select All</button>
+                                        <button type="button" class="clear-btn">Clear All</button>
+                                    </div>
+
+                                </div>
+                                <div class="filter-chip-container">
+                                    <button type="button" class="filter-chip">Approved</button>
+                                    <button type="button" class="filter-chip">pending</button>
+                                    <button type="button" class="filter-chip">Deleted</button>
+                                </div>
+                            </div>
+                            <div class="filter-container ">
+                                <h3>- Customer Name</h3>
+                                <div class="search-container">
+                                    <input type="text" id="search-customer" class="search-customer" name="search-customer" placeholder="Search by Customer">
+                                    <button for="search-customer"><img src="./assets/images/dashboard/Search icon.png" alt="Search icon"></button>
+                                </div>
+                                <div class="customer-filter-container">
+                                    <div class="customer-filter">
+                                        <input type="checkbox" name="condition"  id="acmec-electric">
+                                        <label for="acmec-electric" class="filter-label">Acmec Electric</label>
+                                    </div>
+                                    <div class="customer-filter">
+                                        <input type="checkbox" name="condition"  id="unknown">
+                                        <label for="unknown" class="filter-label">Unknown</label>
+                                    </div>
+                                    <div class="customer-filter">
+                                        <input type="checkbox" name="condition"  id="acmec">
+                                        <label for="acmec" class="filter-label">Acmec</label>
+                                    </div>
+                                    <div class="customer-filter">
+                                        <input type="checkbox" name="condition"  id="acmec-electric">
+                                        <label for="acmec-electric" class="filter-label">ACME Electric</label>
+                                    </div>
+                                </div>
+                                 <a href="#" class="see-more-link">See More</a>
+                            </div>
+                            <div class="filter-container ">
+                                <h3>- Date Range</h3>
+
+                                <div class="date-wrapper">
+                                    <div class="start-container date-container">
+                                        <p class="start-label date-label">Start Date</p>
+                                        <div class="date-text start-text">mm/dd/yyyy  <img src="./assets/images/create_quote/date Range_Calendar Icon.png" alt="date"></div>
+                                        <div class="datepicker">
+                                            <div class="datepicker-top">
+                            
+                                                <div class="month-selector">
+                                                    <button type="button" class="arrow prev-month">
+                                                    <img src="./assets/images/global/left-arrow.png" alt="left"/>
+                                                    </button>
+                                                    <div class="year-wrapper">
+                                                    <span class="month-name"></span>
+                                                    <div class="year-select">
+                                                        <button type="button" class="year-toggle">
+                                                        2025
+                                                        <img
+                                                            class="down-arrow"
+                                                            src="./assets/images/dashboard/down-arrow-blue.png"
+                                                            alt="down arrow"
+                                                        />
+                                                        </button>
+                                                        <div class="year-dropdown"></div>
+                                                    </div>
+                                                    </div>
+                                                    <button type="button" class="arrow next-month">
+                                                    <img src="./assets/images/global/right-arrow.png" alt="right"/>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="datepicker-calendar">
+                                                <div class="days"></div>
+                                                <div class="dates"></div>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="end-container date-container">
+                                        <p class="end-label date-label">End Date</p>
+                                        <div class="date-text end-text">mm/dd/yyyy <img src="./assets/images/create_quote/date Range_Calendar Icon.png" alt="date"></div>
+                                        <div class="datepicker">
+                                            <div class="datepicker-top">
+                                                <div class="month-selector">
+                                                    <button type="button" class="arrow prev-month">
+                                                    <img src="./assets/images/global/left-arrow.png" alt="left"/>
+                                                    </button>
+                                                    <div class="year-wrapper">
+                                                    <span class="month-name"></span>
+                                                    <div class="year-select">
+                                                        <button type="button" class="year-toggle">
+                                                        2025
+                                                        <img
+                                                            class="down-arrow"
+                                                            src="./assets/images/dashboard/down-arrow-blue.png"
+                                                            alt="down arrow"
+                                                        />
+                                                        </button>
+                                                        <div class="year-dropdown"></div>
+                                                    </div>
+                                                    </div>
+                                                    <button type="button" class="arrow next-month">
+                                                    <img src="./assets/images/global/right-arrow.png" alt="right"/>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="datepicker-calendar">
+                                                <div class="days"></div>
+                                                <div class="dates"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="filter-container ">
+                                <h3>- Mode Of Operations</h3>
+                                <div class="customer-filter-container">
+                                    <div class="customer-filter">
+                                        <input type="checkbox" name="condition"  id="erp">
+                                        <label for="erp" class="filter-label">erp</label>
+                                    </div>
+                                    <div class="customer-filter">
+                                        <input type="checkbox" name="condition"  id="call">
+                                        <label for="call" class="filter-label">call</label>
+                                    </div>
+                                    <div class="customer-filter">
+                                        <input type="checkbox" name="condition"  id="email">
+                                        <label for="email" class="filter-label">email</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="filter-table">
+
+                            <thead>
+                                <tr>
+                                    <th><span>Quote Id <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
+                                    <th><span>Customer Name <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
+                                    <th> <span>Received Date <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
+                                    <th><span>Approved Date <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
+                                    <th><span>Status <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
+                                    <th><span>Total Line No <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
+                                    <th><span>Total price <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>rev005</td>
+                                    <td>Acmec electric </td>
+                                    <td>06-10-2022</td>
+                                    <td>06-11-2022</td>
+                                    <td><span>Approved</span></td>
+                                    <td><span>9</span></td>
+                                    <td>$18,54.1.11</td>
+                                </tr>
+                                 <tr>
+                                    <td>rev005</td>
+                                    <td>Acmec electric </td>
+                                    <td>06-10-2022</td>
+                                    <td>06-11-2022</td>
+                                    <td><span>Approved</span></td>
+                                    <td><span>9</span></td>
+                                    <td>$18,54.1.11</td>
+                                </tr>
+                                <tr>
+                                    <td>rev005</td>
+                                    <td>Acmec electric </td>
+                                    <td>06-10-2022</td>
+                                    <td>06-11-2022</td>
+                                    <td><span>Approved</span></td>
+                                    <td><span>9</span></td>
+                                    <td>$18,54.1.11</td>
+                                </tr>
+                                <tr>
+                                    <td>rev005</td>
+                                    <td>Acmec electric </td>
+                                    <td>06-10-2022</td>
+                                    <td>06-11-2022</td>
+                                    <td><span>Approved</span></td>
+                                    <td><span>9</span></td>
+                                    <td>$18,54.1.11</td>
+                                </tr>
+                                <tr>
+                                    <td>rev005</td>
+                                    <td>Acmec electric </td>
+                                    <td>06-10-2022</td>
+                                    <td>06-11-2022</td>
+                                    <td><span>Approved</span></td>
+                                    <td><span>9</span></td>
+                                    <td>$18,54.1.11</td>
+                                </tr>
+                                <tr>
+                                    <td>rev005</td>
+                                    <td>Acmec electric </td>
+                                    <td>06-10-2022</td>
+                                    <td>06-11-2022</td>
+                                    <td><span>Approved</span></td>
+                                    <td><span>9</span></td>
+                                    <td>$18,54.1.11</td>
+                                </tr>
+                                <tr>
+                                    <td>rev005</td>
+                                    <td>Acmec electric </td>
+                                    <td>06-10-2022</td>
+                                    <td>06-11-2022</td>
+                                    <td><span>Approved</span></td>
+                                    <td><span>9</span></td>
+                                    <td>$18,54.1.11</td>
+                                </tr>
+                                <tr>
+                                    <td>rev005</td>
+                                    <td>Acmec electric </td>
+                                    <td>06-10-2022</td>
+                                    <td>06-11-2022</td>
+                                    <td><span>Approved</span></td>
+                                    <td><span>9</span></td>
+                                    <td>$18,54.1.11</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="quick-order-wrapper active">
+                <div class="quick-info-wrapper">
+                    <div class="info">
+                        <p class="header">Bill To</p>
+                        <div class="details">
+                            <p class="name">Astral India Pvt ltd</p>
+                            <p class="address">606,knolwood,brick <br> NJ 096478</p>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <p class="header">Ship To <button type="button" class="edit-btn"><img src="./assets/images/global/Edit icon.png" alt="Edit icon"></button></p>
+                        <div class="details">
+                            <p class="name">Astral India Pvt ltd</p>
+                            <p class="address">606,knolwood,brick <br> NJ 096478</p>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <p class="header">PO No <button type="button" class="edit-btn"><img src="./assets/images/global/Edit icon.png" alt="Edit icon"></button></p>
+                        <div class="details">
+                            <p class="po-no-text">AB32120/486</p>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <p class="header">Job No <button type="button" class="edit-btn"><img src="./assets/images/global/Edit icon.png" alt="Edit icon"></button></p>
+                        <div class="details">
+                            <p class="job-no-text text">AB32120/486</p>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <p class="header">Buyer <button type="button" class="edit-btn"><img src="./assets/images/global/Edit icon.png" alt="Edit icon"></button></p>
+                        <div class="details">
+                            <p class="buyer-text text">Ast India Pvt. Ltd</p>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <p class="header">Deleivery Date <button type="button" class="edit-btn"><img src="./assets/images/global/Edit icon.png" alt="Edit icon"></button></p>
+                        <div class="details">
+                            <p class="deleivery-text">05/05/34</p>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <p class="header">#Lines</p>
+                        <div class="details">
+                            <p class="line-text">4</p>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <p class="header">Total Price</p>
+                        <div class="details">
+                            <p class="price-text">$6565.87</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="quick-content-wrapper">
+                    <div class="left-wrapper">
+                        <div class="header-wrapper">
+                            <div class="btn-container">
+                                <button type="button" class="quick-order-btn">Quick Order</button>
+                                <button type="button" class="upload-btn active">Upload</button>
+                            </div>
+                            <button type="button" class="mail-expand-btn"><img src="./assets/images/global/email_Expand_icon.png" alt="expand icon"></button>
+                            
+                        </div>
+                        <div class="body-wrapper">
+                            <div class="table-wrapper">
+                                <div class="table-header">
+                                    <p class="quantity-header">Qty</p>
+                                    <p class="description-header">Description</p>
+                                </div>
+                                <div class="table-body">
+                                    <div class="table-row">
+                                        <div class="qty-input-wrapper">
+                                            <input type="text" name="qty" class="qty" autocomplete="off">
+                                        </div>
+
+                                        <div class="desc-wrapper">
+                                            <input type="text" class="desc-input" name="description" autocomplete="off">
+                                            <div class="dropdown">
+                                                <ul>
+                                                    <li>hell el! here</li>
+                                                    <li>hell el! here</li>
+                                                    <li>hell el! here</li>
+                                                    <li>hell el! here</li>
+                                                    <li>hell el! here</li>
+                                                    <li>hell el! here</li>
+                                                    <li>hell el! here</li>
+                                                    <li>hell el! here</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="table-row">
+                                        <div class="qty-input-wrapper">
+                                            <input type="text" name="qty" class="qty" value="4" autocomplete="off">
+                                        </div>
+
+                                        <div class="desc-wrapper">
+                                            <input type="text" class="desc-input" name="description" autocomplete="off">
+                                            <div class="dropdown"></div>
+                                        </div>
+                                    </div>
+                                    <div class="table-row">
+                                        <div class="qty-input-wrapper">
+                                            <input type="text" name="qty" class="qty" autocomplete="off">
+                                        </div>
+
+                                        <div class="desc-wrapper">
+                                            <input type="text" class="desc-input" name="description" autocomplete="off">
+                                            <div class="dropdown"></div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="table-row">
+                                        <div class="qty-input-wrapper">
+                                            <input type="text" name="qty" class="qty" autocomplete="off">
+                                        </div>
+
+                                        <div class="desc-wrapper">
+                                            <input type="text" class="desc-input" name="description" autocomplete="off">
+                                            <div class="dropdown"></div>
+                                        </div>
+                                    </div>
+                                    <div class="table-row">
+                                        <div class="qty-input-wrapper">
+                                            <input type="text" name="qty" class="qty">
+                                        </div>
+
+                                        <div class="desc-wrapper">
+                                            <input type="text" class="desc-input" name="description" autocomplete="off">
+                                            <div class="dropdown"></div>
+                                        </div>
+                                    </div>
+                                    <div class="table-row">
+                                        <div class="qty-input-wrapper">
+                                            <input type="text" name="qty" class="qty" autocomplete="off">
+                                        </div>
+                                        
+
+                                        <div class="desc-wrapper">
+                                            <input type="text" class="desc-input" name="description" autocomplete="off">
+                                            <div class="dropdown"></div>
+                                        </div>
+                                    </div>
+                                    <div class="table-row">
+                                        <div class="qty-input-wrapper">
+                                            <input type="text" name="qty" class="qty" autocomplete="off">
+                                        </div>
+
+                                        <div class="desc-wrapper">
+                                            <input type="text" class="desc-input" name="description" autocomplete="off">
+                                            <div class="dropdown"></div>
+                                        </div>
+                                    </div>
+                                    <div class="table-row">
+                                        <div class="qty-input-wrapper">
+                                            <input type="text" name="qty" class="qty" autocomplete="off">
+                                        </div>
+
+                                        <div class="desc-wrapper">
+                                            <input type="text" class="desc-input" name="description" autocomplete="off">
+                                            <div class="dropdown">
+                                                <ul>
+                                                    <li>hell el! here</li>
+                                                    <li>hell el! here</li>
+                                                    <li>hell el! here</li>
+                                                    <li>hell el! here</li>
+                                                    <li>hell el! here</li>
+                                                    <li>hell el! here</li>
+                                                    <li>hell el! here</li>
+                                                    <li>hell el! here</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="upload-wrapper active">
+                                <div class="select-input-wrapper">
+                                    <label for="select-file">Select Files</label>
+                                    <input type="file" name="select-file" id="select-file" class="select-file-input" multiple>
+                                    <p class="text">File Supported: PDF,XSLS,Image</p>
+                                </div>
+                                <div class="selected-file">
+                                    <!-- <div class="file-wrapper"> -->
+                                        <div class="file-container success">
+                                            <div class="file">
+                                                <div class="file-info">
+                                                    <img src="./assets/images/create_quote/emil pad_Pdf icon.png" alt="pdf"> 
+                                                    Client 123 Proposal.pdf (2.1 MB)
+                                                </div>
+                                                <button type="button" class="del-file-btn"><img src="./assets/images/global/delete_icon.png" alt="delete"></button>
+                                            </div>
+                                            <p class="file-text">
+                                                <img src="./assets/images/create_quote/Uploaded_icon.png" alt="Upload icon">
+                                                <span class="status-text"> <span class="status">Uploaded: </span>Client 123 Proposal.pdf</span>
+                                            </p>
+                                        </div>
+                                        <div class="file-container error">
+                                            <div class="file">
+                                                <div class="file-info">
+                                                    <img src="./assets/images/create_quote/emil pad_Psd icon.png" alt="psd"> 
+                                                    74424AE Proposal.psd (2.1 MB)
+                                                </div>
+                                                <button type="button" class="del-file-btn"><img src="./assets/images/global/delete_icon.png" alt="delete"></button>
+                                            </div>
+                                            <p class="file-text">
+                                                <img src="./assets/images/create_quote/Error_icon.png" alt="Error icon">
+                                                <span class="status-text"> <span class="status">Error: </span>74424AE Proposal.psd</span>
+                                            </p>
+                                        </div>
+                                        
+                                    <!-- </div> -->
+                                    
+                                </div>
+                            </div>
+                            <button type="button" class="minimize-btn"><img src="./assets/images/create_quote/prev-arrow-blue.png" alt="prev arrow"></button>
+                            <div class="upload-btn-container">
+                                <button type="button" class="upload-btn">Upload</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right-wrapper">
+                        <div class="display-table">
+                            <div class="table-row header-wrapper">
+                                <div></div>
+                                <div><input type="checkbox"></div>
+                                <div>Line No</div>
+                                <div>Qty Requested</div>
+                                <div>Requested / <span>Suggested Product</span></div>
+                                <div>Score</div>
+                                <div>Available Qty</div>
+                                <div>Unit Cost</div>
+                                <div>Margin</div>
+                                <div>Selling Price</div>
+                                <div>Total Cost</div>
+                                <div><button class="delete-all-btn"><img src="./assets/images/global/delete_icon.png" alt="delete"></button></div>
+                            </div>
+
+                                <div class="body-wrapper">
+                                    <div class="table-row">
+                                        <p></p>
+                                        <p><input type="checkbox"></p>
+                                        <p>1</p>
+                                        <p><input type="text" value="80" name="qty-requested"></p>
+                                        <p><img src="./assets/images/global/down-arrow.png" alt="down-arrow" class="down-arrow-img"> <span class="id">ID45327</span> <span class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus hic facere, veniam in distinctio id tempora voluptatum? Facilis eius aut numquam. Alias perferendis sunt veniam reprehenderit officiis quas delectus.</span></p>
+                                        <p>33</p>
+                                        <p>200</p>
+                                        <p>$30</p>
+                                        <p><input type="text" value="10%" name="margin"></p>
+                                        <p>$20</p>
+                                        <p>$2,000.00</p>
+                                         <p><button class="delete-all-btn"><img src="./assets/images/global/delete_icon.png" alt="delete"></button></p>
+                                    </div>
+
+                                    <div class="add-btn-container left">
+                                        <button type="button"><img src="./assets/images/create_quote/add item_icon.png" alt="add"></button>
+                                        <p class="text">Click here to Add Item</p>
+                                </div>
+
+                            </div>
+                    
+                            
+                        </div>
+                        
+                    </div>
+                </div>  
+            </div>
+        </main>
+        <div class="popup-overlay">
+            <div class="selected-item-popup">
+                <div class="selected-popup-header"> 
+                    <h3>Select Line items To Import From Existing Quote ID "rev 0015"</h3>
+                    <button type="button" class="close-popup-btn"><img src="./assets/images/global/close-modal.webp" alt="close"></button>
+                </div>
+                <table class="selected-table">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" id="select-all-items"></th>
+                            <th>Line No</th>
+                            <th>Qty Requested</th>
+                            <th><span>Requested Product</span></th>
+                            <th>Suggested Product ID</th>
+                            <th>MPN</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox" id="select-item"></td>
+                            <td>1</td>
+                            <td>100</td>
+                            <td><span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt adipisci necessitatibus veritatis sit quos. Ea id, cum tempore soluta omnis, deserunt recusandae, dignissimos quasi sequi et error eum libero perferendis. </span></td>
+                            <td><span class="content"><span class="id">OCC E11/255G</span> <span class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt adipisci necessitatibus veritatis sit quos. Ea id, cum tempore soluta omnis, deserunt recusandae, dignissimos quasi sequi et error eum libero perferendis.</span></span></td>
+                            <td> AD12454</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" id="select-item"></td>
+                            <td>1</td>
+                            <td>100</td>
+                            <td><span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt adipisci necessitatibus veritatis sit quos. Ea id, cum tempore soluta omnis, deserunt recusandae, dignissimos quasi sequi et error eum libero perferendis. </span></td>
+                            <td><span class="content"><span class="id">OCC E11/255G</span> <span class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt adipisci necessitatibus veritatis sit quos. Ea id, cum tempore soluta omnis, deserunt recusandae, dignissimos quasi sequi et error eum libero perferendis.</span></span></td>
+                            <td> AD12454</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" id="select-item"></td>
+                            <td>1</td>
+                            <td>100</td>
+                            <td><span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt adipisci necessitatibus veritatis sit quos. Ea id, cum tempore soluta omnis, deserunt recusandae, dignissimos quasi sequi et error eum libero perferendis. </span></td>
+                            <td><span class="content"><span class="id">OCC E11/255G</span> <span class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt adipisci necessitatibus veritatis sit quos. Ea id, cum tempore soluta omnis, deserunt recusandae, dignissimos quasi sequi et error eum libero perferendis.</span></span></td>
+                            <td> AD12454</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" id="select-item"></td>
+                            <td>1</td>
+                            <td>100</td>
+                            <td><span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt adipisci necessitatibus veritatis sit quos. Ea id, cum tempore soluta omnis, deserunt recusandae, dignissimos quasi sequi et error eum libero perferendis. </span></td>
+                            <td><span class="content"><span class="id">OCC E11/255G</span> <span class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt adipisci necessitatibus veritatis sit quos. Ea id, cum tempore soluta omnis, deserunt recusandae, dignissimos quasi sequi et error eum libero perferendis.</span></span></td>
+                            <td> AD12454</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <div class="btn-container">
+                    <button type="button" class="import-btn">Import</button>
+                     <button type="button" class="cancel-btn">Cancel</button>
+                </div>
+            </div>
+        </div>
+        <script src="./assets/js/exist-quote.js"></script>
+    </body>
+</html>

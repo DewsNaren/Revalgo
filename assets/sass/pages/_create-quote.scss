@@ -84,7 +84,7 @@
                     padding:clamp(25px, $fs-50px, $fs-50px);
                     font-size:clamp(13px, $fs-24px, $fs-24px);
                     font-weight: 500;
-                    color: #818080;
+                    color: $grey-80;
                     width: $fs-380px;
                     border: none;
                     background-color: $white;
@@ -216,7 +216,8 @@
                     }
                 }
                 
-                .create-quote-btn{
+                .create-quote-btn,.next-btn{
+                    display: none;
                     border: none;
                     font-size: clamp(11px, $fs-16px, $fs-16px);
                     padding:8px clamp(7px, $fs-19px, $fs-19px);
@@ -231,6 +232,13 @@
                     &:hover{
                         background-color: $blue-85;
                     }
+                    &.active{
+                        display: block;
+                    }
+                }
+                .next-btn{
+                    font-size: clamp(11px, $fs-16px, $fs-16px);
+                    padding:8px clamp(7px, $fs-55px, $fs-55px);
                 }
         }
 
@@ -241,7 +249,7 @@
     }
     .quick-order-wrapper{
         padding-inline: 2px;
-        display: flex;
+        display: none;
         flex-direction: column;
         flex: 1;
         min-height: 0;
@@ -270,6 +278,11 @@
 
 
                 }
+                 &:last-of-type{
+                        p{
+                            font-weight: 500;
+                        }
+                    }
                 .details{
                     p{
                         margin-bottom: 0;
@@ -286,6 +299,7 @@
                     .text{
                         font-size:clamp(8px, $fs-14px, $fs-14px);
                     }
+                   
 
                 }
             }
@@ -485,7 +499,7 @@
                         min-height: 0;
                         max-height: 100%;
                         .select-input-wrapper{
-                            label{
+                            label,.label{
                                 display: block;
                                 text-transform: uppercase;
                                 text-align: center;
@@ -645,7 +659,8 @@
                         clamp(25px, $fs-100px, $fs-100px)    
                         clamp(25px, $fs-100px, $fs-100px)  
                         clamp(25px, $fs-100px, $fs-100px)  
-                        clamp(25px, $fs-50px, $fs-50px) ;
+                        clamp(25px, $fs-50px, $fs-50px) 
+                        clamp(10px, $fs-60px, $fs-60px) ;
                         // grid-column-gap: clamp(10px, $fs-25px, $fs-25px);
                         align-items: center;
                         border-bottom: 1px solid rgba(27, 26, 26, 0.6);
@@ -686,6 +701,26 @@
                             &:nth-of-type(11){
                                 padding-left:  clamp(5px, $fs-10px, $fs-10px);
                             }
+                              &:last-of-type{
+                                padding-left:  clamp(5px, $fs-10px, $fs-10px);
+                                button{
+                                    background-color: transparent;
+                                    border: none;
+                                    visibility: hidden;
+                                    transition: visibility 0.2s ease;
+                                    img{
+                                        width: clamp(10px, $fs-17px, $fs-17px);
+                                    }
+
+                                }
+                            }
+                        }
+                         &:hover{
+                            div:last-of-type button{
+                                visibility: visible;
+                                
+                                 
+                            }
                         }
                     }
                     .body-wrapper{
@@ -707,7 +742,8 @@
                             clamp(25px, $fs-100px, $fs-100px)    
                             clamp(25px, $fs-100px, $fs-100px)  
                             clamp(25px, $fs-100px, $fs-100px)  
-                            clamp(25px, $fs-110px, $fs-110px) ;
+                            clamp(25px, $fs-90px, $fs-90px) 
+                            clamp(10px, $fs-40px, $fs-40px);
                             // grid-column-gap: clamp(10px, $fs-25px, $fs-25px);
                             align-items: center;
                             border-bottom: 1px solid rgba(27, 26, 26, 0.6);
@@ -721,7 +757,7 @@
                                     width: 100%;
                                     background-color: transparent;
                                     border: none;
-                                    border-bottom: 1px solid rgba(27, 26, 26, 0.4);
+                                    border-bottom: 1px solid $blue-87;
                                     text-align: center;
                                     outline: none;
                                     color: $blue-87;
@@ -731,7 +767,7 @@
                                 &:nth-of-type(5){
                                     padding-inline: clamp(10px, $fs-50px, $fs-50px);
                                     text-align: left;
-                                     overflow: hidden;
+                                    overflow: hidden;
                                     text-overflow: ellipsis;
                                     .down-arrow-img{
                                         width: clamp(12px, $fs-25px, $fs-25px);
@@ -744,7 +780,7 @@
                                         display: block;
                                         max-width: 100%;
                                         white-space: nowrap;
-                                    overflow: hidden;
+                                        overflow: hidden;
                                        text-overflow: ellipsis;
                                     // text-overflow: ellipsis;
                                     }
@@ -803,7 +839,27 @@
                                     font-weight: 500;
                             
                                 }
+                                 &:last-of-type{
+                                    // padding-left:  clamp(5px, $fs-10px, $fs-10px);
+                                    button{
+                                        background-color: transparent;
+                                        border: none;
+                                        visibility: hidden;
+                                        transition: visibility 0.2s ease;
+                                        img{
+                                            width: clamp(10px, $fs-17px, $fs-17px);
+                                        }
+
+                                    }
+                                }
                             }
+                             &:hover{
+                                background-color: $blue-2ff;
+                            p:last-of-type button{
+                                visibility: visible;
+   
+                            }
+                        }
                         }
                         .add-btn-container{
                             position: absolute;
@@ -849,6 +905,9 @@
             }
             
         }
+        &.active{
+            display: flex;
+        }
 
     }
 }
@@ -866,9 +925,6 @@
     .add-popup{
         background-color: $white;
         padding: clamp(10px, $fs-20px, $fs-20px)  clamp(10px, $fs-20px, $fs-20px) clamp(17px, $fs-35px, $fs-35px);
-        // display: flex;
-        // flex-direction: column;
-        // align-items: center;
         margin-top: 10px;
         max-height: 85%;
         width: 66%;
@@ -931,9 +987,6 @@
                     &:nth-of-type(2){
                         text-align: left;
                         padding-right:  clamp(10px, $fs-20px, $fs-20px);
-
-                        
-
                     }
                     &:nth-of-type(3){
                         padding-right:  clamp(10px, $fs-50px, $fs-50px);
