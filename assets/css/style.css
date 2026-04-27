@@ -1916,9 +1916,16 @@ body {
   border-color: #154787;
   padding: 8px clamp(15px, 1.57vw, 1.57vw);
 }
+.create-quote-wrapper .top-btn-wrapper .approve-btn-container button.add-note-btn:hover {
+  color: white;
+  background-color: #154787;
+}
 .create-quote-wrapper .top-btn-wrapper .approve-btn-container button.approve-btn {
   color: white;
   background-color: #154787;
+}
+.create-quote-wrapper .top-btn-wrapper .approve-btn-container button.approve-btn:hover {
+  background-color: #015685;
 }
 .create-quote-wrapper .top-btn-wrapper .approve-btn-container.active {
   display: flex;
@@ -2100,6 +2107,9 @@ body {
   border: none;
   background-color: transparent;
 }
+.create-quote-wrapper .quick-order-wrapper .quick-info-wrapper .info .header button img {
+  width: clamp(8px, 0.63vw, 0.63vw);
+}
 .create-quote-wrapper .quick-order-wrapper .quick-info-wrapper .info .details p {
   margin-bottom: 0;
   color: black;
@@ -2116,7 +2126,7 @@ body {
   font-size: clamp(8px, 0.73vw, 0.73vw);
 }
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper {
-  margin-top: clamp(20px, 2.067vw, 2.067vw);
+  margin-top: clamp(21px, 2.2vw, 2.2vw);
   flex: 1;
   max-height: 100%;
   min-height: 0;
@@ -2155,10 +2165,13 @@ body {
   color: #154787;
 }
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .header-wrapper .btn-container button.upload-btn {
-  margin-left: clamp(10px, 0.989vw, 0.989vw);
+  padding-inline: clamp(20px, 2.067vw, 2.067vw);
 }
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .header-wrapper .mail-expand-btn {
   padding-right: clamp(8px, 0.79vw, 0.79vw);
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .header-wrapper .mail-expand-btn img {
+  width: clamp(9px, 0.989vw, 0.989vw);
 }
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper {
   padding: clamp(8px, 0.79vw, 0.79vw) clamp(10px, 1.304vw, 1.304vw) clamp(15px, 1.57vw, 1.57vw) clamp(5px, 0.521vw, 0.521vw);
@@ -2166,6 +2179,8 @@ body {
   flex-direction: column;
   min-height: 0;
   max-height: 100%;
+  position: relative;
+  overflow: hidden;
 }
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper {
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -2275,6 +2290,120 @@ body {
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper.active {
   display: flex;
 }
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper {
+  padding: clamp(13px, 1.45vw, 1.45vw) clamp(17px, 1.8vw, 1.8vw) 0 clamp(7px, 0.79vw, 0.79vw);
+  display: none;
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  max-height: 100%;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .select-input-wrapper label {
+  display: block;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 6px;
+  border: 1px solid #154787;
+  color: #154787;
+  font-size: clamp(10px, 0.73vw, 0.73vw);
+  border-radius: 5px;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .select-input-wrapper .select-file-input {
+  display: none;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .select-input-wrapper .text {
+  margin-top: clamp(4px, 0.43vw, 0.43vw);
+  text-align: center;
+  font-size: clamp(8px, 0.68vw, 0.68vw);
+  color: #343434;
+  margin-bottom: 0;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .selected-file {
+  padding-top: clamp(18px, 2.067vw, 2.067vw);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 1.05vw, 1.05vw);
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .selected-file .file-container .file {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #6c6c6c;
+  padding: clamp(5px, 0.521vw, 0.521vw);
+  border-radius: 5px;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .selected-file .file-container .file .file-info {
+  font-size: clamp(10px, 0.73vw, 0.73vw);
+  color: #343434;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .selected-file .file-container .file .file-info img {
+  width: clamp(20px, 1.8vw, 1.8vw);
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .selected-file .file-container .file button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .selected-file .file-container .file button img {
+  width: clamp(11px, 0.89vw, 0.89vw);
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .selected-file .file-container .file-text {
+  padding-top: clamp(5px, 0.521vw, 0.521vw);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 0;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .selected-file .file-container .file-text img {
+  width: clamp(9px, 0.989vw, 0.989vw);
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .selected-file .file-container .file-text .status-text {
+  font-size: clamp(8px, 0.63vw, 0.63vw);
+  color: #343434;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .selected-file .file-container .file-text .status-text .status {
+  color: #136b2c;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .selected-file .file-container.error .file {
+  border-color: #ff0000;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .selected-file .file-container.error .file-text .status {
+  color: #ff0000;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper.active {
+  display: block;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper::-webkit-scrollbar {
+  width: 4px;
+  height: 6px;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(161, 161, 161, 0.5);
+  border-radius: 4px;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .minimize-btn {
+  position: absolute;
+  right: calc(clamp(8px, 0.521vw, 0.521vw) * -1);
+  top: 50%;
+  transform: translateY(-50%);
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+  border: none;
+  background-color: transparent;
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.23);
+  width: clamp(8px, 1.9vw, 1.9vw);
+  height: clamp(8px, 1.9vw, 1.9vw);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .minimize-btn img {
+  padding-left: clamp(3px, 0.4vw, 0.4vw);
+  width: clamp(12px, 1.25vw, 1.25vw);
+}
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-btn-container {
   text-align: center;
   margin-top: clamp(10px, 1.8vw, 1.8vw);
@@ -2314,15 +2443,22 @@ body {
   padding-inline: clamp(10px, 2.61vw, 2.61vw);
   text-align: left;
 }
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(5) span {
+  color: #154787;
+}
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(2) {
   padding-right: clamp(10px, 1.05vw, 1.05vw);
 }
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(2) input {
   width: clamp(9px, 1.05vw, 1.05vw);
   height: clamp(9px, 1.05vw, 1.05vw);
+  accent-color: #154787;
 }
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(3) {
   padding-right: clamp(10px, 1.304vw, 1.304vw);
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(4) {
+  color: #154787;
 }
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(6), .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(7), .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(8), .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(9) {
   padding-right: clamp(10px, 2.61vw, 2.61vw);
@@ -2330,36 +2466,690 @@ body {
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(10) {
   padding-right: clamp(10px, 3.13vw, 3.13vw);
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .add-btn-container {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(11) {
+  padding-left: clamp(5px, 0.521vw, 0.521vw);
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  position: relative;
+  overflow: auto;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row {
+  padding: clamp(4px, 0.63vw, 0.63vw) clamp(4px, 0.4vw, 0.4vw);
+  display: grid;
+  grid-template-columns: clamp(15px, 2.34vw, 2.34vw) max-content clamp(22px, 2.61vw, 2.61vw) clamp(32px, 3.91vw, 3.91vw) 37.5% clamp(15px, 3.6vw, 3.6vw) clamp(32px, 5.98vw, 5.98vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.75vw, 5.75vw);
   align-items: center;
+  border-bottom: 1px solid rgba(27, 26, 26, 0.6);
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p {
+  font-size: clamp(8px, 0.73vw, 0.73vw);
+  text-align: right;
+  margin-bottom: 0;
+  color: #6c6c6c;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p input {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(27, 26, 26, 0.4);
+  text-align: center;
+  outline: none;
+  color: #154787;
+  font-weight: 500;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) {
+  padding-inline: clamp(10px, 2.61vw, 2.61vw);
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) .down-arrow-img {
+  width: clamp(12px, 1.304vw, 1.304vw);
+  margin-right: 5px;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) .id {
+  color: #154787;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) .text {
+  display: block;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(2) {
+  padding-right: clamp(10px, 1.05vw, 1.05vw);
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(2) input {
+  width: clamp(9px, 1.05vw, 1.05vw);
+  height: clamp(9px, 1.05vw, 1.05vw);
+  accent-color: #154787;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(2) input:hover {
+  accent-color: #154787;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(3) {
+  padding-right: clamp(10px, 1.304vw, 1.304vw);
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) {
+  color: #154787;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) input {
+  width: 50%;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(7) {
+  padding-right: clamp(10px, 1.57vw, 1.57vw);
+  text-align: right;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(8) {
+  text-align: right;
+  padding-right: clamp(10px, 1.57vw, 1.57vw);
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(9) {
+  padding-right: clamp(10px, 1.57vw, 1.57vw);
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(9) input {
+  width: 50%;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(6) {
+  padding-right: clamp(10px, 1.57vw, 1.57vw);
+  text-align: right;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(10) {
+  padding-right: clamp(10px, 1.57vw, 1.57vw);
+  text-align: right;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(11) {
+  text-align: left;
+  padding-left: clamp(5px, 0.521vw, 0.521vw);
+  color: black;
+  font-weight: 500;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .add-btn-container {
+  position: absolute;
+  text-align: center;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   gap: clamp(8px, 0.521vw, 0.521vw);
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .add-btn-container button {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .add-btn-container button {
   border: none;
   background-color: transparent;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .add-btn-container button img {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .add-btn-container button img {
   width: clamp(25px, 2.14vw, 2.14vw);
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .add-btn-container .text {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .add-btn-container .text {
   font-size: clamp(15px, 1.45vw, 1.45vw);
   color: #a7a4a4;
 }
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .add-btn-container.left {
+  justify-content: flex-end;
+  align-items: flex-end;
+  bottom: 11%;
+  right: 5.8%;
+  left: unset;
+  top: unset;
+  transform: unset;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .add-btn-container.left .text {
+  display: none;
+}
+
+.popup-overlay {
+  position: fixed;
+  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.7);
+  inset: auto 0 0 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.popup-overlay .add-popup {
+  background-color: white;
+  padding: clamp(10px, 1.05vw, 1.05vw) clamp(10px, 1.05vw, 1.05vw) clamp(17px, 1.8vw, 1.8vw);
+  margin-top: 10px;
+  max-height: 85%;
+  width: 66%;
+  border-radius: clamp(5px, 0.521vw, 0.521vw);
+  display: none;
+}
+.popup-overlay .add-popup .item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #9f9e9e;
+}
+.popup-overlay .add-popup .item-header h3 {
+  font-size: clamp(12px, 1.05vw, 1.05vw);
+  color: rgba(0, 0, 0, 0.9);
+}
+.popup-overlay .add-popup .item-header .close-popup-btn {
+  border: none;
+  background-color: transparent;
+  width: clamp(10px, 0.93vw, 0.93vw);
+}
+.popup-overlay .add-popup .item-header .close-popup-btn img {
+  width: 100%;
+}
+.popup-overlay .add-popup .add-table {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin-top: clamp(5px, 0.521vw, 0.521vw);
+}
+.popup-overlay .add-popup .add-table .header-wrapper {
+  border-top-left-radius: clamp(5px, 0.521vw, 0.521vw);
+  border-top-right-radius: clamp(5px, 0.521vw, 0.521vw);
+  padding: clamp(4px, 0.4vw, 0.4vw);
+  background-color: #f1f1f1;
+  display: grid;
+  grid-template-columns: clamp(32px, 6.51vw, 6.51vw) 25% max-content clamp(32px, 5.75vw, 5.75vw) clamp(25px, 6.51vw, 6.51vw) clamp(25px, 3.6vw, 3.6vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.75vw, 5.75vw) clamp(25px, 2.067vw, 2.067vw) clamp(25px, 2.067vw, 2.067vw);
+  align-items: center;
+  border-bottom: 1px solid rgba(27, 26, 26, 0.6);
+}
+.popup-overlay .add-popup .add-table .header-wrapper div {
+  font-size: clamp(8px, 0.68vw, 0.68vw);
+  text-align: right;
+}
+.popup-overlay .add-popup .add-table .header-wrapper div:nth-of-type(1) {
+  padding-right: clamp(10px, 2.61vw, 2.61vw);
+}
+.popup-overlay .add-popup .add-table .header-wrapper div:nth-of-type(2) {
+  text-align: left;
+  padding-right: clamp(10px, 1.05vw, 1.05vw);
+}
+.popup-overlay .add-popup .add-table .header-wrapper div:nth-of-type(3) {
+  padding-right: clamp(10px, 2.61vw, 2.61vw);
+}
+.popup-overlay .add-popup .add-table .header-wrapper div:nth-of-type(4) {
+  padding-right: clamp(12px, 1.304vw, 1.304vw);
+}
+.popup-overlay .add-popup .add-table .header-wrapper div:nth-of-type(5) {
+  padding-right: clamp(25px, 2.61vw, 2.61vw);
+  text-align: right;
+}
+.popup-overlay .add-popup .add-table .header-wrapper div:nth-of-type(6), .popup-overlay .add-popup .add-table .header-wrapper div:nth-of-type(7), .popup-overlay .add-popup .add-table .header-wrapper div:nth-of-type(8) {
+  padding-right: clamp(10px, 2.61vw, 2.61vw);
+}
+.popup-overlay .add-popup .add-table .header-wrapper div:nth-of-type(1), .popup-overlay .add-popup .add-table .header-wrapper div:nth-of-type(7), .popup-overlay .add-popup .add-table .header-wrapper div:nth-of-type(8) {
+  color: #154787;
+  font-weight: 600;
+}
+.popup-overlay .add-popup .add-table .header-wrapper div:nth-of-type(9) {
+  padding-right: clamp(10px, 1.57vw, 1.57vw);
+}
+.popup-overlay .add-popup .add-table .header-wrapper div:nth-of-type(10) {
+  padding-right: clamp(10px, 1.304vw, 1.304vw);
+}
+.popup-overlay .add-popup .add-table .body-wrapper {
+  color: #616161;
+}
+.popup-overlay .add-popup .add-table .body-wrapper .table-row {
+  border-top-left-radius: clamp(5px, 0.521vw, 0.521vw);
+  border-top-right-radius: clamp(5px, 0.521vw, 0.521vw);
+  padding: clamp(4px, 0.4vw, 0.4vw);
+  display: grid;
+  grid-template-columns: clamp(32px, 6.51vw, 6.51vw) 25% max-content clamp(32px, 6.25vw, 6.25vw) clamp(25px, 6.51vw, 6.51vw) clamp(25px, 3.6vw, 3.6vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.75vw, 5.75vw) clamp(25px, 2.067vw, 2.067vw) clamp(25px, 2.067vw, 2.067vw);
+  align-items: center;
+}
+.popup-overlay .add-popup .add-table .body-wrapper .table-row p {
+  margin-bottom: 0;
+}
+.popup-overlay .add-popup .add-table .body-wrapper .table-row p input {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(27, 26, 26, 0.4);
+  text-align: center;
+  outline: none;
+  color: #154787;
+  font-weight: 500;
+}
+.popup-overlay .add-popup .add-table .body-wrapper .table-row p {
+  font-size: clamp(8px, 0.73vw, 0.73vw);
+  text-align: right;
+}
+.popup-overlay .add-popup .add-table .body-wrapper .table-row p:nth-of-type(1) {
+  padding-right: clamp(10px, 2.61vw, 2.61vw);
+}
+.popup-overlay .add-popup .add-table .body-wrapper .table-row p:nth-of-type(1) input {
+  width: 50%;
+  min-width: 25px;
+}
+.popup-overlay .add-popup .add-table .body-wrapper .table-row p:nth-of-type(1) {
+  padding-right: clamp(10px, 2.61vw, 2.61vw);
+}
+.popup-overlay .add-popup .add-table .body-wrapper .table-row p:nth-of-type(2) {
+  text-align: left;
+  padding-right: clamp(10px, 1.05vw, 1.05vw);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 90%;
+}
+.popup-overlay .add-popup .add-table .body-wrapper .table-row p:nth-of-type(2) .down-arrow-img {
+  width: clamp(12px, 1.304vw, 1.304vw);
+  margin-right: 5px;
+}
+.popup-overlay .add-popup .add-table .body-wrapper .table-row p:nth-of-type(3) {
+  padding-right: clamp(10px, 2.61vw, 2.61vw);
+}
+.popup-overlay .add-popup .add-table .body-wrapper .table-row p:nth-of-type(4) {
+  padding-right: clamp(12px, 1.8vw, 1.8vw);
+}
+.popup-overlay .add-popup .add-table .body-wrapper .table-row p:nth-of-type(5) {
+  padding-right: clamp(25px, 2.61vw, 2.61vw);
+  text-align: right;
+}
+.popup-overlay .add-popup .add-table .body-wrapper .table-row p:nth-of-type(6), .popup-overlay .add-popup .add-table .body-wrapper .table-row p:nth-of-type(7), .popup-overlay .add-popup .add-table .body-wrapper .table-row p:nth-of-type(8) {
+  padding-right: clamp(10px, 2.61vw, 2.61vw);
+}
+.popup-overlay .add-popup .add-table .body-wrapper .table-row p:nth-of-type(9) {
+  padding-right: clamp(10px, 1.57vw, 1.57vw);
+  color: black;
+  font-weight: 500;
+}
+.popup-overlay .add-popup .add-table .body-wrapper .table-row p:nth-of-type(10) {
+  padding-right: clamp(10px, 1.304vw, 1.304vw);
+  font-weight: 500;
+}
+.popup-overlay .add-popup .add-table .body-wrapper .table-row button {
+  border: none;
+  background-color: transparent;
+}
+.popup-overlay .add-popup .add-table .body-wrapper .table-row button img {
+  width: clamp(10px, 0.989vw, 0.989vw);
+}
+.popup-overlay .add-popup .btn-container {
+  margin-top: clamp(18px, 2.067vw, 2.067vw);
+  display: flex;
+  gap: clamp(10px, 1.05vw, 1.05vw);
+  justify-content: flex-end;
+  padding-right: clamp(9px, 1.45vw, 1.45vw);
+}
+.popup-overlay .add-popup .btn-container button {
+  border-radius: 5px;
+  font-size: clamp(11px, 0.79vw, 0.79vw);
+  padding: clamp(6px, 0.521vw, 0.521vw) clamp(9px, 2.067vw, 2.067vw);
+  border: 1px solid transparent;
+  line-height: 1;
+}
+.popup-overlay .add-popup .btn-container button.add-btn {
+  color: white;
+  background-color: #154787;
+  padding-inline: clamp(22px, 2.66vw, 2.66vw);
+}
+.popup-overlay .add-popup .btn-container button.add-btn:hover {
+  background-color: #015685;
+}
+.popup-overlay .add-popup .btn-container button.cancel-btn {
+  background-color: white;
+  color: #154787;
+  border-color: #154787;
+}
+.popup-overlay .add-popup .btn-container button.cancel-btn:hover {
+  color: white;
+  background-color: #154787;
+}
+.popup-overlay .add-popup.active {
+  display: block;
+}
+.popup-overlay .success-popup {
+  background-color: white;
+  padding: clamp(10px, 2.067vw, 2.067vw) clamp(5px, 0.521vw, 0.521vw) clamp(17px, 1.8vw, 1.8vw);
+  margin-top: 10px;
+  max-height: 85%;
+  border-radius: clamp(5px, 0.521vw, 0.521vw);
+  display: none;
+}
+.popup-overlay .success-popup h3 {
+  font-size: clamp(10px, 1.15vw, 1.15vw);
+  text-align: center;
+  margin-bottom: clamp(5px, 1.304vw, 1.304vw);
+  color: #154787;
+  font-weight: 600;
+}
+.popup-overlay .success-popup .text {
+  padding: 0 clamp(5px, 1.304vw, 1.304vw) clamp(4px, 0.43vw, 0.43vw);
+  font-size: clamp(9px, 0.93vw, 0.93vw);
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 500;
+}
+.popup-overlay .success-popup .ok-btn {
+  border-radius: 5px;
+  font-size: clamp(11px, 0.79vw, 0.79vw);
+  padding: clamp(6px, 0.63vw, 0.63vw) clamp(9px, 2.61vw, 2.61vw);
+  border: 1px solid transparent;
+  line-height: 1;
+  background-color: #154787;
+  color: white;
+  display: block;
+  margin: auto;
+  width: fit-content;
+}
+.popup-overlay .success-popup.active {
+  display: block;
+}
+.popup-overlay .form-popup {
+  background-color: white;
+  padding: clamp(10px, 1.05vw, 1.05vw) clamp(10px, 1.05vw, 1.05vw) clamp(17px, 1.8vw, 1.8vw);
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  max-height: 85%;
+  width: 45%;
+  border-radius: clamp(5px, 0.521vw, 0.521vw);
+  display: none;
+}
+.popup-overlay .form-popup .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #9f9e9e;
+  margin-bottom: clamp(10px, 1.57vw, 1.57vw);
+}
+.popup-overlay .form-popup .header h3 {
+  font-size: clamp(12px, 1.05vw, 1.05vw);
+  color: rgba(0, 0, 0, 0.9);
+}
+.popup-overlay .form-popup .header .close-popup-btn {
+  border: none;
+  background-color: transparent;
+  width: clamp(10px, 0.93vw, 0.93vw);
+}
+.popup-overlay .form-popup .header .close-popup-btn img {
+  width: 100%;
+}
+.popup-overlay .form-popup .form-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 1.57vw, 1.57vw);
+  width: 90%;
+  margin: auto;
+  flex: 1;
+  min-height: 0;
+  padding-left: 1px;
+  padding-right: 5px;
+  overflow-y: auto;
+}
+.popup-overlay .form-popup .form-wrapper .form-container {
+  width: 100%;
+  position: relative;
+}
+.popup-overlay .form-popup .form-wrapper .form-container .input-group label {
+  font-size: clamp(10px, 0.93vw, 0.93vw);
+  margin-bottom: clamp(6px, 0.63vw, 0.63vw);
+  color: rgba(0, 0, 0, 0.9);
+  display: block;
+  width: 100%;
+}
+.popup-overlay .form-popup .form-wrapper .form-container .input-group input, .popup-overlay .form-popup .form-wrapper .form-container .input-group textarea {
+  border: none;
+  font-size: clamp(10px, 0.89vw, 0.89vw);
+  border: 1px solid rgba(0, 0, 0, 0.9);
+  padding: clamp(6px, 0.63vw, 0.63vw);
+  width: 100%;
+  outline: none;
+  color: rgba(0, 0, 0, 0.9);
+}
+.popup-overlay .form-popup .form-wrapper .form-container .input-group::placeholder {
+  font-size: clamp(13px, 1.1vw, 1.1vw);
+  color: #a7a4a4;
+}
+.popup-overlay .form-popup .form-wrapper .form-container .input-group textarea {
+  max-height: 150px;
+}
+.popup-overlay .form-popup .form-wrapper .form-container .input-group:-webkit-autofill, .popup-overlay .form-popup .form-wrapper .form-container .input-group:-webkit-autofill:hover, .popup-overlay .form-popup .form-wrapper .form-container .input-group:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  -webkit-text-fill-color: rgba(0, 0, 0, 0.9);
+  transition: background-color 5000s ease-in-out 0s;
+}
+.popup-overlay .form-popup .form-wrapper .form-container .date-text {
+  color: rgba(0, 0, 0, 0.9);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.9);
+  font-size: clamp(10px, 0.89vw, 0.89vw);
+  padding: clamp(6px, 0.63vw, 0.63vw);
+  width: 100%;
+  position: relative;
+}
+.popup-overlay .form-popup .form-wrapper .form-container .date-text.not-active {
+  border-bottom: 1px solid transparent;
+}
+.popup-overlay .form-popup .form-wrapper .form-container .datepicker {
+  position: absolute;
+  width: 100%;
+  background-color: #f5f5f5;
+  box-shadow: 0px 6px 7px -2px rgba(0, 0, 0, 0.2);
+  padding: 0px;
+  max-height: 0;
+  overflow: hidden;
+  z-index: 2;
+  top: 100%;
+}
+.popup-overlay .form-popup .form-wrapper .form-container .datepicker button {
+  cursor: pointer;
+  outline: none;
+}
+.popup-overlay .form-popup .form-wrapper .form-container .datepicker .datepicker-calendar {
+  visibility: visible;
+}
+.popup-overlay .form-popup .form-wrapper .form-container .datepicker .datepicker-calendar .days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-row-gap: 15px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+.popup-overlay .form-popup .form-wrapper .form-container .datepicker .datepicker-calendar .dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-row-gap: clamp(5px, 0.79vw, 0.79vw);
+}
+.popup-overlay .form-popup .form-wrapper .form-container .datepicker .datepicker-calendar .date {
+  justify-self: center;
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: clamp(20px, 1.65vw, 1.65vw);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: 2px solid transparent;
+  color: rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  display: block;
+  font-size: clamp(10px, 0.89vw, 0.89vw);
+  font-weight: 500;
+}
+.popup-overlay .form-popup .form-wrapper .form-container .datepicker .datepicker-calendar .date:hover, .popup-overlay .form-popup .form-wrapper .form-container .datepicker .datepicker-calendar .date:focus {
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  font-weight: 600;
+}
+.popup-overlay .form-popup .form-wrapper .form-container .datepicker .datepicker-calendar .date.faded {
+  color: #999fa6;
+}
+.popup-overlay .form-popup .form-wrapper .form-container .datepicker .datepicker-calendar .date.faded:focus {
+  color: #999fa6;
+  border: 2px solid transparent;
+  pointer-events: none;
+  font-weight: 500;
+  background-color: transparent;
+}
+.popup-overlay .form-popup .form-wrapper .form-container .datepicker .datepicker-calendar .date.faded:hover {
+  border: none;
+  font-weight: 500;
+}
+.popup-overlay .form-popup .form-wrapper .form-container .datepicker .datepicker-calendar .date.current-date {
+  border: 2px solid rgba(0, 0, 0, 0.8);
+}
+.popup-overlay .form-popup .form-wrapper .form-container .datepicker .datepicker-calendar .date.current-day {
+  color: white;
+  border: 2px solid rgba(0, 0, 0, 0.8);
+  background-color: #0073ff;
+}
+.popup-overlay .form-popup .form-wrapper .form-container .datepicker .datepicker-calendar .day {
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 500;
+  font-size: clamp(12px, 0.83vw, 0.83vw);
+  justify-self: center;
+}
+.popup-overlay .form-popup .form-wrapper .form-container .datepicker .datepicker-calendar.not-active {
+  visibility: hidden;
+}
+.popup-overlay .form-popup .form-wrapper .form-container .datepicker.active {
+  padding: clamp(8px, 0.79vw, 0.79vw);
+  max-height: 411px;
+  overflow: visible;
+}
+.popup-overlay .form-popup .form-wrapper .form-container .datepicker-top {
+  margin-bottom: 20px;
+}
+.popup-overlay .form-popup .form-wrapper .form-container .datepicker-top .month-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+.popup-overlay .form-popup .form-wrapper .form-container .datepicker-top .month-selector .year-wrapper {
+  display: flex;
+  align-items: center;
+  font-size: clamp(14px, 0.93vw, 0.93vw);
+  gap: 5px;
+}
+.popup-overlay .form-popup .form-wrapper .form-container .datepicker-top .month-selector .year-wrapper .month-name {
+  color: black;
+}
+.popup-overlay .form-popup .form-wrapper .form-container .datepicker-top .month-selector .year-wrapper .year-select .year-toggle {
+  border: none;
+  background-color: transparent;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.popup-overlay .form-popup .form-wrapper .form-container .datepicker-top .month-selector .year-wrapper .year-select .down-arrow {
+  width: clamp(13px, 1.304vw, 1.304vw);
+}
+.popup-overlay .form-popup .form-wrapper .form-container .datepicker-top .month-selector .year-wrapper .year-select .year-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 278px;
+  overflow-y: auto;
+  z-index: 20;
+  display: none;
+  margin-top: 20px;
+  background-color: white;
+}
+.popup-overlay .form-popup .form-wrapper .form-container .datepicker-top .month-selector .year-wrapper .year-select .year-dropdown.active {
+  display: block;
+}
+.popup-overlay .form-popup .form-wrapper .form-container .datepicker-top .month-selector .year-wrapper .year-select .year-dropdown .year-item {
+  padding: clamp(5px, 0.521vw, 0.521vw);
+  cursor: pointer;
+  border-bottom: 1px solid #a7a4a4;
+  text-align: center;
+  background-color: white;
+  color: rgba(0, 0, 0, 0.8);
+  font-size: clamp(9px, 0.79vw, 0.79vw);
+}
+.popup-overlay .form-popup .form-wrapper .form-container .datepicker-top .month-selector .year-wrapper .year-select .year-dropdown .year-item:hover {
+  background-color: #616161;
+  color: white;
+  font-weight: 500;
+}
+.popup-overlay .form-popup .form-wrapper .form-container .datepicker-top .month-selector .arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: white;
+  width: clamp(19px, 1.71vw, 1.71vw);
+  height: clamp(18px, 1.71vw, 1.71vw);
+  border-radius: 12px;
+}
+.popup-overlay .form-popup .form-wrapper .form-container .datepicker-top .month-selector .arrow img {
+  width: clamp(13px, 1.304vw, 1.304vw);
+}
+.popup-overlay .form-popup .form-wrapper .form-container .error {
+  position: absolute;
+  color: #eb0808;
+  margin-top: 5px;
+  font-size: clamp(8px, 0.79vw, 0.79vw);
+  margin-bottom: 0;
+}
+.popup-overlay .form-popup .form-wrapper::-webkit-scrollbar {
+  width: 4px;
+  height: 6px;
+}
+.popup-overlay .form-popup .form-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(161, 161, 161, 0.5);
+  border-radius: 4px;
+}
+.popup-overlay .form-popup .btn-container {
+  margin-top: clamp(18px, 2.067vw, 2.067vw);
+  display: flex;
+  gap: clamp(10px, 1.05vw, 1.05vw);
+  justify-content: flex-end;
+  padding-right: clamp(9px, 1.45vw, 1.45vw);
+}
+.popup-overlay .form-popup .btn-container button {
+  border-radius: 5px;
+  font-size: clamp(11px, 0.79vw, 0.79vw);
+  padding: clamp(7px, 0.63vw, 0.63vw) clamp(9px, 2.067vw, 2.067vw);
+  border: 1px solid transparent;
+  line-height: 1;
+}
+.popup-overlay .form-popup .btn-container button.update-btn {
+  color: white;
+  background-color: #154787;
+  padding-inline: clamp(22px, 2.66vw, 2.66vw);
+}
+.popup-overlay .form-popup .btn-container button.update-btn:hover {
+  background-color: #015685;
+}
+.popup-overlay .form-popup .btn-container button.cancel-btn {
+  background-color: white;
+  color: #154787;
+  border-color: #154787;
+}
+.popup-overlay .form-popup .btn-container button.cancel-btn:hover {
+  color: white;
+  background-color: #154787;
+}
+.popup-overlay .form-popup.active {
+  display: flex;
+}
+.popup-overlay.active {
+  display: flex;
+}
 
 @media screen and (max-width: 1400px) {
-  .create-quote-container .create-quote-wrapper .back-create-btn {
+  .create-quote-wrapper .top-btn-container .back-create-btn {
     gap: clamp(5px, 0.79vw, 0.79vw);
     font-size: clamp(18px, 1.65vw, 1.65vw);
   }
-  .create-quote-container .create-quote-wrapper .create-input-wrapper .btn-container button {
+  .create-quote-wrapper .create-input-wrapper .btn-container button {
     font-weight: normal;
   }
-  .create-quote-container .create-quote-wrapper .create-input-wrapper .btn-container button img {
+  .create-quote-wrapper .create-input-wrapper .btn-container button img {
     width: clamp(25px, 2.9vw, 2.9vw);
+  }
+  .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper {
+    margin-top: clamp(12px, 1.57vw, 1.57vw);
+  }
+  .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper {
+    padding-top: clamp(9px, 0.989vw, 0.989vw);
+  }
+  .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .selected-file {
+    padding-top: clamp(15px, 1.36vw, 1.36vw);
   }
 }
 

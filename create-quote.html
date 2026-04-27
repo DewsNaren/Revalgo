@@ -151,11 +151,11 @@
                                 <div class="table-body">
                                     <div class="table-row">
                                         <div class="qty-input-wrapper">
-                                            <input type="text" class="qty">
+                                            <input type="text" name="qty" class="qty" autocomplete="off">
                                         </div>
 
                                         <div class="desc-wrapper">
-                                            <input type="text" class="desc-input">
+                                            <input type="text" class="desc-input" name="description" autocomplete="off">
                                             <div class="dropdown">
                                                 <ul>
                                                     <li>hell el! here</li>
@@ -172,73 +172,73 @@
                                     </div>
                                     <div class="table-row">
                                         <div class="qty-input-wrapper">
-                                            <input type="text" class="qty" value="4">
+                                            <input type="text" name="qty" class="qty" value="4" autocomplete="off">
                                         </div>
 
                                         <div class="desc-wrapper">
-                                            <input type="text" class="desc-input">
+                                            <input type="text" class="desc-input" name="description" autocomplete="off">
                                             <div class="dropdown"></div>
                                         </div>
                                     </div>
                                     <div class="table-row">
                                         <div class="qty-input-wrapper">
-                                            <input type="text" class="qty">
+                                            <input type="text" name="qty" class="qty" autocomplete="off">
                                         </div>
 
                                         <div class="desc-wrapper">
-                                            <input type="text" class="desc-input">
+                                            <input type="text" class="desc-input" name="description" autocomplete="off">
                                             <div class="dropdown"></div>
                                         </div>
                                         
                                     </div>
                                     <div class="table-row">
                                         <div class="qty-input-wrapper">
-                                            <input type="text" class="qty">
+                                            <input type="text" name="qty" class="qty" autocomplete="off">
                                         </div>
 
                                         <div class="desc-wrapper">
-                                            <input type="text" class="desc-input">
+                                            <input type="text" class="desc-input" name="description" autocomplete="off">
                                             <div class="dropdown"></div>
                                         </div>
                                     </div>
                                     <div class="table-row">
                                         <div class="qty-input-wrapper">
-                                            <input type="text" class="qty">
+                                            <input type="text" name="qty" class="qty">
                                         </div>
 
                                         <div class="desc-wrapper">
-                                            <input type="text" class="desc-input">
+                                            <input type="text" class="desc-input" name="description" autocomplete="off">
                                             <div class="dropdown"></div>
                                         </div>
                                     </div>
                                     <div class="table-row">
                                         <div class="qty-input-wrapper">
-                                            <input type="text" class="qty">
+                                            <input type="text" name="qty" class="qty" autocomplete="off">
                                         </div>
                                         
 
                                         <div class="desc-wrapper">
-                                            <input type="text" class="desc-input">
+                                            <input type="text" class="desc-input" name="description" autocomplete="off">
                                             <div class="dropdown"></div>
                                         </div>
                                     </div>
                                     <div class="table-row">
                                         <div class="qty-input-wrapper">
-                                            <input type="text" class="qty">
+                                            <input type="text" name="qty" class="qty" autocomplete="off">
                                         </div>
 
                                         <div class="desc-wrapper">
-                                            <input type="text" class="desc-input">
+                                            <input type="text" class="desc-input" name="description" autocomplete="off">
                                             <div class="dropdown"></div>
                                         </div>
                                     </div>
                                     <div class="table-row">
                                         <div class="qty-input-wrapper">
-                                            <input type="text" class="qty">
+                                            <input type="text" name="qty" class="qty" autocomplete="off">
                                         </div>
 
                                         <div class="desc-wrapper">
-                                            <input type="text" class="desc-input">
+                                            <input type="text" class="desc-input" name="description" autocomplete="off">
                                             <div class="dropdown">
                                                 <ul>
                                                     <li>hell el! here</li>
@@ -255,6 +255,46 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="upload-wrapper active">
+                                <div class="select-input-wrapper">
+                                    <label for="select-file">Select Files</label>
+                                    <input type="file" name="select-file" id="select-file" class="select-file-input" multiple>
+                                    <p class="text">File Supported: PDF,XSLS,Image</p>
+                                </div>
+                                <div class="selected-file">
+                                    <!-- <div class="file-wrapper"> -->
+                                        <div class="file-container success">
+                                            <div class="file">
+                                                <div class="file-info">
+                                                    <img src="./assets/images/create_quote/emil pad_Pdf icon.png" alt="pdf"> 
+                                                    Client 123 Proposal.pdf (2.1 MB)
+                                                </div>
+                                                <button type="button" class="del-file-btn"><img src="./assets/images/create_quote/delete_icon.png" alt="delete"></button>
+                                            </div>
+                                            <p class="file-text">
+                                                <img src="./assets/images/create_quote/Uploaded_icon.png" alt="Upload icon">
+                                                <span class="status-text"> <span class="status">Uploaded: </span>Client 123 Proposal.pdf</span>
+                                            </p>
+                                        </div>
+                                        <div class="file-container error">
+                                            <div class="file">
+                                                <div class="file-info">
+                                                    <img src="./assets/images/create_quote/emil pad_Psd icon.png" alt="psd"> 
+                                                    74424AE Proposal.psd (2.1 MB)
+                                                </div>
+                                                <button type="button" class="del-file-btn"><img src="./assets/images/create_quote/delete_icon.png" alt="delete"></button>
+                                            </div>
+                                            <p class="file-text">
+                                                <img src="./assets/images/create_quote/Error_icon.png" alt="Error icon">
+                                                <span class="status-text"> <span class="status">Error: </span>74424AE Proposal.psd</span>
+                                            </p>
+                                        </div>
+                                        
+                                    <!-- </div> -->
+                                    
+                                </div>
+                            </div>
+                            <button type="button" class="minimize-btn"><img src="./assets/images/create_quote/prev-arrow-blue.png" alt="prev arrow"></button>
                             <div class="upload-btn-container">
                                 <button type="button" class="upload-btn">Upload</button>
                             </div>
@@ -267,7 +307,7 @@
                                 <div><input type="checkbox"></div>
                                 <div>Line No</div>
                                 <div>Qty Requested</div>
-                                <div>Requested / Suggested Product</div>
+                                <div>Requested / <span>Suggested Product</span></div>
                                 <div>Score</div>
                                 <div>Available Qty</div>
                                 <div>Unit Cost</div>
@@ -275,10 +315,31 @@
                                 <div>Selling Price</div>
                                 <div>Total Cost</div>
                             </div>
-                            <div class="add-btn-container">
-                                <button type="button"><img src="./assets/images/create_quote/add item_icon.png" alt="add"></button>
-                                <p class="text">Click here to Add Item</p>
+
+                                <div class="body-wrapper">
+                                    <div class="table-row">
+                                        <p></p>
+                                        <p><input type="checkbox"></p>
+                                        <p>1</p>
+                                        <p><input type="text" value="80" name="qty-requested"></p>
+                                        <p><img src="./assets/images/global/down-arrow.png" alt="down-arrow" class="down-arrow-img"> <span class="id">ID45327</span> <span class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus hic facere, veniam in distinctio id tempora voluptatum? Facilis eius aut numquam. Alias perferendis sunt veniam reprehenderit officiis quas delectus.</span></p>
+                                        
+                                        <p>33</p>
+                                        <p>200</p>
+                                        <p>$30</p>
+                                        <p><input type="text" value="10%" name="margin"></p>
+                                        <p>$20</p>
+                                        <p>$2,000.00</p>
+                                    </div>
+
+                                    <div class="add-btn-container left">
+                                        <button type="button"><img src="./assets/images/create_quote/add item_icon.png" alt="add"></button>
+                                        <p class="text">Click here to Add Item</p>
+                                </div>
+
                             </div>
+                    
+                            
                         </div>
                         
                     </div>
@@ -287,6 +348,146 @@
             
             </div>
         </main>
+        <div class="popup-overlay">
+            <div class="add-popup ">
+                <div class="item-header">
+                    <h3>Add Item</h3>
+
+                    <button type="button" class="close-popup-btn"><img src="./assets/images/global/close-modal.webp" alt="close"></button>
+                </div>
+                <div class="add-table">
+                    <div class="table-row header-wrapper">
+                        <div>Qty Requested</div>
+                        <div>Product ID</div>
+                        <div>Score</div>
+                        <div>Available Qty</div>
+                        <div>MPN</div>
+                        <div>Cost</div>
+                        <div>Margin</div>
+                        <div>Selling Price</div>
+                        <div>Total Cost</div>
+                        <div></div>
+                        <div></div>
+                    </div>
+
+                    <div class="body-wrapper">
+                        <div class="table-row">
+                            <p><input type="text" value="100" name="qty-requested"></p>
+                            <p><img src="./assets/images/global/down-arrow.png" alt="down-arrow" class="down-arrow-img"> <span class="id">ID45327</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus hic facere, veniam in distinctio id tempora voluptatum? Facilis eius aut numquam. Alias perferendis sunt veniam reprehenderit officiis quas delectus.</p>
+                            <p>90%</p>
+                            <p>200</p>
+                            <p>AD12465</p>
+                            <p>$30</p>
+                            <p><input type="text" value="10%" name="margin"></p>
+                            <p>$20</p>
+                            <p>$2,000.00</p>
+                            <button type="button"><img src="./assets/images/create_quote/edit-grey.png" alt="edit"></button>
+                            <button type="button"><img src="./assets/images/create_quote/line_add icon.png" alt="add"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-container">
+                    <button type="button" class="add-btn">Add</button>
+                    <button type="button" class="cancel-btn">Cancel</button>
+                </div>
+            </div>
+            <div class="success-popup">
+                <h3 class="quote-id">Quote ID 14301</h3>
+                <div class="content">
+                    <p class="text">Your Qoute has beenGenerated Successfully</p>
+                    
+                    <button type="button" class="ok-btn">Ok</button>
+                </div>
+            </div>
+            <div class="form-popup">
+                <div class="header">
+                    <h3 class="title">Ship To</h3>
+                    <button type="button" class="close-popup-btn"><img src="./assets/images/global/close-modal.webp" alt="close"></button>
+                </div>
+                <div class="form-wrapper">
+                    <div class="form-container">
+                        <div class="input-group">
+                            <label for="name">Name</label>
+                            <input type="text" name="name" id="name" placeholder="Name"autocomplete="on">
+                        </div>
+                        <p class="error"></p>
+                    </div>
+                    <div class="form-container">
+                        <div class="input-group">
+                             <label for="address">Address</label>
+                            <textarea name="address" id="address" placeholder="Address" autocomplete="on"></textarea>
+                        </div>
+                        <p class="error"></p>
+                    </div>
+                     <div class="form-container">
+                        <div class="input-group">
+                            <label for="po-no">PO No</label>
+                            <input type="text" name="po-no" id="po-no" placeholder="PO No"></input>
+                        </div>
+                        <p class="error"></p>
+                    </div>
+                    
+                    <div class="form-container">
+                        <div class="input-group">
+                            <label for="job-no">Job No</label>
+                            <input type="text" name="job-no" id="job-no" placeholder="Job No"></input>
+                        </div>
+                        <p class="error"></p>
+                    </div>
+                    <div class="form-container">
+                        <div class="input-group">
+                            <label for="buyer">Buyer</label>
+                            <input type="text" name="buyer" id="buyer" placeholder="Buyer"></input>
+                        </div>
+                        <p class="error"></p>
+                    </div>
+                    <div class="form-container">
+                        <div class="input-group">
+                            <label>Deleivery Date</label>
+                            <div class="date-text">yyyy-mm-dd</div>
+                            <div class="datepicker">
+                                <div class="datepicker-top">
+                            
+                            <div class="month-selector">
+                                <button type="button" class="arrow prev-month">
+                                <img src="./assets/images/global/left-arrow.png" alt="left" />
+                                </button>
+                                <div class="year-wrapper">
+                                <span class="month-name"></span>
+                                <div class="year-select">
+                                    <button type="button" class="year-toggle">
+                                    2025
+                                    <img
+                                        class="down-arrow"
+                                        src="./assets/images/dashboard/down-arrow-blue.png"
+                                        alt="down arrow"
+                                    />
+                                    </button>
+                                    <div class="year-dropdown"></div>
+                                </div>
+                                </div>
+                                <button type="button" class="arrow next-month">
+                                <img src="./assets/images/global/right-arrow.png" alt="right"/>
+                                </button>
+                            </div>
+                            </div>
+                            <div class="datepicker-calendar">
+                                <div class="days"></div>
+                                <div class="dates"></div>
+                            </div>
+                            </div>
+                            <input type="hidden" name="deleivery-date" id="deleivery-date" class="date-input" />
+                        </div>
+                        <p class="error"></p>
+                    </div>
+
+                </div>
+                <div class="btn-container">
+                    <button type="button" class="update-btn">Update</button>
+                    <button type="button" class="cancel-btn">Cancel</button>
+                </div>
+            </div>
+        </div>
 
         <script src="./assets/js/create-quote.js"></script>
     </body>
