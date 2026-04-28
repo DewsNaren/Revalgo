@@ -248,6 +248,7 @@ header .search-wrapper {
   gap: clamp(7px, 0.521vw, 0.521vw);
   margin-left: clamp(15px, 2.34vw, 2.34vw);
   border-radius: 5px;
+  position: relative;
 }
 header .search-wrapper input {
   flex: 1;
@@ -255,9 +256,67 @@ header .search-wrapper input {
   font-size: clamp(12px, 0.89vw, 0.89vw);
   outline: none;
 }
-header .search-wrapper label img {
+header .search-wrapper .search-quote-btn {
+  background-color: transparent;
+  border: none;
+}
+header .search-wrapper .search-quote-btn img {
+  display: block;
   filter: invert(0);
   width: clamp(12px, 0.89vw, 0.89vw);
+}
+header .search-wrapper .global-dropdown {
+  display: none;
+  list-style: none;
+  padding: clamp(10px, 0.83vw, 0.83vw) 0 clamp(7px, 0.521vw, 0.521vw);
+  position: absolute;
+  background-color: white;
+  top: 100%;
+  right: 0;
+  left: 0;
+  border-radius: 5px;
+  margin-top: 4px;
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.23);
+  z-index: 2;
+  height: clamp(150px, 13.5vw, 13.5vw);
+}
+header .search-wrapper .global-dropdown ul {
+  padding-left: 0;
+  padding-inline: clamp(10px, 0.83vw, 0.83vw);
+  list-style-type: none;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  max-height: clamp(150px, 11.72vw, 11.72vw);
+  max-height: 100%;
+  overflow-y: auto;
+}
+header .search-wrapper .global-dropdown ul li {
+  padding: clamp(5px, 0.79vw, 0.79vw) clamp(5px, 0.521vw, 0.521vw);
+  font-size: clamp(10px, 0.83vw, 0.83vw);
+  border-bottom: 1px solid #ccc;
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 500;
+  opacity: 0.95;
+  cursor: pointer;
+}
+header .search-wrapper .global-dropdown ul li:hover {
+  background-color: #e8f2ff;
+}
+header .search-wrapper .global-dropdown ul li:last-of-type {
+  border: none;
+}
+header .search-wrapper .global-dropdown ul::-webkit-scrollbar {
+  width: 4px;
+  height: 6px;
+}
+header .search-wrapper .global-dropdown ul::-webkit-scrollbar-thumb {
+  background: rgba(161, 161, 161, 0.5);
+  border-radius: 4px;
+}
+header .search-wrapper .global-dropdown.active {
+  display: block;
 }
 header nav {
   display: flex;
@@ -3514,39 +3573,53 @@ body {
   width: clamp(11px, 0.93vw, 0.93vw);
   margin-left: clamp(6px, 0.73vw, 0.73vw);
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker {
-  position: absolute;
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .date-text.active {
+  color: #154787;
+  border-color: #154787;
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .date-text.active img {
+  filter: brightness(0) saturate(100%) invert(20%) sepia(45%) saturate(1500%) hue-rotate(190deg) brightness(90%) contrast(95%);
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper::-webkit-scrollbar {
+  width: 4px;
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(161, 161, 161, 0.5);
+  border-radius: 4px;
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker {
+  position: fixed;
   background-color: #f5f5f5;
   box-shadow: 0px 6px 7px -2px rgba(0, 0, 0, 0.2);
   padding: 0px;
   max-height: 0;
   overflow: hidden;
-  z-index: 2;
+  z-index: 6;
   top: 100%;
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker button {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker button {
   cursor: pointer;
   outline: none;
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top {
   margin-bottom: 20px;
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector {
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: relative;
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper {
   display: flex;
   align-items: center;
   font-size: clamp(13px, 0.89vw, 0.89vw);
   gap: 5px;
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .month-name {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .month-name {
   color: black;
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-toggle {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-toggle {
   border: none;
   background-color: transparent;
   color: black;
@@ -3555,10 +3628,10 @@ body {
   justify-content: center;
   gap: 5px;
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .year-select .down-arrow {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .year-select .down-arrow {
   width: clamp(11px, 1.15vw, 1.15vw);
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-dropdown {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-dropdown {
   position: absolute;
   top: 100%;
   left: 0;
@@ -3570,10 +3643,10 @@ body {
   margin-top: 20px;
   background-color: white;
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-dropdown.active {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-dropdown.active {
   display: block;
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-dropdown .year-item {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-dropdown .year-item {
   padding: clamp(4px, 0.43vw, 0.43vw);
   cursor: pointer;
   border-bottom: 1px solid #a7a4a4;
@@ -3582,12 +3655,12 @@ body {
   color: rgba(0, 0, 0, 0.8);
   font-size: clamp(3px, 0.73vw, 0.73vw);
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-dropdown .year-item:hover {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-dropdown .year-item:hover {
   background-color: #616161;
   color: white;
   font-weight: 500;
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .arrow {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .arrow {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3597,26 +3670,26 @@ body {
   height: clamp(15px, 1.5vw, 1.5vw);
   border-radius: 12px;
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .arrow img {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .arrow img {
   width: clamp(11px, 1.15vw, 1.15vw);
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar {
   visibility: visible;
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar .days {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .days {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-row-gap: 15px;
   margin-top: 15px;
   margin-bottom: 20px;
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar .dates {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .dates {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-column-gap: clamp(5px, 0.521vw, 0.521vw);
   grid-row-gap: clamp(5px, 0.79vw, 0.79vw);
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar .date {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .date {
   justify-self: center;
   border: none;
   margin: 0;
@@ -3628,60 +3701,50 @@ body {
   background-color: transparent;
   border: 2px solid transparent;
   color: rgba(0, 0, 0, 0.7);
+  border-radius: 50%;
   cursor: pointer;
   display: block;
   font-size: clamp(8px, 0.73vw, 0.73vw);
   font-weight: 500;
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar .date:hover, .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar .date:focus {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .date:hover, .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .date:focus {
   border: 2px solid rgba(0, 0, 0, 0.3);
   font-weight: 600;
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar .date.faded {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .date.faded {
   color: #999fa6;
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar .date.faded:focus {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .date.faded:focus {
   color: #999fa6;
   border: 2px solid transparent;
   pointer-events: none;
   font-weight: 500;
   background-color: transparent;
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar .date.faded:hover {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .date.faded:hover {
   border: none;
   font-weight: 500;
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar .date.current-date {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .date.current-date {
   border: 2px solid rgba(0, 0, 0, 0.8);
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar .date.current-day {
-  color: white;
-  border: 2px solid rgba(0, 0, 0, 0.8);
-  background-color: #0073ff;
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .date.current-day {
+  color: #154787;
+  border: 2px solid #154787;
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar .day {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .day {
   color: rgba(0, 0, 0, 0.9);
   font-weight: 500;
   font-size: clamp(12px, 0.83vw, 0.83vw);
   justify-self: center;
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar.not-active {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar.not-active {
   visibility: hidden;
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker.active {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker.active {
   padding: clamp(8px, 0.79vw, 0.79vw);
   max-height: 411px;
   overflow: visible;
-}
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container.end-container .datepicker {
-  right: 0;
-}
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper::-webkit-scrollbar {
-  width: 4px;
-}
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper::-webkit-scrollbar-thumb {
-  background: rgba(161, 161, 161, 0.5);
-  border-radius: 4px;
 }
 .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table {
   table-layout: fixed;
@@ -3803,6 +3866,7 @@ body {
   font-weight: 500;
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-info-wrapper .info .details p {
+  font-size: clamp(10px, 0.79vw, 0.79vw);
   margin-bottom: 0;
   color: black;
 }
@@ -4123,7 +4187,7 @@ body {
   border-top-right-radius: clamp(5px, 0.521vw, 0.521vw);
   padding: clamp(4px, 0.4vw, 0.4vw);
   display: grid;
-  grid-template-columns: clamp(15px, 2.34vw, 2.34vw) max-content clamp(22px, 2.61vw, 2.61vw) clamp(32px, 3.91vw, 3.91vw) 37.5% max-content clamp(32px, 5.98vw, 5.98vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 2.61vw, 2.61vw) clamp(10px, 3.13vw, 3.13vw);
+  grid-template-columns: clamp(15px, 2.34vw, 2.34vw) max-content clamp(22px, 2.61vw, 2.61vw) clamp(32px, 3.91vw, 3.91vw) 37.5% max-content clamp(32px, 5.98vw, 5.98vw) clamp(25px, 5.75vw, 5.75vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 2.61vw, 2.61vw) clamp(10px, 3.13vw, 3.13vw);
   align-items: center;
   border-bottom: 1px solid rgba(27, 26, 26, 0.6);
 }
@@ -4152,8 +4216,14 @@ body {
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(4) {
   color: #154787;
 }
-.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(6), .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(7), .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(8), .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(9) {
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(6), .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(8), .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(9) {
   padding-right: clamp(10px, 2.61vw, 2.61vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(7) {
+  padding-right: clamp(10px, 2.067vw, 2.067vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(8), .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(9) {
+  color: #154787;
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(10) {
   padding-right: clamp(10px, 3.13vw, 3.13vw);
@@ -4161,19 +4231,19 @@ body {
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(11) {
   padding-left: clamp(5px, 0.521vw, 0.521vw);
 }
-.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:last-of-type {
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(12) {
   padding-left: clamp(5px, 0.521vw, 0.521vw);
 }
-.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:last-of-type button {
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(12) button {
   background-color: transparent;
   border: none;
   visibility: hidden;
   transition: visibility 0.2s ease;
 }
-.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:last-of-type button img {
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(12) button img {
   width: clamp(10px, 0.89vw, 0.89vw);
 }
-.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper:hover div:last-of-type button {
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper:hover div:nth-of-type(12) button {
   visibility: visible;
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper {
@@ -4182,11 +4252,11 @@ body {
   overflow: auto;
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row {
-  padding: clamp(4px, 0.63vw, 0.63vw) clamp(4px, 0.4vw, 0.4vw);
+  padding: clamp(4px, 0.63vw, 0.63vw) clamp(4px, 0.4vw, 0.4vw) clamp(4px, 0.63vw, 0.63vw);
   display: grid;
   grid-template-columns: clamp(15px, 2.34vw, 2.34vw) max-content clamp(22px, 2.61vw, 2.61vw) clamp(32px, 3.91vw, 3.91vw) 37.5% clamp(15px, 3.6vw, 3.6vw) clamp(32px, 5.98vw, 5.98vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 4.69vw, 4.69vw) clamp(10px, 2.067vw, 2.067vw);
   align-items: center;
-  border-bottom: 1px solid rgba(27, 26, 26, 0.6);
+  position: relative;
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p {
   font-size: clamp(8px, 0.73vw, 0.73vw);
@@ -4214,8 +4284,28 @@ body {
   width: clamp(12px, 1.304vw, 1.304vw);
   margin-right: 5px;
 }
-.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) .id {
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) .title-text {
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.95);
+  margin-left: clamp(23px, 1.8vw, 1.8vw);
+  margin-bottom: 3px;
+  display: block;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) .dropdown-text {
+  display: block;
+  color: rgba(0, 0, 0, 0.95);
+  margin-bottom: 3px;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) .dropdown-text .id, .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) .dropdown-text .detail {
   color: #154787;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) .dropdown-text .detail {
+  display: inline-block;
+  padding: 3px;
+  border: 1px solid #154787;
+  border-radius: 5px;
+  font-size: clamp(8px, 0.63vw, 0.63vw);
+  font-weight: 500;
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) .text {
   display: block;
@@ -4223,6 +4313,7 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-left: clamp(23px, 1.8vw, 1.8vw);
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(2) {
   padding-right: clamp(10px, 1.05vw, 1.05vw);
@@ -4252,11 +4343,26 @@ body {
   text-align: right;
   padding-right: clamp(10px, 1.57vw, 1.57vw);
 }
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(8) span {
+  width: 70%;
+  border-bottom: 1px solid #154787;
+  display: inline-flex;
+  color: black;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(8) span input {
+  border-bottom: none;
+}
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(9) {
   padding-right: clamp(10px, 1.57vw, 1.57vw);
 }
-.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(9) input {
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(9) span {
   width: 50%;
+  border-bottom: 1px solid #154787;
+  display: inline-flex;
+  color: black;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(9) span input {
+  border-bottom: none;
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(6) {
   padding-right: clamp(10px, 1.57vw, 1.57vw);
@@ -4272,20 +4378,70 @@ body {
   color: black;
   font-weight: 500;
 }
-.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:last-of-type button {
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(12) button {
   background-color: transparent;
   border: none;
   visibility: hidden;
   transition: visibility 0.2s ease;
 }
-.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:last-of-type button img {
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(12) button img {
   width: clamp(10px, 0.89vw, 0.89vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p.bottom-line {
+  position: absolute;
+  bottom: calc(clamp(4px, 0.63vw, 0.63vw) * -1);
+  right: 0;
+  left: 0;
+  padding-left: clamp(5px, 0.521vw, 0.521vw);
+  display: flex;
+  align-items: center;
+  z-index: 2;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p.bottom-line img {
+  width: clamp(12px, 0.989vw, 0.989vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p.bottom-line .line {
+  flex: 1;
+  width: 100%;
+  height: 1px;
+  background-color: #154787;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-note-btn {
+  background-color: transparent;
+  border: none;
+  visibility: hidden;
+  position: absolute;
+  top: -2px;
+  right: 0;
+  transition: visibility 0.2s ease;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-note-btn img {
+  display: none;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-note-btn img.img-grey {
+  width: clamp(12px, 1.05vw, 1.05vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-note-btn img.img-blue {
+  display: none;
+  width: clamp(12px, 0.93vw, 0.93vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-note-btn img.active {
+  display: inline-block;
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:hover {
   background-color: #e8f2ff;
 }
-.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:hover p:last-of-type button {
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:hover p:nth-of-type(12) button, .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:hover .add-note-btn {
   visibility: visible;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:nth-last-child(2) p.bottom-line {
+  display: none;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:nth-last-child(2) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:not(:first-of-type) {
+  padding-top: clamp(4px, 0.68vw, 0.68vw);
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .add-btn-container {
   position: absolute;
@@ -4337,7 +4493,7 @@ body {
 .popup-overlay .selected-item-popup {
   background-color: white;
   padding: clamp(10px, 2.067vw, 2.067vw) clamp(10px, 1.57vw, 1.57vw) clamp(17px, 1.8vw, 1.8vw);
-  display: flex;
+  display: none;
   flex-direction: column;
   margin-top: 10px;
   max-height: 85%;
@@ -4560,6 +4716,42 @@ body {
   color: white;
   background-color: #154787;
 }
+.popup-overlay .selected-item-popup.active {
+  display: flex;
+}
+.popup-overlay .success-popup {
+  background-color: white;
+  padding: clamp(20px, 2.067vw, 2.067vw) clamp(12px, 1.304vw, 1.304vw) clamp(17px, 1.8vw, 1.8vw);
+  margin-top: 10px;
+  max-height: 85%;
+  border-radius: clamp(5px, 0.521vw, 0.521vw);
+  display: none;
+}
+.popup-overlay .success-popup .text {
+  padding: 0 0 clamp(4px, 0.43vw, 0.43vw);
+  font-size: clamp(9px, 0.93vw, 0.93vw);
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 500;
+}
+.popup-overlay .success-popup .text .id {
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 600;
+}
+.popup-overlay .success-popup .ok-btn {
+  border-radius: 5px;
+  font-size: clamp(11px, 0.79vw, 0.79vw);
+  padding: clamp(6px, 0.63vw, 0.63vw) clamp(9px, 2.61vw, 2.61vw);
+  border: 1px solid transparent;
+  line-height: 1;
+  background-color: #154787;
+  color: white;
+  display: block;
+  margin: auto;
+  width: fit-content;
+}
+.popup-overlay .success-popup.active {
+  display: block;
+}
 
 @media screen and (max-width: 1600px) {
   .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table thead tr th span img {
@@ -4595,6 +4787,887 @@ body {
 }
 @media screen and (max-width: 1300px) {
   .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table thead tr th span img {
+    width: 8px;
+  }
+}
+.global-wrapper {
+  margin-top: 6px;
+  padding: clamp(15px, 1.57vw, 1.57vw) 0 clamp(15px, 1.57vw, 1.57vw) clamp(12px, 1.25vw, 1.25vw);
+  display: flex;
+  flex-direction: column;
+}
+.global-wrapper .quote-filter-wrapper {
+  margin-top: clamp(6px, 0.63vw, 0.63vw);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  max-height: 100%;
+  min-height: 0;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .header-wrapper {
+  margin-left: 5px;
+  margin-bottom: clamp(23px, 2.34vw, 2.34vw);
+  padding-right: clamp(12px, 1.25vw, 1.25vw);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .header-wrapper .header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .header-wrapper .header-container h2 {
+  font-size: clamp(6px, 1.67vw, 1.67vw);
+  color: #666666;
+  margin-bottom: clamp(6px, 0.63vw, 0.63vw);
+  font-weight: 600;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .header-wrapper .header-container h2 span {
+  text-transform: none;
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 600;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .header-wrapper .header-container .refresh-btn {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: clamp(9px, 0.73vw, 0.73vw);
+  color: #154787;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .header-wrapper .header-container .refresh-btn img {
+  width: clamp(10px, 0.83vw, 0.83vw);
+  margin-right: 5px;
+  transform: rotate(270deg) scaleX(-1);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .header-wrapper .total-item {
+  font-size: clamp(12px, 0.89vw, 0.89vw);
+  color: #818080;
+  line-height: 1;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper {
+  display: flex;
+  gap: clamp(12px, 1.304vw, 1.304vw);
+  flex: 1;
+  min-height: 0;
+  padding-right: clamp(17px, 1.8vw, 1.8vw);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper {
+  padding: clamp(10px, 1.05vw, 1.05vw) clamp(10px, 1.05vw, 1.05vw) clamp(5px, 0.521vw, 0.521vw);
+  width: fit-content;
+  box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.12);
+  border-radius: clamp(4px, 0.521vw, 0.521vw);
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 100%;
+  position: relative;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: clamp(12px, 0.989vw, 0.989vw);
+  margin-bottom: 0;
+  line-height: 1;
+  padding-bottom: clamp(4px, 0.43vw, 0.43vw);
+  border-bottom: 1px solid rgba(147, 147, 147, 0.8);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-header img {
+  width: clamp(11px, 1.05vw, 1.05vw);
+  cursor: pointer;
+  transform: rotate(180deg);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(4px, 0.521vw, 0.521vw);
+  padding: clamp(12px, 1.1vw, 1.1vw) 0;
+  border-bottom: 1px solid #ddd;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container h3 {
+  font-size: clamp(12px, 0.89vw, 0.89vw);
+  margin-bottom: 0;
+  line-height: 1;
+  padding-bottom: clamp(4px, 0.43vw, 0.43vw);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .filter-subheader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .filter-subheader .control-btn-container {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 0.989vw, 0.989vw);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .filter-subheader .control-btn-container button {
+  background-color: transparent;
+  border: none;
+  font-size: clamp(7px, 0.578vw, 0.578vw);
+  color: #154787;
+  position: relative;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .filter-subheader .control-btn-container button.select-btn::after {
+  content: "";
+  position: absolute;
+  right: calc(-1 * clamp(5px, 0.521vw, 0.521vw));
+  width: 1px;
+  height: 100%;
+  background-color: #154787;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .filter-chip-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 4px;
+  margin-left: clamp(8px, 0.79vw, 0.79vw);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .filter-chip-container .filter-chip {
+  padding: 5px clamp(8px, 0.521vw, 0.521vw);
+  background-color: white;
+  border-radius: 20px;
+  font-size: clamp(10px, 0.79vw, 0.79vw);
+  color: #818080;
+  border: 1px solid #818080;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .filter-chip-container .filter-chip.active {
+  background-color: #154787;
+  color: rgba(255, 255, 255, 0.8);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .search-container {
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(8px, 0.79vw, 0.79vw);
+  padding: 5px clamp(8px, 0.521vw, 0.521vw);
+  border-radius: 5px;
+  margin-left: clamp(8px, 0.79vw, 0.79vw);
+  width: 90%;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .search-container input {
+  border: none;
+  outline: none;
+  font-size: clamp(9px, 0.68vw, 0.68vw);
+  flex: 1;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .search-container input::placeholder {
+  font-size: clamp(9px, 0.68vw, 0.68vw);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .search-container button {
+  background-color: transparent;
+  border: none;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .search-container button img {
+  width: clamp(11px, 0.83vw, 0.83vw);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .checkbox-filter-container {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3px, 0.4vw, 0.4vw);
+  margin-left: clamp(8px, 0.79vw, 0.79vw);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .checkbox-filter-container .checkbox-filter {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 0.79vw, 0.79vw);
+  padding: 5px 0 0;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .checkbox-filter-container .checkbox-filter input {
+  width: clamp(9px, 0.989vw, 0.989vw);
+  height: clamp(9px, 0.989vw, 0.989vw);
+  border-radius: 5px;
+  accent-color: #154787;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .checkbox-filter-container .checkbox-filter label {
+  font-size: clamp(12px, 0.83vw, 0.83vw);
+  color: #818080;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .see-more-link {
+  margin-top: 4px;
+  font-size: clamp(9px, 0.68vw, 0.68vw);
+  color: #154787;
+  font-weight: 500;
+  margin-left: clamp(8px, 0.79vw, 0.79vw);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container:last-of-type {
+  border-bottom: none;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 0.79vw, 0.79vw);
+  margin-left: clamp(8px, 0.79vw, 0.79vw);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container {
+  position: relative;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .date-label {
+  font-size: clamp(12px, 0.83vw, 0.83vw);
+  color: #818080;
+  line-height: 1;
+  margin-bottom: clamp(4px, 0.43vw, 0.43vw);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .date-text {
+  font-size: clamp(10px, 0.73vw, 0.73vw);
+  color: #818080;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 4px 5px;
+  border-radius: 4px;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .date-text img {
+  width: clamp(11px, 0.93vw, 0.93vw);
+  margin-left: clamp(6px, 0.73vw, 0.73vw);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .date-text.active {
+  color: #154787;
+  border-color: #154787;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .date-text.active img {
+  filter: brightness(0) saturate(100%) invert(20%) sepia(45%) saturate(1500%) hue-rotate(190deg) brightness(90%) contrast(95%);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker {
+  position: fixed;
+  background-color: #f5f5f5;
+  box-shadow: 0px 6px 7px -2px rgba(0, 0, 0, 0.2);
+  padding: 0px;
+  max-height: 0;
+  overflow: hidden;
+  z-index: 6;
+  top: 100%;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker button {
+  cursor: pointer;
+  outline: none;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top {
+  margin-bottom: 20px;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper {
+  display: flex;
+  align-items: center;
+  font-size: clamp(13px, 0.89vw, 0.89vw);
+  gap: 5px;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .month-name {
+  color: black;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-toggle {
+  border: none;
+  background-color: transparent;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .year-select .down-arrow {
+  width: clamp(11px, 1.15vw, 1.15vw);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 278px;
+  overflow-y: auto;
+  z-index: 20;
+  display: none;
+  margin-top: 20px;
+  background-color: white;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-dropdown.active {
+  display: block;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-dropdown .year-item {
+  padding: clamp(4px, 0.43vw, 0.43vw);
+  cursor: pointer;
+  border-bottom: 1px solid #a7a4a4;
+  text-align: center;
+  background-color: white;
+  color: rgba(0, 0, 0, 0.8);
+  font-size: clamp(3px, 0.73vw, 0.73vw);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-dropdown .year-item:hover {
+  background-color: #616161;
+  color: white;
+  font-weight: 500;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: white;
+  width: clamp(15px, 1.5vw, 1.5vw);
+  height: clamp(15px, 1.5vw, 1.5vw);
+  border-radius: 12px;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .arrow img {
+  width: clamp(11px, 1.15vw, 1.15vw);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar {
+  visibility: visible;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar .days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-row-gap: 15px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar .dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-column-gap: clamp(5px, 0.521vw, 0.521vw);
+  grid-row-gap: clamp(5px, 0.79vw, 0.79vw);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar .date {
+  justify-self: center;
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: clamp(14px, 1.304vw, 1.304vw);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: 2px solid transparent;
+  color: rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  display: block;
+  font-size: clamp(8px, 0.73vw, 0.73vw);
+  font-weight: 500;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar .date:hover, .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar .date:focus {
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  font-weight: 600;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar .date.faded {
+  color: #999fa6;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar .date.faded:focus {
+  color: #999fa6;
+  border: 2px solid transparent;
+  pointer-events: none;
+  font-weight: 500;
+  background-color: transparent;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar .date.faded:hover {
+  border: none;
+  font-weight: 500;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar .date.current-date {
+  border: 2px solid rgba(0, 0, 0, 0.8);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar .date.current-day {
+  color: white;
+  border: 2px solid rgba(0, 0, 0, 0.8);
+  background-color: #0073ff;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar .day {
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 500;
+  font-size: clamp(12px, 0.83vw, 0.83vw);
+  justify-self: center;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar.not-active {
+  visibility: hidden;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker.active {
+  padding: clamp(8px, 0.79vw, 0.79vw);
+  max-height: 411px;
+  overflow: visible;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper::-webkit-scrollbar {
+  width: 4px;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(161, 161, 161, 0.5);
+  border-radius: 4px;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker {
+  position: fixed;
+  background-color: white;
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.23);
+  padding: 0px;
+  max-height: 0;
+  overflow: hidden;
+  z-index: 6;
+  top: 100%;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker button {
+  cursor: pointer;
+  outline: none;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top {
+  margin-bottom: 20px;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper {
+  display: flex;
+  align-items: center;
+  font-size: clamp(13px, 0.89vw, 0.89vw);
+  gap: 5px;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .month-name {
+  color: black;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-toggle {
+  border: none;
+  background-color: transparent;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .year-select .down-arrow {
+  width: clamp(11px, 1.15vw, 1.15vw);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 278px;
+  overflow-y: auto;
+  z-index: 20;
+  display: none;
+  margin-top: 20px;
+  background-color: #f5f5f5;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-dropdown.active {
+  display: block;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-dropdown .year-item {
+  padding: clamp(4px, 0.43vw, 0.43vw);
+  cursor: pointer;
+  border-bottom: 1px solid #a7a4a4;
+  text-align: center;
+  background-color: #f5f5f5;
+  color: rgba(0, 0, 0, 0.8);
+  font-size: clamp(3px, 0.73vw, 0.73vw);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-dropdown .year-item:hover {
+  background-color: #616161;
+  color: white;
+  font-weight: 500;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: white;
+  width: clamp(15px, 1.5vw, 1.5vw);
+  height: clamp(15px, 1.5vw, 1.5vw);
+  border-radius: 12px;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .arrow img {
+  width: clamp(11px, 1.15vw, 1.15vw);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar {
+  visibility: visible;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-row-gap: 15px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-column-gap: clamp(5px, 0.521vw, 0.521vw);
+  grid-row-gap: clamp(5px, 0.79vw, 0.79vw);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .date {
+  justify-self: center;
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: clamp(14px, 1.304vw, 1.304vw);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: 2px solid transparent;
+  color: rgba(0, 0, 0, 0.7);
+  border-radius: 50%;
+  cursor: pointer;
+  display: block;
+  font-size: clamp(8px, 0.73vw, 0.73vw);
+  font-weight: 500;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .date:hover, .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .date:focus {
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  font-weight: 600;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .date.faded {
+  color: #999fa6;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .date.faded:focus {
+  color: #999fa6;
+  border: 2px solid transparent;
+  pointer-events: none;
+  font-weight: 500;
+  background-color: transparent;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .date.faded:hover {
+  border: none;
+  font-weight: 500;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .date.current-date {
+  border: 2px solid rgba(0, 0, 0, 0.8);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .date.current-day {
+  color: #154787;
+  border: 2px solid #154787;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .day {
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 500;
+  font-size: clamp(12px, 0.83vw, 0.83vw);
+  justify-self: center;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar.not-active {
+  visibility: hidden;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker.active {
+  padding: clamp(8px, 0.79vw, 0.79vw);
+  max-height: 411px;
+  overflow: visible;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .search-container {
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(8px, 0.79vw, 0.79vw);
+  padding: clamp(4px, 0.43vw, 0.43vw) clamp(8px, 0.63vw, 0.63vw);
+  border-radius: 5px;
+  width: clamp(150px, 15.4%, 15.4%);
+  margin-bottom: clamp(13px, 1.36vw, 1.36vw);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .search-container input {
+  border: none;
+  outline: none;
+  font-size: clamp(9px, 0.68vw, 0.68vw);
+  flex: 1;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .search-container input::placeholder {
+  font-size: clamp(9px, 0.68vw, 0.68vw);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .search-container button {
+  background-color: transparent;
+  border: none;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .search-container button img {
+  display: block;
+  width: clamp(11px, 0.83vw, 0.83vw);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .status-container {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .status-container .status-chip-container {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 0.521vw, 0.521vw);
+  margin-bottom: clamp(12px, 1.05vw, 1.05vw);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .status-container .status-chip-container .chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px clamp(8px, 0.521vw, 0.521vw);
+  background-color: #e8f2ff;
+  border-radius: 20px;
+  font-size: clamp(7px, 0.68vw, 0.68vw);
+  color: #154787;
+  border: 1px solid transparent;
+  gap: clamp(5px, 0.521vw, 0.521vw);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .status-container .status-chip-container .chip .close-chip {
+  display: inline-block;
+  cursor: pointer;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .status-container .status-chip-container .chip .close-chip img {
+  display: block;
+  width: clamp(6px, 0.63vw, 0.63vw);
+  filter: brightness(0) saturate(100%) invert(20%) sepia(45%) saturate(1500%) hue-rotate(190deg) brightness(90%) contrast(95%);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .status-container .status-chip-container .chip.active {
+  background-color: #154787;
+  color: rgba(255, 255, 255, 0.8);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .status-container .clear-all-btn {
+  border: none;
+  background-color: transparent;
+  color: #eb0808;
+  font-size: clamp(9px, 0.79vw, 0.79vw);
+  cursor: pointer;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .status-container.active {
+  display: flex;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table {
+  table-layout: fixed;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  margin-left: clamp(5px, 0.521vw, 0.521vw);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  flex-shrink: 0;
+  border-top: 1px solid #ccc;
+  border-top-left-radius: clamp(4px, 0.521vw, 0.521vw);
+  border-top-right-radius: clamp(4px, 0.521vw, 0.521vw);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th {
+  font-size: clamp(10px, 0.79vw, 0.79vw);
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 500;
+  padding: clamp(4px, 0.43vw, 0.43vw) clamp(10px, 1.45vw, 1.45vw);
+  text-align: left;
+  line-height: 1.3;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th span {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(7px, 0.79vw, 0.79vw);
+  font-size: clamp(10px, 0.79vw, 0.79vw);
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 500;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th:first-of-type {
+  width: 1.65vw;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th:nth-of-type(3) {
+  width: 16.2vw;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th:nth-of-type(6) {
+  width: 8.5vw;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th:nth-of-type(7) {
+  width: 7.5vw;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th:nth-of-type(7) span {
+  width: 4.69vw;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody {
+  display: block;
+  flex: 1;
+  overflow-y: auto;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td {
+  font-size: clamp(10px, 0.73vw, 0.73vw);
+  padding: clamp(4px, 0.43vw, 0.43vw) clamp(10px, 1.45vw, 1.45vw);
+  color: rgba(0, 0, 0, 0.85);
+  line-height: 1.3;
+  border-bottom: 1px solid #ccc;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td:first-of-type {
+  width: 1.65vw;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td:first-of-type img {
+  width: clamp(10px, 0.83vw, 0.83vw);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td:nth-of-type(2) a {
+  color: #154787;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td:nth-of-type(3) {
+  width: 16.2vw;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td:nth-of-type(6) {
+  width: 8.5vw;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td:nth-of-type(6) span {
+  color: #ff0000;
+  padding: 2px 4px;
+  border-radius: 10px;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td:nth-of-type(6) span.approved {
+  color: #136b2c;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td:nth-of-type(6) span.pending {
+  color: #ff7129;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td:nth-of-type(7) {
+  text-align: right;
+  width: 7.5vw;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td:nth-of-type(7) span {
+  width: 4.69vw;
+  padding-right: clamp(30px, 3.4vw, 3.4vw);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td:last-of-type {
+  font-weight: 600;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr:last-of-type td {
+  border-bottom: none;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr.active {
+  background-color: #e8f2ff;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody::-webkit-scrollbar {
+  width: 4px;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody::-webkit-scrollbar-thumb {
+  background: rgba(161, 161, 161, 0.5);
+  border-radius: 4px;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .pagination-wrapper {
+  margin-top: clamp(8px, 0.79vw, 0.79vw);
+  margin-bottom: clamp(5px, 0.521vw, 0.521vw);
+  margin-left: clamp(5px, 0.521vw, 0.521vw);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .pagination-wrapper .show-wrapper .show-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .pagination-wrapper .show-wrapper .show-container .show-group {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: clamp(8px, 0.79vw, 0.79vw);
+  color: #818080;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .pagination-wrapper .show-wrapper .show-container .show-group .select-wrapper {
+  position: relative;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .pagination-wrapper .show-wrapper .show-container .show-group .select-wrapper select {
+  color: rgba(0, 0, 0, 0.8);
+  border: none;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-inline: 5px;
+  border: 1px solid #ddd;
+  width: clamp(50px, 3.6vw, 3.6vw);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .pagination-wrapper .show-wrapper .show-container .show-group .select-wrapper select:focus {
+  outline: none;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .pagination-wrapper .show-wrapper .show-container .show-group .select-wrapper img {
+  position: absolute;
+  right: 5px;
+  top: 20%;
+  transform: translateY(-20%);
+  width: clamp(8px, 0.79vw, 0.79vw);
+  transform: rotate(270deg);
+  pointer-events: none;
+  filter: brightness(0) saturate(100%) invert(39%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(95%) contrast(88%);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .pagination-wrapper .show-wrapper .show-container .show-text {
+  font-size: clamp(8px, 0.79vw, 0.79vw);
+  color: rgba(0, 0, 0, 0.85);
+  color: #616161;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .pagination-wrapper .pagination {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .pagination-wrapper .pagination button, .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .pagination-wrapper .pagination span {
+  border: none;
+  background-color: #f5f5f5;
+  color: #616161;
+  width: clamp(15px, 1.304vw, 1.304vw);
+  height: clamp(15px, 1.304vw, 1.304vw);
+  font-size: clamp(9px, 0.79vw, 0.79vw);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .pagination-wrapper .pagination button.active, .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .pagination-wrapper .pagination span.active {
+  background-color: #154787;
+  color: rgba(255, 255, 255, 0.8);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .pagination-wrapper .pagination button {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1600px) {
+  .global-wrapper {
+    padding: clamp(15px, 1.57vw, 1.57vw) 0 clamp(15px, 1.57vw, 1.57vw) clamp(12px, 1.25vw, 1.25vw);
+  }
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper {
+    padding-right: clamp(17px, 1.8vw, 1.8vw);
+  }
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th {
+    padding-inline: clamp(15px, 1.304vw, 1.304vw);
+  }
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th span img {
+    width: 10px;
+  }
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td {
+    padding-inline: clamp(15px, 1.304vw, 1.304vw);
+  }
+}
+@media screen and (max-width: 1400px) {
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th {
+    padding-inline: clamp(13px, 1.15vw, 1.15vw);
+  }
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th span img {
+    width: 9px;
+  }
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th:nth-of-type(2) {
+    width: clamp(100px, 9.6vw, 9.6vw);
+  }
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td {
+    padding-inline: clamp(13px, 1.15vw, 1.15vw);
+  }
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td:nth-of-type(2) {
+    width: clamp(100px, 9.6vw, 9.6vw);
+  }
+}
+@media screen and (max-width: 1300px) {
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th span img {
     width: 8px;
   }
 }

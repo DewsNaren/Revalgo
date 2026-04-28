@@ -3,17 +3,26 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Revalgo | Create Quote</title> 
+        <title>Revalgo | Existing Quote</title> 
         <link rel="stylesheet" href="./assets/vendor/bootstrap/css/bootstrap.min.css">
         <!-- <link rel="stylesheet" href="./assets/vendor/fontawesome/css/all.min.css"> -->
         <link rel="stylesheet" href="./assets/css/style.css">
     </head>
     <body>
-        <header>
+       <header>
             <a href="./login.html" class="logo"><img src="./assets/images/login/Revalgo White Background.png" alt="Revalgo White"></a>
             <div class="search-wrapper">
                 <input type="text" id="search-quote" class="search-quote" name="search-quote" placeholder="PO#, Order#, Customer# / Name">
-                <label for="search-quote" ><img src="./assets/images/dashboard/Search icon.png" alt="Search icon"></label>
+                <button class="search-quote-btn" ><img src="./assets/images/dashboard/Search icon.png" alt="Search icon"></button>
+                <div class="global-dropdown">
+                    <ul>
+                        <li>McKesson Corporation</li>
+                        <li>McKesson Corporation Limited</li>
+                        <li>McKesn</li>
+                        <li>McKenson</li>
+                        <li>McKenson</li>
+                    </ul>
+                </div>
             </div>
             <nav>
                 <ul>
@@ -120,7 +129,7 @@
                                     <div class="start-container date-container">
                                         <p class="start-label date-label">Start Date</p>
                                         <div class="date-text start-text">mm/dd/yyyy  <img src="./assets/images/create_quote/date Range_Calendar Icon.png" alt="date"></div>
-                                        <div class="datepicker">
+                                        <!-- <div class="datepicker">
                                             <div class="datepicker-top">
                             
                                                 <div class="month-selector">
@@ -150,12 +159,12 @@
                                                 <div class="days"></div>
                                                 <div class="dates"></div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div> 
                                     <div class="end-container date-container">
                                         <p class="end-label date-label">End Date</p>
                                         <div class="date-text end-text">mm/dd/yyyy <img src="./assets/images/create_quote/date Range_Calendar Icon.png" alt="date"></div>
-                                        <div class="datepicker">
+                                        <!-- <div class="datepicker">
                                             <div class="datepicker-top">
                                                 <div class="month-selector">
                                                     <button type="button" class="arrow prev-month">
@@ -184,7 +193,7 @@
                                                 <div class="days"></div>
                                                 <div class="dates"></div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -206,6 +215,67 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="datepicker start-datepicker">
+                            <div class="datepicker-top">
+                            
+                                <div class="month-selector">
+                                    <button type="button" class="arrow prev-month">
+                                        <img src="./assets/images/global/left-arrow.png" alt="left"/>
+                                    </button>
+                                    <div class="year-wrapper">
+                                    <span class="month-name"></span>
+                                    <div class="year-select">
+                                        <button type="button" class="year-toggle">
+                                            2025
+                                            <img
+                                            class="down-arrow"
+                                                src="./assets/images/dashboard/down-arrow-blue.png"
+                                                alt="down arrow"
+                                            />
+                                        </button>
+                                        <div class="year-dropdown"></div>
+                                    </div>
+                                </div>
+                                <button type="button" class="arrow next-month">
+                                    <img src="./assets/images/global/right-arrow.png" alt="right"/>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="datepicker-calendar">
+                            <div class="days"></div>
+                            <div class="dates"></div>
+                        </div>
+                    </div>
+                    <div class="datepicker end-datepicker">
+                            <div class="datepicker-top">
+                                <div class="month-selector">
+                                    <button type="button" class="arrow prev-month">
+                                        <img src="./assets/images/global/left-arrow.png" alt="left"/>
+                                    </button>
+                                    <div class="year-wrapper">
+                                        <span class="month-name"></span>
+                                        <div class="year-select">
+                                            <button type="button" class="year-toggle">
+                                                2025
+                                                <img
+                                                class="down-arrow"
+                                                src="./assets/images/dashboard/down-arrow-blue.png"
+                                                alt="down arrow"
+                                                />
+                                            </button>
+                                            <div class="year-dropdown"></div>
+                                    </div>
+                                </div>
+                                    <button type="button" class="arrow next-month">
+                                        <img src="./assets/images/global/right-arrow.png" alt="right"/>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="datepicker-calendar">
+                                <div class="days"></div>
+                                <div class="dates"></div>
+                            </div>
+                        </div>                        
                         <table class="filter-table">
 
                             <thead>
@@ -531,35 +601,79 @@
                                 <div>Requested / <span>Suggested Product</span></div>
                                 <div>Score</div>
                                 <div>Available Qty</div>
-                                <div>Unit Cost</div>
-                                <div>Margin</div>
+                                <div>Unit Cost ($)</div>
+                                <div>Margin (%)</div>
                                 <div>Selling Price</div>
                                 <div>Total Cost</div>
                                 <div><button class="delete-all-btn"><img src="./assets/images/global/delete_icon.png" alt="delete"></button></div>
                             </div>
-
                                 <div class="body-wrapper">
                                     <div class="table-row">
                                         <p></p>
                                         <p><input type="checkbox"></p>
                                         <p>1</p>
                                         <p><input type="text" value="80" name="qty-requested"></p>
-                                        <p><img src="./assets/images/global/down-arrow.png" alt="down-arrow" class="down-arrow-img"> <span class="id">ID45327</span> <span class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus hic facere, veniam in distinctio id tempora voluptatum? Facilis eius aut numquam. Alias perferendis sunt veniam reprehenderit officiis quas delectus.</span></p>
+                                        <p>
+                                            <span class="title-text">Lorem ipsum dolor sit.</span>
+                                            <span class="dropdown-text"><img src="./assets/images/global/down-arrow.png" alt="down-arrow" class="down-arrow-img"> <span class="id">ID45327</span> - <span class="detail">tydlx4ypi6</span></span>
+                                            <span class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus hic facere, veniam in distinctio id tempora voluptatum? Facilis eius aut numquam. Alias perferendis sunt veniam reprehenderit officiis quas delectus.</span></p>
                                         <p>33</p>
                                         <p>200</p>
-                                        <p>$30</p>
-                                        <p><input type="text" value="10%" name="margin"></p>
+                                        <p><span>$<input type="text" value="30" name="cost"></span></p>
+                                        <p><span><input type="text" value="10" name="margin">%</span></p>
                                         <p>$20</p>
                                         <p>$2,000.00</p>
-                                         <p><button class="delete-all-btn"><img src="./assets/images/global/delete_icon.png" alt="delete"></button></p>
+                                        <p><button class="delete-all-btn"><img src="./assets/images/global/delete_icon.png" alt="delete"></button></p>
+                                        <p class="bottom-line"><img src="./assets/images/create_quote/line_add icon.png" alt="add icon" ><span class="line"></span></p>
+                                        <button class="add-note-btn"><img src="./assets/images/create_quote/add note_grey bg.png" class="img-grey active" alt="add note grey"> <img src="./assets/images/create_quote/add note icon_blue.png" class="img-blue " alt="add note blue "></button>
+                                    </div>
+
+                                    <div class="table-row">
+                                        <p></p>
+                                        <p><input type="checkbox"></p>
+                                        <p>1</p>
+                                        <p><input type="text" value="80" name="qty-requested"></p>
+                                        <p>
+                                            <span class="title-text">Lorem ipsum dolor sit.</span>
+                                            <span class="dropdown-text"><img src="./assets/images/global/down-arrow.png" alt="down-arrow" class="down-arrow-img"> <span class="id">ID45327</span> - <span class="detail">tydlx4ypi6</span></span>
+                                            <span class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus hic facere, veniam in distinctio id tempora voluptatum? Facilis eius aut numquam. Alias perferendis sunt veniam reprehenderit officiis quas delectus.</span></p>
+                                        <p>33</p>
+                                        <p>200</p>
+                                        <p><span>$<input type="text" value="30" name="cost"></span></p>
+                                        <p><span><input type="text" value="10" name="margin">%</span></p>
+                                        <p>$20</p>
+                                        <p>$2,000.00</p>
+                                        <p><button class="delete-all-btn"><img src="./assets/images/global/delete_icon.png" alt="delete"></button></p>
+                                        <p class="bottom-line"><img src="./assets/images/create_quote/line_add icon.png" alt="add icon" ><span class="line"></span></p>
+                                        <button class="add-note-btn"><img src="./assets/images/create_quote/add note_grey bg.png" class="img-grey active" alt="add note grey"> <img src="./assets/images/create_quote/add note icon_blue.png" class="img-blue " alt="add note blue "></button>
+                                    </div>
+
+                                     <div class="table-row">
+                                        <p></p>
+                                        <p><input type="checkbox"></p>
+                                        <p>1</p>
+                                        <p><input type="text" value="80" name="qty-requested"></p>
+                                        <p>
+                                            <span class="title-text">Lorem ipsum dolor sit.</span>
+                                            <span class="dropdown-text"><img src="./assets/images/global/down-arrow.png" alt="down-arrow" class="down-arrow-img"> <span class="id">ID45327</span> - <span class="detail">tydlx4ypi6</span></span>
+                                            <span class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus hic facere, veniam in distinctio id tempora voluptatum? Facilis eius aut numquam. Alias perferendis sunt veniam reprehenderit officiis quas delectus.</span></p>
+                                        <p>33</p>
+                                        <p>200</p>
+                                        <p><span>$<input type="text" value="30" name="cost"></span></p>
+                                        <p><span><input type="text" value="10" name="margin">%</span></p>
+                                        <p>$20</p>
+                                        <p>$2,000.00</p>
+                                        <p><button class="delete-all-btn"><img src="./assets/images/global/delete_icon.png" alt="delete"></button></p>
+                                        <p class="bottom-line"><img src="./assets/images/create_quote/line_add icon.png" alt="add icon" ><span class="line"></span></p>
+                                        <button class="add-note-btn"><img src="./assets/images/create_quote/add note_grey bg.png" class="img-grey active" alt="add note grey"> <img src="./assets/images/create_quote/add note icon_blue.png" class="img-blue " alt="add note blue "></button>
                                     </div>
 
                                     <div class="add-btn-container left">
                                         <button type="button"><img src="./assets/images/create_quote/add item_icon.png" alt="add"></button>
                                         <p class="text">Click here to Add Item</p>
-                                </div>
+                                    </div>
 
-                            </div>
+                                </div>
                     
                             
                         </div>
@@ -625,6 +739,10 @@
                     <button type="button" class="import-btn">Import</button>
                      <button type="button" class="cancel-btn">Cancel</button>
                 </div>
+            </div>
+            <div class="success-popup">
+                <p class="text">Your Quote <span class="id">#7DB38FED</span> has been Approved Successfully</p>
+                <button type="button" class="ok-btn">Ok</button>
             </div>
         </div>
         <script src="./assets/js/exist-quote.js"></script>

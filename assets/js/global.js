@@ -1,15 +1,16 @@
 const header=document.querySelector("header");
-const existQuoteWrapper=document.querySelector(".exist-quote-wrapper");
-const popupOverlay=document.querySelector(".popup-overlay");
-function setexistQuoteWrapperHeight(){
+const globalWrapper=document.querySelector(".global-wrapper");
+// const popupOverlay=document.querySelector(".popup-overlay");
+function setGlobalWrapperHeight(){
   const headerHeight=header.getBoundingClientRect().height;
-  existQuoteWrapper.style.height=`calc(100vh - ${headerHeight}px)`;
-  popupOverlay.style.height=`calc(100vh - ${headerHeight}px)`
+  globalWrapper.style.height=`calc(100vh - ${headerHeight}px)`;
+//   popupOverlay.style.height=`calc(100vh - ${headerHeight}px)`
 }
 
-setexistQuoteWrapperHeight();
+setGlobalWrapperHeight();
 
-window.addEventListener('resize',setexistQuoteWrapperHeight)
+window.addEventListener('resize',setGlobalWrapperHeight)
+
 
 //Datepicker
 const filterWrapper = document.querySelector(".filter-wrapper");
@@ -144,9 +145,8 @@ function createDatepicker(datePicker) {
         btn.classList.add("current-day");
 
         getSelectedDate(datePicker);
-        
+
         datePicker.classList.remove("active");
-      
       });
 
       datesContainer.appendChild(btn);
@@ -189,6 +189,7 @@ function openDatepicker(trigger, datePicker) {
   const rect = trigger.getBoundingClientRect();
 
   document.querySelectorAll(".datepicker").forEach(dp => dp.classList.remove("active"));
+
   datePicker.style.position = "fixed";
   datePicker.style.top = rect.bottom + 5 + "px";
   datePicker.style.left = rect.left + "px";
@@ -209,7 +210,6 @@ function openDatepicker(trigger, datePicker) {
 
 //open datepicker on click
 dateTexts.forEach(dateText => {
-
   dateText.addEventListener("click", () => {
 
     dateTexts.forEach(text => text.classList.remove("active"));
@@ -246,7 +246,7 @@ function getSelectedDate(datePicker){
 
   if (trigger) {
     trigger.childNodes[0].textContent = `${selectedMonth}/${selectedDatee}/${selectedYear}`;
-      dateTexts.forEach(text => text.classList.remove("active"));
+    dateTexts.forEach(text => text.classList.remove("active"));
   }
 }
 
@@ -254,7 +254,6 @@ function getSelectedDate(datePicker){
 
 // outside close
 document.addEventListener("click", (e) => {
-  
   const dp = document.querySelector(".datepicker.active");
   if (!dp) return;
 
@@ -262,7 +261,7 @@ document.addEventListener("click", (e) => {
 
   if (!trigger.contains(e.target) && !dp.contains(e.target)) {
     dp.classList.remove("active");
-    dateTexts.forEach(text => text.classList.remove("active"));
+      dateTexts.forEach(text => text.classList.remove("active"));
     dp.querySelector(".year-dropdown").classList.remove("active");
     dp.querySelector(".datepicker-calendar").classList.remove("not-active");
   }
@@ -285,3 +284,4 @@ function handleScroll() {
 window.addEventListener("resize", handleScroll);
 
 filterWrapper.addEventListener("scroll", handleScroll);
+

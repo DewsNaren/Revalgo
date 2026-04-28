@@ -333,195 +333,17 @@
                                         width: clamp(11px, $fs-18px, $fs-18px);
                                         margin-left: clamp(6px, $fs-14px, $fs-14px);
                                     }
-                                }
-                                .datepicker {
-                                    position: absolute;
-                                    background-color: $white-f5;
-                                    box-shadow: $box-shadow-2;
-                                    padding: 0px;
-                                    max-height: 0;
-                                    overflow: hidden;
-                                    z-index: 2;
-                                    top: 100%;
-                                    button {
-                                        cursor: pointer;
-                                        outline: none;
-                                    }
-                                    .datepicker-top {
-                                        margin-bottom: 20px;
-                                        // .tag {
-                                        //     margin-right: 7px;
-                                        //     margin-top: 7px;
-                                        //     background-color: $white-ec;
-                                        //     border-radius: 5px;
-                                        //     padding: clamp(6px, 1%, 1%) $fs-14px;
-                                        //     border: none;
-                                        //     font-size:clamp(10px, $fs-14px, $fs-14px);
-                                        // }
-                                        // .tag:hover {
-                                        //     color: $white;
-                                        //     background-color: $black-80;
-                                        // }
-                                        .month-selector {
-                                            display: flex;
-                                            align-items: center;
-                                            justify-content: space-between;
-                                            position: relative;
-                                            .year-wrapper{
-                                                display: flex;
-                                                align-items: center;
-                                                font-size: clamp(13px, $fs-17px, $fs-17px);
-                                                gap: 5px;
-                                            .month-name{
-                                                color: $black;
-                                            }
-                                            .year-select{
-                                            .year-toggle{
-                                                border: none;
-                                                background-color: transparent;
-                                                color: $black;
-                                                display: flex;
-                                                align-items: center;
-                                                justify-content: center;
-                                                gap: 5px;
-                                            }
-                                            .down-arrow{
-                                                width: clamp(11px, $fs-22px, $fs-22px);
-                                            }
-                                            .year-dropdown {
-                                                position: absolute;
-                                                top: 100%;
-                                                left: 0;
-                                                width: 100%;
-                                                max-height: 278px;      
-                                                overflow-y: auto;       
-                                                // background: #dbdbdb;
-                                                z-index: 20;
-                                                display: none;
-                                                margin-top: 20px;
-                                                background-color: $white;
-                                                &.active {
-                                                    display: block;
-                                                }
-                                                .year-item {
-                                                    padding: clamp(4px, $fs-8px, $fs-8px);
-                                                    cursor: pointer;
-                                                    border-bottom: 1px solid $grey-a4;
-                                                    text-align: center;
-                                                    background-color: $white;
-                                                    color: $black-80;
-                                                    font-size: clamp(3px, $fs-14px, $fs-14px);
-                                                    &:hover {
-                                                        background-color: $grey-61;
-                                                        color: $white;
-                                                        font-weight: 500;
-                                                    }
-                                                }
-
-                                                
-                                            }
-                                        }
-                                        
-
-                                    }
-                                    .arrow {
-                                        display: flex;
-                                        align-items: center;
-                                        justify-content: center;
-                                        border: none;
-                                        background-color: $white;
-                                        width: clamp(15px, $fs-29px, $fs-29px);
-                                        height: clamp(15px, $fs-29px, $fs-29px);
-                                        border-radius: 12px;
+                                     &.active{
+                                        color: $blue-87;
+                                        border-color: $blue-87;
                                         img {
-                                            width: clamp(11px, $fs-22px, $fs-22px);
-                                        }
-                                    }
-                                        }
-                                    }
-                                .datepicker-calendar{
-                                    visibility: visible;
-                                    .days {
-                                        display: grid;
-                                        grid-template-columns: repeat(7, 1fr);
-                                        grid-row-gap: 15px;
-                                        margin-top: 15px;
-                                        margin-bottom: 20px;
-                                    }
-                                    .dates {
-                                        display: grid;
-                                        grid-template-columns: repeat(7, 1fr);
-                                        grid-column-gap: clamp(5px, $fs-10px, $fs-10px);
-                                        grid-row-gap: clamp(5px, $fs-15px, $fs-15px);
-                                    }
-                                    .date {
-                                        justify-self: center;
-                                        border: none;
-                                        margin: 0;
-                                        padding: 0;
-                                        width: clamp(14px, $fs-25px, $fs-25px);
-                                        display: flex;
-                                        justify-content: center;
-                                        align-items: center;
-                                        background-color: transparent;
-                                        border: 2px solid transparent;
-                                        color: $black-70;
-                                        // font-weight: 800;
-                                        cursor: pointer;
-                                        display: block;
-                                        font-size: clamp(8px, $fs-14px, $fs-14px);
-                                        font-weight: 500;
-                                        &:hover,&:focus {
-                                            border: 2px solid $black-30;
-                                            font-weight: 600;
-                                        }
-                                        &.faded {
-                                            color: $grey-a6;
-                                            &:focus {
-                                                color: $grey-a6;
-                                                border: 2px solid transparent;
-                                                pointer-events: none;
-                                                font-weight: 500;
-                                                background-color: transparent;
-                                            }
-                                            &:hover{
-                                                border: none;
-                                                font-weight: 500;
-                                            }
-                                        }
-                                        &.current-date {
-                                            border: 2px solid $black-80;
-                                        }
-                                        &.current-day {
-                                            color: $white;
-                                            border: 2px solid $black-80;
-                                            background-color: $blue-3ff;
-                                        }
-                                        
-                                    }
-                                    .day {
-                                        color: $black-90;
-                                        font-weight: 500;
-                                        font-size: clamp(12px, $fs-16px, $fs-16px);
-                                        justify-self: center;
-                                    }
-                                    
-                                    &.not-active{
-                                        visibility: hidden;
+                                            filter: brightness(0) saturate(100%) 
+                                                invert(20%) sepia(45%) saturate(1500%) 
+                                                hue-rotate(190deg) brightness(90%) contrast(95%);
+                                        }                                        
                                     }
                                 }
-                                &.active {
-                                    padding: clamp(8px, $fs-15px, $fs-15px);
-                                    max-height: 411px;
-                                    overflow: visible;
-                                        
-                                }
-                                }
-                                &.end-container{
-                                    .datepicker{
-                                        right: 0;
-                                    }
-                                }
+                               
                         
                             }
                            
@@ -537,6 +359,178 @@
                                 
                     }
                 }
+                .datepicker{
+                    position: fixed;
+                    background-color: $white-f5;
+                    box-shadow: $box-shadow-2;
+                    padding: 0px;
+                    max-height: 0;
+                    overflow: hidden;
+                    z-index: 6;
+                    top: 100%;
+                    button {
+                        cursor: pointer;
+                        outline: none;
+                    }
+                    .datepicker-top {
+                        margin-bottom: 20px;
+                                        
+                        .month-selector {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            position: relative;
+                            .year-wrapper{
+                                display: flex;
+                                align-items: center;
+                                font-size: clamp(13px, $fs-17px, $fs-17px);
+                                gap: 5px;
+                                .month-name{
+                                    color: $black;
+                                }
+                                .year-select{
+                                    .year-toggle{
+                                        border: none;
+                                        background-color: transparent;
+                                        color: $black;
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                        gap: 5px;
+                                    }
+                                    .down-arrow{
+                                        width: clamp(11px, $fs-22px, $fs-22px);
+                                    }
+                                    .year-dropdown {
+                                        position: absolute;
+                                        top: 100%;
+                                        left: 0;
+                                            width: 100%;
+                                        max-height: 278px;      
+                                        overflow-y: auto;       
+                                        // background: #dbdbdb;
+                                        z-index: 20;
+                                        display: none;
+                                        margin-top: 20px;
+                                        background-color: $white;
+                                        &.active {
+                                            display: block;
+                                        }
+                                                .year-item {
+                                            padding: clamp(4px, $fs-8px, $fs-8px);
+                                            cursor: pointer;
+                                            border-bottom: 1px solid $grey-a4;
+                                            text-align: center;
+                                            background-color: $white;
+                                            color: $black-80;
+                                            font-size: clamp(3px, $fs-14px, $fs-14px);
+                                            &:hover {
+                                                background-color: $grey-61;
+                                                color: $white;
+                                                font-weight: 500;
+                                            }
+                                        }
+
+                                                
+                                    }
+                                }
+                                        
+
+                            }
+                            .arrow {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                border: none;
+                                background-color: $white;
+                                    width: clamp(15px, $fs-29px, $fs-29px);
+                                height: clamp(15px, $fs-29px, $fs-29px);
+                                border-radius: 12px;
+                                img {
+                                    width: clamp(11px, $fs-22px, $fs-22px);
+                                }
+                            }
+                        }
+                    }
+                    .datepicker-calendar{
+                        visibility: visible;
+                        .days {
+                            display: grid;
+                            grid-template-columns: repeat(7, 1fr);
+                            grid-row-gap: 15px;
+                            margin-top: 15px;
+                            margin-bottom: 20px;
+                        }
+                        .dates {
+                           display: grid;
+                            grid-template-columns: repeat(7, 1fr);
+                            grid-column-gap: clamp(5px, $fs-10px, $fs-10px);
+                            grid-row-gap: clamp(5px, $fs-15px, $fs-15px);
+                        }
+                        .date {
+                            justify-self: center;
+                            border: none;
+                            margin: 0;
+                            padding: 0;
+                            width: clamp(14px, $fs-25px, $fs-25px);
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background-color: transparent;
+                            border: 2px solid transparent;
+                            color: $black-70;
+                            border-radius: 50%;
+                            cursor: pointer;
+                            display: block;
+                            font-size: clamp(8px, $fs-14px, $fs-14px);
+                            font-weight: 500;
+                            &:hover,&:focus {
+                                 border: 2px solid $black-30;
+                                font-weight: 600;
+                            }
+                            &.faded {
+                                color: $grey-a6;
+                                &:focus {
+                                    color: $grey-a6;
+                                    border: 2px solid transparent;
+                                        pointer-events: none;
+                                    font-weight: 500;
+                                    background-color: transparent;
+                                }
+                                &:hover{
+                                    border: none;
+                                    font-weight: 500;
+                                }
+                            }
+                            &.current-date {
+                                border: 2px solid $black-80;
+                            }
+                            &.current-day {
+                                color: $blue-87;
+                                border: 2px solid $blue-87;
+                                // background-color: $blue-3ff;
+                            }
+                                        
+                        }
+                        .day {
+                            color: $black-90;
+                            font-weight: 500;
+                            font-size: clamp(12px, $fs-16px, $fs-16px);
+                            justify-self: center;
+                        }
+                                    
+                        &.not-active{
+                            visibility: hidden;
+                        }
+                    }
+                    &.active {
+                        padding: clamp(8px, $fs-15px, $fs-15px);
+                        max-height: 411px;
+                        overflow: visible;
+                                        
+                    }
+                }                
+               
                 .filter-table{
                     table-layout: fixed;
                     display: flex;
@@ -599,6 +593,7 @@
                                             background-color: $green-dc;
                                             padding: 2px 4px;
                                             border-radius: 10px;
+                                            
                                         }
                                         &:nth-of-type(6) {
                                             text-align: right;
@@ -681,10 +676,12 @@
                     }
                 .details{
                     p{
+                        font-size: clamp(10px, $fs-15px, $fs-15px);
                         margin-bottom: 0;
                         color: $black;
                     }
                     .name{
+                      
                         font-weight: 500;
                         opacity: 0.9;
                     }
@@ -1052,7 +1049,7 @@
                         37.5%
                         max-content
                         clamp(32px, $fs-115px, $fs-115px) 
-                        clamp(25px, $fs-100px, $fs-100px)    
+                        clamp(25px, $fs-110px, $fs-110px)    
                         clamp(25px, $fs-100px, $fs-100px)  
                         clamp(25px, $fs-100px, $fs-100px)  
                         clamp(25px, $fs-50px, $fs-50px) 
@@ -1088,8 +1085,15 @@
                             &:nth-of-type(4){
                               color: $blue-87;
                             }
-                            &:nth-of-type(6),&:nth-of-type(7),  &:nth-of-type(8),&:nth-of-type(9){
+                            &:nth-of-type(6), &:nth-of-type(8),&:nth-of-type(9){
                             padding-right:  clamp(10px, $fs-50px, $fs-50px);
+                            }
+                            &:nth-of-type(7){
+                                padding-right:  clamp(10px, $fs-40px, $fs-40px);
+                            }
+                            &:nth-of-type(8),  &:nth-of-type(9){
+                                color: $blue-87;
+
                             }
                             &:nth-of-type(10){
                                 padding-right:  clamp(10px, $fs-60px, $fs-60px);
@@ -1097,7 +1101,7 @@
                             &:nth-of-type(11){
                                 padding-left:  clamp(5px, $fs-10px, $fs-10px);
                             }
-                            &:last-of-type{
+                            &:nth-of-type(12){
                                 padding-left:  clamp(5px, $fs-10px, $fs-10px);
                                 button{
                                     background-color: transparent;
@@ -1112,7 +1116,7 @@
                             }
                         }
                         &:hover{
-                            div:last-of-type button{
+                            div:nth-of-type(12) button{
                                 visibility: visible;
                                 
                                  
@@ -1125,7 +1129,7 @@
                         // overflow: hidden;
                         overflow: auto;
                         .table-row{
-                            padding: clamp(4px, $fs-12px, $fs-12px) clamp(4px, $fs-7px, $fs-7px);
+                            padding: clamp(4px, $fs-12px, $fs-12px) clamp(4px, $fs-7px, $fs-7px)  clamp(4px, $fs-12px, $fs-12px);
                             display: grid;
                             grid-template-columns: 
                             clamp(15px, $fs-45px, $fs-45px)    
@@ -1142,8 +1146,8 @@
                             clamp(10px, $fs-40px, $fs-40px);
                             // grid-column-gap: clamp(10px, $fs-25px, $fs-25px);
                             align-items: center;
-                            border-bottom: 1px solid rgba(27, 26, 26, 0.6);
-                    
+                            // border-bottom: 1px solid rgba(27, 26, 26, 0.6);
+                            position: relative;
                             p{
                                 font-size: clamp(8px, $fs-14px, $fs-14px);
                                 text-align: right;
@@ -1169,15 +1173,40 @@
                                         width: clamp(12px, $fs-25px, $fs-25px);
                                         margin-right: 5px;
                                     }
-                                    .id{
-                                        color: $blue-87;
+                                    .title-text{
+                                        font-weight: 400;
+                                        color: rgba(0,0,0,0.95);
+                                        margin-left:clamp(23px, $fs-35px, $fs-35px);
+                                        margin-bottom: 3px;
+                                        display: block;
                                     }
+                                    .dropdown-text{
+                                        display: block;
+                                        color: rgba(0,0,0,0.95);
+                                        margin-bottom: 3px;
+                                       .id,.detail{
+                                            color: $blue-87;
+
+                                        }
+                                        .detail{
+                                            display: inline-block;
+                                            padding: 3px;
+                                            border: 1px solid $blue-87;
+                                            border-radius: 5px;
+                                            font-size: clamp(8px, $fs-12px, $fs-12px);
+                                            font-weight: 500;
+                                        }
+                                        
+                                    }
+                                    
+                                    
                                     .text{
                                         display: block;
                                         max-width: 100%;
                                         white-space: nowrap;
                                         overflow: hidden;
                                        text-overflow: ellipsis;
+                                       margin-left:clamp(23px, $fs-35px, $fs-35px);
                                     // text-overflow: ellipsis;
                                     }
                                 }
@@ -1212,11 +1241,28 @@
                                 &:nth-of-type(8){
                                     text-align: right;
                                     padding-right:  clamp(10px, $fs-30px, $fs-30px);
+                                     
+                                    span{
+                                        width: 70%;
+                                        border-bottom: 1px solid $blue-87;
+                                        display: inline-flex;
+                                        color: $black;
+                                        input{
+                                            border-bottom: none;
+                                        }
+                                    }
+                                     
                                 }
                                 &:nth-of-type(9){
                                     padding-right:  clamp(10px, $fs-30px, $fs-30px);
-                                    input{
+                                    span{
                                         width: 50%;
+                                        border-bottom: 1px solid $blue-87;
+                                        display: inline-flex;
+                                        color: $black;
+                                        input{
+                                            border-bottom: none;
+                                        }
                                     }
                                 }
 
@@ -1235,7 +1281,7 @@
                                     font-weight: 500;
                             
                                 }
-                                &:last-of-type{
+                                &:nth-of-type(12){
                                     // padding-left:  clamp(5px, $fs-10px, $fs-10px);
                                     button{
                                         background-color: transparent;
@@ -1248,15 +1294,70 @@
 
                                     }
                                 }
+                                &.bottom-line{
+                                    position: absolute;
+                                    bottom: calc(clamp(4px, $fs-12px, $fs-12px) * -1);
+                                    right: 0;
+                                    left: 0;
+                                    padding-left: clamp(5px, $fs-10px, $fs-10px);
+                                    display: flex;
+                                    align-items: center;
+                                    // margin-top: ;
+                                    z-index: 2;
+                                    img{
+                                        width: clamp(12px, $fs-19px, $fs-19px);
+                                    }
+                                    .line{
+                                        // display: block;
+                                        flex: 1;
+                                        width: 100%;
+                                        height: 1px;
+                                        background-color: $blue-87;
+                                    }
+                                }
 
+                            }
+                            .add-note-btn{
+                                background-color: transparent;
+                                border: none;
+                                visibility: hidden;
+                                position: absolute;
+                                top: -2px;
+                                right: 0;
+                                transition: visibility 0.2s ease;
+                                img{
+                                    display: none;
+
+                                    &.img-grey{ 
+                                        width: clamp(12px, $fs-20px, $fs-20px);
+                                    }
+                                    &.img-blue{
+                                        display: none;
+                                        
+                                        width: clamp(12px, $fs-18px, $fs-18px);
+                                    }
+                                    &.active{
+                                        display: inline-block;
+                                    }
+
+                                }
                             }
                             &:hover{
                                 background-color: $blue-2ff;
-                            p:last-of-type button{
-                                visibility: visible;
-   
+                                p:nth-of-type(12) button,.add-note-btn{
+                                    visibility: visible;
+                                }
                             }
-                        }
+                            &:nth-last-child(2){
+                                p.bottom-line{
+                                    display: none;
+                        
+                                }
+                                border-bottom: 1px solid rgba(0,0,0,0.2);
+                            }
+                            &:not(:first-of-type){
+                                padding-top: clamp(4px, $fs-13px, $fs-13px);
+                            }
                         }
                         .add-btn-container{
                             position: absolute;
@@ -1325,7 +1426,7 @@
     .selected-item-popup{
         background-color: $white;
         padding: clamp(10px, $fs-40px, $fs-40px)  clamp(10px, $fs-30px, $fs-30px) clamp(17px, $fs-35px, $fs-35px);
-        display: flex;
+        display: none;
         flex-direction: column;
         margin-top: 10px;
         max-height: 85%;
@@ -1412,17 +1513,12 @@
                             }
                         }
                          &:nth-of-type(5){
-                            // padding-inline: clamp(4px, $fs-30px, $fs-30px);
-                            // span{
-                                width: clamp(9px, $fs-380px, $fs-380px);
-                            // }
+                            width: clamp(9px, $fs-380px, $fs-380px);
+                           
                         }
                           &:last-of-type{
                             padding-right: clamp(10px, $fs-45px, $fs-45px);
-                            // padding-inline: clamp(4px, $fs-30px, $fs-30px);
-                            // span{
-                                width: clamp(9px, $fs-120px, $fs-120px);
-                            // }
+                            width: clamp(9px, $fs-120px, $fs-120px);
                             text-align: right;
                         }
                     }
@@ -1573,6 +1669,47 @@
                 }
                 
             }
+        }
+        &.active{
+            display: flex;
+        }
+    }
+
+     .success-popup{
+        background-color: $white;
+        padding: clamp(20px, $fs-40px, $fs-40px)  clamp(12px, $fs-25px, $fs-25px) clamp(17px, $fs-35px, $fs-35px);
+        margin-top: 10px;
+        max-height: 85%;
+        // width: 66%;
+        border-radius: clamp(5px, $fs-10px, $fs-10px);
+        display: none;
+
+        .text{
+            padding: 0 0 clamp(4px, $fs-8px, $fs-8px);
+            font-size:  clamp(9px, $fs-18px, $fs-18px);
+            color: $black-80;
+            font-weight: 500;
+
+            .id{
+                color: $black-90;
+                font-weight: 600;
+            }
+        }
+        .ok-btn{
+            border-radius: 5px;
+            font-size: clamp(11px, $fs-15px, $fs-15px);
+            padding:clamp(6px, $fs-12px, $fs-12px) clamp(9px, $fs-50px, $fs-50px);
+            border: 1px solid transparent;
+            line-height: 1;
+            background-color:  $blue-87;
+            color:  $white;
+            display: block;
+            margin: auto;
+            width: fit-content;
+
+        }
+        &.active{
+            display: block;
         }
     }
 }
