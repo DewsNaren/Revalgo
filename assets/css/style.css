@@ -416,6 +416,7 @@ body {
 }
 .dashboard-wrapper .dashboard-header-wrapper {
   margin-bottom: clamp(23px, 2.4vw, 2.4vw);
+  display: none;
 }
 .dashboard-wrapper .dashboard-header-wrapper .header-container {
   display: flex;
@@ -710,8 +711,11 @@ body {
 .dashboard-wrapper .dashboard-header-wrapper .stats-wrapper .stat-container:first-of-type {
   margin-right: clamp(10px, 1.05vw, 1.05vw);
 }
+.dashboard-wrapper .dashboard-header-wrapper.active {
+  display: block;
+}
 .dashboard-wrapper .dashboard-body-wrapper {
-  display: flex;
+  display: none;
   gap: clamp(20px, 2.067vw, 2.067vw);
   flex: 1;
   overflow: hidden;
@@ -914,7 +918,7 @@ body {
   color: rgba(0, 0, 0, 0.9);
   font-weight: 500;
 }
-.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:first-of-type, .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:last-of-type {
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:first-of-type {
   width: 1.65vw;
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(3) {
@@ -926,11 +930,18 @@ body {
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(5) {
   width: 8.5vw;
 }
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(6) {
+  width: clamp(70px, 5.2vw, 5.2vw);
+}
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(7) {
   width: clamp(75px, 5.2vw, 5.2vw);
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(8) {
-  width: clamp(104px, 6.25vw, 6.25vw);
+  width: clamp(65px, 6.25vw, 6.25vw);
+  padding-right: 0;
+}
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:last-of-type {
+  width: clamp(45px, 3.13vw, 3.13vw);
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody {
   display: block;
@@ -951,7 +962,7 @@ body {
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:first-of-type img, .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:last-of-type img {
   width: 0.83vw;
 }
-.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:first-of-type, .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:last-of-type {
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:first-of-type {
   width: 1.65vw;
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td a.quote-id-data {
@@ -967,13 +978,27 @@ body {
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(5) {
   width: 8.5vw;
 }
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(6) {
+  width: clamp(70px, 5.2vw, 5.2vw);
+  color: #f73333;
+}
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(6).approved {
+  color: #3daf28;
+}
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(6).pending {
+  color: #ff7129;
+}
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(7) {
   width: clamp(75px, 5.2vw, 5.2vw);
   padding-left: clamp(10px, 0.79vw, 0.79vw);
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(8) {
   font-weight: 500;
-  width: clamp(104px, 6.25vw, 6.25vw);
+  width: clamp(70px, 4.69vw, 4.69vw);
+}
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:last-of-type {
+  width: clamp(40px, 4.4vw, 4.4vw);
+  padding-left: clamp(10px, 0.79vw, 0.79vw);
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr:last-of-type td {
   border-bottom: none;
@@ -1241,6 +1266,7 @@ body {
 }
 .dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .transaction-table tbody tr td:first-of-type {
   width: clamp(160px, 16.2vw, 16.2vw);
+  padding-left: clamp(10px, 0.79vw, 0.79vw);
 }
 .dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .transaction-table tbody tr td:nth-of-type(2) {
   width: clamp(110px, 11.46vw, 11.46vw);
@@ -1255,6 +1281,987 @@ body {
   background: rgba(161, 161, 161, 0.5);
   border-radius: 4px;
 }
+.dashboard-wrapper .dashboard-body-wrapper.active {
+  display: flex;
+}
+.dashboard-wrapper .recent-quote-wrapper {
+  display: none;
+  flex-direction: column;
+  max-height: 100%;
+}
+.dashboard-wrapper .recent-quote-wrapper .top-btn-wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.dashboard-wrapper .recent-quote-wrapper .top-btn-wrapper .back-btn-wrapper .back-btn-container {
+  display: flex;
+  align-items: center;
+}
+.dashboard-wrapper .recent-quote-wrapper .top-btn-wrapper .back-btn-wrapper .back-btn-container .back-create-btn {
+  background-color: transparent;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(7px, 0.79vw, 0.79vw);
+  color: rgba(0, 0, 0, 0.95);
+  font-weight: 600;
+  font-size: clamp(18px, 1.65vw, 1.65vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .top-btn-wrapper .back-btn-wrapper .back-btn-container .back-create-btn .back-arrow-img {
+  width: clamp(18px, 1.57vw, 1.57vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .top-btn-wrapper .back-btn-wrapper .back-btn-container .back-create-btn .delete-img {
+  width: clamp(11px, 0.89vw, 0.89vw);
+  display: none;
+}
+.dashboard-wrapper .recent-quote-wrapper .top-btn-wrapper .back-btn-wrapper .back-btn-container .back-create-btn .delete-img.active {
+  display: inline;
+}
+.dashboard-wrapper .recent-quote-wrapper .top-btn-wrapper .back-btn-wrapper .back-btn-container .quote-status {
+  margin-left: clamp(12px, 1.304vw, 1.304vw);
+  font-size: clamp(11px, 0.89vw, 0.89vw);
+  display: none;
+  align-items: center;
+  gap: clamp(7px, 0.79vw, 0.79vw);
+  color: #f73333;
+  font-weight: 500;
+}
+.dashboard-wrapper .recent-quote-wrapper .top-btn-wrapper .back-btn-wrapper .back-btn-container .quote-status img {
+  width: clamp(18px, 1.57vw, 1.57vw);
+  transform: rotate(180deg);
+}
+.dashboard-wrapper .recent-quote-wrapper .top-btn-wrapper .back-btn-wrapper .back-btn-container .quote-status.approved {
+  color: #3daf28;
+}
+.dashboard-wrapper .recent-quote-wrapper .top-btn-wrapper .back-btn-wrapper .back-btn-container .quote-status.pending {
+  color: #ff7129;
+}
+.dashboard-wrapper .recent-quote-wrapper .top-btn-wrapper .back-btn-wrapper .back-btn-container .quote-status.active {
+  display: flex;
+}
+.dashboard-wrapper .recent-quote-wrapper .top-btn-wrapper .back-btn-wrapper .quote-id-wrapper {
+  margin-bottom: 0;
+  color: black;
+  margin-left: 5px;
+  margin-top: clamp(10px, 1.1vw, 1.1vw);
+  display: none;
+  gap: clamp(20px, 2.34vw, 2.34vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .top-btn-wrapper .back-btn-wrapper .quote-id-wrapper .id-container {
+  font-weight: 400;
+}
+.dashboard-wrapper .recent-quote-wrapper .top-btn-wrapper .back-btn-wrapper .quote-id-wrapper .id-container .title {
+  color: rgba(0, 0, 0, 0.8);
+  font-size: clamp(8px, 0.63vw, 0.63vw);
+  margin-bottom: 5px;
+  line-height: 1.2;
+}
+.dashboard-wrapper .recent-quote-wrapper .top-btn-wrapper .back-btn-wrapper .quote-id-wrapper .id-container .text {
+  color: black;
+  font-size: clamp(9px, 0.83vw, 0.83vw);
+  margin-bottom: 5px;
+  margin-bottom: 0;
+  font-weight: 500;
+}
+.dashboard-wrapper .recent-quote-wrapper .top-btn-wrapper .back-btn-wrapper .quote-id-wrapper.active {
+  display: flex;
+}
+.dashboard-wrapper .recent-quote-wrapper .top-btn-wrapper .approve-btn-container {
+  display: none;
+  gap: clamp(6px, 0.63vw, 0.63vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .top-btn-wrapper .approve-btn-container button {
+  border-radius: 5px;
+  font-size: clamp(11px, 0.83vw, 0.83vw);
+  padding: clamp(6px, 0.63vw, 0.63vw) clamp(9px, 0.989vw, 0.989vw);
+  border: 1px solid transparent;
+  line-height: 1;
+  cursor: pointer;
+}
+.dashboard-wrapper .recent-quote-wrapper .top-btn-wrapper .approve-btn-container button.add-note-btn {
+  background-color: white;
+  color: #154787;
+  border-color: #154787;
+  padding: 8px clamp(15px, 1.57vw, 1.57vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .top-btn-wrapper .approve-btn-container button.add-note-btn:hover {
+  color: white;
+  background-color: #154787;
+}
+.dashboard-wrapper .recent-quote-wrapper .top-btn-wrapper .approve-btn-container button.approve-btn {
+  color: white;
+  background-color: #154787;
+}
+.dashboard-wrapper .recent-quote-wrapper .top-btn-wrapper .approve-btn-container button.approve-btn:hover {
+  background-color: #015685;
+}
+.dashboard-wrapper .recent-quote-wrapper .top-btn-wrapper .approve-btn-container.active {
+  display: flex;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper {
+  padding-inline: 2px;
+  display: none;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-info-wrapper {
+  background-color: #f1f1f1;
+  padding: clamp(15px, 1.304vw, 1.304vw) clamp(15px, 1.05vw, 1.05vw);
+  margin-top: clamp(8px, 0.79vw, 0.79vw);
+  display: flex;
+  gap: clamp(30px, 5.75vw, 5.75vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-info-wrapper .info .header {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  line-height: 1;
+  font-size: clamp(10px, 0.79vw, 0.79vw);
+  margin-bottom: clamp(5px, 0.521vw, 0.521vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-info-wrapper .info .header button {
+  border: none;
+  background-color: transparent;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-info-wrapper .info .header button img {
+  width: clamp(8px, 0.63vw, 0.63vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-info-wrapper .info:last-of-type p {
+  font-weight: 500;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-info-wrapper .info .details p {
+  font-size: clamp(10px, 0.79vw, 0.79vw);
+  margin-bottom: 0;
+  color: black;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-info-wrapper .info .details .name {
+  font-weight: 500;
+  opacity: 0.9;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-info-wrapper .info .details .address {
+  color: #616161;
+  font-size: clamp(8px, 0.68vw, 0.68vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-info-wrapper .info .details .text {
+  font-size: clamp(8px, 0.73vw, 0.73vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper {
+  margin-top: clamp(15px, 1.57vw, 1.57vw);
+  flex: 1;
+  max-height: 100%;
+  min-height: 0;
+  display: flex;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .header-wrapper {
+  background-color: #f1f1f1;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper {
+  width: 24.2%;
+  border-radius: clamp(5px, 0.521vw, 0.521vw);
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.23);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .header-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .header-wrapper button {
+  margin-top: 2px;
+  border: none;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .header-wrapper .btn-container button {
+  padding: clamp(8px, 0.79vw, 0.79vw) clamp(10px, 1.1vw, 1.1vw);
+  font-size: clamp(11px, 0.83vw, 0.83vw);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  font-weight: 500;
+  color: black;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .header-wrapper .btn-container button.active {
+  background-color: white;
+  color: #154787;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .header-wrapper .btn-container button.upload-btn {
+  padding-inline: clamp(18px, 1.57vw, 1.57vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .header-wrapper .btn-container button.email-btn {
+  padding-inline: clamp(18px, 1.8vw, 1.8vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .header-wrapper .mail-expand-btn {
+  padding-right: clamp(8px, 0.79vw, 0.79vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .header-wrapper .mail-expand-btn img {
+  width: clamp(9px, 0.989vw, 0.989vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper {
+  padding: clamp(8px, 0.79vw, 0.79vw) clamp(10px, 1.05vw, 1.05vw) clamp(15px, 1.57vw, 1.57vw);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  max-height: 100%;
+  position: relative;
+  overflow-x: hidden;
+  flex: 1;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  flex: 1;
+  display: none;
+  flex-direction: column;
+  min-height: 0;
+  max-height: 100%;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-header {
+  display: flex;
+  background-color: #e6f1ff;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-header p {
+  margin-bottom: 0;
+  line-height: 1;
+  font-size: clamp(10px, 0.79vw, 0.79vw);
+  color: rgba(0, 0, 0, 0.9);
+  padding: clamp(10px, 0.79vw, 0.79vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-header .quantity-header {
+  width: 25%;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-body {
+  overflow-y: auto;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-body .table-row {
+  display: flex;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-body .table-row:last-of-type {
+  border-bottom: none;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-body .table-row input {
+  border: none;
+  outline: none;
+  font-size: clamp(10px, 0.79vw, 0.79vw);
+  padding: clamp(4px, 0.63vw, 0.63vw) clamp(10px, 0.79vw, 0.79vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-body .table-row .qty-input-wrapper {
+  width: 20%;
+  color: black;
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-body .table-row .qty-input-wrapper .qty {
+  width: 100%;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-body .table-row .desc-wrapper {
+  position: relative;
+  flex: 1;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-body .table-row .desc-wrapper .desc-input {
+  width: 100%;
+  color: #154787;
+  font-weight: 500;
+  line-height: 1;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-body .table-row .desc-wrapper {
+  /* dropdown */
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-body .table-row .desc-wrapper .dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100.3%;
+  background-color: white;
+  display: none;
+  overflow: auto;
+  z-index: 6;
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.23);
+  border-radius: 10px;
+  margin-top: 2px;
+  max-height: 200px;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-body .table-row .desc-wrapper .dropdown ul {
+  padding-left: 0;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-body .table-row .desc-wrapper .dropdown ul li {
+  padding: clamp(4px, 0.43vw, 0.43vw);
+  font-size: clamp(9px, 0.79vw, 0.79vw);
+  list-style-type: none;
+  white-space: nowrap;
+  color: rgba(0, 0, 0, 0.8);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-body .table-row .desc-wrapper .dropdown ul li:hover {
+  background-color: #e8f2ff;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-body .table-row .desc-wrapper .dropdown::-webkit-scrollbar {
+  width: 4px;
+  height: 6px;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-body .table-row .desc-wrapper .dropdown::-webkit-scrollbar-thumb {
+  background: rgba(161, 161, 161, 0.5);
+  border-radius: 4px;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-body::-webkit-scrollbar {
+  width: 4px;
+  height: 6px;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-body::-webkit-scrollbar-thumb {
+  background: rgba(161, 161, 161, 0.5);
+  border-radius: 4px;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper.active {
+  display: flex;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper {
+  padding: clamp(13px, 1.45vw, 1.45vw) clamp(17px, 1.8vw, 1.8vw) 0 clamp(7px, 0.79vw, 0.79vw);
+  display: none;
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  max-height: 100%;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .select-input-wrapper label, .dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .select-input-wrapper .label {
+  display: block;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 6px;
+  border: 1px solid #154787;
+  color: #154787;
+  font-size: clamp(10px, 0.73vw, 0.73vw);
+  border-radius: 5px;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .select-input-wrapper .select-file-input {
+  display: none;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .select-input-wrapper .text {
+  margin-top: clamp(4px, 0.43vw, 0.43vw);
+  text-align: center;
+  font-size: clamp(8px, 0.68vw, 0.68vw);
+  color: #343434;
+  margin-bottom: 0;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .selected-file {
+  padding-top: clamp(18px, 2.067vw, 2.067vw);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 1.05vw, 1.05vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .selected-file .file-container .file {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #6c6c6c;
+  padding: clamp(5px, 0.521vw, 0.521vw);
+  border-radius: 5px;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .selected-file .file-container .file .file-info {
+  font-size: clamp(10px, 0.73vw, 0.73vw);
+  color: #343434;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .selected-file .file-container .file .file-info img {
+  width: clamp(20px, 1.8vw, 1.8vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .selected-file .file-container .file button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .selected-file .file-container .file button img {
+  width: clamp(11px, 0.89vw, 0.89vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .selected-file .file-container .file-text {
+  padding-top: clamp(5px, 0.521vw, 0.521vw);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 0;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .selected-file .file-container .file-text img {
+  width: clamp(9px, 0.989vw, 0.989vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .selected-file .file-container .file-text .status-text {
+  font-size: clamp(8px, 0.63vw, 0.63vw);
+  color: #343434;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .selected-file .file-container .file-text .status-text .status {
+  color: #136b2c;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .selected-file .file-container.error .file {
+  border-color: #ff0000;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .selected-file .file-container.error .file-text .status {
+  color: #ff0000;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper.active {
+  display: block;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper::-webkit-scrollbar {
+  width: 4px;
+  height: 6px;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(161, 161, 161, 0.5);
+  border-radius: 4px;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper {
+  padding: clamp(13px, 1.45vw, 1.45vw) 0 0;
+  display: none;
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  max-height: 100%;
+  flex-direction: column;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-header-container {
+  border-bottom: 1px solid #686868;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-header-container .test {
+  color: rgba(0, 0, 0, 0.9);
+  font-size: clamp(12px, 1.05vw, 1.05vw);
+  margin-bottom: clamp(7px, 0.79vw, 0.79vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-header-container .from-text {
+  color: rgba(0, 0, 0, 0.9);
+  font-size: clamp(12px, 0.93vw, 0.93vw);
+  margin-bottom: 4px;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-header-container .to-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #6c6c6c;
+  font-size: clamp(8px, 0.73vw, 0.73vw);
+  margin-bottom: 4px;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-header-container .to-text .mail {
+  margin-bottom: 4px;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container {
+  padding-top: clamp(6px, 0.63vw, 0.63vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-wrapper {
+  display: flex;
+  gap: clamp(5px, 0.521vw, 0.521vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-wrapper .img-container {
+  padding: clamp(5px, 0.521vw, 0.521vw);
+  border: 1px solid #ddd;
+  display: flex;
+  gap: clamp(15px, 1.57vw, 1.57vw);
+  border-radius: 5px;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-wrapper .img-container .img-detail {
+  display: flex;
+  align-items: center;
+  gap: clamp(5px, 0.521vw, 0.521vw);
+  font-size: clamp(9px, 0.73vw, 0.73vw);
+  color: rgba(0, 0, 0, 0.8);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-wrapper .img-container .img-detail img {
+  width: clamp(12px, 0.93vw, 0.93vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-wrapper .img-container .download-btn {
+  background-color: transparent;
+  border: none;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-wrapper .img-container .download-btn img {
+  display: block;
+  width: clamp(9px, 0.73vw, 0.73vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-wrapper .img-container.hidden {
+  display: none;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container {
+  color: #616161;
+  font-size: clamp(10px, 0.79vw, 0.79vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .title {
+  padding: clamp(13px, 1.15vw, 1.15vw) 0;
+  margin-bottom: 0;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .list-wrapper .list-title {
+  margin-bottom: clamp(5px, 0.521vw, 0.521vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .list-wrapper .list {
+  list-style: decimal;
+  padding-left: 15px;
+  margin-bottom: clamp(5px, 1.304vw, 1.304vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .bottom-container p {
+  line-height: 1.1;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .bottom-container p:first-of-type {
+  margin-bottom: clamp(5px, 0.63vw, 0.63vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper::-webkit-scrollbar {
+  width: 4px;
+  height: 6px;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(161, 161, 161, 0.5);
+  border-radius: 4px;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper.active {
+  display: flex;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .minimize-btn {
+  position: absolute;
+  right: calc(clamp(8px, 0.521vw, 0.521vw) * -1);
+  top: 50%;
+  transform: translateY(-50%);
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+  border: none;
+  background-color: transparent;
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.23);
+  width: clamp(8px, 1.9vw, 1.9vw);
+  height: clamp(8px, 1.9vw, 1.9vw);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .minimize-btn img {
+  padding-left: clamp(3px, 0.4vw, 0.4vw);
+  width: clamp(12px, 1.25vw, 1.25vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-btn-container {
+  text-align: center;
+  margin-top: clamp(10px, 1.8vw, 1.8vw);
+  display: none;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-btn-container .upload-btn {
+  border-radius: 5px;
+  font-size: clamp(11px, 0.83vw, 0.83vw);
+  padding: clamp(6px, 0.63vw, 0.63vw) clamp(23px, 2.34vw, 2.34vw);
+  border: 1px solid transparent;
+  line-height: 1;
+  cursor: pointer;
+  background-color: #154787;
+  color: white;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-btn-container.active {
+  display: block;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper.minimize {
+  width: clamp(20px, 2.067vw, 2.067vw);
+  margin-right: clamp(10px, 1.05vw, 1.05vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper.minimize .header-wrapper {
+  display: none;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper.minimize .body-wrapper {
+  height: 100%;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper.minimize .body-wrapper .table-wrapper, .dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper.minimize .body-wrapper .upload-wrapper, .dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper.minimize .body-wrapper .mail-wrapper {
+  display: none;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper.maximize {
+  width: 50%;
+  margin-right: clamp(10px, 1.05vw, 1.05vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper.maximize .body-wrapper .mail-wrapper .mail-body-container .img-container.hidden {
+  display: flex;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper {
+  flex: 1;
+  overflow-x: auto;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper {
+  border-top-left-radius: clamp(5px, 0.521vw, 0.521vw);
+  border-top-right-radius: clamp(5px, 0.521vw, 0.521vw);
+  padding: clamp(4px, 0.4vw, 0.4vw);
+  padding-left: clamp(10px, 1.05vw, 1.05vw);
+  display: grid;
+  grid-template-columns: max-content clamp(22px, 2.61vw, 2.61vw) clamp(32px, 3.91vw, 3.91vw) 37.5% max-content clamp(32px, 5.98vw, 5.98vw) clamp(25px, 5.75vw, 5.75vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 2.61vw, 2.61vw) clamp(10px, 2.5vw, 2.5vw);
+  align-items: center;
+  border-bottom: 1px solid rgba(27, 26, 26, 0.6);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div {
+  font-size: clamp(8px, 0.73vw, 0.73vw);
+  text-align: right;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(1) {
+  padding-right: clamp(10px, 1.05vw, 1.05vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(1) input {
+  width: clamp(9px, 1.05vw, 1.05vw);
+  height: clamp(9px, 1.05vw, 1.05vw);
+  margin-left: 3px;
+  accent-color: #154787;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(2) {
+  padding-right: clamp(10px, 1.304vw, 1.304vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(3) {
+  color: #154787;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(4) {
+  padding-inline: clamp(10px, 2.61vw, 2.61vw);
+  text-align: left;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(4) span {
+  color: #154787;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(5), .dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(7), .dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(8) {
+  padding-right: clamp(10px, 2.61vw, 2.61vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(6) {
+  padding-right: clamp(10px, 2.067vw, 2.067vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(8), .dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(7) {
+  color: #154787;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(9) {
+  padding-right: clamp(10px, 3.13vw, 3.13vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(10) {
+  padding-left: clamp(5px, 0.521vw, 0.521vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(11) {
+  padding-left: clamp(5px, 0.521vw, 0.521vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(11) button {
+  background-color: transparent;
+  border: none;
+  visibility: hidden;
+  transition: visibility 0.2s ease;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(11) button img {
+  width: clamp(10px, 0.89vw, 0.89vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper:hover div:nth-of-type(11) button {
+  visibility: visible;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper {
+  flex: 1;
+  position: relative;
+  overflow-y: auto;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row {
+  padding: clamp(4px, 0.63vw, 0.63vw) clamp(4px, 0.4vw, 0.4vw) clamp(4px, 0.63vw, 0.63vw);
+  display: grid;
+  padding-left: clamp(10px, 1.05vw, 1.05vw);
+  grid-template-columns: max-content clamp(22px, 2.61vw, 2.61vw) clamp(32px, 3.91vw, 3.91vw) 37.5% clamp(15px, 3.6vw, 3.6vw) clamp(32px, 5.98vw, 5.98vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 4.69vw, 4.69vw) clamp(10px, 2.067vw, 2.067vw);
+  align-items: center;
+  position: relative;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p {
+  font-size: clamp(8px, 0.73vw, 0.73vw);
+  text-align: right;
+  margin-bottom: 0;
+  color: #6c6c6c;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p input {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #154787;
+  text-align: center;
+  outline: none;
+  color: #154787;
+  font-weight: 500;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) {
+  padding-inline: clamp(10px, 2.61vw, 2.61vw);
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) .down-arrow-img {
+  width: clamp(12px, 1.304vw, 1.304vw);
+  margin-right: 5px;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) .title-text {
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.95);
+  margin-left: clamp(23px, 1.8vw, 1.8vw);
+  margin-bottom: 3px;
+  display: block;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) .dropdown-text {
+  display: block;
+  color: rgba(0, 0, 0, 0.9);
+  margin-bottom: 3px;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) .dropdown-text .id, .dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) .dropdown-text .detail {
+  color: #154787;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) .dropdown-text .detail {
+  display: inline-block;
+  padding: 3px;
+  border: 1px solid #154787;
+  border-radius: 5px;
+  font-size: clamp(8px, 0.63vw, 0.63vw);
+  font-weight: 500;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) .dropdown-text .tag-text {
+  margin-left: 4px;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) .dropdown-text .tag-text img {
+  width: clamp(13px, 1.15vw, 1.15vw);
+  margin-right: 5px;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) .text {
+  display: block;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-left: clamp(23px, 1.8vw, 1.8vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(1) {
+  padding-right: clamp(10px, 1.05vw, 1.05vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(1) input {
+  width: clamp(9px, 1.05vw, 1.05vw);
+  height: clamp(9px, 1.05vw, 1.05vw);
+  accent-color: #154787;
+  margin-left: 3px;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(1) input:hover {
+  accent-color: #154787;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(2) {
+  padding-right: clamp(10px, 1.304vw, 1.304vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(3) {
+  color: #154787;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(3) input {
+  width: 50%;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(6) {
+  padding-right: clamp(10px, 1.57vw, 1.57vw);
+  text-align: right;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(7) {
+  text-align: right;
+  padding-right: clamp(10px, 1.57vw, 1.57vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(7) span {
+  width: 70%;
+  border-bottom: 1px solid #154787;
+  display: inline-flex;
+  color: black;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(7) span input {
+  border-bottom: none;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(8) {
+  padding-right: clamp(10px, 1.57vw, 1.57vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(8) span {
+  width: 50%;
+  border-bottom: 1px solid #154787;
+  display: inline-flex;
+  color: black;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(8) span input {
+  border-bottom: none;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) {
+  padding-right: clamp(10px, 1.57vw, 1.57vw);
+  text-align: right;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(9) {
+  padding-right: clamp(10px, 1.57vw, 1.57vw);
+  text-align: right;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(10) {
+  text-align: left;
+  padding-left: clamp(5px, 0.521vw, 0.521vw);
+  color: black;
+  font-weight: 500;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(11) button {
+  background-color: transparent;
+  border: none;
+  visibility: hidden;
+  transition: visibility 0.2s ease;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(11) button img {
+  width: clamp(10px, 0.89vw, 0.89vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-note-btn {
+  background-color: transparent;
+  border: none;
+  visibility: hidden;
+  position: absolute;
+  top: -2px;
+  right: 0;
+  transition: visibility 0.2s ease;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-note-btn img {
+  display: none;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-note-btn img.img-grey {
+  width: clamp(12px, 1.05vw, 1.05vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-note-btn img.img-blue {
+  display: none;
+  width: clamp(12px, 0.93vw, 0.93vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-note-btn img.active {
+  display: inline-block;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:hover {
+  background-color: #e8f2ff;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:hover p:nth-of-type(11) button, .dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:hover .add-note-btn {
+  visibility: visible;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row.not-active {
+  background-color: #f1f1f1;
+  opacity: 0.5;
+  pointer-events: none;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .add-btn-container {
+  position: absolute;
+  text-align: center;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  gap: clamp(8px, 0.521vw, 0.521vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .add-btn-container button {
+  border: none;
+  background-color: transparent;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .add-btn-container button img {
+  width: clamp(25px, 2.14vw, 2.14vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .add-btn-container .text {
+  font-size: clamp(15px, 1.45vw, 1.45vw);
+  color: #a7a4a4;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .add-btn-container.left {
+  justify-content: flex-end;
+  align-items: flex-end;
+  bottom: 11%;
+  right: 5.8%;
+  left: unset;
+  top: unset;
+  transform: unset;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .add-btn-container.left .text {
+  display: none;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .suggest-product-popup {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.23);
+  z-index: 3;
+  width: 50%;
+  border-radius: clamp(5px, 0.521vw, 0.521vw);
+  text-align: center;
+  left: 16%;
+  top: 50%;
+  transform: translate(-16%, -50%);
+  gap: clamp(8px, 0.521vw, 0.521vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper {
+  padding-left: clamp(12px, 1.45vw, 1.45vw);
+  grid-template-columns: max-content clamp(35px, 3.91vw, 3.91vw) clamp(32px, 3.91vw, 3.91vw) 44% max-content clamp(32px, 6.8vw, 6.8vw) clamp(25px, 6.51vw, 6.51vw) clamp(25px, 6.8vw, 6.8vw) clamp(25px, 7.3vw, 7.3vw) clamp(25px, 3.13vw, 3.13vw) clamp(10px, 2.66vw, 2.66vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(1) {
+  padding-right: clamp(10px, 1.8vw, 1.8vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(2) {
+  padding-right: clamp(10px, 2.61vw, 2.61vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(4) {
+  padding-inline: clamp(40px, 4.2vw, 4.2vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(6) {
+  padding-right: clamp(10px, 2.61vw, 2.61vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(7) {
+  padding-right: clamp(10px, 3.4vw, 3.4vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(8) {
+  padding-right: clamp(10px, 4.2vw, 4.2vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(9) {
+  padding-right: clamp(10px, 4.2vw, 4.2vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row {
+  padding-left: clamp(12px, 1.45vw, 1.45vw);
+  grid-template-columns: max-content clamp(35px, 3.91vw, 3.91vw) clamp(32px, 3.91vw, 3.91vw) 44% clamp(32px, 4.69vw, 4.69vw) clamp(32px, 6.8vw, 6.8vw) clamp(25px, 6.51vw, 6.51vw) clamp(25px, 6.8vw, 6.8vw) clamp(25px, 5.75vw, 5.75vw) clamp(25px, 5.2vw, 5.2vw) clamp(10px, 2.03vw, 2.03vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(1) {
+  padding-right: clamp(10px, 1.8vw, 1.8vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(2) {
+  padding-right: clamp(10px, 2.61vw, 2.61vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(4) {
+  padding-inline: clamp(40px, 4.2vw, 4.2vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(5) {
+  text-align: center;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(6) {
+  padding-right: clamp(10px, 2.61vw, 2.61vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(7) {
+  padding-right: clamp(10px, 3.4vw, 3.4vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(8) {
+  padding-right: clamp(10px, 4.2vw, 4.2vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(9) {
+  padding-right: clamp(10px, 2.61vw, 2.61vw);
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(10) {
+  padding-right: clamp(5px, 0.521vw, 0.521vw);
+  padding-left: 0;
+  text-align: right;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.minimize {
+  width: auto;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.minimize .display-table {
+  width: 150%;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.minimize::-webkit-scrollbar {
+  height: 4px;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.minimize::-webkit-scrollbar-thumb {
+  background: rgba(161, 161, 161, 0.5);
+  border-radius: 4px;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper::-webkit-scrollbar {
+  width: 4px;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(161, 161, 161, 0.5);
+  border-radius: 4px;
+}
+.dashboard-wrapper .recent-quote-wrapper .quick-order-wrapper.active {
+  display: flex;
+}
+.dashboard-wrapper .recent-quote-wrapper.active {
+  display: flex;
+}
+.dashboard-wrapper.recent-quote-active {
+  padding: clamp(15px, 1.45vw, 1.45vw) clamp(12px, 1.15vw, 1.15vw);
+  background-color: white;
+}
 
 .expand-overlay {
   position: fixed;
@@ -1267,7 +2274,7 @@ body {
 }
 .expand-overlay .expand-modal {
   background-color: white;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   margin-top: 10px;
@@ -1487,8 +2494,11 @@ body {
   color: rgba(0, 0, 0, 0.9);
   font-weight: 500;
 }
-.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th:first-of-type, .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th:last-of-type {
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th:first-of-type {
   width: 2.75vw;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(2) {
+  width: clamp(90px, 7.3vw, 7.3vw);
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(3) {
   width: 14.5vw;
@@ -1499,8 +2509,17 @@ body {
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(5) {
   width: 8.89vw;
 }
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(6) {
+  width: clamp(70px, 5.75vw, 5.75vw);
+}
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(7) {
-  width: clamp(80px, 6.25vw, 6.25vw);
+  width: clamp(75px, 5.75vw, 5.75vw);
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(8) {
+  width: clamp(100px, 8.5vw, 8.5vw);
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th:last-of-type {
+  width: clamp(40px, 3.6vw, 3.6vw);
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody {
   display: block;
@@ -1521,28 +2540,47 @@ body {
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:first-of-type img, .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:last-of-type img {
   width: 0.93vw;
 }
-.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:first-of-type, .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:last-of-type {
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:first-of-type {
   width: 2.75vw;
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td a.quote-id-data {
   color: #154787;
   font-weight: 500;
 }
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:first-of-type {
+  width: 2.75vw;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(2) {
+  width: clamp(90px, 7.3vw, 7.3vw);
+}
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(3) {
   width: 14.5vw;
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(4) {
-  width: 8.5vw;
+  width: 8.89vw;
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(5) {
-  width: 8.5vw;
+  width: 8.89vw;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(6) {
+  width: clamp(70px, 5.75vw, 5.75vw);
+  color: #f73333;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(6).approved {
+  color: #3daf28;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(6).pending {
+  color: #ff7129;
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(7) {
-  width: clamp(80px, 5.2vw, 5.2vw);
-  padding-left: clamp(10px, 0.79vw, 0.79vw);
+  width: clamp(75px, 5.75vw, 5.75vw);
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(8) {
-  font-weight: 500;
+  width: clamp(100px, 8.5vw, 8.5vw);
+  padding-left: 5px;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:last-of-type {
+  width: clamp(40px, 3.6vw, 3.6vw);
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr:last-of-type td {
   border-bottom: none;
@@ -1628,6 +2666,9 @@ body {
   font-size: clamp(11px, 0.83vw, 0.83vw);
   padding: clamp(6px, 0.73vw, 0.73vw) clamp(10px, 0.93vw, 0.93vw) clamp(6px, 0.73vw, 0.73vw) 0;
   border-bottom: 1px solid #ccc;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .transaction-wrapper .transaction-table tbody tr td:first-of-type {
+  padding-left: clamp(10px, 0.989vw, 0.989vw);
 }
 .expand-overlay .expand-modal.table .expand-modal-content .transaction-wrapper .transaction-table tbody tr td:last-of-type {
   font-weight: 400;
@@ -1848,8 +2889,54 @@ body {
 .expand-overlay .expand-modal.chart .expand-modal-content .accuracy-chart-wrapper.active {
   display: flex;
 }
+.expand-overlay .expand-modal.active {
+  display: flex;
+}
 .expand-overlay.active {
   display: flex;
+}
+.expand-overlay .delete-modal {
+  background-color: white;
+  padding: clamp(20px, 2.067vw, 2.067vw) clamp(25px, 2.9vw, 2.9vw) clamp(20px, 2.067vw, 2.067vw);
+  margin-top: 10px;
+  max-height: 85%;
+  border-radius: clamp(5px, 0.521vw, 0.521vw);
+  display: none;
+}
+.expand-overlay .delete-modal .text {
+  font-size: clamp(9px, 0.93vw, 0.93vw);
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 500;
+  text-align: center;
+}
+.expand-overlay .delete-modal .text .id {
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 600;
+}
+.expand-overlay .delete-modal .btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(5px, 0.521vw, 0.521vw);
+  margin-top: clamp(20px, 2.067vw, 2.067vw);
+}
+.expand-overlay .delete-modal .btn-container button {
+  border-radius: 5px;
+  font-size: clamp(11px, 0.79vw, 0.79vw);
+  padding: clamp(6px, 0.63vw, 0.63vw) clamp(9px, 2.61vw, 2.61vw);
+  border: 1px solid transparent;
+  line-height: 1;
+  background-color: #154787;
+  color: white;
+}
+.expand-overlay .delete-modal .btn-container button.no-btn {
+  background-color: white;
+  border-color: #154787;
+  color: #154787;
+  padding-inline: clamp(9px, 2.75vw, 2.75vw);
+}
+.expand-overlay .delete-modal.active {
+  display: block;
 }
 
 @media screen and (max-width: 1600px) {
@@ -1857,6 +2944,13 @@ body {
     margin-bottom: clamp(20px, 2.067vw, 2.067vw);
   }
   .dashboard-wrapper .dashboard-header-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th span img {
+    width: 10px;
+  }
+  .dashboard-wrapper .dashboard-header-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:last-of-type {
+    width: clamp(40px, 3.91vw, 3.91vw);
+    padding-left: clamp(10px, 0.79vw, 0.79vw);
+  }
+  .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th span img {
     width: 10px;
   }
 }
@@ -1876,17 +2970,21 @@ body {
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th span img {
     width: 9px;
   }
-  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(8) {
-    width: clamp(90px, 6.25vw, 6.25vw);
-  }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(8) {
-    width: clamp(90px, 6.25vw, 6.25vw);
+    padding-left: 3px;
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:last-of-type {
+    width: clamp(40px, 4.1vw, 4.1vw);
+    padding-left: clamp(10px, 0.79vw, 0.79vw);
   }
   .dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .btn-container {
     padding-bottom: clamp(5px, 0.63vw, 0.63vw);
   }
   .dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .transaction-table thead tr th {
     padding: clamp(4px, 0.43vw, 0.43vw) clamp(7px, 0.73vw, 0.73vw) clamp(4px, 0.43vw, 0.43vw) 0;
+  }
+  .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th span img {
+    width: 9px;
   }
 }
 @media screen and (max-width: 1300px) {
@@ -1911,26 +3009,41 @@ body {
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th span {
     font-size: 9px;
   }
-  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:first-of-type, .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:last-of-type {
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:first-of-type {
     width: 2.067vw;
-  }
-  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(3) {
-    width: clamp(65px, 12.35vw, 12.35vw);
   }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(7) {
     width: clamp(65px, 4.69vw, 4.69vw);
   }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(8) {
+    width: clamp(65px, 5.2vw, 5.2vw);
+    padding-right: 0;
+  }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td {
     font-size: 9px;
   }
-  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:first-of-type, .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:last-of-type {
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:first-of-type {
     width: 2.067vw;
-  }
-  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(3) {
-    width: clamp(65px, 12.35vw, 12.35vw);
   }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(7) {
     width: clamp(65px, 4.69vw, 4.69vw);
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(8) {
+    padding-left: 0;
+    width: clamp(60px, 4.2vw, 4.2vw);
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:last-of-type {
+    width: clamp(40px, 3.6vw, 3.6vw);
+    padding-left: clamp(10px, 0.79vw, 0.79vw);
+  }
+  .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody th:last-of-type {
+    width: clamp(40px, 3.5vw, 3.5vw);
+  }
+  .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody td:last-of-type {
+    width: clamp(40px, 3.5vw, 3.5vw);
+  }
+  thead tr th span img {
+    width: 8px;
   }
 }
 .create-quote-wrapper {

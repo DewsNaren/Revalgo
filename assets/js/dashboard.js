@@ -759,8 +759,7 @@ expandBtns.forEach(btn => {
   });
 });
 
-// close button
-closeBtn.addEventListener("click", () => {
+function closeModal(){
   overlay.classList.remove("active");
   const quoteContainer=document.querySelector(".quotes-container");
   const originalSource=modalContent.querySelector(".quotes-container")
@@ -768,15 +767,21 @@ closeBtn.addEventListener("click", () => {
     quoteContainer.remove();
     dashBoardBodyWrapper.insertBefore(originalSource, dashBoardBodyWrapper.firstChild);
   }
+}
+// close button
+closeBtn.addEventListener("click", () => {
+  closeModal();
   
 });
 
 // close on overlay click
 overlay.addEventListener("click", (e) => {
   if (e.target === overlay) {
-    overlay.classList.remove("active");
+    closeModal();
   }
 });
 
 
+const rightWrapper=document.querySelector(".right-wrapper")
 
+// console.log(rightWrapper.clientWidth)
