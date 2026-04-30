@@ -1023,9 +1023,12 @@ body{
             .back-btn-container{
                 display: flex;
                 align-items: center;
-                .back-create-btn{
+                button{
                     background-color: transparent;
                     border: none;
+                }
+
+                .back-create-btn{
                     display: inline-flex;
                     align-items: center;
                     gap:clamp(7px, $fs-15px, $fs-15px);
@@ -1042,6 +1045,31 @@ body{
                             display: inline;
                         }
                     }
+                }
+                .del-quote-btn{
+                    margin-left: clamp(12px, $fs-22px, $fs-22px);
+                    display: none;
+                    img{
+                        display: block;
+                        width: clamp(11px, $fs-17px, $fs-17px);
+                    }
+
+                    &.active{
+                        display: inline-block;
+                    }
+                }
+                .undo-quote-btn{
+                    margin-left: clamp(14px, $fs-28px, $fs-28px);
+                    font-size: clamp(11px, $fs-15px, $fs-15px);
+                    display: none;
+                    img{
+                        width: clamp(10px, $fs-18px, $fs-18px);
+                        margin-right: 5px;
+                    }
+                    &.active{
+                        display: inline-block;
+                    }
+                   
                 }
                 .quote-status{
                     margin-left: clamp(12px, $fs-25px, $fs-25px);
@@ -1258,7 +1286,7 @@ body{
 
                 }
                 .body-wrapper{
-                   padding: clamp(8px, $fs-15px, $fs-15px) clamp(10px, $fs-20px, $fs-20px) clamp(15px, $fs-30px, $fs-30px);
+                   padding: clamp(8px, $fs-15px, $fs-15px) clamp(12px, $fs-25px, $fs-25px) clamp(15px, $fs-30px, $fs-30px) clamp(10px, $fs-20px, $fs-20px);
                    display: flex;
                    flex-direction: column;
                     min-height: 0;
@@ -1500,7 +1528,7 @@ body{
                         }
                    }
                    .mail-wrapper{
-                        padding: clamp(13px, $fs-28px, $fs-28px) 0 0 ;
+                        padding: clamp(13px, $fs-28px, $fs-28px) 5px 0 0;
                         display: none;
                         flex: 1;
                         overflow-y: auto;
@@ -1567,8 +1595,63 @@ body{
                                         
                                         }
                                     }
+                                    &.active{
+                                        background-color: $blue-2ff;
+                                    }
                                     &.hidden{
                                         display: none;
+                                    }
+
+                                }
+                            }
+                            .img-info-container{
+                                padding: clamp(13px, $fs-22px, $fs-22px)  0 0;
+
+                                .img-header{
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: space-between;
+                                    border-bottom: 1px solid rgba(0,0,0,0.4);
+                                    .file-name{
+                                        font-size: clamp(9px, $fs-14px, $fs-14px);
+                                        margin-bottom: 0;
+                                    }
+                                    .btn-container{
+                                        display: flex;
+                                        gap: clamp(5px, $fs-10px, $fs-10px);
+                                        button{
+                                            border: none;
+                                            background-color: transparent;
+                                            position: relative;
+                                            &.info-btn,&.img-close-btn{
+                                                img{
+                                                    width:clamp(10px, $fs-16px, $fs-16px);
+                                                }
+                                            }
+                                            &.info-btn{
+                                                span{
+                                                    position: absolute;
+                                                    width:clamp(4px, $fs-9px, $fs-9px);
+                                                    height:clamp(4px, $fs-9px, $fs-9px);
+                                                    border-radius: 50%;
+                                                    background-color: $red-08;
+                                                    right: -3px;
+                                                    top: 3px;
+                                                }
+                                            }
+
+                                            &.rotate-btn{
+                                                img{
+                                                width:clamp(8px, $fs-13px, $fs-13px);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                .sample-img-wrapper{
+                                    img{
+                                        display: block;
+                                        width: 100%;
                                     }
 
                                 }
@@ -1586,8 +1669,8 @@ body{
                                     }
                                     .list{
                                         list-style: decimal;
-                                        padding-left: 15px;
-                                       margin-bottom: clamp(5px, $fs-25px, $fs-25px);
+                                        padding-left: clamp(7px, $fs-15px, $fs-15px);
+                                        margin-bottom: clamp(5px, $fs-25px, $fs-25px);
                                     }
 
                                 }
@@ -1765,8 +1848,12 @@ body{
                                     border: none;
                                     visibility: hidden;
                                     transition: visibility 0.2s ease;
+                                    display: none;
                                     img{
                                         width: clamp(10px, $fs-17px, $fs-17px);
+                                    }
+                                    &.active{
+                                        display: inline-block;
                                     }
 
                                 }
@@ -1858,9 +1945,6 @@ body{
                                                 margin-right: 5px;
                                             }
                                         }
-                                        // .suggest-product-popup{
-
-                                        // }
                                         
                                     }
                                     
@@ -1953,8 +2037,13 @@ body{
                                         border: none;
                                         visibility: hidden;
                                         transition: visibility 0.2s ease;
+                                        display: none;
                                         img{
                                             width: clamp(10px, $fs-17px, $fs-17px);
+                                        }
+
+                                        &.active{
+                                            display: inline-block;
                                         }
 
                                     }
@@ -1991,13 +2080,17 @@ body{
                                     visibility: visible;
                                 }
                             }
-                            // &:not(:first-of-type){
-                            //     padding-top: clamp(4px, $fs-13px, $fs-13px);
-                            // }
                             &.not-active{
-                                background-color: $grey-f1;
-                                opacity: 0.5;
-                                pointer-events: none;
+                                background-color: $grey-f15;
+                                
+                               
+                                p:not(:nth-of-type(11)),.add-note-btn{
+                                    pointer-events: none;
+                                    opacity: 0.5;
+                                }
+                                
+                              
+                               
                             }
                         }
                         .add-btn-container{
@@ -2038,24 +2131,123 @@ body{
                                 }
 
                             }
+                           
                         }
                         .suggest-product-popup{
-                             position: absolute;
-                            display: flex;
+                            position: absolute;
+                            display: none;
                             flex-direction: column;
-                            // justify-content: center;
-                            // align-items: center;
-                            // inset: 0;
                             background-color: $white;
                             box-shadow: $box-shadow-1;
                             z-index: 3;
                             width: 50%;
-                            border-radius:  clamp(5px, $fs-10px, $fs-10px);;
-                            text-align: center;
+                            border-radius:  clamp(5px, $fs-10px, $fs-10px);
                             left: 16%;
                             top: 50%;
                             transform: translate(-16%, -50%);
                             gap: clamp(8px, $fs-10px, $fs-10px);
+                            padding: clamp(15px, $fs-30px, $fs-30px) clamp(10px, $fs-20px, $fs-20px) clamp(10px, $fs-20px, $fs-20px) clamp(15px, $fs-30px, $fs-30px);
+                            max-height: 100%;
+                            .product-header{
+                                display: flex;
+                                gap: clamp(10px, $fs-20px, $fs-20px);
+                                align-items: center;
+                                margin-bottom: clamp(3px, $fs-7px, $fs-7px);
+                                .search-suggest-product{
+                                    flex: 1;
+                                    margin-right:clamp(10px, $fs-25px, $fs-25px);
+                                    border: none;
+                                    padding-bottom: 5px;
+                                    border-bottom: 1px solid #ccc;
+                                    font-size:clamp(10px, $fs-15px, $fs-15px);
+                                    color: $grey-66;
+                                    outline: none;
+                                    &::placeholder{
+                                        color: $grey-66;
+                                    }
+                                }
+                                button{
+                                    background-color: transparent;
+                                    border: none;
+                                    
+                                    &.expand-btn{
+                                        img{
+
+                                            display: block;
+                                            width: clamp(9px, $fs-19px, $fs-19px);
+                                        }
+                                    }
+                                    &.close-suggest-popup-btn{
+                                        img{
+                                            display: block;
+                                            width: clamp(8px, $fs-15px, $fs-15px);
+                                        }
+                                    }
+                                }
+                            }
+                            .product-body{
+                                flex: 1;
+                                min-height: 0;
+                                overflow-y: auto;
+                                max-height:clamp(150px, $fs-220px, $fs-220px) ;
+                                padding-right: clamp(10px, $fs-20px, $fs-20px);
+                                margin-right: 4px;
+                                h3{
+                                    font-size: clamp(12px, $fs-20px, $fs-20px);
+                                    margin-bottom: clamp(10px, $fs-12px, $fs-12px);
+                                }
+                                .products{
+                                    .product{
+                                        padding: clamp(5px, $fs-12px, $fs-12px) 0;
+                                        border-bottom: 1px solid #ccc;
+
+                                        .detail-container{
+                                            display: flex;
+                                            gap: clamp(12px, $fs-28px, $fs-28px);
+                                            p{
+                                                font-size: clamp(9px, $fs-14px, $fs-14px);
+                                                margin-bottom: clamp(5px, $fs-10px, $fs-10px);
+                                                line-height: 1;
+                                                .label{
+                                                    color: $black-80;
+
+                                                    &.id{
+                                                        color: $blue-87;
+                                                        font-weight: 500;
+                                                    }
+                                                }
+                                                .value{
+                                                    color: $black;
+                                                    font-weight: 500;
+                                                    margin-left:  5px;
+                                                }
+                                            }
+                                            
+                                        }
+                                        .desc{
+                                            color: $grey-6c;
+                                            font-size: clamp(9px, $fs-12px, $fs-12px);
+                                            line-height: 1.2;
+                                            margin-bottom: 0;
+                                        }
+                                        &:last-of-type{
+                                            border-bottom: none;
+                                        }
+                                    }
+                                }
+                                &::-webkit-scrollbar {
+                                    width: 4px;
+                                }
+
+                                &::-webkit-scrollbar-thumb {
+                                    background: rgba(161, 161, 161, 0.5);
+                                    border-radius: 4px;        
+                                }
+                            }
+                            &.active{
+                                display: flex;
+
+                            }
                         }
                     }
                 }
@@ -2171,13 +2363,13 @@ body{
                 }
 
                 &::-webkit-scrollbar {
-                        width: 4px;
-                    }
+                    width: 4px;
+                }
 
-                    &::-webkit-scrollbar-thumb {
-                        background: rgba(161, 161, 161, 0.5);
-                        border-radius: 4px;        
-                    }
+                &::-webkit-scrollbar-thumb {
+                    background: rgba(161, 161, 161, 0.5);
+                    border-radius: 4px;        
+                }
                  
             }
             
@@ -2210,7 +2402,6 @@ body{
 
     .expand-modal{
         background-color: $white;
-        // padding: clamp(25px, 1%, 1%)  clamp(20px, 2%, 2%);
         display: none;
         flex-direction: column;
         align-items: center;
@@ -2218,8 +2409,6 @@ body{
         
         max-height: 85%;
         position: relative;
-        // overflow-y: auto;
-        // border: 1px solid #ccc;
         padding: clamp(12px, $fs-24px, $fs-24px) clamp(12px, $fs-24px, $fs-24px);
         border-radius: clamp(3px, $fs-10px, $fs-10px);
         .close-modal-btn{
@@ -2232,10 +2421,12 @@ body{
             img{
                 width: clamp(14px, $fs-24px, $fs-24px);
             }
+            &.not-active{
+                display: none;
+            }
         }
         
         &.table{
-            width:72%;
             .expand-modal-content{
                 display: flex;   
                 flex: 1;
@@ -2666,11 +2857,136 @@ body{
             
 
                 }
+                .suggest-product-popup{
+                    // position: absolute;
+                    display: flex;
+                    flex-direction: column;
+                    // background-color: $white;
+                    // box-shadow: $box-shadow-1;
+                    z-index: 3;
+                    width: 100%;
+                    border-radius:  clamp(5px, $fs-10px, $fs-10px);
+                    // left: 16%;
+                    // top: 50%;
+                    // transform: translate(-16%, -50%);
+                    gap: clamp(8px, $fs-10px, $fs-10px);
+                    padding: clamp(4px, $fs-7px, $fs-7px) 0 clamp(10px, $fs-20px, $fs-20px) clamp(5px, $fs-10px, $fs-10px);
+                    max-height: 100%;
+                    .product-header{
+                        display: flex;
+                        gap: clamp(10px, $fs-20px, $fs-20px);
+                        align-items: center;
+                        margin-bottom: clamp(3px, $fs-7px, $fs-7px);
+                        .search-suggest-product{
+                            flex: 1;
+                            margin-right:clamp(10px, $fs-25px, $fs-25px);
+                            border: none;
+                            padding-bottom: 5px;
+                            border-bottom: 1px solid #ccc;
+                            font-size:clamp(12px, $fs-17px, $fs-17px);
+                            color: $grey-66;
+                            outline: none;
+                            &::placeholder{
+                                color: $grey-66;
+                            }
+                            }
+                            button{
+                                background-color: transparent;
+                                border: none;
+                                    
+                                &.expand-btn{
+                                    img{
+
+                                        display: block;
+                                        width: clamp(9px, $fs-19px, $fs-19px);
+                                    }
+                                }
+                                &.close-suggest-popup-btn{
+                                    img{
+                                        display: block;
+                                        width: clamp(10px, $fs-18px, $fs-18px);
+                                    }
+                                }
+                            }
+                    }
+                    .product-body{
+                        flex: 1;
+                        min-height: 0;
+                        overflow-y: auto;
+                        padding-right: clamp(10px, $fs-30px, $fs-30px);
+                        margin-right: clamp(7px, $fs-14px, $fs-14px);
+                        h3{
+                            font-size: clamp(14px, $fs-22px, $fs-22px);
+                            margin-bottom: clamp(10px, $fs-18px, $fs-18px);
+                        }
+                        .products{
+                            .product{
+                                padding: clamp(10px, $fs-20px, $fs-20px) 0;
+                                border-bottom: 1px solid #ccc;
+
+                                .detail-container{
+                                    display: flex;
+                                    gap: clamp(25px, $fs-55px, $fs-55px);
+                                    p{
+                                        font-size: clamp(11px, $fs-17px, $fs-17px);
+                                        margin-bottom: clamp(8px, $fs-18px, $fs-18px);
+                                        line-height: 1;
+                                        .label{
+                                            color: $black-80;
+
+                                            &.id{
+                                                color: $blue-87;
+                                                font-weight: 500;
+                                                margin-right: 5px;
+                                            }
+                                        }
+                                        .value{
+                                            color: $black;
+                                            font-weight: 500;
+                                            margin-left:  7px;
+                                        }
+                                            
+                                    }
+                                            
+                                }
+                                .desc{
+                                    color: $grey-6c;
+                                    font-size: clamp(9px, $fs-16px, $fs-16px);
+                                    line-height: 1.2;
+                                    margin-bottom: 0;
+                                }
+                                &:last-of-type{
+                                    border-bottom: none;
+                                }
+                            }
+                        }
+                        &::-webkit-scrollbar {
+                            width: clamp(6px, $fs-10px, $fs-10px);
+                        }
+
+                        &::-webkit-scrollbar-thumb {
+                            background: rgba(161, 161, 161, 0.5);
+                            border-radius: 4px;        
+                        }
+                    }
+                }               
                 .trend-chart-wrapper{
                     display: none;
                 }
                 .accuracy-chart-wrapper{
                     display: none;
+                }
+            }
+            &.quotes{
+                width:72%;
+            }
+            &.transaction{
+                width: 48%;
+            }
+            &.suggest-popup{
+                width: 62%;
+                .expand-modal-content{
+                    width: 100%;
                 }
             }
         }
@@ -2679,7 +2995,8 @@ body{
             padding:clamp(6px,$fs-22px, $fs-22px) clamp(7px,$fs-15px, $fs-15px);
             align-items: unset;
             .close-modal-btn{
-                padding-right: clamp(5px,$fs-10px, $fs-10px)
+                padding-right: clamp(5px,$fs-10px, $fs-10px);
+                
             }
             .expand-modal-content{
                 min-height: 0;
@@ -2919,18 +3236,16 @@ body{
                 }
             }
             }
-
         }
         &.active{
             display: flex;
         }
-        
     }
 
     &.active{
         display: flex;
     }
-    .delete-modal{
+    .undo-modal{
         background-color: $white;
         padding: clamp(20px, $fs-40px, $fs-40px)  clamp(25px, $fs-55px, $fs-55px) clamp(20px, $fs-40px, $fs-40px);
         margin-top: 10px;
@@ -2978,6 +3293,482 @@ body{
         }
 
     }
+    .del-popup-1{
+        background-color: $white;
+        padding: clamp(17px, $fs-35px, $fs-35px)  clamp(10px, $fs-20px, $fs-20px) clamp(20px, $fs-30px, $fs-30px);
+        margin-top: 10px;
+        max-height: 85%;
+        border-radius: clamp(5px, $fs-10px, $fs-10px);
+        display: none;
+
+        .del-title{
+            color: $blue-87;
+            font-size:  clamp(14px, $fs-24px, $fs-24px);
+            font-weight: 600;
+            margin-bottom: clamp(9px, $fs-18px, $fs-18px);
+        }
+        .text{
+            font-size:  clamp(9px, $fs-18px, $fs-18px);
+            color: $black-80;
+            font-weight: 500;
+            margin-bottom: 0;
+
+        }
+        .btn-container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap:  clamp(5px, $fs-10px, $fs-10px);
+            margin-top:clamp(10px, $fs-20px, $fs-20px); 
+            button{
+                border-radius: 5px;
+                font-size: clamp(10px, $fs-15px, $fs-15px);
+                padding:clamp(6px, $fs-12px, $fs-12px) clamp(9px, $fs-50px, $fs-50px);
+                border: 1px solid transparent;
+                line-height: 1;
+                background-color:  $blue-87;
+                color:  $white;
+
+                &.no-btn{
+                    background-color: $white;
+                    border-color: $blue-87;
+                    color: $blue-87;
+                    padding-inline: clamp(9px, $fs-52px, $fs-52px);
+                }
+            }
+        }
+            
+        &.active{
+            display: block;
+        }
+
+    }
+    .del-popup-2{
+        background-color: $white;
+        padding: clamp(15px, $fs-30px, $fs-30px)  clamp(15px, $fs-30px, $fs-30px) clamp(20px, $fs-30px, $fs-30px);
+        max-height: 85%;
+        border-radius: clamp(5px, $fs-10px, $fs-10px);
+        display: none;
+        width: 28%;
+        .del-title{
+            color: $blue-87;
+            font-size:  clamp(14px, $fs-24px, $fs-24px);
+            font-weight: 600;
+            margin-bottom: clamp(9px, $fs-18px, $fs-18px);
+        }
+        .text{
+            font-size:  clamp(9px, $fs-18px, $fs-18px);
+            color: rgba(0, 0, 0, 0.8);
+            margin-bottom: clamp(10px, $fs-20px, $fs-20px) ;
+            .id{
+                color: $black-90;
+                font-weight: 600;
+            }
+        }
+        textarea{
+            border: 1px solid rgba(0, 0, 0, 0.9);
+            padding: clamp(10px, $fs-20px, $fs-20px);
+            height: clamp(60px, $fs-100px, $fs-100px);
+            outline: rgba(0, 0, 0, 0.9);
+            border-radius: clamp(3px, $fs-7px, $fs-7px);
+            font-size: clamp(10px, $fs-16px, $fs-16px);
+            width: 100%;
+            max-height: 200px;
+        }
+        
+        .btn-container{
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap:  clamp(5px, $fs-10px, $fs-10px);
+            margin-top:clamp(10px, $fs-20px, $fs-20px); 
+            button{
+                border-radius: 5px;
+                font-size: clamp(10px, $fs-15px, $fs-15px);
+                padding:clamp(6px, $fs-12px, $fs-12px) clamp(9px, $fs-50px, $fs-50px);
+                border: 1px solid transparent;
+                line-height: 1;
+                background-color:  $blue-87;
+                color:  $white;
+
+                &.no-btn{
+                    background-color: $white;
+                    border-color: $blue-87;
+                    color: $blue-87;
+                    padding-inline: clamp(9px, $fs-52px, $fs-52px);
+                }
+            }
+        }
+            
+        &.active{
+            display: block;
+        }
+
+    }
+    .add-note-popup{
+        background-color: $white;
+        padding: clamp(10px, $fs-20px, $fs-20px)  clamp(10px, $fs-20px, $fs-20px) clamp(15px, $fs-30px, $fs-30px);
+        flex-direction: column;
+        // align-items: center;
+        margin-top: 10px;
+        max-height: 85%;
+        width: 38%;
+        border-radius: clamp(5px, $fs-10px, $fs-10px);
+        display: none;
+
+        .header{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 5px;
+            border-bottom: 1px solid $grey-9e;
+            margin-bottom: clamp(10px, $fs-30px, $fs-30px);
+            h3{
+                font-size: clamp(12px, $fs-20px, $fs-20px);
+                color: $black-90;
+            }
+            .close-popup-btn{
+                border: none;
+                background-color: transparent;
+                width: clamp(10px, $fs-18px, $fs-18px);
+                img{
+                    width: 100%;
+                }
+            }
+
+            
+        }
+        textarea{
+            border: 1px solid rgba(0, 0, 0, 0.9);
+            padding: clamp(10px, $fs-20px, $fs-20px);
+            height: clamp(90px, $fs-160px, $fs-160px);
+            outline: rgba(0, 0, 0, 0.9);
+            border-radius: clamp(3px, $fs-7px, $fs-7px);
+            font-size: clamp(10px, $fs-16px, $fs-16px);
+
+        }
+        .btn-container{
+            margin-top: clamp(15px, $fs-30px, $fs-30px);
+            display: flex;
+            gap: clamp(10px, $fs-20px, $fs-20px);
+            justify-content: flex-end;
+            padding-right:  clamp(9px, $fs-28px, $fs-28px);
+            button{
+                border-radius: 5px;
+                font-size: clamp(11px, $fs-15px, $fs-15px);
+                padding:clamp(7px, $fs-12px, $fs-12px) clamp(9px, $fs-40px, $fs-40px);
+                border: 1px solid transparent;
+                line-height: 1;
+                &.add-btn{
+                    color: $white;
+                    background-color: $blue-87;
+                    padding-inline: clamp(22px, $fs-51px, $fs-51px);
+
+                    &:hover{
+                        background-color: $blue-85;
+                    }
+                    
+                }
+                &.cancel-btn{
+                    background-color: $white;
+                    color: $blue-87;
+                    border-color:$blue-87;
+                    // padding:clamp(6px, $fs-10px, $fs-10px) clamp(15px, $fs-30px, $fs-30px);
+
+                    &:hover{
+                        color: $white;
+                        background-color: $blue-87;
+                    }
+                    // box-shadow: none;
+                }
+                
+            }
+        }
+        &.active{
+            display: flex;
+        } 
+        &.add-quote-note-popup{
+            textarea{
+                border: 1px solid rgba(0, 0, 0, 0.9);
+                padding: clamp(10px, $fs-20px, $fs-20px);
+                height: clamp(80px, $fs-140px, $fs-140px);
+                outline: rgba(0, 0, 0, 0.9);
+                border-radius: clamp(3px, $fs-7px, $fs-7px);
+                font-size: clamp(10px, $fs-14px, $fs-14px);
+                color: $black-90;
+                text-align: left;
+            }
+        }   
+
+    }
+    .approve-quote-popup{
+        background-color: $white;
+        padding: clamp(10px, $fs-20px, $fs-20px)  clamp(10px, $fs-20px, $fs-20px) clamp(15px, $fs-30px, $fs-30px);
+        flex-direction: column;
+        // align-items: center;
+        margin-top: 10px;
+        max-height: 85%;
+        width: 45%;
+        border-radius: clamp(5px, $fs-10px, $fs-10px);
+        display: none;
+
+        .header{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 5px;
+            border-bottom: 1px solid $grey-9e;
+            margin-bottom: clamp(10px, $fs-20px, $fs-20px);
+            h3{
+                font-size: clamp(12px, $fs-20px, $fs-20px);
+                color: $black-90;
+            }
+            .close-popup-btn{
+                border: none;
+                background-color: transparent;
+                width: clamp(10px, $fs-18px, $fs-18px);
+                img{
+                    width: 100%;
+                }
+            }
+            
+            
+        }
+        .approve-content{
+            .quote-id{
+                font-size: clamp(10px, $fs-28px, $fs-28px);
+                color:$black-80;
+                font-weight: 500;
+            }
+            .approve-table{
+                width: 100%;
+                margin-bottom:  clamp(6px, $fs-12px, $fs-12px);
+                thead{
+                    tr th{
+                        text-align: center;
+                        padding: clamp(6px, $fs-12px, $fs-12px);
+                        background-color: $blue-2ff;
+                        color: $black-90;
+                        font-weight: 500;
+                        font-size: clamp(12px, $fs-16px, $fs-16px);
+                        border-right: 5px solid $white;
+                    }
+                }
+                tbody{
+                    tr td{
+                        font-size: clamp(11px, $fs-15px, $fs-15px);
+                        color: $grey-66;
+                        text-align: center;
+                        padding: clamp(6px, $fs-12px, $fs-12px) clamp(14px, $fs-28px, $fs-28px);
+                    }
+                }
+            }
+        }
+        textarea{
+            border: 1px solid rgba(0, 0, 0, 0.9);
+            padding: clamp(10px, $fs-20px, $fs-20px);
+            height: clamp(70px, $fs-120px, $fs-120px);
+            outline: rgba(0, 0, 0, 0.9);
+            border-radius: clamp(3px, $fs-7px, $fs-7px);
+            font-size: clamp(10px, $fs-16px, $fs-16px);
+
+        }
+        .btn-container{
+            margin-top: clamp(15px, $fs-30px, $fs-30px);
+            display: flex;
+            gap: clamp(10px, $fs-20px, $fs-20px);
+            justify-content: flex-end;
+            padding-right:  clamp(9px, $fs-28px, $fs-28px);
+            button{
+                border-radius: 5px;
+                font-size: clamp(11px, $fs-15px, $fs-15px);
+                padding:clamp(7px, $fs-12px, $fs-12px) clamp(9px, $fs-20px, $fs-20px);
+                border: 1px solid transparent;
+                line-height: 1;
+                &.approve-btn{
+                    color: $white;
+                    background-color: $blue-87;
+                    
+
+                    &:hover{
+                        background-color: $blue-85;
+                    }
+                    
+                }
+                &.cancel-btn{
+                    background-color: $white;
+                    color: $blue-87;
+                    border-color:$blue-87;
+                    padding-inline: clamp(22px, $fs-25px, $fs-25px);
+
+                    &:hover{
+                        color: $white;
+                        background-color: $blue-87;
+                    }
+                    // box-shadow: none;
+                }
+                
+            }
+        }
+        &.active{
+            display: flex;
+        }    
+
+    }
+    .img-popup{
+        background-color: $white;
+        padding: clamp(17px, $fs-35px, $fs-35px)  clamp(17px, $fs-35px, $fs-35px) clamp(17px, $fs-35px, $fs-35px);
+        flex-direction: column;
+        // align-items: center;
+        margin-top: 10px;
+        max-height: 85%;
+        width: 69.5%;
+        border-radius: clamp(5px, $fs-10px, $fs-10px);
+        display: none;
+
+        .header{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 5px;
+            border-bottom: 1px solid $grey-9e;
+            padding-bottom: clamp(5px, $fs-10px, $fs-10px);
+            margin-bottom: clamp(10px, $fs-20px, $fs-20px);
+            .text-container{
+                padding-left: clamp(7px, $fs-15px, $fs-15px);
+                h3{
+                    font-size: clamp(12px, $fs-20px, $fs-20px);
+                    color: $black-90;
+                }
+                p{
+                    color: $black-80;
+                    font-size: clamp(10px, $fs-15px, $fs-15px);
+                    span{
+                        color: $black;
+                    }
+                    margin-bottom: 0;
+                }
+            }
+            .close-popup-btn{
+                border: none;
+                background-color: transparent;
+                width: clamp(10px, $fs-18px, $fs-18px);
+                img{
+                    width: 100%;
+                }
+            }
+            
+        }
+        .content-container{
+            overflow-y: auto;
+
+            padding-left: clamp(7px, $fs-15px, $fs-15px);
+            input[type="checkbox"]{
+                width: clamp(9px, $fs-20px, $fs-20px);
+                height:clamp(9px, $fs-20px, $fs-20px);
+                margin-left: 3px;
+                accent-color: $blue-87;           
+            }
+            .select-all-wrapper{
+                display: flex;
+                align-items: center;
+                gap:clamp(5px, $fs-10px, $fs-10px);
+                margin-bottom: clamp(5px, $fs-10px, $fs-10px);
+                label{
+                    color: $grey-66;
+                    font-size: clamp(9px, $fs-14px, $fs-14px);
+                    line-height: 1;
+                }
+            }
+            .input-wrapper{
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-column-gap:clamp(20px, $fs-45px, $fs-45px);
+                grid-row-gap:clamp(10px, $fs-20px, $fs-20px);
+                padding-right: clamp(15px, $fs-30px, $fs-30px);
+                .input-container{
+                    display: flex;
+                    gap: clamp(5px, $fs-10px, $fs-10px);
+                    input[type="checkbox"]{
+                        margin-top: clamp(10px, $fs-20px, $fs-20px);
+
+                        &:checked + .text-wrapper{
+                            background-color: $blue-2ff;
+                            border-color: transparent;
+                        }
+                    }
+
+                    .text-wrapper{
+                        padding: clamp(8px, $fs-15px, $fs-15px) clamp(5px, $fs-10px, $fs-10px);
+                        border-radius: clamp(5px, $fs-10px, $fs-10px);
+                        font-size: clamp(10px, $fs-15px, $fs-15px);
+                        border: 1px solid rgba(0,0,0,0.2);
+                        flex: 1;
+                        .label{
+                            line-height: 1;
+                            margin-bottom: clamp(5px, $fs-10px, $fs-10px);
+                            color: $black;
+                            font-weight: 500;
+                        }
+                        .value{
+                            color: $grey-66;
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+            }
+            &::-webkit-scrollbar {
+                width: 4px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: rgba(161, 161, 161, 0.5);
+                border-radius: 4px; 
+            }
+                
+        }
+        .btn-container{
+            margin-top: clamp(17px, $fs-35px, $fs-35px);
+            display: flex;
+            gap: clamp(10px, $fs-20px, $fs-20px);
+            justify-content: flex-end;
+            padding-right:  clamp(9px, $fs-28px, $fs-28px);
+            button{
+                border-radius: 5px;
+                font-size: clamp(11px, $fs-15px, $fs-15px);
+                padding:clamp(7px, $fs-12px, $fs-12px) clamp(9px, $fs-40px, $fs-40px);
+                border: 1px solid transparent;
+                line-height: 1;
+                &.update-btn{
+                    color: $white;
+                    background-color: $blue-87;
+                    
+
+                    &:hover{
+                        background-color: $blue-85;
+                    }
+                    
+                }
+                &.cancel-btn{
+                    background-color: $white;
+                    color: $blue-87;
+                    border-color:$blue-87;
+
+                    &:hover{
+                        color: $white;
+                        background-color: $blue-87;
+                    }
+                    // box-shadow: none;
+                }
+                
+            }
+        }
+        &.active{
+            display: flex;
+        }    
+
+    }
+
 }
 
 

@@ -24,7 +24,6 @@ function renderTrendChart(){
       animation: true
     },
     xAxis: {
-      // lineWidth: 0,
       lineColor:'#e6e6e6',
       categories: [
           'Jan', 'Feb', 'Mar', 'Apr',
@@ -359,7 +358,6 @@ let lastSmall = window.innerWidth < 1600;
 
 let modalTrendChart;
 const modalTrendChartContainer=document.getElementById("trend-modal-chart");
-console.log(modalTrendChartContainer)
 function renderModalTrendChart(){
   modalTrendChart=Highcharts.chart('trend-modal-chart', {
     chart: {
@@ -705,18 +703,22 @@ const modalBox = document.querySelector(".expand-modal");
 const modalContent = document.querySelector(".expand-modal-content");
 const modalTrendChartWrapper=modalContent.querySelector(".trend-chart-wrapper");
 const modalaccurChartWrapper=modalContent.querySelector(".accuracy-chart-wrapper");
-
+const displayTable=document.querySelector(".display-table")
+const disTableBodyWrapper=displayTable.querySelector(".body-wrapper")
 const expandBtns=document.querySelectorAll(".expand-btn");
 const closeBtn = document.querySelector(".close-modal-btn");
+const closePopupBtns= document.querySelectorAll(".close-popup-btn");
+const popups=document.querySelectorAll("popup");
 expandBtns.forEach(btn => {
   btn.addEventListener("click", () => {
     const type = btn.dataset.type;
     const target = btn.dataset.target;
-
+    const modalData=btn.dataset.modal
     const source = document.querySelector(target);
     if (!source) return;
-
-    modalBox.className = "expand-modal " + type;
+    // overlay.classList.add("active");
+    // modalBox.classList.add("active");
+    modalBox.className = "expand-modal " + type +" "+ modalData +" "+ "active";
 
     if (type === "table") {
       const modalTransactionWrapper=modalContent.querySelector(".transaction-wrapper");
@@ -739,8 +741,13 @@ expandBtns.forEach(btn => {
         const modTransactionWrapper=modalContent.querySelector(".transaction-wrapper");
         modTransactionWrapper?.classList.add("active");
       }
-
+       else if(target==".suggest-product-popup"){
+        modalContent.appendChild(source);
+        closeBtn.classList.add("not-active");
+        closeSuggestExpandModal();
+      }
     }
+   
 
     if (type === "chart") {
       const modalTransactionWrapper=modalContent.querySelector(".transaction-wrapper");
@@ -759,20 +766,39 @@ expandBtns.forEach(btn => {
   });
 });
 
+
 function closeModal(){
   overlay.classList.remove("active");
+  modalBox.classList.remove("active");
   const quoteContainer=document.querySelector(".quotes-container");
-  const originalSource=modalContent.querySelector(".quotes-container")
+  const originalSource=modalContent.querySelector(".quotes-container");
+  const suggestSource=modalContent.querySelector(".suggest-product-popup");
   if(originalSource){
     quoteContainer.remove();
     dashBoardBodyWrapper.insertBefore(originalSource, dashBoardBodyWrapper.firstChild);
   }
+  if(suggestSource){
+    disTableBodyWrapper.appendChild(suggestSource)
+  }
+
 }
+closePopupBtns.forEach(btn => btn.addEventListener("click", () => {
+  popups.forEach(pop=>pop.classList.remove("active"));
+    overlay.classList.remove("active");
+
+})
+)
 // close button
 closeBtn.addEventListener("click", () => {
   closeModal();
-  
 });
+function closeSuggestExpandModal(){
+  const closeSuggestExpandBtn=modalContent.querySelector(".close-suggest-popup-btn");
+  closeSuggestExpandBtn.addEventListener("click", () => {
+    closeModal();
+    closeBtn.classList.remove("not-active");
+  });
+}
 
 // close on overlay click
 overlay.addEventListener("click", (e) => {
@@ -780,8 +806,3 @@ overlay.addEventListener("click", (e) => {
     closeModal();
   }
 });
-
-
-const rightWrapper=document.querySelector(".right-wrapper")
-
-// console.log(rightWrapper.clientWidth)

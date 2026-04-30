@@ -14,7 +14,7 @@
         <header>
             <a href="./login.html" class="logo"><img src="./assets/images/login/Revalgo White Background.png" alt="Revalgo White"></a>
             <div class="search-wrapper">
-                <input type="text" id="search-quote" class="search-quote" name="search-quote" placeholder="PO#, Order#, Customer# / Name">
+                <input type="text" id="search-quote" class="search-quote-input" name="search-quote" placeholder="PO#, Order#, Customer# / Name">
                 <button class="search-quote-btn" ><img src="./assets/images/dashboard/Search icon.png" alt="Search icon"></button>
                 <div class="global-dropdown">
                     <ul>
@@ -57,7 +57,6 @@
             <div class="dashboard-header-wrapper">
                 <div class="header-container">
                     <h2 class="text-uppercase">Dashboard</h2>
-
                     <div class="dropdown-wrapper">
                         <div class="date-filter">
                             <div class="date-dropdown">
@@ -206,7 +205,7 @@
                                     </div>
                                 </div>
                                 <button type="button" class="export-btn"><img src="./assets/images/dashboard/Export_icon.png" alt="Export icon"></button>
-                                <button type="button" class="expand-btn" data-type="table" data-target=".quotes-container"><img src="./assets/images/dashboard/Expand_icon.png" alt="Expand icon"></button>
+                                <button type="button" class="expand-btn" data-type="table" data-target=".quotes-container" data-modal="quotes"><img src="./assets/images/dashboard/Expand_icon.png" alt="Expand icon"></button>
                             </div>
                         </div>
                         <table class="quote-table">
@@ -335,7 +334,7 @@
                             <div class="trend-chart-container">
                                 <div class="chart-header">
                                     <div class="export-btn-container">
-                                        <button type="button" class="expand-btn" data-type="chart" data-target=".trend-chart-wrapper" ><img src="./assets/images/dashboard/Expand_icon.png" alt="expand icon"></button>
+                                        <button type="button" class="expand-btn" data-type="chart" data-target=".trend-chart-wrapper" data-modal="trend" ><img src="./assets/images/dashboard/Expand_icon.png" alt="expand icon"></button>
                                     </div>
                                     
                                     <div class="header-content">
@@ -359,7 +358,7 @@
                             <div class="accuracy-chart-container">
                                 <div class="chart-header">
                                     <div class="export-btn-container">
-                                        <button type="button" class="expand-btn" data-type="chart" data-target=".accuracy-chart-wrapper"><img src="./assets/images/dashboard/Expand_icon.png" alt="expand icon"></button>
+                                        <button type="button" class="expand-btn" data-type="chart" data-target=".accuracy-chart-wrapper" data-modal="accuracy"><img src="./assets/images/dashboard/Expand_icon.png" alt="expand icon"></button>
                                     </div>
                                 </div>
                                 <div class="accuracy-chart" id="accuracy-chart">
@@ -374,7 +373,7 @@
                                 <img src="./assets/images/dashboard/down-arrow-blue.png" alt="down-arrow">
                                 Top Transactions
                             </button>
-                            <button class="view-more-btn expand-btn" class="expand-btn" data-type="table" data-target=".transaction-wrapper">
+                            <button class="view-more-btn expand-btn" class="expand-btn" data-type="table" data-target=".transaction-wrapper" data-modal="transaction">
                                 View More
                             </button>
                         </div>
@@ -427,7 +426,9 @@
 
                         <div class="back-btn-container">
                             <button type="button" class="back-create-btn"><img src="./assets/images/global/arrow-left-blue-1.png" class="back-arrow-img" alt="left arrow">Create Quote <img src="./assets/images/global/delete_icon.png" class="delete-img" alt="delete icon"></button>
+                            <button type="button" class="del-quote-btn"><img src="./assets/images/global/delete_icon.png" alt="delete"></button>
                             <div class="quote-status"><span class="status approved">Approved</span> <img src="./assets/images/global/arrow-left-blue-1.png" alt="left arrow"></div>
+                            <button class="undo-quote-btn"><img src="./assets/images/dashboard/Undo_icon.png" alt="undo">Undo</button>
                         </div>
                         <div class="quote-id-wrapper">
                             <div class="old id-container">
@@ -704,6 +705,19 @@
                                                 <button class="download-btn"><img src="./assets/images/dashboard/Download_icon.png" alt="download"></button>
                                             </div>
                                         </div>
+                                        <div class="img-info-container">
+                                            <div class="img-header">
+                                                <p class="file-name">Img23</p>
+                                                <div class="btn-container">
+                                                    <button type="button" class="info-btn"><img src="./assets/images/orderpad/info_icon.png" alt="info"> <span></span></button>
+                                                    <button type="button" class="rotate-btn"><img src="./assets/images/orderpad/Rotate icon.png" alt="rotate"></button>
+                                                    <button type="button" class="img-close-btn"><img src="./assets/images/orderpad/image_close icon.png" alt="image close"></button>
+                                                </div>
+                                            </div>
+                                            <div class="sample-img-wrapper">
+                                                <img src="./assets/images/orderpad/Email pad_aatchement img File.png" alt="attachment image">
+                                            </div>
+                                        </div>
                                         <div class="text-container">
                                             <p class="title">Hi</p>
                                             <div class="list-wrapper">
@@ -743,7 +757,10 @@
                                     <div>Margin</div>
                                     <div>Selling Price</div>
                                     <div>Total Cost</div>
-                                    <div><button class="delete-all-btn"><img src="./assets/images/global/delete_icon.png" alt="delete"></button></div>
+                                    <div>
+                                        <button type="button" class="delete-all-btn active"><img src="./assets/images/global/delete_icon.png" alt="delete"></button>
+                                        <button type="button" class="undo-all-btn"><img src="./assets/images/dashboard/Undo_icon.png" alt="undo"></button>
+                                    </div>
                                 </div>
                                     <div class="body-wrapper">
                                         <div class="table-row">
@@ -767,7 +784,10 @@
                                             <p><span><input type="text" value="10" name="margin">%</span></p>
                                             <p>$20</p>
                                             <p>$2,000.00</p>
-                                            <p><button class="delete-all-btn"><img src="./assets/images/global/delete_icon.png" alt="delete"></button></p>
+                                            <p>
+                                                <button type="button" class="delete-line-btn active"><img src="./assets/images/global/delete_icon.png" alt="delete"></button>
+                                                <button type="button" class="undo-line-btn"> <img src="./assets/images/dashboard/Undo_icon.png" alt="undo"></button>
+                                            </p>
                                             <button class="add-note-btn"><img src="./assets/images/create_quote/add note_grey bg.png" class="img-grey active" alt="add note grey"> <img src="./assets/images/create_quote/add note icon_blue.png" class="img-blue " alt="add note blue "></button>
                                         </div>
 
@@ -783,10 +803,7 @@
                                                     <span class="detail">tydlx4ypi6</span> -
                                                     <span class="tag-text"><img src="./assets/images/global/tag.png" alt="tag">Kanebridge</span>
                                                 </span>
-                                                <span class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus hic facere, veniam in distinctio id tempora voluptatum? Facilis eius aut numquam. Alias perferendis sunt veniam reprehenderit officiis quas delectus.</span>
-                                                
-                                                
-
+                                                <span class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus hic facere, veniam in distinctio id tempora voluptatum? Facilis eius aut numquam. Alias perferendis sunt veniam reprehenderit officiis quas delectus.</span> 
                                             </p>
                                             <p>33</p>
                                             <p>200</p>
@@ -794,8 +811,13 @@
                                             <p><span><input type="text" value="10" name="margin">%</span></p>
                                             <p>$20</p>
                                             <p>$2,000.00</p>
-                                            <p><button class="delete-all-btn"><img src="./assets/images/global/delete_icon.png" alt="delete"></button></p>
+                                            <p>
+                                                <button type="button" class="delete-line-btn active"><img src="./assets/images/global/delete_icon.png" alt="delete"></button>
+                                                <button type="button" class="undo-line-btn"> <img src="./assets/images/dashboard/Undo_icon.png" alt="undo"></button>
+                                            </p>
+                                            
                                             <button class="add-note-btn"><img src="./assets/images/create_quote/add note_grey bg.png" class="img-grey active" alt="add note grey"> <img src="./assets/images/create_quote/add note icon_blue.png" class="img-blue " alt="add note blue "></button>
+                                        
                                         </div>
 
                                         <div class="table-row">
@@ -817,14 +839,57 @@
                                             <p><span><input type="text" value="10" name="margin">%</span></p>
                                             <p>$20</p>
                                             <p>$2,000.00</p>
-                                            <p><button class="delete-all-btn"><img src="./assets/images/global/delete_icon.png" alt="delete"></button></p>
+                                            <p>
+                                                <button  type="button" class="delete-line-btn active"><img src="./assets/images/global/delete_icon.png" alt="delete"></button>
+                                                <button type="button" class="undo-line-btn"> <img src="./assets/images/dashboard/Undo_icon.png" alt="undo"></button>
+                                            </p>
                                             <button class="add-note-btn"><img src="./assets/images/create_quote/add note_grey bg.png" class="img-grey active" alt="add note grey"> <img src="./assets/images/create_quote/add note icon_blue.png" class="img-blue " alt="add note blue "></button>
                                         </div>
                                         <div class="suggest-product-popup">
                                             <div class="product-header">
                                                 <input type="text" class="search-suggest-product" placeholder="Search">
-                                                <button class="export-btn"><img src="./assets/images/dashboard/Export_icon.png" alt="Export_icon"></button>
-                                                 <button class="close-suggest-popup-btn"><img src="./assets/images/global/close-modal.webp" alt="close"></button>
+                                                <button class="expand-btn" data-target=".suggest-product-popup" data-type="table" data-modal="suggest-popup" ><img src="./assets/images/global/email_Expand_icon.png"  alt="expand icon"></button>
+                                                <button class="close-suggest-popup-btn"><img src="./assets/images/global/close-modal.webp" alt="close"></button>
+                                            </div>
+                                            <div class="product-body">
+                                                <h3 class="title">Suggested Product</h3>
+                                                <div class="products">
+                                                    <div class="product">
+                                                        <div class="detail-container">
+                                                            
+                                                            <p class="product-id"> <span class="label id">ID14321</span> <span class="value"> - $33.03</span></p>
+                                                            <p class="avil-qty"> <span class="label">Avaliable Qty</span> <span class="value"> 372</span></p>
+                                                            <p class="score"> <span class="label">Score</span> <span class="value"> 90%</span></p>
+                                                        </div>
+                                                        <p class="desc">o-z/ gedney clip on 670 170 conduit body cover, 2 in hub, for use with for conduit body cover.</p>
+                                                    </div>
+                                                    <div class="product">
+                                                        <div class="detail-container">
+                                                            
+                                                            <p class="product-id"> <span class="label id">ID14321</span> <span class="value"> - $33.03</span></p>
+                                                            <p class="avil-qty"> <span class="label">Avaliable Qty</span> <span class="value"> 372</span></p>
+                                                            <p class="score"> <span class="label">Score</span> <span class="value"> 90%</span></p>
+                                                        </div>
+                                                        <p class="desc">o-z/ gedney clip on 670 170 conduit body cover, 2 in hub, for use with for conduit body cover.</p>
+                                                    </div>
+                                                    <div class="product">
+                                                        <div class="detail-container">
+                                                            <p class="product-id"> <span class="label id">ID14321</span> <span class="value"> - $33.03</span></p>
+                                                            <p class="avil-qty"> <span class="label">Avaliable Qty</span> <span class="value"> 372</span></p>
+                                                            <p class="score"> <span class="label">Score</span> <span class="value"> 90%</span></p>
+                                                        </div>
+                                                        <p class="desc">o-z/ gedney clip on 670 170 conduit body cover, 2 in hub, for use with for conduit body cover.</p>
+                                                    </div>
+                                                    <div class="product">
+                                                        <div class="detail-container">
+                                                            
+                                                            <p class="product-id"> <span class="label id">ID14321</span> <span class="value"> - $33.03</span></p>
+                                                            <p class="avil-qty"> <span class="label">Avaliable Qty</span> <span class="value"> 372</span></p>
+                                                            <p class="score"> <span class="label">Score</span> <span class="value"> 90%</span></p>
+                                                        </div>
+                                                        <p class="desc">o-z/ gedney clip on 670 170 conduit body cover, 2 in hub, for use with for conduit body cover.</p>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -834,15 +899,13 @@
                                         </div>
 
                                     </div>
-                        
-                                
                             </div>
                         </div>
                     </div>  
                 </div>
             </div>
         </main>
-        <div class="expand-overlay">
+        <div class="expand-overlay active">
             <div class="expand-modal">
                 <button class="close-modal-btn"><img src="./assets/images/global/close-modal.webp" alt="close"></button>
                 <div class="expand-modal-content">
@@ -885,11 +948,192 @@
                         </div>
                 </div>
             </div>
-            <div class="delete-modal">
+            <div class="undo-modal">
                 <p class="text">Are you sure you want to undo this  <br> Quote ID #7DBE8BFED</p>
                 <div class="btn-container">
                     <button type="button" class="yes-btn">Yes</button>
                      <button type="button" class="no-btn">No</button>
+                </div>
+            </div>
+            <div class="add-note-popup popup ">
+                <div class="header">
+                    <h3 class="title">Add Note</h3>
+                    <button type="button" class="close-popup-btn"><img src="./assets/images/global/close-modal.webp" alt="close"></button>
+                </div>
+                <textarea name="add-quote-note" placeholder="Notes..."></textarea>
+                <div class="btn-container">
+                    <button type="button" class="add-btn">Add</button>
+                     <button type="button" class="cancel-btn">Cancel</button>
+                </div>
+            </div>
+            <div class="approve-quote-popup popup ">
+                <div class="header">
+                    <h3 class="title">Approve Quote</h3>
+                    <button type="button" class="close-popup-btn"><img src="./assets/images/global/close-modal.webp" alt="close"></button>
+                </div>
+                <div class="approve-content">
+                    <p class="quote-id">#rev1086</p>
+                    <table class="approve-table">
+                        <thead>
+                            <tr>
+                                <th>Total Lines</th>
+                                <th>Add Items</th>
+                                <th>Total Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2</td>
+                                <td>10</td>
+                                <td>$608.8</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="header">
+                    <h3 class="title">Add Header Note</h3>
+                </div>
+                <textarea name="add-quote-note" placeholder="Add Notes here"></textarea>
+                <div class="btn-container">
+                    <button type="button" class="approve-btn">Approve</button>
+                     <button type="button" class="cancel-btn">Cancel</button>
+                </div>
+            </div>
+            <div class="add-note-popup add-quote-note-popup popup">
+                <div class="header">
+                    <h3 class="title">Add Quote Note</h3>
+                    <button type="button" class="close-popup-btn"><img src="./assets/images/global/close-modal.webp" alt="close"></button>
+                </div>
+                <textarea name="add-quote-note">Alternate: Ricky 516-353-9794, Bill To Job: 2707, 
+Booked Dock Time Delivery Needed: 7- 7:30 AM Deleivery Window, Delivery Date: 3/30/2017
+Delivery Time: By 7 am, oRDER nUMBER : 007484
+                </textarea>
+                <div class="btn-container">
+                    <button type="button" class="add-btn">Add</button>
+                     <button type="button" class="cancel-btn">Cancel</button>
+                </div>
+            </div>
+            <div class="del-popup-1 popup">
+                <p class="del-title">Delete</p>
+                <p class="text">Do you want to Delete item 2?</p>
+                <div class="btn-container">
+                    <button type="button" class="yes-btn">Yes</button>
+                    <button type="button" class="no-btn">No</button>
+                </div>
+            </div>
+            <div class="del-popup-2 popup">
+                <p class="del-title">Delete</p>
+                <p class="text">Are you sure you want to delete <br> this order <span class="id"> #7DBE8BFED ?</span> </p>
+                <textarea name="delete-quote"></textarea>
+                <div class="btn-container">
+                    <button type="button" class="yes-btn">Yes</button>
+                    <button type="button" class="no-btn">No</button>
+                </div>
+            </div>
+            <div class="img-popup active">
+                <div class="header">
+                    <div class="text-container">
+                        <h3 class="title">Additonal Information <span>(6/12)</span></h3>
+                        <p>File Name: <span> Img23.jpg</span></p>
+                    </div>
+                    <button type="button" class="close-popup-btn"><img src="./assets/images/global/close-modal.webp" alt="close"></button>
+                </div>
+                <div class="content-container">
+                    <div class="select-all-wrapper">
+                        <input type="checkbox" name="select-all" id="select-all">
+                        <label for="select-all">Select All</label>
+                    </div>
+
+                    <div class="input-wrapper">
+                        <div class="input-container">
+                            <input type="checkbox" name="select-all" id="select-all" checked>
+                            <div class="text-wrapper">
+                                <p class="label">Alternate</p>
+                                <p class="value">Ricky 516-353-9794</p>
+                            </div>
+                        </div>
+                         <div class="input-container">
+                            <input type="checkbox" name="select" checked>
+                            <div class="text-wrapper">
+                                <p class="label">Bill To Job</p>
+                                <p class="value">2707</p>
+                            </div>
+                        </div>
+                         <div class="input-container">
+                            <input type="checkbox" name="select" checked>
+                            <div class="text-wrapper">
+                                <p class="label">Booked Dock Time Delivery Needed</p>
+                                <p class="value text-uppercase">7 - 7.30 AM Delivery Window</p>
+                            </div>
+                        </div>
+                         <div class="input-container">
+                            <input type="checkbox" name="select">
+                            <div class="text-wrapper">
+                                <p class="label">Contact Info</p>
+                                <p class="value text-uppercase">Bob Driscoll (718) 825-619</p>
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <input type="checkbox" name="select" checked>
+                            <div class="text-wrapper">
+                                <p class="label">Delivery Date</p>
+                                <p class="value text-uppercase">3/30/2027</p>
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <input type="checkbox" name="select" checked>
+                            <div class="text-wrapper">
+                                <p class="label">Delivery Time</p>
+                                <p class="value text-uppercase">By 7 AM</p>
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <input type="checkbox" name="select">
+                            <div class="text-wrapper">
+                                <p class="label">Ship Via</p>
+                                <p class="value text-uppercase">-</p>
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <input type="checkbox" name="select">
+                            <div class="text-wrapper">
+                                <p class="label">Order Date</p>
+                                <p class="value text-uppercase">3/30/2027</p>
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <input type="checkbox" name="select" checked>
+                            <div class="text-wrapper">
+                                <p class="label">Order Number</p>
+                                <p class="value text-uppercase">007484</p>
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <input type="checkbox" name="select" >
+                            <div class="text-wrapper">
+                                <p class="label">Deliver To</p>
+                                <p class="value">2702 - Brighstar, 650 5th Ave, FI 29 Brighstar Capital 650 5th Ave., 29th FI, NewYork NY 10019</p>
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <input type="checkbox" name="select" >
+                            <div class="text-wrapper">
+                                <p class="label">Delivery Date</p>
+                                <p class="value ">Monarch Electric Company Lock Box #8387 PO Box 8500 Philadelpia PA</p>
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <input type="checkbox" name="select">
+                            <div class="text-wrapper">
+                                <p class="label">Work For</p>
+                                <p class="value">Structure Tone, Inc. 2707 Brighstar, 650 5th Ave, Fi 29 Brighstar Capital NewYork NY 10019</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-container">
+                    <button type="button" class="update-btn">Update</button>
+                    <button type="button" class="cancel-btn">Cancel</button>
                 </div>
             </div>
         </div>
