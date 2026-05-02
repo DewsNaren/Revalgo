@@ -4,6 +4,8 @@
 //dashboard
 @use "./pages/dashboard" as *;
 
+//quote view
+@use "./pages/recent-quote" as *;
 //create quote
 @use "./pages/create-quote" as *;
 

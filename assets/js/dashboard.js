@@ -703,12 +703,9 @@ const modalBox = document.querySelector(".expand-modal");
 const modalContent = document.querySelector(".expand-modal-content");
 const modalTrendChartWrapper=modalContent.querySelector(".trend-chart-wrapper");
 const modalaccurChartWrapper=modalContent.querySelector(".accuracy-chart-wrapper");
-const displayTable=document.querySelector(".display-table")
-const disTableBodyWrapper=displayTable.querySelector(".body-wrapper")
 const expandBtns=document.querySelectorAll(".expand-btn");
 const closeBtn = document.querySelector(".close-modal-btn");
-const closePopupBtns= document.querySelectorAll(".close-popup-btn");
-const popups=document.querySelectorAll("popup");
+
 expandBtns.forEach(btn => {
   btn.addEventListener("click", () => {
     const type = btn.dataset.type;
@@ -716,8 +713,6 @@ expandBtns.forEach(btn => {
     const modalData=btn.dataset.modal
     const source = document.querySelector(target);
     if (!source) return;
-    // overlay.classList.add("active");
-    // modalBox.classList.add("active");
     modalBox.className = "expand-modal " + type +" "+ modalData +" "+ "active";
 
     if (type === "table") {
@@ -782,12 +777,6 @@ function closeModal(){
   }
 
 }
-closePopupBtns.forEach(btn => btn.addEventListener("click", () => {
-  popups.forEach(pop=>pop.classList.remove("active"));
-    overlay.classList.remove("active");
-
-})
-)
 // close button
 closeBtn.addEventListener("click", () => {
   closeModal();
