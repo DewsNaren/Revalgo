@@ -8,18 +8,23 @@ function setQuoteWrapperHeight(){
   overlay.style.height=`calc(100vh - ${headerHeight}px)`;
 }
 
+setQuoteWrapperHeight();
+
+window.addEventListener('resize',setQuoteWrapperHeight)
 
 //popup and expand open close function
 const modalBox = document.querySelector(".expand-modal");
+const modalContent=document.querySelector(".expand-modal-content");
 const closePopupBtns= document.querySelectorAll(".close-popup-btn");
 const popups=document.querySelectorAll("popup");
-const displayTable=document.querySelector(".display-table")
-const disTableBodyWrapper=displayTable.querySelector(".body-wrapper")
+const displayTable=document.querySelector(".display-table");
+const disTableBodyWrapper=displayTable.querySelector(".body-wrapper");
 const expandBtns=document.querySelectorAll(".expand-btn");
 const closeBtn = document.querySelector(".close-modal-btn");
 
 expandBtns.forEach(btn => {
   btn.addEventListener("click", () => {
+    const modalContent=document.querySelector(".expand-modal-content");
     const type = btn.dataset.type;
     const target = btn.dataset.target;
     const modalData=btn.dataset.modal
@@ -70,3 +75,23 @@ overlay.addEventListener("click", (e) => {
     closeModal();
   }
 });
+
+
+//
+const thumbImgInput =document.querySelector(".thumbnail-img-input");
+const thumbImg=document.querySelector(".thumbnail-img");
+thumbImgInput.addEventListener('change',(e)=>{
+  const file = e.target.files[0];
+  thumbImg.src=`./assets/images/orderpad/${file.name}`
+  console.log(file)
+})
+
+
+const editAcronymInput = document.querySelector(".edit-acronym-input");
+
+function setEditInputWidth() {
+  editAcronymInput.style.width = editAcronymInput.value.length  + "ch";
+}
+
+setEditInputWidth()
+editAcronymInput.addEventListener("input", setEditInputWidth);

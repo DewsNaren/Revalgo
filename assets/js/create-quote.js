@@ -12,7 +12,6 @@ setcreateQuoteWrapperHeight();
 window.addEventListener('resize',setcreateQuoteWrapperHeight)
 
 
-//datepicker
 
 //Datepicker
 const formPopup=document.querySelector(".form-popup");

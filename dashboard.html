@@ -27,7 +27,7 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="#" class="new-quote-btn">New Quote</a></li>
+                    <li><a href="./create-quote.html" class="new-quote-btn">New Quote</a></li>
                     <li><a href="#"><img src="./assets/images/global/home.png" alt="home"></a></li>
                     <li><a href="#"><img src="./assets/images/global/bell.png" alt="bell"></a></li>
                     <li><a href="#"><img src="./assets/images/global/settings.png" alt="settings"></a></li>
@@ -43,10 +43,10 @@
                             alt="down-arrow"
                         />
                         </button>
-                            <div class="profile-menu">
-                            <a href="#" class="login-btn">LogIn</a>
-                            <a href="#" class="logout-btn">Logout</a>
+                        <div class="profile-menu">
+                            <a href="./login.html" class="logout-btn"> <img src="./assets/images/global/logout.png" alt="logout">Logout</a>
                         </div>
+                        
                     </li>
                 </ul>
 
@@ -59,7 +59,8 @@
                     <div class="dropdown-wrapper">
                         <div class="date-filter">
                             <div class="date-dropdown">
-                                <div class="date-text">Last 6 Months <img src="./assets/images/dashboard/down-arrow-blue.png" alt="down-arrow-blue"></div>
+                                <div class="date-text"> Last 6 Months <img src="./assets/images/dashboard/down-arrow-blue.png" alt="down-arrow-blue">  </div>
+                                <div class="custom-text"><div class="start-text">14/04/2026</div> - <div class="end-text">16/04/2026</div></div>
                                 <ul class="dropdown-menu">
                                 <li data-value="today">Today</li>
                                 <li data-value="yesterday">Yesterday</li>
@@ -73,7 +74,7 @@
                             <!-- Calendar -->
                             <div class="date-picker">
                                 <div class="input-wrapper">
-                                    <span  class="start-date start">14/04/2026</span>-
+                                    <span  class="start-date start active ">14/04/2026</span>-
                                     <span  class="end-date end">16/04/2026</span>
                                 </div>
                                 
@@ -85,7 +86,17 @@
                                             </button>
                                             <div class="year-wrapper">
                                                 <span class="month-name"></span>
-                                                <span class="year"></span>
+                                                <div class="year-select">
+                                                    <button type="button" class="year-toggle">
+                                                        2025
+                                                        <img
+                                                            class="down-arrow"
+                                                            src="./assets/images/dashboard/down-arrow-blue.png"
+                                                            alt="down arrow"
+                                                        />
+                                                    </button>
+                                                <div class="year-dropdown"></div>
+                                            </div>
                                             </div>
                                             <button type="button" class="arrow next-month">
                                                 <img src="./assets/images/global/right-arrow.png" alt="right arrow" />
@@ -94,13 +105,6 @@
                                     </div>
                                     <div class="content">
                                         <div class="days">
-                                            <span class="day">S</span>
-                                            <span class="day">M</span>
-                                            <span class="day">T</span>
-                                            <span class="day">W</span>
-                                            <span class="day">T</span>
-                                            <span class="day">F</span>
-                                            <span class="day">S</span>
                                         </div>
                                         <div class="dates">
                                             <button class="date faded" type="button">30</button>
@@ -126,11 +130,11 @@
                     
                             <ul class="widget-dropdown-menu">
                                 <p>Select Widget</p>
-                                <li><input type="checkbox"> select All</li>
-                                <li><input type="checkbox"> Recent Orders</li>
-                                <li><input type="checkbox"> Trend</li>
-                                <li><input type="checkbox"> Accuracy</li>
-                                <li><input type="checkbox"> Top Transactions</li>
+                                <li><input  type="checkbox" id="select-all"><label for="select-all">Select All</label></li>
+                                <li><input type="checkbox" id="recent"> <label for="recent">Recent Orders</label> </li>
+                                <li><input type="checkbox" id="trend"> <label for="trend">Trend</label></li>
+                                <li><input type="checkbox" id="accuracy">  <label for="accuracy">Accuracy</label></li>
+                                <li><input type="checkbox" id="transaction">  <label for="transaction">Top Transactions</label></li>
                             </ul>
 
                         </div>
@@ -476,6 +480,7 @@
         <script src="https://code.highcharts.com/highcharts-more.js"></script>
         <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
         <script src="./assets/js/dashboard.js"></script>
+        <script src="./assets/js/header.js"></script>
     </body>
 </html>
         

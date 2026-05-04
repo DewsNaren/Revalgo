@@ -33,19 +33,37 @@ body{
         gap:clamp(20px, $fs-35px, $fs-35px);
 
         .date-filter {
-            width: clamp(110px, $fs-220px, $fs-220px);
+            // width: clamp(110px, $fs-220px, $fs-220px);
             position: relative;
+            // display: flex;
             .date-dropdown {
+                display: flex;
             .date-text {
+                // width: clamp(110px, $fs-220px, $fs-220px);
                 color: $blue-87;
                 display: flex;
+                gap: clamp(5px, $fs-10px, $fs-10px);
                 align-items: center;
                 justify-content: space-between;
                 padding-bottom: 5px;
                 border-bottom: 1px solid $blue-87;
                 font-size: clamp(11px, $fs-15px, $fs-15px);
+                
                 img {
-                width: clamp(12px, $fs-22px, $fs-22px);
+                    width: clamp(12px, $fs-22px, $fs-22px);
+                    margin-left: 5px;
+                }
+            }
+            .custom-text{
+                display: none;
+                gap:5px;
+                border-bottom: 1px solid $blue-87;
+                font-size: clamp(11px, $fs-15px, $fs-15px);
+                color: $grey-5c;
+                font-weight: normal;
+                padding-left: clamp(7px, $fs-15px, $fs-15px);
+                &.active{
+                    display: flex;
                 }
             }
             }
@@ -77,6 +95,7 @@ body{
                     display: block;
                 }
             }
+        
 
             .date-picker {
                 position: absolute;
@@ -87,7 +106,8 @@ body{
                 border-radius: clamp(5px, $fs-10px, $fs-10px);
                 background-color: $white;
                 padding:clamp(7px, $fs-14px, $fs-14px) clamp(11px, $fs-22px, $fs-22px);
-                width: 152%;
+                width: 110%;
+                z-index: 2;
                 .input-wrapper{
                     display: flex;
                     justify-content: center;
@@ -127,10 +147,58 @@ body{
                                 display: flex;
                                 align-items: center;
                                 font-size: clamp(14px, $fs-16px, $fs-16px);
-                                gap: clamp(17px, $fs-38px, $fs-38px);
-                                .month-name,.year{
-                                    color: $grey-5c;
-                                    font-weight: 500;
+                                gap: clamp(5px, $fs-10px, $fs-10px);
+                                .month-name{
+                                    // color: $grey-5c;
+                                    color: $black;
+                                    // font-weight: 500;
+                                    // fw
+                                }
+                                .year-select{
+                                    .year-toggle{
+                                        border: none;
+                                        background-color: transparent;
+                                        color: $black;
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                        gap: 5px;
+                                    }
+                                    .down-arrow{
+                                        width: clamp(11px, $fs-22px, $fs-22px);
+                                    }
+                                    .year-dropdown {
+                                        position: absolute;
+                                        top: 100%;
+                                        left: 0;
+                                        width: 100%;
+                                        max-height: 278px;      
+                                        overflow-y: auto;       
+                                        // background: #dbdbdb;
+                                        z-index: 20;
+                                        display: none;
+                                        margin-top: 20px;
+                                        background-color: $white;
+                                        &.active {
+                                            display: block;
+                                        }
+                                        .year-item {
+                                            padding: clamp(4px, $fs-8px, $fs-8px);
+                                            cursor: pointer;
+                                            border-bottom: 1px solid $grey-a4;
+                                            text-align: center;
+                                            background-color: $white;
+                                            color: $black-80;
+                                            font-size: clamp(3px, $fs-14px, $fs-14px);
+                                            &:hover,&.active {
+                                                background-color: $grey-61;
+                                                color: $white;
+                                                font-weight: 500;
+                                            }
+                                        }
+
+                                                    
+                                    }
                                 }
 
                             }
@@ -213,12 +281,12 @@ body{
                             }
                                     
                         }
-                        
-                                
+                              
                         &.not-active{
                             visibility: hidden;
                         }
                     }
+
                        
                 }
 
@@ -236,6 +304,9 @@ body{
             padding: 5px 7px;
             border: 1px solid $blue-87;
             font-size: clamp(11px, $fs-15px, $fs-15px);
+            .widget-text{
+                cursor: pointer;
+            }
             .widget-dropdown-menu{
                 display: none;
                 position: absolute;
@@ -275,6 +346,7 @@ body{
                         border-radius: 5px;
                         position: relative;
                         accent-color: $blue-87;
+                        flex: 0 0 clamp(10px, $fs-18px, $fs-18px);
                         &:checked {
                             background-color: $blue-87;
 
@@ -994,6 +1066,9 @@ body{
                 }
             
 
+            }
+            &.not-active{
+                display: none;
             }
             
 
@@ -1798,6 +1873,9 @@ body{
     .dashboard-wrapper{
         .dashboard-header-wrapper {
             margin-bottom: clamp(20px, $fs-40px, $fs-40px);
+             .header-container .dropdown-wrapper .widget-btn .widget-dropdown-menu li input {
+                border-radius: 4px;
+            }
              .dashboard-body-wrapper{
                 .quotes-container{
                 .table-wrapper{
@@ -1833,7 +1911,10 @@ body{
     .dashboard-wrapper{
     padding: clamp(12px, $fs-25px, $fs-25px) clamp(12px, $fs-20px, $fs-20px);
         .dashboard-header-wrapper {
-            margin-bottom: clamp(15px, $fs-30px, $fs-30px)
+            margin-bottom: clamp(15px, $fs-30px, $fs-30px);
+            .header-container .dropdown-wrapper .widget-btn .widget-dropdown-menu li input {
+                border-radius: 3px;
+            }
         }
         .dashboard-body-wrapper{
             .quotes-container{
@@ -1898,7 +1979,11 @@ body{
     .dashboard-wrapper{
     padding: clamp(12px, $fs-25px, $fs-25px) clamp(12px, $fs-20px, $fs-20px);
         .dashboard-header-wrapper {
-            margin-bottom: clamp(15px, $fs-30px, $fs-30px)
+            margin-bottom: clamp(15px, $fs-30px, $fs-30px);
+
+            .header-container .dropdown-wrapper .widget-btn .widget-dropdown-menu li input {
+                border-radius: 2px;
+            }
         }
         .dashboard-body-wrapper{
             .quotes-container{

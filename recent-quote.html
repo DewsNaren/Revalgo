@@ -28,7 +28,7 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="#" class="new-quote-btn">New Quote</a></li>
+                    <li><a href="./create-quote.html" class="new-quote-btn">New Quote</a></li>
                     <li><a href="#"><img src="./assets/images/global/home.png" alt="home"></a></li>
                     <li><a href="#"><img src="./assets/images/global/bell.png" alt="bell"></a></li>
                     <li><a href="#"><img src="./assets/images/global/settings.png" alt="settings"></a></li>
@@ -44,9 +44,8 @@
                             alt="down-arrow"
                         />
                         </button>
-                            <div class="profile-menu">
-                            <a href="#" class="login-btn">LogIn</a>
-                            <a href="#" class="logout-btn">Logout</a>
+                        <div class="profile-menu">
+                            <a href="./login.html" class="logout-btn"> <img src="./assets/images/global/logout.png" alt="logout">Logout</a>
                         </div>
                     </li>
                 </ul>
@@ -54,7 +53,7 @@
             </nav>
         </header>
         <main class="quote-wrapper">
-            <div class="recent-quote-wrapper active">
+            <div class="recent-quote-wrapper">
                 <div class="top-btn-wrapper">
                     <div class="back-btn-wrapper">
                         <div class="back-btn-container">
@@ -356,7 +355,14 @@
                                             <div class="list-wrapper">
                                                 <p class="list-title">Please find the order below:</p>
                                                 <ul class="list">
-                                                    <li>Inch pvc conduit</li>
+                                                    <li>Inch pvc <span>conduit 
+                                                        <span class="acronym-dropdown">
+                                                            <ul>
+                                                                <li>Add Item</li>
+                                                                <li>Add Acronym</li>
+                                                            </ul>
+                                                        </span></span>
+                                                    </li>
                                                     <li>Inch Plastic Plain conduit</li>
                                                     <li>1-1/2 aluminium conduit</li>
                                                     <li>2-1/2 aluminium conduit</li>
@@ -426,7 +432,8 @@
                                         <div class="sourcing-dropdown">
                                             <div class="desc-wrapper">
                                                 <div class="img-wrapper">
-                                                    <img src="./assets/images/orderpad/default thumbnail image.png" alt="default">
+                                                    <label for="thumbnail-img"><img src="./assets/images/orderpad/default thumbnail image.png" class="thumbnail-img" alt="default"></label>
+                                                    <input type="file" id="thumbnail-img" class="thumbnail-img-input" hidden accept="image/*">
                                                 </div>
 
                                                 <div class="desc-container">
@@ -671,13 +678,6 @@
                 <div class="expand-modal-content">
                 </div>
             </div>
-            <div class="undo-modal">
-                <p class="text">Are you sure you want to undo this  <br> Quote ID #7DBE8BFED</p>
-                <div class="btn-container">
-                    <button type="button" class="yes-btn">Yes</button>
-                     <button type="button" class="no-btn">No</button>
-                </div>
-            </div>
             <div class="add-note-popup popup ">
                 <div class="header">
                     <h3 class="title">Add Note</h3>
@@ -686,7 +686,7 @@
                 <textarea name="add-quote-note" placeholder="Notes..."></textarea>
                 <div class="btn-container">
                     <button type="button" class="add-btn">Add</button>
-                     <button type="button" class="cancel-btn">Cancel</button>
+                    <button type="button" class="cancel-btn">Cancel</button>
                 </div>
             </div>
             <div class="approve-quote-popup popup ">
@@ -866,9 +866,35 @@ Delivery Time: By 7 am, oRDER nUMBER : 007484
                     <button type="button" class="no-btn">No</button>
                 </div>
             </div>
+            <div class="add-acronym-popup popup">
+                <div class="header">
+                    <h3 class="title">Add Acronym</h3>
+                    <button type="button" class="close-popup-btn"><img src="./assets/images/global/close-modal.webp" alt="close"></button>
+                </div>
+                <div class="body">
+
+                    <div class="edit-acronym">
+                        <input type="text" class="edit-acronym-input"  name="edit-acronym" readonly value="conduit">
+                        <button class="edit-btn"> <img src="./assets/images/global/Edit icon.png" alt="Edit icon"></button>
+                    </div>
+                    <input type="text" class="add-acronym-input" name="add-acronym"   placeholder="Add Acronym Text">
+                    <div class="acronym-chip-container">
+                        <span class="chip">Polyvinyl chloride<span class="close-chip"><img src="./assets/images/global/close-modal.webp" alt="close"></span></span>
+                        <span class="chip">Charger <span class="close-chip"><img src="./assets/images/global/close-modal.webp" alt="close"></span></span>
+                    </div>
+
+                </div>
+                <div class="btn-container">
+                    <button type="button" class="add-btn">Add</button>
+                    <button type="button" class="cancel-btn">Cancel</button>
+                </div>
+
+            </div>
         </div>
 
-        <script src="./assets/js/quote-view.js"></script>
+        <script src="./assets/js/recent-quote.js"></script>
+        <script src="./assets/js/header.js"></script>
+
     </body>
 </html>
         
