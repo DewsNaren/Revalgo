@@ -319,6 +319,7 @@ body{
                 right: 0;
                 list-style: none;
                 width: 151%;
+                z-index: 2;
 
                 p{
                     color: $black;
@@ -472,6 +473,7 @@ body{
                             justify-content: center;
                             background-color: #d5d5d5;
                             opacity: 0.8;
+                            line-height: 1;
                         }
                         &::after{
                             position: absolute;
@@ -520,9 +522,19 @@ body{
                             &::placeholder{
                                 font-size: clamp(10px, $fs-12px, $fs-12px);
                             }
+                            &:-webkit-autofill{
+                                -webkit-box-shadow: 0 0 0 1000px #fff inset;
+                                -webkit-text-fill-color: $black-80;
+                                transition: background-color 9999s ease-in-out 0s;
+                            }
                         }
-                        label img{
-                            width: clamp(12px, $fs-16px, $fs-16px);
+                        button{
+                            background-color: transparent;
+                            border: none;
+                            img{
+                                display: block;
+                                width: clamp(12px, $fs-16px, $fs-16px);
+                            }
                         }
 
                     }
@@ -534,6 +546,7 @@ body{
                             gap: clamp(6px, $fs-10px, $fs-10px);
                             font-size: clamp(10px, $fs-12px, $fs-12px);
                             color: $grey-61;
+                            cursor: pointer;
                             img{
                                 width: (15px, $fs-19px, $fs-19px);
                             }
@@ -546,7 +559,7 @@ body{
                             display: none;
                             list-style: none;
                             border: 1px solid #ccc;
-                            padding: clamp(10px, $fs-15px, $fs-15px) 0;
+                            padding: clamp(5px, $fs-10px, $fs-10px) 0;
                             margin: 0;
                             position: absolute;
                             background-color: $white;
@@ -560,13 +573,12 @@ body{
                                 margin-bottom: 0;
                                 display: flex;
                                 flex-direction: column;
-                                gap:clamp(6px,$fs-10px, $fs-10px);
 
                                 & li {
-                                    padding: clamp(5px, $fs-10px, $fs-10px) clamp(12px, $fs-40px, $fs-40px);
+                                    padding: clamp(5px, $fs-10px, $fs-10px) clamp(12px, $fs-30px, $fs-30px);
                                     font-size: clamp(11px, $fs-14px, $fs-14px);
                                     cursor: pointer;
-                                    &:hover {
+                                    &.active,&:hover {
                                         background: #f0f0f0;
                                     }
                                 }
@@ -633,6 +645,7 @@ body{
                                 font-size: clamp(10px, $fs-15px, $fs-15px);
                                 color: $black-90;
                                 font-weight: 500;
+                                cursor: pointer;
                             }
 
                             &:first-of-type{
@@ -688,7 +701,15 @@ body{
                  
                                 // width: $fs-16px;
                                 img{
+                                    display: block;
                                     width: $fs-16px;
+                                }
+                            }
+                            &:last-of-type{
+                                a{
+                                    display: inline-flex;
+                                    justify-content: center;
+                                    align-items: center;
                                 }
                             }
                             &:first-of-type{
@@ -711,6 +732,7 @@ body{
                             &:nth-of-type(6){
                                 width: clamp(70px,$fs-100px, $fs-100px);
                                 color: $red-33;
+                                text-transform: capitalize;
                                 &.approved{
                                     color:$green-28;
                                 }
@@ -730,15 +752,32 @@ body{
                             }
                             &:last-of-type{
                                width: clamp(40px,$fs-85px, $fs-85px);
-                               padding-left:  clamp(10px,$fs-15px, $fs-15px)
+                               padding-left:  clamp(10px,$fs-15px, $fs-15px);
+                                text-align: center;
+                                span{
+                                    width: 100%;
+                                    display: inline-block;
+                                    background-color: $blue-87;
+                                    color: rgba(255, 255, 255,0.9);
+                                    cursor: pointer;
+                                    border-radius: 5px;
+                                }
                             }
 
                         }
                         &:last-of-type td {
                             border-bottom: none;
                             padding-bottom: 0;
+                         
+
                         }
                         
+                    }
+                    .not-found{
+                        text-align: center;
+                        padding-top: clamp(10px, $fs-20px, $fs-20px) ;
+                        font-size: clamp(10px, $fs-15px, $fs-15px);
+                        margin-bottom: 0;
                     }
                     &::-webkit-scrollbar {
                         width: 4px;
@@ -752,6 +791,9 @@ body{
                 }
             }
 
+        }
+        &.not-active{
+            display: none;
         }
     }
     .chart-wrapper{
@@ -866,6 +908,18 @@ body{
 
                     }
                 }
+                &.not-active{
+                    display: none;
+                }
+                &.minimize{
+                    .trend-chart-container{
+                        align-items: center;
+                        .chart-header,.trend-chart{
+                            width: 33.399%;
+
+                        }
+                    }
+                }
 
             }
             .accuracy-chart-wrapper{
@@ -884,6 +938,7 @@ body{
                     padding:clamp(6px,$fs-12px, $fs-12px) clamp(10px,$fs-20px, $fs-20px) ;
                     display: flex;
                     flex-direction: column;
+                    
                     .chart-header{
                         .export-btn-container{
                             display: flex;
@@ -901,7 +956,7 @@ body{
                     .accuracy-chart{
                         flex: 1;
                         height: 100%;
-                        width: 100% !important;
+                        width: 100%;
                         position: relative;
                         .highcharts-background,
                         .highcharts-plot-background,
@@ -964,6 +1019,19 @@ body{
                    
 
                 }
+                &.not-active{
+                    display: none;
+                }
+                &.minimize{
+                    .accuracy-chart-container{
+                        align-items: center;
+                        .chart-header,.accuracy-chart{
+                            width: 31.93%;
+
+                        }
+                    }
+                }
+                
             }
         }
         .transaction-wrapper{
@@ -1064,16 +1132,58 @@ body{
                     
                     }
                 }
+                &.not-active{
+                    display: none;
+                }
             
 
             }
             &.not-active{
                 display: none;
             }
+            &.maximize{
+                .transaction-table{
+                    thead{
+                        tr th{
+                            &:first-of-type{
+                                width: clamp(160px,$fs-748px,$fs-748px);
+                                padding-left: clamp(10px, $fs-15px, $fs-15px);
+                            }
+                            &:nth-of-type(2){
+                                width: clamp(110px,$fs-530px,$fs-530px);
+                                    
+                            }
+                        }
+                    }
+                    tbody{
+                    tr{ 
+                        td{
+                            &:first-of-type{
+                                width: clamp(160px,$fs-748px,$fs-748px);
+                                padding-left: clamp(10px, $fs-15px, $fs-15px);
+                            }
+                            &:nth-of-type(2){
+                                width: clamp(110px,$fs-530px,$fs-530px);
+                                    
+                            }
+                            &:last-of-type{
+                                // width: clamp(100px,$fs-194px,$fs-194px);
+                                font-weight: 400;
+                            }
+                        }
+                    }
+                   
+                }
+
+                }
+            }
             
 
         }
     }
+    &.not-active{
+    display: none;
+  }
   }
 }
 
@@ -1166,6 +1276,7 @@ body{
                                         justify-content: center;
                                         background-color: #d5d5d5;
                                         opacity: 0.8;
+                                        line-height: 1;
                                     }
                                     &::after{
                                         position: absolute;
@@ -1214,9 +1325,21 @@ body{
                                         &::placeholder{
                                             font-size: clamp(10px, $fs-14px, $fs-14px);
                                         }
+
+                                       
+                                        &:-webkit-autofill{
+                                        -webkit-box-shadow: 0 0 0 1000px #fff inset;
+                                        -webkit-text-fill-color: $black-80;
+                                        transition: background-color 9999s ease-in-out 0s;
+                                        }
                                     }
-                                    label img{
-                                        width: clamp(12px, $fs-16px, $fs-16px);
+                                    button{
+                                    background-color: transparent;
+                                    border: none;
+                                        img{
+                                            display: block;
+                                            width: clamp(12px, $fs-16px, $fs-16px);
+                                        }
                                     }
 
                                 }
@@ -1228,6 +1351,7 @@ body{
                                         gap: clamp(6px, $fs-10px, $fs-10px);
                                         font-size: clamp(10px, $fs-14px, $fs-14px);
                                         color: $grey-61;
+                                        cursor: pointer;
                                         img{
                                             width: clamp(15px, $fs-19px, $fs-19px);
                                         }
@@ -1254,10 +1378,9 @@ body{
                                             margin-bottom: 0;
                                             display: flex;
                                             flex-direction: column;
-                                            gap:clamp(7px,$fs-12px, $fs-12px);
 
                                             & li {
-                                                padding: clamp(7px, $fs-14px, $fs-14px) clamp(12px, $fs-42px, $fs-42px);
+                                                padding: clamp(7px, $fs-14px, $fs-14px) clamp(12px, $fs-32px, $fs-32px);
                                                 font-size: clamp(11px, $fs-15px, $fs-15px);
                                                 cursor: pointer;
                                                 &:hover {

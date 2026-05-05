@@ -20,7 +20,8 @@ const dateMenu = dateFilter.querySelector(".dropdown-menu");
 const customText=document.querySelector(".custom-text");
 const startText=document.querySelector(".start-text");
 const endText=document.querySelector(".end-text");
-
+const minDate = new Date(2025, 4, 5);
+const maxDate = new Date(2026, 4, 5);
 dateText.addEventListener("click", () => {
   if(!datePicker.classList.contains("active")){
     dateMenu.classList.toggle("active");
@@ -179,18 +180,15 @@ let current = new Date(today);
 let selectedDate = null;
 function createDatepicker(datePicker) {
   const monthNameEl = datePicker.querySelector(".month-name");
+  const yearEl=datePicker.querySelector(".year");
   const datesContainer = datePicker.querySelector(".dates");
   const prevBtn = datePicker.querySelector(".prev-month");
   const nextBtn = datePicker.querySelector(".next-month");
   const tags = datePicker.querySelectorAll(".tag");
-  const yearToggle = datePicker.querySelector(".year-toggle");
-  const yearDropdown = datePicker.querySelector(".year-dropdown");
-
 
   const START_YEAR = Number(new Date().getFullYear())-200;
   const END_YEAR = Number(new Date().getFullYear());
 
-  yearDropdown.innerHTML = "";
 
   for (let y = START_YEAR; y <= END_YEAR; y++) {
     const div = document.createElement("div");
@@ -217,10 +215,6 @@ function createDatepicker(datePicker) {
 
     selectedYear = y;
 
-    yearToggle.innerHTML = `${y} <img class="down-arrow" src="./assets/images/dashboard/down-arrow-blue.png" alt="down arrow blue">`;
-
-    yearDropdown.classList.remove("active");
-
     const content = datePicker.querySelector(".content");
     content.classList.remove("not-active");
 
@@ -230,23 +224,15 @@ function createDatepicker(datePicker) {
     renderCalendar();
   });
 
-  yearDropdown.appendChild(div);
   }
 
-  yearToggle.addEventListener("click", (e) => {
-    e.stopPropagation();
-    yearDropdown.classList.toggle("active");
-    const content=datePicker.querySelector(".content");
-    content.classList.toggle("not-active");
-    setYearDropdownHeight(datePicker);
-  });
 
   function renderCalendar() {
     const year = current.getFullYear();
     const month = current.getMonth();
 
     monthNameEl.textContent = `${MONTHS[month]}`;
-    yearToggle.innerHTML = `${year} <img class="down-arrow" src="./assets/images/dashboard/down-arrow-blue.png" alt="down arrow">`;
+    yearEl.textContent=`${year}`;
     datesContainer.innerHTML = "";
 
     const firstDay = new Date(year, month, 1).getDay();
@@ -281,70 +267,179 @@ function createDatepicker(datePicker) {
       });
     }
 
+    // days.forEach((d, index) => {
+    //   const btn = document.createElement("button");
+    //   btn.classList.add("date");
+    //   btn.type = "button";
+    //   btn.textContent = d.day;
+
+    //   if (d.faded) btn.classList.add("faded");
+
+    //   if (
+    //     selectedDate &&
+    //     d.date.toDateString() === selectedDate.toDateString() &&
+    //     !btn.classList.contains("faded")
+    //   ) {
+    //     btn.classList.add("current-day");
+    //   }
+
+    //   btn.addEventListener("click", () => {
+    //     const allButtons = datesContainer.querySelectorAll(".date");
+    //     selectedDate = d.date;
+
+    //     allButtons.forEach(b => b.classList.remove("current-day"));
+    //     btn.classList.add("current-day");
+    //     datePicker.classList.remove("active");
+    //     getSelectedDate(datePicker);
+    //     const dateSpan= dateInpWrapper.querySelectorAll("span");
+    //     dateSpan.forEach(span=>{
+    //       if(span.classList.contains("start")){
+    //         startText.textContent=span.textContent;
+    //       }
+    //       else{
+    //           endText.textContent=span.textContent;
+    //       }
+    //     })
+
+    //   });
+
+    //   datesContainer.appendChild(btn);
+    // });
     days.forEach((d, index) => {
-      const btn = document.createElement("button");
-      btn.classList.add("date");
-      btn.type = "button";
-      btn.textContent = d.day;
 
-      if (d.faded) btn.classList.add("faded");
+  const btn = document.createElement("button");
 
-      if (
-        selectedDate &&
-        d.date.toDateString() === selectedDate.toDateString() &&
-        !btn.classList.contains("faded")
-      ) {
-        btn.classList.add("current-day");
-      }
+  btn.classList.add("date");
 
-      btn.addEventListener("click", () => {
-        const allButtons = datesContainer.querySelectorAll(".date");
-        selectedDate = d.date;
+  btn.type = "button";
 
-        allButtons.forEach(b => b.classList.remove("current-day"));
-        btn.classList.add("current-day");
-        datePicker.classList.remove("active");
-        getSelectedDate(datePicker);
-        const dateSpan= dateInpWrapper.querySelectorAll("span");
-        dateSpan.forEach(span=>{
-          if(span.classList.contains("start")){
-            startText.textContent=span.textContent;
-          }
-          else{
-              endText.textContent=span.textContent;
-          }
-        })
+  btn.textContent = d.day;
 
-      });
+  const isOutOfRange =
+    d.date < minDate || d.date > maxDate;
 
-      datesContainer.appendChild(btn);
-    });
+  if (d.faded)
+    btn.classList.add("faded");
+
+  if (isOutOfRange) {
+    btn.classList.add("disabled");
+    btn.disabled = true;
   }
 
-  prevBtn.addEventListener("click", () => {
-    const actDate=setActiveDate();
-    current.setMonth(current.getMonth() - 1);
-    renderCalendar();
-    const dates=document.querySelectorAll(".date");
-    dates.forEach(date=>{
-      if(date.textContent==String(actDate)){
-        date.classList.add("current-day")
-      }
-    })
+  if (
+    selectedDate &&
+    d.date.toDateString() ===
+    selectedDate.toDateString() &&
+    !btn.classList.contains("faded")
+  ) {
+    btn.classList.add("current-day");
+  }
+
+  btn.addEventListener("click", () => {
+
+    if (isOutOfRange) return;
+
+    const allButtons =
+      datesContainer.querySelectorAll(".date");
+
+    selectedDate = d.date;
+
+    allButtons.forEach(b =>
+      b.classList.remove("current-day")
+    );
+
+    btn.classList.add("current-day");
+
+    datePicker.classList.remove("active");
+
+    getSelectedDate(datePicker);
+
   });
 
-  nextBtn.addEventListener("click", () => {
-    current.setMonth(current.getMonth() + 1);
-    renderCalendar();
-    const actDate=setActiveDate();
-    const dates=document.querySelectorAll(".date");
-    dates.forEach(date=>{
-      if(date.textContent==String(actDate)){
-        date.classList.add("current-day");
-      }
-    })
+  datesContainer.appendChild(btn);
+
+});
+  
+  }
+
+prevBtn.addEventListener("click", () => {
+  const prevMonth =
+    new Date(
+      current.getFullYear(),
+      current.getMonth() - 1,
+      1
+    );
+
+  if (
+    prevMonth.getFullYear() < minDate.getFullYear()
+    ||
+    (
+      prevMonth.getFullYear() === minDate.getFullYear()
+      &&
+      prevMonth.getMonth() < minDate.getMonth()
+    )
+  ) {
+    return;
+  }
+
+  const actDate = setActiveDate();
+
+  current.setMonth(current.getMonth() - 1);
+
+  renderCalendar();
+
+  const dates =
+    document.querySelectorAll(".date");
+
+  dates.forEach(date => {
+
+    if (date.textContent == String(actDate)) {
+      date.classList.add("current-day");
+    }
+
   });
 
+});
+
+nextBtn.addEventListener("click", () => {
+
+  const nextMonth =
+    new Date(
+      current.getFullYear(),
+      current.getMonth() + 1,
+      1
+    );
+
+  if (
+    nextMonth.getFullYear() > maxDate.getFullYear()
+    ||
+    (
+      nextMonth.getFullYear() === maxDate.getFullYear()
+      &&
+      nextMonth.getMonth() > maxDate.getMonth()
+    )
+  ) {
+    return;
+  }
+
+  const actDate = setActiveDate();
+
+  current.setMonth(current.getMonth() + 1);
+
+  renderCalendar();
+
+  const dates =
+    document.querySelectorAll(".date");
+
+  dates.forEach(date => {
+
+    if (date.textContent == String(actDate)) {
+      date.classList.add("current-day");
+    }
+
+  });
+
+});
   tags.forEach(tag => {
     tag.addEventListener("click", () => {
       let type = tag.dataset.type;
@@ -361,7 +456,6 @@ function createDatepicker(datePicker) {
   const year = current.getFullYear();
   setActiveYear(datePicker, year);
   renderCalendar();
-  setYearDropdownHeight(datePicker);
    
 }
 
@@ -380,16 +474,7 @@ function setActiveDate() {
 }
 
 
-//updating height for year dropdown
 
-function setYearDropdownHeight(datePicker) {
-  const content = datePicker.querySelector(".content");
-  const yearDropdown = datePicker.querySelector(".year-dropdown");
-
-  if (content && yearDropdown) {
-    yearDropdown.style.height = `${content.offsetHeight}px`;
-  }
-}
 
 //activeyear
 function setActiveYear(datePicker, year) {
@@ -399,11 +484,6 @@ function setActiveYear(datePicker, year) {
     item.classList.toggle("active", Number(item.textContent) === year);
   });
 }
-window.addEventListener("resize", () => {
-  document.querySelectorAll(".datepicker").forEach(dp => {
-    setYearDropdownHeight(dp);
-  });
-});
 
 
 const datepicker=dateFilter.querySelector(".date-picker");
@@ -420,6 +500,7 @@ for(let i=0;i<DAYS.length;i++){
 
 function getSelectedDate(datePicker){
   const monthNameEl=datePicker.querySelector(".month-name");
+  const yearEl=datePicker.querySelector(".year");
   const dateInpWrapper=datePicker.querySelector(".input-wrapper");
   const MonthArr=monthNameEl.textContent.split(" ")
   selectedMonth=Number(MONTHS.findIndex(m => m === MonthArr[0]))+1
@@ -491,7 +572,6 @@ document.addEventListener("click", (e) => {
 
     dp.classList.remove("active");
 
-    dp.querySelector(".year-dropdown")?.classList.remove("active");
 
     dp.querySelector(".content")?.classList.remove("not-active");
 
@@ -502,8 +582,6 @@ document.addEventListener("click", (e) => {
   if (!clickedInsidePicker &&!clickedCustomText) {
 
     dp.classList.remove("active");
-
-    dp.querySelector(".year-dropdown")?.classList.remove("active");
 
     dp.querySelector(".content")?.classList.remove("not-active");
 
@@ -519,7 +597,53 @@ const widgetDropdown=document.querySelector(".widget-dropdown-menu")
 widgetText.addEventListener('click',()=>{
   widgetDropdown.classList.toggle("active")
 })
+document.addEventListener("click", (e) => {
 
+  if (!widgetText.contains(e.target) &&!widgetDropdown.contains(e.target)) {
+    widgetDropdown.classList.remove("active");
+  }
+});
+renderWidgets()
+function renderWidgets(){
+  const widgetInputs=widgetDropdown.querySelectorAll("input");
+  const trendWrapper=document.querySelector(".trend-chart-wrapper");
+  const accuracyWrapper=document.querySelector(".accuracy-chart-wrapper");
+  const transactionWrapper=document.querySelector(".transaction-wrapper");
+
+  widgetInputs.forEach(inp=>{
+    inp.addEventListener('change',()=>{
+      if (inp.id=="select-all") {
+        if(inp.checked){
+          widgetInputs.forEach(inp=>inp.checked=true);
+          dashBoardBodyWrapper.classList.remove("not-active");
+        }
+
+        else{
+          widgetInputs.forEach(inp=>inp.checked=false);
+          dashBoardBodyWrapper.classList.add("not-active");
+        }
+      }
+      else if(inp.id=="recent"){
+        quotesContainer.classList.toggle("not-active");
+        trendWrapper.classList.toggle("minimize");
+        accuracyWrapper.classList.toggle("minimize");
+        transactionWrapper.classList.toggle("maximize");
+      }
+      else if(inp.id=="trend"){
+        trendWrapper.classList.toggle("not-active");
+
+       
+      }
+      else if(inp.id=="accuracy"){
+        accuracyWrapper.classList.toggle("not-active");
+      }
+      else {
+        transactionWrapper.classList.toggle("not-active");
+      }
+    })
+   
+  })
+}
 //charts
 let trendChart;
 const trendChartContainer=document.getElementById("trend-chart")
@@ -1300,5 +1424,281 @@ function closeSuggestExpandModal(){
 overlay.addEventListener("click", (e) => {
   if (e.target === overlay) {
     closeModal();
+  }
+});
+
+
+//table
+let quotes;
+let filteredQuotes;
+async function loadQuotes() {
+  try {
+    const resp = await fetch("../assets/json/quote.json")
+    const data = await resp.json()
+    quotes=data;
+    filteredQuotes=data;
+    renderQuoteTable(data)
+    renderQuoteCounts(data)
+    console.log(data[0])
+  } catch (err) {
+    console.error("Error:", err)
+  }
+}
+
+loadQuotes()
+
+const quoteTable=document.querySelector(".quote-table");
+
+function  getPrice(price){
+  return parseFloat(price.replace(/[^\d.]/g, "").replace(/\.(?=.*\.)/g, ""));
+}
+function renderQuoteTable(data){
+  const tBody=quoteTable.querySelector("tbody");
+
+  tBody.innerHTML="";
+  let tabHtml="";
+  if(data.length!=0){
+    data.forEach(d=>{
+      tabHtml+=`<tr>
+        <td><img src="./assets/images/dashboard/${d.img}_icon.png" alt="${d.img}"></td>
+        <td><a href="./recent-quote.html" class="quote-id-data">#${d.id}</a></td>
+        <td>${d.name} / ${d.number} </td>
+        <td>${d.received_date}</td>
+        <td>${d.approved_date}</td>
+        <td class=${d.status === "approved" ? "approved" : d.status === "pending" ? "pending" : ""} }>${d.status}</td>
+        <td>${d.total_line_no}</td>
+        <td>$${d.total_price}</td>
+        <td>${d.status === "deleted" ? 
+          `<span>Undo</span>` : `<a href="./recent-quote.html">
+          <img src="./assets/images/dashboard/Add_icon.png" alt="add"> </a>`}
+      </td>
+    </tr>
+      ` 
+    })
+
+    tBody.innerHTML=tabHtml;
+  }
+  else{
+    tBody.innerHTML="<p class='not-found'>Data Not Found</p>";
+  }
+}
+
+function renderQuoteCounts(data){
+  const approveCounts=document.querySelectorAll(".apprv-count");
+  const pendCounts=document.querySelectorAll(".pend-count");
+  const delCounts=document.querySelectorAll(".del-count");
+  const allCounts=document.querySelectorAll(".all-count");
+  const totalRev=document.querySelector(".total-revenue");
+
+  let approve=0;
+  let pend=0;
+  let del=0;
+  let tot=0;
+  let totalPrice=0;
+  data.forEach(d=>{
+    const status=d.status
+    switch(status){
+      case "approved":
+        approve++;
+        break;
+      case "pending":
+        pend++;
+        break;
+      case "deleted":
+        del++;
+        break;
+    }
+    const str = d.total_price;
+
+    const num = getPrice(str) ;
+
+    totalPrice+=num;
+  })
+
+  approveCounts.forEach(c=>c.textContent=approve);
+  pendCounts.forEach(c=>c.textContent=pend);
+  delCounts.forEach(c=>c.textContent=del);
+  
+  allCounts.forEach(c=>c.textContent=data.length);
+  totalRev.textContent="$"+totalPrice;
+}
+
+
+
+//filter function 
+
+const quotesContainer=document.querySelector(".quotes-container");
+const tableBtns=document.querySelectorAll(".top-container .btn-container button")
+
+
+tableBtns.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    tableBtns.forEach(btn=>btn.classList.remove("active"));
+    btn.classList.add("active");
+    const filterItem=btn.dataset.filter;
+    if(filterItem!="all")
+      filteredQuotes=quotes.filter(q=>q.status==filterItem);
+    else
+      filteredQuotes = [...quotes];
+
+    renderQuoteTable(filteredQuotes)
+  })
+})
+
+const filterBtn=quotesContainer.querySelector(".filter-text");
+const filterDropdown=document.querySelector(".filter-dropdown");
+const filterItems=filterDropdown.querySelectorAll("ul li");
+filterBtn.addEventListener('click',()=>{
+  filterDropdown.classList.toggle("active")
+})
+
+filterItems.forEach(item=>{
+  item.addEventListener('click',()=>{
+    const filteredCopy=[...filteredQuotes]
+    filterItems.forEach(item=>item.classList.remove("active"));
+    filterDropdown.classList.remove("active")
+    const sortItem=item.dataset.sort;
+    const ascend=item.dataset.ascending;
+    item.classList.add("active")
+
+    if(sortItem=="name"){
+      if(ascend=="true"){
+        sortedQuote=filteredCopy.sort((a, b) => a.name.localeCompare(b.name))
+      }
+      else{
+        sortedQuote=filteredCopy.sort((a, b) => b.name.localeCompare(a.name))
+      }
+    }
+    else if(sortItem=="id"){
+      if(ascend=="true"){
+        sortedQuote= filteredCopy.sort((a, b) => a.id - b.id);
+      }
+      else{
+        sortedQuote= filteredCopy.sort((a, b) => a.id - b.id);
+      }
+    }
+    else{
+      sortedQuote=filteredCopy;
+    }
+
+    renderQuoteTable(sortedQuote)
+  })
+})
+document.addEventListener('click',(e)=>{
+
+  if(!e.target.contains(filterBtn))
+    filterDropdown.classList.remove("active")
+})
+
+//sort
+
+const tabHeaderSpans=quoteTable.querySelectorAll("th span");
+let sortedQuote;
+let isAscending = true;
+function parseDate(dateStr) {
+
+  const [day, month, year] = dateStr.split("-");
+
+  return new Date(year, month - 1, day);
+}
+
+tabHeaderSpans.forEach(sp=>{
+  sp.addEventListener('click',()=>{
+     const filteredCopy=[...filteredQuotes]
+    const sortItem=sp.dataset.sort;
+    if(isAscending){
+      if(sortItem=="id"){
+        sortedQuote=filteredCopy.sort((a, b) => a.id - b.id);
+      }
+      else if(sortItem=="name"){
+        sortedQuote=filteredCopy.sort((a, b) => a.name.localeCompare(b.name))
+      }
+      else if(sortItem=="received_date"){
+        sortedQuote = filteredCopy.sort((a, b) => parseDate(a.received_date) - parseDate(b.received_date));
+      }
+      else if(sortItem=="approved_date"){
+        sortedQuote = filteredCopy.sort((a, b) => parseDate(a.approved_date) - parseDate(b.approved_date));
+      }
+      else if(sortItem=="status"){
+        sortedQuote = filteredCopy.sort((a, b) => a.status.localeCompare(b.status));
+      }
+      else if(sortItem=="total_line_no"){
+        sortedQuote = filteredCopy.sort((a, b) => a.total_line_no - b.total_line_no);
+      }
+      else if(sortItem=="total_line_no"){
+        sortedQuote = filteredCopy.sort((a, b) => a.total_line_no - b.total_line_no);
+      }
+      else if(sortItem=="total_price"){
+        sortedQuote = filteredCopy.sort((a, b) => getPrice(a.total_price) - getPrice(b.total_price));
+      }
+    }
+    else if(!isAscending){
+      if(sortItem=="id"){
+        sortedQuote=filteredCopy.sort((a, b) =>b.id - a.id)
+      }
+       else if(sortItem=="name"){
+        sortedQuote=filteredCopy.sort((a, b) =>b.name.localeCompare(a.name))
+      }
+      else if(sortItem=="received_date"){
+        sortedQuote = filteredCopy.sort((a, b) => parseDate(b.received_date) - parseDate(a.received_date));
+      }
+      else if(sortItem=="approved_date"){
+        sortedQuote = filteredCopy.sort((a, b) => parseDate(b.approved_date) - parseDate(a.approved_date));
+      }
+      else if(sortItem=="status"){
+        sortedQuote = filteredCopy.sort((a, b) => b.status.localeCompare(a.status));
+      }
+      else if(sortItem=="total_price"){
+        sortedQuote = filteredCopy.sort((a, b) => getPrice(b.total_price) - getPrice(a.total_price));
+      }
+    }
+   
+    renderQuoteTable(sortedQuote)
+    isAscending=!isAscending;
+  })
+ 
+})
+
+//search function 
+
+const searchInput =document.querySelector(".search-table-quote-input");
+const searchBtn =document.querySelector(".search-table-quote-btn");
+
+function searchQuotes() {
+
+  const value = searchInput.value.trim().toLowerCase();
+  const filterCopy=[...filteredQuotes]
+  if(value!=""){
+    sortedQuote = filterCopy.filter(q => {
+
+      return (
+
+        q.id.toString().toLowerCase().includes(value) ||
+
+        q.name.toLowerCase().includes(value)||
+        
+        q.number.toString().toLowerCase().includes(value)||
+
+        q.status.toLowerCase().includes(value)
+
+      );
+
+    });
+  }
+  else{
+    sortedQuote=filterCopy;
+  }
+
+  renderQuoteTable(sortedQuote);
+}
+
+// button click
+searchBtn.addEventListener("click", searchQuotes);
+
+// enter key
+searchInput.addEventListener("keydown", (e) => {
+
+  if (e.key === "Enter") {
+    searchQuotes();
   }
 });

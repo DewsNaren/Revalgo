@@ -86,17 +86,7 @@
                                             </button>
                                             <div class="year-wrapper">
                                                 <span class="month-name"></span>
-                                                <div class="year-select">
-                                                    <button type="button" class="year-toggle">
-                                                        2025
-                                                        <img
-                                                            class="down-arrow"
-                                                            src="./assets/images/dashboard/down-arrow-blue.png"
-                                                            alt="down arrow"
-                                                        />
-                                                    </button>
-                                                <div class="year-dropdown"></div>
-                                            </div>
+                                                <span class="year">2025</span>
                                             </div>
                                             <button type="button" class="arrow next-month">
                                                 <img src="./assets/images/global/right-arrow.png" alt="right arrow" />
@@ -130,11 +120,11 @@
                     
                             <ul class="widget-dropdown-menu">
                                 <p>Select Widget</p>
-                                <li><input  type="checkbox" id="select-all"><label for="select-all">Select All</label></li>
-                                <li><input type="checkbox" id="recent"> <label for="recent">Recent Orders</label> </li>
-                                <li><input type="checkbox" id="trend"> <label for="trend">Trend</label></li>
-                                <li><input type="checkbox" id="accuracy">  <label for="accuracy">Accuracy</label></li>
-                                <li><input type="checkbox" id="transaction">  <label for="transaction">Top Transactions</label></li>
+                                <li><input  type="checkbox" id="select-all" checked><label for="select-all">Select All</label></li>
+                                <li><input type="checkbox" id="recent" checked> <label for="recent">Recent Orders</label> </li>
+                                <li><input type="checkbox" id="trend" checked> <label for="trend">Trend</label></li>
+                                <li><input type="checkbox" id="accuracy" checked>  <label for="accuracy">Accuracy</label></li>
+                                <li><input type="checkbox" id="transaction" checked>  <label for="transaction">Top Transactions</label></li>
                             </ul>
 
                         </div>
@@ -148,7 +138,7 @@
                         </div>
                         <div class="stat-content">
                             <p class="stat-title">Total Quotes</p>
-                            <p class="stat-text total-quote">525</p>
+                            <p class="stat-text all-count">525</p>
                         </div>
                     </div>
                     <div class="stat-container">
@@ -157,7 +147,7 @@
                         </div>
                         <div class="stat-content">
                             <p class="stat-title">Approved Quotes</p>
-                            <p class="stat-text approved-quote">525</p>
+                            <p class="stat-text apprv-count">525</p>
                         </div>
                     </div> 
                     <div class="stat-container">
@@ -166,7 +156,7 @@
                         </div>
                         <div class="stat-content">
                             <p class="stat-title">Pending Quotes</p>
-                            <p class="stat-text pending-quote">45</p>
+                            <p class="stat-text pend-count">45</p>
                         </div>
                     </div> 
                     <div class="stat-container">
@@ -186,24 +176,24 @@
                     <div class="table-wrapper" >
                         <div class="top-container">
                             <div class="btn-container">
-                                <button type="button" class="pend-btn">Pending <span class="apprv-count">22</span></button>
-                                <button type="button" class="apprv-btn">Approved <span class="apprv-count">22</span></button>
-                                <button type="button">Deleted <span class="del-count">22</span></button>
-                                <button type="button">All <span class="all-count">22</span></button>
+                                <button type="button" class="pend-btn" data-filter="pending">Pending <span class="pend-count">22</span></button>
+                                <button type="button" class="apprv-btn" data-filter="approved">Approved <span class="apprv-count">22</span></button>
+                                <button type="button" data-filter="deleted">Deleted <span class="del-count">22</span></button>
+                                <button type="button" data-filter="all">All <span class="all-count">22</span></button>
                             </div>
                             <div class="filter-wrapper">
                                 <div class="search-container">
-                                    <input type="text" id="search-table-quote" class="search-table-quote" name="search-table-quote" placeholder="Search">
-                                    <label for="search-table-quote" ><img src="./assets/images/dashboard/Search icon.png" alt="Search icon"></label>
+                                    <input type="text"  class="search-table-quote-input" name="search-table-quote" placeholder="Search">
+                                    <button type="button"  class="search-table-quote-btn" ><img src="./assets/images/dashboard/Search icon.png" alt="Search icon"></button>
                                 </div>
                                 <div class="filter-container">
                                     <div class="filter-text"><img src="./assets/images/dashboard/Filter_Icon.png" alt="filter icon">Filter</div>
                                     <div class="filter-dropdown">
                                         <ul>
-                                            <li> Name (A-Z)</li>
-                                            <li> Name (Z-A)</li>
-                                            <li> Date</li>
-                                            <li> Default</li>
+                                            <li data-sort="name" data-ascending="true"> Name (A-Z)</li>
+                                            <li data-sort="name" data-ascending="false"> Name (Z-A)</li>
+                                            <li data-sort="id">ID</li>
+                                            <li data-sort="default" active> Default</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -215,13 +205,13 @@
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th><span>Quote Id <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
-                                    <th><span>Customer Name / Number <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
-                                    <th> <span>Received Date <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
-                                    <th><span>Approved Date <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
-                                    <th><span>Status <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
-                                    <th><span>Total Line No <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
-                                    <th><span>Total price <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
+                                    <th><span data-sort="id">Quote Id <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
+                                    <th><span data-sort="name">Customer Name / Number <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
+                                    <th> <span data-sort="received_date">Received Date <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
+                                    <th><span data-sort="approved_date">Approved Date <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
+                                    <th><span data-sort="status">Status <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
+                                    <th><span data-sort="total_line_no">Total Line No <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
+                                    <th><span data-sort="total_price">Total price <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
                                     <th></th>
                                 </tr>
                             </thead>
