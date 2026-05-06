@@ -13,15 +13,40 @@
         <header>
             <a href="./login.html" class="logo"><img src="./assets/images/login/Revalgo White Background.png" alt="Revalgo White"></a>
             <div class="search-wrapper">
-                <input type="text" id="search-quote" class="search-quote-input" name="search-quote" placeholder="PO#, Order#, Customer# / Name">
-                <button class="search-quote-btn" ><img src="./assets/images/dashboard/Search icon.png" alt="Search icon"></button>
+                <input type="text" id="search-quote" class="search-quote-input" name="search-quote" placeholder="PO#, Order#, Customer# / Name" autocomplete="off">
+                <button class="search-quote-btn"><img src="./assets/images/dashboard/Search icon.png" alt="Search icon"></button>
                 <div class="global-dropdown">
-                    <ul>
-                        <li>McKesson Corporation</li>
-                        <li>McKesson Corporation Limited</li>
-                        <li>McKesn</li>
-                        <li>McKenson</li>
-                        <li>McKenson</li>
+                    <ul class="list-wrapper">
+                        <div class="id-wrapper list-container">
+                            <h3 class="list-header">Quote Id</h3>
+                            <ul class="id-list">
+                                    <li>McKesson Corporation</li>
+                                    <li>McKesson Corporation Limited</li>
+                                    <li>McKesn</li>
+                                    <li>McKenson</li>
+                                    <li>McKenson</li>
+                            </ul>
+                        </div>
+                        <div class="name-wrapper list-container">
+                            <h3 class="list-header">Customer Name</h3>
+                            <ul class="name-list">
+                                    <li>McKesson Corporation</li>
+                                    <li>McKesson Corporation Limited</li>
+                                    <li>McKesn</li>
+                                    <li>McKenson</li>
+                                    <li>McKenson</li>
+                            </ul>
+                        </div>
+                        <div class="po-wrapper list-container">
+                            <h3 class="list-header">PO</h3>
+                            <ul class="po-list">
+                                    <li>McKesson Corporation</li>
+                                    <li>McKesson Corporation Limited</li>
+                                    <li>McKesn</li>
+                                    <li>McKenson</li>
+                                    <li>McKenson</li>
+                            </ul>
+                        </div>
                     </ul>
                 </div>
             </div>
@@ -138,7 +163,7 @@
                         </div>
                         <div class="stat-content">
                             <p class="stat-title">Total Quotes</p>
-                            <p class="stat-text all-count">525</p>
+                            <p class="stat-text total-count">525</p>
                         </div>
                     </div>
                     <div class="stat-container">
@@ -177,7 +202,7 @@
                         <div class="top-container">
                             <div class="btn-container">
                                 <button type="button" class="pend-btn" data-filter="pending">Pending <span class="pend-count">22</span></button>
-                                <button type="button" class="apprv-btn" data-filter="approved">Approved <span class="apprv-count">22</span></button>
+                                <button type="button" class="apprv-btn active" data-filter="approved" >Approved <span class="apprv-count">22</span></button>
                                 <button type="button" data-filter="deleted">Deleted <span class="del-count">22</span></button>
                                 <button type="button" data-filter="all">All <span class="all-count">22</span></button>
                             </div>
@@ -332,7 +357,7 @@
                                     
                                     <div class="header-content">
                                         <div class="header-text">   
-                                            <p class="count quote-count">525</p>
+                                            <p class="count quote-count total-count">525</p>
                                             <p class="text">Quotes</p>
                                         </div>
                                         <div class="legend-container">
@@ -428,7 +453,7 @@
                                     
                                     <div class="header-content">
                                         <div class="header-text">   
-                                            <p class="count quote-count">525</p>
+                                            <p class="count total-count">525</p>
                                             <p class="text">Quotes</p>
                                         </div>
                                         <div class="legend-container">

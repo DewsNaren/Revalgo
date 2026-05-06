@@ -256,6 +256,11 @@ header .search-wrapper input {
   font-size: clamp(12px, 0.89vw, 0.89vw);
   outline: none;
 }
+header .search-wrapper input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #fff inset;
+  -webkit-text-fill-color: black;
+  transition: background-color 9999s ease-in-out 0s;
+}
 header .search-wrapper .search-quote-btn {
   background-color: transparent;
   border: none;
@@ -280,38 +285,47 @@ header .search-wrapper .global-dropdown {
   z-index: 2;
   height: clamp(150px, 13.5vw, 13.5vw);
 }
-header .search-wrapper .global-dropdown ul {
+header .search-wrapper .global-dropdown .list-wrapper {
+  overflow-y: auto;
+  min-height: 0;
+  max-height: clamp(150px, 11.72vw, 11.72vw);
+  max-height: 100%;
   padding-left: 0;
-  padding-inline: clamp(10px, 0.83vw, 0.83vw);
+}
+header .search-wrapper .global-dropdown .list-wrapper .list-container .list-header {
+  font-size: clamp(14px, 1.05vw, 1.05vw);
+  padding: 0 clamp(15px, 1.36vw, 1.36vw) clamp(5px, 0.521vw, 0.521vw);
+  border-bottom: 1px solid #ccc;
+}
+header .search-wrapper .global-dropdown .list-wrapper .list-container ul {
+  padding-left: 0;
   list-style-type: none;
   margin-bottom: 0;
   display: flex;
   flex-direction: column;
-  min-height: 0;
-  max-height: clamp(150px, 11.72vw, 11.72vw);
-  max-height: 100%;
-  overflow-y: auto;
 }
-header .search-wrapper .global-dropdown ul li {
-  padding: clamp(5px, 0.79vw, 0.79vw) clamp(5px, 0.521vw, 0.521vw);
+header .search-wrapper .global-dropdown .list-wrapper .list-container ul li {
+  padding: clamp(5px, 0.79vw, 0.79vw) clamp(15px, 1.36vw, 1.36vw);
   font-size: clamp(10px, 0.83vw, 0.83vw);
-  border-bottom: 1px solid #ccc;
   color: rgba(0, 0, 0, 0.8);
   font-weight: 500;
   opacity: 0.95;
   cursor: pointer;
 }
-header .search-wrapper .global-dropdown ul li:hover {
+header .search-wrapper .global-dropdown .list-wrapper .list-container ul li:hover {
   background-color: #e8f2ff;
 }
-header .search-wrapper .global-dropdown ul li:last-of-type {
+header .search-wrapper .global-dropdown .list-wrapper .list-container ul li:last-of-type {
   border: none;
 }
-header .search-wrapper .global-dropdown ul::-webkit-scrollbar {
+header .search-wrapper .global-dropdown .list-wrapper .list-container.not-active {
+  display: none;
+}
+header .search-wrapper .global-dropdown .list-wrapper::-webkit-scrollbar {
   width: 4px;
   height: 6px;
 }
-header .search-wrapper .global-dropdown ul::-webkit-scrollbar-thumb {
+header .search-wrapper .global-dropdown .list-wrapper::-webkit-scrollbar-thumb {
   background: rgba(161, 161, 161, 0.5);
   border-radius: 4px;
 }
@@ -453,6 +467,7 @@ body {
   padding-bottom: 5px;
   border-bottom: 1px solid #154787;
   font-size: clamp(11px, 0.79vw, 0.79vw);
+  cursor: pointer;
 }
 .dashboard-wrapper .dashboard-header-wrapper .header-container .dropdown-wrapper .date-filter .date-dropdown .date-text img {
   width: clamp(12px, 1.15vw, 1.15vw);
@@ -477,7 +492,7 @@ body {
   padding: clamp(12px, 0.79vw, 0.79vw) clamp(12px, 0.79vw, 0.79vw) 6px;
   margin: 0;
   position: absolute;
-  width: fit-content;
+  width: max-content;
   background-color: white;
   top: 100%;
   margin-top: clamp(6px, 0.521vw, 0.521vw);
@@ -645,14 +660,18 @@ body {
   background-color: #f0f3ff;
   color: #837ede;
 }
-.dashboard-wrapper .dashboard-header-wrapper .header-container .dropdown-wrapper .date-filter .date-picker .calendar .content .date.faded {
+.dashboard-wrapper .dashboard-header-wrapper .header-container .dropdown-wrapper .date-filter .date-picker .calendar .content .date.faded, .dashboard-wrapper .dashboard-header-wrapper .header-container .dropdown-wrapper .date-filter .date-picker .calendar .content .date.disabled {
   color: #999fa6;
 }
-.dashboard-wrapper .dashboard-header-wrapper .header-container .dropdown-wrapper .date-filter .date-picker .calendar .content .date.faded:focus {
-  background-color: #f0f3ff;
+.dashboard-wrapper .dashboard-header-wrapper .header-container .dropdown-wrapper .date-filter .date-picker .calendar .content .date.faded:focus, .dashboard-wrapper .dashboard-header-wrapper .header-container .dropdown-wrapper .date-filter .date-picker .calendar .content .date.disabled:focus {
+  background-color: transparent;
   color: #837ede;
   pointer-events: none;
   font-weight: 500;
+  background-color: transparent;
+}
+.dashboard-wrapper .dashboard-header-wrapper .header-container .dropdown-wrapper .date-filter .date-picker .calendar .content .date.faded:hover, .dashboard-wrapper .dashboard-header-wrapper .header-container .dropdown-wrapper .date-filter .date-picker .calendar .content .date.disabled:hover {
+  color: #999fa6;
   background-color: transparent;
 }
 .dashboard-wrapper .dashboard-header-wrapper .header-container .dropdown-wrapper .date-filter .date-picker .calendar .content .date.current-date {
@@ -677,6 +696,7 @@ body {
   padding: 5px 7px;
   border: 1px solid #154787;
   font-size: clamp(11px, 0.79vw, 0.79vw);
+  cursor: pointer;
 }
 .dashboard-wrapper .dashboard-header-wrapper .header-container .dropdown-wrapper .widget-btn .widget-text {
   cursor: pointer;
@@ -694,6 +714,7 @@ body {
   list-style: none;
   width: 151%;
   z-index: 2;
+  cursor: default;
 }
 .dashboard-wrapper .dashboard-header-wrapper .header-container .dropdown-wrapper .widget-btn .widget-dropdown-menu p {
   color: black;
@@ -1179,6 +1200,7 @@ body {
   font-weight: 500;
   color: rgba(0, 0, 0, 0.8);
   cursor: pointer;
+  text-transform: capitalize;
 }
 .dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .trend-chart-wrapper .trend-chart-container .chart-header .legend-container .legend span {
   width: 11px;
@@ -1897,7 +1919,7 @@ body {
   width: 100%;
   display: none;
   flex-direction: column;
-  height: 100%;
+  max-height: 100%;
   flex: 1;
   min-height: 0;
 }
@@ -1909,14 +1931,12 @@ body {
 }
 .expand-overlay .expand-modal.chart .expand-modal-content .trend-chart-wrapper .trend-chart-container {
   height: 100%;
-  max-height: 21vw;
   flex: 1;
   overflow-y: auto;
   background-color: white;
   padding: clamp(8px, 0.79vw, 0.79vw) 0 clamp(12px, 1.25vw, 1.25vw) 0;
   display: flex;
   flex-direction: column;
-  min-height: 0;
 }
 .expand-overlay .expand-modal.chart .expand-modal-content .trend-chart-wrapper .trend-chart-container .chart-header .export-btn-container {
   display: flex;
@@ -1952,6 +1972,7 @@ body {
   font-weight: 500;
   color: rgba(0, 0, 0, 0.8);
   cursor: pointer;
+  text-transform: capitalize;
 }
 .expand-overlay .expand-modal.chart .expand-modal-content .trend-chart-wrapper .trend-chart-container .chart-header .legend-container .legend span {
   width: clamp(14px, 1.05vw, 1.05vw);
@@ -1975,11 +1996,13 @@ body {
 }
 .expand-overlay .expand-modal.chart .expand-modal-content .trend-chart-wrapper .trend-chart-container .trend-chart {
   flex: 1;
-  height: 100%;
+  min-height: clamp(165px, 13vw, 13vw) !important;
+  height: clamp(165px, 13vw, 13vw) !important;
   width: 100%;
+  overflow-y: auto;
 }
 .expand-overlay .expand-modal.chart .expand-modal-content .trend-chart-wrapper .trend-chart-container .trend-chart .trend-x-label, .expand-overlay .expand-modal.chart .expand-modal-content .trend-chart-wrapper .trend-chart-container .trend-chart .trend-y-label {
-  font-size: clamp(12px, 1.1vw, 1.1vw);
+  font-size: clamp(11px, 1.1vw, 1.1vw);
   color: rgba(0, 0, 0, 0.8);
 }
 .expand-overlay .expand-modal.chart .expand-modal-content .trend-chart-wrapper .trend-chart-container .trend-chart .highcharts-yaxis-labels span {
@@ -7698,62 +7721,11 @@ body {
   font-size: clamp(13px, 0.89vw, 0.89vw);
   gap: 5px;
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .month-name {
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .month-name, .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .year {
   color: black;
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-toggle {
-  border: none;
-  background-color: transparent;
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .year {
   color: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-}
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .year-select .down-arrow {
-  width: clamp(11px, 1.15vw, 1.15vw);
-}
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  max-height: 278px;
-  overflow-y: auto;
-  z-index: 20;
-  display: none;
-  margin-top: 20px;
-  background-color: white;
-}
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-dropdown.active {
-  display: block;
-}
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-dropdown .year-item {
-  padding: clamp(4px, 0.43vw, 0.43vw);
-  cursor: pointer;
-  border-bottom: 1px solid #a7a4a4;
-  text-align: center;
-  background-color: white;
-  color: rgba(0, 0, 0, 0.8);
-  font-size: clamp(3px, 0.73vw, 0.73vw);
-}
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-dropdown .year-item:hover {
-  background-color: #616161;
-  color: white;
-  font-weight: 500;
-}
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .arrow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  background-color: white;
-  width: clamp(15px, 1.5vw, 1.5vw);
-  height: clamp(15px, 1.5vw, 1.5vw);
-  border-radius: 12px;
-}
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .arrow img {
-  width: clamp(11px, 1.15vw, 1.15vw);
 }
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar {
   visibility: visible;
@@ -7864,49 +7836,8 @@ body {
   font-size: clamp(13px, 0.89vw, 0.89vw);
   gap: 5px;
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .month-name {
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .month-name, .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .year {
   color: black;
-}
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-toggle {
-  border: none;
-  background-color: transparent;
-  color: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-}
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .year-select .down-arrow {
-  width: clamp(11px, 1.15vw, 1.15vw);
-}
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  max-height: 278px;
-  overflow-y: auto;
-  z-index: 20;
-  display: none;
-  margin-top: 20px;
-  background-color: #f5f5f5;
-}
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-dropdown.active {
-  display: block;
-}
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-dropdown .year-item {
-  padding: clamp(4px, 0.43vw, 0.43vw);
-  cursor: pointer;
-  border-bottom: 1px solid #a7a4a4;
-  text-align: center;
-  background-color: #f5f5f5;
-  color: rgba(0, 0, 0, 0.8);
-  font-size: clamp(3px, 0.73vw, 0.73vw);
-}
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-dropdown .year-item:hover {
-  background-color: #616161;
-  color: white;
-  font-weight: 500;
 }
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .arrow {
   display: flex;

@@ -9,18 +9,43 @@
         <link rel="stylesheet" href="./assets/css/style.css">
     </head>
     <body>
-        <header>
+<header>
             <a href="./login.html" class="logo"><img src="./assets/images/login/Revalgo White Background.png" alt="Revalgo White"></a>
             <div class="search-wrapper">
-                <input type="text" id="search-quote" class="search-quote" name="search-quote" placeholder="PO#, Order#, Customer# / Name">
-                <button class="search-quote-btn" ><img src="./assets/images/dashboard/Search icon.png" alt="Search icon"></button>
+                <input type="text" id="search-quote" class="search-quote-input" name="search-quote" placeholder="PO#, Order#, Customer# / Name" autocomplete="off">
+                <button class="search-quote-btn"><img src="./assets/images/dashboard/Search icon.png" alt="Search icon"></button>
                 <div class="global-dropdown">
-                    <ul>
-                        <li>McKesson Corporation</li>
-                        <li>McKesson Corporation Limited</li>
-                        <li>McKesn</li>
-                        <li>McKenson</li>
-                        <li>McKenson</li>
+                    <ul class="list-wrapper">
+                        <div class="id-wrapper list-container">
+                            <h3 class="list-header">Quote Id</h3>
+                            <ul class="id-list">
+                                    <li>McKesson Corporation</li>
+                                    <li>McKesson Corporation Limited</li>
+                                    <li>McKesn</li>
+                                    <li>McKenson</li>
+                                    <li>McKenson</li>
+                            </ul>
+                        </div>
+                        <div class="name-wrapper list-container">
+                            <h3 class="list-header">Customer Name</h3>
+                            <ul class="name-list">
+                                    <li>McKesson Corporation</li>
+                                    <li>McKesson Corporation Limited</li>
+                                    <li>McKesn</li>
+                                    <li>McKenson</li>
+                                    <li>McKenson</li>
+                            </ul>
+                        </div>
+                        <div class="po-wrapper list-container">
+                            <h3 class="list-header">PO</h3>
+                            <ul class="po-list">
+                                    <li>McKesson Corporation</li>
+                                    <li>McKesson Corporation Limited</li>
+                                    <li>McKesn</li>
+                                    <li>McKenson</li>
+                                    <li>McKenson</li>
+                            </ul>
+                        </div>
                     </ul>
                 </div>
             </div>
@@ -45,6 +70,7 @@
                         <div class="profile-menu">
                             <a href="./login.html" class="logout-btn"> <img src="./assets/images/global/logout.png" alt="logout">Logout</a>
                         </div>
+                        
                     </li>
                 </ul>
 
@@ -55,7 +81,7 @@
                 <div class="filter-outer-wrapper">
                     <div class="header-wrapper">
                         <div class="header-container">
-                            <h2>Search Results For <span class="filter-id">"Mckesson Corporation"</span></h2> 
+                            <h2>Search Results For <span class="search-text">"Mckesson Corporation"</span></h2> 
                             <button class="refresh-btn"><img src="./assets/images/dashboard/Undo_icon.png" alt="undo">Refresh</button>
                         </div>
                         
@@ -147,17 +173,7 @@
                                     </button>
                                     <div class="year-wrapper">
                                         <span class="month-name"></span>
-                                        <div class="year-select">
-                                            <button type="button" class="year-toggle">
-                                                2025
-                                                <img
-                                                    class="down-arrow"
-                                                    src="./assets/images/dashboard/down-arrow-blue.png"
-                                                    alt="down arrow"
-                                                />
-                                            </button>
-                                            <div class="year-dropdown"></div>
-                                        </div>
+                                        <span class="year"></span> 
                                     </div>
                                     <button type="button" class="arrow next-month">
                                         <img src="./assets/images/global/right-arrow.png" alt="right"/>
@@ -177,18 +193,8 @@
                                     </button>
                                     <div class="year-wrapper">
                                         <span class="month-name"></span>
-                                        <div class="year-select">
-                                            <button type="button" class="year-toggle">
-                                                2025
-                                                <img
-                                                class="down-arrow"
-                                                src="./assets/images/dashboard/down-arrow-blue.png"
-                                                alt="down arrow"
-                                                />
-                                            </button>
-                                            <div class="year-dropdown"></div>
+                                        <span class="year"></span>
                                     </div>
-                                </div>
                                     <button type="button" class="arrow next-month">
                                         <img src="./assets/images/global/right-arrow.png" alt="right"/>
                                     </button>
@@ -296,8 +302,8 @@
 
                                                 <select id="rows" class="rows-select" name="rows">
                                                     <option value="5">5  </option>
-                                                    <option value="10" selected>10 </option>
-                                                    <option value="15">15 </option>
+                                                    <option value="10" >10 </option>
+                                                    <option value="15" selected>15 </option>
                                                     <option value="20">20 </option>
                                                     <option value="25">25 </option>
                                                 </select>

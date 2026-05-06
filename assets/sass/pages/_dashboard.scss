@@ -48,6 +48,7 @@ body{
                 padding-bottom: 5px;
                 border-bottom: 1px solid $blue-87;
                 font-size: clamp(11px, $fs-15px, $fs-15px);
+                cursor: pointer;
                 
                 img {
                     width: clamp(12px, $fs-22px, $fs-22px);
@@ -74,7 +75,7 @@ body{
                 padding: clamp(12px, $fs-15px, $fs-15px) clamp(12px, $fs-15px, $fs-15px) 6px;
                 margin: 0;
                 position: absolute;
-                width: fit-content;
+                width: max-content;
                 background-color: $white;
                 top: 100%;
                 margin-top: clamp(6px,$fs-10px, $fs-10px);
@@ -260,13 +261,17 @@ body{
                                 background-color: $blue-ff;
                                 color: $blue-de;
                             }
-                            &.faded {
+                            &.faded, &.disabled {
                                 color: $grey-a6;
                                 &:focus {
-                                    background-color: $blue-ff;
+                                    background-color: transparent;
                                     color: $blue-de;
                                     pointer-events: none;
                                     font-weight: 500;
+                                    background-color: transparent;
+                                }
+                                &:hover{
+                                    color: $grey-a6;
                                     background-color: transparent;
                                 }
                             }
@@ -304,6 +309,7 @@ body{
             padding: 5px 7px;
             border: 1px solid $blue-87;
             font-size: clamp(11px, $fs-15px, $fs-15px);
+            cursor: pointer;
             .widget-text{
                 cursor: pointer;
             }
@@ -320,6 +326,7 @@ body{
                 list-style: none;
                 width: 151%;
                 z-index: 2;
+                cursor: default;
 
                 p{
                     color: $black;
@@ -867,6 +874,7 @@ body{
                                 font-weight: 500;
                                 color: $black-80;
                                 cursor: pointer;
+                                text-transform: capitalize;
                                 span{
                                     width: 11px;
                                     height: 6px;
@@ -1711,9 +1719,10 @@ body{
                 width: 100%;
                 display: none;
                 flex-direction: column;
-                height: 100%;
+                max-height: 100%;
                 flex: 1;
                 min-height: 0;
+                // overflow-y: auto;
                 h4{
                     font-size: clamp(15px,$fs-24px, $fs-24px);
                     color: $black-80;
@@ -1722,7 +1731,8 @@ body{
                 }
                 .trend-chart-container{
                     height: 100%;
-                    max-height: $fs-400px;
+                    // max-height: $fs-400px;
+                    // min-height: $fs-400px;
                     flex: 1;
                     overflow-y: auto;
                     background-color: $white;
@@ -1730,7 +1740,7 @@ body{
                     padding:clamp(8px,$fs-15px, $fs-15px) 0  clamp(12px, $fs-24px, $fs-24px) 0;
                     display: flex;
                     flex-direction: column;
-                    min-height: 0;
+                    // min-height: 0;
                     .chart-header{
                         .export-btn-container{
                             display: flex;
@@ -1767,6 +1777,7 @@ body{
                                 font-weight: 500;
                                 color: $black-80;
                                 cursor: pointer;
+                                text-transform: capitalize;
                                 span{
                                     width: clamp(14px,$fs-20px, $fs-20px);
                                     height: 9px;
@@ -1798,20 +1809,13 @@ body{
                     }
                     .trend-chart{
                         flex: 1;
-                        height: 100%;
+                        min-height: clamp(165px, 13vw, 13vw) !important;
+                        height: clamp(165px, 13vw, 13vw) !important;
                         width: 100%;
-                        
-                        // > div{
-                        //      width: 100% !important;
-                        //       height: 100% !important;
-                        // }
-                        // .highcharts-root{
-                        //     width: 100% !important;
-                        //     height: 100% !important;
-
-                        // }
+                        overflow-y: auto; 
+        
                         .trend-x-label,.trend-y-label{
-                            font-size: clamp(12px,$fs-21px, $fs-21px);
+                            font-size: clamp(11px,$fs-21px, $fs-21px);
                             // opacity: 0.9;
                             // font-weight: 500;
                             color: $black-80;

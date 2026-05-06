@@ -13,6 +13,29 @@ setDashWrapperHeight();
 
 window.addEventListener('resize',setDashWrapperHeight)
 
+
+let quotes;
+let filteredQuotes;
+let start=new Date(new Date().setMonth(new Date().getMonth() - 6)); 
+end=new Date();
+
+async function loadQuotes() {
+  try {
+    const resp = await fetch("../assets/json/quote.json")
+    const data = await resp.json()
+    quotes=data;
+    filteredQuotes=data;
+    filterQuotesByDate(quotes, format(start), format(end))
+    console.log(data[0])
+    sessionStorage.setItem('quotes',JSON.stringify(data))
+  } catch (err) {
+    console.error("Error:", err)
+  }
+}
+
+loadQuotes();
+
+
 //datepicker
 const dateText = document.querySelector(".date-text");
 const dateFilter=document.querySelector(".date-filter");
@@ -20,8 +43,9 @@ const dateMenu = dateFilter.querySelector(".dropdown-menu");
 const customText=document.querySelector(".custom-text");
 const startText=document.querySelector(".start-text");
 const endText=document.querySelector(".end-text");
-const minDate = new Date(2025, 4, 5);
-const maxDate = new Date(2026, 4, 5);
+
+const minDate = new Date(2025, 4, 1);
+const maxDate = new Date(2026, 3, 30);
 dateText.addEventListener("click", () => {
   if(!datePicker.classList.contains("active")){
     dateMenu.classList.toggle("active");
@@ -30,12 +54,11 @@ dateText.addEventListener("click", () => {
 });
 
 dateMenu.addEventListener("click", (e) => {
-    e.stopPropagation();
+  e.stopPropagation();
   if (e.target.tagName === "LI") {
     const value = e.target.dataset.value;
     dateText.childNodes[0].data = e.target.textContent;
     dateMenu.classList.remove("active");
-
     handleSelection(value);
   }
 });
@@ -45,7 +68,7 @@ function handleSelection(value) {
   datePicker.classList.remove("active");
 
   const today = new Date();
-  let start, end;
+
 
   switch (value) {
     case "today":
@@ -91,8 +114,30 @@ function handleSelection(value) {
   }
 
 
-  console.log("Start:", format(start));
-  console.log("End:", format(end));
+  filterQuotesByDate(quotes, format(start), format(end))
+}
+
+let dateFilteredQuotes;
+function filterQuotesByDate(filterQuotes, start, end) {
+  const startDate = start.replaceAll("/", "-");
+  const endDate = end.replaceAll("/", "-");
+  const startObj = parseDate(startDate);
+  const endObj = parseDate(endDate);
+
+   dateFilteredQuotes= filterQuotes.filter(q => {
+    const quoteDate = parseDate(q.received_date);
+
+    return (
+      quoteDate >= startObj &&
+      quoteDate <= endObj
+    );
+  });
+  renderQuoteTable(dateFilteredQuotes)
+  renderQuoteCounts(dateFilteredQuotes)
+
+
+  getTrendChartData(dateFilteredQuotes,"approved")
+  
 }
 
 const startDate = document.querySelector(".start-date");
@@ -136,6 +181,8 @@ function selectDate(year, month, day) {
 customText.addEventListener('click',(e)=>{
   e.stopPropagation();
   datePicker.classList.toggle("active");
+  dateMenu.classList.remove("active");
+
 })
 
 //Datepicker
@@ -307,61 +354,62 @@ function createDatepicker(datePicker) {
     // });
     days.forEach((d, index) => {
 
-  const btn = document.createElement("button");
+    const btn = document.createElement("button");
 
-  btn.classList.add("date");
+    btn.classList.add("date");
 
-  btn.type = "button";
+    btn.type = "button";
 
-  btn.textContent = d.day;
+    btn.textContent = d.day;
 
-  const isOutOfRange =
-    d.date < minDate || d.date > maxDate;
+    const isOutOfRange =d.date < minDate || d.date > maxDate;
 
-  if (d.faded)
+    if (d.faded)
     btn.classList.add("faded");
 
-  if (isOutOfRange) {
-    btn.classList.add("disabled");
-    btn.disabled = true;
-  }
+    if (isOutOfRange) {
+      btn.classList.add("disabled");
+      btn.disabled = true;
+    }
 
-  if (
-    selectedDate &&
-    d.date.toDateString() ===
-    selectedDate.toDateString() &&
-    !btn.classList.contains("faded")
-  ) {
-    btn.classList.add("current-day");
-  }
+    if (
+      selectedDate &&
+      d.date.toDateString() ===
+      selectedDate.toDateString() &&
+      !btn.classList.contains("faded")
+    ) {
+      btn.classList.add("current-day");
+    }
 
-  btn.addEventListener("click", () => {
+    btn.addEventListener("click", () => {
 
     if (isOutOfRange) return;
 
-    const allButtons =
+      const allButtons =
       datesContainer.querySelectorAll(".date");
 
-    selectedDate = d.date;
+      selectedDate = d.date;
 
-    allButtons.forEach(b =>
-      b.classList.remove("current-day")
-    );
+      allButtons.forEach(b =>
+        b.classList.remove("current-day")
+      );
 
-    btn.classList.add("current-day");
+      btn.classList.add("current-day");
 
-    datePicker.classList.remove("active");
+      datePicker.classList.remove("active");
 
-    getSelectedDate(datePicker);
+      getSelectedDate(datePicker);
+      // console.log(startDate)
 
   });
 
-  datesContainer.appendChild(btn);
+    datesContainer.appendChild(btn);
 
-});
+  });
   
   }
 
+//prev button click 
 prevBtn.addEventListener("click", () => {
   const prevMonth =
     new Date(
@@ -401,6 +449,7 @@ prevBtn.addEventListener("click", () => {
 
 });
 
+//next button click 
 nextBtn.addEventListener("click", () => {
 
   const nextMonth =
@@ -505,7 +554,12 @@ function getSelectedDate(datePicker){
   const MonthArr=monthNameEl.textContent.split(" ")
   selectedMonth=Number(MONTHS.findIndex(m => m === MonthArr[0]))+1
   selectedMonth=padZero(selectedMonth)
+  // yearEl.
   const dates=datePicker.querySelectorAll(".dates .date");
+  const startDateText=document.querySelector(".start-text");
+  const endDateText=document.querySelector(".end-text");
+  const startDat=datePicker.querySelector(".start");
+  const endDat=datePicker.querySelector(".end");
   dates.forEach(d=>{
     if(d.classList.contains("current-day")){
       selectedDatee=padZero(Number(d.textContent))
@@ -514,9 +568,15 @@ function getSelectedDate(datePicker){
 
   dateInpWrapper.querySelectorAll("span").forEach(dat=>{
     if(dat.classList.contains("active")){
-      dat.textContent=`${selectedDatee}/${selectedMonth}/${ selectedYear}`;
+      dat.textContent=`${selectedDatee}/${selectedMonth}/${ yearEl.textContent}`;
     }
+    startDateText.textContent=startDat.textContent;
+    endDateText.textContent=endDat.textContent;
+
+    filterQuotesByDate(dateFilteredQuotes, startDateText.textContent, endDateText.textContent)
   })
+
+  
 }
 
 
@@ -644,11 +704,374 @@ function renderWidgets(){
    
   })
 }
+
+//expand function 
+const overlay = document.querySelector(".expand-overlay");
+const modalBox = document.querySelector(".expand-modal");
+const modalContent = document.querySelector(".expand-modal-content");
+const modalTrendChartWrapper=modalContent.querySelector(".trend-chart-wrapper");
+const modalaccurChartWrapper=modalContent.querySelector(".accuracy-chart-wrapper");
+const expandBtns=document.querySelectorAll(".expand-btn");
+const closeBtn = document.querySelector(".close-modal-btn");
+
+expandBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const type = btn.dataset.type;
+    const target = btn.dataset.target;
+    const modalData=btn.dataset.modal
+    const source = document.querySelector(target);
+    if (!source) return;
+    modalBox.className = "expand-modal " + type +" "+ modalData +" "+ "active";
+
+    if (type === "table") {
+      const modalTransactionWrapper=modalContent.querySelector(".transaction-wrapper");
+      const modalQuoteContainer=modalContent.querySelector(".quotes-container");
+      modalQuoteContainer?.classList.remove("active");
+      modalTransactionWrapper?.classList.remove("active");
+      const clone = source.cloneNode(true);      
+      
+      if(target ==".quotes-container"){
+        modalContent.appendChild(source);
+        const modQuoteContainer=modalContent.querySelector(".quotes-container");
+        modQuoteContainer.classList.add("active");
+        dashBoardBodyWrapper.insertBefore(clone, dashBoardBodyWrapper.firstChild);
+      }
+      else if(target==".transaction-wrapper"){
+        const modalTransactionWrapper=modalContent.querySelector(".transaction-wrapper");
+        if(!modalTransactionWrapper){
+          modalContent.appendChild(clone);
+        }
+        const modTransactionWrapper=modalContent.querySelector(".transaction-wrapper");
+        modTransactionWrapper?.classList.add("active");
+      }
+       else if(target==".suggest-product-popup"){
+        modalContent.appendChild(source);
+        closeBtn.classList.add("not-active");
+        closeSuggestExpandModal();
+      }
+    }
+   
+
+    if (type === "chart") {
+      const modalTransactionWrapper=modalContent.querySelector(".transaction-wrapper");
+      modalTrendChartWrapper?.classList.remove("active");
+      modalaccurChartWrapper?.classList.remove("active");
+      modalTransactionWrapper?.classList.remove("active");
+      if (target ==".trend-chart-wrapper") {
+        modalTrendChartWrapper.classList.add("active");
+      } else if (target === ".accuracy-chart-wrapper" ) {
+        modalAccurChart.reflow();
+        modalaccurChartWrapper.classList.add("active");
+        
+      }
+    }
+    overlay.classList.add("active");
+  });
+});
+
+
+function closeModal(){
+  overlay.classList.remove("active");
+  modalBox.classList.remove("active");
+  const quoteContainer=document.querySelector(".quotes-container");
+  const originalSource=modalContent.querySelector(".quotes-container");
+  const suggestSource=modalContent.querySelector(".suggest-product-popup");
+  if(originalSource){
+    quoteContainer.remove();
+    dashBoardBodyWrapper.insertBefore(originalSource, dashBoardBodyWrapper.firstChild);
+  }
+  if(suggestSource){
+    disTableBodyWrapper.appendChild(suggestSource)
+  }
+
+}
+// close button
+closeBtn.addEventListener("click", () => {
+  closeModal();
+});
+function closeSuggestExpandModal(){
+  const closeSuggestExpandBtn=modalContent.querySelector(".close-suggest-popup-btn");
+  closeSuggestExpandBtn.addEventListener("click", () => {
+    closeModal();
+    closeBtn.classList.remove("not-active");
+  });
+}
+
+// close on overlay click
+overlay.addEventListener("click", (e) => {
+  if (e.target === overlay) {
+    closeModal();
+  }
+});
+
+
+//table
+
+
+const quoteTable=document.querySelector(".quote-table");
+
+function  getPrice(price){
+  return parseFloat(price.replace(/[^\d.]/g, "").replace(/\.(?=.*\.)/g, ""));
+}
+function renderQuoteTable(data){
+
+  const tBody=quoteTable.querySelector("tbody");
+
+  tBody.innerHTML="";
+  let tabHtml="";
+  if(data.length!=0){
+    data.forEach(d=>{
+      tabHtml+=`<tr>
+        <td><img src="./assets/images/dashboard/${d.mode}_icon.png" alt="${d.img}"></td>
+        <td><a href="./recent-quote.html" class="quote-id-data">#${d.id}</a></td>
+        <td>${d.name} / ${d.number} </td>
+        <td>${d.received_date}</td>
+        <td>${d.approved_date}</td>
+        <td class=${d.status === "approved" ? "approved" : d.status === "pending" ? "pending" : ""} }>${d.status}</td>
+        <td>${d.total_line_no}</td>
+        <td>$${d.total_price}</td>
+        <td>${d.status === "deleted" ? 
+          `<span>Undo</span>` : `<a href="./recent-quote.html">
+          <img src="./assets/images/dashboard/Add_icon.png" alt="add"> </a>`}
+      </td>
+    </tr>
+      ` 
+    })
+
+    tBody.innerHTML=tabHtml;
+  }
+  else{
+    tBody.innerHTML="<p class='not-found'>Data Not Found</p>";
+  }
+}
+
+function renderQuoteCounts(data){
+  const approveCounts=document.querySelectorAll(".apprv-count");
+  const pendCounts=document.querySelectorAll(".pend-count");
+  const delCounts=document.querySelectorAll(".del-count");
+  const allCount=document.querySelector(".all-count");
+  const totalRev=document.querySelector(".total-revenue");
+  const totalCounts=document.querySelectorAll(".total-count")
+  let approve=0;
+  let pend=0;
+  let del=0;
+  let tot=0;
+  let totalPrice=0;
+  data.forEach(d=>{
+    const status=d.status
+    switch(status){
+      case "approved":
+        approve++;
+        break;
+      case "pending":
+        pend++;
+        break;
+      case "deleted":
+        del++;
+        break;
+    }
+    const str = d.total_price;
+
+    const num = getPrice(str) ;
+
+    totalPrice+=num;
+  })
+
+  approveCounts.forEach(c=>c.textContent=approve);
+  pendCounts.forEach(c=>c.textContent=pend);
+  delCounts.forEach(c=>c.textContent=del);
+  
+  totalCounts.forEach(c=>c.textContent=approve+pend);
+  allCount.textContent=data.length
+  totalRev.textContent="$"+totalPrice.toFixed(2);
+}
+
+
+
+//filter function 
+
+const quotesContainer=document.querySelector(".quotes-container");
+const tableBtns=document.querySelectorAll(".top-container .btn-container button")
+
+
+tableBtns.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    tableBtns.forEach(btn=>btn.classList.remove("active"));
+    btn.classList.add("active");
+    const filterItem=btn.dataset.filter;
+    
+    if(filterItem!="all")
+      filteredQuotes=dateFilteredQuotes.filter(q=>q.status==filterItem);
+    else
+      filteredQuotes = [...dateFilteredQuotes];
+
+    renderQuoteTable(filteredQuotes)
+    getTrendChartData(dateFilteredQuotes,filterItem)
+  })
+})
+
+const filterBtn=quotesContainer.querySelector(".filter-text");
+const filterDropdown=document.querySelector(".filter-dropdown");
+const filterItems=filterDropdown.querySelectorAll("ul li");
+filterBtn.addEventListener('click',()=>{
+  filterDropdown.classList.toggle("active")
+})
+
+filterItems.forEach(item=>{
+  item.addEventListener('click',()=>{
+    const filteredCopy=[...filteredQuotes]
+    filterItems.forEach(item=>item.classList.remove("active"));
+    filterDropdown.classList.remove("active")
+    const sortItem=item.dataset.sort;
+    const ascend=item.dataset.ascending;
+    item.classList.add("active")
+
+    if(sortItem=="name"){
+      if(ascend=="true"){
+        sortedQuote=filteredCopy.sort((a, b) => a.name.localeCompare(b.name))
+      }
+      else{
+        sortedQuote=filteredCopy.sort((a, b) => b.name.localeCompare(a.name))
+      }
+    }
+    else if(sortItem=="id"){
+      if(ascend=="true"){
+        sortedQuote= filteredCopy.sort((a, b) => a.id - b.id);
+      }
+      else{
+        sortedQuote= filteredCopy.sort((a, b) => a.id - b.id);
+      }
+    }
+    else{
+      sortedQuote=filteredCopy;
+    }
+
+    renderQuoteTable(sortedQuote)
+  })
+})
+document.addEventListener('click',(e)=>{
+
+  if(!e.target.contains(filterBtn))
+    filterDropdown.classList.remove("active")
+})
+
+//sort
+
+const tabHeaderSpans=quoteTable.querySelectorAll("th span");
+let sortedQuote;
+let isAscending = true;
+function parseDate(dateStr) {
+
+  const [day, month, year] = dateStr.split("-");
+
+  return new Date(year, month - 1, day);
+}
+
+tabHeaderSpans.forEach(sp=>{
+  sp.addEventListener('click',()=>{
+    const filteredCopy=[...filteredQuotes]
+    const sortItem=sp.dataset.sort;
+    if(isAscending){
+      if(sortItem=="id"){
+        sortedQuote=filteredCopy.sort((a, b) => a.id - b.id);
+      }
+      else if(sortItem=="name"){
+        sortedQuote=filteredCopy.sort((a, b) => a.name.localeCompare(b.name))
+      }
+      else if(sortItem=="received_date"){
+        sortedQuote = filteredCopy.sort((a, b) => parseDate(a.received_date) - parseDate(b.received_date));
+      }
+      else if(sortItem=="approved_date"){
+        sortedQuote = filteredCopy.sort((a, b) => parseDate(a.approved_date) - parseDate(b.approved_date));
+      }
+      else if(sortItem=="status"){
+        sortedQuote = filteredCopy.sort((a, b) => a.status.localeCompare(b.status));
+      }
+      else if(sortItem=="total_line_no"){
+        sortedQuote = filteredCopy.sort((a, b) => a.total_line_no - b.total_line_no);
+      }
+      else if(sortItem=="total_line_no"){
+        sortedQuote = filteredCopy.sort((a, b) => a.total_line_no - b.total_line_no);
+      }
+      else if(sortItem=="total_price"){
+        sortedQuote = filteredCopy.sort((a, b) => getPrice(a.total_price) - getPrice(b.total_price));
+      }
+    }
+    else if(!isAscending){
+      if(sortItem=="id"){
+        sortedQuote=filteredCopy.sort((a, b) =>b.id - a.id)
+      }
+       else if(sortItem=="name"){
+        sortedQuote=filteredCopy.sort((a, b) =>b.name.localeCompare(a.name))
+      }
+      else if(sortItem=="received_date"){
+        sortedQuote = filteredCopy.sort((a, b) => parseDate(b.received_date) - parseDate(a.received_date));
+      }
+      else if(sortItem=="approved_date"){
+        sortedQuote = filteredCopy.sort((a, b) => parseDate(b.approved_date) - parseDate(a.approved_date));
+      }
+      else if(sortItem=="status"){
+        sortedQuote = filteredCopy.sort((a, b) => b.status.localeCompare(a.status));
+      }
+      else if(sortItem=="total_price"){
+        sortedQuote = filteredCopy.sort((a, b) => getPrice(b.total_price) - getPrice(a.total_price));
+      }
+    }
+   
+    renderQuoteTable(sortedQuote)
+    isAscending=!isAscending;
+  })
+ 
+})
+
+//search function 
+
+const searchInput =document.querySelector(".search-table-quote-input");
+const searchBtn =document.querySelector(".search-table-quote-btn");
+
+function searchQuotes() {
+  const value = searchInput.value.trim().toLowerCase();
+  const filteredCopy=[...filteredQuotes]
+  if(value!=""){
+    sortedQuote = filteredCopy.filter(q => {
+
+      return (
+
+        q.id.toString().toLowerCase().includes(value) ||
+
+        q.name.toLowerCase().includes(value)||
+        
+        q.number.toString().toLowerCase().includes(value)||
+
+        q.status.toLowerCase().includes(value)
+
+      );
+
+    });
+  }
+  else{
+    sortedQuote=filteredCopy;
+  }
+
+  renderQuoteTable(sortedQuote);
+}
+
+// button click
+searchBtn.addEventListener("click", searchQuotes);
+
+// enter key
+searchInput.addEventListener("keydown", (e) => {
+
+  if (e.key === "Enter") {
+    searchQuotes();
+  }
+});
+
 //charts
 let trendChart;
 const trendChartContainer=document.getElementById("trend-chart")
 
-function renderTrendChart(){
+function renderTrendChart(totalQuotes, filterQuotes,filterItem){
   trendChart=Highcharts.chart('trend-chart', {
     chart: {
       type: 'area',
@@ -658,7 +1081,7 @@ function renderTrendChart(){
       lineColor:'#e6e6e6',
       categories: [
           'Jan', 'Feb', 'Mar', 'Apr',
-          'May', 'Jun', 'Jul', 'Aug'
+          'May', 'Jun', 'Jul', 'Aug','Sep','Oct','Nov','Dec'
       ],
       title: {
           text: ''
@@ -710,7 +1133,7 @@ function renderTrendChart(){
         name: 'Total',
         color:'#ff09b5',
         fillColor: 'transparent',
-        data: [11, 11, 8, 13, 12, 14, 4, 12],
+        data: totalQuotes,
         marker: {
           enabled: false,
           states: {
@@ -719,41 +1142,52 @@ function renderTrendChart(){
             },
       } 
     }, {
-        name: 'Approved',
-        color:'#49b4ff',
-        fillColor:'#49b4ff',
-        // fillOpacity: 0.3,
-        data: [10, 10, 8, 12, 8, 6, 4, 8],
-          marker: {
-            symbol: 'circle', 
-            fillColor: '#ffffff',  
-            lineColor: '#49b4ff',  
-            lineWidth: 1,
-            radius:3,
-            states: {
-              hover: { enabled: false, lineWidth: 0,borderWidth: 0 },
-              inactive: { opacity: 1 }
-            },
+      name: filterItem,
+      color:'rgb(73, 180, 255)',
+      fillColor: {
+          linearGradient: {
+            x1: 0,
+            y1: 0,
+            x2: 0,
+            y2: 1
+          },
+          stops: [
+            [0, 'rgb(73, 180, 255)'],
+            [0.5, 'rgba(65, 183, 238, 0.64)'],
+            [1, 'rgba(224, 224, 224, 0.05)']
+          ]
+      },
+      data: filterQuotes,
+      marker: {
+        symbol: 'circle', 
+        fillColor: '#ffffff',  
+        lineColor: '#49b4ff',  
+        lineWidth: 1,
+        radius:window.innerWidth <= 1400 ? 2 : 3,
+        states: {
+          hover: { enabled: false, lineWidth: 0,borderWidth: 0 },
+          inactive: { opacity: 1 }
+        },
 
-          }
+      }
     }]
 });
 }
 
-renderTrendChart();
-enableTrendLegend();
+
+// enableTrendLegend();
 
 
 function enableTrendLegend(){
   if(trendChart){
-    const legends = trendChartContainer.querySelectorAll('.legend');
-
+    const trendWrapper=document.querySelector(".trend-chart-wrapper");
+    const legends = trendWrapper.querySelectorAll('.legend');
     legends.forEach((legend, index) => {
       legend.addEventListener('click', () => {
-          legend.classList.toggle('inactive');
-          const series=trendChart.series[index] ;
-          series.setVisible(!series.visible,false);
-          trendChart.redraw();
+      legend.classList.toggle('inactive');
+      const series=trendChart.series[index] ;
+      series.setVisible(!series.visible,false);
+      trendChart.redraw();
       });
     });
   }
@@ -778,15 +1212,17 @@ function getAccurSizes() {
 }
 
 function enableModalTrendLegend(){
-  if(trendChart){
-    const legends = trendChartContainer.querySelectorAll('.legend');
+  if(modalTrendChart){
+    const modalContent = document.querySelector(".expand-modal-content");
+    const modalTrendWrapper=modalContent.querySelector(".trend-chart-wrapper");
+    const legends = modalTrendWrapper.querySelectorAll('.legend');
 
     legends.forEach((legend, index) => {
       legend.addEventListener('click', () => {
           legend.classList.toggle('inactive');
-          const series=trendChart.series[index] ;
+          const series=modalTrendChart.series[index] ;
           series.setVisible(!series.visible,false);
-          trendChart.redraw();
+          modalTrendChart.redraw();
       });
     });
   }
@@ -989,7 +1425,7 @@ let lastSmall = window.innerWidth < 1600;
 
 let modalTrendChart;
 const modalTrendChartContainer=document.getElementById("trend-modal-chart");
-function renderModalTrendChart(){
+function renderModalTrendChart(totalQuotes, filterQuotes,filterItem){
   modalTrendChart=Highcharts.chart('trend-modal-chart', {
     chart: {
       type: 'area',
@@ -999,8 +1435,7 @@ function renderModalTrendChart(){
       // lineWidth: 0,
       lineColor:'#e6e6e6',
       categories: [
-          'Jan', 'Feb', 'Mar', 'Apr',
-          'May', 'Jun', 'Jul', 'Aug'
+          'Jan', 'Feb', 'Mar', 'Apr','May', 'Jun', 'Jul', 'Aug','Sep','Oct','Nov','Dec'
       ],
       title: {
           text: ''
@@ -1052,7 +1487,7 @@ function renderModalTrendChart(){
         name: 'Total',
         color:'#ff09b5',
         fillColor: 'transparent',
-        data: [11, 11, 8, 13, 12, 14, 4, 12],
+        data: totalQuotes,
         marker: {
           enabled: false,
           states: {
@@ -1061,17 +1496,28 @@ function renderModalTrendChart(){
             },
       } 
     }, {
-        name: 'Approved',
+        name: filterItem,
         color:'#49b4ff',
-        fillColor:'#49b4ff',
-        // fillOpacity: 0.3,
-        data: [10, 10, 8, 12, 8, 6, 4, 8],
+        fillColor: {
+          linearGradient: {
+            x1: 0,
+            y1: 0,
+            x2: 0,
+            y2: 1
+          },
+          stops: [
+            [0, 'rgb(73, 180, 255)'],
+            [0.5, 'rgba(65, 183, 238, 0.64)'],
+            [1, 'rgba(224, 224, 224, 0.05)']
+          ]
+        },  
+        data: filterQuotes,
           marker: {
             symbol: 'circle', 
             fillColor: '#ffffff',  
             lineColor: '#49b4ff',  
             lineWidth: 1,
-            radius:3,
+            radius:window.innerWidth <= 1400 ? 3 : 4,
             states: {
               hover: { enabled: false, lineWidth: 0,borderWidth: 0 },
               inactive: { opacity: 1 }
@@ -1082,9 +1528,8 @@ function renderModalTrendChart(){
 });
 }
 
-renderModalTrendChart();
 
-enableModalTrendLegend();
+
 
 
 //modal gauge chart
@@ -1327,378 +1772,40 @@ window.addEventListener("resize", () => {
 
 });
 
+function getTrendChartData(dateFilteredQuotes,filterItem) {
+  const filterCopy=[...dateFilteredQuotes];
+  const totalQuotes=filterQuoteByStatus(filterCopy.filter(f=>f.status=="pending" || f.status=="approved"));
 
-//expand function 
-const overlay = document.querySelector(".expand-overlay");
-const modalBox = document.querySelector(".expand-modal");
-const modalContent = document.querySelector(".expand-modal-content");
-const modalTrendChartWrapper=modalContent.querySelector(".trend-chart-wrapper");
-const modalaccurChartWrapper=modalContent.querySelector(".accuracy-chart-wrapper");
-const expandBtns=document.querySelectorAll(".expand-btn");
-const closeBtn = document.querySelector(".close-modal-btn");
-
-expandBtns.forEach(btn => {
-  btn.addEventListener("click", () => {
-    const type = btn.dataset.type;
-    const target = btn.dataset.target;
-    const modalData=btn.dataset.modal
-    const source = document.querySelector(target);
-    if (!source) return;
-    modalBox.className = "expand-modal " + type +" "+ modalData +" "+ "active";
-
-    if (type === "table") {
-      const modalTransactionWrapper=modalContent.querySelector(".transaction-wrapper");
-      const modalQuoteContainer=modalContent.querySelector(".quotes-container");
-      modalQuoteContainer?.classList.remove("active");
-      modalTransactionWrapper?.classList.remove("active");
-      const clone = source.cloneNode(true);      
-      
-      if(target ==".quotes-container"){
-        modalContent.appendChild(source);
-        const modQuoteContainer=modalContent.querySelector(".quotes-container");
-        modQuoteContainer.classList.add("active");
-        dashBoardBodyWrapper.insertBefore(clone, dashBoardBodyWrapper.firstChild);
-      }
-      else if(target==".transaction-wrapper"){
-        const modalTransactionWrapper=modalContent.querySelector(".transaction-wrapper");
-        if(!modalTransactionWrapper){
-          modalContent.appendChild(clone);
-        }
-        const modTransactionWrapper=modalContent.querySelector(".transaction-wrapper");
-        modTransactionWrapper?.classList.add("active");
-      }
-       else if(target==".suggest-product-popup"){
-        modalContent.appendChild(source);
-        closeBtn.classList.add("not-active");
-        closeSuggestExpandModal();
-      }
-    }
-   
-
-    if (type === "chart") {
-      const modalTransactionWrapper=modalContent.querySelector(".transaction-wrapper");
-      modalTrendChartWrapper?.classList.remove("active");
-      modalaccurChartWrapper?.classList.remove("active");
-      modalTransactionWrapper?.classList.remove("active");
-      if (target ==".trend-chart-wrapper") {
-        modalTrendChartWrapper.classList.add("active");
-      } else if (target === ".accuracy-chart-wrapper" ) {
-        modalAccurChart.reflow();
-        modalaccurChartWrapper.classList.add("active");
-        
-      }
-    }
-    overlay.classList.add("active");
-  });
-});
-
-
-function closeModal(){
-  overlay.classList.remove("active");
-  modalBox.classList.remove("active");
-  const quoteContainer=document.querySelector(".quotes-container");
-  const originalSource=modalContent.querySelector(".quotes-container");
-  const suggestSource=modalContent.querySelector(".suggest-product-popup");
-  if(originalSource){
-    quoteContainer.remove();
-    dashBoardBodyWrapper.insertBefore(originalSource, dashBoardBodyWrapper.firstChild);
-  }
-  if(suggestSource){
-    disTableBodyWrapper.appendChild(suggestSource)
-  }
-
-}
-// close button
-closeBtn.addEventListener("click", () => {
-  closeModal();
-});
-function closeSuggestExpandModal(){
-  const closeSuggestExpandBtn=modalContent.querySelector(".close-suggest-popup-btn");
-  closeSuggestExpandBtn.addEventListener("click", () => {
-    closeModal();
-    closeBtn.classList.remove("not-active");
-  });
-}
-
-// close on overlay click
-overlay.addEventListener("click", (e) => {
-  if (e.target === overlay) {
-    closeModal();
-  }
-});
-
-
-//table
-let quotes;
-let filteredQuotes;
-async function loadQuotes() {
-  try {
-    const resp = await fetch("../assets/json/quote.json")
-    const data = await resp.json()
-    quotes=data;
-    filteredQuotes=data;
-    renderQuoteTable(data)
-    renderQuoteCounts(data)
-    console.log(data[0])
-  } catch (err) {
-    console.error("Error:", err)
-  }
-}
-
-loadQuotes()
-
-const quoteTable=document.querySelector(".quote-table");
-
-function  getPrice(price){
-  return parseFloat(price.replace(/[^\d.]/g, "").replace(/\.(?=.*\.)/g, ""));
-}
-function renderQuoteTable(data){
-  const tBody=quoteTable.querySelector("tbody");
-
-  tBody.innerHTML="";
-  let tabHtml="";
-  if(data.length!=0){
-    data.forEach(d=>{
-      tabHtml+=`<tr>
-        <td><img src="./assets/images/dashboard/${d.img}_icon.png" alt="${d.img}"></td>
-        <td><a href="./recent-quote.html" class="quote-id-data">#${d.id}</a></td>
-        <td>${d.name} / ${d.number} </td>
-        <td>${d.received_date}</td>
-        <td>${d.approved_date}</td>
-        <td class=${d.status === "approved" ? "approved" : d.status === "pending" ? "pending" : ""} }>${d.status}</td>
-        <td>${d.total_line_no}</td>
-        <td>$${d.total_price}</td>
-        <td>${d.status === "deleted" ? 
-          `<span>Undo</span>` : `<a href="./recent-quote.html">
-          <img src="./assets/images/dashboard/Add_icon.png" alt="add"> </a>`}
-      </td>
-    </tr>
-      ` 
-    })
-
-    tBody.innerHTML=tabHtml;
+  let filterQuotes;
+  if(filterItem!="all"){
+    filterQuotes=filterQuoteByStatus(filterCopy.filter(f=>f.status==filterItem));
   }
   else{
-    tBody.innerHTML="<p class='not-found'>Data Not Found</p>";
+    filterQuotes=totalQuotes;
   }
-}
-
-function renderQuoteCounts(data){
-  const approveCounts=document.querySelectorAll(".apprv-count");
-  const pendCounts=document.querySelectorAll(".pend-count");
-  const delCounts=document.querySelectorAll(".del-count");
-  const allCounts=document.querySelectorAll(".all-count");
-  const totalRev=document.querySelector(".total-revenue");
-
-  let approve=0;
-  let pend=0;
-  let del=0;
-  let tot=0;
-  let totalPrice=0;
-  data.forEach(d=>{
-    const status=d.status
-    switch(status){
-      case "approved":
-        approve++;
-        break;
-      case "pending":
-        pend++;
-        break;
-      case "deleted":
-        del++;
-        break;
-    }
-    const str = d.total_price;
-
-    const num = getPrice(str) ;
-
-    totalPrice+=num;
-  })
-
-  approveCounts.forEach(c=>c.textContent=approve);
-  pendCounts.forEach(c=>c.textContent=pend);
-  delCounts.forEach(c=>c.textContent=del);
   
-  allCounts.forEach(c=>c.textContent=data.length);
-  totalRev.textContent="$"+totalPrice;
+  const filterLegendtexts=document.querySelectorAll(".approved-legend")
+  filterLegendtexts.forEach(text=>text.innerHTML= `<span></span>${filterItem}`)
+
+  renderTrendChart(totalQuotes, filterQuotes,filterItem)
+  enableTrendLegend();
+
+  renderModalTrendChart(totalQuotes, filterQuotes,filterItem)
+  enableModalTrendLegend();
+
 }
 
 
+function filterQuoteByStatus(filteredQuote){
+  const monthData = new Array(12).fill(0);
+  filteredQuote.forEach(q => {
 
-//filter function 
+    const date = parseDate(q.received_date);
 
-const quotesContainer=document.querySelector(".quotes-container");
-const tableBtns=document.querySelectorAll(".top-container .btn-container button")
+    const monthIndex = date.getMonth();
 
-
-tableBtns.forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    tableBtns.forEach(btn=>btn.classList.remove("active"));
-    btn.classList.add("active");
-    const filterItem=btn.dataset.filter;
-    if(filterItem!="all")
-      filteredQuotes=quotes.filter(q=>q.status==filterItem);
-    else
-      filteredQuotes = [...quotes];
-
-    renderQuoteTable(filteredQuotes)
-  })
-})
-
-const filterBtn=quotesContainer.querySelector(".filter-text");
-const filterDropdown=document.querySelector(".filter-dropdown");
-const filterItems=filterDropdown.querySelectorAll("ul li");
-filterBtn.addEventListener('click',()=>{
-  filterDropdown.classList.toggle("active")
-})
-
-filterItems.forEach(item=>{
-  item.addEventListener('click',()=>{
-    const filteredCopy=[...filteredQuotes]
-    filterItems.forEach(item=>item.classList.remove("active"));
-    filterDropdown.classList.remove("active")
-    const sortItem=item.dataset.sort;
-    const ascend=item.dataset.ascending;
-    item.classList.add("active")
-
-    if(sortItem=="name"){
-      if(ascend=="true"){
-        sortedQuote=filteredCopy.sort((a, b) => a.name.localeCompare(b.name))
-      }
-      else{
-        sortedQuote=filteredCopy.sort((a, b) => b.name.localeCompare(a.name))
-      }
-    }
-    else if(sortItem=="id"){
-      if(ascend=="true"){
-        sortedQuote= filteredCopy.sort((a, b) => a.id - b.id);
-      }
-      else{
-        sortedQuote= filteredCopy.sort((a, b) => a.id - b.id);
-      }
-    }
-    else{
-      sortedQuote=filteredCopy;
-    }
-
-    renderQuoteTable(sortedQuote)
-  })
-})
-document.addEventListener('click',(e)=>{
-
-  if(!e.target.contains(filterBtn))
-    filterDropdown.classList.remove("active")
-})
-
-//sort
-
-const tabHeaderSpans=quoteTable.querySelectorAll("th span");
-let sortedQuote;
-let isAscending = true;
-function parseDate(dateStr) {
-
-  const [day, month, year] = dateStr.split("-");
-
-  return new Date(year, month - 1, day);
-}
-
-tabHeaderSpans.forEach(sp=>{
-  sp.addEventListener('click',()=>{
-     const filteredCopy=[...filteredQuotes]
-    const sortItem=sp.dataset.sort;
-    if(isAscending){
-      if(sortItem=="id"){
-        sortedQuote=filteredCopy.sort((a, b) => a.id - b.id);
-      }
-      else if(sortItem=="name"){
-        sortedQuote=filteredCopy.sort((a, b) => a.name.localeCompare(b.name))
-      }
-      else if(sortItem=="received_date"){
-        sortedQuote = filteredCopy.sort((a, b) => parseDate(a.received_date) - parseDate(b.received_date));
-      }
-      else if(sortItem=="approved_date"){
-        sortedQuote = filteredCopy.sort((a, b) => parseDate(a.approved_date) - parseDate(b.approved_date));
-      }
-      else if(sortItem=="status"){
-        sortedQuote = filteredCopy.sort((a, b) => a.status.localeCompare(b.status));
-      }
-      else if(sortItem=="total_line_no"){
-        sortedQuote = filteredCopy.sort((a, b) => a.total_line_no - b.total_line_no);
-      }
-      else if(sortItem=="total_line_no"){
-        sortedQuote = filteredCopy.sort((a, b) => a.total_line_no - b.total_line_no);
-      }
-      else if(sortItem=="total_price"){
-        sortedQuote = filteredCopy.sort((a, b) => getPrice(a.total_price) - getPrice(b.total_price));
-      }
-    }
-    else if(!isAscending){
-      if(sortItem=="id"){
-        sortedQuote=filteredCopy.sort((a, b) =>b.id - a.id)
-      }
-       else if(sortItem=="name"){
-        sortedQuote=filteredCopy.sort((a, b) =>b.name.localeCompare(a.name))
-      }
-      else if(sortItem=="received_date"){
-        sortedQuote = filteredCopy.sort((a, b) => parseDate(b.received_date) - parseDate(a.received_date));
-      }
-      else if(sortItem=="approved_date"){
-        sortedQuote = filteredCopy.sort((a, b) => parseDate(b.approved_date) - parseDate(a.approved_date));
-      }
-      else if(sortItem=="status"){
-        sortedQuote = filteredCopy.sort((a, b) => b.status.localeCompare(a.status));
-      }
-      else if(sortItem=="total_price"){
-        sortedQuote = filteredCopy.sort((a, b) => getPrice(b.total_price) - getPrice(a.total_price));
-      }
-    }
-   
-    renderQuoteTable(sortedQuote)
-    isAscending=!isAscending;
-  })
- 
-})
-
-//search function 
-
-const searchInput =document.querySelector(".search-table-quote-input");
-const searchBtn =document.querySelector(".search-table-quote-btn");
-
-function searchQuotes() {
-
-  const value = searchInput.value.trim().toLowerCase();
-  const filterCopy=[...filteredQuotes]
-  if(value!=""){
-    sortedQuote = filterCopy.filter(q => {
-
-      return (
-
-        q.id.toString().toLowerCase().includes(value) ||
-
-        q.name.toLowerCase().includes(value)||
-        
-        q.number.toString().toLowerCase().includes(value)||
-
-        q.status.toLowerCase().includes(value)
-
-      );
-
+      monthData[monthIndex]++;
+      
     });
-  }
-  else{
-    sortedQuote=filterCopy;
-  }
-
-  renderQuoteTable(sortedQuote);
+    return monthData;
 }
-
-// button click
-searchBtn.addEventListener("click", searchQuotes);
-
-// enter key
-searchInput.addEventListener("keydown", (e) => {
-
-  if (e.key === "Enter") {
-    searchQuotes();
-  }
-});

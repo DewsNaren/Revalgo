@@ -30,8 +30,13 @@ header{
             border: none;
             font-size:clamp(12px, $fs-17px, $fs-17px);
             outline: none;
-            
+            &:-webkit-autofill{
+                -webkit-box-shadow: 0 0 0 1000px #fff inset;
+                -webkit-text-fill-color: $black;
+                transition: background-color 9999s ease-in-out 0s;
+            }
         }
+
         .search-quote-btn{
             background-color: transparent;
             border: none;
@@ -56,47 +61,66 @@ header{
             box-shadow: $box-shadow-1;
             z-index: 2;
             height: clamp(150px, $fs-250px, $fs-250px);
-            ul{
-                padding-left: 0;
-                padding-inline: clamp(10px, $fs-16px, $fs-16px) ;
-                list-style-type: none;
-                margin-bottom: 0;
-                display: flex;
-                flex-direction: column;
+            .list-wrapper{
+                overflow-y: auto;
                 min-height: 0;
                 max-height: clamp(150px, $fs-225px, $fs-225px);
                 max-height: 100%;
-                overflow-y: auto;
-                li {
-                    padding: clamp(5px, $fs-15px, $fs-15px) clamp(5px, $fs-10px, $fs-10px);
-                    font-size: clamp(10px, $fs-16px, $fs-16px);
-                    border-bottom: 1px solid #ccc;
-                    color: $black-80;
-                    font-weight: 500;
-                    opacity: 0.95;
-                    cursor: pointer;
-                    &:hover {
-                        background-color: $blue-2ff;
-                        // color: $blue-87;
-                    }
-                   &:last-of-type{
-                        border: none;
-                    }
+                padding-left: 0;
+                .list-container{
+                    .list-header{
+                        font-size:  clamp(14px, $fs-20px, $fs-20px);
+                        padding:0  clamp(15px, $fs-26px, $fs-26px)  clamp(5px, $fs-10px, $fs-10px) ;
 
-                                                    
-                }   
+                        border-bottom: 1px solid #ccc;
+                    }
+                    ul{
+                        padding-left: 0;
+                        
+                        list-style-type: none;
+                        margin-bottom: 0;
+                        display: flex;
+                        flex-direction: column;
+                    
+                        
+                        li {
+                            padding: clamp(5px, $fs-15px, $fs-15px) clamp(15px, $fs-26px, $fs-26px);
+                            font-size: clamp(10px, $fs-16px, $fs-16px);
+                            
+                            color: $black-80;
+                            font-weight: 500;
+                            opacity: 0.95;
+                            cursor: pointer;
+                            &:hover {
+                                background-color: $blue-2ff;
+                                // color: $blue-87;
+                            }
+                        &:last-of-type{
+                                border: none;
+                            }
+
+                                                            
+                        }   
+                    
+
+                    }
+                
+                    &.not-active{
+                        display: none;
+                    }
+                }
                 &::-webkit-scrollbar {
-                width: 4px;
-                height: 6px;
-            }
-            &::-webkit-scrollbar-thumb {
-                background: rgba(161, 161, 161, 0.5);
-                border-radius: 4px;
-            }
-
+                    width: 4px;
+                    height: 6px;
+                }
+                &::-webkit-scrollbar-thumb {
+                    background: rgba(161, 161, 161, 0.5);
+                    border-radius: 4px;
+                }
+                
             }
             &.active{
-               display: block;
+                display: block;
             }
             
         }
