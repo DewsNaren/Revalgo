@@ -7517,7 +7517,7 @@ body {
 }
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper {
   padding: clamp(10px, 1.05vw, 1.05vw) clamp(10px, 1.05vw, 1.05vw) clamp(5px, 0.521vw, 0.521vw);
-  width: fit-content;
+  width: clamp(250px, 18.8%, 18.8%);
   box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.12);
   border-radius: clamp(4px, 0.521vw, 0.521vw);
   overflow-y: auto;
@@ -7552,11 +7552,28 @@ body {
   margin-bottom: 0;
   line-height: 1;
   padding-bottom: clamp(4px, 0.43vw, 0.43vw);
+  cursor: pointer;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container h3 span {
+  line-height: 1;
+  margin-right: 2px;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container h3 .minus {
+  display: none;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container h3.collapsed .minus {
+  display: inline;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container h3.collapsed .plus {
+  display: none;
 }
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .filter-subheader {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .filter-subheader h3 {
+  width: fit-content;
 }
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .filter-subheader .control-btn-container {
   display: flex;
@@ -7617,6 +7634,11 @@ body {
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .search-container input::placeholder {
   font-size: clamp(9px, 0.68vw, 0.68vw);
 }
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .search-container input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #fff inset;
+  -webkit-text-fill-color: black;
+  transition: background-color 9999s ease-in-out 0s;
+}
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .search-container button {
   background-color: transparent;
   border: none;
@@ -7646,6 +7668,9 @@ body {
   font-size: clamp(12px, 0.83vw, 0.83vw);
   color: #818080;
 }
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .checkbox-filter-container .checkbox-filter.hidden {
+  display: none;
+}
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .see-more-link {
   margin-top: 4px;
   font-size: clamp(9px, 0.68vw, 0.68vw);
@@ -7656,22 +7681,22 @@ body {
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container:last-of-type {
   border-bottom: none;
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper {
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper {
   display: flex;
   align-items: center;
   gap: clamp(8px, 0.79vw, 0.79vw);
   margin-left: clamp(8px, 0.79vw, 0.79vw);
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container {
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container {
   position: relative;
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .date-label {
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .date-label {
   font-size: clamp(12px, 0.83vw, 0.83vw);
   color: #818080;
   line-height: 1;
   margin-bottom: clamp(4px, 0.43vw, 0.43vw);
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .date-text {
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .date-text {
   font-size: clamp(10px, 0.73vw, 0.73vw);
   color: #818080;
   white-space: nowrap;
@@ -7681,18 +7706,18 @@ body {
   padding: 4px 5px;
   border-radius: 4px;
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .date-text img {
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .date-text img {
   width: clamp(11px, 0.93vw, 0.93vw);
   margin-left: clamp(6px, 0.73vw, 0.73vw);
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .date-text.active {
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .date-text.active {
   color: #154787;
   border-color: #154787;
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .date-text.active img {
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .date-text.active img {
   filter: brightness(0) saturate(100%) invert(20%) sepia(45%) saturate(1500%) hue-rotate(190deg) brightness(90%) contrast(95%);
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker {
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker {
   position: fixed;
   background-color: #f5f5f5;
   box-shadow: 0px 6px 7px -2px rgba(0, 0, 0, 0.2);
@@ -7702,48 +7727,48 @@ body {
   z-index: 6;
   top: 100%;
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker button {
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker button {
   cursor: pointer;
   outline: none;
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top {
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-top {
   margin-bottom: 20px;
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector {
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-top .month-selector {
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: relative;
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper {
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper {
   display: flex;
   align-items: center;
   font-size: clamp(13px, 0.89vw, 0.89vw);
   gap: 5px;
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .month-name, .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .year {
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .month-name, .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .year {
   color: black;
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .year {
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .year {
   color: black;
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar {
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar {
   visibility: visible;
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar .days {
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .days {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-row-gap: 15px;
   margin-top: 15px;
   margin-bottom: 20px;
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar .dates {
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .dates {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-column-gap: clamp(5px, 0.521vw, 0.521vw);
   grid-row-gap: clamp(5px, 0.79vw, 0.79vw);
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar .date {
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .date {
   justify-self: center;
   border: none;
   margin: 0;
@@ -7760,42 +7785,42 @@ body {
   font-size: clamp(8px, 0.73vw, 0.73vw);
   font-weight: 500;
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar .date:hover, .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar .date:focus {
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .date:hover, .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .date:focus {
   border: 2px solid rgba(0, 0, 0, 0.3);
   font-weight: 600;
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar .date.faded {
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .date.faded {
   color: #999fa6;
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar .date.faded:focus {
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .date.faded:focus {
   color: #999fa6;
   border: 2px solid transparent;
   pointer-events: none;
   font-weight: 500;
   background-color: transparent;
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar .date.faded:hover {
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .date.faded:hover {
   border: none;
   font-weight: 500;
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar .date.current-date {
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .date.current-date {
   border: 2px solid rgba(0, 0, 0, 0.8);
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar .date.current-day {
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .date.current-day {
   color: white;
   border: 2px solid rgba(0, 0, 0, 0.8);
   background-color: #0073ff;
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar .day {
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .day {
   color: rgba(0, 0, 0, 0.9);
   font-weight: 500;
   font-size: clamp(12px, 0.83vw, 0.83vw);
   justify-self: center;
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker .datepicker-calendar.not-active {
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar.not-active {
   visibility: hidden;
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .datepicker.active {
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker.active {
   padding: clamp(8px, 0.79vw, 0.79vw);
   max-height: 411px;
   overflow: visible;
@@ -7951,6 +7976,11 @@ body {
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .search-container input::placeholder {
   font-size: clamp(9px, 0.68vw, 0.68vw);
 }
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .search-container input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #fff inset;
+  -webkit-text-fill-color: black;
+  transition: background-color 9999s ease-in-out 0s;
+}
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .search-container button {
   background-color: transparent;
   border: none;
@@ -7969,6 +7999,7 @@ body {
   align-items: center;
   gap: clamp(8px, 0.521vw, 0.521vw);
   margin-bottom: clamp(12px, 1.05vw, 1.05vw);
+  flex-wrap: wrap;
 }
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .status-container .status-chip-container .chip {
   display: inline-flex;
@@ -7980,6 +8011,7 @@ body {
   color: #154787;
   border: 1px solid transparent;
   gap: clamp(5px, 0.521vw, 0.521vw);
+  text-transform: capitalize;
 }
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .status-container .status-chip-container .chip .close-chip {
   display: inline-block;
@@ -7995,6 +8027,7 @@ body {
   color: rgba(255, 255, 255, 0.8);
 }
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .status-container .clear-all-btn {
+  text-wrap: nowrap;
   border: none;
   background-color: transparent;
   color: #eb0808;
@@ -8086,6 +8119,7 @@ body {
 }
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td:nth-of-type(6) {
   width: 8.5vw;
+  text-transform: capitalize;
 }
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td:nth-of-type(6) span {
   color: #ff0000;
@@ -8114,6 +8148,12 @@ body {
 }
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr.active {
   background-color: #e8f2ff;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody .not-found {
+  text-align: center;
+  padding-top: clamp(10px, 1.05vw, 1.05vw);
+  font-size: clamp(10px, 0.79vw, 0.79vw);
+  margin-bottom: 0;
 }
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody::-webkit-scrollbar {
   width: 4px;

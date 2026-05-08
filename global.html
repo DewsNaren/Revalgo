@@ -93,73 +93,82 @@
                             <h3 class="filter-header">Filters <img class="down-arrow"src="./assets/images/dashboard/down-arrow-blue.png"alt="down arrow"/></h3>
                             <div class="filter-container">
                                 <div class="filter-subheader">
-                                    <h3>- Status</h3>
+                                    <h3 class="accordion-button" data-bs-toggle="collapse"data-bs-target="#statusBody">
+                                     <span class="plus"> + </span> <span class="minus"> - </span> Status
+                                    </h3>
                                     <div class="control-btn-container">
-                                        <button type="button" class="select-btn">Select All</button>
-                                        <button type="button" class="clear-btn">Clear All</button>
+                                        <button type="button" class="select-all-btn  select-btn">Select All</button>
+                                        <button type="button" class="clear-all-chips-btn">Clear All</button>
                                     </div>
 
                                 </div>
-                                <div class="filter-chip-container">
-                                    <button type="button" class="filter-chip">Approved</button>
-                                    <button type="button" class="filter-chip">pending</button>
-                                    <button type="button" class="filter-chip">Deleted</button>
+                                <div class="filter-chip-wrapper collapse show" id="statusBody">
+                                    <div class="filter-chip-container">
+                                        <button type="button" class="filter-chip filter-chip-btn">Approved</button>
+                                        <button type="button" class="filter-chip filter-chip-btn">pending</button>
+                                        <button type="button" class="filter-chip filter-chip-btn">Deleted</button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="filter-container ">
-                                <h3>- Customer Name</h3>
-                                <div class="search-container">
-                                    <input type="text" id="search-customer" class="search-customer" name="search-customer" placeholder="Search by Customer">
-                                    <button for="search-customer"><img src="./assets/images/dashboard/Search icon.png" alt="Search icon"></button>
-                                </div>
-                                <div class="customer-filter-container checkbox-filter-container">
-                                    <div class="customer-filter checkbox-filter">
-                                        <input type="checkbox" name="condition"  id="acmec-electric">
-                                        <label for="acmec-electric" class="filter-label">Acmec Electric</label>
+                            <div class="filter-container customer-fil">
+                                <h3 class="accordion-button" data-bs-toggle="collapse" data-bs-target="#searchBody"><span class="plus"> + </span> <span class="minus"> - </span> Customer Name</h3>
+                                <div id="searchBody" class="customer-filter-wrapper">
+                                    <div class="search-container">
+                                        <input type="text" id="search-customer" class="search-customer-input" name="search-customer" placeholder="Search by Customer">
+                                        <button for="search-customer" class="search-customer-btn"><img src="./assets/images/dashboard/Search icon.png" alt="Search icon"></button>
                                     </div>
-                                    <div class="customer-filter checkbox-filter">
-                                        <input type="checkbox" name="condition"  id="unknown">
-                                        <label for="unknown" class="filter-label">Unknown</label>
+                                    <div class="customer-filter-container checkbox-filter-container">
+                                        <div class="customer-filter checkbox-filter">
+                                            <input type="checkbox" name="customer-name"  id="acmec-electric">
+                                            <label for="acmec-electric" class="filter-label">Acmec Electric</label>
+                                        </div>
+                                        <div class="customer-filter checkbox-filter">
+                                            <input type="checkbox" name="customer-name"  id="unknown">
+                                            <label for="unknown" class="filter-label">Unknown</label>
+                                        </div>
+                                        <div class="customer-filter checkbox-filter">
+                                            <input type="checkbox" name="customer-name"  id="acmec">
+                                            <label for="acmec" class="filter-label">Acmec</label>
+                                        </div>
+                                        <div class="customer-filter checkbox-filter">
+                                            <input type="checkbox" name="customer-name"  id="acmec-electric">
+                                            <label for="acmec-electric" class="filter-label">ACME Electric</label>
+                                        </div>
                                     </div>
-                                    <div class="customer-filter checkbox-filter">
-                                        <input type="checkbox" name="condition"  id="acmec">
-                                        <label for="acmec" class="filter-label">Acmec</label>
-                                    </div>
-                                    <div class="customer-filter checkbox-filter">
-                                        <input type="checkbox" name="condition"  id="acmec-electric">
-                                        <label for="acmec-electric" class="filter-label">ACME Electric</label>
-                                    </div>
-                                </div>
-                                 <a href="#" class="see-more-link">See More</a>
+                                    <a href="#" class="see-more-link">See More</a>
+                                 </div>
                             </div>
                             <div class="filter-container ">
-                                <h3>- Date Range</h3>
-
-                                <div class="date-wrapper">
-                                    <div class="start-container date-container">
-                                        <p class="start-label date-label">Start Date</p>
-                                        <div class="date-text start-text">mm/dd/yyyy  <img src="./assets/images/create_quote/date Range_Calendar Icon.png" alt="date"></div>
-                                    </div> 
-                                    <div class="end-container date-container">
-                                        <p class="end-label date-label">End Date</p>
-                                        <div class="date-text end-text">mm/dd/yyyy <img src="./assets/images/create_quote/date Range_Calendar Icon.png" alt="date"></div>
+                                <h3 class="accordion-button" data-bs-toggle="collapse"data-bs-target="#dateBody"><span class="plus"> + </span> <span class="minus"> - </span> Date Range</h3>
+                                <div class="date-outer-wrapper collapse show" id="dateBody">
+                                    <div class="date-wrapper" >
+                                        <div class="start-container date-container">
+                                            <p class="start-label date-label">Start Date</p>
+                                            <div class="date-text start-text">mm/dd/yyyy <img src="./assets/images/create_quote/date Range_Calendar Icon.png" alt="date"></div>
+                                        </div> 
+                                        <div class="end-container date-container">
+                                            <p class="end-label date-label">End Date</p>
+                                            <div class="date-text end-text">mm/dd/yyyy <img src="./assets/images/create_quote/date Range_Calendar Icon.png" alt="date"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                              <div class="filter-container ">
-                                <h3>- Mode Of Quotes</h3>
-                                <div class="mode-filter-container checkbox-filter-container">
-                                    <div class="mode-filter checkbox-filter">
-                                        <input type="checkbox" name="condition"  id="erp">
-                                        <label for="erp" class="filter-label text-uppercase">erp</label>
-                                    </div>
-                                    <div class="mode-filter checkbox-filter">
-                                        <input type="checkbox" name="condition"  id="call">
-                                        <label for="call" class="filter-label text-capitalize">call</label>
-                                    </div>
-                                    <div class="mode-filter checkbox-filter ">
-                                        <input type="checkbox" name="condition"  id="email">
-                                        <label for="email" class="filter-label text-capitalize">email</label>
+                                <h3 class="accordion-button" data-bs-toggle="collapse"data-bs-target="#modeBody"><span class="plus"> + </span> <span class="minus"> - </span> Mode Of Quotes</h3>
+                                <div class="mode-filter-wrapper collapse show" id="modeBody">
+                                    <div class="mode-filter-container checkbox-filter-container">
+                                        <div class="mode-filter checkbox-filter">
+                                            <input type="checkbox" name="mode"  id="erp">
+                                            <label for="erp" class="filter-label text-uppercase">erp</label>
+                                        </div>
+                                        <div class="mode-filter checkbox-filter">
+                                            <input type="checkbox" name="mode"  id="call">
+                                            <label for="call" class="filter-label text-capitalize">call</label>
+                                        </div>
+                                        <div class="mode-filter checkbox-filter ">
+                                            <input type="checkbox" name="mode"  id="email">
+                                            <label for="email" class="filter-label text-capitalize">emaidffffl</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -207,28 +216,28 @@
                         </div>
                         <div class="filter-table-wrapper">
                             <div class="search-container">
-                                <input type="text" id="search-table" class="search-table" name="search-table" placeholder="Search">
-                                <button for="search-table"><img src="./assets/images/dashboard/Search icon.png" alt="Search icon"></button>
+                                <input type="text" id="search-table" class="search-table-quote-input" name="search-table" placeholder="Search">
+                                <button for="search-table" class="search-table-quote-btn"><img src="./assets/images/dashboard/Search icon.png" alt="Search icon"></button>
                             </div>
                             <div class="status-container">
                                 <div class="status-chip-container">
                                     <span class="chip">Approved<span class="close-chip"><img src="./assets/images/global/close-modal.webp" alt="close"></span></span>
                                     <span class="chip">Pending <span class="close-chip"><img src="./assets/images/global/close-modal.webp" alt="close"></span></span>
-                                    <span class="chip">Deletes <span class="close-chip"><img src="./assets/images/global/close-modal.webp" alt="close"></span></span>
+                                    <span class="chip">Deleted <span class="close-chip"><img src="./assets/images/global/close-modal.webp" alt="close"></span></span>
                                 </div>
-                                <button class="clear-all-btn">Clear All</button>
+                                <button class="clear-all-stats-btn clear-all-btn">Clear All</button>
                             </div>
                             <table class="filter-table">
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th><span>Quote Id <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
-                                        <th><span>Customer Name / Number <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
-                                        <th> <span>Received Date <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
-                                        <th><span>Approved Date <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
-                                        <th><span>Status <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
-                                        <th><span>Total Line No <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
-                                        <th><span>Total price <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
+                                        <th><span data-sort="id">Quote Id <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
+                                        <th><span data-sort="name">Customer Name / Number <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
+                                        <th> <span data-sort="received_date">Received Date <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
+                                        <th><span data-sort="approved_date">Approved Date <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
+                                        <th><span data-sort="status">Status <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
+                                        <th><span data-sort="total_line_no">Total Line No <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
+                                        <th><span data-sort="total_price">Total price <img src="./assets/images/dashboard/Sort_icon.png" alt="Sort_icon"></span></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -329,7 +338,9 @@
                 </div>
             </div>
         </main>
-        <script src="./assets/js/global.js"></script>
+        <script src="./assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="./assets/js/header.js"></script>
+        <script src="./assets/js/global.js"></script>
+        
     </body>
 </html>

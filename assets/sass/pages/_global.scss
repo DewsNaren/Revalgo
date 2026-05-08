@@ -73,7 +73,7 @@
                 padding-right: clamp(17px, $fs-35px, $fs-35px);
                 .filter-wrapper{
                     padding: clamp(10px, $fs-20px, $fs-20px) clamp(10px, $fs-20px, $fs-20px) clamp(5px, $fs-10px, $fs-10px) ;
-                    width: fit-content;
+                    width: clamp(250px, 18.8%, 18.8%);
                     box-shadow: $box-shadow-3;
                     border-radius: clamp(4px, $fs-10px, $fs-10px);
                     overflow-y: auto;
@@ -108,12 +108,36 @@
                             margin-bottom: 0;
                             line-height: 1;
                             padding-bottom: clamp(4px, $fs-8px, $fs-8px);
+                            cursor: pointer;
+                             span{
+                                    line-height: 1;
+                                    margin-right: 2px;
+                                }
+                                .minus{
+                                    display: none;
+                                    
+                                }
+
+                                &.collapsed{
+                                    .minus{
+                                        display: inline;
+                                    }
+                                    .plus{
+                                        display: none;
+                                    }
+
+                                }
                         }
                         .filter-subheader{
                             display: flex;
                             align-items: center;
                             justify-content: space-between;
-                            
+                             
+                            h3{
+                                width: fit-content;
+                               
+                            }
+
                             .control-btn-container{
                                 display: flex;
                                 align-items: center;
@@ -158,6 +182,7 @@
                                     
                                 }
                             }
+                           
                         }
                         .search-container{
                             border: 1px solid #ccc;
@@ -178,6 +203,11 @@
                                 &::placeholder{
                                     font-size: clamp(9px, $fs-13px, $fs-13px);
 
+                                }
+                                &:-webkit-autofill{
+                                    -webkit-box-shadow: 0 0 0 1000px #fff inset;
+                                    -webkit-text-fill-color: $black;
+                                    transition: background-color 9999s ease-in-out 0s;
                                 }
 
                             }
@@ -210,6 +240,9 @@
                                     font-size: clamp(12px, $fs-16px, $fs-16px);
                                     color: $grey-80;
                                 }
+                                &.hidden{
+                                    display: none;
+                                }
                             }
                         }
                         .see-more-link{
@@ -222,171 +255,173 @@
                         &:last-of-type{
                             border-bottom: none;
                         }
-                        .date-wrapper{
-                            display: flex;
-                            align-items: center;
-                            gap: clamp(8px, $fs-15px, $fs-15px);
-                            margin-left: clamp(8px, $fs-15px, $fs-15px);
-                            .date-container{
-                                position: relative;
-                                .date-label{
-                                    font-size: clamp(12px, $fs-16px, $fs-16px);
-                                    color: $grey-80;
-                                    line-height: 1;
-                                    margin-bottom: clamp(4px, $fs-8px, $fs-8px)
-                                }
-                                .date-text{
-                                    font-size: clamp(10px, $fs-14px, $fs-14px);
-                                    color: $grey-80;
-                                    white-space: nowrap;
-                                    display: flex;
-                                    align-items: center;
-                                    border: 1px solid #ccc;
-                                    padding: 4px 5px;
-                                    border-radius: 4px;
-                                    img{
-                                        width: clamp(11px, $fs-18px, $fs-18px);
-                                        margin-left: clamp(6px, $fs-14px, $fs-14px);
+                        .date-outer-wrapper{
+                            .date-wrapper{
+                                display: flex;
+                                align-items: center;
+                                gap: clamp(8px, $fs-15px, $fs-15px);
+                                margin-left: clamp(8px, $fs-15px, $fs-15px);
+                                .date-container{
+                                    position: relative;
+                                    .date-label{
+                                        font-size: clamp(12px, $fs-16px, $fs-16px);
+                                        color: $grey-80;
+                                        line-height: 1;
+                                        margin-bottom: clamp(4px, $fs-8px, $fs-8px)
                                     }
-                                    &.active{
-                                        color: $blue-87;
-                                        border-color: $blue-87;
-                                        img {
-                                            filter: brightness(0) saturate(100%) 
-                                                invert(20%) sepia(45%) saturate(1500%) 
-                                                hue-rotate(190deg) brightness(90%) contrast(95%);
+                                    .date-text{
+                                        font-size: clamp(10px, $fs-14px, $fs-14px);
+                                        color: $grey-80;
+                                        white-space: nowrap;
+                                        display: flex;
+                                        align-items: center;
+                                        border: 1px solid #ccc;
+                                        padding: 4px 5px;
+                                        border-radius: 4px;
+                                        img{
+                                            width: clamp(11px, $fs-18px, $fs-18px);
+                                            margin-left: clamp(6px, $fs-14px, $fs-14px);
+                                        }
+                                        &.active{
+                                            color: $blue-87;
+                                            border-color: $blue-87;
+                                            img {
+                                                filter: brightness(0) saturate(100%) 
+                                                    invert(20%) sepia(45%) saturate(1500%) 
+                                                    hue-rotate(190deg) brightness(90%) contrast(95%);
+                                            }
                                         }
                                     }
-                                }
-                                .datepicker {
-                                    position: fixed;
-                                    background-color: $white-f5;
-                                    box-shadow: $box-shadow-2;
-                                    padding: 0px;
-                                    max-height: 0;
-                                    overflow: hidden;
-                                    z-index: 6;
-                                    top: 100%;
-                                    button {
-                                        cursor: pointer;
-                                        outline: none;
-                                    }
-                                    .datepicker-top {
-                                        margin-bottom: 20px;
-                                        // .tag {
-                                        //     margin-right: 7px;
-                                        //     margin-top: 7px;
-                                        //     background-color: $white-ec;
-                                        //     border-radius: 5px;
-                                        //     padding: clamp(6px, 1%, 1%) $fs-14px;
-                                        //     border: none;
-                                        //     font-size:clamp(10px, $fs-14px, $fs-14px);
-                                        // }
-                                        // .tag:hover {
-                                        //     color: $white;
-                                        //     background-color: $black-80;
-                                        // }
-                                        .month-selector {
-                                            display: flex;
-                                            align-items: center;
-                                            justify-content: space-between;
-                                            position: relative;
-                                            .year-wrapper{
+                                    .datepicker {
+                                        position: fixed;
+                                        background-color: $white-f5;
+                                        box-shadow: $box-shadow-2;
+                                        padding: 0px;
+                                        max-height: 0;
+                                        overflow: hidden;
+                                        z-index: 6;
+                                        top: 100%;
+                                        button {
+                                            cursor: pointer;
+                                            outline: none;
+                                        }
+                                        .datepicker-top {
+                                            margin-bottom: 20px;
+                                            // .tag {
+                                            //     margin-right: 7px;
+                                            //     margin-top: 7px;
+                                            //     background-color: $white-ec;
+                                            //     border-radius: 5px;
+                                            //     padding: clamp(6px, 1%, 1%) $fs-14px;
+                                            //     border: none;
+                                            //     font-size:clamp(10px, $fs-14px, $fs-14px);
+                                            // }
+                                            // .tag:hover {
+                                            //     color: $white;
+                                            //     background-color: $black-80;
+                                            // }
+                                            .month-selector {
                                                 display: flex;
                                                 align-items: center;
-                                                font-size: clamp(13px, $fs-17px, $fs-17px);
-                                                gap: 5px;
-                                                .month-name,.year{
-                                                    color: $black;
-                                                }  
-                                                .year{
-                                                    color: $black;
-                                                }
+                                                justify-content: space-between;
+                                                position: relative;
+                                                .year-wrapper{
+                                                    display: flex;
+                                                    align-items: center;
+                                                    font-size: clamp(13px, $fs-17px, $fs-17px);
+                                                    gap: 5px;
+                                                    .month-name,.year{
+                                                        color: $black;
+                                                    }  
+                                                    .year{
+                                                        color: $black;
+                                                    }
 
+                                                }
                                             }
                                         }
-                                    }
-                                .datepicker-calendar{
-                                    visibility: visible;
-                                    .days {
-                                        display: grid;
-                                        grid-template-columns: repeat(7, 1fr);
-                                        grid-row-gap: 15px;
-                                        margin-top: 15px;
-                                        margin-bottom: 20px;
-                                    }
-                                    .dates {
-                                        display: grid;
-                                        grid-template-columns: repeat(7, 1fr);
-                                        grid-column-gap: clamp(5px, $fs-10px, $fs-10px);
-                                        grid-row-gap: clamp(5px, $fs-15px, $fs-15px);
-                                    }
-                                    .date {
-                                        justify-self: center;
-                                        border: none;
-                                        margin: 0;
-                                        padding: 0;
-                                        width: clamp(14px, $fs-25px, $fs-25px);
-                                        display: flex;
-                                        justify-content: center;
-                                        align-items: center;
-                                        background-color: transparent;
-                                        border: 2px solid transparent;
-                                        color: $black-70;
-                                        // font-weight: 800;
-                                        cursor: pointer;
-                                        display: block;
-                                        font-size: clamp(8px, $fs-14px, $fs-14px);
-                                        font-weight: 500;
-                                        &:hover,&:focus {
-                                            border: 2px solid $black-30;
-                                            font-weight: 600;
+                                    .datepicker-calendar{
+                                        visibility: visible;
+                                        .days {
+                                            display: grid;
+                                            grid-template-columns: repeat(7, 1fr);
+                                            grid-row-gap: 15px;
+                                            margin-top: 15px;
+                                            margin-bottom: 20px;
                                         }
-                                        &.faded {
-                                            color: $grey-a6;
-                                            &:focus {
+                                        .dates {
+                                            display: grid;
+                                            grid-template-columns: repeat(7, 1fr);
+                                            grid-column-gap: clamp(5px, $fs-10px, $fs-10px);
+                                            grid-row-gap: clamp(5px, $fs-15px, $fs-15px);
+                                        }
+                                        .date {
+                                            justify-self: center;
+                                            border: none;
+                                            margin: 0;
+                                            padding: 0;
+                                            width: clamp(14px, $fs-25px, $fs-25px);
+                                            display: flex;
+                                            justify-content: center;
+                                            align-items: center;
+                                            background-color: transparent;
+                                            border: 2px solid transparent;
+                                            color: $black-70;
+                                            // font-weight: 800;
+                                            cursor: pointer;
+                                            display: block;
+                                            font-size: clamp(8px, $fs-14px, $fs-14px);
+                                            font-weight: 500;
+                                            &:hover,&:focus {
+                                                border: 2px solid $black-30;
+                                                font-weight: 600;
+                                            }
+                                            &.faded {
                                                 color: $grey-a6;
-                                                border: 2px solid transparent;
-                                                pointer-events: none;
-                                                font-weight: 500;
-                                                background-color: transparent;
+                                                &:focus {
+                                                    color: $grey-a6;
+                                                    border: 2px solid transparent;
+                                                    pointer-events: none;
+                                                    font-weight: 500;
+                                                    background-color: transparent;
+                                                }
+                                                &:hover{
+                                                    border: none;
+                                                    font-weight: 500;
+                                                }
                                             }
-                                            &:hover{
-                                                border: none;
-                                                font-weight: 500;
+                                            &.current-date {
+                                                border: 2px solid $black-80;
                                             }
+                                            &.current-day {
+                                                color: $white;
+                                                border: 2px solid $black-80;
+                                                background-color: $blue-3ff;
+                                            }
+                                            
                                         }
-                                        &.current-date {
-                                            border: 2px solid $black-80;
-                                        }
-                                        &.current-day {
-                                            color: $white;
-                                            border: 2px solid $black-80;
-                                            background-color: $blue-3ff;
+                                        .day {
+                                            color: $black-90;
+                                            font-weight: 500;
+                                            font-size: clamp(12px, $fs-16px, $fs-16px);
+                                            justify-self: center;
                                         }
                                         
+                                        &.not-active{
+                                            visibility: hidden;
+                                        }
                                     }
-                                    .day {
-                                        color: $black-90;
-                                        font-weight: 500;
-                                        font-size: clamp(12px, $fs-16px, $fs-16px);
-                                        justify-self: center;
+                                    &.active {
+                                        padding: clamp(8px, $fs-15px, $fs-15px);
+                                        max-height: 411px;
+                                        overflow: visible;
+                                            
                                     }
-                                    
-                                    &.not-active{
-                                        visibility: hidden;
                                     }
+                            
                                 }
-                                &.active {
-                                    padding: clamp(8px, $fs-15px, $fs-15px);
-                                    max-height: 411px;
-                                    overflow: visible;
-                                        
-                                }
-                                }
-                        
+                            
                             }
-                           
                         }
                     }
                      &::-webkit-scrollbar {
@@ -547,6 +582,11 @@
                                 font-size: clamp(9px, $fs-13px, $fs-13px);
 
                             }
+                            &:-webkit-autofill{
+                                -webkit-box-shadow: 0 0 0 1000px #fff inset;
+                                -webkit-text-fill-color: $black;
+                                transition: background-color 9999s ease-in-out 0s;
+                            }
 
                         }
                         button{
@@ -570,6 +610,7 @@
                             align-items: center;
                             gap:clamp(8px, $fs-10px, $fs-10px);
                             margin-bottom: clamp(12px, $fs-20px, $fs-20px);
+                            flex-wrap: wrap;
                             .chip{
                                 display: inline-flex;
                                 align-items: center;
@@ -580,6 +621,7 @@
                                 color: $blue-87;
                                 border: 1px solid transparent;
                                 gap: clamp(5px, $fs-10px, $fs-10px);
+                                text-transform: capitalize;
                                 .close-chip{
                                     display: inline-block;
                                     cursor: pointer;
@@ -600,6 +642,7 @@
                             }
                         }
                         .clear-all-btn{
+                            text-wrap: nowrap;
                             border: none;
                             background-color: transparent;
                             color: $red-08;
@@ -655,6 +698,7 @@
                                     }
                                     &:nth-of-type(6){
                                         width: $fs-160px;
+                                        
 
                                     }
                                     &:nth-of-type(7){
@@ -699,6 +743,7 @@
                                     }
                                     &:nth-of-type(6){
                                         width: $fs-160px;
+                                        text-transform: capitalize;
                                         span{
                                             color:  $red-00;
                                             padding: 2px 4px;
@@ -737,6 +782,12 @@
                                     background-color: $blue-2ff;                                  
                                 }
                                         
+                            }
+                            .not-found{
+                                text-align: center;
+                                padding-top: clamp(10px, $fs-20px, $fs-20px) ;
+                                font-size: clamp(10px, $fs-15px, $fs-15px);
+                                margin-bottom: 0;
                             }
                             &::-webkit-scrollbar {
                                 width: 4px;

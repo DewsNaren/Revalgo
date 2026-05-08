@@ -1,3 +1,29 @@
+const header=document.querySelector("header");
+async function loadQuotes() {
+  try {
+    const resp = await fetch("../assets/json/quote.json")
+    const data = await resp.json()
+   
+    
+    sessionStorage.setItem('quotes',JSON.stringify(data))
+  } catch (err) {
+    console.error("Error:", err)
+  }
+}
+
+loadQuotes();
+
+async function init() {
+
+  await loadQuotes();
+
+  initializeSearch();
+
+}
+
+init();
+
+
 document.querySelectorAll(".profile-container").forEach((container) => {
   const profileMenu = container.querySelector(".profile-menu");
   const profiles = container.querySelectorAll(".user-profile");
@@ -15,7 +41,7 @@ document.querySelectorAll(".profile-container").forEach((container) => {
 
 const searchHeaderInput =header.querySelector(".search-quote-input");
 const searchHeaderBtn =document.querySelector(".search-quote-btn");
-const allQuotes=JSON.parse(sessionStorage.getItem("quotes"));
+let allQuotes;
 const nameWrapper=header.querySelector(".name-wrapper");
 const nameList=header.querySelector(".name-list");
 const idWrapper=header.querySelector(".id-wrapper");
@@ -49,22 +75,34 @@ function searchHeaderQuotes() {
 
     // render lists
     if (isIdMatch) {
-      idList.innerHTML += `
-        <li>${q.id}</li>
-      `;
-    }
+    idList.innerHTML += `
+      <li 
+        data-type="id"
+        data-value="${q.id}">
+        ${q.id}
+      </li>
+    `;
+  }
 
-    if (isNameMatch) {
-      nameList.innerHTML += `
-        <li>${q.name}</li>
-      `;
-    }
+  if (isNameMatch) {
+    nameList.innerHTML += `
+      <li 
+        data-type="name"
+        data-value="${q.name}">
+        ${q.name}
+      </li>
+    `;
+  }
 
-    if (isPoMatch) {
-      poList.innerHTML += `
-        <li>${q.po_no}</li>
-      `;
-    }
+  if (isPoMatch) {
+    poList.innerHTML += `
+      <li 
+        data-type="po"
+        data-value="${q.po_no}">
+        ${q.po_no}
+      </li>
+    `;
+  }
 
     // filter condition
     return isIdMatch || isNameMatch || isPoMatch;
@@ -92,39 +130,85 @@ function searchHeaderQuotes() {
 
 }
 
-console.log(searchHeaderInput)
+function handleSearchItemClick(e){
 
-searchHeaderInput.addEventListener("input", () => {
-  searchHeaderQuotes();
-});
+  const li = e.target.closest("li");
 
-searchHeaderInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    const value = searchHeaderInput.value.trim().toLowerCase()
+  if(!li) return;
+
+  const type = li.dataset.type;
+  const value = li.dataset.value.toLowerCase();
+
+  let filteredQuote = [];
+
+  if(type === "id"){
+    filteredQuote = allQuotes.filter(
+      q => q.id.toString().toLowerCase() === value
+    );
+  }
+
+  if(type === "name"){
+    filteredQuote = allQuotes.filter(
+      q => q.name.toLowerCase() === value
+    );
+  }
+
+  if(type === "po"){
+    filteredQuote = allQuotes.filter(
+      q => q.po_no &&
+      q.po_no.toString().toLowerCase() === value
+    );
+  }
+
+  sessionStorage.setItem(
+    "searchedQuotes",
+    JSON.stringify(filteredQuote)
+  );
+
+  sessionStorage.setItem(
+    "searchedItem",
+    JSON.stringify(value)
+  );
+
+  window.location.href = "./global.html";
+}
+
+globalDropDown.addEventListener("click", handleSearchItemClick);
+
+function initializeSearch() {
+  allQuotes=JSON.parse(sessionStorage.getItem("quotes"));
+  console.log(allQuotes)
+  searchHeaderInput.addEventListener("input", () => {
     searchHeaderQuotes();
+  });
 
+  searchHeaderInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      const value = searchHeaderInput.value.trim().toLowerCase()
+      searchHeaderQuotes();
+
+
+      if(value!=""){
+        sessionStorage.setItem("searchedQuotes",JSON.stringify(searchedQuotes));
+        sessionStorage.setItem("searchedItem",JSON.stringify(value));
+        searchHeaderInput.value = "";
+
+        window.location.href = "./global.html";
+      }
+    }
+
+  });
+
+  searchHeaderBtn.addEventListener("click", () => {
+    const value = searchHeaderInput.value.trim().toLowerCase();
     if(value!=""){
 
-     
       sessionStorage.setItem("searchedQuotes",JSON.stringify(searchedQuotes));
       sessionStorage.setItem("searchedItem",JSON.stringify(value));
       searchHeaderInput.value = "";
 
       window.location.href = "./global.html";
     }
-  }
 
-});
-
-searchHeaderBtn.addEventListener("click", () => {
-  const value = searchHeaderInput.value.trim().toLowerCase();
-  if(value!=""){
-     
-    sessionStorage.setItem("searchedQuotes",JSON.stringify(searchedQuotes));
-    sessionStorage.setItem("searchedItem",JSON.stringify(value));
-    searchHeaderInput.value = "";
-
-    window.location.href = "./global.html";
-  }
-
-});
+  });
+}

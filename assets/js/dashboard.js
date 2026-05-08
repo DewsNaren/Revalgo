@@ -1,4 +1,4 @@
-const header=document.querySelector("header");
+
 const dashBoardWrapper=document.querySelector(".dashboard-wrapper");
 const dashBoardBodyWrapper=document.querySelector(".dashboard-body-wrapper");
 const expandOverlay=document.querySelector(".expand-overlay");
@@ -19,21 +19,21 @@ let filteredQuotes;
 let start=new Date(new Date().setMonth(new Date().getMonth() - 6)); 
 end=new Date();
 
-async function loadQuotes() {
-  try {
-    const resp = await fetch("../assets/json/quote.json")
-    const data = await resp.json()
-    quotes=data;
-    filteredQuotes=data;
-    filterQuotesByDate(quotes, format(start), format(end))
-    console.log(data[0])
-    sessionStorage.setItem('quotes',JSON.stringify(data))
-  } catch (err) {
-    console.error("Error:", err)
-  }
+async function initializeQuotes() {
+  await loadQuotes();
+
+  quotes=JSON.parse((sessionStorage.getItem("quotes")));
+  filteredQuotes=JSON.parse((sessionStorage.getItem("quotes")));
+  filterQuotesByDate(quotes, format(start), format(end))
+
 }
 
-loadQuotes();
+initializeQuotes();
+
+// if(sessionStorage.getItem("quotes")){
+
+// }
+
 
 
 //datepicker
@@ -132,9 +132,17 @@ function filterQuotesByDate(filterQuotes, start, end) {
       quoteDate <= endObj
     );
   });
-  renderQuoteTable(dateFilteredQuotes)
+  let first=true;
+  if(first){
+    filteredQuotes=dateFilteredQuotes.filter(q=>q.status=="approved");
+    renderQuoteTable(filteredQuotes)
+  }
+  else{
+     renderQuoteTable(dateFilteredQuotes)
+  }
+ 
   renderQuoteCounts(dateFilteredQuotes)
-
+  console.log(dateFilteredQuotes)
 
   getTrendChartData(dateFilteredQuotes,"approved")
   
@@ -224,6 +232,13 @@ let selectedYear=new Date().getFullYear();
 
 let today = new Date();
 let current = new Date(today);
+// if (current < minDate) {
+//   current = new Date(minDate);
+// }
+
+// if (current > maxDate) {
+//   current = new Date(maxDate);
+// }
 let selectedDate = null;
 function createDatepicker(datePicker) {
   const monthNameEl = datePicker.querySelector(".month-name");
@@ -910,6 +925,10 @@ tableBtns.forEach(btn=>{
   })
 })
 
+function tableHeaderBtnClick(){
+  
+}
+
 const filterBtn=quotesContainer.querySelector(".filter-text");
 const filterDropdown=document.querySelector(".filter-dropdown");
 const filterItems=filterDropdown.querySelectorAll("ul li");
@@ -1012,6 +1031,9 @@ tabHeaderSpans.forEach(sp=>{
       }
       else if(sortItem=="status"){
         sortedQuote = filteredCopy.sort((a, b) => b.status.localeCompare(a.status));
+      }
+      else if(sortItem=="total_line_no"){
+        sortedQuote = filteredCopy.sort((a, b) => b.total_line_no - a.total_line_no);
       }
       else if(sortItem=="total_price"){
         sortedQuote = filteredCopy.sort((a, b) => getPrice(b.total_price) - getPrice(a.total_price));
