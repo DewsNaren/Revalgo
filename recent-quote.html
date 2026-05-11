@@ -124,7 +124,7 @@
                         <div class="info">
                             <p class="header">PO No <button type="button" class="edit-btn"><img src="./assets/images/global/Edit icon.png" alt="Edit icon"></button></p>
                             <div class="details">
-                                <p class="po-no-text">AB32120/486</p>
+                                <p class="po-no-text text">AB32120/486</p>
                             </div>
                         </div>
                         <div class="info">
@@ -142,7 +142,7 @@
                         <div class="info">
                             <p class="header">Deleivery Date <button type="button" class="edit-btn"><img src="./assets/images/global/Edit icon.png" alt="Edit icon"></button></p>
                             <div class="details">
-                                <p class="deleivery-text">05/05/34</p>
+                                <p class="deleivery-text text">05/05/34</p>
                             </div>
                         </div>
                         <div class="info">
@@ -163,9 +163,9 @@
                         <div class="left-wrapper">
                             <div class="header-wrapper">
                                 <div class="btn-container">
-                                    <button type="button" class="email-btn">Email</button>
-                                    <button type="button" class="quick-order-btn">Quick Order</button>
-                                    <button type="button" class="upload-btn">Upload</button>
+                                    <button type="button" class="email-btn" data-target=".mail-wrapper">Email</button>
+                                    <button type="button" class="quick-order-btn" data-target=".table-wrapper">Quick Order</button>
+                                    <button type="button" class="upload-btn" data-target=".upload-wrapper">Upload</button>
                                 </div>
                                 <button type="button" class="mail-expand-btn"><img src="./assets/images/global/email_Expand_icon.png" alt="expand icon"></button>
                                 
@@ -412,7 +412,7 @@
                             <div class="display-table">
                                 <div class="table-row header-wrapper">
                                     <!-- <div></div> -->
-                                    <div><input type="checkbox"></div>
+                                    <div><input type="checkbox" onclick="selectAllRow()"></div>
                                     <div>Line No</div>
                                     <div>Qty Requested</div>
                                     <div>Requested / <span>Suggested Product</span></div>
@@ -920,61 +920,64 @@ Delivery Time: By 7 am, oRDER nUMBER : 007484
                     <h3 class="title form-title">Ship To</h3>
                     <button type="button" class="close-popup-btn"><img src="./assets/images/global/close-modal.webp" alt="close"></button>
                 </div>
+                <form class="update-form">
+
+                
                 <div class="form-wrapper">
-                    <div class="form-container bill_to">
+                    <div class="form-container bill_to" data-con="bill_to">
                         <div class="input-group">
                             <label for="bill_name">Name</label>
                             <input type="text" name="name" id="bill_name" placeholder="Name"autocomplete="on">
                         </div>
-                        <p class="error"></p>
+                        <p class="error">No error</p>
                     </div>
-                    <div class="form-container bill_to">
+                    <div class="form-container bill_to" data-con="bill_to">
                         <div class="input-group">
                              <label for="bill_address">Address</label>
                             <textarea name="address" id="bill_address" placeholder="Address" autocomplete="on"></textarea>
                         </div>
-                        <p class="error"></p>
+                        <p class="error">No error</p>
                     </div>
-                    <div class="form-container ship_to">
+                    <div class="form-container ship_to" data-con="ship_to">
                         <div class="input-group">
                             <label for="ship_name">Name</label>
                             <input type="text" name="name" id="ship_name" placeholder="Name"autocomplete="on">
                         </div>
-                        <p class="error"></p>
+                        <p class="error">No error</p>
                     </div>
-                    <div class="form-container ship_to">
+                    <div class="form-container ship_to" data-con="ship_to">
                         <div class="input-group">
                              <label for="ship_address">Address</label>
                             <textarea name="address" id="ship_address" placeholder="Address" autocomplete="on"></textarea>
                         </div>
-                        <p class="error"></p>
+                        <p class="error">No error</p>
                     </div>
-                     <div class="form-container po_no">
+                     <div class="form-container po_no" data-con="po_no">
                         <div class="input-group">
                             <label for="po-no">PO No</label>
                             <input type="text" name="po-no" id="po-no" placeholder="PO No"></input>
                         </div>
-                        <p class="error"></p>
+                        <p class="error">No error</p>
                     </div>
                     
-                    <div class="form-container job_no">
+                    <div class="form-container job_no" data-con="job_no" >
                         <div class="input-group">
                             <label for="job-no">Job No</label>
                             <input type="text" name="job-no" id="job-no" placeholder="Job No"></input>
                         </div>
-                        <p class="error"></p>
+                        <p class="error">No error</p>
                     </div>
-                    <div class="form-container buyer">
+                    <div class="form-container buyer" data-con="buyer">
                         <div class="input-group">
                             <label for="buyer">Buyer</label>
                             <input type="text" name="buyer" id="buyer" placeholder="Buyer"></input>
                         </div>
-                        <p class="error"></p>
+                        <p class="error">No error</p>
                     </div>
-                    <div class="form-container deleivery_date">
+                    <div class="form-container deleivery_date" data-con="deleivery_date">
                         <div class="input-group">
                             <p class="label">Deleivery Date</p>
-                            <div class="date-text">yyyy-mm-dd</div>
+                            <div class="date-text">dd-mm-yyyy</div>
                             <div class="datepicker">
                                 <div class="datepicker-top">
                             
@@ -996,12 +999,13 @@ Delivery Time: By 7 am, oRDER nUMBER : 007484
                                 <div class="dates"></div>
                             </div>
                             </div>
-                            <input type="hidden" name="deleivery-date" id="deleivery-date" class="date-input" />
+                            <input type="hidden" name="deleivery-date" id="deleivery-date" class="date-input" placeholder="Deleivery Date" />
                         </div>
-                        <p class="error"></p>
+                        <p class="error">No error</p>
                     </div>
 
                 </div>
+                </form>
                 <div class="btn-container">
                     <button type="button" class="update-btn">Update</button>
                     <button type="button" class="cancel-btn">Cancel</button>

@@ -73,8 +73,8 @@ function setSuccess(element){
 loginBtn.addEventListener("click",(e)=>{
     e.preventDefault();
     if(ValidateLoginForm()){
-        console.log("validate")
-        validateLoginData()
+        storeLoginData();
+        loginForm.reset();
 
         window.location.href="./dashboard.html"
     }
@@ -83,12 +83,17 @@ loginBtn.addEventListener("click",(e)=>{
     }
 })
 
-function validateLoginData(){
+function storeLoginData(){
     const nameVal=loginName.value;
     const passwordVal=loginPassword.value;
 
-    console.log(nameVal, passwordVal)
+    const obj={
+        "username":loginName.value,
+        "password":loginPassword.value
+    }
+    console.log(obj)
+    sessionStorage.setItem("loginDetails",JSON.stringify(obj))
     
-    loginForm.reset();
+    
     
 }

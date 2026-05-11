@@ -16,7 +16,7 @@ window.addEventListener('resize',setQuoteWrapperHeight)
 
 //Datepicker
 const formPopup=document.querySelector(".form-popup");
-const formWrapper=formPopup.querySelector(".form-wrapper")
+const formWrapper=formPopup.querySelector(".form-wrapper");
 const dateText=formPopup.querySelector(".date-text");
 const minDate = new Date(2025, 4, 1);
 const maxDate = new Date(2026, 3, 30);
@@ -53,8 +53,19 @@ let selectedYear=new Date().getFullYear();
   ];
 
   const DAYS=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
- 
+
+  let today = new Date();
+  let current = new Date(today);
+  let selectedDate = null;
+  if (current < minDate) {
+    current = new Date(minDate);
+  }
+
+  if (current > maxDate) {
+    current = new Date(maxDate);
+  }
 //create datepicker
+
 function createDatepicker(datePicker) {
   const monthNameEl = datePicker.querySelector(".month-name");
   const datesContainer = datePicker.querySelector(".dates");
@@ -62,9 +73,9 @@ function createDatepicker(datePicker) {
   const nextBtn = datePicker.querySelector(".next-month");
   const tags = datePicker.querySelectorAll(".tag");
   const yearEl=datePicker.querySelector(".year");
-  let today = new Date();
-  let current = new Date(today);
-  let selectedDate = null;
+  // let today = new Date();
+  // let current = new Date(today);
+  // let selectedDate = null;
 
   function renderCalendar() {
     const year = current.getFullYear();
@@ -207,6 +218,7 @@ for(let i=0;i<DAYS.length;i++){
 }
 
 function getSelectedDate(datePicker){
+  console.log("addsd")
   const monthNameEl=datePicker.querySelector(".month-name")
   const MonthArr=monthNameEl.textContent.split(" ")
   selectedMonth=Number(MONTHS.findIndex(m => m === MonthArr[0]))+1
@@ -223,7 +235,7 @@ function getSelectedDate(datePicker){
   const dateInp=parentEl.querySelector(".date-input");
   dateInp.value=`${selectedYear}-${selectedMonth}-${selectedDatee}`;
   const dateText=parentEl.querySelector(".date-text");
-  dateText.textContent=`${selectedYear}-${selectedMonth}-${selectedDatee}`;
+  dateText.textContent=`${selectedDatee}-${selectedMonth}-${selectedYear}`;
   datePicker.classList.remove("active")
 }
 
@@ -274,10 +286,12 @@ const modalBox = document.querySelector(".expand-modal");
 const modalContent=document.querySelector(".expand-modal-content");
 const closePopupBtns= document.querySelectorAll(".close-popup-btn");
 const popups=document.querySelectorAll("popup");
-const displayTable=document.querySelector(".display-table");
+const quickContentWrapper=document.querySelector(".quick-content-wrapper");
+const displayTable=quickContentWrapper.querySelector(".display-table");
 const disTableBodyWrapper=displayTable.querySelector(".body-wrapper");
 const expandBtns=document.querySelectorAll(".expand-btn");
 const closeBtn = document.querySelector(".close-modal-btn");
+const errs=formPopup.querySelectorAll(".error");
 
 expandBtns.forEach(btn => {
   btn.addEventListener("click", () => {
@@ -287,8 +301,6 @@ expandBtns.forEach(btn => {
     const modalData=btn.dataset.modal
     const source = document.querySelector(target);
     if (!source) return;
-    // overlay.classList.add("active");
-    // modalBox.classList.add("active");
     modalBox.className = "expand-modal " + type +" "+ modalData +" "+ "active";
 
     if (type === "table") {
@@ -307,7 +319,7 @@ expandBtns.forEach(btn => {
 
 closePopupBtns.forEach(btn => btn.addEventListener("click", () => {
   popups.forEach(pop=>pop.classList.remove("active"));
-    overlay.classList.remove("active");
+  overlay.classList.remove("active");
 }))
 
 function closeModal(){
@@ -316,6 +328,12 @@ function closeModal(){
   const suggestSource=modalContent.querySelector(".suggest-product-popup");
   if(suggestSource){
     disTableBodyWrapper.appendChild(suggestSource)
+  }
+  if(formPopup.classList.contains("active")){
+    updateForm.reset();
+    dateText.textContent="dd-mm-yyyy";
+    errs.forEach(err=>err.classList.remove("active"));
+    formPopup.classList.remove("active");
   }
 
 }
@@ -360,10 +378,11 @@ const quoteStat=backBtnContainer.querySelector(".quote-status");
 const quickInfoWrapper=document.querySelector(".quick-info-wrapper");
 const formTitle=document.querySelector(".form-title");
 const formContainers=document.querySelectorAll(".form-container");
+const cancelFormPopupBtn=formPopup.querySelector(".cancel-btn");
 // const displayTable=document.querySelector(".display-table");
-
+let selectedQuote="";
 if(sessionStorage.getItem("selectedQuote")){
- const selectedQuote= JSON.parse(sessionStorage.getItem("selectedQuote"))
+  selectedQuote= JSON.parse(sessionStorage.getItem("selectedQuote"))
   CreateBtn.childNodes[1].textContent=`#${selectedQuote.id}`
   quoteStat.classList.add(`${selectedQuote.status}`)
   quoteStat.textContent=`${selectedQuote.status}`
@@ -372,7 +391,7 @@ if(sessionStorage.getItem("selectedQuote")){
 }
 
 function  renderQuickInfo(selectedQuote){
-  const splittedBill = selectedQuote.bill_to.split(",");
+  const splittedBill = selectedQuote.bill_to.split("\n");
   const splittedShip = selectedQuote.ship_to.split(",");
   quickInfoWrapper.innerHTML="";
   quickInfoWrapper.innerHTML=`
@@ -393,7 +412,7 @@ function  renderQuickInfo(selectedQuote){
     <div class="info">
       <p class="header">PO No <button type="button" class="edit-btn" data-title="po no" data-edit="po_no"><img src="./assets/images/global/Edit icon.png" alt="Edit icon"></button></p>
         <div class="details">
-          <p class="po-no-text">${selectedQuote.po_no}</p>
+          <p class="po-no-text text">${selectedQuote.po_no}</p>
         </div>
       </div>
       <div class="info">
@@ -411,7 +430,7 @@ function  renderQuickInfo(selectedQuote){
       <div class="info">
         <p class="header">Deleivery Date <button type="button" class="edit-btn" data-title="deleivery date" data-edit="deleivery_date"><img src="./assets/images/global/Edit icon.png" alt="Edit icon"></button></p>
         <div class="details">
-          <p class="deleivery-text">${selectedQuote.deleivery_date}</p>
+          <p class="deleivery-text text">${selectedQuote.deleivery_date}</p>
         </div>
       </div>
       <div class="info">
@@ -463,8 +482,8 @@ function renderDisplayTable(selectedQuote){
       <p><span>${p.selling_price}</span></p>
       <p><span>$${p.total_cost.toFixed(2)}</span></p>
       <p>
-        <button type="button" class="delete-line-btn active"><img src="./assets/images/global/delete_icon.png" alt="delete"></button>
-        <button type="button" class="undo-line-btn"> <img src="./assets/images/dashboard/Undo_icon.png" alt="undo"></button>
+        <button type="button" class="delete-line-btn active" onclick=delRow(event)><img src="./assets/images/global/delete_icon.png" alt="delete"></button>
+        <button type="button" class="undo-line-btn" onclick=undoRow(event)> <img src="./assets/images/dashboard/Undo_icon.png" alt="undo"></button>
       </p>
       <button class="add-note-btn"><img src="./assets/images/create_quote/add note_grey bg.png" class="img-grey active" alt="add note grey"> <img src="./assets/images/create_quote/add note icon_blue.png" class="img-blue " alt="add note blue "></button>
     </div>
@@ -503,31 +522,69 @@ function renderDisplayTable(selectedQuote){
     </div>
     `;
   })
-  clickTable(displayTable.querySelector(".body-wrapper"))
+  clickTable(displayTable.querySelector(".body-wrapper"));
+  editTableData(displayTable.querySelector(".body-wrapper"));
 }
+
+//sorcing dropdown
+// function clickTable(bodyWrap){
+//   const rows=bodyWrap.querySelectorAll(".table-row");
+//   rows.forEach(row=>{
+//     row.addEventListener('click',(e)=>{
+//       const pTag = e.target.closest("p");
+
+
+//   // clicked directly on text/child inside p
+//       if (pTag && e.target !== pTag ) {
+//         return;
+//       }
+
+//       if (e.target.closest("button")) {
+//         return;
+//       }
+//       row.style.cursor="pointer"
+//       const sourceDropDown=row.nextElementSibling;
+//       sourceDropDown.classList.toggle("active");
+//     })
+//   })
+// }
 
 function clickTable(bodyWrap){
-  const rows=bodyWrap.querySelectorAll(".table-row");
-  rows.forEach(row=>{
-    row.addEventListener('click',(e)=>{
-      const pTag = e.target.closest("p");
 
+  const rows =bodyWrap.querySelectorAll(".table-row");
 
-  // clicked directly on text/child inside p
-      if (pTag && e.target !== pTag ) {
-        return;
-      }
+  rows.forEach(row => {
 
-      if (e.target.closest("button")) {
-        return;
-      }
-      row.style.cursor="pointer"
-      const sourceDropDown=row.nextElementSibling;
-      sourceDropDown.classList.toggle("active");
-    })
-  })
+    row.addEventListener('click',rowClickHandler);
+
+  });
+
 }
 
+function rowClickHandler(e){
+
+  const row = e.currentTarget;
+
+  const pTag = e.target.closest("p");
+
+  // clicked directly on text/child inside p
+  if (pTag && e.target !== pTag) {
+    return;
+  }
+
+  if (e.target.closest("button")) {
+    return;
+  }
+
+  row.style.cursor = "pointer";
+
+  const sourceDropDown =row.nextElementSibling;
+
+  sourceDropDown.classList.toggle("active");
+
+}
+
+//form popup
 function editQuoteInfo(quoteInfoWrap){
     const editBtns=quoteInfoWrap.querySelectorAll(".edit-btn");
     editBtns.forEach(btn=>{
@@ -547,6 +604,245 @@ function editQuoteInfo(quoteInfoWrap){
   })
 }
 
-// function validateForm(){
+const updateForm=formPopup.querySelector(".update-form");
+const updateBtn=formPopup.querySelector(".update-btn");
 
-// }
+cancelFormPopupBtn.addEventListener('click',()=>{
+  updateForm.reset();
+  formPopup.classList.remove("active");
+  dateText.textContent="dd-mm-yyyy";
+  overlay.classList.remove("active");
+  errs.forEach(err=>err.classList.remove("active"));
+})
+
+updateBtn.addEventListener('click',()=>{
+  formContainers.forEach(container=>{
+    if(container.classList.contains("active")){
+      validateUpdateForm(container);
+    }
+  })
+  
+})
+function validateUpdateForm(container){
+  const inpField = container.querySelector("input, textarea");
+  const val = inpField.value.trim();
+
+  const errEl = container.querySelector(".error");
+
+  if(val === ""){
+    errEl.classList.add("active");
+    errEl.textContent =`Please enter the ${inpField.placeholder}`;
+    
+  } else {
+
+    errEl.classList.remove("active");
+    const con=container.dataset.con;
+    changeQuickInfo(inpField,con)
+  }
+}
+
+function changeQuickInfo(inp,con){
+  const quoteInfoWrap=document.querySelector(".quick-info-wrapper");
+  const editBtns=quoteInfoWrap.querySelectorAll(".edit-btn");
+    editBtns.forEach(btn=>{
+    const editItem=btn.dataset.edit;
+    const info=btn.closest(".info");
+    
+    if(editItem==con){
+      if(con=="ship_to" || con=="bill_to"){
+    
+      if(inp.name=="name"){
+        const nameText=info.querySelector(".name");
+        nameText.textContent=inp.value;
+      }
+      else if(inp.name=="address"){
+        const addr=info.querySelector(".address");
+        console.log(addr.textContent)
+        console.log(inp.value)
+        addr.innerHTML = inp.value.replace(/\n/g, "<br>");
+      }
+      
+      }
+      else{
+        const text=info.querySelector(".text");
+        text.textContent=inp.value;
+      }
+    }
+  })
+  
+}
+
+
+
+
+//mail img container
+const mailWrapper=quickContentWrapper.querySelector(".mail-wrapper");
+const mailImgContainers=mailWrapper.querySelectorAll(".img-container");
+const leftWrapper=quickContentWrapper.querySelector(".left-wrapper");
+const rightWrapper=quickContentWrapper.querySelector(".right-wrapper");
+const imgInfoContainer=mailWrapper.querySelector(".img-info-container");
+const mailExpandBtn=leftWrapper.querySelector(".mail-expand-btn");
+const mailMinimizeBtn=leftWrapper.querySelector(".minimize-btn");
+
+mailImgContainers.forEach(container => {
+
+  container.addEventListener("click", () => {
+
+    const isActive =container.classList.contains("active");
+
+    mailImgContainers.forEach(c =>c.classList.remove("active"));
+
+    if (!isActive) {
+      container.classList.add("active");
+      imgInfoContainer.classList.add("active");
+    } else {
+      imgInfoContainer.classList.remove("active");
+    }
+
+  });
+
+});
+
+mailExpandBtn.addEventListener("click", () => {
+
+  if (leftWrapper.classList.contains("maximize")) {
+
+    leftWrapper.classList.remove("minimize");
+    leftWrapper.classList.remove("maximize");
+    rightWrapper.classList.remove("maximize");
+    rightWrapper.classList.remove("minimize");
+
+  } else {
+
+    leftWrapper.classList.remove("minimize");
+    leftWrapper.classList.add("maximize");
+    rightWrapper.classList.remove("maximize");
+    rightWrapper.classList.add("minimize");
+
+  }
+
+});
+
+mailMinimizeBtn.addEventListener("click", () => {
+  if (leftWrapper.classList.contains("minimize")) {
+
+    leftWrapper.classList.remove("minimize");
+    leftWrapper.classList.remove("maximize");
+    rightWrapper.classList.remove("maximize");
+    rightWrapper.classList.remove("minimize");
+
+  } 
+  
+  else {
+
+    leftWrapper.classList.add("minimize");
+    leftWrapper.classList.remove("maximize");
+    rightWrapper.classList.add("maximize");
+    rightWrapper.classList.remove("minimize");
+  }
+
+});
+
+
+
+function editTableData(bodyWrap){
+
+  const tableRows =bodyWrap.querySelectorAll(".table-row");
+
+  tableRows.forEach(row => {
+
+    const qtyInp =row.querySelector('input[name="qty-requested"]');
+
+    const costInp =row.querySelector('input[name="cost"]');
+
+    const marginInp =row.querySelector('input[name="margin"]');
+
+    const sellingPriceEl =row.children[8].querySelector("span");
+
+    const totalPriceEl =row.children[9].querySelector("span");
+
+    function updatePrices(){
+
+      const qty =parseFloat(qtyInp.value) || 0;
+
+      const cost =parseFloat(costInp.value) || 0;
+
+      const margin =parseFloat(marginInp.value) || 0;
+
+      // selling = cost + margin%
+      const sellingPrice =cost + (cost * margin / 100);
+
+      // total = qty * selling
+      const totalPrice =qty * sellingPrice;
+
+      sellingPriceEl.textContent =sellingPrice.toFixed(2);
+
+      totalPriceEl.textContent =`$${totalPrice.toFixed(2)}`;
+
+    }
+
+    [qtyInp, costInp, marginInp].forEach(inp => {
+      allowNumbers(inp)
+      inp.addEventListener("input",updatePrices);
+    });
+
+  });
+
+}
+
+function allowNumbers(inp){
+
+  inp.addEventListener("input", () => {
+
+    inp.value = inp.value.replace(/\D/g, "");
+  });
+
+}
+
+function delRow(event){
+  const delBtn=event.target.parentElement;
+  const row=delBtn.parentElement.parentElement;
+  const undoBtn=row.querySelector(".undo-line-btn");
+  row.classList.add("not-active");
+  console.log(undoBtn)
+  delBtn.classList.remove("active");
+  undoBtn.classList.add("active");
+  const paras=row.querySelectorAll("p")
+  paras.forEach(p=>{
+    p.style.pointerEvents = "none";
+  })
+  
+  // enable only delete & undo
+  delBtn.style.pointerEvents = "auto";
+  undoBtn.style.pointerEvents = "auto";
+
+  row.removeEventListener("click",rowClickHandler);
+}
+
+function undoRow(event){
+  const undoBtn=event.target.parentElement;
+  const row=undoBtn.parentElement.parentElement;
+  const delBtn=row.querySelector(".delete-line-btn");
+
+  row.classList.remove("not-active");
+  
+  delBtn.classList.add("active");
+  undoBtn.classList.remove("active");
+  const paras=row.querySelectorAll("p")
+  paras.forEach(p=>{
+    p.style.pointerEvents = "auto";
+  })
+  
+
+  row.addEventListener("click",rowClickHandler);
+}
+
+//select all 
+function selectAllRow(){
+  const bodyWrap=displayTable.querySelector(".body-wrapper")
+  const tableRows =bodyWrap.querySelectorAll(".table-row");
+    tableRows.forEach(row => {
+      const inp=row.querySelector("input[type='checkbox']")
+      inp.checked=!inp.checked
+    })
+}

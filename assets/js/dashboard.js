@@ -236,13 +236,13 @@ let selectedYear=new Date().getFullYear();
 
 let today = new Date();
 let current = new Date(today);
-// if (current < minDate) {
-//   current = new Date(minDate);
-// }
+if (current < minDate) {
+  current = new Date(minDate);
+}
 
-// if (current > maxDate) {
-//   current = new Date(maxDate);
-// }
+if (current > maxDate) {
+  current = new Date(maxDate);
+}
 let selectedDate = null;
 function createDatepicker(datePicker) {
   const monthNameEl = datePicker.querySelector(".month-name");
@@ -1266,24 +1266,50 @@ function renderTrendChart(totalQuotes, filterQuotes,filterItem){
 }
 
 
-// enableTrendLegend();
 
 
-function enableTrendLegend(){
-  if(trendChart){
-    const trendWrapper=document.querySelector(".trend-chart-wrapper");
-    const legends = trendWrapper.querySelectorAll('.legend');
-    legends.forEach((legend, index) => {
-      legend.addEventListener('click', () => {
-      legend.classList.toggle('inactive');
-      const series=trendChart.series[index] ;
+
+// function enableTrendLegend(){
+//   if(trendChart){
+//     const trendWrapper=document.querySelector(".trend-chart-wrapper");
+//     const legends = trendWrapper.querySelectorAll('.legend');
+//     legends.forEach((legend, index) => {
+//       legend.addEventListener('click', () => {
+//       legend.classList.toggle('inactive');
+//       const series=trendChart.series[index] ;
+//       series.setVisible(!series.visible,false);
+//       trendChart.redraw();
+//       });
+//     });
+//   }
+// }
+function enableTrendLegend() {
+
+  // if (!trendChart) return;
+
+  const trendWrapper =document.querySelector(".trend-chart-wrapper");
+
+  const legends =trendWrapper.querySelectorAll(".legend");
+
+  legends.forEach((legend, index) => {
+
+    legend.onclick = () => {
+
+      legend.classList.toggle("inactive");
+
+      const series = trendChart.series[index];
+
       series.setVisible(!series.visible,false);
+
       trendChart.redraw();
-      });
-    });
-  }
+
+    };
+
+  });
+
 }
 
+enableTrendLegend();
 
 //gauge chart
 let sizes = getAccurSizes();
@@ -1303,21 +1329,21 @@ function getAccurSizes() {
 }
 
 function enableModalTrendLegend(){
-  if(modalTrendChart){
-    const modalContent = document.querySelector(".expand-modal-content");
-    const modalTrendWrapper=modalContent.querySelector(".trend-chart-wrapper");
-    const legends = modalTrendWrapper.querySelectorAll('.legend');
+  const modalContent = document.querySelector(".expand-modal-content");
+  const modalTrendWrapper=modalContent.querySelector(".trend-chart-wrapper");
+  const legends = modalTrendWrapper.querySelectorAll('.legend');
 
-    legends.forEach((legend, index) => {
-      legend.addEventListener('click', () => {
-          legend.classList.toggle('inactive');
-          const series=modalTrendChart.series[index] ;
-          series.setVisible(!series.visible,false);
-          modalTrendChart.redraw();
-      });
+  legends.forEach((legend, index) => {
+    legend.addEventListener('click', () => {
+      legend.classList.toggle('inactive');
+      const series=modalTrendChart.series[index] ;
+      series.setVisible(!series.visible,false);
+      modalTrendChart.redraw();
     });
-  }
+  });
 }
+
+enableModalTrendLegend();
 
 const accurChart=Highcharts.chart('accuracy-chart', {
 
@@ -1879,10 +1905,8 @@ function getTrendChartData(dateFilteredQuotes,filterItem) {
   filterLegendtexts.forEach(text=>text.innerHTML= `<span></span>${filterItem}`)
 
   renderTrendChart(totalQuotes, filterQuotes,filterItem)
-  enableTrendLegend();
 
   renderModalTrendChart(totalQuotes, filterQuotes,filterItem)
-  enableModalTrendLegend();
 
 }
 

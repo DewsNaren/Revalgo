@@ -1,4 +1,3 @@
-const header=document.querySelector("header");
 const existQuoteWrapper=document.querySelector(".exist-quote-wrapper");
 const popupOverlay=document.querySelector(".popup-overlay");
 function setexistQuoteWrapperHeight(){
