@@ -1,4 +1,3 @@
-const header=document.querySelector("header");
 const createQuoteWrapper=document.querySelector(".create-quote-wrapper");
 const popupOverlay=document.querySelector(".popup-overlay");
 function setcreateQuoteWrapperHeight(){
@@ -13,296 +12,228 @@ window.addEventListener('resize',setcreateQuoteWrapperHeight)
 
 
 
-//Datepicker
-const formPopup=document.querySelector(".form-popup");
-const formWrapper=formPopup.querySelector(".form-wrapper")
-const dateText=formPopup.querySelector(".date-text");
 
-const calendarDays = document.querySelectorAll(".custom-date-day");
+const createInpWrapper=document.querySelector(".create-input-wrapper");
+const createBtns=createInpWrapper.querySelectorAll(".btn-container button");
 
-calendarDays.forEach(dayBtn => {
-  dayBtn.addEventListener("click", () => {
-    let day = Number(dayBtn.dataset.day);
-    let month = Number(dayBtn.dataset.month);
-    let year = Number(dayBtn.dataset.year);
+const newBtn=createInpWrapper.querySelector(".new-btn");
+const existBtn=createInpWrapper.querySelector(".exist-btn");
 
-    let selectedDate = new Date(year, month - 1, day);
+
+const createInput=createInpWrapper.querySelector(".create-quote-input");
+const existInput=createInpWrapper.querySelector(".exist-quote-input");
+const existSearchBtn=createInpWrapper.querySelector(".exist-search-quote-btn");
+console.log(existSearchBtn)
+console.log(existInput)
+const inpContainer=createInpWrapper.querySelector(".input-container");
+
+const createQuoteBtn=inpContainer.querySelector(".create-quote-btn");
+const nextBtn=inpContainer.querySelector(".next-btn");
+
+const quoteDropdown=document.querySelector(".quote-dropdown");
+
+createBtns.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    createBtns.forEach(btn=>btn.classList.remove("active"));
+    btn.classList.add("active");
+
+    if(newBtn.classList.contains("active")){
+      existInput.classList.remove("active");
+      createInput.classList.add("active");
+
+      nextBtn.classList.remove("active");
+      createQuoteBtn.classList.add("active");
+    }
+    else{
+      existInput.classList.add("active");
+      createInput.classList.remove("active");
+
+      createQuoteBtn.classList.remove("active");
+      handleExistSearch();
+      nextBtn.classList.add("active");
+    }
+  })
+})
+
+const quoteNameWrapper=quoteDropdown.querySelector(".name-wrapper");
+const quoteNameList=quoteDropdown.querySelector(".name-list");
+const quoteIdWrapper=quoteDropdown.querySelector(".id-wrapper");
+const quoteIdList=quoteDropdown.querySelector(".id-list");
+const quotePoWrapper=quoteDropdown.querySelector(".po-wrapper");
+const quotePoList=quoteDropdown.querySelector(".po-list");
+
+function handleExistSearch() {
+  const value = existInput.value.trim().toLowerCase();
+
+  quoteIdList.innerHTML = "";
+  quoteNameList.innerHTML = "";
+  quotePoList.innerHTML = "";
+
+  if (value === "") {
+    quoteDropdown.classList.remove("active");
+    return;
+  }
+
+  quoteDropdown.classList.add("active");
+
+   searchedQuotes = allQuotes.filter(q => {
+
+    const isIdMatch =q.id.toString().toLowerCase().includes(value);
+
+    const isNameMatch =q.name.toLowerCase().includes(value);
+
+    const isPoMatch =q.po_no &&q.po_no.toString().toLowerCase().includes(value);
+
+    // render lists
+    if (isIdMatch) {
+    quoteIdList.innerHTML += `
+      <li 
+        data-type="id"
+        data-value="${q.id}">
+        ${q.id}
+      </li>
+    `;
+  }
+
+  if (isNameMatch) {
+    quoteNameList.innerHTML += `
+      <li 
+        data-type="name"
+        data-value="${q.name}">
+        ${q.name}
+      </li>
+    `;
+  }
+
+  if (isPoMatch) {
+    quotePoList.innerHTML += `
+      <li 
+        data-type="po"
+        data-value="${q.po_no}">
+        ${q.po_no}
+      </li>
+    `;
+  }
+
+    // filter condition
+    return isIdMatch || isNameMatch || isPoMatch;
 
   });
-});
 
-function padZero(num){
-  if(num > 9){
-    return num;
+
+
+
+  // hide empty sections
+  quoteIdWrapper.classList.toggle(
+  "not-active",!quoteIdList.children.length);
+
+  quoteNameWrapper.classList.toggle(
+  "not-active",!quoteNameList.children.length);
+
+  quotePoWrapper.classList.toggle(
+  "not-active",!quotePoList.children.length);
+
+  if(!quoteIdList.children.length && !quoteNameList.children.length && !quotePoList.children.length){
+    quoteDropdown.classList.remove("active")
   }
-  else{
-    return "0"+num;
-  }
+
+  
+
 }
-let flag=0;
-let selectedMonth;
-let selectedDatee;
-let selectedYear=new Date().getFullYear();
 
- const MONTHS = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
-  ];
+function handleExistSearchItemClick(e){
 
-  const DAYS=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
- 
-//create datepicker
-function createDatepicker(datePicker) {
-  const monthNameEl = datePicker.querySelector(".month-name");
-  const datesContainer = datePicker.querySelector(".dates");
-  const prevBtn = datePicker.querySelector(".prev-month");
-  const nextBtn = datePicker.querySelector(".next-month");
-  const tags = datePicker.querySelectorAll(".tag");
-  const yearToggle = datePicker.querySelector(".year-toggle");
-  const yearDropdown = datePicker.querySelector(".year-dropdown");
+  const li = e.target.closest("li");
 
-  let today = new Date();
-  let current = new Date(today);
-  let selectedDate = null;
+  if(!li) return;
 
-  const START_YEAR = Number(new Date().getFullYear())-200;
-  const END_YEAR = Number(new Date().getFullYear())-3;
+  const type = li.dataset.type;
+  const value = li.dataset.value.toLowerCase();
 
-  yearDropdown.innerHTML = "";
+  let filteredQuote = [];
 
-  for (let y = START_YEAR; y <= END_YEAR; y++) {
-    const div = document.createElement("div");
-    div.className = "year-item";
-    div.textContent = y;
-
-    div.addEventListener("click", () => {
-      current.setFullYear(y);
-      selectedYear=Number(y);
-      yearToggle.innerHTML = `${y} <img class="down-arrow" src="./assets/images/dashboard/down-arrow-blue.png" alt="down arrow blue">`;
-      yearDropdown.classList.remove("active");
-      const datePickerCalendar=datePicker.querySelector(".datepicker-calendar");
-      datePickerCalendar.classList.remove("not-active");
-      renderCalendar();
-    });
-
-    yearDropdown.appendChild(div);
+  if(type === "id"){
+    filteredQuote = allQuotes.filter(
+      q => q.id.toString().toLowerCase() === value
+    );
   }
 
-  yearToggle.addEventListener("click", (e) => {
-    e.stopPropagation();
-    yearDropdown.classList.toggle("active");
-    const datePickerCalendar=datePicker.querySelector(".datepicker-calendar");
-    datePickerCalendar.classList.toggle("not-active");
+  if(type === "name"){
+    filteredQuote = allQuotes.filter(
+      q => q.name.toLowerCase() === value
+    );
+  }
+
+  if(type === "po"){
+    filteredQuote = allQuotes.filter(
+      q => q.po_no &&
+      q.po_no.toString().toLowerCase() === value
+    );
+  }
+
+  sessionStorage.setItem(
+    "searchedQuotes",
+    JSON.stringify(filteredQuote)
+  );
+
+  sessionStorage.setItem(
+    "searchedItem",
+    JSON.stringify(value)
+  );
+  existInput.value=li.dataset.value;
+  quoteDropdown.classList.remove("active");
+  // window.location.href = "./existing-quote.html";
+}
+
+quoteDropdown.addEventListener("click", handleExistSearchItemClick);
+initializeExistSearch()
+function initializeExistSearch() {
+  allQuotes=JSON.parse(sessionStorage.getItem("quotes"));
+  existInput.addEventListener("input", () => {
+    handleExistSearch() ;
+    existSearchBtn.classList.add("active")
   });
 
-  function renderCalendar() {
-    const year = current.getFullYear();
-    const month = current.getMonth();
+  existInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      const value = existInput.value.trim().toLowerCase()
+      searchHeaderQuotes();
 
-    monthNameEl.textContent = `${MONTHS[month]}`;
-    yearToggle.innerHTML = `${year} <img class="down-arrow" src="./assets/images/dashboard/down-arrow-blue.png" alt="down arrow">`;
-    datesContainer.innerHTML = "";
 
-    const firstDay = new Date(year, month, 1).getDay();
-    const lastDate = new Date(year, month + 1, 0).getDate();
-    const prevLastDate = new Date(year, month, 0).getDate();
+      if(value!=""){
+        sessionStorage.setItem("searchedQuotes",JSON.stringify(searchedQuotes));
+        sessionStorage.setItem("searchedItem",JSON.stringify(value));
+        existInput.value = "";
 
-    let days = [];
-
-    for (let i = firstDay; i > 0; i--) {
-      days.push({
-        day: prevLastDate - i + 1,
-        faded: true,
-        date: new Date(year, month - 1, prevLastDate - i + 1)
-      });
+        window.location.href = "./existing-quote.html";
+      }
     }
 
-    for (let i = 1; i <= lastDate; i++) {
-      days.push({
-        day: i,
-        faded: false,
-        date: new Date(year, month, i)
-      });
+  });
+
+  existSearchBtn.addEventListener("click", () => {
+    const value = existInput.value.trim().toLowerCase();
+    if(value!=""){
+
+      sessionStorage.setItem("searchedQuotes",JSON.stringify(searchedQuotes));
+      sessionStorage.setItem("searchedItem",JSON.stringify(value));
+      existInput.value = "";
+
+      window.location.href = "./existing-quote.html";
     }
 
-    const nextDays = 42 - days.length;
-
-    for (let i = 1; i <= nextDays; i++) {
-      days.push({
-        day: i,
-        faded: true,
-        date: new Date(year, month + 1, i)
-      });
-    }
-
-    days.forEach((d, index) => {
-      const btn = document.createElement("button");
-      btn.classList.add("date");
-      btn.type = "button";
-      btn.textContent = d.day;
-
-      if (d.faded) btn.classList.add("faded");
-
-      if (
-        d.date.toDateString() === today.toDateString() &&
-        !btn.classList.contains("faded")
-      ) {
-        btn.classList.add("current-date");
-      }
-
-      if (
-        d.date.toDateString() === today.toDateString() &&
-        selectedDate === null &&
-        !btn.classList.contains("faded")
-      ) {
-        btn.classList.add("current-day");
-      }
-
-      if (
-        selectedDate &&
-        d.date.toDateString() === selectedDate.toDateString() &&
-        !btn.classList.contains("faded")
-      ) {
-        btn.classList.add("current-day");
-      }
-
-      btn.addEventListener("click", () => {
-        const allButtons = datesContainer.querySelectorAll(".date");
-        selectedDate = d.date;
-
-        allButtons.forEach(b => b.classList.remove("current-day"));
-        btn.classList.add("current-day");
-
-        getSelectedDate(datePicker);
-        validDateInput(datePicker);
-
-        datePicker.classList.remove("active");
-      });
-
-      datesContainer.appendChild(btn);
-    });
-  }
-
-  prevBtn.addEventListener("click", () => {
-    current.setMonth(current.getMonth() - 1);
-    renderCalendar();
   });
 
   nextBtn.addEventListener("click", () => {
-    current.setMonth(current.getMonth() + 1);
-    renderCalendar();
-  });
+    const value = existInput.value.trim().toLowerCase();
+    if(value!=""){
 
-  tags.forEach(tag => {
-    tag.addEventListener("click", () => {
-      let type = tag.dataset.type;
+      sessionStorage.setItem("searchedQuotes",JSON.stringify(searchedQuotes));
+      sessionStorage.setItem("searchedItem",JSON.stringify(value));
+      existInput.value = "";
 
-      if (type === "today") selectedDate = new Date();
-      if (type === "yesterday") selectedDate = new Date(Date.now() - 86400000);
-      if (type === "tomorrow") selectedDate = new Date(Date.now() + 86400000);
-
-      current = new Date(selectedDate);
-      renderCalendar();
-    });
-  });
-
-  renderCalendar();
-  setYearDropdownHeight(datePicker);
-   
-}
-
-//updating height for year dropdown
-
-function setYearDropdownHeight(datePicker) {
-  const calendar = datePicker.querySelector(".datepicker-calendar");
-  const yearDropdown = datePicker.querySelector(".year-dropdown");
-
-  if (calendar && yearDropdown) {
-    yearDropdown.style.height = `${calendar.offsetHeight}px`;
-  }
-}
-
-window.addEventListener("resize", () => {
-  document.querySelectorAll(".datepicker").forEach(dp => {
-    setYearDropdownHeight(dp);
-  });
-});
-
-
-const datepicker=formPopup.querySelector(".datepicker");
-
-createDatepicker(datepicker)
-
-const days=datepicker.querySelector(".days")
-for(let i=0;i<DAYS.length;i++){
-  const dayEl=document.createElement("span");
-  dayEl.className="day"
-  dayEl.textContent=DAYS[i];
-  days.appendChild(dayEl);
-}
-
-function getSelectedDate(datePicker){
-  const monthNameEl=datePicker.querySelector(".month-name")
-  const MonthArr=monthNameEl.textContent.split(" ")
-  selectedMonth=Number(MONTHS.findIndex(m => m === MonthArr[0]))+1
-  selectedMonth=padZero(selectedMonth)
-  const dates=datePicker.querySelectorAll(".dates .date");
-  dates.forEach(d=>{
-    if(d.classList.contains("current-day")){
-      selectedDatee=padZero(Number(d.textContent))
-    }
-  })
-
-
-  const parentEl=datePicker.parentElement;
-  const dateInp=parentEl.querySelector(".date-input");
-  dateInp.value=`${selectedYear}-${selectedMonth}-${selectedDatee}`;
-  const dateText=parentEl.querySelector(".date-text");
-  dateText.childNodes[0].textContent=`${selectedYear}-${selectedMonth}-${selectedDatee}`;
-}
-
-//validate dateinput
-
-function  validDateInput(datePicker){
-  const parentEl=datePicker.parentElement;
-  const dateInp=parentEl.querySelector(".date-input");
-  const formContainer = dateInp.parentElement.parentElement;
-  console.log(formContainer)
-  const errorElement = formContainer.querySelector(".error");
-  if(dateInp.value==""){
-    formContainer.classList.add("error");
-    errorElement.textContent="";
-  } else {
-    formContainer.classList.remove("error");
-    errorElement.textContent=""
-  
-  }
-}
-
-//datepicker open and close funtcion
-
-dateText.addEventListener("click", () => {
-  const parentContainer = dateText.parentElement;
-  const datePicker = parentContainer.querySelector(".datepicker");
-
-  datePicker.classList.toggle("active");
-  formWrapper.scrollTo({
-    top: formWrapper.scrollHeight,
-    behavior: "smooth" 
-  });
-  datePicker._trigger = dateText;
-});
-
-
-document.addEventListener("click", (e) => {
-  const dp=document.querySelector(".datepicker.active");
-    if (!dp) return;
-    const trigger = dp._trigger;
-
-    if (!trigger.contains(e.target) && !dp.contains(e.target)) {
-      dp.classList.remove("active");
-      dp.querySelector(".year-dropdown").classList.remove("active");
-      dp.querySelector(".datepicker-calendar").classList.remove("not-active");
+      window.location.href = "./existing-quote.html";
     }
 
-});
+  });
+}

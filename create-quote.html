@@ -78,7 +78,7 @@
         </header>
         <main class="create-quote-wrapper">
             <div class="top-btn-wrapper">
-                <button type="button" class="back-create-btn"><img src="./assets/images/global/arrow-left-blue-1.png" alt="left arrow">#7DB38FED</button>
+                <button type="button" class="back-create-btn"><img src="./assets/images/global/arrow-left-blue-1.png" alt="left arrow">Create Quote</button>
                 <div class="approve-btn-container active">
                     <button type="button" class="add-note-btn">Add Note</button>
                     <button type="button" class="approve-btn">Approve Quote</button>
@@ -96,14 +96,41 @@
                 </div>
                 <div class="input-container">
                     <div class="input-inner-container">
-                        <input type="text" name="create-quote-input" placeholder="Enter Customer Name / Account Number">
-                        <button type="button" class="search-quote-btn"><img src="./assets/images/global/search-icon-black.png" alt="search icon"></button>
+                        <input type="text" name="create-quote" class="create-quote-input active" placeholder="Enter Customer Name / Account Number" autocomplete="off">
+                        <input type="text" name="exist-quote" class="exist-quote-input"placeholder="PO#, Order#, Customer# / Name" autocomplete="off">
+                        <button type="button" class="exist-search-quote-btn"><img src="./assets/images/global/search-icon-black.png" alt="search icon"></button>
                         <div class="quote-dropdown">
-                            <ul>
-                                <li>#7DB38FED</li>
-                                <li>#7D38BF</li>
-                                <li>#7D38BFA</li>
-                                <li>#7D38BF0</li>
+                            <ul class="list-wrapper">
+                                <div class="id-wrapper list-container">
+                                    <h3 class="list-header">Quote Id</h3>
+                                    <ul class="id-list">
+                                            <li>McKesson Corporation</li>
+                                            <li>McKesson Corporation Limited</li>
+                                            <li>McKesn</li>
+                                            <li>McKenson</li>
+                                            <li>McKenson</li>
+                                    </ul>
+                                </div>
+                                <div class="name-wrapper list-container">
+                                    <h3 class="list-header">Customer Name</h3>
+                                    <ul class="name-list">
+                                            <li>McKesson Corporation</li>
+                                            <li>McKesson Corporation Limited</li>
+                                            <li>McKesn</li>
+                                            <li>McKenson</li>
+                                            <li>McKenson</li>
+                                    </ul>
+                                </div>
+                                <div class="po-wrapper list-container">
+                                    <h3 class="list-header">PO</h3>
+                                    <ul class="po-list">
+                                            <li>McKesson Corporation</li>
+                                            <li>McKesson Corporation Limited</li>
+                                            <li>McKesn</li>
+                                            <li>McKenson</li>
+                                            <li>McKenson</li>
+                                    </ul>
+                                </div>
                             </ul>
                         </div>
                     </div>
@@ -526,7 +553,8 @@
             </div>
         </div>
 
-        <script src="./assets/js/create-quote.js"></script>
         <script src="./assets/js/header.js"></script>
+        <script src="./assets/js/create-quote.js"></script>
+        
     </body>
 </html>

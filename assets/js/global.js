@@ -443,7 +443,7 @@ function renderFilterTable(currentPage){
       <tr>
         <td><img src="./assets/images/dashboard/${d.mode}_icon.png" alt="${d.mode}"></td>
           <td><a href="./recent-quote.html" class="quote-id-data">#${d.id}</a></td>
-              <td>${d.name} / ${d.number}</td>
+              <td>${d.number ?` ${d.name} /${d.number}`:`${d.name}`}</td>
               <td>${d.received_date}</td>
           <td>${d.approved_date}</td>
           <td>

@@ -4,8 +4,9 @@ async function loadQuotes() {
     const resp = await fetch("../assets/json/quote.json")
     const data = await resp.json()
    
-    
-    sessionStorage.setItem('quotes',JSON.stringify(data))
+    if(!sessionStorage.getItem("quotes")){
+      sessionStorage.setItem('quotes',JSON.stringify(data))
+    }
   } catch (err) {
     console.error("Error:", err)
   }
@@ -177,7 +178,6 @@ globalDropDown.addEventListener("click", handleSearchItemClick);
 
 function initializeSearch() {
   allQuotes=JSON.parse(sessionStorage.getItem("quotes"));
-  console.log(allQuotes)
   searchHeaderInput.addEventListener("input", () => {
     searchHeaderQuotes();
   });

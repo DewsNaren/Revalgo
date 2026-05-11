@@ -85,7 +85,7 @@
                         <div class="back-btn-container">
                             <button type="button" class="back-create-btn"><img src="./assets/images/global/arrow-left-blue-1.png" class="back-arrow-img" alt="left arrow">Create Quote <img src="./assets/images/global/delete_icon.png" class="delete-img" alt="delete icon"></button>
                             <button type="button" class="del-quote-btn"><img src="./assets/images/global/delete_icon.png" alt="delete"></button>
-                            <div class="quote-status"><span class="status approved">Approved</span> <img src="./assets/images/global/arrow-left-blue-1.png" alt="left arrow"></div>
+                            <div class="quote-status"><span class="status approved">Approved</span> </div>
                             <button class="undo-quote-btn"><img src="./assets/images/dashboard/Undo_icon.png" alt="undo">Undo</button>
                         </div>
                         <div class="quote-id-wrapper">
@@ -914,13 +914,102 @@ Delivery Time: By 7 am, oRDER nUMBER : 007484
                     <button type="button" class="add-btn">Add</button>
                     <button type="button" class="cancel-btn">Cancel</button>
                 </div>
+            </div>
+            <div class="form-popup">
+                <div class="header">
+                    <h3 class="title form-title">Ship To</h3>
+                    <button type="button" class="close-popup-btn"><img src="./assets/images/global/close-modal.webp" alt="close"></button>
+                </div>
+                <div class="form-wrapper">
+                    <div class="form-container bill_to">
+                        <div class="input-group">
+                            <label for="bill_name">Name</label>
+                            <input type="text" name="name" id="bill_name" placeholder="Name"autocomplete="on">
+                        </div>
+                        <p class="error"></p>
+                    </div>
+                    <div class="form-container bill_to">
+                        <div class="input-group">
+                             <label for="bill_address">Address</label>
+                            <textarea name="address" id="bill_address" placeholder="Address" autocomplete="on"></textarea>
+                        </div>
+                        <p class="error"></p>
+                    </div>
+                    <div class="form-container ship_to">
+                        <div class="input-group">
+                            <label for="ship_name">Name</label>
+                            <input type="text" name="name" id="ship_name" placeholder="Name"autocomplete="on">
+                        </div>
+                        <p class="error"></p>
+                    </div>
+                    <div class="form-container ship_to">
+                        <div class="input-group">
+                             <label for="ship_address">Address</label>
+                            <textarea name="address" id="ship_address" placeholder="Address" autocomplete="on"></textarea>
+                        </div>
+                        <p class="error"></p>
+                    </div>
+                     <div class="form-container po_no">
+                        <div class="input-group">
+                            <label for="po-no">PO No</label>
+                            <input type="text" name="po-no" id="po-no" placeholder="PO No"></input>
+                        </div>
+                        <p class="error"></p>
+                    </div>
+                    
+                    <div class="form-container job_no">
+                        <div class="input-group">
+                            <label for="job-no">Job No</label>
+                            <input type="text" name="job-no" id="job-no" placeholder="Job No"></input>
+                        </div>
+                        <p class="error"></p>
+                    </div>
+                    <div class="form-container buyer">
+                        <div class="input-group">
+                            <label for="buyer">Buyer</label>
+                            <input type="text" name="buyer" id="buyer" placeholder="Buyer"></input>
+                        </div>
+                        <p class="error"></p>
+                    </div>
+                    <div class="form-container deleivery_date">
+                        <div class="input-group">
+                            <p class="label">Deleivery Date</p>
+                            <div class="date-text">yyyy-mm-dd</div>
+                            <div class="datepicker">
+                                <div class="datepicker-top">
+                            
+                            <div class="month-selector">
+                                <button type="button" class="arrow prev-month">
+                                    <img src="./assets/images/global/left-arrow.png" alt="left" />
+                                </button>
+                                <div class="year-wrapper">
+                                    <span class="month-name"></span>
+                                    <span class="year"></span>
+                                </div>
+                                <button type="button" class="arrow next-month">
+                                <img src="./assets/images/global/right-arrow.png" alt="right"/>
+                                </button>
+                            </div>
+                            </div>
+                            <div class="datepicker-calendar">
+                                <div class="days"></div>
+                                <div class="dates"></div>
+                            </div>
+                            </div>
+                            <input type="hidden" name="deleivery-date" id="deleivery-date" class="date-input" />
+                        </div>
+                        <p class="error"></p>
+                    </div>
 
+                </div>
+                <div class="btn-container">
+                    <button type="button" class="update-btn">Update</button>
+                    <button type="button" class="cancel-btn">Cancel</button>
+                </div>
             </div>
         </div>
-
-        <script src="./assets/js/recent-quote.js"></script>
         <script src="./assets/js/header.js"></script>
-
+        <script src="./assets/js/recent-quote.js"></script>
     </body>
 </html>
         

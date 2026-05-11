@@ -132,9 +132,13 @@ function filterQuotesByDate(filterQuotes, start, end) {
       quoteDate <= endObj
     );
   });
+  const stat = [...tableBtns].find(btn =>btn.classList.contains("active"))?.dataset.filter;
+
+
+  // console.log(stat)
   let first=true;
   if(first){
-    filteredQuotes=dateFilteredQuotes.filter(q=>q.status=="approved");
+    filteredQuotes=dateFilteredQuotes.filter(q=>q.status==stat.toLowerCase());
     renderQuoteTable(filteredQuotes)
   }
   else{
@@ -142,7 +146,7 @@ function filterQuotesByDate(filterQuotes, start, end) {
   }
  
   renderQuoteCounts(dateFilteredQuotes)
-  console.log(dateFilteredQuotes)
+  // console.log(dateFilteredQuotes)
 
   getTrendChartData(dateFilteredQuotes,"approved")
   
@@ -836,17 +840,17 @@ function renderQuoteTable(data){
   let tabHtml="";
   if(data.length!=0){
     data.forEach(d=>{
-      tabHtml+=`<tr>
+      tabHtml+=`<tr data-id="${d.id}">
         <td><img src="./assets/images/dashboard/${d.mode}_icon.png" alt="${d.img}"></td>
-        <td><a href="./recent-quote.html" class="quote-id-data">#${d.id}</a></td>
-        <td>${d.name} / ${d.number} </td>
+        <td><a href="./recent-quote.html" class="quote-id-btn">#${d.id}</a></td>
+        <td>${d.number ?` ${d.name} /${d.number}`:`${d.name}`}</td>
         <td>${d.received_date}</td>
         <td>${d.approved_date}</td>
         <td class=${d.status === "approved" ? "approved" : d.status === "pending" ? "pending" : ""} }>${d.status}</td>
         <td>${d.total_line_no}</td>
         <td>$${d.total_price}</td>
         <td>${d.status === "deleted" ? 
-          `<span>Undo</span>` : `<a href="./recent-quote.html">
+          `<span class="undo-btn">Undo</span>` : `<a href="./create-quote.html">
           <img src="./assets/images/dashboard/Add_icon.png" alt="add"> </a>`}
       </td>
     </tr>
@@ -854,11 +858,80 @@ function renderQuoteTable(data){
     })
 
     tBody.innerHTML=tabHtml;
+    const quoteTable=document.querySelector(".quote-table");
+    tableClickHandler(quoteTable);
   }
   else{
     tBody.innerHTML="<p class='not-found'>Data Not Found</p>";
   }
 }
+
+//handle undo
+const undoModal=document.querySelector(".undo-modal");
+const undoYesBtn=undoModal.querySelector(".yes-btn");
+const undoNoBtn=undoModal.querySelector(".no-btn");
+
+const undoText=undoModal.querySelector(".text");
+function tableClickHandler(quoteTable){
+  const idBtns=quoteTable.querySelectorAll(".quote-id-btn");
+  idBtns.forEach(btn=>{
+    btn.addEventListener('click',(e)=>{
+      e.preventDefault();
+      const id=e.target.closest("tr").dataset.id;
+      quotes.forEach(q => {
+        if(q.id==id){
+          sessionStorage.setItem('selectedQuote',JSON.stringify(q));
+          window.location.href="./recent-quote.html"
+        }
+      })
+    })
+  })
+  const undoBtns=quoteTable.querySelectorAll(".undo-btn");
+  undoBtns.forEach(btn=>{
+    btn.addEventListener('click',(e)=>{
+      const id=e.target.closest("tr").dataset.id
+      expandOverlay.classList.add("active");
+      undoModal.classList.add("active");
+      undoText.innerHTML=`Are you sure you want to undo this  <br> Quote ID #${id}</p>`
+      undoQuoteStatus(id)
+    })
+  })
+  
+  
+}
+
+function undoQuoteStatus(id){
+  undoYesBtn.addEventListener('click',()=>{
+    quotes.forEach(q => {
+      if (q.id == id) {
+        console.log(q)
+        q.status = "pending";
+
+        sessionStorage.setItem('quotes',JSON.stringify(quotes));
+        initializeSearch();
+        quotes=JSON.parse((sessionStorage.getItem("quotes")));
+        filteredQuotes=JSON.parse((sessionStorage.getItem("quotes")));
+        filterQuotesByDate(quotes, format(start), format(end))
+        closeUndoModal();
+      }
+      
+
+
+    });
+    
+    // console.log(chg)
+    
+  })
+}
+
+function closeUndoModal(){
+  expandOverlay.classList.remove("active");
+  undoModal.classList.remove("active");
+}
+
+undoNoBtn.addEventListener('click',()=>{
+  closeUndoModal();
+})
 
 function renderQuoteCounts(data){
   const approveCounts=document.querySelectorAll(".apprv-count");
@@ -908,7 +981,6 @@ function renderQuoteCounts(data){
 const quotesContainer=document.querySelector(".quotes-container");
 const tableBtns=document.querySelectorAll(".top-container .btn-container button")
 
-
 tableBtns.forEach(btn=>{
   btn.addEventListener('click',()=>{
     tableBtns.forEach(btn=>btn.classList.remove("active"));
@@ -925,9 +997,6 @@ tableBtns.forEach(btn=>{
   })
 })
 
-function tableHeaderBtnClick(){
-  
-}
 
 const filterBtn=quotesContainer.querySelector(".filter-text");
 const filterDropdown=document.querySelector(".filter-dropdown");
