@@ -26,7 +26,16 @@
                 }
                 .delete-img{
                     width: clamp(11px, $fs-17px, $fs-17px);
+                    display: inline;
+                    margin-left: clamp(5px, $fs-10px, $fs-10px);
+                    &.not-active{
+                        display: none;
+                    }
+                }
+                .undo-img{
                     display: none;
+                    width: clamp(11px, $fs-17px, $fs-17px);
+                     margin-left: clamp(5px, $fs-10px, $fs-10px);
                     &.active{
                         display: inline;
                     }
@@ -37,10 +46,10 @@
                 margin-bottom: 0;
                 font-size: clamp(12px, $fs-16px, $fs-16px);
                 color: $black;
-                display: none;
-                &.active{
-                    display: block;
-                }
+                // display: none;
+                // &.active{
+                //     display: block;
+                // }
             }
         }
         
@@ -168,7 +177,7 @@
                 min-height: 0;
                 .filter-wrapper{
                     padding: clamp(6px, $fs-20px, $fs-20px) clamp(10px, $fs-20px, $fs-20px);
-                    width: fit-content;
+                    width: clamp(250px, 19.5%, 19.5%);
                     box-shadow: $box-shadow-3;
                     border-radius: clamp(4px, $fs-10px, $fs-10px);
                     overflow-y: auto;
@@ -197,16 +206,40 @@
                         padding: clamp(12px, $fs-21px, $fs-21px) 0;
                         border-bottom: 1px solid #ddd;
                         h3{
-                            font-size: clamp(12px, $fs-19px, $fs-19px);
+                            font-size: clamp(12px, $fs-17px, $fs-17px);
                             margin-bottom: 0;
                             line-height: 1;
                             padding-bottom: clamp(4px, $fs-8px, $fs-8px);
+                            cursor: pointer;
+                             span{
+                                    line-height: 1;
+                                    margin-right: 2px;
+                                }
+                                .minus{
+                                    display: none;
+                                    
+                                }
+
+                                &.collapsed{
+                                    .minus{
+                                        display: inline;
+                                    }
+                                    .plus{
+                                        display: none;
+                                    }
+
+                                }
                         }
                         .filter-subheader{
                             display: flex;
                             align-items: center;
                             justify-content: space-between;
-                            
+                             
+                            h3{
+                                width: fit-content;
+                               
+                            }
+
                             .control-btn-container{
                                 display: flex;
                                 align-items: center;
@@ -214,7 +247,7 @@
                                 button{
                                     background-color: transparent;
                                     border: none;
-                                    font-size: clamp(8px, $fs-12px, $fs-12px);
+                                    font-size: clamp(7px, $fs-11px, $fs-11px);
                                     color: $blue-87;
                                     position: relative;
                                     &.select-btn::after{
@@ -234,8 +267,9 @@
                             display: flex;
                             align-items: center;
                             justify-content: flex-end;
-                            gap: 4px;
+                            gap: 5px;
                             margin-top: 4px;
+                            margin-left: clamp(8px, $fs-15px, $fs-15px);
                             .filter-chip{
                                 padding:5px clamp(8px, $fs-10px, $fs-10px);
                                 background-color: $white;
@@ -243,7 +277,14 @@
                                 font-size: clamp(10px, $fs-15px, $fs-15px);
                                 color: $grey-80;
                                 border: 1px solid $grey-80;
+
+                                &.active{
+                                    background-color: $blue-87;
+                                    color: $white-80;
+                                    
+                                }
                             }
+                           
                         }
                         .search-container{
                             border: 1px solid #ccc;
@@ -254,15 +295,21 @@
                             padding: 5px clamp(8px, $fs-10px, $fs-10px);
                             border-radius: 5px;
                             margin-left: clamp(8px, $fs-15px, $fs-15px);
+                            width: 90%;
                             input{
                                 border: none;
                                 outline: none;
-                                font-size: clamp(10px, $fs-14px, $fs-14px);
+                                font-size: clamp(9px, $fs-13px, $fs-13px);
                                 flex: 1;
 
                                 &::placeholder{
-                                    font-size: clamp(10px, $fs-14px, $fs-14px);
+                                    font-size: clamp(9px, $fs-13px, $fs-13px);
 
+                                }
+                                &:-webkit-autofill{
+                                    -webkit-box-shadow: 0 0 0 1000px #fff inset;
+                                    -webkit-text-fill-color: $black;
+                                    transition: background-color 9999s ease-in-out 0s;
                                 }
 
                             }
@@ -275,19 +322,19 @@
                                 }
                             }
                         }
-                        .customer-filter-container{
+                        .checkbox-filter-container{
                             display: flex;
                             flex-direction: column;
-                            gap: clamp(4px, $fs-10px, $fs-10px);
+                            gap: clamp(3px, $fs-7px, $fs-7px);
                             margin-left: clamp(8px, $fs-15px, $fs-15px);
-                            .customer-filter{
+                            .checkbox-filter{
                                 display: flex;
                                 align-items: center;
                                 gap: clamp(8px, $fs-15px, $fs-15px);
                                 padding: 5px 0 0;
                                 input{
-                                    width: clamp(9px, $fs-20px, $fs-20px);
-                                    height:clamp(9px, $fs-20px, $fs-20px);
+                                    width: clamp(9px, $fs-19px, $fs-19px);
+                                    height:clamp(9px, $fs-19px, $fs-19px);
                                     border-radius: 5px;
                                     accent-color: $blue-87;
                                 }
@@ -295,58 +342,188 @@
                                     font-size: clamp(12px, $fs-16px, $fs-16px);
                                     color: $grey-80;
                                 }
+                                &.hidden{
+                                    display: none;
+                                }
                             }
                         }
                         .see-more-link{
                             margin-top: 4px;
-                            font-size: clamp(10px, $fs-14px, $fs-14px);
+                            font-size: clamp(9px, $fs-13px, $fs-13px);
                             color: $blue-87;
                             font-weight: 500;
                             margin-left: clamp(8px, $fs-15px, $fs-15px);
                         }
-                        &:first-of-type,&:last-of-type{
+                        &:last-of-type{
                             border-bottom: none;
                         }
-                        .date-wrapper{
-                            display: flex;
-                            align-items: center;
-                            gap: clamp(8px, $fs-15px, $fs-15px);
-                            margin-left: clamp(8px, $fs-15px, $fs-15px);
-                            .date-container{
-                                position: relative;
-                                .date-label{
-                                    font-size: clamp(12px, $fs-16px, $fs-16px);
-                                    color: $grey-80;
-                                    line-height: 1;
-                                    margin-bottom: clamp(4px, $fs-8px, $fs-8px)
-                                }
-                                .date-text{
-                                    font-size: clamp(10px, $fs-14px, $fs-14px);
-                                    color: $grey-80;
-                                    white-space: nowrap;
-                                    display: flex;
-                                    align-items: center;
-                                    border: 1px solid #ccc;
-                                    padding: 4px 5px;
-                                    border-radius: 4px;
-                                    img{
-                                        width: clamp(11px, $fs-18px, $fs-18px);
-                                        margin-left: clamp(6px, $fs-14px, $fs-14px);
+                        .date-outer-wrapper{
+                            .date-wrapper{
+                                display: flex;
+                                align-items: center;
+                                gap: clamp(8px, $fs-15px, $fs-15px);
+                                margin-left: clamp(8px, $fs-15px, $fs-15px);
+                                .date-container{
+                                    position: relative;
+                                    .date-label{
+                                        font-size: clamp(12px, $fs-16px, $fs-16px);
+                                        color: $grey-80;
+                                        line-height: 1;
+                                        margin-bottom: clamp(4px, $fs-8px, $fs-8px)
                                     }
-                                     &.active{
-                                        color: $blue-87;
-                                        border-color: $blue-87;
-                                        img {
-                                            filter: brightness(0) saturate(100%) 
-                                                invert(20%) sepia(45%) saturate(1500%) 
-                                                hue-rotate(190deg) brightness(90%) contrast(95%);
-                                        }                                        
+                                    .date-text{
+                                        font-size: clamp(10px, $fs-14px, $fs-14px);
+                                        color: $grey-80;
+                                        white-space: nowrap;
+                                        display: flex;
+                                        align-items: center;
+                                        border: 1px solid #ccc;
+                                        padding: 4px 5px;
+                                        border-radius: 4px;
+                                        img{
+                                            width: clamp(11px, $fs-18px, $fs-18px);
+                                            margin-left: clamp(6px, $fs-14px, $fs-14px);
+                                        }
+                                        &.active{
+                                            color: $blue-87;
+                                            border-color: $blue-87;
+                                            img {
+                                                filter: brightness(0) saturate(100%) 
+                                                    invert(20%) sepia(45%) saturate(1500%) 
+                                                    hue-rotate(190deg) brightness(90%) contrast(95%);
+                                            }
+                                        }
                                     }
+                                    .datepicker {
+                                        position: fixed;
+                                        background-color: $white-f5;
+                                        box-shadow: $box-shadow-2;
+                                        padding: 0px;
+                                        max-height: 0;
+                                        overflow: hidden;
+                                        z-index: 6;
+                                        top: 100%;
+                                        button {
+                                            cursor: pointer;
+                                            outline: none;
+                                        }
+                                        .datepicker-top {
+                                            margin-bottom: 20px;
+                                            // .tag {
+                                            //     margin-right: 7px;
+                                            //     margin-top: 7px;
+                                            //     background-color: $white-ec;
+                                            //     border-radius: 5px;
+                                            //     padding: clamp(6px, 1%, 1%) $fs-14px;
+                                            //     border: none;
+                                            //     font-size:clamp(10px, $fs-14px, $fs-14px);
+                                            // }
+                                            // .tag:hover {
+                                            //     color: $white;
+                                            //     background-color: $black-80;
+                                            // }
+                                            .month-selector {
+                                                display: flex;
+                                                align-items: center;
+                                                justify-content: space-between;
+                                                position: relative;
+                                                .year-wrapper{
+                                                    display: flex;
+                                                    align-items: center;
+                                                    font-size: clamp(13px, $fs-17px, $fs-17px);
+                                                    gap: 5px;
+                                                    .month-name,.year{
+                                                        color: $black;
+                                                    }  
+                                                    .year{
+                                                        color: $black;
+                                                    }
+
+                                                }
+                                            }
+                                        }
+                                    .datepicker-calendar{
+                                        visibility: visible;
+                                        .days {
+                                            display: grid;
+                                            grid-template-columns: repeat(7, 1fr);
+                                            grid-row-gap: 15px;
+                                            margin-top: 15px;
+                                            margin-bottom: 20px;
+                                        }
+                                        .dates {
+                                            display: grid;
+                                            grid-template-columns: repeat(7, 1fr);
+                                            grid-column-gap: clamp(5px, $fs-10px, $fs-10px);
+                                            grid-row-gap: clamp(5px, $fs-15px, $fs-15px);
+                                        }
+                                        .date {
+                                            justify-self: center;
+                                            border: none;
+                                            margin: 0;
+                                            padding: 0;
+                                            width: clamp(14px, $fs-25px, $fs-25px);
+                                            display: flex;
+                                            justify-content: center;
+                                            align-items: center;
+                                            background-color: transparent;
+                                            border: 2px solid transparent;
+                                            color: $black-70;
+                                            // font-weight: 800;
+                                            cursor: pointer;
+                                            display: block;
+                                            font-size: clamp(8px, $fs-14px, $fs-14px);
+                                            font-weight: 500;
+                                            &:hover,&:focus {
+                                                border: 2px solid $black-30;
+                                                font-weight: 600;
+                                            }
+                                            &.faded {
+                                                color: $grey-a6;
+                                                &:focus {
+                                                    color: $grey-a6;
+                                                    border: 2px solid transparent;
+                                                    pointer-events: none;
+                                                    font-weight: 500;
+                                                    background-color: transparent;
+                                                }
+                                                &:hover{
+                                                    border: none;
+                                                    font-weight: 500;
+                                                }
+                                            }
+                                            &.current-date {
+                                                border: 2px solid $black-80;
+                                            }
+                                            &.current-day {
+                                                color: $white;
+                                                border: 2px solid $black-80;
+                                                background-color: $blue-3ff;
+                                            }
+                                            
+                                        }
+                                        .day {
+                                            color: $black-90;
+                                            font-weight: 500;
+                                            font-size: clamp(12px, $fs-16px, $fs-16px);
+                                            justify-self: center;
+                                        }
+                                        
+                                        &.not-active{
+                                            visibility: hidden;
+                                        }
+                                    }
+                                    &.active {
+                                        padding: clamp(8px, $fs-15px, $fs-15px);
+                                        max-height: 411px;
+                                        overflow: visible;
+                                            
+                                    }
+                                    }
+                            
                                 }
-                               
-                        
+                            
                             }
-                           
                         }
                     }
                      &::-webkit-scrollbar {
@@ -385,57 +562,9 @@
                                 align-items: center;
                                 font-size: clamp(13px, $fs-17px, $fs-17px);
                                 gap: 5px;
-                                .month-name{
+                                .month-name,.year{
                                     color: $black;
                                 }
-                                .year-select{
-                                    .year-toggle{
-                                        border: none;
-                                        background-color: transparent;
-                                        color: $black;
-                                        display: flex;
-                                        align-items: center;
-                                        justify-content: center;
-                                        gap: 5px;
-                                    }
-                                    .down-arrow{
-                                        width: clamp(11px, $fs-22px, $fs-22px);
-                                    }
-                                    .year-dropdown {
-                                        position: absolute;
-                                        top: 100%;
-                                        left: 0;
-                                            width: 100%;
-                                        max-height: 278px;      
-                                        overflow-y: auto;       
-                                        // background: #dbdbdb;
-                                        z-index: 20;
-                                        display: none;
-                                        margin-top: 20px;
-                                        background-color: $white;
-                                        &.active {
-                                            display: block;
-                                        }
-                                                .year-item {
-                                            padding: clamp(4px, $fs-8px, $fs-8px);
-                                            cursor: pointer;
-                                            border-bottom: 1px solid $grey-a4;
-                                            text-align: center;
-                                            background-color: $white;
-                                            color: $black-80;
-                                            font-size: clamp(3px, $fs-14px, $fs-14px);
-                                            &:hover {
-                                                background-color: $grey-61;
-                                                color: $white;
-                                                font-weight: 500;
-                                            }
-                                        }
-
-                                                
-                                    }
-                                }
-                                        
-
                             }
                             .arrow {
                                 display: flex;
@@ -576,10 +705,10 @@
                         flex: 1;
                         overflow-y: auto;       
                         tr{
-                                    display: table;
-                                    width: 100%;
-                                    table-layout: fixed;
-                                    td{
+                            display: table;
+                            width: 100%;
+                            table-layout: fixed;
+                            td{
                                         font-size: clamp(10px, $fs-15px, $fs-15px);
                                         padding: clamp(8px, $fs-15px, $fs-15px) clamp(10px, $fs-20px, $fs-20px) clamp(8px, $fs-15px, $fs-15px);
                                         color: rgba(0,0,0,0.85);
@@ -589,14 +718,22 @@
                                             padding-left: clamp(12px, $fs-40px, $fs-40px);
                                         }
                                         &:nth-of-type(5) span{
-                                            color: $green-2c;
-                                            background-color: $green-dc;
+                                            color:  $red-00;
+                                            background-color: $red-26;
                                             padding: 2px 4px;
                                             border-radius: 10px;
+                                            &.approved{
+                                                color: $green-2c;
+                                                background-color: $green-dc;
+                                            }
+                                            &.pending{
+                                                color: $orange-29;
+                                                background-color: $orange-cf;
+                                            }
                                             
                                         }
                                         &:nth-of-type(6) {
-                                            text-align: right;
+                                            text-align: center;
                                             // padding-right: clamp(10px, $fs-85px, $fs-85px);
                                             // width: 150px;
                                             // margin-right: ;
@@ -609,25 +746,30 @@
                                         }
 
 
-                                    }
-                                    &:last-of-type td {
-                                        border-bottom: none;
-                                    }
-                                    &.active{
-                                        background-color: $blue-2ff;                                  
-                                    }
-                                    
-                                }
-                                &::-webkit-scrollbar {
-                                    width: 4px;
-                                }
-
-                                &::-webkit-scrollbar-thumb {
-                                    background: rgba(161, 161, 161, 0.5);
-                                    border-radius: 4px;
-                                
-                                }
                             }
+                            &:last-of-type td {
+                                border-bottom: none;
+                            }
+                            &.active{
+                                background-color: $blue-2ff;                                  
+                            }
+                        }
+                        .not-found{
+                            text-align: center;
+                            padding-top: clamp(10px, $fs-20px, $fs-20px) ;
+                            font-size: clamp(10px, $fs-15px, $fs-15px);
+                            margin-bottom: 0;
+                        }
+                        &::-webkit-scrollbar {
+                            width: 4px;
+                        }
+
+                        &::-webkit-scrollbar-thumb {
+                            background: rgba(161, 161, 161, 0.5);
+                            border-radius: 4px;
+                                
+                        }
+                    }
                 }
 
             }
@@ -715,6 +857,7 @@
                 display: flex;
                 flex-direction: column;
                 height: 100%;
+                transition: width 0.5s ease-in;
                 .header-wrapper{
                     display: flex;
                     align-items: center;
@@ -1016,6 +1159,7 @@
                    .upload-btn-container{
                         text-align: center;
                         margin-top: clamp(10px, $fs-35px, $fs-35px);
+                        // display: block;
                         .upload-btn{
                             border-radius: 5px;
                             font-size: clamp(11px, $fs-16px, $fs-16px);
@@ -1026,12 +1170,45 @@
                             background-color: $blue-87;
                             color: $white;
                         }
+                        .not-active{
+                            display: none;
+                        }
                    }
+                
+                }
+                &.minimize{
+                    width: clamp(20px, $fs-40px, $fs-40px);
+                    margin-right: clamp(10px, $fs-20px, $fs-20px);
+                    .header-wrapper{
+                        display: none;
+                    }
+                    .body-wrapper{
+                        height: 100%;
+                        .table-wrapper,.upload-wrapper, .mail-wrapper {
+                            display: none;
+                        }
+                        
+                    }
+                }
+                &.maximize{
+                    width: 50%;
+                    margin-right: clamp(10px, $fs-20px, $fs-20px);
+                    .body-wrapper{
+                        .mail-wrapper{
+                            .mail-body-container{
+                                .img-container.hidden{
+                                    display: flex;
+                                }
+                            }
+                        }
+                    }
+
                 }
             }
             .right-wrapper{
                 flex: 1;
-
+                overflow-x: auto;
+                transition: width 0.5s ease-in;
                 .display-table{
                     display: flex;
                     flex-direction: column;
@@ -1053,7 +1230,7 @@
                         clamp(25px, $fs-100px, $fs-100px)  
                         clamp(25px, $fs-100px, $fs-100px)  
                         clamp(25px, $fs-50px, $fs-50px) 
-                        clamp(10px, $fs-60px, $fs-60px) ;
+                        clamp(10px, $fs-50px, $fs-50px) ;
                         // grid-column-gap: clamp(10px, $fs-25px, $fs-25px);
                         align-items: center;
                         border-bottom: 1px solid rgba(27, 26, 26, 0.6);
@@ -1288,8 +1465,12 @@
                                         border: none;
                                         visibility: hidden;
                                         transition: visibility 0.2s ease;
+                                        display: none;
                                         img{
                                             width: clamp(10px, $fs-17px, $fs-17px);
+                                        }
+                                        &.active{
+                                            display: inline-block;
                                         }
 
                                     }
@@ -1358,9 +1539,22 @@
                             &:not(:first-of-type){
                                 padding-top: clamp(4px, $fs-13px, $fs-13px);
                             }
+                            &.not-active{
+                            background-color: $grey-f15;
+                                
+                               
+                            p:not(:nth-of-type(12)),.add-note-btn{
+                                pointer-events: none;
+                                opacity: 0.5;
+                            }
+                                
+                              
+                               
+                        }
+
                         }
                         .add-btn-container{
-                            position: absolute;
+                            position: fixed;
                             // display: flex;
                             // flex-direction: column;
                             // justify-content: center;
@@ -1398,7 +1592,130 @@
 
                             }
                         }
+                         
                     }
+                }
+                &.maximize{
+                    .header-wrapper{
+                       grid-template-columns: 
+                        clamp(15px, $fs-60px, $fs-60px)    
+                        max-content
+                        clamp(35px, $fs-75px, $fs-75px)  
+                        clamp(35px, $fs-100px, $fs-100px)
+                        41.5%
+                        max-content
+                        clamp(32px, $fs-130px, $fs-130px) 
+                        clamp(25px, $fs-125px, $fs-125px)    
+                        clamp(25px, $fs-130px, $fs-130px)  
+                        clamp(25px, $fs-90px, $fs-90px)  
+                        clamp(25px, $fs-70px, $fs-70px) 
+                        clamp(10px, $fs-60px, $fs-60px)
+                        clamp(10px, $fs-60px, $fs-60px);
+                        div{
+                            font-size: clamp(8px, $fs-14px, $fs-14px);
+                            text-align: right;
+                            
+                            &:nth-of-type(5){
+                                padding-inline: clamp(10px, $fs-50px, $fs-50px);
+                                text-align: left;
+                                span{
+                                    color: $blue-87;
+                                }
+                            }
+                            &:nth-of-type(2){
+                                padding-right:  clamp(10px, $fs-20px, $fs-20px);
+
+                                input{
+                                    width: clamp(9px, $fs-20px, $fs-20px);
+                                    height:clamp(9px, $fs-20px, $fs-20px);
+
+                                }
+                            }
+                            &:nth-of-type(3){
+                                padding-right:  clamp(10px, $fs-25px, $fs-25px);
+                            }
+                           
+                            &:nth-of-type(6), &:nth-of-type(8),&:nth-of-type(9){
+                            padding-right:  clamp(10px, $fs-50px, $fs-50px);
+                            }
+                            &:nth-of-type(7){
+                                padding-right:  clamp(10px, $fs-40px, $fs-40px);
+                            }
+
+                            &:nth-of-type(10){
+                                padding-right:  clamp(10px, $fs-60px, $fs-60px);
+                            }
+                            &:nth-of-type(11){
+                                padding-left:  clamp(5px, $fs-10px, $fs-10px);
+                            }
+                            &:nth-of-type(12){
+                                padding-left:  clamp(5px, $fs-10px, $fs-10px);
+                                button{
+                                    img{
+                                        width: clamp(10px, $fs-17px, $fs-17px);
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                    .body-wrapper{
+                        .table-row{
+                            grid-template-columns: 
+                            clamp(15px, $fs-60px, $fs-60px)    
+                            max-content
+                            clamp(35px, $fs-75px, $fs-75px)  
+                            clamp(35px, $fs-100px, $fs-100px)
+                            41.5%
+                            clamp(32px, $fs-80px, $fs-80px) 
+                            clamp(25px, $fs-125px, $fs-125px)    
+                            clamp(25px, $fs-130px, $fs-130px)  
+                            clamp(25px, $fs-110px, $fs-110px)  
+                            clamp(25px, $fs-110px, $fs-110px) 
+                            clamp(10px, $fs-100px, $fs-100px)
+                             clamp(10px, $fs-60px, $fs-60px);
+                            p{
+                            &:nth-of-type(6) {
+                                text-align: center;
+                            }
+                            &:nth-of-type(8) {
+                                width: 85%;
+                            }
+                            &:nth-of-type(11) {
+                                text-align: center;
+                            }
+                          
+                            }
+                        }
+                    }
+                }
+                    
+                
+                &.minimize{
+                    // flex-basis: calc(100% - clamp(20px, $fs-40px, $fs-40px));
+                    width: auto;
+                    .display-table{
+                        width: 150%;
+                    }
+                    &::-webkit-scrollbar {
+                        height: 4px;
+                    }
+
+                    &::-webkit-scrollbar-thumb {
+                        background: rgba(161, 161, 161, 0.5);
+                        border-radius: 4px;        
+                    }
+
+                    
+                }
+
+                &::-webkit-scrollbar {
+                    width: 4px;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background: rgba(161, 161, 161, 0.5);
+                    border-radius: 4px;        
                 }
             }
             
@@ -1614,6 +1931,8 @@
                                 width: clamp(9px, $fs-120px, $fs-120px);
                             // }
                             text-align: right;
+                            white-space: nowrap;
+                            
                         }
                     }
                     &:last-of-type td {
@@ -1647,14 +1966,23 @@
                 padding:clamp(6px, $fs-10px, $fs-10px) clamp(9px, $fs-44px, $fs-44px);
                 border: 1px solid transparent;
                 line-height: 1;
+                cursor: pointer;
                 &.import-btn{
                     color: $white;
                     background-color: $blue-87;
                     padding-inline: clamp(22px, $fs-46px, $fs-46px);
+                    opacity: 0.5;
+                    pointer-events: none;
 
                     &:hover{
                         background-color: $blue-85;
                     }
+                   
+                    &.active{
+                        opacity: 1;
+                        pointer-events: auto;
+                    }
+
                     
                 }
                 &.cancel-btn{
@@ -1674,7 +2002,6 @@
             display: flex;
         }
     }
-
      .success-popup{
         background-color: $white;
         padding: clamp(20px, $fs-40px, $fs-40px)  clamp(12px, $fs-25px, $fs-25px) clamp(17px, $fs-35px, $fs-35px);
@@ -1711,6 +2038,326 @@
         &.active{
             display: block;
         }
+    }
+    .form-popup{
+        background-color: $white;
+        padding: clamp(10px, $fs-20px, $fs-20px)  clamp(10px, $fs-20px, $fs-20px) clamp(17px, $fs-35px, $fs-35px);
+        display: flex;
+        flex-direction: column;
+        // align-items: center;
+        margin-top: 10px;
+        max-height: 85%;
+        width: 45%;
+        border-radius: clamp(5px, $fs-10px, $fs-10px);
+        display: none;
+      
+        .header{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 5px;
+            border-bottom: 1px solid $grey-9e;
+            margin-bottom: clamp(10px, $fs-30px, $fs-30px);
+            h3{
+                font-size: clamp(12px, $fs-20px, $fs-20px);
+                color: $black-90;
+            }
+            .close-popup-btn{
+                border: none;
+                background-color: transparent;
+                width: clamp(10px, $fs-18px, $fs-18px);
+                img{
+                    width: 100%;
+                }
+            }
+
+            
+        }
+
+        .update-form{
+            flex: 1;
+            overflow-y: auto;
+        
+            .form-wrapper{
+                display: flex;
+                flex-direction: column;
+                gap: clamp(20px, $fs-30px, $fs-30px);
+                width: 90%;
+                margin: auto;
+                
+                min-height: 0;
+                padding-left: 1px;
+                padding-right: 5px;
+                
+
+                .form-container{
+                    width: 100%;
+                    position: relative;
+                    display: none;
+                    .input-group{
+                        label{
+                            font-size: clamp(10px, $fs-18px, $fs-18px);
+                            margin-bottom: clamp(6px, $fs-12px, $fs-12px);
+                            color: $black-90;
+                            display: block;
+                            width: 100%;
+                        }
+                        input,textarea{
+                            border: none;
+                            font-size: clamp(10px, $fs-17px, $fs-17px);
+                            border: 1px solid $black-90;
+                            padding: clamp(6px, $fs-12px, $fs-12px);
+                            width: 100%;
+                            outline: none;
+                            color: $black-90;
+
+                            &:-webkit-autofill,
+                            &:-webkit-autofill:hover,
+                            &:-webkit-autofill:focus {
+                                -webkit-box-shadow: 0 0 0px 1000px white inset;
+                                -webkit-text-fill-color: $black-90;
+                                transition: background-color 5000s ease-in-out 0s;
+                            }
+                        }
+                        &::placeholder{
+                            font-size: clamp(13px, $fs-21px, $fs-21px);
+                            color: $grey-a4;
+                        }
+                        textarea{
+                            max-height: 150px;
+
+                        }
+                                
+                        &:-webkit-autofill,
+                        &:-webkit-autofill:hover,
+                        &:-webkit-autofill:focus {
+                            -webkit-box-shadow: 0 0 0px 1000px white inset;
+                            -webkit-text-fill-color: $black-90;
+                            transition: background-color 5000s ease-in-out 0s;
+                        }
+                    }
+                    .date-text {
+                        color: $black-90;
+                        border-bottom: 1px solid $black-90;
+                        font-size: clamp(10px, $fs-17px, $fs-17px);
+                        padding: clamp(6px, $fs-12px, $fs-12px);
+                        width: 100%;
+                        position: relative;
+                            
+                        &.not-active {
+                            border-bottom: 1px solid transparent;
+                        }
+                    }
+                            
+                    .datepicker {
+                        position: absolute;
+                        width: 100%;
+                        background-color: $white-f5;
+                        box-shadow: $box-shadow-2;
+                        padding: 0px;
+                        max-height: 0;
+                        overflow: hidden;
+                        z-index: 2;
+                        top: 100%;
+                        button {
+                            cursor: pointer;
+                            outline: none;
+                        }
+                        .datepicker-calendar{
+                            visibility: visible;
+                            .days {
+                                display: grid;
+                                grid-template-columns: repeat(7, 1fr);
+                                grid-row-gap: 15px;
+                                margin-top: 15px;
+                                margin-bottom: 20px;
+                            }
+                            .dates {
+                                display: grid;
+                                grid-template-columns: repeat(7, 1fr);
+                                grid-row-gap: clamp(5px, $fs-15px, $fs-15px);
+                            }
+                            .date {
+                                justify-self: center;
+                                border: none;
+                                margin: 0;
+                                padding: 0;
+                                width: clamp(20px, $fs-32px, $fs-32px);
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                background-color: transparent;
+                                border: 2px solid transparent;
+                                color: $black-70;
+                                // font-weight: 800;
+                                cursor: pointer;
+                                display: block;
+                                font-size: clamp(10px, $fs-17px, $fs-17px);
+                                font-weight: 500;
+                                &:hover,&:focus {
+                                    border: 2px solid $black-30;
+                                    font-weight: 600;
+                                }
+                                &.faded {
+                                    color: $grey-a6;
+                                    &:focus {
+                                        color: $grey-a6;
+                                        border: 2px solid transparent;
+                                        pointer-events: none;
+                                        font-weight: 500;
+                                        background-color: transparent;
+                                    }
+                                    &:hover{
+                                        border: none;
+                                        font-weight: 500;
+                                    }
+                                }
+                                &.current-date {
+                                    border: 2px solid $black-80;
+                                }
+                                &.current-day {
+                                    color: $white;
+                                    border: 2px solid $black-80;
+                                    background-color: $blue-3ff;
+                                }
+                                        
+                            }
+                            .day {
+                                color: $black-90;
+                                font-weight: 500;
+                                font-size: clamp(12px, $fs-16px, $fs-16px);
+                                justify-self: center;
+                            }
+                                    
+                            &.not-active{
+                                visibility: hidden;
+                            }
+                        }
+                        &.active {
+                            padding: clamp(8px, $fs-15px, $fs-15px);
+                            max-height: 411px;
+                            overflow: visible;
+                                        
+                        }
+                    }
+                        
+                    .datepicker-top {
+                        margin-bottom: 20px;
+                                // .tag {
+                                //     margin-right: 7px;
+                                //     margin-top: 7px;
+                                //     background-color: $white-ec;
+                                //     border-radius: 5px;
+                                //     padding: clamp(6px, 1%, 1%) $fs-14px;
+                                //     border: none;
+                                //     font-size:clamp(10px, $fs-14px, $fs-14px);
+                                // }
+                                // .tag:hover {
+                                //     color: $white;
+                                //     background-color: $black-80;
+                                // }
+                        .month-selector {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            position: relative;
+                            .year-wrapper{
+                                display: flex;
+                                align-items: center;
+                                font-size: clamp(14px, $fs-18px, $fs-18px);
+                                gap: 5px;
+                                .month-name,.year{
+                                    color: $black;
+                                }
+
+                                        
+
+                                    }
+                                    .arrow {
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                        border: none;
+                                        background-color: $white;
+                                        width: clamp(19px, $fs-33px, $fs-33px);
+                                        height: clamp(18px, $fs-33px, $fs-33px);
+                                        border-radius: 12px;
+                                        img {
+                                            width: clamp(13px, $fs-25px, $fs-25px);
+                                        }
+                                    }
+                                }
+                    }
+                    .error{
+                        color: $red-08;
+                        margin-top: 5px;
+                        font-size: clamp(8px, $fs-15px, $fs-15px);
+                        margin-bottom: 0;
+                        visibility: hidden;
+
+                        &.active{
+                            visibility: visible;
+                        }
+                    }
+
+
+                    &.active{
+                        display: block;
+                    
+                    }
+
+                } 
+                &::-webkit-scrollbar {
+                    width: 4px;
+                    height: 6px;
+                }
+                &::-webkit-scrollbar-thumb {
+                    background: rgba(161, 161, 161, 0.5);
+                    border-radius: 4px;
+                } 
+            }
+        }
+        .btn-container{
+            margin-top: clamp(18px, $fs-40px, $fs-40px);
+            display: flex;
+            gap: clamp(10px, $fs-20px, $fs-20px);
+            justify-content: flex-end;
+            padding-right:  clamp(9px, $fs-28px, $fs-28px);
+            button{
+                border-radius: 5px;
+                font-size: clamp(11px, $fs-15px, $fs-15px);
+                padding:clamp(7px, $fs-12px, $fs-12px) clamp(9px, $fs-40px, $fs-40px);
+                border: 1px solid transparent;
+                line-height: 1;
+                &.update-btn{
+                    color: $white;
+                    background-color: $blue-87;
+                    padding-inline: clamp(22px, $fs-51px, $fs-51px);
+
+                    &:hover{
+                        background-color: $blue-85;
+                    }
+                    
+                }
+                &.cancel-btn{
+                    background-color: $white;
+                    color: $blue-87;
+                    border-color:$blue-87;
+                    // padding:clamp(6px, $fs-10px, $fs-10px) clamp(15px, $fs-30px, $fs-30px);
+
+                    &:hover{
+                        color: $white;
+                        background-color: $blue-87;
+                    }
+                    // box-shadow: none;
+                }
+                
+            }
+        }
+        &.active{
+            display: flex;
+        }
+
     }
 }
 

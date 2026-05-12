@@ -12,6 +12,12 @@ setcreateQuoteWrapperHeight();
 
 window.addEventListener('resize',setcreateQuoteWrapperHeight)
 
+const createInpWrapper=document.querySelector(".create-input-wrapper");
+const quoteOrderWrapper=document.querySelector(".quick-order-wrapper");
+
+// createInpWrapper.classList.add("active");
+// quoteOrderWrapper.classList.remove("active");
+
 //modal
 const quickContentWrapper=document.querySelector(".quick-content-wrapper");
 const popups=document.querySelectorAll("popup");
@@ -361,13 +367,15 @@ let newQuote={
 };
 
 const CreateBtn=createQuoteWrapper.querySelector(".back-create-btn");
-const createInpWrapper=document.querySelector(".create-input-wrapper");
+
 const createBtns=createInpWrapper.querySelectorAll(".btn-container button");
 
 const newBtn=createInpWrapper.querySelector(".new-btn");
 const existBtn=createInpWrapper.querySelector(".exist-btn");
 
 
+const createInputCon=createInpWrapper.querySelector(".create-input-container");
+console.log(createInputCon)
 const createInput=createInpWrapper.querySelector(".create-quote-input");
 const existInput=createInpWrapper.querySelector(".exist-quote-input");
 const existSearchBtn=createInpWrapper.querySelector(".exist-search-quote-btn");
@@ -379,7 +387,7 @@ const nextBtn=inpContainer.querySelector(".next-btn");
 
 const quoteDropdown=document.querySelector(".quote-dropdown");
 
-const quoteOrderWrapper=document.querySelector(".quick-order-wrapper");
+
 
 const quickInfoWrapper=quoteOrderWrapper.querySelector(".quick-info-wrapper");
 
@@ -391,14 +399,14 @@ createBtns.forEach(btn=>{
 
     if(newBtn.classList.contains("active")){
       existInput.classList.remove("active");
-      createInput.classList.add("active");
+      createInputCon.classList.add("active");
 
       nextBtn.classList.remove("active");
       createQuoteBtn.classList.add("active");
     }
     else{
       existInput.classList.add("active");
-      createInput.classList.remove("active");
+      createInputCon.classList.remove("active");
 
       createQuoteBtn.classList.remove("active");
       handleExistSearch();
@@ -599,15 +607,13 @@ function initializeExistSearch() {
     createInput.value=val.slice(0,7);
   }
   else if(allQuotes){
-    allQuotes.forEach(q=>{
-      if(q.id==Number(val)){
-        typeof(q.id)
+    const isExists = allQuotes.some(q =>q.id === Number(val));
+      if(isExists){
         err.textContent="Quote Id already exists"
       }
       else{
         err.textContent="";
       }
-    })
   }
 });
 
@@ -648,7 +654,7 @@ function validateQuoteId(inp){
     }
   }
 }
-renderQuickInfo(JSON.parse(sessionStorage.getItem("newQuote")));
+// renderQuickInfo(JSON.parse(sessionStorage.getItem("newQuote")));
 
 function renderQuickInfo(newQuote){
   CreateBtn.childNodes[1].textContent=`#${newQuote.id}`
@@ -896,3 +902,392 @@ leftHeaderBtns.forEach(btn=>{
     }
   })
 })
+
+const displayTable=document.querySelector(".display-table")
+//add lines
+const addBtn=document.querySelector(".add-btn-container .add-btn");
+const addPopup=document.querySelector(".add-popup");
+const addTable=addPopup.querySelector(".add-table");
+const addLineBtns=addTable.querySelectorAll(".add-line-btn");
+const canceladdpopupBtn=addPopup.querySelector(".cancel-btn");
+
+
+function openAddPopup(){
+  popupOverlay.classList.add("active");
+  addPopup.classList.add("active");
+  editPopupData(addTable.querySelector(".body-wrapper"));
+}
+
+function selectAllRow(event){
+  const allCheckInput=event.target;
+  console.log(allCheckInput)
+  const bodyWrap=displayTable.querySelector(".body-wrapper")
+  const tableRows =bodyWrap.querySelectorAll(".table-row");
+  const isChecked = event.target.checked;
+
+  tableRows.forEach(row => {
+    const inp=row.querySelector("input[type='checkbox']");
+      
+    inp.checked=isChecked;
+  })
+
+}
+
+editPopupData(addTable.querySelector(".body-wrapper"))
+function editPopupData(bodyWrap){
+
+  const tableRows =bodyWrap.querySelectorAll(".table-row");
+
+  tableRows.forEach(row => {
+
+    const qtyInp =row.querySelector('input[name="qty-requested"]');
+
+    const costText =row.querySelector(".cost");
+
+    const marginInp =row.querySelector('input[name="margin"]');
+
+    const sellingPriceEl =row.querySelector(".selling-price");
+
+    const totalPriceEl =row.querySelector(".total-cost");
+
+    function updatePrices(){
+
+      const qty =parseFloat(qtyInp.value) || 0;
+
+      const cost =parseFloat(costText.textContent.replace("$", "")) || 0;
+
+      const margin =parseFloat(marginInp.value) || 0;
+
+      // selling = cost + margin%
+      const sellingPrice =cost + (cost * margin / 100);
+
+      // total = qty * selling
+      const totalPrice =qty * sellingPrice;
+
+      sellingPriceEl.textContent =sellingPrice.toFixed(2);
+
+      totalPriceEl.textContent =`$${totalPrice.toFixed(2)}`;
+
+    }
+
+    [qtyInp, marginInp].forEach(inp => {
+      allowNumbers(inp)
+      inp.addEventListener("input",updatePrices);
+    });
+
+  });
+
+}
+
+function allowNumbers(inp){
+  inp.addEventListener("input", () => {
+
+    inp.value = inp.value.replace(/\D/g, "");
+  });
+
+}
+
+function addLine(event){
+  const row=event.target.closest(".table-row");
+  const bodyWrap=event.target.parentElement.parentElement.parentElement;
+  const cloned = row.cloneNode(true);
+  bodyWrap.appendChild(cloned)
+  editPopupData(addTable.querySelector(".body-wrapper"))
+}
+
+function closeAddPopup(){
+  closeModal();
+  const popup=event.target.closest(".add-popup");
+  const rows=popup.querySelectorAll(".body-wrapper .table-row");
+  rows.forEach((row, index) => {
+
+    if(index !== 1){
+      row.remove();
+    }
+  })
+}
+
+
+canceladdpopupBtn.addEventListener('click',(event)=>{
+ closeAddPopup();
+})
+
+const addLinesBtn=addPopup.querySelector(".add-lines-btn");
+
+addLinesBtn.addEventListener("click", () => {
+  addProductsToQuote();
+  updateQuoteTotals();
+});
+
+function addProductsToQuote(){
+
+  const rows =addTable.querySelectorAll(".body-wrapper .table-row");
+
+  rows.forEach(row => {
+
+    const productObj = {
+
+    qty_requested:parseFloat(row.querySelector('input[name="qty-requested"]').value) || 0,
+
+      requested_id:row.querySelector(".id").textContent.trim(),
+
+      score:parseFloat(row.children[2].textContent) || 0,
+
+      available_qty:parseFloat(row.children[3].textContent) || 0,
+
+      unit_cost:
+        parseFloat(row.querySelector(".cost").textContent.replace("$", "")) || 0,
+
+      margin:
+        parseFloat(
+          row.querySelector('input[name="margin"]').value) || 0,
+
+      selling_price:
+        parseFloat(
+          row.querySelector(".selling-price").textContent.replace("$", "")) || 0,
+
+      total_cost:
+        parseFloat(row.querySelector(".total-cost").textContent.replace("$", "").replaceAll(",", "")) || 0
+
+    };
+
+    newQuote.products.push(productObj);
+
+  });
+
+}
+
+function updateQuoteTotals(){
+
+  newQuote.lines =newQuote.products.length;
+
+  newQuote.total_line_no =newQuote.products.length;
+
+  newQuote.total_price =newQuote.products.reduce((sum, p) =>sum + p.total_cost,0).toFixed(2);
+
+  renderDisplayTable(newQuote)
+  closeAddPopup();
+
+}
+
+function renderDisplayTable(newQuote){
+  const bodyWrapper=displayTable.querySelector(".body-wrapper");
+  bodyWrapper.innerHTML="";
+
+  const products=newQuote.products;
+
+  products.forEach((p,i)=>{
+    bodyWrapper.innerHTML+=`
+    <div class="table-row">
+      <p><input type="checkbox"></p>
+      <p><span>${i+1}</span>
+      </p>
+      <p><input type="text" value="${p.qty_requested}" name="qty-requested"></p>
+      <p>
+        <span class="title-text">Lorem ipsum dolor sit.</span>
+        <span class="dropdown-text">
+          <img src="./assets/images/global/down-arrow.png" alt="down-arrow" class="down-arrow-img"> <span class="id">${p.requested_id}</span> - 
+          <span class="detail">tydlx4ypi6</span> - 
+          <span class="sourcing"><img src="./assets/images/orderpad/Sourcing_icon.png" alt="sourcing">Sourcing</span>
+          <span class="stock-wrapper"><span class="supplier-text text-uppercase">eaton</span> - <span class="stock-text">NS   <span class="tooltiptext">Non Stock</span></span> - </span>
+          <span class="tag-text"><img src="./assets/images/global/tag.png" alt="tag">Kanebridge</span>
+          </span>
+        <span class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus hic facere, veniam in distinctio id tempora voluptatum? Facilis eius aut numquam. Alias perferendis sunt veniam reprehenderit officiis quas delectus.</span>  
+      </p>
+      <p><span>${p.score}</span>
+      </p>
+      <p> <span>${p.available_qty}</span></p>
+      <p><span>$<input type="text" value="${p.unit_cost}" name="cost"></span></p>
+      <p><span><input type="text" value="${p.margin}" name="margin">%</span></p>
+      <p><span>${p.selling_price}</span></p>
+      <p><span>$${p.total_cost.toFixed(2)}</span></p>
+      <p>
+        <button type="button" class="delete-line-btn active" onclick=delRow(event)><img src="./assets/images/global/delete_icon.png" alt="delete"></button>
+        <button type="button" class="undo-line-btn" onclick=undoRow(event)> <img src="./assets/images/dashboard/Undo_icon.png" alt="undo"></button>
+      </p>
+      <button class="add-note-btn"><img src="./assets/images/create_quote/add note_grey bg.png" class="img-grey active" alt="add note grey"> <img src="./assets/images/create_quote/add note icon_blue.png" class="img-blue " alt="add note blue "></button>
+    </div>
+    
+    <div class="sourcing-dropdown">
+      <div class="desc-wrapper">
+        <div class="img-wrapper">
+          <label for="thumbnail-img"><img src="./assets/images/orderpad/default thumbnail image.png" class="thumbnail-img" alt="default"></label>
+          <input type="file" id="thumbnail-img" class="thumbnail-img-input" hidden accept="image/*">
+        </div>
+
+        <div class="desc-container">
+          <h3>Description</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+        </div>
+      </div>
+
+      <div class="spec-wrapper">
+        <h3>Specifications</h3>
+        <div class="content-container">
+          <div class="left-content">
+            <p><span class="label">Wire Size</span> <span class="value">12 AWG</span></p>
+            <p><span class="label">Material</span> <span class="value">Ploepropylene</span></p>
+            <p><span class="label">Specifications</span> <span class="value">#10 Fork Material </span></p>
+            <p><span class="label">Dimensions</span> <span class="value">1-1/2 In L</span></p>
+          </div>
+          <div class="right-content">
+            <p><span class="label">Housing Material</span> <span class="value">Steel</span></p>
+            <p><span class="label">Number of outlets</span> <span class="value">1</span></p>
+            <p><span class="label">Brand</span> <span class="value">Kanebridge</span></p>
+            <p><span class="label">Type</span> <span class="value">Standard</span></p>
+          </div>
+                                                    
+        </div>
+      </div>
+    </div>
+    `;
+    bodyWrapper.innerHTML+=`
+    <div class="add-btn-container left">
+      <button type="button" class="add-btn" onclick="openAddPopup()"> <img src="./assets/images/create_quote/add item_icon.png" alt="add"></button>
+      <p class="text">Click here to Add Item</p>
+    </div>
+    `
+  })
+  clickTable(displayTable.querySelector(".body-wrapper"));
+  editTableData(displayTable.querySelector(".body-wrapper"));
+}
+
+
+function clickTable(bodyWrap){
+
+  const rows =bodyWrap.querySelectorAll(".table-row");
+
+  rows.forEach(row => {
+
+    row.addEventListener('click',rowClickHandler);
+
+  });
+
+}
+
+function rowClickHandler(e){
+
+  const row = e.currentTarget;
+
+  const pTag = e.target.closest("p");
+
+  // clicked directly on text/child inside p
+  if (pTag && e.target !== pTag) {
+    return;
+  }
+
+  if (e.target.closest("button")) {
+    return;
+  }
+
+  row.style.cursor = "pointer";
+
+  const sourceDropDown =row.nextElementSibling;
+
+  sourceDropDown.classList.toggle("active");
+
+}
+
+function editTableData(bodyWrap){
+
+  const tableRows =bodyWrap.querySelectorAll(".table-row");
+
+  tableRows.forEach(row => {
+
+    const qtyInp =row.querySelector('input[name="qty-requested"]');
+
+    const costInp =row.querySelector('input[name="cost"]');
+
+    const marginInp =row.querySelector('input[name="margin"]');
+
+    const sellingPriceEl =row.children[8].querySelector("span");
+
+    const totalPriceEl =row.children[9].querySelector("span");
+
+    function updatePrices(){
+
+      const qty =parseFloat(qtyInp.value) || 0;
+
+      const cost =parseFloat(costInp.value) || 0;
+
+      const margin =parseFloat(marginInp.value) || 0;
+
+      // selling = cost + margin%
+      const sellingPrice =cost + (cost * margin / 100);
+
+      // total = qty * selling
+      const totalPrice =qty * sellingPrice;
+
+      sellingPriceEl.textContent =sellingPrice.toFixed(2);
+
+      totalPriceEl.textContent =`$${totalPrice.toFixed(2)}`;
+
+    }
+
+    [qtyInp, costInp, marginInp].forEach(inp => {
+      allowNumbers(inp)
+      inp.addEventListener("input",updatePrices);
+    });
+
+  });
+
+}
+
+function allowNumbers(inp){
+
+  inp.addEventListener("input", () => {
+
+    inp.value = inp.value.replace(/\D/g, "");
+  });
+
+}
+
+function delRow(event){
+  const delBtn=event.target.parentElement;
+  const row=delBtn.parentElement.parentElement;
+  const undoBtn=row.querySelector(".undo-line-btn");
+  row.classList.add("not-active");
+  console.log(undoBtn)
+  delBtn.classList.remove("active");
+  undoBtn.classList.add("active");
+  const paras=row.querySelectorAll("p")
+  paras.forEach(p=>{
+    p.style.pointerEvents = "none";
+  })
+  
+  // enable only delete & undo
+  delBtn.style.pointerEvents = "auto";
+  undoBtn.style.pointerEvents = "auto";
+
+  row.removeEventListener("click",rowClickHandler);
+}
+
+function undoRow(event){
+  const undoBtn=event.target.parentElement;
+  const row=undoBtn.parentElement.parentElement;
+  const delBtn=row.querySelector(".delete-line-btn");
+
+  row.classList.remove("not-active");
+  
+  delBtn.classList.add("active");
+  undoBtn.classList.remove("active");
+  const paras=row.querySelectorAll("p")
+  paras.forEach(p=>{
+    p.style.pointerEvents = "auto";
+  })
+  
+
+  row.addEventListener("click",rowClickHandler);
+}
+
+//select all 
+function selectAllRow(event){
+  const bodyWrap=displayTable.querySelector(".body-wrapper")
+  const tableRows =bodyWrap.querySelectorAll(".table-row");
+  const isChecked = event.target.checked;
+
+   tableRows.forEach(row => {
+      const inp=row.querySelector("input[type='checkbox']")
+      inp.checked=isChecked;
+    })
+}

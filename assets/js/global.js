@@ -1,4 +1,5 @@
 const globalWrapper=document.querySelector(".global-wrapper");
+
 function setGlobalWrapperHeight(){
   const headerHeight=header.getBoundingClientRect().height;
   globalWrapper.style.height=`calc(100vh - ${headerHeight}px)`;
@@ -58,33 +59,7 @@ function createDatepicker(datePicker) {
   }
   let selectedDate = null;
 
-  // const START_YEAR = today.getFullYear() - 200;
-  // const END_YEAR = today.getFullYear() - 3;
-
-
-  // for (let y = START_YEAR; y <= END_YEAR; y++) {
-  //   const div = document.createElement("div");
-  //   div.className = "year-item";
-  //   div.textContent = y;
-
-  //   div.addEventListener("click", () => {
-  //     current.setFullYear(y);
-  //     selectedYear = y;
-  //     yearEl.textContent=y;
-
-  //     datePicker.querySelector(".datepicker-calendar").classList.remove("not-active");
-
-  //     renderCalendar();
-  //   });
-
-  // }
-
-  // yearToggle.addEventListener("click", (e) => {
-  //   e.stopPropagation();
-  //   yearDropdown.classList.toggle("active");
-  //   datePicker.querySelector(".datepicker-calendar").classList.toggle("not-active");
-  // });
-
+  
   function renderCalendar() {
     const year = current.getFullYear();
     const month = current.getMonth();
@@ -517,8 +492,6 @@ function updatePage(page) {
 }
 
 //filter function
-
-
 const searchInput =document.querySelector(".search-table-quote-input");
 const searchBtn =document.querySelector(".search-table-quote-btn");
 

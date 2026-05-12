@@ -838,11 +838,13 @@ function undoRow(event){
 }
 
 //select all 
-function selectAllRow(){
+function selectAllRow(event){
   const bodyWrap=displayTable.querySelector(".body-wrapper")
   const tableRows =bodyWrap.querySelectorAll(".table-row");
-    tableRows.forEach(row => {
+  const isChecked = event.target.checked;
+
+   tableRows.forEach(row => {
       const inp=row.querySelector("input[type='checkbox']")
-      inp.checked=!inp.checked
+      inp.checked=isChecked;
     })
 }

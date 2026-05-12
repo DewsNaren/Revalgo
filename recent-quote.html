@@ -83,7 +83,10 @@
                 <div class="top-btn-wrapper">
                     <div class="back-btn-wrapper">
                         <div class="back-btn-container">
-                            <button type="button" class="back-create-btn"><img src="./assets/images/global/arrow-left-blue-1.png" class="back-arrow-img" alt="left arrow">Create Quote <img src="./assets/images/global/delete_icon.png" class="delete-img" alt="delete icon"></button>
+                            <button type="button" class="back-create-btn">
+                                <img src="./assets/images/global/arrow-left-blue-1.png" class="back-arrow-img" alt="left arrow">Create Quote 
+                                <img src="./assets/images/global/delete_icon.png" class="delete-img" alt="delete icon">
+                            </button>
                             <button type="button" class="del-quote-btn"><img src="./assets/images/global/delete_icon.png" alt="delete"></button>
                             <div class="quote-status"><span class="status approved">Approved</span> </div>
                             <button class="undo-quote-btn"><img src="./assets/images/dashboard/Undo_icon.png" alt="undo">Undo</button>
@@ -412,7 +415,7 @@
                             <div class="display-table">
                                 <div class="table-row header-wrapper">
                                     <!-- <div></div> -->
-                                    <div><input type="checkbox" onclick="selectAllRow()"></div>
+                                    <div><input type="checkbox" onclick="selectAllRow(event)"></div>
                                     <div>Line No</div>
                                     <div>Qty Requested</div>
                                     <div>Requested / <span>Suggested Product</span></div>

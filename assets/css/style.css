@@ -3375,7 +3375,7 @@ body {
   display: flex;
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .add-btn-container {
-  position: absolute;
+  position: fixed;
   text-align: center;
   left: 50%;
   top: 50%;
@@ -5016,6 +5016,7 @@ body {
 .create-quote-wrapper .create-input-wrapper .input-container .input-inner-container .create-input-container {
   position: relative;
   width: 100%;
+  display: none;
 }
 .create-quote-wrapper .create-input-wrapper .input-container .input-inner-container .create-input-container input {
   width: 100%;
@@ -5027,6 +5028,9 @@ body {
   color: #eb0808;
   font-size: clamp(8px, 0.79vw, 0.79vw);
   margin-bottom: 0;
+}
+.create-quote-wrapper .create-input-wrapper .input-container .input-inner-container .create-input-container.active {
+  display: block;
 }
 .create-quote-wrapper .create-input-wrapper .input-container .input-inner-container button {
   border: none;
@@ -6109,6 +6113,7 @@ body {
   color: #a7a4a4;
 }
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .add-btn-container.left {
+  position: fixed;
   justify-content: flex-end;
   align-items: flex-end;
   bottom: 11%;
@@ -6549,6 +6554,7 @@ body {
   width: 66%;
   border-radius: clamp(5px, 0.521vw, 0.521vw);
   display: none;
+  flex-direction: column;
 }
 .popup-overlay .add-popup .item-header {
   display: flex;
@@ -6573,6 +6579,9 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
+  min-height: 0;
+  overflow-y: auto;
+  flex: 1;
   margin-top: clamp(5px, 0.521vw, 0.521vw);
 }
 .popup-overlay .add-popup .add-table .header-wrapper {
@@ -6629,6 +6638,7 @@ body {
   display: grid;
   grid-template-columns: clamp(32px, 6.51vw, 6.51vw) 25% max-content clamp(32px, 6.25vw, 6.25vw) clamp(25px, 6.51vw, 6.51vw) clamp(25px, 3.6vw, 3.6vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.75vw, 5.75vw) clamp(25px, 2.067vw, 2.067vw) clamp(25px, 2.067vw, 2.067vw);
   align-items: center;
+  border-bottom: 1px solid rgba(70, 70, 70, 0.6);
 }
 .popup-overlay .add-popup .add-table .body-wrapper .table-row p {
   margin-bottom: 0;
@@ -6669,6 +6679,9 @@ body {
   width: clamp(12px, 1.304vw, 1.304vw);
   margin-right: 5px;
 }
+.popup-overlay .add-popup .add-table .body-wrapper .table-row p:nth-of-type(2) .id {
+  color: #154787;
+}
 .popup-overlay .add-popup .add-table .body-wrapper .table-row p:nth-of-type(3) {
   padding-right: clamp(10px, 2.61vw, 2.61vw);
 }
@@ -6681,6 +6694,14 @@ body {
 }
 .popup-overlay .add-popup .add-table .body-wrapper .table-row p:nth-of-type(6), .popup-overlay .add-popup .add-table .body-wrapper .table-row p:nth-of-type(7), .popup-overlay .add-popup .add-table .body-wrapper .table-row p:nth-of-type(8) {
   padding-right: clamp(10px, 2.61vw, 2.61vw);
+}
+.popup-overlay .add-popup .add-table .body-wrapper .table-row p:nth-of-type(7) span {
+  border-bottom: 1px solid #154787;
+  display: flex;
+  color: #154787;
+}
+.popup-overlay .add-popup .add-table .body-wrapper .table-row p:nth-of-type(7) span input {
+  border-bottom: none;
 }
 .popup-overlay .add-popup .add-table .body-wrapper .table-row p:nth-of-type(9) {
   padding-right: clamp(10px, 1.57vw, 1.57vw);
@@ -6697,6 +6718,9 @@ body {
 }
 .popup-overlay .add-popup .add-table .body-wrapper .table-row button img {
   width: clamp(10px, 0.989vw, 0.989vw);
+}
+.popup-overlay .add-popup .add-table .body-wrapper .table-row:last-of-type {
+  border-bottom: none;
 }
 .popup-overlay .add-popup .btn-container {
   margin-top: clamp(18px, 2.067vw, 2.067vw);
@@ -6730,7 +6754,7 @@ body {
   background-color: #154787;
 }
 .popup-overlay .add-popup.active {
-  display: block;
+  display: flex;
 }
 .popup-overlay .success-popup {
   background-color: white;
@@ -7086,9 +7110,18 @@ body {
 }
 .exist-quote-wrapper .top-btn-wrapper .back-btn-container .back-create-btn .delete-img {
   width: clamp(11px, 0.89vw, 0.89vw);
+  display: inline;
+  margin-left: clamp(5px, 0.521vw, 0.521vw);
+}
+.exist-quote-wrapper .top-btn-wrapper .back-btn-container .back-create-btn .delete-img.not-active {
   display: none;
 }
-.exist-quote-wrapper .top-btn-wrapper .back-btn-container .back-create-btn .delete-img.active {
+.exist-quote-wrapper .top-btn-wrapper .back-btn-container .back-create-btn .undo-img {
+  display: none;
+  width: clamp(11px, 0.89vw, 0.89vw);
+  margin-left: clamp(5px, 0.521vw, 0.521vw);
+}
+.exist-quote-wrapper .top-btn-wrapper .back-btn-container .back-create-btn .undo-img.active {
   display: inline;
 }
 .exist-quote-wrapper .top-btn-wrapper .back-btn-container .old-quote-id {
@@ -7096,10 +7129,6 @@ body {
   margin-bottom: 0;
   font-size: clamp(12px, 0.83vw, 0.83vw);
   color: black;
-  display: none;
-}
-.exist-quote-wrapper .top-btn-wrapper .back-btn-container .old-quote-id.active {
-  display: block;
 }
 .exist-quote-wrapper .top-btn-wrapper .approve-btn-container {
   display: none;
@@ -7217,7 +7246,7 @@ body {
 }
 .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper {
   padding: clamp(6px, 1.05vw, 1.05vw) clamp(10px, 1.05vw, 1.05vw);
-  width: fit-content;
+  width: clamp(250px, 19.5%, 19.5%);
   box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.12);
   border-radius: clamp(4px, 0.521vw, 0.521vw);
   overflow-y: auto;
@@ -7246,15 +7275,32 @@ body {
   border-bottom: 1px solid #ddd;
 }
 .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container h3 {
-  font-size: clamp(12px, 0.989vw, 0.989vw);
+  font-size: clamp(12px, 0.89vw, 0.89vw);
   margin-bottom: 0;
   line-height: 1;
   padding-bottom: clamp(4px, 0.43vw, 0.43vw);
+  cursor: pointer;
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container h3 span {
+  line-height: 1;
+  margin-right: 2px;
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container h3 .minus {
+  display: none;
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container h3.collapsed .minus {
+  display: inline;
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container h3.collapsed .plus {
+  display: none;
 }
 .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .filter-subheader {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .filter-subheader h3 {
+  width: fit-content;
 }
 .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .filter-subheader .control-btn-container {
   display: flex;
@@ -7264,7 +7310,7 @@ body {
 .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .filter-subheader .control-btn-container button {
   background-color: transparent;
   border: none;
-  font-size: clamp(8px, 0.63vw, 0.63vw);
+  font-size: clamp(7px, 0.578vw, 0.578vw);
   color: #154787;
   position: relative;
 }
@@ -7280,8 +7326,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 4px;
+  gap: 5px;
   margin-top: 4px;
+  margin-left: clamp(8px, 0.79vw, 0.79vw);
 }
 .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .filter-chip-container .filter-chip {
   padding: 5px clamp(8px, 0.521vw, 0.521vw);
@@ -7290,6 +7337,10 @@ body {
   font-size: clamp(10px, 0.79vw, 0.79vw);
   color: #818080;
   border: 1px solid #818080;
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .filter-chip-container .filter-chip.active {
+  background-color: #154787;
+  color: rgba(255, 255, 255, 0.8);
 }
 .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .search-container {
   border: 1px solid #ccc;
@@ -7300,15 +7351,21 @@ body {
   padding: 5px clamp(8px, 0.521vw, 0.521vw);
   border-radius: 5px;
   margin-left: clamp(8px, 0.79vw, 0.79vw);
+  width: 90%;
 }
 .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .search-container input {
   border: none;
   outline: none;
-  font-size: clamp(10px, 0.73vw, 0.73vw);
+  font-size: clamp(9px, 0.68vw, 0.68vw);
   flex: 1;
 }
 .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .search-container input::placeholder {
-  font-size: clamp(10px, 0.73vw, 0.73vw);
+  font-size: clamp(9px, 0.68vw, 0.68vw);
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .search-container input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #fff inset;
+  -webkit-text-fill-color: black;
+  transition: background-color 9999s ease-in-out 0s;
 }
 .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .search-container button {
   background-color: transparent;
@@ -7317,54 +7374,57 @@ body {
 .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .search-container button img {
   width: clamp(11px, 0.83vw, 0.83vw);
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .customer-filter-container {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .checkbox-filter-container {
   display: flex;
   flex-direction: column;
-  gap: clamp(4px, 0.521vw, 0.521vw);
+  gap: clamp(3px, 0.4vw, 0.4vw);
   margin-left: clamp(8px, 0.79vw, 0.79vw);
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .customer-filter-container .customer-filter {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .checkbox-filter-container .checkbox-filter {
   display: flex;
   align-items: center;
   gap: clamp(8px, 0.79vw, 0.79vw);
   padding: 5px 0 0;
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .customer-filter-container .customer-filter input {
-  width: clamp(9px, 1.05vw, 1.05vw);
-  height: clamp(9px, 1.05vw, 1.05vw);
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .checkbox-filter-container .checkbox-filter input {
+  width: clamp(9px, 0.989vw, 0.989vw);
+  height: clamp(9px, 0.989vw, 0.989vw);
   border-radius: 5px;
   accent-color: #154787;
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .customer-filter-container .customer-filter label {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .checkbox-filter-container .checkbox-filter label {
   font-size: clamp(12px, 0.83vw, 0.83vw);
   color: #818080;
 }
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .checkbox-filter-container .checkbox-filter.hidden {
+  display: none;
+}
 .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .see-more-link {
   margin-top: 4px;
-  font-size: clamp(10px, 0.73vw, 0.73vw);
+  font-size: clamp(9px, 0.68vw, 0.68vw);
   color: #154787;
   font-weight: 500;
   margin-left: clamp(8px, 0.79vw, 0.79vw);
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container:first-of-type, .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container:last-of-type {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container:last-of-type {
   border-bottom: none;
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper {
   display: flex;
   align-items: center;
   gap: clamp(8px, 0.79vw, 0.79vw);
   margin-left: clamp(8px, 0.79vw, 0.79vw);
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container {
   position: relative;
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .date-label {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .date-label {
   font-size: clamp(12px, 0.83vw, 0.83vw);
   color: #818080;
   line-height: 1;
   margin-bottom: clamp(4px, 0.43vw, 0.43vw);
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .date-text {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .date-text {
   font-size: clamp(10px, 0.73vw, 0.73vw);
   color: #818080;
   white-space: nowrap;
@@ -7374,16 +7434,124 @@ body {
   padding: 4px 5px;
   border-radius: 4px;
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .date-text img {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .date-text img {
   width: clamp(11px, 0.93vw, 0.93vw);
   margin-left: clamp(6px, 0.73vw, 0.73vw);
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .date-text.active {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .date-text.active {
   color: #154787;
   border-color: #154787;
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-wrapper .date-container .date-text.active img {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .date-text.active img {
   filter: brightness(0) saturate(100%) invert(20%) sepia(45%) saturate(1500%) hue-rotate(190deg) brightness(90%) contrast(95%);
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker {
+  position: fixed;
+  background-color: #f5f5f5;
+  box-shadow: 0px 6px 7px -2px rgba(0, 0, 0, 0.2);
+  padding: 0px;
+  max-height: 0;
+  overflow: hidden;
+  z-index: 6;
+  top: 100%;
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker button {
+  cursor: pointer;
+  outline: none;
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-top {
+  margin-bottom: 20px;
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-top .month-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper {
+  display: flex;
+  align-items: center;
+  font-size: clamp(13px, 0.89vw, 0.89vw);
+  gap: 5px;
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .month-name, .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .year {
+  color: black;
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .year {
+  color: black;
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar {
+  visibility: visible;
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-row-gap: 15px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-column-gap: clamp(5px, 0.521vw, 0.521vw);
+  grid-row-gap: clamp(5px, 0.79vw, 0.79vw);
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .date {
+  justify-self: center;
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: clamp(14px, 1.304vw, 1.304vw);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: 2px solid transparent;
+  color: rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  display: block;
+  font-size: clamp(8px, 0.73vw, 0.73vw);
+  font-weight: 500;
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .date:hover, .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .date:focus {
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  font-weight: 600;
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .date.faded {
+  color: #999fa6;
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .date.faded:focus {
+  color: #999fa6;
+  border: 2px solid transparent;
+  pointer-events: none;
+  font-weight: 500;
+  background-color: transparent;
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .date.faded:hover {
+  border: none;
+  font-weight: 500;
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .date.current-date {
+  border: 2px solid rgba(0, 0, 0, 0.8);
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .date.current-day {
+  color: white;
+  border: 2px solid rgba(0, 0, 0, 0.8);
+  background-color: #0073ff;
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .day {
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 500;
+  font-size: clamp(12px, 0.83vw, 0.83vw);
+  justify-self: center;
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar.not-active {
+  visibility: hidden;
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker.active {
+  padding: clamp(8px, 0.79vw, 0.79vw);
+  max-height: 411px;
+  overflow: visible;
 }
 .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper::-webkit-scrollbar {
   width: 4px;
@@ -7421,49 +7589,8 @@ body {
   font-size: clamp(13px, 0.89vw, 0.89vw);
   gap: 5px;
 }
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .month-name {
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .month-name, .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .year {
   color: black;
-}
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-toggle {
-  border: none;
-  background-color: transparent;
-  color: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-}
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .year-select .down-arrow {
-  width: clamp(11px, 1.15vw, 1.15vw);
-}
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  max-height: 278px;
-  overflow-y: auto;
-  z-index: 20;
-  display: none;
-  margin-top: 20px;
-  background-color: white;
-}
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-dropdown.active {
-  display: block;
-}
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-dropdown .year-item {
-  padding: clamp(4px, 0.43vw, 0.43vw);
-  cursor: pointer;
-  border-bottom: 1px solid #a7a4a4;
-  text-align: center;
-  background-color: white;
-  color: rgba(0, 0, 0, 0.8);
-  font-size: clamp(3px, 0.73vw, 0.73vw);
-}
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .year-select .year-dropdown .year-item:hover {
-  background-color: #616161;
-  color: white;
-  font-weight: 500;
 }
 .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .arrow {
   display: flex;
@@ -7608,13 +7735,21 @@ body {
   padding-left: clamp(12px, 2.067vw, 2.067vw);
 }
 .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table tbody tr td:nth-of-type(5) span {
-  color: #136b2c;
-  background-color: #dff1dc;
+  color: #ff0000;
+  background-color: #ffd6d6;
   padding: 2px 4px;
   border-radius: 10px;
 }
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table tbody tr td:nth-of-type(5) span.approved {
+  color: #136b2c;
+  background-color: #dff1dc;
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table tbody tr td:nth-of-type(5) span.pending {
+  color: #ff7129;
+  background-color: #ffdfcf;
+}
 .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table tbody tr td:nth-of-type(6) {
-  text-align: right;
+  text-align: center;
 }
 .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table tbody tr td:nth-of-type(6) span {
   padding-right: clamp(30px, 3.4vw, 3.4vw);
@@ -7627,6 +7762,12 @@ body {
 }
 .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table tbody tr.active {
   background-color: #e8f2ff;
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table tbody .not-found {
+  text-align: center;
+  padding-top: clamp(10px, 1.05vw, 1.05vw);
+  font-size: clamp(10px, 0.79vw, 0.79vw);
+  margin-bottom: 0;
 }
 .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table tbody::-webkit-scrollbar {
   width: 4px;
@@ -7703,6 +7844,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
+  transition: width 0.5s ease-in;
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .header-wrapper {
   display: flex;
@@ -7979,8 +8121,33 @@ body {
   background-color: #154787;
   color: white;
 }
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-btn-container .not-active {
+  display: none;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper.minimize {
+  width: clamp(20px, 2.067vw, 2.067vw);
+  margin-right: clamp(10px, 1.05vw, 1.05vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper.minimize .header-wrapper {
+  display: none;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper.minimize .body-wrapper {
+  height: 100%;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper.minimize .body-wrapper .table-wrapper, .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper.minimize .body-wrapper .upload-wrapper, .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper.minimize .body-wrapper .mail-wrapper {
+  display: none;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper.maximize {
+  width: 50%;
+  margin-right: clamp(10px, 1.05vw, 1.05vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper.maximize .body-wrapper .mail-wrapper .mail-body-container .img-container.hidden {
+  display: flex;
+}
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper {
   flex: 1;
+  overflow-x: auto;
+  transition: width 0.5s ease-in;
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table {
   display: flex;
@@ -7992,7 +8159,7 @@ body {
   border-top-right-radius: clamp(5px, 0.521vw, 0.521vw);
   padding: clamp(4px, 0.4vw, 0.4vw);
   display: grid;
-  grid-template-columns: clamp(15px, 2.34vw, 2.34vw) max-content clamp(22px, 2.61vw, 2.61vw) clamp(32px, 3.91vw, 3.91vw) 37.5% max-content clamp(32px, 5.98vw, 5.98vw) clamp(25px, 5.75vw, 5.75vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 2.61vw, 2.61vw) clamp(10px, 3.13vw, 3.13vw);
+  grid-template-columns: clamp(15px, 2.34vw, 2.34vw) max-content clamp(22px, 2.61vw, 2.61vw) clamp(32px, 3.91vw, 3.91vw) 37.5% max-content clamp(32px, 5.98vw, 5.98vw) clamp(25px, 5.75vw, 5.75vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 2.61vw, 2.61vw) clamp(10px, 2.61vw, 2.61vw);
   align-items: center;
   border-bottom: 1px solid rgba(27, 26, 26, 0.6);
 }
@@ -8188,9 +8355,13 @@ body {
   border: none;
   visibility: hidden;
   transition: visibility 0.2s ease;
+  display: none;
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(12) button img {
   width: clamp(10px, 0.89vw, 0.89vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(12) button.active {
+  display: inline-block;
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p.bottom-line {
   position: absolute;
@@ -8248,8 +8419,15 @@ body {
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:not(:first-of-type) {
   padding-top: clamp(4px, 0.68vw, 0.68vw);
 }
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row.not-active {
+  background-color: rgba(241, 241, 241, 0.5);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row.not-active p:not(:nth-of-type(12)), .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row.not-active .add-note-btn {
+  pointer-events: none;
+  opacity: 0.5;
+}
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .add-btn-container {
-  position: absolute;
+  position: fixed;
   text-align: center;
   left: 50%;
   top: 50%;
@@ -8278,6 +8456,80 @@ body {
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .add-btn-container.left .text {
   display: none;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper {
+  grid-template-columns: clamp(15px, 3.13vw, 3.13vw) max-content clamp(35px, 3.91vw, 3.91vw) clamp(35px, 5.2vw, 5.2vw) 41.5% max-content clamp(32px, 6.8vw, 6.8vw) clamp(25px, 6.51vw, 6.51vw) clamp(25px, 6.8vw, 6.8vw) clamp(25px, 4.69vw, 4.69vw) clamp(25px, 3.6vw, 3.6vw) clamp(10px, 3.13vw, 3.13vw) clamp(10px, 3.13vw, 3.13vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div {
+  font-size: clamp(8px, 0.73vw, 0.73vw);
+  text-align: right;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(5) {
+  padding-inline: clamp(10px, 2.61vw, 2.61vw);
+  text-align: left;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(5) span {
+  color: #154787;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(2) {
+  padding-right: clamp(10px, 1.05vw, 1.05vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(2) input {
+  width: clamp(9px, 1.05vw, 1.05vw);
+  height: clamp(9px, 1.05vw, 1.05vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(3) {
+  padding-right: clamp(10px, 1.304vw, 1.304vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(6), .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(8), .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(9) {
+  padding-right: clamp(10px, 2.61vw, 2.61vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(7) {
+  padding-right: clamp(10px, 2.067vw, 2.067vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(10) {
+  padding-right: clamp(10px, 3.13vw, 3.13vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(11) {
+  padding-left: clamp(5px, 0.521vw, 0.521vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(12) {
+  padding-left: clamp(5px, 0.521vw, 0.521vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(12) button img {
+  width: clamp(10px, 0.89vw, 0.89vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row {
+  grid-template-columns: clamp(15px, 3.13vw, 3.13vw) max-content clamp(35px, 3.91vw, 3.91vw) clamp(35px, 5.2vw, 5.2vw) 41.5% clamp(32px, 4.2vw, 4.2vw) clamp(25px, 6.51vw, 6.51vw) clamp(25px, 6.8vw, 6.8vw) clamp(25px, 5.75vw, 5.75vw) clamp(25px, 5.75vw, 5.75vw) clamp(10px, 5.2vw, 5.2vw) clamp(10px, 3.13vw, 3.13vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(6) {
+  text-align: center;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(8) {
+  width: 85%;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(11) {
+  text-align: center;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.minimize {
+  width: auto;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.minimize .display-table {
+  width: 150%;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.minimize::-webkit-scrollbar {
+  height: 4px;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.minimize::-webkit-scrollbar-thumb {
+  background: rgba(161, 161, 161, 0.5);
+  border-radius: 4px;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper::-webkit-scrollbar {
+  width: 4px;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(161, 161, 161, 0.5);
+  border-radius: 4px;
 }
 .exist-quote-wrapper .quick-order-wrapper.active {
   display: flex;
@@ -8476,6 +8728,7 @@ body {
   padding-right: clamp(10px, 2.34vw, 2.34vw);
   width: clamp(9px, 6.25vw, 6.25vw);
   text-align: right;
+  white-space: nowrap;
 }
 .popup-overlay .selected-item-popup .selected-table tbody tr:last-of-type td {
   border-bottom: none;
@@ -8503,14 +8756,21 @@ body {
   padding: clamp(6px, 0.521vw, 0.521vw) clamp(9px, 2.3vw, 2.3vw);
   border: 1px solid transparent;
   line-height: 1;
+  cursor: pointer;
 }
 .popup-overlay .selected-item-popup .btn-container button.import-btn {
   color: white;
   background-color: #154787;
   padding-inline: clamp(22px, 2.4vw, 2.4vw);
+  opacity: 0.5;
+  pointer-events: none;
 }
 .popup-overlay .selected-item-popup .btn-container button.import-btn:hover {
   background-color: #015685;
+}
+.popup-overlay .selected-item-popup .btn-container button.import-btn.active {
+  opacity: 1;
+  pointer-events: auto;
 }
 .popup-overlay .selected-item-popup .btn-container button.cancel-btn {
   background-color: white;
@@ -8556,6 +8816,273 @@ body {
 }
 .popup-overlay .success-popup.active {
   display: block;
+}
+.popup-overlay .form-popup {
+  background-color: white;
+  padding: clamp(10px, 1.05vw, 1.05vw) clamp(10px, 1.05vw, 1.05vw) clamp(17px, 1.8vw, 1.8vw);
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  max-height: 85%;
+  width: 45%;
+  border-radius: clamp(5px, 0.521vw, 0.521vw);
+  display: none;
+}
+.popup-overlay .form-popup .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #9f9e9e;
+  margin-bottom: clamp(10px, 1.57vw, 1.57vw);
+}
+.popup-overlay .form-popup .header h3 {
+  font-size: clamp(12px, 1.05vw, 1.05vw);
+  color: rgba(0, 0, 0, 0.9);
+}
+.popup-overlay .form-popup .header .close-popup-btn {
+  border: none;
+  background-color: transparent;
+  width: clamp(10px, 0.93vw, 0.93vw);
+}
+.popup-overlay .form-popup .header .close-popup-btn img {
+  width: 100%;
+}
+.popup-overlay .form-popup .update-form {
+  flex: 1;
+  overflow-y: auto;
+}
+.popup-overlay .form-popup .update-form .form-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 1.57vw, 1.57vw);
+  width: 90%;
+  margin: auto;
+  min-height: 0;
+  padding-left: 1px;
+  padding-right: 5px;
+}
+.popup-overlay .form-popup .update-form .form-wrapper .form-container {
+  width: 100%;
+  position: relative;
+  display: none;
+}
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .input-group label {
+  font-size: clamp(10px, 0.93vw, 0.93vw);
+  margin-bottom: clamp(6px, 0.63vw, 0.63vw);
+  color: rgba(0, 0, 0, 0.9);
+  display: block;
+  width: 100%;
+}
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .input-group input, .popup-overlay .form-popup .update-form .form-wrapper .form-container .input-group textarea {
+  border: none;
+  font-size: clamp(10px, 0.89vw, 0.89vw);
+  border: 1px solid rgba(0, 0, 0, 0.9);
+  padding: clamp(6px, 0.63vw, 0.63vw);
+  width: 100%;
+  outline: none;
+  color: rgba(0, 0, 0, 0.9);
+}
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .input-group input:-webkit-autofill, .popup-overlay .form-popup .update-form .form-wrapper .form-container .input-group input:-webkit-autofill:hover, .popup-overlay .form-popup .update-form .form-wrapper .form-container .input-group input:-webkit-autofill:focus, .popup-overlay .form-popup .update-form .form-wrapper .form-container .input-group textarea:-webkit-autofill, .popup-overlay .form-popup .update-form .form-wrapper .form-container .input-group textarea:-webkit-autofill:hover, .popup-overlay .form-popup .update-form .form-wrapper .form-container .input-group textarea:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  -webkit-text-fill-color: rgba(0, 0, 0, 0.9);
+  transition: background-color 5000s ease-in-out 0s;
+}
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .input-group::placeholder {
+  font-size: clamp(13px, 1.1vw, 1.1vw);
+  color: #a7a4a4;
+}
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .input-group textarea {
+  max-height: 150px;
+}
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .input-group:-webkit-autofill, .popup-overlay .form-popup .update-form .form-wrapper .form-container .input-group:-webkit-autofill:hover, .popup-overlay .form-popup .update-form .form-wrapper .form-container .input-group:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  -webkit-text-fill-color: rgba(0, 0, 0, 0.9);
+  transition: background-color 5000s ease-in-out 0s;
+}
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .date-text {
+  color: rgba(0, 0, 0, 0.9);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.9);
+  font-size: clamp(10px, 0.89vw, 0.89vw);
+  padding: clamp(6px, 0.63vw, 0.63vw);
+  width: 100%;
+  position: relative;
+}
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .date-text.not-active {
+  border-bottom: 1px solid transparent;
+}
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker {
+  position: absolute;
+  width: 100%;
+  background-color: #f5f5f5;
+  box-shadow: 0px 6px 7px -2px rgba(0, 0, 0, 0.2);
+  padding: 0px;
+  max-height: 0;
+  overflow: hidden;
+  z-index: 2;
+  top: 100%;
+}
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker button {
+  cursor: pointer;
+  outline: none;
+}
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar {
+  visibility: visible;
+}
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar .days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-row-gap: 15px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar .dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-row-gap: clamp(5px, 0.79vw, 0.79vw);
+}
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar .date {
+  justify-self: center;
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: clamp(20px, 1.65vw, 1.65vw);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: 2px solid transparent;
+  color: rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  display: block;
+  font-size: clamp(10px, 0.89vw, 0.89vw);
+  font-weight: 500;
+}
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar .date:hover, .popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar .date:focus {
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  font-weight: 600;
+}
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar .date.faded {
+  color: #999fa6;
+}
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar .date.faded:focus {
+  color: #999fa6;
+  border: 2px solid transparent;
+  pointer-events: none;
+  font-weight: 500;
+  background-color: transparent;
+}
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar .date.faded:hover {
+  border: none;
+  font-weight: 500;
+}
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar .date.current-date {
+  border: 2px solid rgba(0, 0, 0, 0.8);
+}
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar .date.current-day {
+  color: white;
+  border: 2px solid rgba(0, 0, 0, 0.8);
+  background-color: #0073ff;
+}
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar .day {
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 500;
+  font-size: clamp(12px, 0.83vw, 0.83vw);
+  justify-self: center;
+}
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar.not-active {
+  visibility: hidden;
+}
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker.active {
+  padding: clamp(8px, 0.79vw, 0.79vw);
+  max-height: 411px;
+  overflow: visible;
+}
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker-top {
+  margin-bottom: 20px;
+}
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker-top .month-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker-top .month-selector .year-wrapper {
+  display: flex;
+  align-items: center;
+  font-size: clamp(14px, 0.93vw, 0.93vw);
+  gap: 5px;
+}
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker-top .month-selector .year-wrapper .month-name, .popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker-top .month-selector .year-wrapper .year {
+  color: black;
+}
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker-top .month-selector .arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: white;
+  width: clamp(19px, 1.71vw, 1.71vw);
+  height: clamp(18px, 1.71vw, 1.71vw);
+  border-radius: 12px;
+}
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker-top .month-selector .arrow img {
+  width: clamp(13px, 1.304vw, 1.304vw);
+}
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .error {
+  color: #eb0808;
+  margin-top: 5px;
+  font-size: clamp(8px, 0.79vw, 0.79vw);
+  margin-bottom: 0;
+  visibility: hidden;
+}
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .error.active {
+  visibility: visible;
+}
+.popup-overlay .form-popup .update-form .form-wrapper .form-container.active {
+  display: block;
+}
+.popup-overlay .form-popup .update-form .form-wrapper::-webkit-scrollbar {
+  width: 4px;
+  height: 6px;
+}
+.popup-overlay .form-popup .update-form .form-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(161, 161, 161, 0.5);
+  border-radius: 4px;
+}
+.popup-overlay .form-popup .btn-container {
+  margin-top: clamp(18px, 2.067vw, 2.067vw);
+  display: flex;
+  gap: clamp(10px, 1.05vw, 1.05vw);
+  justify-content: flex-end;
+  padding-right: clamp(9px, 1.45vw, 1.45vw);
+}
+.popup-overlay .form-popup .btn-container button {
+  border-radius: 5px;
+  font-size: clamp(11px, 0.79vw, 0.79vw);
+  padding: clamp(7px, 0.63vw, 0.63vw) clamp(9px, 2.067vw, 2.067vw);
+  border: 1px solid transparent;
+  line-height: 1;
+}
+.popup-overlay .form-popup .btn-container button.update-btn {
+  color: white;
+  background-color: #154787;
+  padding-inline: clamp(22px, 2.66vw, 2.66vw);
+}
+.popup-overlay .form-popup .btn-container button.update-btn:hover {
+  background-color: #015685;
+}
+.popup-overlay .form-popup .btn-container button.cancel-btn {
+  background-color: white;
+  color: #154787;
+  border-color: #154787;
+}
+.popup-overlay .form-popup .btn-container button.cancel-btn:hover {
+  color: white;
+  background-color: #154787;
+}
+.popup-overlay .form-popup.active {
+  display: flex;
 }
 
 @media screen and (max-width: 1600px) {

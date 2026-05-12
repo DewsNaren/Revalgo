@@ -170,6 +170,7 @@
                     .create-input-container{
                         position: relative;
                         width: 100%;
+                        display: none;
                         input{
                             width: 100%;
                         }
@@ -180,6 +181,9 @@
                             color: $red-08;
                             font-size: clamp(8px, $fs-15px, $fs-15px);
                             margin-bottom: 0;
+                        }
+                        &.active{
+                            display: block;
                         }
                     }
                     button{
@@ -370,7 +374,7 @@
             .header-wrapper{
                 background-color: $grey-f1;
             }
-.left-wrapper{
+            .left-wrapper{
                 width: 24.2%;
                 border-radius: clamp(5px, $fs-10px, $fs-10px);
                 box-shadow: $box-shadow-1;
@@ -948,9 +952,8 @@
 
                 }
             }
-.right-wrapper{
+            .right-wrapper{
                 flex: 1;
-                
                 overflow-x: auto;
                 transition: width 0.5s ease-in;
                 .display-table{
@@ -1479,11 +1482,12 @@
                             color: $grey-a4;
                             }
                             &.left{
+                                position: fixed;
                                 justify-content: flex-end;
                                 align-items: flex-end;
                                 bottom: 11%;
                                 right: 5.8%;
-                                 left: unset;
+                                left: unset;
                                 top: unset;
                                 transform: unset;
                                 .text{
@@ -2031,6 +2035,7 @@
         width: 66%;
         border-radius: clamp(5px, $fs-10px, $fs-10px);
         display: none;
+        flex-direction: column;
         .item-header{
             display: flex;
             align-items: center;
@@ -2055,6 +2060,9 @@
             display: flex;
             flex-direction: column;
             height: 100%;
+            min-height: 0;
+            overflow-y: auto;
+            flex: 1;
             margin-top:  clamp(5px, $fs-10px, $fs-10px);
             .header-wrapper{
                 border-top-left-radius: clamp(5px, $fs-10px, $fs-10px);
@@ -2118,7 +2126,6 @@
                 color: $grey-61;
 
                 .table-row{
-                    
                     border-top-left-radius: clamp(5px, $fs-10px, $fs-10px);
                     border-top-right-radius: clamp(5px, $fs-10px, $fs-10px);
                     padding: clamp(4px, $fs-7px, $fs-7px) ;
@@ -2137,7 +2144,7 @@
                     clamp(25px, $fs-40px, $fs-40px) ;
                     // grid-column-gap: clamp(10px, $fs-25px, $fs-25px);
                     align-items: center;
-                    // border-bottom: 1px solid rgba(27, 26, 26, 0.6);
+                    border-bottom: 1px solid rgba(70, 70, 70, 0.6);
                     
                     p{
                         margin-bottom: 0;
@@ -2177,6 +2184,9 @@
                                 width: clamp(12px, $fs-25px, $fs-25px);
                                 margin-right: 5px;
                             }
+                            .id{
+                                color: $blue-87;
+                            }
                             // input{
                             //     width: clamp(9px, $fs-20px, $fs-20px);
                             //     height:clamp(9px, $fs-20px, $fs-20px)
@@ -2195,6 +2205,17 @@
                         &:nth-of-type(6),&:nth-of-type(7),  &:nth-of-type(8){
                             padding-right:  clamp(10px, $fs-50px, $fs-50px);
                         }
+                        &:nth-of-type(7){
+                            span{
+                                border-bottom: 1px solid $blue-87;
+                                display: flex;
+                                color: $blue-87;
+                                input{
+                                    border-bottom: none;
+                                }
+                            }
+                            
+                        }
                         &:nth-of-type(9){
                             padding-right:  clamp(10px, $fs-30px, $fs-30px);
                             color: $black;
@@ -2211,6 +2232,9 @@
                         img{
                             width:clamp(10px, $fs-19px, $fs-19px);
                         }
+                    }
+                    &:last-of-type{
+                        border-bottom: none;
                     }
             
                 }
@@ -2255,7 +2279,7 @@
             }
         }
         &.active{
-            display: block;
+            display: flex;
         }
     
     }
