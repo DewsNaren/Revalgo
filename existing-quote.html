@@ -79,20 +79,32 @@
         <main class="exist-quote-wrapper">
             <div class="top-btn-wrapper">
                 <div class="back-btn-container">
-                    <button type="button" class="back-create-btn">
-                        <img src="./assets/images/global/arrow-left-blue-1.png" class="back-arrow-img" alt="left arrow">Create Quote 
-                        <img src="./assets/images/global/delete_icon.png" class="delete-img" alt="delete icon">
-                        <img src="./assets/images/dashboard/Undo_icon.png" class="undo-img" alt="Undo delete icon">
-                    </button>
+                    <div class="back-btn-wrapper">
+                        <button type="button" class="back-create-btn">
+                            <img src="./assets/images/global/arrow-left-blue-1.png" class="back-arrow-img" alt="left arrow">
+                            <span>Create Quote </span>
+                       
+                        </button>
+                        
+                        <button class="del-quote-btn active">
+                            <img src="./assets/images/global/delete_icon.png" class="delete-img" alt="delete icon">
+                        </button>
+                        <button type="button" class="undo-quote-btn">
+                            <img src="./assets/images/dashboard/Undo_icon.png" class="undo-img" alt="Undo delete icon">
+                        </button>
+
+                    </div>
+                    
+
                     <p class="old-quote-id">(Old Quote ID #7DB38FED)</p>
                 </div>
                 
                 <div class="approve-btn-container active">
                     <button type="button" class="add-note-btn">Add Note</button>
-                    <button type="button" class="approve-btn">Approve Quote</button>
+                    <button type="button" class="approve-btn active">Approve Quote</button>
                 </div>
             </div>
-            <div class="exist-quote-filter-wrapper ">
+            <div class="exist-quote-filter-wrapper active">
                 <div class="btn-container">
                       <button type="button" class="new-btn"><img src="./assets/images/create_quote/create quote_new icon_Black.png" class="img-grey" alt="Create Quote">
                         <img src="./assets/images/create_quote/create quote_new icon_Blue.png" class="img-blue" alt="Create Quote"> New
@@ -326,7 +338,7 @@
 
                 </div>
             </div>
-            <div class="quick-order-wrapper active">
+            <div class="quick-order-wrapper">
                 <div class="quick-info-wrapper">
                     <div class="info">
                         <p class="header">Bill To</p>
@@ -391,118 +403,97 @@
                             
                         </div>
                         <div class="body-wrapper">
-                            <div class="table-wrapper">
-                                <div class="table-header">
-                                    <p class="quantity-header">Qty</p>
-                                    <p class="description-header">Description</p>
-                                </div>
-                                <div class="table-body">
-                                    <div class="table-row">
-                                        <div class="qty-input-wrapper">
-                                            <input type="text" name="qty" class="qty" autocomplete="off">
-                                        </div>
+                                <div class="table-wrapper">
+                                    <div class="table-header">
+                                        <p class="quantity-header">Qty</p>
+                                        <p class="description-header">Description</p>
+                                    </div>
+                                    <div class="table-body">
+                                        <div class="table-row">
+                                            <div class="qty-input-wrapper">
+                                                <input type="text" name="qty" class="qty-input" autocomplete="off">
+                                            </div>
 
-                                        <div class="desc-wrapper">
-                                            <input type="text" class="desc-input" name="description" autocomplete="off">
-                                            <div class="dropdown">
-                                                <ul>
-                                                    <li>hell el! here</li>
-                                                    <li>hell el! here</li>
-                                                    <li>hell el! here</li>
-                                                    <li>hell el! here</li>
-                                                    <li>hell el! here</li>
-                                                    <li>hell el! here</li>
-                                                    <li>hell el! here</li>
-                                                    <li>hell el! here</li>
-                                                </ul>
+                                            <div class="desc-wrapper">
+                                                <input type="text" class="desc-input" name="description" autocomplete="off">
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="table-row">
-                                        <div class="qty-input-wrapper">
-                                            <input type="text" name="qty" class="qty" value="4" autocomplete="off">
-                                        </div>
+                                        <div class="table-row">
+                                            <div class="qty-input-wrapper">
+                                                <input type="text" name="qty" class="qty-input" autocomplete="off">
+                                            </div>
 
-                                        <div class="desc-wrapper">
-                                            <input type="text" class="desc-input" name="description" autocomplete="off">
-                                            <div class="dropdown"></div>
-                                        </div>
-                                    </div>
-                                    <div class="table-row">
-                                        <div class="qty-input-wrapper">
-                                            <input type="text" name="qty" class="qty" autocomplete="off">
-                                        </div>
-
-                                        <div class="desc-wrapper">
-                                            <input type="text" class="desc-input" name="description" autocomplete="off">
-                                            <div class="dropdown"></div>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="table-row">
-                                        <div class="qty-input-wrapper">
-                                            <input type="text" name="qty" class="qty" autocomplete="off">
-                                        </div>
-
-                                        <div class="desc-wrapper">
-                                            <input type="text" class="desc-input" name="description" autocomplete="off">
-                                            <div class="dropdown"></div>
-                                        </div>
-                                    </div>
-                                    <div class="table-row">
-                                        <div class="qty-input-wrapper">
-                                            <input type="text" name="qty" class="qty">
-                                        </div>
-
-                                        <div class="desc-wrapper">
-                                            <input type="text" class="desc-input" name="description" autocomplete="off">
-                                            <div class="dropdown"></div>
-                                        </div>
-                                    </div>
-                                    <div class="table-row">
-                                        <div class="qty-input-wrapper">
-                                            <input type="text" name="qty" class="qty" autocomplete="off">
-                                        </div>
-                                        
-
-                                        <div class="desc-wrapper">
-                                            <input type="text" class="desc-input" name="description" autocomplete="off">
-                                            <div class="dropdown"></div>
-                                        </div>
-                                    </div>
-                                    <div class="table-row">
-                                        <div class="qty-input-wrapper">
-                                            <input type="text" name="qty" class="qty" autocomplete="off">
-                                        </div>
-
-                                        <div class="desc-wrapper">
-                                            <input type="text" class="desc-input" name="description" autocomplete="off">
-                                            <div class="dropdown"></div>
-                                        </div>
-                                    </div>
-                                    <div class="table-row">
-                                        <div class="qty-input-wrapper">
-                                            <input type="text" name="qty" class="qty" autocomplete="off">
-                                        </div>
-
-                                        <div class="desc-wrapper">
-                                            <input type="text" class="desc-input" name="description" autocomplete="off">
-                                            <div class="dropdown">
-                                                <ul>
-                                                    <li>hell el! here</li>
-                                                    <li>hell el! here</li>
-                                                    <li>hell el! here</li>
-                                                    <li>hell el! here</li>
-                                                    <li>hell el! here</li>
-                                                    <li>hell el! here</li>
-                                                    <li>hell el! here</li>
-                                                    <li>hell el! here</li>
-                                                </ul>
+                                            <div class="desc-wrapper">
+                                                <input type="text" class="desc-input" name="description" autocomplete="off">
+                                                <div class="desc-dropdown">
+                                                    <ul class="desc-list"></ul>
+                                                </div>
                                             </div>
                                         </div>
+                                        <div class="table-row">
+                                            <div class="qty-input-wrapper">
+                                                <input type="text" name="qty" class="qty-input" autocomplete="off">
+                                            </div>
+
+                                            <div class="desc-wrapper">
+                                                <input type="text" class="desc-input" name="description" autocomplete="off">
+                                                
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="table-row">
+                                            <div class="qty-input-wrapper">
+                                                <input type="text" name="qty" class="qty-input" autocomplete="off">
+                                            </div>
+
+                                            <div class="desc-wrapper">
+                                                <input type="text" class="desc-input" name="description" autocomplete="off">
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="table-row">
+                                            <div class="qty-input-wrapper">
+                                                <input type="text" name="qty" class="qty-input" autocomplete="off">
+                                            </div>
+
+                                            <div class="desc-wrapper">
+                                                <input type="text" class="desc-input" name="description" autocomplete="off">
+                                               
+                                            </div>
+                                        </div>
+                                        <div class="table-row">
+                                            <div class="qty-input-wrapper">
+                                                <input type="text" name="qty" class="qty-input" autocomplete="off">
+                                            </div>
+                                            
+
+                                            <div class="desc-wrapper">
+                                                <input type="text" class="desc-input" name="description" autocomplete="off">
+                                               
+                                            </div>
+                                        </div>
+                                        <div class="table-row">
+                                            <div class="qty-input-wrapper">
+                                                <input type="text" name="qty" class="qty-input" autocomplete="off">
+                                            </div>
+
+                                            <div class="desc-wrapper">
+                                                <input type="text" class="desc-input" name="description" autocomplete="off">
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="table-row">
+                                            <div class="qty-input-wrapper">
+                                                <input type="text" name="qty" class="qty-input" autocomplete="off">
+                                            </div>
+
+                                            <div class="desc-wrapper">
+                                                <input type="text" class="desc-input" name="description" autocomplete="off">
+                                            </div>
+                                        </div>
+                                         
                                     </div>
                                 </div>
-                            </div>
                             <div class="upload-wrapper active">
                                 <div class="select-input-wrapper">
                                     <label for="select-file">Select Files</label>
@@ -552,7 +543,7 @@
                         <div class="display-table">
                             <div class="table-row header-wrapper">
                                 <div></div>
-                                <div><input type="checkbox"></div>
+                                <div><input type="checkbox" class="check-all-input" onclick="selectAllRow(event)"></div>
                                 <div>Line No</div>
                                 <div>Qty Requested</div>
                                 <div>Requested / <span>Suggested Product</span></div>
@@ -562,7 +553,10 @@
                                 <div>Margin (%)</div>
                                 <div>Selling Price</div>
                                 <div>Total Cost</div>
-                                <div><button class="delete-all-btn"><img src="./assets/images/global/delete_icon.png" alt="delete"></button></div>
+                                <div>
+                                    <button class="delete-all-btn active" onclick="deleteAllRow()"><img src="./assets/images/global/delete_icon.png" alt="delete"></button>
+                                    <button type="button" class="undo-all-btn" onclick="undoAllRow()"><img src="./assets/images/dashboard/Undo_icon.png" alt="undo"></button>
+                                </div>
                             </div>
                                 <div class="body-wrapper">
                                     <div class="table-row">
@@ -640,7 +634,7 @@
             </div>
         </main>
         <div class="popup-overlay">
-            <div class="selected-item-popup">
+            <div class="selected-item-popup popup">
                 <div class="selected-popup-header"> 
                     <h3>Select Line items To Import From Existing Quote ID "rev 0015"</h3>
                     <button type="button" class="close-popup-btn"><img src="./assets/images/global/close-modal.webp" alt="close"></button>
@@ -648,7 +642,7 @@
                 <table class="selected-table">
                     <thead>
                         <tr>
-                            <th><input type="checkbox" name="select-all-items" class="select-all-items" onclick=selectAllRow()></th>
+                            <th><input type="checkbox" name="select-all-items" class="select-all-items" onclick=selectAllItems()></th>
                             <th>Line No</th>
                             <th>Qty Requested</th>
                             <th><span>Requested Product</span></th>
@@ -697,11 +691,54 @@
                      <button type="button" class="cancel-btn">Cancel</button>
                 </div>
             </div>
-            <div class="success-popup">
+            <div class="success-popup popup">
                 <p class="text">Your Quote <span class="id">#7DB38FED</span> has been Approved Successfully</p>
                 <button type="button" class="ok-btn">Ok</button>
             </div>
-            <div class="form-popup">
+            <div class="add-popup popup">
+                <div class="item-header">
+                    <h3>Add Item</h3>
+
+                    <button type="button" class="close-popup-btn"><img src="./assets/images/global/close-modal.webp" alt="close"></button>
+                </div>
+                <div class="add-table">
+                    <div class="table-row header-wrapper">
+                        <div>Qty Requested</div>
+                        <div>Product ID</div>
+                        <div>Score</div>
+                        <div>Available Qty</div>
+                        <div>MPN</div>
+                        <div>Cost</div>
+                        <div>Margin</div>
+                        <div>Selling Price</div>
+                        <div>Total Cost</div>
+                        <div></div>
+                        <div></div>
+                    </div>
+
+                    <div class="body-wrapper">
+                        <div class="table-row">
+                            <p><input type="text" value="40" name="qty-requested" autocomplete="off"></p>
+                            <p><img src="./assets/images/global/down-arrow.png" alt="down-arrow" class="down-arrow-img"> <span class="id">ID45327</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus hic facere, veniam in distinctio id tempora voluptatum? Facilis eius aut numquam. Alias perferendis sunt veniam reprehenderit officiis quas delectus.</p>
+                            <p>90%</p>
+                            <p>200</p>
+                            <p>AD12465</p>
+                            <p class="cost">$100</p>
+                            <p><span><input type="text" value="10" name="margin" autocomplete="off">%</span></p>
+                            <p class="selling-price">$110</p>
+                            <p class="total-cost">$4,400.00</p>
+                            
+                            <button type="button"><img src="./assets/images/create_quote/edit-grey.png" alt="edit"></button>
+                            <button type="button" class="add-line-btn" onclick="addLine(event)"><img src="./assets/images/create_quote/line_add icon.png" alt="add"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-container">
+                    <button type="button" class="add-btn add-lines-btn">Add</button>
+                    <button type="button" class="cancel-btn">Cancel</button>
+                </div>
+            </div>
+            <div class="form-popup popup">
                 <div class="header">
                     <h3 class="title form-title">Ship To</h3>
                     <button type="button" class="close-popup-btn"><img src="./assets/images/global/close-modal.webp" alt="close"></button>

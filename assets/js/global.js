@@ -293,6 +293,7 @@ dateTexts.forEach(dateText => {
 
 // get selected date and update text
 
+
 function getSelectedDate(datePicker){
   const monthNameEl = datePicker.querySelector(".month-name");
   const yearEl=datePicker.querySelector(".year");

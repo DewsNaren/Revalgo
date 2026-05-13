@@ -12,44 +12,59 @@
         align-items: flex-start;
         justify-content: space-between;
         .back-btn-container{
-            .back-create-btn{
-                background-color: transparent;
-                border: none;
-                display: inline-flex;
-                align-items: center;
-                gap:clamp(5px, $fs-15px, $fs-15px);
-                color: rgba(0,0,0,0.95);
-                font-weight: 600;
-                font-size: clamp(20px, $fs-35px, $fs-35px);
-                .back-arrow-img{
-                    width: clamp(18px, $fs-30px, $fs-30px);
+            .back-btn-wrapper{
+                button{
+                    background-color: transparent;
+                    border: none;
+                    display: inline-flex;
+                    align-items: center;
                 }
-                .delete-img{
-                    width: clamp(11px, $fs-17px, $fs-17px);
-                    display: inline;
-                    margin-left: clamp(5px, $fs-10px, $fs-10px);
-                    &.not-active{
-                        display: none;
-                    }
-                }
-                .undo-img{
+                .del-quote-btn{
                     display: none;
-                    width: clamp(11px, $fs-17px, $fs-17px);
-                     margin-left: clamp(5px, $fs-10px, $fs-10px);
+                    img{
+                        display: block;
+                        width: clamp(11px, $fs-17px, $fs-17px);
+                        margin-left: clamp(5px, $fs-10px, $fs-10px);
+                    }
                     &.active{
                         display: inline;
                     }
                 }
+                .undo-quote-btn{
+                    display: none;
+                    img{
+                        display: block;
+                        width: clamp(11px, $fs-17px, $fs-17px);
+                        margin-left: clamp(5px, $fs-10px, $fs-10px);
+                    }
+                    &.active{
+                        display: inline;
+                    }
+                }
+                .back-create-btn{
+               
+                    display: inline-flex;
+                    align-items: center;
+                    gap:clamp(5px, $fs-15px, $fs-15px);
+                    color: rgba(0,0,0,0.95);
+                    font-weight: 600;
+                    font-size: clamp(20px, $fs-35px, $fs-35px);
+                .back-arrow-img{
+                    width: clamp(18px, $fs-30px, $fs-30px);
+                }
+                
             }
+            }
+            
             .old-quote-id{
                 margin-left:clamp(23px, $fs-45px, $fs-45px); 
                 margin-bottom: 0;
                 font-size: clamp(12px, $fs-16px, $fs-16px);
                 color: $black;
-                // display: none;
-                // &.active{
-                //     display: block;
-                // }
+                display: none;
+                &.active{
+                    display: block;
+                }
             }
         }
         
@@ -78,9 +93,14 @@
                 &.approve-btn{
                     color: $white;
                     background-color: $blue-87;
-
+                    opacity: 0.5;
+                    pointer-events: none;
                     &:hover{
                         background-color: $blue-85;
+                    }
+                    &.active{
+                        opacity: 1;
+                        pointer-events: auto;
                     }
                     
                 }
@@ -950,7 +970,7 @@
                                     border-right: 1px solid rgba(0,0,0,0.2);
                                     position: relative;
 
-                                    .qty{
+                                    .qty-input{
                                         // padding:clamp(6px, $fs-12px, $fs-12px);
                                         width: 100%;
 
@@ -969,48 +989,7 @@
                                         line-height: 1;
                                     }
                             
-                                    /* dropdown */
-                                    .dropdown {
-                                        position: absolute;
-                                        top: 100%;
-                                        left: 0;
-                                        width: 100.3%;
-                                        background-color: $white;
-                                        // border: 1px solid #ccc;
-                                        display: none;
-                                        overflow: auto;
-                                        z-index:6;
-                                        box-shadow: $box-shadow-1;
-                                        border-radius: 10px;
-                                        margin-top: 2px;
-                                        max-height: 200px;
-                                        & ul {
-                                           padding-left: 0;
-                                            margin-bottom: 0;
-                                            cursor: pointer;
-                                            li{
-                                                padding: clamp(4px, $fs-8px, $fs-8px);
-                                                font-size: clamp(9px, $fs-15px, $fs-15px);
-                                                list-style-type: none;
-                                                white-space: nowrap;
-                                                color: $black-80;
-                                                &:hover {
-                                                    background-color: $blue-2ff;
-                                                } 
-                                            }
-
-                                            
-                                        }
-                                        &::-webkit-scrollbar {
-                                            width: 4px;
-                                            height: 6px;
-                                        }
-                                        &::-webkit-scrollbar-thumb {
-                                            background: rgba(161, 161, 161, 0.5);
-                                            border-radius: 4px;
-                                        }
-                                       
-                                    }
+                                    
                                 }
                             }
                               &::-webkit-scrollbar {
@@ -1283,20 +1262,20 @@
                                 button{
                                     background-color: transparent;
                                     border: none;
+                                    display: none;
                                     visibility: hidden;
                                     transition: visibility 0.2s ease;
                                     img{
                                         width: clamp(10px, $fs-17px, $fs-17px);
                                     }
+                                    &.active{
+                                        display: inline-block;
+                                    }
+                                    &.selected{
+                                        visibility: visible;
+                                    }
 
                                 }
-                            }
-                        }
-                        &:hover{
-                            div:nth-of-type(12) button{
-                                visibility: visible;
-                                
-                                 
                             }
                         }
                     }
@@ -1339,6 +1318,9 @@
                                     outline: none;
                                     color: $blue-87;
                                     font-weight: 500;
+                                }
+                                &.del-id{
+                                    display: none;
                                 }
                                 
                                 &:nth-of-type(5){
@@ -1726,6 +1708,48 @@
 
     }
 }
+/* dropdown */
+                                    .desc-dropdown {
+                                        position: fixed;
+                                        // top: 100%;
+                                        // left: 0;
+                                        // width: 100.3%;
+                                        background-color: $white;
+                                        // border: 1px solid #ccc;
+                                        display: none;
+                                        overflow: auto;
+                                        z-index:6;
+                                        box-shadow: $box-shadow-1;
+                                        // border-radius: 10px;
+                                        margin-top: 2px;
+                                        max-height: 200px;
+                                        & ul {
+                                           padding-left: 0;
+                                            margin-bottom: 0;
+                                            cursor: pointer;
+                                            li{
+                                                padding: clamp(4px, $fs-8px, $fs-8px);
+                                                font-size: clamp(9px, $fs-15px, $fs-15px);
+                                                list-style-type: none;
+                                                white-space: nowrap;
+                                                color: $black-80;
+                                                &:hover {
+                                                    background-color: $blue-2ff;
+                                                } 
+                                            }
+
+                                            
+                                        }
+                                        &::-webkit-scrollbar {
+                                            width: 4px;
+                                            height: 6px;
+                                        }
+                                        &::-webkit-scrollbar-thumb {
+                                            background: rgba(161, 161, 161, 0.5);
+                                            border-radius: 4px;
+                                        }
+                                       
+                                    }
 
 .popup-overlay{  
     position: fixed;

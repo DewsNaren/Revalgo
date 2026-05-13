@@ -333,6 +333,8 @@ window.addEventListener("resize", handleScroll);
 filterWrapper.addEventListener("scroll", handleScroll);
 
 
+
+
 const searchText=document.querySelector(".search-text");
 const totalItem=document.querySelector(".total-item");
 const filterTable=document.querySelector(".filter-table");
@@ -682,7 +684,7 @@ tabHeaderSpans.forEach(sp=>{
 })
 
 //popups
-const popups=document.querySelectorAll("popup");
+const popups=document.querySelectorAll(".popup");
 const formPopup=document.querySelector(".form-popup");
 const formTitle=document.querySelector(".form-title");
 const formContainers=document.querySelectorAll(".form-container");
@@ -717,6 +719,15 @@ function closePopup(){
     dateText.textContent="dd-mm-yyyy";
     errs.forEach(err=>err.classList.remove("active"));
     formPopup.classList.remove("active");
+  }
+  if(addPopup.classList.contains("active")){
+    const rows=addPopup.querySelectorAll(".body-wrapper .table-row");
+    rows.forEach((row, index) => {
+
+      if(index !== 0){
+        row.remove();
+      }
+    })
   }
 
 }
@@ -756,24 +767,33 @@ function openSelectedPopup(clickedId,q){
   clickCheckInput(document.querySelector(".selected-table tbody"))
 }
 
-function selectAllRow(){
+function selectAllItems(){
   const selectedTBody =document.querySelector(".selected-table tbody");
 
   const tableRows =selectedTBody.querySelectorAll("tr");
-
+  // const checkedInputs=tBody.querySelectorAll("tr td input[type='checkbox']").checked;
   const isAllChecked =[...tableRows].every(row =>row.querySelector("input[type='checkbox']").checked);
-
+  selectedProdId=[];
   tableRows.forEach(row => {
     const inp =row.querySelector("input[type='checkbox']");
     inp.checked = !isAllChecked;
-
-    if(isAllChecked)
+    
+    if(isAllChecked){
       importBtn.classList.remove("active");
+      
+
+    }
     else
       importBtn.classList.add("active");
+    const tr=inp.closest("tr")
+      const prodId =tr.querySelector(".prod-id").textContent.trim();
+      selectedProdId.push(prodId);
   });
+  console.log(selectedProdId)
 
 }
+
+
 
 cancelSelectedBtn.addEventListener('click',()=>{
   closePopup();
@@ -810,7 +830,11 @@ function clickCheckInput(tBody){
 let newId="";
 let newQuote={};
 importBtn.addEventListener('click',()=>{
+   
   if(selectedQuote){
+  
+    oldQuoteText.innerHTML=`(Old Quote ID #${selectedQuote.id})`
+    oldQuoteText.classList.add("active")
     newId=Math.floor(Math.random()* (9999999-1000000+1))+1000000;
 
     let isExists = totalQuotes.some(q =>q.id === newId);
@@ -834,10 +858,14 @@ importBtn.addEventListener('click',()=>{
     quoteOrderWrapper.classList.add("active");
     sessionStorage.setItem("newQuote",JSON.stringify(newQuote))
     renderQuickInfo(newQuote)
+    updatenewQuoteId(newQuote)
     renderDisplayTable(newQuote);
   }
 })
 
+function updatenewQuoteId(newQuote){
+  CreateBtn.querySelector("span").textContent=`#${newQuote.id}`
+}
 //render quote data
 const CreateBtn=document.querySelector(".back-create-btn");
 const oldQuoteText=document.querySelector(".old-quote-id");
@@ -848,23 +876,20 @@ const expandBtns=document.querySelectorAll(".expand-btn");
 const closeBtn = document.querySelector(".close-modal-btn");
 
 function renderQuickInfo(newQuote){
-  CreateBtn.childNodes[1].textContent=`#${newQuote.id}`
-  // oldQuoteText.innerHTML=`(Old Quote ID #${selectedQuote.id})`
-  console.log(newQuote.id)
   const splittedBill = newQuote.bill_to.split("\n");
-  const splittedShip = newQuote.ship_to.split(",");
+  const splittedShip = newQuote.ship_to.split("\n");
   quickInfoWrapper.innerHTML="";
   quickInfoWrapper.innerHTML=`
     <div class="info">
       <p class="header">Bill To <button type="button" class="edit-btn" data-title="bill to" data-edit="bill_to"><img src="./assets/images/global/Edit icon.png" alt="Edit icon"></button></p>
-      <div class="details">
+      <div class="details bill_to_text">
         <p class="name">${splittedBill[0]}</p>
         <p class="address">${splittedBill[1]} <br> ${splittedBill[2]}</p>
       </div>
     </div>
     <div class="info">
       <p class="header">Ship To <button type="button" class="edit-btn" data-title="ship to" data-edit="ship_to"><img src="./assets/images/global/Edit icon.png" alt="Edit icon"></button></p>
-      <div class="details">
+      <div class="details ship_to_text">
         <p class="name">${splittedShip[0]}</p>
         <p class="address">${splittedShip[1]} <br> ${splittedShip[2]}</p>
       </div>
@@ -872,37 +897,37 @@ function renderQuickInfo(newQuote){
     <div class="info">
       <p class="header">PO No <button type="button" class="edit-btn" data-title="po no" data-edit="po_no"><img src="./assets/images/global/Edit icon.png" alt="Edit icon"></button></p>
         <div class="details">
-          <p class="po-no-text text">${newQuote.po_no}</p>
+          <p class="po_no_text text">${newQuote.po_no}</p>
         </div>
       </div>
       <div class="info">
         <p class="header">Job No <button type="button" class="edit-btn" data-title="job no" data-edit="job_no"><img src="./assets/images/global/Edit icon.png" alt="Edit icon"></button></p>
         <div class="details">
-          <p class="job-no-text text">${newQuote.job_no}</p>
+          <p class="job_no_text text">${newQuote.job_no}</p>
         </div>
       </div>
       <div class="info">
         <p class="header">Buyer <button type="button" class="edit-btn" data-title="buyer" data-edit="buyer"><img src="./assets/images/global/Edit icon.png" alt="Edit icon"></button></p>
         <div class="details">
-          <p class="buyer-text text">${newQuote.buyer}</p>
+          <p class="buyer_text text">${newQuote.buyer}</p>
         </div>
       </div>
       <div class="info">
         <p class="header">Deleivery Date <button type="button" class="edit-btn" data-title="deleivery date" data-edit="deleivery_date"><img src="./assets/images/global/Edit icon.png" alt="Edit icon"></button></p>
         <div class="details">
-          <p class="deleivery-text text">${newQuote.deleivery_date}</p>
+          <p class="deleivery_date_text text">${newQuote.deleivery_date}</p>
         </div>
       </div>
       <div class="info">
         <p class="header">#Lines</p>
           <div class="details">
-            <p class="line-text">${newQuote.lines}</p>
+            <p class="lines_text text">${newQuote.lines}</p>
           </div>
         </div>
       <div class="info">
         <p class="header">Total Price</p>
         <div class="details">
-          <p class="price-text">$${newQuote.total_price}</p>
+          <p class="total_price_text text">$${newQuote.total_price}</p>
         </div>
       </div>
   `
@@ -1004,8 +1029,10 @@ function changeQuickInfo(inp,con){
 }
 
 //render display table
-renderDisplayTable(JSON.parse(sessionStorage.getItem("newQuote")))
-renderQuickInfo(JSON.parse(sessionStorage.getItem("newQuote")))
+if(sessionStorage.getItem("newQuote")){
+  renderDisplayTable(JSON.parse(sessionStorage.getItem("newQuote")))
+  renderQuickInfo(JSON.parse(sessionStorage.getItem("newQuote")))
+}
 function renderDisplayTable(newQuote){
   const bodyWrapper=displayTable.querySelector(".body-wrapper");
   bodyWrapper.innerHTML="";
@@ -1016,7 +1043,7 @@ function renderDisplayTable(newQuote){
     bodyWrapper.innerHTML+=`
     <div class="table-row">
       <p></p>
-      <p><input type="checkbox"></p>
+      <p><input type="checkbox" class="check-line-input" onclick=enableDeleteAllBtn()></p>
       <p><span>${i+1}</span>
       </p>
       <p><input type="text" value="${p.qty_requested}" name="qty-requested"></p>
@@ -1040,12 +1067,13 @@ function renderDisplayTable(newQuote){
       </p>
       <p class="bottom-line"><img src="./assets/images/create_quote/line_add icon.png" alt="add icon" ><span class="line"></span></p>
       <button class="add-note-btn"><img src="./assets/images/create_quote/add note_grey bg.png" class="img-grey active" alt="add note grey"> <img src="./assets/images/create_quote/add note icon_blue.png" class="img-blue " alt="add note blue "></button>
-    </div>
+      <p class="del-id">${p.delId}</p>
+      </div>
     
     `;
   })
   bodyWrapper.innerHTML+=`<div class="add-btn-container left">
-    <button type="button"><img src="./assets/images/create_quote/add item_icon.png" alt="add"></button>
+    <button type="button" onclick="openAddPopup()"><img src="./assets/images/create_quote/add item_icon.png" alt="add"></button>
     <p class="text">Click here to Add Item</p>
     </div>`
   clickTable(displayTable.querySelector(".body-wrapper"));
@@ -1141,43 +1169,67 @@ mailMinimizeBtn.addEventListener("click", () => {
 //edit table data
 function editTableData(bodyWrap){
 
-  const tableRows =bodyWrap.querySelectorAll(".table-row");
+  const tableRows = bodyWrap.querySelectorAll(".table-row");
 
   tableRows.forEach(row => {
 
-    const qtyInp =row.querySelector('input[name="qty-requested"]');
+    const qtyInp = row.querySelector('input[name="qty-requested"]');
 
-    const costInp =row.querySelector('input[name="cost"]');
+    const costInp = row.querySelector('input[name="cost"]');
 
-    const marginInp =row.querySelector('input[name="margin"]');
+    const marginInp = row.querySelector('input[name="margin"]');
 
-    const sellingPriceEl =row.children[9].querySelector("span");
+    const sellingPriceEl = row.children[8].querySelector("span");
 
-    const totalPriceEl =row.children[10].querySelector("span");
+    const totalPriceEl = row.children[9].querySelector("span");
+
+    const delId = row.querySelector(".del-id").textContent;
 
     function updatePrices(){
 
-      const qty =parseFloat(qtyInp.value) || 0;
+      const qty = parseFloat(qtyInp.value) || 0;
 
-      const cost =parseFloat(costInp.value) || 0;
+      const cost = parseFloat(costInp.value) || 0;
 
-      const margin =parseFloat(marginInp.value) || 0;
+      const margin = parseFloat(marginInp.value) || 0;
 
       // selling = cost + margin%
-      const sellingPrice =cost + (cost * margin / 100);
+      const sellingPrice = cost + (cost * margin / 100);
 
       // total = qty * selling
-      const totalPrice =qty * sellingPrice;
+      const totalPrice = qty * sellingPrice;
 
-      sellingPriceEl.textContent =sellingPrice.toFixed(2);
+      sellingPriceEl.textContent = sellingPrice.toFixed(2);
 
-      totalPriceEl.textContent =`$${totalPrice.toFixed(2)}`;
+      totalPriceEl.textContent =`$${totalPrice.toLocaleString("en-US", {minimumFractionDigits: 2,
+        maximumFractionDigits: 2})}`;
+
+      // UPDATE newQuote.products
+      const product = newQuote.products.find(p => String(p.delId) === delId);
+        console.log("iy",product)
+      if(product){
+
+        product.qty_requested = qty;
+
+        product.unit_cost = cost;
+
+        product.margin = margin;
+
+        product.selling_price = Number(sellingPrice.toFixed(2));
+
+        product.total_cost = Number(totalPrice.toFixed(2));
+
+      }
+      updateQuoteTotals();
 
     }
 
     [qtyInp, costInp, marginInp].forEach(inp => {
-      allowNumbers(inp)
-      inp.addEventListener("input",updatePrices);
+
+      allowNumbers(inp);
+
+      inp.addEventListener("input", updatePrices);
+
     });
 
   });
@@ -1254,3 +1306,452 @@ leftHeaderBtns.forEach(btn=>{
     // }
   })
 })
+
+function updateQuoteTotals(){
+
+  newQuote.lines =newQuote.products.length;
+
+  newQuote.total_line_no =newQuote.products.length;
+
+  newQuote.total_price =newQuote.products.reduce((sum, p) =>sum + p.total_cost,0).toFixed(2);
+  const totPriceText=quickInfoWrapper.querySelector(".total_price_text");
+  const linesText=quickInfoWrapper.querySelector(".lines_text");
+  totPriceText.textContent=`$${newQuote.total_price}`
+  linesText.textContent=newQuote.products.length;
+
+}
+
+//get all products
+const descInputs =leftTableWrapper.querySelectorAll(".desc-input");
+const qtyInputs=leftTableWrapper.querySelectorAll(".qty-input");
+let products=[];
+async function getAllProducts() {
+  try {
+    const resp = await fetch("../assets/json/product.json")
+    const data = await resp.json()
+    products=data;
+   
+  } catch (err) {
+    console.error("Error:", err)
+  }
+}
+getAllProducts();
+
+function getDelId(){
+    let delId =Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
+    let isExists = allQuotes.forEach(q=>[...q.products].some(q => q.delId ===  delId)) ||
+    newQuote.products.some(prod => prod.delId === delId);
+    while (isExists) {
+      delId =Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
+
+      isExists =[...allQuotes.products].some(q => q.requested_id ===   delId) ||
+      newQuote.products.some(prod => prod.delId === delId);
+    }
+    return delId;
+}
+
+async function initProducts() {
+
+  await getAllProducts();
+  // updateProducts();
+  // renderAddPopupTable();
+  initProductSearch();
+}
+
+initProducts();
+
+const descDropdown=leftTableWrapper.querySelector(".desc-dropdown");
+const descList =descDropdown.querySelector(".desc-list");
+let currentDescInput = null;
+let searchedProduct = [];
+
+function searchProducts(inp) {
+
+  const value =inp.value.trim().toLowerCase();
+
+  const descDropdown =document.querySelector(".desc-dropdown");
+
+  const descList =descDropdown.querySelector(".desc-list");
+
+  descList.innerHTML = "";
+
+  if (value === "") {
+
+    descDropdown.classList.remove("active");
+
+    return;
+
+  }
+
+  const rect =inp.getBoundingClientRect();
+
+
+  descDropdown.style.top =`${rect.bottom + window.scrollY + 4}px`;
+
+  descDropdown.style.left =`${rect.left + window.scrollX}px`;
+
+  const spaceBelow =window.innerHeight - rect.bottom;
+
+  descDropdown.style.maxHeight =`${spaceBelow - 20}px`;
+  descDropdown.classList.add("active");
+
+  filteredProducts = products.filter(p => {
+
+    const isMatch =p.desc.toLowerCase().includes(value);
+    
+    if (isMatch) {
+
+      descList.innerHTML += `
+        <li data-id="${p.id}">
+          ${p.desc}
+        </li>
+      `;
+
+    }
+
+    return isMatch;
+
+  });
+
+}
+function handleProductItemClick(e){
+  const li = e.target.closest("li");
+
+  if(!li) return;
+
+  searchedProduct=[];
+  currentDescInput.value=li.textContent.trim();
+  
+
+  descInputs.forEach(inp=>{
+    if(inp.value){
+      const val=inp.value
+      products.forEach(p=>{
+        if(p.desc.includes(val))
+          searchedProduct.push(p)
+      })
+    }
+  })
+
+  descDropdown.classList.remove("active");
+}
+
+function initProductSearch(){
+  descInputs.forEach(inp => {
+    inp.addEventListener("input", () => {
+     currentDescInput=inp;
+      searchProducts(inp);
+    });
+  })
+}
+// let totalQuotes = [];
+// if(sessionStorage.getItem("searchedQuotes")){
+descDropdown.addEventListener("click",handleProductItemClick);
+
+const uploadBtn=uploadBtnContainer.querySelector(".upload-btn")
+uploadBtn.addEventListener('click',()=>{
+  if(leftTableWrapper.classList.contains("active")){
+    getSearchedProducts();
+    renderDisplayTable(newQuote)
+    approveQuoteBtn.classList.add("active")
+    const addBtn=document.querySelector(".add-btn-container .add-btn");
+  }
+})
+ 
+function getSearchedProducts(){
+  const newProducts=newQuote.products;
+  if(searchedProduct.length >0){
+    descInputs.forEach(inp=>inp.value="");
+    qtyInputs.forEach(inp=>inp.value="")
+    searchedProduct.forEach(p => {
+      let newReqId =Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
+      let isExists = allQuotes.forEach(q=>[...q.products].some(q => q.requested_id ===  "ID" + newReqId)) ||
+      newQuote.products.some(prod => prod.requested_id === "ID" + newReqId);
+
+      while (isExists) {
+
+        newReqId =Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
+
+        isExists =[...allQuotes.products].some(q => q.requested_id ===  "ID" + newReqId) ||
+        newQuote.products.some(prod => prod.requested_id === "ID" + newReqId);
+      }
+
+      p.requested_id = "ID" + newReqId;
+      p.delId=getDelId();
+      newQuote.products.push(p);
+
+    });
+    updateQuoteTotals();
+  }
+}
+
+
+function updateQuickInfoData() {
+  const fields = ["po_no","job_no","buyer","deleivery_date"];
+
+  fields.forEach(key => {
+    const el = document.querySelector(`.${key}_text`);
+    if (el) {
+      newQuote[key] = el.textContent.trim();
+    }
+
+  });
+
+  ["bill_to", "ship_to"].forEach(key => {
+    const wrap = document.querySelector(`.${key}_text`);
+
+    if (!wrap) return;
+
+    const name = wrap.querySelector(".name")?.textContent.trim() || "";
+
+    const address =wrap.querySelector(".address")?.innerHTML.replace(/<br\s*\/?>/gi, "\n").trim() || "";
+    newQuote[key] = `${name}\n${address}`;
+  });
+
+}
+
+function updateNewQuoteData(){
+  const displayTable=document.querySelector(".display-table");
+  const tableRows=displayTable.querySelectorAll(".body-wrapper .table-row");
+  
+  tableRows.forEach(row=>{
+    if(row.classList.contains("not-active")){
+      const delId =Number(row.querySelector(".del-id").textContent);
+      console.log(delId)
+      newQuote.products =newQuote.products.filter(p => p.delId !== delId);
+    }
+  })
+}
+const approveQuoteBtn=document.querySelector(".approve-btn");
+const successPopup=document.querySelector(".success-popup");
+const successidText=successPopup.querySelector(".text .id");
+const confirmSuccessBtn=successPopup.querySelector(".ok-btn");
+
+approveQuoteBtn.addEventListener('click',()=>{
+  if(newQuote.products.length!=0){
+    updateQuickInfoData()
+    updateNewQuoteData()
+    addPopup.classList.remove("active");
+    popupOverlay.classList.add("active");
+    successPopup.classList.add("active");
+    successidText.textContent=` #${newQuote.id}`;
+  }
+
+})
+
+
+confirmSuccessBtn.addEventListener('click',()=>{
+  const quotes=JSON.parse(sessionStorage.getItem("quotes"));
+  quotes.push(newQuote)
+  sessionStorage.setItem('quotes',JSON.stringify(quotes));
+  const bodyWrap=displayTable.querySelector(".body-wrapper");
+  bodyWrap.innerHTML="";
+  bodyWrap.innerHTML=`<div class="add-btn-container ">
+    <button type="button"><img src="./assets/images/create_quote/add item_icon.png" alt="add"></button>
+    <p class="text">Click here to Add Item</p>
+    </div>`
+    window.location.href="./dashboard.html"
+})
+
+const delAllBtn=displayTable.querySelector(".header-wrapper .delete-all-btn");
+const undoAllBtn=displayTable.querySelector(".header-wrapper .undo-all-btn");
+const checkAllInput=displayTable.querySelector(".header-wrapper .check-all-input");
+
+function enableDeleteAllBtn(){
+  const bodyWrapper=displayTable.querySelector(".body-wrapper");
+  const checkLineInps=bodyWrapper.querySelectorAll(".check-line-input")
+  const isChecked = [...checkLineInps].some(inp => inp.checked);
+  const isAllChecked=[...checkLineInps].every(inp => inp.checked);
+  
+  if(isChecked)
+    delAllBtn.classList.add('selected');
+
+  else
+    delAllBtn.classList.remove('selected');
+
+
+  checkAllInput.checked=isAllChecked
+}
+
+function selectAllRow(event){
+  const bodyWrap=displayTable.querySelector(".body-wrapper")
+  const tableRows =bodyWrap.querySelectorAll(".table-row");
+  const isChecked = event.target.checked;
+
+   tableRows.forEach(row => {
+      const inp=row.querySelector("input[type='checkbox']")
+      inp.checked=isChecked;
+    })
+    if(isChecked)
+      delAllBtn.classList.add('selected');
+    else
+      delAllBtn.classList.remove('selected');
+}
+
+function deleteAllRow(){
+  const bodyWrapper=displayTable.querySelector(".body-wrapper");
+  const tableRows=bodyWrapper.querySelectorAll(".table-row");
+  tableRows.forEach(row=>{
+    const delBtn=row.querySelector(".delete-line-btn");
+    const undoBtn=row.querySelector(".undo-line-btn");
+    row.classList.add("not-active");
+    delBtn.classList.remove("active");
+    undoBtn.classList.add("active");
+    const paras=row.querySelectorAll("p")
+    paras.forEach(p=>{
+      p.style.pointerEvents = "none";
+    })
+  
+    delBtn.style.pointerEvents = "auto";
+    undoBtn.style.pointerEvents = "auto";
+    row.removeEventListener("click",rowClickHandler);
+
+  })
+  delAllBtn.classList.remove('selected','active');
+  undoAllBtn.classList.add('selected','active');
+  approveQuoteBtn.classList.remove("active")
+  
+}
+
+function undoAllRow(){
+  const bodyWrapper=displayTable.querySelector(".body-wrapper");
+  const tableRows=bodyWrapper.querySelectorAll(".table-row");
+  tableRows.forEach(row=>{
+    const delBtn=row.querySelector(".delete-line-btn");
+    const undoBtn=row.querySelector(".undo-line-btn");
+    row.classList.remove("not-active");
+    delBtn.classList.add("active");
+    undoBtn.classList.remove("active");
+    const paras=row.querySelectorAll("p")
+    paras.forEach(p=>{
+      p.style.pointerEvents = "auto";
+    })
+  
+    // delBtn.style.pointerEvents = "auto";
+    // undoBtn.style.pointerEvents = "auto";
+    row.removeEventListener("click",rowClickHandler);
+
+  })
+  approveQuoteBtn.classList.add("active")
+  delAllBtn.classList.add('selected','active');
+  undoAllBtn.classList.remove('selected','active');
+}
+
+
+const addBtn=document.querySelector(".add-btn-container .add-btn");
+const addPopup=document.querySelector(".add-popup");
+const addTable=addPopup.querySelector(".add-table");
+const addLineBtns=addTable.querySelectorAll(".add-line-btn");
+const canceladdpopupBtn=addPopup.querySelector(".cancel-btn");
+
+
+function openAddPopup(){
+  popupOverlay.classList.add("active");
+  addPopup.classList.add("active");
+  editPopupData(addTable.querySelector(".body-wrapper"));
+}
+
+editPopupData(addTable.querySelector(".body-wrapper"))
+function editPopupData(bodyWrap){
+
+  const tableRows =bodyWrap.querySelectorAll(".table-row");
+
+  tableRows.forEach(row => {
+    const qtyInp =row.querySelector('input[name="qty-requested"]');
+
+    const costText =row.querySelector(".cost");
+
+    const marginInp =row.querySelector('input[name="margin"]');
+
+    const sellingPriceEl =row.querySelector(".selling-price");
+
+    const totalPriceEl =row.querySelector(".total-cost");
+
+    function updatePrices(){
+
+      const qty =parseFloat(qtyInp.value) || 0;
+
+      const cost =parseFloat(costText.textContent.replace("$", "")) || 0;
+
+      const margin =parseFloat(marginInp.value) || 0;
+
+      // selling = cost + margin%
+      const sellingPrice =cost + (cost * margin / 100);
+
+      // total = qty * selling
+      const totalPrice =qty * sellingPrice;
+
+      sellingPriceEl.textContent =sellingPrice.toFixed(2);
+
+      totalPriceEl.textContent =`$${totalPrice.toLocaleString(undefined, {minimumFractionDigits: 2,maximumFractionDigits: 2})}`;
+
+    }
+
+    [qtyInp, marginInp].forEach(inp => {
+      allowNumbers(inp)
+      inp.addEventListener("input",updatePrices);
+    });
+
+  });
+
+}
+
+function addLine(event){
+  const row=event.target.closest(".table-row");
+  const bodyWrap=event.target.parentElement.parentElement.parentElement;
+  const cloned = row.cloneNode(true);
+  bodyWrap.appendChild(cloned)
+  editPopupData(addTable.querySelector(".body-wrapper"))
+}
+
+canceladdpopupBtn.addEventListener('click',(event)=>{
+ closePopup();
+})
+
+const addLinesBtn=addPopup.querySelector(".add-lines-btn");
+
+addLinesBtn.addEventListener("click", () => {
+  addProductsToQuote();
+  updateQuoteTotals();
+  renderDisplayTable(newQuote)
+  approveQuoteBtn.classList.add("active")
+  closePopup();
+});
+
+function addProductsToQuote(){
+
+  const rows =addTable.querySelectorAll(".body-wrapper .table-row");
+
+  rows.forEach(row => {
+
+    const productObj = {
+
+    qty_requested:parseFloat(row.querySelector('input[name="qty-requested"]').value) || 0,
+
+      requested_id:row.querySelector(".id").textContent.trim(),
+
+      score:parseFloat(row.children[2].textContent) || 0,
+
+      available_qty:parseFloat(row.children[3].textContent) || 0,
+
+      unit_cost:
+        parseFloat(row.querySelector(".cost").textContent.replace("$", "")) || 0,
+
+      margin:
+        parseFloat(
+          row.querySelector('input[name="margin"]').value) || 0,
+
+      selling_price:
+        parseFloat(
+          row.querySelector(".selling-price").textContent.replace("$", "")) || 0,
+
+      total_cost:
+        parseFloat(row.querySelector(".total-cost").textContent.replace("$", "").replaceAll(",", "")) || 0
+    };
+    console.log(getDelId())
+    productObj.delId=getDelId();
+    newQuote.products.push(productObj);
+
+  });
+
+}
