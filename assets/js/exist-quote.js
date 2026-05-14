@@ -702,35 +702,43 @@ const cancelSelectedBtn=selectedItemPopup.querySelector(".cancel-btn");
 const selectedCheckedAllInput=selectedItemPopup.querySelector(".select-all-items")
 
 closePopupBtns.forEach(btn => btn.addEventListener("click", () => {
-  closePopup();
+  closeModal();
 }))
 
 popupOverlay.addEventListener("click", (e) => {
   if (e.target === popupOverlay) {
-    closePopup();
+    closeModal();
   }
 });
 
-function closePopup(){
-  popupOverlay.classList.remove("active");
-  popups.forEach(pop=>pop.classList.remove("active"));
-  if(formPopup.classList.contains("active")){
-    updateForm.reset();
-    dateText.textContent="dd-mm-yyyy";
-    errs.forEach(err=>err.classList.remove("active"));
-    formPopup.classList.remove("active");
-  }
-  if(addPopup.classList.contains("active")){
-    const rows=addPopup.querySelectorAll(".body-wrapper .table-row");
-    rows.forEach((row, index) => {
+// function closeModal(){
+//   popupOverlay.classList.remove("active");
+//   popups.forEach(pop=>pop.classList.remove("active"));
+//   if(formPopup.classList.contains("active")){
+//     updateForm.reset();
+//     dateText.textContent="dd-mm-yyyy";
+//     errs.forEach(err=>err.classList.remove("active"));
+//     formPopup.classList.remove("active");
+//   }
+//   if(addPopup.classList.contains("active")){
+//     const rows=addPopup.querySelectorAll(".body-wrapper .table-row");
+//     rows.forEach((row, index) => {
 
-      if(index !== 0){
-        row.remove();
-      }
-    })
-  }
+//       if(index !== 0){
+//         row.remove();
+//       }
+//     })
+//   }
+//    if(expandModal.classList.contains("active")){
+//     const suggestSource=modalContent.querySelector(".suggest-product-popup");
+//     const body=document.body
+//     console.log("fdjd")
+//     if(suggestSource){
+//       body.appendChild(suggestSource)
+//     }
+//   }
 
-}
+// }
 
 //get products
 let selectedQuote;
@@ -796,7 +804,7 @@ function selectAllItems(){
 
 
 cancelSelectedBtn.addEventListener('click',()=>{
-  closePopup();
+  closeModal();
   selectedTableCheckInputs.forEach(inp=>inp.checked=false);
 })
 
@@ -852,7 +860,7 @@ importBtn.addEventListener('click',()=>{
     (sum, p) => sum + parseFloat(p.total_cost),0 ).toFixed(2);
     newQuote.lines=filProds.length;
     newQuote.total_line_no=filProds.length;
-    closePopup();
+    closeModal();
     selectedTableCheckInputs.forEach(inp=>inp.checked=false);
     existFilterWrapper.classList.remove("active");
     quoteOrderWrapper.classList.add("active");
@@ -872,7 +880,7 @@ const oldQuoteText=document.querySelector(".old-quote-id");
 const quickInfoWrapper=quoteOrderWrapper.querySelector(".quick-info-wrapper");
 const displayTable=quoteOrderWrapper.querySelector(".display-table");
 const disTableBodyWrapper=displayTable.querySelector(".body-wrapper");
-const expandBtns=document.querySelectorAll(".expand-btn");
+// const expandBtns=document.querySelectorAll(".expand-btn");
 const closeBtn = document.querySelector(".close-modal-btn");
 
 function renderQuickInfo(newQuote){
@@ -1033,6 +1041,128 @@ if(sessionStorage.getItem("newQuote")){
   renderDisplayTable(JSON.parse(sessionStorage.getItem("newQuote")))
   renderQuickInfo(JSON.parse(sessionStorage.getItem("newQuote")))
 }
+// function renderDisplayTable(newQuote){
+//   const bodyWrapper=displayTable.querySelector(".body-wrapper");
+//   bodyWrapper.innerHTML="";
+
+//   const products=newQuote.products;
+
+//   products.forEach((p,i)=>{
+//     bodyWrapper.innerHTML+=`
+//     <div class="table-row">
+//       <p></p>
+//       <p><input type="checkbox" class="check-line-input" onclick=enableDeleteAllBtn()></p>
+//       <p><span>${i+1}</span>
+//       </p>
+//       <p><input type="text" value="${p.qty_requested}" name="qty-requested"></p>
+//       <p>
+//         <span class="title-text">Lorem ipsum dolor sit.</span>
+//         <span class="dropdown-text">
+//           <img src="./assets/images/global/down-arrow.png" alt="down-arrow" class="down-arrow-img"> <span class="id">${p.requested_id}</span> - 
+//           <span class="detail">tydlx4ypi6</span></span>
+//         <span class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus hic facere, veniam in distinctio id tempora voluptatum? Facilis eius aut numquam. Alias perferendis sunt veniam reprehenderit officiis quas delectus.</span>  
+//       </p>
+//       <p><span>${p.score}</span>
+//       </p>
+//       <p> <span>${p.available_qty}</span></p>
+//       <p><span>$<input type="text" value="${p.unit_cost}" name="cost"></span></p>
+//       <p><span><input type="text" value="${p.margin}" name="margin">%</span></p>
+//       <p><span>${p.selling_price}</span></p>
+//       <p><span>$${p.total_cost.toFixed(2)}</span></p>
+//       <p>
+//         <button type="button" class="delete-line-btn active" onclick=delRow(event)><img src="./assets/images/global/delete_icon.png" alt="delete"></button>
+//         <button type="button" class="undo-line-btn" onclick=undoRow(event)> <img src="./assets/images/dashboard/Undo_icon.png" alt="undo"></button>
+//       </p>
+//       <p class="bottom-line"><img src="./assets/images/create_quote/line_add icon.png" alt="add icon" ><span class="line"></span></p>
+//       <button class="add-note-btn"><img src="./assets/images/create_quote/add note_grey bg.png" class="img-grey active" alt="add note grey"> <img src="./assets/images/create_quote/add note icon_blue.png" class="img-blue " alt="add note blue "></button>
+//       <p class="del-id">${p.delId}</p>
+//       </div>
+    
+//     `;
+//   })
+//    products.forEach((p,i)=>{
+//     bodyWrapper.innerHTML+=`
+//     <div class="table-row">
+//       <p><input type="checkbox" class="check-line-input" onclick=enableDeleteAllBtn()></p>
+//       <p><span>${i+1}</span>
+//       </p>
+//       <p><input type="text" value="${p.qty_requested}" name="qty-requested"></p>
+//       <p>
+//         <span class="title-text">Lorem ipsum dolor sit.</span>
+//         <span class="dropdown-text">
+//           <img src="./assets/images/global/down-arrow.png" alt="down-arrow" class="down-arrow-img" onclick=openSuggestPopup(event)> <span class="requested-id">${p.requested_id}</span> - 
+//           <span class="detail" onclick="enableSourceText(event)">tydlx4ypi6</span> - 
+//           <span class="${p.isSource==true?"sourcing active":"sourcing"}"  onclick="openSourcingPopup(event)"><img src="./assets/images/orderpad/Sourcing_icon.png" alt="sourcing">Sourcing</span>
+//           <span class="${p.isStock==true?"stock-wrapper active":"stock-wrapper"}"><span class="supplier-text text-uppercase" onclick="openSupplierPopup(event)">${p.supplier?p.supplier:"eaton"}</span>
+//            - <span class="${p.stock=="NS"?"stock-text red":" stock-text green"}">
+//               ${p.stock?p.stock:"S"}
+//               <span class="tooltiptext">${p.stock=="S"?"Stock":"Non Stock"}</span>
+//             </span> - 
+//            </span>
+//           <span class="tag-text"><img src="./assets/images/global/tag.png" alt="tag">Kanebridge</span>
+//           </span>
+//         <span class="text">${p.desc?p.desc:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus hic facere, veniam in distinctio id tempora voluptatum? Facilis eius aut numquam. Alias perferendis sunt veniam reprehenderit officiis quas delectus.'}</span>  
+//       </p>
+//       <p><span class="score">${p.score}</span>
+//       </p>
+//       <p> <span class="available-qty">${p.available_qty}</span></p>
+//       <p><span>$<input type="text" value="${p.unit_cost}" name="cost"></span></p>
+//       <p><span><input type="text" value="${p.margin}" name="margin">%</span></p>
+//       <p><span class="selling-price">$${p.selling_price.toFixed(2)}</span></p>
+//       <p><span class="total-cost">$${p.total_cost.toLocaleString("en-US", {minimumFractionDigits: 2,maximumFractionDigits: 2})}</span></p>
+      
+//       <p>
+//         <button type="button" class="delete-line-btn active" onclick=delRow(event)><img src="./assets/images/global/delete_icon.png" alt="delete"></button>
+//         <button type="button" class="undo-line-btn" onclick=undoRow(event)> <img src="./assets/images/dashboard/Undo_icon.png" alt="undo"></button>
+//       </p>
+//       <button class="add-note-btn"><img src="./assets/images/create_quote/add note_grey bg.png" class="img-grey active" alt="add note grey"> <img src="./assets/images/create_quote/add note icon_blue.png" class="img-blue " alt="add note blue "></button>
+//       <p class="del-id">${p.delId}</p>
+//       </div>
+    
+//     <div class="sourcing-dropdown">
+//       <div class="desc-wrapper">
+//         <div class="img-wrapper">
+//           <label for="thumbnail-img"><img src="./assets/images/orderpad/default thumbnail image.png" class="thumbnail-img" alt="default"></label>
+//           <input type="file" id="thumbnail-img" class="thumbnail-img-input" hidden accept="image/*">
+//         </div>
+
+//         <div class="desc-container">
+//           <h3>Description</h3>
+//           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+//         </div>
+//       </div>
+
+//       <div class="spec-wrapper">
+//         <h3>Specifications</h3>
+//         <div class="content-container">
+//           <div class="left-content">
+//             <p><span class="label">Wire Size</span> <span class="value">12 AWG</span></p>
+//             <p><span class="label">Material</span> <span class="value">Ploepropylene</span></p>
+//             <p><span class="label">Specifications</span> <span class="value">#10 Fork Material </span></p>
+//             <p><span class="label">Dimensions</span> <span class="value">1-1/2 In L</span></p>
+//           </div>
+//           <div class="right-content">
+//             <p><span class="label">Housing Material</span> <span class="value">Steel</span></p>
+//             <p><span class="label">Number of outlets</span> <span class="value">1</span></p>
+//             <p><span class="label">Brand</span> <span class="value">Kanebridge</span></p>
+//             <p><span class="label">Type</span> <span class="value">Standard</span></p>
+//           </div>                                   
+//         </div>
+//       </div>
+//     </div>
+//     `;
+ 
+//   })
+//   bodyWrapper.innerHTML+=`<div class="add-btn-container left">
+//     <button type="button" onclick="openAddPopup()"><img src="./assets/images/create_quote/add item_icon.png" alt="add"></button>
+//     <p class="text">Click here to Add Item</p>
+//     </div>`
+//   clickTable(displayTable.querySelector(".body-wrapper"));
+//   editTableData(displayTable.querySelector(".body-wrapper"));
+// }
+
+//click and edit table data
+
 function renderDisplayTable(newQuote){
   const bodyWrapper=displayTable.querySelector(".body-wrapper");
   bodyWrapper.innerHTML="";
@@ -1050,17 +1180,26 @@ function renderDisplayTable(newQuote){
       <p>
         <span class="title-text">Lorem ipsum dolor sit.</span>
         <span class="dropdown-text">
-          <img src="./assets/images/global/down-arrow.png" alt="down-arrow" class="down-arrow-img"> <span class="id">${p.requested_id}</span> - 
-          <span class="detail">tydlx4ypi6</span></span>
-        <span class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus hic facere, veniam in distinctio id tempora voluptatum? Facilis eius aut numquam. Alias perferendis sunt veniam reprehenderit officiis quas delectus.</span>  
+          <img src="./assets/images/global/down-arrow.png" alt="down-arrow" class="down-arrow-img" onclick=openSuggestPopup(event)> <span class="requested-id">${p.requested_id}</span> - 
+          <span class="detail" onclick="enableSourceText(event)">tydlx4ypi6</span> - 
+          <span class="${p.isSource==true?"sourcing active":"sourcing"}"  onclick="openSourcingPopup(event)"><img src="./assets/images/orderpad/Sourcing_icon.png" alt="sourcing">Sourcing</span>
+          <span class="${p.isStock==true?"stock-wrapper active":"stock-wrapper"}"><span class="supplier-text text-uppercase" onclick="openSupplierPopup(event)">${p.supplier?p.supplier:"eaton"}</span>
+           - <span class="${p.stock=="NS"?"stock-text red":" stock-text green"}">
+              ${p.stock?p.stock:"S"}
+              <span class="tooltiptext">${p.stock=="S"?"Stock":"Non Stock"}</span>
+            </span> - 
+           </span>
+          <span class="tag-text"><img src="./assets/images/global/tag.png" alt="tag">Kanebridge</span>
+          </span>
+        <span class="text">${p.desc?p.desc:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus hic facere, veniam in distinctio id tempora voluptatum? Facilis eius aut numquam. Alias perferendis sunt veniam reprehenderit officiis quas delectus.'}</span>  
       </p>
-      <p><span>${p.score}</span>
+      <p><span class="score">${p.score}</span>
       </p>
-      <p> <span>${p.available_qty}</span></p>
+      <p> <span class="available-qty">${p.available_qty}</span></p>
       <p><span>$<input type="text" value="${p.unit_cost}" name="cost"></span></p>
       <p><span><input type="text" value="${p.margin}" name="margin">%</span></p>
-      <p><span>${p.selling_price}</span></p>
-      <p><span>$${p.total_cost.toFixed(2)}</span></p>
+      <p><span class="selling-price">${p.selling_price}</span></p>
+      <p><span class="total-cost">$${p.total_cost.toFixed(2)}</span></p>
       <p>
         <button type="button" class="delete-line-btn active" onclick=delRow(event)><img src="./assets/images/global/delete_icon.png" alt="delete"></button>
         <button type="button" class="undo-line-btn" onclick=undoRow(event)> <img src="./assets/images/dashboard/Undo_icon.png" alt="undo"></button>
@@ -1069,7 +1208,37 @@ function renderDisplayTable(newQuote){
       <button class="add-note-btn"><img src="./assets/images/create_quote/add note_grey bg.png" class="img-grey active" alt="add note grey"> <img src="./assets/images/create_quote/add note icon_blue.png" class="img-blue " alt="add note blue "></button>
       <p class="del-id">${p.delId}</p>
       </div>
-    
+      <div class="sourcing-dropdown">
+      <div class="desc-wrapper">
+        <div class="img-wrapper">
+          <label for="thumbnail-img"><img src="./assets/images/orderpad/default thumbnail image.png" class="thumbnail-img" alt="default"></label>
+          <input type="file" id="thumbnail-img" class="thumbnail-img-input" hidden accept="image/*">
+        </div>
+
+        <div class="desc-container">
+          <h3>Description</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+        </div>
+      </div>
+
+      <div class="spec-wrapper">
+        <h3>Specifications</h3>
+        <div class="content-container">
+          <div class="left-content">
+            <p><span class="label">Wire Size</span> <span class="value">12 AWG</span></p>
+            <p><span class="label">Material</span> <span class="value">Ploepropylene</span></p>
+            <p><span class="label">Specifications</span> <span class="value">#10 Fork Material </span></p>
+            <p><span class="label">Dimensions</span> <span class="value">1-1/2 In L</span></p>
+          </div>
+          <div class="right-content">
+            <p><span class="label">Housing Material</span> <span class="value">Steel</span></p>
+            <p><span class="label">Number of outlets</span> <span class="value">1</span></p>
+            <p><span class="label">Brand</span> <span class="value">Kanebridge</span></p>
+            <p><span class="label">Type</span> <span class="value">Standard</span></p>
+          </div>                                   
+        </div>
+      </div>
+    </div>
     `;
   })
   bodyWrapper.innerHTML+=`<div class="add-btn-container left">
@@ -1080,7 +1249,7 @@ function renderDisplayTable(newQuote){
   editTableData(displayTable.querySelector(".body-wrapper"));
 }
 
-//click and edit table data
+
 function clickTable(bodyWrap){
 
   const rows =bodyWrap.querySelectorAll(".table-row");
@@ -1325,6 +1494,7 @@ function updateQuoteTotals(){
 const descInputs =leftTableWrapper.querySelectorAll(".desc-input");
 const qtyInputs=leftTableWrapper.querySelectorAll(".qty-input");
 let products=[];
+let filteredProducts=[];
 async function getAllProducts() {
   try {
     const resp = await fetch("../assets/json/product.json")
@@ -1355,8 +1525,12 @@ async function initProducts() {
   await getAllProducts();
   // updateProducts();
   // renderAddPopupTable();
+  renderSuggestPopup(products);
+  renderSourcingPopup(products);
+  renderSupplierPopup(products);
   initProductSearch();
 }
+
 
 initProducts();
 
@@ -1705,7 +1879,7 @@ function addLine(event){
 }
 
 canceladdpopupBtn.addEventListener('click',(event)=>{
- closePopup();
+ closeModal();
 })
 
 const addLinesBtn=addPopup.querySelector(".add-lines-btn");
@@ -1715,7 +1889,7 @@ addLinesBtn.addEventListener("click", () => {
   updateQuoteTotals();
   renderDisplayTable(newQuote)
   approveQuoteBtn.classList.add("active")
-  closePopup();
+  closeModal();
 });
 
 function addProductsToQuote(){

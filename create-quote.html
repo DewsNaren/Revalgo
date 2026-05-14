@@ -510,33 +510,49 @@
                                             </div>
                                         </div>
 
-                                        <div class="suggest-product-popup">
-                                            <div class="product-header">
-                                                <input type="text" class="search-suggest-product" name="search-suggest-product" placeholder="Search">
-                                                <button class="expand-btn" data-target=".suggest-product-popup" data-type="table" data-modal="suggest-popup" ><img src="./assets/images/global/email_Expand_icon.png"  alt="expand icon"></button>
-                                                <button class="close-suggest-popup-btn"><img src="./assets/images/global/close-modal.webp" alt="close"></button>
-                                            </div>
-                                            <div class="product-body">
-                                                <h3 class="title">Suggested Product</h3>
-                                                <div class="products">
-                                                    <div class="product">
-                                                        <div class="detail-container">
+                                        
+                                        
+                                        
+                                        <div class="add-btn-container">
+                                            <button type="button" class="add-btn" onclick="openAddPopup()"><img src="./assets/images/create_quote/add item_icon.png" alt="add"></button>
+                                            <p class="text">Click here to Add Item</p>
+                                        </div>
+                                    </div>
+                            </div>
+                    </div>
+                </div>  
+            </div>
+            
+            </div>
+        </main>
+        <div class="suggest-product-popup">
+                <div class="product-header">
+                    <input type="text" class="search-suggest-product" name="search-suggest-product" placeholder="Search" autocomplete="off">
+                    <button class="expand-btn" data-target=".suggest-product-popup" data-type="table" data-modal="suggest-popup" ><img src="./assets/images/global/email_Expand_icon.png"  alt="expand icon"></button>
+                    <button class="min-suggest-btn" onclick="retrieveSuggestPopup()"><img src="./assets/images/orderpad/Collapse_icon.png" class="collapse-img" alt="collapse"></button>
+                    <button class="close-suggest-popup-btn" onclick="closeSuggestPopup()"><img src="./assets/images/global/close-modal.webp" alt="close"></button>
+                </div>
+                    <div class="product-body">
+                        <h3 class="title">Suggested Product</h3>
+                            <div class="products">
+                                <div class="product">
+                                    <div class="detail-container">
                                                             
-                                                            <p class="product-id"> <span class="label id">ID14321</span> <span class="value"> - $33.03</span></p>
-                                                            <p class="avil-qty"> <span class="label">Avaliable Qty</span> <span class="value"> 372</span></p>
-                                                            <p class="score"> <span class="label">Score</span> <span class="value"> 90%</span></p>
-                                                        </div>
-                                                        <p class="desc">o-z/ gedney clip on 670 170 conduit body cover, 2 in hub, for use with for conduit body cover.</p>
-                                                    </div>
-                                                    <div class="product">
-                                                        <div class="detail-container">
+                                        <p class="product-id"> <span class="label id">ID14321</span> <span class="value"> - $33.03</span></p>
+                                        <p class="avil-qty"> <span class="label">Avaliable Qty</span> <span class="value"> 372</span></p>
+                                        <p class="score"> <span class="label">Score</span> <span class="value"> 90%</span></p>
+                                    </div>
+                                    <p class="desc">o-z/ gedney clip on 670 170 conduit body cover, 2 in hub, for use with for conduit body cover.</p>
+                                </div>
+                                <div class="product">
+                                    <div class="detail-container">
                                                             
-                                                            <p class="product-id"> <span class="label id">ID14321</span> <span class="value"> - $33.03</span></p>
-                                                            <p class="avil-qty"> <span class="label">Avaliable Qty</span> <span class="value"> 372</span></p>
-                                                            <p class="score"> <span class="label">Score</span> <span class="value"> 90%</span></p>
-                                                        </div>
-                                                        <p class="desc">o-z/ gedney clip on 670 170 conduit body cover, 2 in hub, for use with for conduit body cover.</p>
-                                                    </div>
+                                        <p class="product-id"> <span class="label id">ID14321</span> <span class="value"> - $33.03</span></p>
+                                        <p class="avil-qty"> <span class="label">Avaliable Qty</span> <span class="value"> 372</span></p>
+                                        <p class="score"> <span class="label">Score</span> <span class="value"> 90%</span></p>
+                                    </div>
+                                    <p class="desc">o-z/ gedney clip on 670 170 conduit body cover, 2 in hub, for use with for conduit body cover.</p>
+                                </div>
                                                     <div class="product">
                                                         <div class="detail-container">
                                                             <p class="product-id"> <span class="label id">ID14321</span> <span class="value"> - $33.03</span></p>
@@ -556,82 +572,37 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="sourcing-popup">
-                                            <div class="sourcing-header">
-                                                <input type="text" class="search-sourcing-product" name="search-sourcing-product" placeholder="Search">
-                                                <button class="close-suggest-popup-btn"><img src="./assets/images/global/close-modal.webp" alt="close"></button>
-                                            </div>
-                                            <div class="sourcing-body">
-                                                <h3 class="title">Suggested Product</h3>                  
-                                                    <div class="products">
+        </div>
+        <div class="supplier-popup">
+            <div class="supplier-header">
+                <h3 class="title">Supplier Details</h3>   
+                <button class="close-supplier-popup-btn"><img src="./assets/images/global/close-modal.webp" alt="close"></button>
+            </div>
+                <div class="supplier-body">
+                    <div class="products">
+                        <div class="product">                       
+                            <p class="supplier text-uppercase">EATON</p>
+                            <div class="detail-container">
+                                <p class="qty"> <span class="label">ID14321</span> <span class="value">50</span></p>
+                                <p class="unit-cost"> <span class="label">Unit Cost</span> <span class="value"> 50</span></p>
+                                <p class="location"> <span class="label">Location</span> <span class="value">Albama</span></p>
+                                <p class="lead-time"> <span class="label">Lead Time</span> <span class="value">2 days</span></p>
+                                <p class="updated-date"> <span class="label">Last Updated Date </span> <span class="value">11-09-2022</span></p>
+                            </div>                          
+                        </div>
                                                         
-                                                        <div class="product">
-                                                            <div class="detail-container">
-                                                                
-                                                                
-                                                                <p class="score"> <span class="label">Score</span> <span class="value"> 90%</span></p>
-                                                            </div>
-                                                            <p class="desc">o-z/ gedney clip on 670 170 conduit body cover, 2 in hub, for use with for conduit body cover.</p>
-                                                        </div>
-                                                        <div class="product">
-                                                            <div class="detail-container">
-                                                                <p class="product-id"> <span class="label id">ID14321</span> <span class="value">S</span></p>
-                                                                <p class="score"> <span class="label">Score</span> <span class="value"> 90%</span></p>
-                                                            </div>
-                                                            <p class="desc">o-z/ gedney clip on 670 170 conduit body cover, 2 in hub, for use with for conduit body cover.</p>
-                                                        </div>
-                                                        <div class="product">
-                                                            <div class="detail-container">
-                                                                
-                                                                <p class="product-id"> <span class="label id">ID14321</span> <span class="value">NS</span></p>
-                                                                <p class="score"> <span class="label">Score</span> <span class="value"> 90%</span></p>
-                                                            </div>
-                                                            <p class="desc">o-z/ gedney clip on 670 170 conduit body cover, 2 in hub, for use with for conduit body cover.</p>
-                                                        </div>
-                                                        <div class="product">
-                                                            <div class="detail-container">
-                                                                
-                                                                <p class="product-id"> <span class="label id">ID14321</span> <span class="value">S</span></p>
-                                                                <p class="score"> <span class="label">Score</span> <span class="value"> 90%</span></p>
-                                                            </div>
-                                                            <p class="desc">o-z/ gedney clip on 670 170 conduit body cover, 2 in hub, for use with for conduit body cover.</p>
-                                                        </div>
-                                                    </div>
-                                            </div>
-                                        </div>
-                                        <div class="supplier-popup">
-                                            <div class="supplier-header">
-                                                <h3 class="title">Supplier Details</h3>   
-                                                <button class="close-suggest-popup-btn"><img src="./assets/images/global/close-modal.webp" alt="close"></button>
-                                            </div>
-                                            <div class="supplier-body">
-                                                    <div class="products">
-                                                        <div class="product">
-                                                        
-                                                            <p class="supplier text-uppercase">EATON</p>
-                                                            <div class="detail-container">
-                                                                <p class="qty"> <span class="label">ID14321</span> <span class="value">50</span></p>
-                                                                <p class="unit-cost"> <span class="label">Unit Cost</span> <span class="value"> 50</span></p>
-                                                                <p class="location"> <span class="label">Location</span> <span class="value">Albama</span></p>
-                                                                <p class="lead-time"> <span class="label">Lead Time</span> <span class="value">2 days</span></p>
-                                                                 <p class="updated-date"> <span class="label">Last Updated Date </span> <span class="value">11-09-2022</span></p>
-                                                            </div>
-                                                            
-                                                        </div>
-                                                        
-                                                        <div class="product">
+                        <div class="product">
 
-                                                            <p class="supplier">Direct Trading Co.</p>
-                                                            <div class="detail-container">
-                                                                <p class="qty"> <span class="label">ID14321</span> <span class="value">50</span></p>
-                                                                <p class="unit-cost"> <span class="label">Unit Cost</span> <span class="value"> 50</span></p>
-                                                                <p class="location"> <span class="label">Location</span> <span class="value">Albama</span></p>
-                                                                <p class="lead-time"> <span class="label">Lead Time</span> <span class="value">2 days</span></p>
-                                                                 <p class="updated-date"> <span class="label">Last Updated Date </span> <span class="value">11-09-2022</span></p>
-                                                            </div>
+                            <p class="supplier">Direct Trading Co.</p>
+                            <div class="detail-container">
+                                <p class="qty"> <span class="label">ID14321</span> <span class="value">50</span></p>
+                                <p class="unit-cost"> <span class="label">Unit Cost</span> <span class="value"> 50</span></p>
+                                <p class="location"> <span class="label">Location</span> <span class="value">Albama</span></p>
+                                <p class="lead-time"> <span class="label">Lead Time</span> <span class="value">2 days</span></p>
+                                <p class="updated-date"> <span class="label">Last Updated Date </span> <span class="value">11-09-2022</span></p>
+                            </div>
                                                             
-                                                        </div>
+                        </div>
                                                         <div class="product">
 
                                                             <p class="supplier">Fund Masters</p>
@@ -655,32 +626,61 @@
                                                         </div>
                                                     </div>
                                             </div>
-                                        </div>
-                                        <div class="add-btn-container">
-                                            <button type="button" class="add-btn" onclick="openAddPopup()"><img src="./assets/images/create_quote/add item_icon.png" alt="add"></button>
-                                            <p class="text">Click here to Add Item</p>
-                                        </div>
-                                    </div>
+        </div>
+        <div class="sourcing-popup">
+            <div class="sourcing-header">
+                <input type="text" class="search-sourcing-product" name="search-sourcing-product" placeholder="Search" autocomplete="off">
+                <button class="close-source-popup-btn"><img src="./assets/images/global/close-modal.webp" alt="close"></button>
+            </div>
+            <div class="sourcing-body">
+                <h3 class="title">Suggested Product</h3>                  
+                    <div class="products">
+                                                        
+                        <div class="product">
+                            <div class="detail-container">                                                                
+                                <p class="score"> <span class="label">Score</span> <span class="value"> 90%</span></p>
                             </div>
+                            <p class="desc">o-z/ gedney clip on 670 170 conduit body cover, 2 in hub, for use with for conduit body cover.</p>
+                        </div>
+                        <div class="product">
+                            <div class="detail-container">
+                              <p class="product-id"> <span class="label id">ID14321</span> <span class="value">S</span></p>
+                                <p class="score"> <span class="label">Score</span> <span class="value"> 90%</span></p>
+                            </div>
+                           <p class="desc">o-z/ gedney clip on 670 170 conduit body cover, 2 in hub, for use with for conduit body cover.</p>
                     </div>
-                </div>  
-            </div>
-            
-            </div>
-        </main>
-        <!-- <div class="desc-dropdown">
-            <ul class="desc-list">
-                <li>hell el! here</li>
-                <li>hell el! here</li>
-                                                <li>hell el! here</li>
-                                                <li>hell el! here</li>
-                                                <li>hell el! here</li>
-                                                <li>hell el! here</li>
-                                                <li>hell el! here</li>
-                                                <li>hell el! here</li>
-             </ul>
-        </div> -->
+                                                        <div class="product">
+                                                            <div class="detail-container">
+                                                                
+                                                                <p class="product-id"> <span class="label id">ID14321</span> <span class="value">NS</span></p>
+                                                                <p class="score"> <span class="label">Score</span> <span class="value"> 90%</span></p>
+                                                            </div>
+                                                            <p class="desc">o-z/ gedney clip on 670 170 conduit body cover, 2 in hub, for use with for conduit body cover.</p>
+                                                        </div>
+                                                        <div class="product">
+                                                            <div class="detail-container">
+                                                                
+                                                                <p class="product-id"> <span class="label id">ID14321</span> <span class="value">S</span></p>
+                                                                <p class="score"> <span class="label">Score</span> <span class="value"> 90%</span></p>
+                                                            </div>
+                                                            <p class="desc">o-z/ gedney clip on 670 170 conduit body cover, 2 in hub, for use with for conduit body cover.</p>
+                                                        </div>
+                                                    </div>
+                                            </div>
+        </div>
         <div class="popup-overlay">
+             <div class="expand-modal popup">
+                <button class="close-modal-btn" onclick="closeExpandPopup()"><img src="./assets/images/global/close-modal.webp" alt="close"></button>
+                <div class="expand-modal-content suggest-popup">
+                </div>
+            </div>
+            <div class="stock-popup popup">
+                <p class="text">Do you want to confirm with this <br> <span class="id">ID14321</span> Non stock item? </p>
+                <div class="btn-container">
+                    <button type="button" class="yes-btn">Yes</button>
+                    <button type="button" class="no-btn">No</button>
+                </div>
+            </div>
             <div class="add-popup popup">
                 <div class="item-header">
                     <h3>Add Item</h3>
@@ -732,7 +732,7 @@
                     <button type="button" class="ok-btn">Ok</button>
                 </div>
             </div>
-            <div class="form-popup">
+            <div class="form-popup popup">
                 <div class="header">
                     <h3 class="title form-title">Ship To</h3>
                     <button type="button" class="close-popup-btn"><img src="./assets/images/global/close-modal.webp" alt="close"></button>
@@ -828,10 +828,12 @@
                     <button type="button" class="cancel-btn">Cancel</button>
                 </div>
             </div>
+            
         </div>
-
+        <script src="./assets/js/popup.js"></script>
         <script src="./assets/js/header.js"></script>
         <script src="./assets/js/create-quote.js"></script>
+       
         
     </body>
 </html>

@@ -736,6 +736,7 @@
                                         
                                         &:first-of-type{
                                             padding-left: clamp(12px, $fs-40px, $fs-40px);
+                                            cursor: pointer;
                                         }
                                         &:nth-of-type(5) span{
                                             color:  $red-00;
@@ -1202,7 +1203,7 @@
                         max-content
                         clamp(22px, $fs-50px, $fs-50px)  
                         clamp(32px, $fs-75px, $fs-75px)
-                        37.5%
+                        39%
                         max-content
                         clamp(32px, $fs-115px, $fs-115px) 
                         clamp(25px, $fs-110px, $fs-110px)    
@@ -1292,7 +1293,7 @@
                             max-content
                             clamp(22px, $fs-50px, $fs-50px)  
                             clamp(32px, $fs-75px, $fs-75px)
-                            37.5%
+                            39%
                             clamp(15px, $fs-70px, $fs-70px)
                             clamp(32px, $fs-115px, $fs-115px) 
                             clamp(25px, $fs-100px, $fs-100px)    
@@ -1328,6 +1329,7 @@
                                     text-align: left;
                                     overflow: hidden;
                                     text-overflow: ellipsis;
+                                    padding-right: 0;
                                     .down-arrow-img{
                                         width: clamp(12px, $fs-25px, $fs-25px);
                                         margin-right: 5px;
@@ -1340,12 +1342,14 @@
                                         display: block;
                                     }
                                     .dropdown-text{
-                                        display: block;
-                                        color: rgba(0,0,0,0.95);
+                                        display: inline-flex;
+                                        align-items: center;
+                                        gap: 3px;
+                                        color: rgba(0,0,0,0.9);
                                         margin-bottom: 3px;
-                                       .id,.detail{
+                                        flex-wrap: wrap;
+                                       .requested-id,.detail{
                                             color: $blue-87;
-
                                         }
                                         .detail{
                                             display: inline-block;
@@ -1354,6 +1358,94 @@
                                             border-radius: 5px;
                                             font-size: clamp(8px, $fs-12px, $fs-12px);
                                             font-weight: 500;
+                                            cursor: pointer;
+                                        }
+                                        .sourcing{
+                                            display: none;
+                                            align-items: center;
+                                            gap: 5px;
+                                            padding: 3px 5px;
+                                            line-height: 1.659;
+                                            background-color: rgba(0,0,0,0.8);
+                                            border-radius: 5px;
+                                            color:$white;
+                                            font-size: clamp(8px, $fs-12px, $fs-12px);
+                                            cursor: pointer;
+                                            img{
+                                                width: clamp(8px, $fs-11px, $fs-11px);
+                                            }
+                                            &.active{
+                                                display: inline-flex;
+                                            }
+                                            
+                                        }
+                                        .stock-wrapper{
+                                            display: none;
+                                            .supplier-text{
+                                                color: $blue-3ff;
+                                                text-decoration: underline;
+                                                cursor: pointer;
+                                            }
+                                            .stock-text{
+                                                color: $red-00;
+                                                border: 1px solid $red-00;
+                                                line-height: 1;
+                                                padding: 3px;
+                                                border-radius: 3px;
+                                                position: relative;
+                                                cursor: default;
+                                                 &.red{
+                                                    color: $red-00;
+                                                    border: 1px solid $red-00;
+                                                }
+                                                &.green{
+                                                    color: $green-28;
+                                                    border: 1px solid $green-28;
+                                                }
+
+                                                .tooltiptext {
+                                                    visibility: hidden;
+                                                    background-color: $white;
+                                                    color: $grey-66;
+                                                    text-align: center;
+                                                    border-radius: 5px;
+                                                    padding: 5px;
+                                                    position: absolute;
+                                                    z-index: 1;
+                                                    bottom: calc(100% + 5px);
+                                                    left: 0;
+                                                    text-wrap: nowrap;
+
+                                                     &:after{
+                                                        position: absolute;
+                                                        content: '';
+                                                        bottom: -5px;
+                                                        left: 10%;
+                                                        transform: translateX(-10%);
+                                                        border-left: 5px solid transparent;
+                                                        border-right: 5px solid transparent;
+                                                        border-top: 5px solid $white; 
+                                                    }
+                                                }
+
+                                                &:hover .tooltiptext {
+                                                    visibility: visible;
+                                                }
+
+                                            }
+                                            &.active{
+                                                display: inline-block;
+                                            }
+
+                                        }
+                                    
+
+                                        .tag-text{
+                                            margin-left: 4px;
+                                            img{
+                                                width: clamp(13px, $fs-22px, $fs-22px);
+                                                margin-right: 5px;
+                                            }
                                         }
                                         
                                     }
@@ -1534,6 +1626,114 @@
                                
                         }
 
+                        }
+                        .sourcing-dropdown{
+                            display: none;
+                            background-color: $blue-2ff;
+                            padding:clamp(15px, $fs-30px, $fs-30px) clamp(15px, $fs-30px, $fs-30px)   clamp(20px, $fs-40px, $fs-40px) clamp(45px, $fs-80px, $fs-80px) ;
+                            .desc-wrapper{
+                                display: flex;
+                                gap: clamp(37px, $fs-75px, $fs-75px);
+                                width: 51%;
+                                padding-right: clamp(10px, $fs-20px, $fs-20px);
+                                .img-wrapper{
+                                    .thumbnail-img{
+                                        width: clamp(83px, $fs-123px, $fs-123px);
+                                        height: clamp(57px, $fs-97px, $fs-97px);
+                                    }
+                                        img{
+                                        width: 100%;
+                                        height: 100%;
+                                    }
+                                }
+                                .desc-container{
+                                    flex: 1;
+                                    h3{
+                                        font-size: clamp(12px, $fs-16px, $fs-16px);
+                                        color: $black-90;
+                                        font-weight: 500;
+                                        margin-bottom: clamp(10px, $fs-12px, $fs-12px);
+                                    }
+                                    p{
+                                        color: $grey-6c;
+                                        font-size: clamp(10px, $fs-14px, $fs-14px);
+                                    }
+                                }
+                                border-right:1px solid rgba(0, 0, 0, 0.2);
+                            }
+                            .spec-wrapper{
+                                padding-left: clamp(10px, $fs-30px, $fs-30px);
+                                h3{
+                                    font-size: clamp(12px, $fs-16px, $fs-16px);
+                                    color: $black-90;
+                                    font-weight: 500;
+                                    margin-bottom: clamp(7px, $fs-16px, $fs-16px);
+                                }
+                                // .content-container{
+                                //     display: flex;
+                                //     gap: clamp(26px, $fs-58px, $fs-58px);
+
+
+                                //     .left-content,.right-content{
+                                //         p{
+                                //             display: flex;
+                                //             align-items: center;
+                                //             // justify-content:space-between;
+                                //             gap: clamp(10px, $fs-30px, $fs-30px);
+                                //             font-size: clamp(9px, $fs-13px, $fs-13px);
+                                //             line-height: 1;
+                                //             margin-bottom: clamp(7px, $fs-14px, $fs-14px);
+                                //             .label{
+                                //                 color: $grey-6c;
+                                        
+                                //             }
+                                //             .value{
+                                //                 color: $black-80;
+                                //                 font-weight: 500;
+                                
+                                //             }
+                                //         }
+                                //     }
+                                //     .left-content{
+                                //         p{
+                                //             justify-content: space-between;
+                                //         }
+                                //     }
+                                // }
+                                .content-container{
+                                    display: grid;
+                                    grid-template-columns: max-content max-content;
+                                    column-gap: clamp(26px, $fs-58px, $fs-58px);
+
+                                    .left-content,
+                                    .right-content{
+                                        display: grid;
+                                        grid-template-columns: max-content max-content;
+                                        column-gap: clamp(10px, $fs-30px, $fs-30px);
+                                        row-gap: clamp(7px, $fs-12px, $fs-12px);
+
+                                        p{
+                                            display: contents;
+                                            font-size: clamp(9px, $fs-13px, $fs-13px);
+                                            margin-bottom: 0;
+                                            line-height: 1;
+                                        }
+
+                                        .label{
+                                            color: $grey-6c;
+                                        }
+
+                                        .value{
+                                            color: $black-80;
+                                            font-weight: 500;
+                                        }
+                                    }
+                                }
+
+                            }
+                            &.active{
+                                display: flex;
+                            }
                         }
                         .add-btn-container{
                             position: fixed;
@@ -1750,6 +1950,426 @@
                                         }
                                        
                                     }
+.sourcing-popup{
+                            position: fixed;
+                            display: none;
+                            flex-direction: column;
+                            background-color: $white;
+                            box-shadow: $box-shadow-1;
+                            z-index: 3;
+                            border-radius:  clamp(5px, $fs-10px, $fs-10px);
+                         
+                            width: 39%;
+                        
+                            gap: clamp(8px, $fs-10px, $fs-10px);
+                            padding: clamp(15px, $fs-30px, $fs-30px) 0 clamp(10px, $fs-20px, $fs-20px) ;
+                            // max-height: 100%;
+                            .sourcing-header{
+                                display: flex;
+                                gap: clamp(10px, $fs-20px, $fs-20px);
+                                align-items: center;
+                                margin-bottom: clamp(3px, $fs-7px, $fs-7px);
+                                padding-left: clamp(12px, $fs-25px, $fs-25px);
+                                padding-right: clamp(10px, $fs-20px, $fs-20px) ;
+                                .search-sourcing-product{
+                                    flex: 1;
+                                    border: none;
+                                    padding-bottom: 5px;
+                                    border-bottom: 1px solid #ccc;
+                                    font-size:clamp(10px, $fs-15px, $fs-15px);
+                                    color: $grey-66;
+                                    outline: none;
+                                    &::placeholder{
+                                        color: $grey-66;
+                                    }
+                                }
+                                button{
+                                    background-color: transparent;
+                                    border: none;
+                                    
+                                    &.expand-btn{
+                                        img{
+
+                                            display: block;
+                                            width: clamp(9px, $fs-19px, $fs-19px);
+                                        }
+                                    }
+                                    &.close-source-popup-btn{
+                                        img{
+                                            display: block;
+                                            width: clamp(8px, $fs-15px, $fs-15px);
+                                        }
+                                    }
+                                }
+                            }
+                            .sourcing-body{
+                                display: flex;
+                                flex-direction: column;
+                                max-height:clamp(140px, $fs-220px, $fs-220px) ;
+                               flex: 1;
+                                min-height: 0;
+                                // margin-right: clamp(10px, $fs-20px, $fs-20px);
+                                // overflow: hidden;
+                                h3{
+                                    font-weight: 500;
+                                    font-size: clamp(12px, $fs-20px, $fs-20px);
+                                    margin-bottom: clamp(10px, $fs-12px, $fs-12px);
+                                    padding-left: clamp(12px, $fs-25px, $fs-25px);
+                                    padding-right: clamp(10px, $fs-20px, $fs-20px) ;
+                                }
+                                .products{
+                                    flex: 1;
+                                    min-height: 100%;
+
+                                    height: 100%;
+                                    overflow-y: auto;
+                                    max-height:clamp(150px, $fs-220px, $fs-220px) ;
+                                    .product{
+                                        padding: clamp(5px, $fs-12px, $fs-12px) 0;
+                                        border-bottom: 1px solid #ccc;
+                                        padding-left: clamp(12px, $fs-25px, $fs-25px);
+                                        position: relative;
+                                        cursor: pointer;
+                                        .detail-container{
+                                            display: flex;
+                                            gap: clamp(12px, $fs-40px, $fs-40px);
+                                            p{
+                                                font-size: clamp(9px, $fs-14px, $fs-14px);
+                                                margin-bottom: clamp(5px, $fs-10px, $fs-10px);
+                                                line-height: 1;
+                                                .label{
+                                                    color: $black-80;
+
+                                                    &.id{
+                                                        color: $blue-87;
+                                                        font-weight: 600;
+                                                        font-size: clamp(11px, $fs-16px, $fs-16px);
+                                                      
+                                                    }
+                                                }
+                                                .value{
+                                                    color: $black;
+                                                    font-weight: 500;
+                                                    margin-left:  5px;
+                                                }
+                                                &.product-id{
+                                                    .value{
+                                                        display: inline-block;
+                                                    
+                                                        line-height: 1;
+                                                        padding: 3px;
+                                                        border-radius: 3px;
+
+                                                        &.red{
+                                                            color: $red-00;
+                                                            border: 1px solid $red-00;
+                                                        }
+                                                        &.green{
+                                                            color: $green-28;
+                                                            border: 1px solid $green-28;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            
+                                        }
+                                        .desc{
+                                            
+                                            color: $grey-6c;
+                                            font-size: clamp(9px, $fs-12px, $fs-12px);
+                                            line-height: 1.2;
+                                            margin-bottom: 0;
+                                            white-space: nowrap;
+                                            text-overflow: ellipsis;
+                                            overflow: hidden;
+                                            max-width: 95%;
+                                        }
+                                        &:last-of-type{
+                                            border-bottom: none;
+                                        }
+                                        &:hover{
+                                            background-color: $blue-2ff;
+
+                                           
+                                            
+                                            
+                                        }
+                                    
+                                        
+                                    }
+                                    .not-found{
+                                        text-align: center;
+                                        font-size: clamp(10px, $fs-15px, $fs-15px);
+                                        margin-top:  clamp(10px, $fs-15px, $fs-15px);
+                                    }
+                                    &::-webkit-scrollbar {
+                                        width: 4px;
+                                        // margin-right: clamp(10px, $fs-27px, $fs-27px); 
+                                      
+                                    }
+
+                                &::-webkit-scrollbar-thumb {
+                                    background: rgba(161, 161, 161, 0.5);
+                                    border-radius: 4px;        
+                                }
+                                }
+                                
+                            }
+                            &.active{
+                                display: flex;
+                            }
+    }
+                        .supplier-popup{
+                            position: fixed;
+                            display: none;
+                            flex-direction: column;
+                            background-color: $white;
+                            box-shadow: $box-shadow-1;
+                            z-index: 3;
+                            border-radius:  clamp(5px, $fs-10px, $fs-10px);
+                            // left: 53%;
+                            // top: 32%;
+                            width: max-content;
+                            // transform: translate(-53%, -32%);
+                            padding: clamp(15px, $fs-22px, $fs-22px) 0 clamp(8px, $fs-15px, $fs-15px);
+                            max-height: 100%;
+                            .supplier-header{
+                                display: flex;
+                                gap: clamp(10px, $fs-20px, $fs-20px);
+                                align-items: center;
+                                justify-content: space-between;
+                                margin-bottom: clamp(3px, $fs-7px, $fs-7px);
+                                padding-left: clamp(12px, $fs-25px, $fs-25px);
+                                padding-right: clamp(10px, $fs-20px, $fs-20px) ;
+                                h3{
+                                    font-weight: 500;
+                                    font-size: clamp(12px, $fs-20px, $fs-20px);
+                                }
+                                button{
+                                    background-color: transparent;
+                                    border: none;
+                                    
+                                    &.expand-btn{
+                                        img{
+
+                                            display: block;
+                                            width: clamp(9px, $fs-19px, $fs-19px);
+                                        }
+                                    }
+                                    &.close-supplier-popup-btn{
+                                        img{
+                                            display: block;
+                                            width: clamp(8px, $fs-15px, $fs-15px);
+                                        }
+                                    }
+                                }
+                            }
+                            .supplier-body{
+                                display: flex;
+                                flex-direction: column;
+                                max-height:clamp(140px, $fs-220px, $fs-220px);
+                                flex: 1;
+                                min-height: 0;
+                                .products{
+                                    flex: 1;
+                                    min-height: 0;
+                                    overflow-y: auto;
+                                    .product{
+                                        padding: clamp(5px, $fs-12px, $fs-12px) 0;
+                                        border-bottom: 1px solid #ccc;
+                                        padding-left: clamp(12px, $fs-25px, $fs-25px);
+                                        padding-right: clamp(12px, $fs-25px, $fs-25px);
+                                        position: relative;
+                                        cursor: pointer;
+                                        .detail-container{
+                                            display: flex;
+                                            gap: clamp(12px, $fs-40px, $fs-40px);
+                                            p{
+                                                display: flex;
+                                                align-items: center;
+                                                gap: 3px;
+                                                font-size: clamp(9px, $fs-14px, $fs-14px);
+                                                margin-bottom: clamp(5px, $fs-10px, $fs-10px);
+                                                line-height: 1;
+                                                .label{
+                                                    color: $black-80;     
+                                                }
+                                                .value{
+                                                    color: $black;
+                                                    font-weight: 500;
+                                                    margin-left:  5px;
+                                                }
+                                            }
+                                            
+                                        }
+                                        .supplier{
+                                            color: $blue-87;
+                                            font-weight: 600;
+                                            font-size: clamp(11px, $fs-16px, $fs-16px);
+                                            line-height: 1;
+                                            margin-bottom:clamp(7px, $fs-14px, $fs-14px);
+                                           
+                                        }
+                                        &:last-of-type{
+                                            border-bottom: none;
+                                        }
+                                        &:hover{
+                                            background-color: $blue-2ff;
+
+                                           
+                                            
+                                            
+                                        }
+                                    
+                                        
+                                    }
+                                    &::-webkit-scrollbar {
+                                        width: 4px;
+                                        // margin-right: clamp(10px, $fs-27px, $fs-27px); 
+                                      
+                                    }
+
+                                &::-webkit-scrollbar-thumb {
+                                    background: rgba(161, 161, 161, 0.5);
+                                    border-radius: 4px;        
+                                }
+                                }
+                                
+                            }
+                            &.active{
+                                display: flex;
+                            }
+                        }
+    .suggest-product-popup{
+                            position: fixed;
+                            display: none;
+                            flex-direction: column;
+                            background-color: $white;
+                            box-shadow: $box-shadow-1;
+                            z-index: 3;
+                            width: 50%;
+                            border-radius:  clamp(5px, $fs-10px, $fs-10px);
+                            // left: 16%;
+                            // top: 50%;
+                            // transform: translate(-16%, -50%);
+                            gap: clamp(8px, $fs-10px, $fs-10px);
+                            padding: clamp(15px, $fs-30px, $fs-30px) clamp(10px, $fs-20px, $fs-20px) clamp(10px, $fs-20px, $fs-20px) clamp(15px, $fs-30px, $fs-30px);
+                            // max-height: 100%;
+                            .product-header{
+                                display: flex;
+                                gap: clamp(10px, $fs-20px, $fs-20px);
+                                align-items: center;
+                                margin-bottom: clamp(3px, $fs-7px, $fs-7px);
+                                .search-suggest-product{
+                                    flex: 1;
+                                    margin-right:clamp(10px, $fs-25px, $fs-25px);
+                                    border: none;
+                                    padding-bottom: 5px;
+                                    border-bottom: 1px solid #ccc;
+                                    font-size:clamp(10px, $fs-15px, $fs-15px);
+                                    color: $grey-66;
+                                    outline: none;
+                                    &::placeholder{
+                                        color: $grey-66;
+                                    }
+                                }
+                                button{
+                                    background-color: transparent;
+                                    border: none;
+                                    &.min-suggest-btn{
+                                        display: none;
+                                        img{
+                                            display: block;
+                                            width: clamp(12px, $fs-22px, $fs-22px);  
+                                        }
+                                    }
+                                    &.expand-btn{
+                                        img{
+
+                                            display: block;
+                                            width: clamp(9px, $fs-19px, $fs-19px);
+                                        }
+                                    }
+                                    &.close-suggest-popup-btn{
+                                        img{
+                                            display: block;
+                                            width: clamp(8px, $fs-15px, $fs-15px);
+                                        }
+                                    }
+                                }
+                            }
+                            .product-body{
+                                flex: 1;
+                                min-height: 0;
+                                overflow-y: auto;
+                                max-height:clamp(150px, $fs-220px, $fs-220px) ;
+                                padding-right: clamp(10px, $fs-20px, $fs-20px);
+                                margin-right: 4px;
+                                h3{
+                                    font-size: clamp(12px, $fs-20px, $fs-20px);
+                                    margin-bottom: clamp(10px, $fs-12px, $fs-12px);
+                                }
+                                .products{
+                                    .product{
+                                        padding: clamp(5px, $fs-12px, $fs-12px) 0;
+                                        border-bottom: 1px solid #ccc;
+                                        cursor: pointer;
+                                        .detail-container{
+                                            display: flex;
+                                            gap: clamp(12px, $fs-28px, $fs-28px);
+                                            p{
+                                                font-size: clamp(9px, $fs-14px, $fs-14px);
+                                                margin-bottom: clamp(5px, $fs-10px, $fs-10px);
+                                                line-height: 1;
+                                                .label{
+                                                    color: $black-80;
+
+                                                    &.id{
+                                                        color: $blue-87;
+                                                        font-weight: 500;
+                                                    }
+                                                }
+                                                .value{
+                                                    color: $black;
+                                                    font-weight: 500;
+                                                    margin-left:  5px;
+                                                }
+                                            }
+                                            
+                                        }
+                                        .desc{
+                                            color: $grey-6c;
+                                            font-size: clamp(9px, $fs-12px, $fs-12px);
+                                            line-height: 1.2;
+                                            margin-bottom: 0;
+                                        }
+                                        &:last-of-type{
+                                            border-bottom: none;
+                                        }
+                                        &:hover{
+                                            background-color: rgba(0,0,0,0.06);
+                                        }
+                                    }
+                                    .not-found{
+                                        text-align: center;
+                                        font-size: clamp(10px, $fs-15px, $fs-15px);
+                                        margin-top:  clamp(10px, $fs-15px, $fs-15px);
+                                    }
+                                }
+                                &::-webkit-scrollbar {
+                                    width: 4px;
+                                }
+
+                                &::-webkit-scrollbar-thumb {
+                                    background: rgba(161, 161, 161, 0.5);
+                                    border-radius: 4px;        
+                                }
+                            }
+                            &.active{
+                                display: flex;
+
+                            }
+                        }
 
 .popup-overlay{  
     position: fixed;
@@ -1763,7 +2383,177 @@
     &.active{
         display: flex;
     }
+    .expand-modal{
+        background-color: $white;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+        max-height: 85%;
+        width: 62%;
+        height: 100%;
+        position: relative;
+        padding: clamp(12px, $fs-24px, $fs-24px) clamp(12px, $fs-24px, $fs-24px);
+        border-radius: clamp(3px, $fs-10px, $fs-10px);
+        .close-modal-btn{
+            position: absolute;
+            align-self: flex-end;
+            border: none;
+            background-color: transparent;
+            top: clamp(12px, $fs-25px, $fs-25px);
+            z-index: 4;
+            img{
+                width: clamp(11px, $fs-19px, $fs-19px);
+            }
+            // &.not-active{
+            //     display: none;
+            // }
+        }
+        .expand-modal-content{
+            display: flex;   
+            flex: 1;
+            max-height: 100%;
+            min-height: 0;
+            width: 100%;
+            .suggest-product-popup{
+                            position: relative;
+                            display: flex;
+                            flex-direction: column;
+                            // background-color: $white;
+                            box-shadow: none;
+                            z-index: 3;
+                            width: 100%;
+                            // border-radius:  clamp(5px, $fs-10px, $fs-10px);
+                            top: unset !important;
+                            left: unset !important;
+                            // left: 16%;
+                            // top: 50%;
+                            // transform: translate(-16%, -50%);
+                            gap: clamp(8px, $fs-10px, $fs-10px);
+                            padding: 0;
+                            // padding: 0 clamp(10px, $fs-20px, $fs-20px) clamp(10px, $fs-20px, $fs-20px) clamp(15px, $fs-30px, $fs-30px);
+                            // max-height: 100%;
+                            .product-header{
+                                display: flex;
+                                gap: clamp(10px, $fs-20px, $fs-20px);
+                                align-items: center;
+                                justify-content: space-between;
+                                margin-bottom: clamp(3px, $fs-7px, $fs-7px);
+                                .search-suggest-product{
+                                    flex: 0 0 60%;
+                                    margin-right:clamp(10px, $fs-25px, $fs-25px);
+                                    border: none;
+                                    padding-bottom: 5px;
+                                    border-bottom: 1px solid #ccc;
+                                    font-size:clamp(11px, $fs-16px, $fs-16px);
+                                    color: $grey-66;
+                                    outline: none;
+                                    width: 60%;
+                                    &::placeholder{
+                                        color: $grey-66;
+                                    }
+                                }
+                                button{
+                                    background-color: transparent;
+                                    border: none;
+                                    &.min-suggest-btn{
+                                        display: inline;
+                                        margin-right:clamp(16px, $fs-34px, $fs-34px) ;
+                                        img{
+                                            display: block;
+                                            width: clamp(12px, $fs-22px, $fs-22px);  
+                                        }
+                                    }
+                                    &.expand-btn{
+                                        display: none;
+                                        margin-right: clamp(9px, $fs-19px, $fs-19px);
+                                        img{
 
+                                            display: block;
+                                            width: clamp(9px, $fs-19px, $fs-19px);
+                                        }
+                                    }
+                                    &.close-suggest-popup-btn{
+                                        display: none;
+                                        img{
+                                            display: block;
+                                            width: clamp(8px, $fs-15px, $fs-15px);
+                                        }
+                                    }
+                                }
+                            }
+                            .product-body{
+                                flex: 1;
+                                min-height: 0;
+                                overflow-y: auto;
+                                // max-height:clamp(150px, $fs-220px, $fs-220px) ;
+                                max-height: 100%;
+                                padding-right: clamp(10px, $fs-20px, $fs-20px);
+                                margin-right: 4px;
+                                h3{
+                                    font-size: clamp(12px, $fs-22px, $fs-22px);
+                                    margin-bottom: clamp(10px, $fs-12px, $fs-12px);
+                                }
+                                .products{
+                                    .product{
+                                        padding: clamp(5px, $fs-12px, $fs-12px) 0;
+                                        border-bottom: 1px solid #ccc;
+
+                                        .detail-container{
+                                            display: flex;
+                                            gap: clamp(12px, $fs-32px, $fs-32px);
+                                            p{
+                                                font-size: clamp(10px, $fs-16px, $fs-16px);
+                                                margin-bottom: clamp(5px, $fs-12px, $fs-12px);
+                                                line-height: 1;
+                                                .label{
+                                                    color: $black-80;
+
+                                                    &.id{
+                                                        color: $blue-87;
+                                                        font-weight: 500;
+                                                    }
+                                                }
+                                                .value{
+                                                    color: $black;
+                                                    font-weight: 500;
+                                                    margin-left:  5px;
+                                                }
+                                            }
+                                            
+                                        }
+                                        .desc{
+                                            color: $grey-6c;
+                                            font-size: clamp(9px, $fs-14px, $fs-14px);
+                                            line-height: 1.2;
+                                            margin-bottom: 0;
+                                        }
+                                        &:last-of-type{
+                                            border-bottom: none;
+                                        }
+                                    }
+                                }
+                                &::-webkit-scrollbar {
+                                    width: 6px;
+                                }
+
+                                &::-webkit-scrollbar-thumb {
+                                    background: rgba(161, 161, 161, 0.5);
+                                    border-radius: 6px;        
+                                }
+                            }
+                            &.active{
+                                display: flex;
+
+                            }
+                    }
+        }
+        &.active{
+            display: flex;
+        }
+
+    }
+    
     .selected-item-popup{
         background-color: $white;
         padding: clamp(10px, $fs-40px, $fs-40px)  clamp(10px, $fs-30px, $fs-30px) clamp(17px, $fs-35px, $fs-35px);

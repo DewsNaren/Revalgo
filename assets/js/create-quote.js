@@ -20,7 +20,7 @@ const quoteOrderWrapper=document.querySelector(".quick-order-wrapper");
 
 //modal
 const quickContentWrapper=document.querySelector(".quick-content-wrapper");
-const popups=document.querySelectorAll("popup");
+const popups=document.querySelectorAll(".popup");
 const formPopup=document.querySelector(".form-popup");
 const formTitle=document.querySelector(".form-title");
 const formContainers=document.querySelectorAll(".form-container");
@@ -28,26 +28,8 @@ const cancelFormPopupBtn=formPopup.querySelector(".cancel-btn");
 const errs=formPopup.querySelectorAll(".error");
 const closePopupBtns= document.querySelectorAll(".close-popup-btn");
 
-function closeModal(){
-  popupOverlay.classList.remove("active");
-  popups.forEach(pop=>pop.classList.remove("active"));
-  if(formPopup.classList.contains("active")){
-    updateForm.reset();
-    dateText.textContent="dd-mm-yyyy";
-    errs.forEach(err=>err.classList.remove("active"));
-    formPopup.classList.remove("active");
-  }
-  if(addPopup.classList.contains("active")){
-    const rows=addPopup.querySelectorAll(".body-wrapper .table-row");
-    rows.forEach((row, index) => {
 
-      if(index !== 0){
-        row.remove();
-      }
-    })
-  }
 
-}
 
 closePopupBtns.forEach(btn => btn.addEventListener("click", () => {
   closeModal();
@@ -523,7 +505,7 @@ function handleExistSearchItemClick(e){
 
   if(type === "id"){
     filteredQuote = allQuotes.filter(
-      q => q.id.toString().toLowerCase() === value
+      q => q.id === Number(value)
     );
   }
 
@@ -1135,21 +1117,27 @@ function renderDisplayTable(newQuote){
       <p>
         <span class="title-text">Lorem ipsum dolor sit.</span>
         <span class="dropdown-text">
-          <img src="./assets/images/global/down-arrow.png" alt="down-arrow" class="down-arrow-img"> <span class="requested-id">${p.requested_id}</span> - 
-          <span class="detail">tydlx4ypi6</span> - 
-          <span class="sourcing"><img src="./assets/images/orderpad/Sourcing_icon.png" alt="sourcing">Sourcing</span>
-          <span class="stock-wrapper"><span class="supplier-text text-uppercase">eaton</span> - <span class="stock-text">NS   <span class="tooltiptext">Non Stock</span></span> - </span>
+          <img src="./assets/images/global/down-arrow.png" alt="down-arrow" class="down-arrow-img" onclick=openSuggestPopup(event)> <span class="requested-id">${p.requested_id}</span> - 
+          <span class="detail" onclick="enableSourceText(event)">tydlx4ypi6</span> - 
+          <span class="${p.isSource==true?"sourcing active":"sourcing"}"  onclick="openSourcingPopup(event)"><img src="./assets/images/orderpad/Sourcing_icon.png" alt="sourcing">Sourcing</span>
+          <span class="${p.isStock==true?"stock-wrapper active":"stock-wrapper"}"><span class="supplier-text text-uppercase" onclick="openSupplierPopup(event)">${p.supplier?p.supplier:"eaton"}</span>
+           - <span class="${p.stock=="NS"?"stock-text red":" stock-text green"}">
+              ${p.stock?p.stock:"S"}
+              <span class="tooltiptext">${p.stock=="S"?"Stock":"Non Stock"}</span>
+            </span> - 
+           </span>
           <span class="tag-text"><img src="./assets/images/global/tag.png" alt="tag">Kanebridge</span>
           </span>
         <span class="text">${p.desc?p.desc:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus hic facere, veniam in distinctio id tempora voluptatum? Facilis eius aut numquam. Alias perferendis sunt veniam reprehenderit officiis quas delectus.'}</span>  
       </p>
-      <p><span>${p.score}</span>
+      <p><span class="score">${p.score}</span>
       </p>
-      <p> <span>${p.available_qty}</span></p>
+      <p> <span class="available-qty">${p.available_qty}</span></p>
       <p><span>$<input type="text" value="${p.unit_cost}" name="cost"></span></p>
       <p><span><input type="text" value="${p.margin}" name="margin">%</span></p>
-      <p><span>${p.selling_price}</span></p>
-      <p><span>$${p.total_cost.toFixed(2)}</span></p>
+      <p><span class="selling-price">$${p.selling_price.toFixed(2)}</span></p>
+      <p><span class="total-cost">$${p.total_cost.toLocaleString("en-US", {minimumFractionDigits: 2,maximumFractionDigits: 2})}</span></p>
+      
       <p>
         <button type="button" class="delete-line-btn active" onclick=delRow(event)><img src="./assets/images/global/delete_icon.png" alt="delete"></button>
         <button type="button" class="undo-line-btn" onclick=undoRow(event)> <img src="./assets/images/dashboard/Undo_icon.png" alt="undo"></button>
@@ -1322,7 +1310,6 @@ function editTableData(bodyWrap){
 
       // UPDATE newQuote.products
       const product = newQuote.products.find(p => String(p.delId) === delId);
-        console.log("iy",product)
       if(product){
 
         product.qty_requested = qty;
@@ -1416,6 +1403,7 @@ function selectAllRow(event){
 }
 const descInputs =leftTableWrapper.querySelectorAll(".desc-input");
 const qtyInputs=leftTableWrapper.querySelectorAll(".qty-input");
+
 let products=[];
 let filteredProducts=[];
 
@@ -1472,12 +1460,16 @@ function getDelId(){
 async function initProducts() {
 
   await getProducts();
-  // updateProducts();
   // renderAddPopupTable();
+  renderSuggestPopup(products);
+  renderSourcingPopup(products);
+  renderSupplierPopup(products);
   initProductSearch();
 }
 
 initProducts();
+
+//supplier popup
 
 
 
@@ -1589,19 +1581,19 @@ function getSearchedProducts(){
     descInputs.forEach(inp=>inp.value="");
     qtyInputs.forEach(inp=>inp.value="")
     searchedProduct.forEach(p => {
-      let newReqId =Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
-      let isExists = allQuotes.forEach(q=>[...q.products].some(q => q.requested_id ===  "ID" + newReqId)) ||
-      newQuote.products.some(prod => prod.requested_id === "ID" + newReqId);
+      // let newReqId =Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
+      // let isExists = allQuotes.forEach(q=>[...q.products].some(q => q.requested_id ===  "ID" + newReqId)) ||
+      // newQuote.products.some(prod => prod.requested_id === "ID" + newReqId);
 
-      while (isExists) {
+      // while (isExists) {
 
-        newReqId =Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
+      //   newReqId =Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
 
-        isExists =[...allQuotes.products].some(q => q.requested_id ===  "ID" + newReqId) ||
-        newQuote.products.some(prod => prod.requested_id === "ID" + newReqId);
-      }
+      //   isExists =[...allQuotes.products].some(q => q.requested_id ===  "ID" + newReqId) ||
+      //   newQuote.products.some(prod => prod.requested_id === "ID" + newReqId);
+      // }
 
-      p.requested_id = "ID" + newReqId;
+      // p.requested_id = "ID" + newReqId;
       p.delId=getDelId();
       newQuote.products.push(p);
 
@@ -1739,9 +1731,7 @@ function undoAllRow(){
     paras.forEach(p=>{
       p.style.pointerEvents = "auto";
     })
-  
-    // delBtn.style.pointerEvents = "auto";
-    // undoBtn.style.pointerEvents = "auto";
+
     row.removeEventListener("click",rowClickHandler);
 
   })
@@ -1749,3 +1739,4 @@ function undoAllRow(){
   delAllBtn.classList.add('selected','active');
   undoAllBtn.classList.remove('selected','active');
 }
+

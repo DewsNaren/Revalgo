@@ -638,6 +638,7 @@
                         display: none;
                         flex: 1;
                         overflow-y: auto;
+                        overflow-x: hidden;
                         min-height: 0;
                         max-height: 100%;
                         flex-direction: column;
@@ -936,7 +937,7 @@
                         max-content
                         clamp(22px, $fs-50px, $fs-50px)  
                         clamp(32px, $fs-75px, $fs-75px)
-                        39%
+                        42%
                         max-content
                         clamp(32px, $fs-115px, $fs-115px) 
                         clamp(25px, $fs-110px, $fs-110px)    
@@ -970,7 +971,7 @@
                               color: $blue-87;
                             }
                             &:nth-of-type(4){
-                                padding-inline: clamp(10px, $fs-50px, $fs-50px);
+                                padding-inline: clamp(10px, $fs-40px, $fs-40px);
                                 text-align: left;
                                 span{
                                     color: $blue-87;
@@ -1032,7 +1033,7 @@
                             max-content
                             clamp(22px, $fs-50px, $fs-50px)  
                             clamp(32px, $fs-75px, $fs-75px)
-                            39%
+                            42%
                             clamp(15px, $fs-70px, $fs-70px)
                             clamp(32px, $fs-115px, $fs-115px) 
                             clamp(25px, $fs-100px, $fs-100px)    
@@ -1065,13 +1066,15 @@
                                 }
                                 
                                 &:nth-of-type(4){
-                                    padding-inline: clamp(10px, $fs-50px, $fs-50px);
+                                    padding-inline: clamp(10px, $fs-40px, $fs-40px);
+                                    padding-right: 0;
                                     text-align: left;
                                     // overflow-x: hidden;
                                     // text-overflow: ellipsis;
                                     .down-arrow-img{
                                         width: clamp(12px, $fs-25px, $fs-25px);
                                         margin-right: 5px;
+                                        cursor: pointer;
                                     }
                                     .title-text{
                                         font-weight: 400;
@@ -1086,7 +1089,8 @@
                                         gap: 3px;
                                         color: rgba(0,0,0,0.9);
                                         margin-bottom: 3px;
-                                       .id,.detail{
+                                        flex-wrap: wrap;
+                                       .requested-id,.detail{
                                             color: $blue-87;
                                         }
                                         .detail{
@@ -1096,6 +1100,7 @@
                                             border-radius: 5px;
                                             font-size: clamp(8px, $fs-12px, $fs-12px);
                                             font-weight: 500;
+                                            cursor: pointer;
                                         }
                                         .sourcing{
                                             display: none;
@@ -1107,6 +1112,7 @@
                                             border-radius: 5px;
                                             color:$white;
                                             font-size: clamp(8px, $fs-12px, $fs-12px);
+                                            cursor: pointer;
                                             img{
                                                 width: clamp(8px, $fs-11px, $fs-11px);
                                             }
@@ -1120,6 +1126,7 @@
                                             .supplier-text{
                                                 color: $blue-3ff;
                                                 text-decoration: underline;
+                                                cursor: pointer;
                                             }
                                             .stock-text{
                                                 color: $red-00;
@@ -1129,6 +1136,15 @@
                                                 border-radius: 3px;
                                                 position: relative;
                                                 cursor: default;
+                                                 &.red{
+                                                    color: $red-00;
+                                                    border: 1px solid $red-00;
+                                                }
+                                                &.green{
+                                                    color: $green-28;
+                                                    border: 1px solid $green-28;
+                                                }
+
                                                 .tooltiptext {
                                                     visibility: hidden;
                                                     background-color: $white;
@@ -1469,394 +1485,7 @@
                             }
                            
                         }
-                        .suggest-product-popup{
-                            position: absolute;
-                            display: none;
-                            flex-direction: column;
-                            background-color: $white;
-                            box-shadow: $box-shadow-1;
-                            z-index: 3;
-                            width: 50%;
-                            border-radius:  clamp(5px, $fs-10px, $fs-10px);
-                            left: 16%;
-                            top: 50%;
-                            transform: translate(-16%, -50%);
-                            gap: clamp(8px, $fs-10px, $fs-10px);
-                            padding: clamp(15px, $fs-30px, $fs-30px) clamp(10px, $fs-20px, $fs-20px) clamp(10px, $fs-20px, $fs-20px) clamp(15px, $fs-30px, $fs-30px);
-                            max-height: 100%;
-                            .product-header{
-                                display: flex;
-                                gap: clamp(10px, $fs-20px, $fs-20px);
-                                align-items: center;
-                                margin-bottom: clamp(3px, $fs-7px, $fs-7px);
-                                .search-suggest-product{
-                                    flex: 1;
-                                    margin-right:clamp(10px, $fs-25px, $fs-25px);
-                                    border: none;
-                                    padding-bottom: 5px;
-                                    border-bottom: 1px solid #ccc;
-                                    font-size:clamp(10px, $fs-15px, $fs-15px);
-                                    color: $grey-66;
-                                    outline: none;
-                                    &::placeholder{
-                                        color: $grey-66;
-                                    }
-                                }
-                                button{
-                                    background-color: transparent;
-                                    border: none;
-                                    
-                                    &.expand-btn{
-                                        img{
-
-                                            display: block;
-                                            width: clamp(9px, $fs-19px, $fs-19px);
-                                        }
-                                    }
-                                    &.close-suggest-popup-btn{
-                                        img{
-                                            display: block;
-                                            width: clamp(8px, $fs-15px, $fs-15px);
-                                        }
-                                    }
-                                }
-                            }
-                            .product-body{
-                                flex: 1;
-                                min-height: 0;
-                                overflow-y: auto;
-                                max-height:clamp(150px, $fs-220px, $fs-220px) ;
-                                padding-right: clamp(10px, $fs-20px, $fs-20px);
-                                margin-right: 4px;
-                                h3{
-                                    font-size: clamp(12px, $fs-20px, $fs-20px);
-                                    margin-bottom: clamp(10px, $fs-12px, $fs-12px);
-                                }
-                                .products{
-                                    .product{
-                                        padding: clamp(5px, $fs-12px, $fs-12px) 0;
-                                        border-bottom: 1px solid #ccc;
-
-                                        .detail-container{
-                                            display: flex;
-                                            gap: clamp(12px, $fs-28px, $fs-28px);
-                                            p{
-                                                font-size: clamp(9px, $fs-14px, $fs-14px);
-                                                margin-bottom: clamp(5px, $fs-10px, $fs-10px);
-                                                line-height: 1;
-                                                .label{
-                                                    color: $black-80;
-
-                                                    &.id{
-                                                        color: $blue-87;
-                                                        font-weight: 500;
-                                                    }
-                                                }
-                                                .value{
-                                                    color: $black;
-                                                    font-weight: 500;
-                                                    margin-left:  5px;
-                                                }
-                                            }
-                                            
-                                        }
-                                        .desc{
-                                            color: $grey-6c;
-                                            font-size: clamp(9px, $fs-12px, $fs-12px);
-                                            line-height: 1.2;
-                                            margin-bottom: 0;
-                                        }
-                                        &:last-of-type{
-                                            border-bottom: none;
-                                        }
-                                    }
-                                }
-                                &::-webkit-scrollbar {
-                                    width: 4px;
-                                }
-
-                                &::-webkit-scrollbar-thumb {
-                                    background: rgba(161, 161, 161, 0.5);
-                                    border-radius: 4px;        
-                                }
-                            }
-                            &.active{
-                                display: flex;
-
-                            }
-                        }
-                        .sourcing-popup{
-                            position: absolute;
-                            display: none;
-                            flex-direction: column;
-                            background-color: $white;
-                            box-shadow: $box-shadow-1;
-                            z-index: 3;
-                            border-radius:  clamp(5px, $fs-10px, $fs-10px);
-                            left: 53%;
-                            top: 32%;
-                            width: 39%;
-                            transform: translate(-53%, -32%);
-                            gap: clamp(8px, $fs-10px, $fs-10px);
-                            padding: clamp(15px, $fs-30px, $fs-30px) 0 clamp(10px, $fs-20px, $fs-20px) ;
-                            max-height: 100%;
-                            .sourcing-header{
-                                display: flex;
-                                gap: clamp(10px, $fs-20px, $fs-20px);
-                                align-items: center;
-                                margin-bottom: clamp(3px, $fs-7px, $fs-7px);
-                                padding-left: clamp(12px, $fs-25px, $fs-25px);
-                                padding-right: clamp(10px, $fs-20px, $fs-20px) ;
-                                .search-sourcing-product{
-                                    flex: 1;
-                                    border: none;
-                                    padding-bottom: 5px;
-                                    border-bottom: 1px solid #ccc;
-                                    font-size:clamp(10px, $fs-15px, $fs-15px);
-                                    color: $grey-66;
-                                    outline: none;
-                                    &::placeholder{
-                                        color: $grey-66;
-                                    }
-                                }
-                                button{
-                                    background-color: transparent;
-                                    border: none;
-                                    
-                                    &.expand-btn{
-                                        img{
-
-                                            display: block;
-                                            width: clamp(9px, $fs-19px, $fs-19px);
-                                        }
-                                    }
-                                    &.close-suggest-popup-btn{
-                                        img{
-                                            display: block;
-                                            width: clamp(8px, $fs-15px, $fs-15px);
-                                        }
-                                    }
-                                }
-                            }
-                            .sourcing-body{
-                                display: flex;
-                                flex-direction: column;
-                                max-height:clamp(150px, $fs-220px, $fs-220px) ;
-                               
-                                // margin-right: clamp(10px, $fs-20px, $fs-20px);
-                                // overflow: hidden;
-                                h3{
-                                    font-weight: 500;
-                                    font-size: clamp(12px, $fs-20px, $fs-20px);
-                                    margin-bottom: clamp(10px, $fs-12px, $fs-12px);
-                                    padding-left: clamp(12px, $fs-25px, $fs-25px);
-                                    padding-right: clamp(10px, $fs-20px, $fs-20px) ;
-                                }
-                                .products{
-                                    flex: 1;
-                                    min-height: 0;
-                                    overflow-y: auto;
-                                    .product{
-                                        padding: clamp(5px, $fs-12px, $fs-12px) 0;
-                                        border-bottom: 1px solid #ccc;
-                                        padding-left: clamp(12px, $fs-25px, $fs-25px);
-                                        position: relative;
-                                        .detail-container{
-                                            display: flex;
-                                            gap: clamp(12px, $fs-40px, $fs-40px);
-                                            p{
-                                                font-size: clamp(9px, $fs-14px, $fs-14px);
-                                                margin-bottom: clamp(5px, $fs-10px, $fs-10px);
-                                                line-height: 1;
-                                                .label{
-                                                    color: $black-80;
-
-                                                    &.id{
-                                                        color: $blue-87;
-                                                        font-weight: 600;
-                                                        font-size: clamp(11px, $fs-16px, $fs-16px);
-                                                      
-                                                    }
-                                                }
-                                                .value{
-                                                    color: $black;
-                                                    font-weight: 500;
-                                                    margin-left:  5px;
-                                                }
-                                                &.product-id{
-                                                    .value{
-                                                        display: inline-block;
-                                                        color: $red-00;
-                                                        border: 1px solid $red-00;
-                                                        line-height: 1;
-                                                        padding: 3px;
-                                                        border-radius: 3px;
-                                                    }
-                                                }
-                                            }
-                                            
-                                        }
-                                        .desc{
-                                            
-                                            color: $grey-6c;
-                                            font-size: clamp(9px, $fs-12px, $fs-12px);
-                                            line-height: 1.2;
-                                            margin-bottom: 0;
-                                            white-space: nowrap;
-                                            text-overflow: ellipsis;
-                                            overflow: hidden;
-                                            max-width: 95%;
-                                        }
-                                        &:last-of-type{
-                                            border-bottom: none;
-                                        }
-                                        &:hover{
-                                            background-color: $blue-2ff;
-
-                                           
-                                            
-                                            
-                                        }
-                                    
-                                        
-                                    }
-                                    &::-webkit-scrollbar {
-                                        width: 4px;
-                                        // margin-right: clamp(10px, $fs-27px, $fs-27px); 
-                                      
-                                    }
-
-                                &::-webkit-scrollbar-thumb {
-                                    background: rgba(161, 161, 161, 0.5);
-                                    border-radius: 4px;        
-                                }
-                                }
-                                
-                            }
-                            &.active{
-                                display: flex;
-                            }
-                        }
-                        .supplier-popup{
-                            position: absolute;
-                            display: none;
-                            flex-direction: column;
-                            background-color: $white;
-                            box-shadow: $box-shadow-1;
-                            z-index: 3;
-                            border-radius:  clamp(5px, $fs-10px, $fs-10px);
-                            left: 53%;
-                            top: 32%;
-                            width: max-content;
-                            transform: translate(-53%, -32%);
-                            padding: clamp(15px, $fs-22px, $fs-22px) 0 clamp(8px, $fs-15px, $fs-15px);
-                            max-height: 100%;
-                            .supplier-header{
-                                display: flex;
-                                gap: clamp(10px, $fs-20px, $fs-20px);
-                                align-items: center;
-                                justify-content: space-between;
-                                margin-bottom: clamp(3px, $fs-7px, $fs-7px);
-                                padding-left: clamp(12px, $fs-25px, $fs-25px);
-                                padding-right: clamp(10px, $fs-20px, $fs-20px) ;
-                                h3{
-                                    font-weight: 500;
-                                    font-size: clamp(12px, $fs-20px, $fs-20px);
-                                }
-                                button{
-                                    background-color: transparent;
-                                    border: none;
-                                    
-                                    &.expand-btn{
-                                        img{
-
-                                            display: block;
-                                            width: clamp(9px, $fs-19px, $fs-19px);
-                                        }
-                                    }
-                                    &.close-suggest-popup-btn{
-                                        img{
-                                            display: block;
-                                            width: clamp(8px, $fs-15px, $fs-15px);
-                                        }
-                                    }
-                                }
-                            }
-                            .supplier-body{
-                                display: flex;
-                                flex-direction: column;
-                                max-height:clamp(150px, $fs-220px, $fs-220px);
-                            
-                               
-                                .products{
-                                    flex: 1;
-                                    min-height: 0;
-                                    overflow-y: auto;
-                                    .product{
-                                        padding: clamp(5px, $fs-12px, $fs-12px) 0;
-                                        border-bottom: 1px solid #ccc;
-                                        padding-left: clamp(12px, $fs-25px, $fs-25px);
-                                        padding-right: clamp(12px, $fs-25px, $fs-25px);
-                                        position: relative;
-                                        .detail-container{
-                                            display: flex;
-                                            gap: clamp(12px, $fs-40px, $fs-40px);
-                                            p{
-                                                display: flex;
-                                                align-items: center;
-                                                gap: 3px;
-                                                font-size: clamp(9px, $fs-14px, $fs-14px);
-                                                margin-bottom: clamp(5px, $fs-10px, $fs-10px);
-                                                line-height: 1;
-                                                .label{
-                                                    color: $black-80;     
-                                                }
-                                                .value{
-                                                    color: $black;
-                                                    font-weight: 500;
-                                                    margin-left:  5px;
-                                                }
-                                            }
-                                            
-                                        }
-                                        .supplier{
-                                            color: $blue-87;
-                                            font-weight: 600;
-                                            font-size: clamp(11px, $fs-16px, $fs-16px);
-                                            line-height: 1;
-                                            margin-bottom:clamp(7px, $fs-14px, $fs-14px);
-                                           
-                                        }
-                                        &:last-of-type{
-                                            border-bottom: none;
-                                        }
-                                        &:hover{
-                                            background-color: $blue-2ff;
-
-                                           
-                                            
-                                            
-                                        }
-                                    
-                                        
-                                    }
-                                    &::-webkit-scrollbar {
-                                        width: 4px;
-                                        // margin-right: clamp(10px, $fs-27px, $fs-27px); 
-                                      
-                                    }
-
-                                &::-webkit-scrollbar-thumb {
-                                    background: rgba(161, 161, 161, 0.5);
-                                    border-radius: 4px;        
-                                }
-                                }
-                                
-                            }
-                            &.active{
-                                display: flex;
-                            }
-                        }
+                        
                     }
                 }
 
@@ -2034,6 +1663,426 @@
                                     }
                                        
                             }
+    .sourcing-popup{
+                            position: fixed;
+                            display: none;
+                            flex-direction: column;
+                            background-color: $white;
+                            box-shadow: $box-shadow-1;
+                            z-index: 3;
+                            border-radius:  clamp(5px, $fs-10px, $fs-10px);
+                         
+                            width: 39%;
+                        
+                            gap: clamp(8px, $fs-10px, $fs-10px);
+                            padding: clamp(15px, $fs-30px, $fs-30px) 0 clamp(10px, $fs-20px, $fs-20px) ;
+                            // max-height: 100%;
+                            .sourcing-header{
+                                display: flex;
+                                gap: clamp(10px, $fs-20px, $fs-20px);
+                                align-items: center;
+                                margin-bottom: clamp(3px, $fs-7px, $fs-7px);
+                                padding-left: clamp(12px, $fs-25px, $fs-25px);
+                                padding-right: clamp(10px, $fs-20px, $fs-20px) ;
+                                .search-sourcing-product{
+                                    flex: 1;
+                                    border: none;
+                                    padding-bottom: 5px;
+                                    border-bottom: 1px solid #ccc;
+                                    font-size:clamp(10px, $fs-15px, $fs-15px);
+                                    color: $grey-66;
+                                    outline: none;
+                                    &::placeholder{
+                                        color: $grey-66;
+                                    }
+                                }
+                                button{
+                                    background-color: transparent;
+                                    border: none;
+                                    
+                                    &.expand-btn{
+                                        img{
+
+                                            display: block;
+                                            width: clamp(9px, $fs-19px, $fs-19px);
+                                        }
+                                    }
+                                    &.close-source-popup-btn{
+                                        img{
+                                            display: block;
+                                            width: clamp(8px, $fs-15px, $fs-15px);
+                                        }
+                                    }
+                                }
+                            }
+                            .sourcing-body{
+                                display: flex;
+                                flex-direction: column;
+                                max-height:clamp(140px, $fs-220px, $fs-220px) ;
+                               flex: 1;
+                                min-height: 0;
+                                // margin-right: clamp(10px, $fs-20px, $fs-20px);
+                                // overflow: hidden;
+                                h3{
+                                    font-weight: 500;
+                                    font-size: clamp(12px, $fs-20px, $fs-20px);
+                                    margin-bottom: clamp(10px, $fs-12px, $fs-12px);
+                                    padding-left: clamp(12px, $fs-25px, $fs-25px);
+                                    padding-right: clamp(10px, $fs-20px, $fs-20px) ;
+                                }
+                                .products{
+                                    flex: 1;
+                                    min-height: 100%;
+
+                                    height: 100%;
+                                    overflow-y: auto;
+                                    max-height:clamp(150px, $fs-220px, $fs-220px) ;
+                                    .product{
+                                        padding: clamp(5px, $fs-12px, $fs-12px) 0;
+                                        border-bottom: 1px solid #ccc;
+                                        padding-left: clamp(12px, $fs-25px, $fs-25px);
+                                        position: relative;
+                                        cursor: pointer;
+                                        .detail-container{
+                                            display: flex;
+                                            gap: clamp(12px, $fs-40px, $fs-40px);
+                                            p{
+                                                font-size: clamp(9px, $fs-14px, $fs-14px);
+                                                margin-bottom: clamp(5px, $fs-10px, $fs-10px);
+                                                line-height: 1;
+                                                .label{
+                                                    color: $black-80;
+
+                                                    &.id{
+                                                        color: $blue-87;
+                                                        font-weight: 600;
+                                                        font-size: clamp(11px, $fs-16px, $fs-16px);
+                                                      
+                                                    }
+                                                }
+                                                .value{
+                                                    color: $black;
+                                                    font-weight: 500;
+                                                    margin-left:  5px;
+                                                }
+                                                &.product-id{
+                                                    .value{
+                                                        display: inline-block;
+                                                    
+                                                        line-height: 1;
+                                                        padding: 3px;
+                                                        border-radius: 3px;
+
+                                                        &.red{
+                                                            color: $red-00;
+                                                            border: 1px solid $red-00;
+                                                        }
+                                                        &.green{
+                                                            color: $green-28;
+                                                            border: 1px solid $green-28;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            
+                                        }
+                                        .desc{
+                                            
+                                            color: $grey-6c;
+                                            font-size: clamp(9px, $fs-12px, $fs-12px);
+                                            line-height: 1.2;
+                                            margin-bottom: 0;
+                                            white-space: nowrap;
+                                            text-overflow: ellipsis;
+                                            overflow: hidden;
+                                            max-width: 95%;
+                                        }
+                                        &:last-of-type{
+                                            border-bottom: none;
+                                        }
+                                        &:hover{
+                                            background-color: $blue-2ff;
+
+                                           
+                                            
+                                            
+                                        }
+                                    
+                                        
+                                    }
+                                    .not-found{
+                                        text-align: center;
+                                        font-size: clamp(10px, $fs-15px, $fs-15px);
+                                        margin-top:  clamp(10px, $fs-15px, $fs-15px);
+                                    }
+                                    &::-webkit-scrollbar {
+                                        width: 4px;
+                                        // margin-right: clamp(10px, $fs-27px, $fs-27px); 
+                                      
+                                    }
+
+                                &::-webkit-scrollbar-thumb {
+                                    background: rgba(161, 161, 161, 0.5);
+                                    border-radius: 4px;        
+                                }
+                                }
+                                
+                            }
+                            &.active{
+                                display: flex;
+                            }
+    }
+                        .supplier-popup{
+                            position: fixed;
+                            display: none;
+                            flex-direction: column;
+                            background-color: $white;
+                            box-shadow: $box-shadow-1;
+                            z-index: 3;
+                            border-radius:  clamp(5px, $fs-10px, $fs-10px);
+                            // left: 53%;
+                            // top: 32%;
+                            width: max-content;
+                            // transform: translate(-53%, -32%);
+                            padding: clamp(15px, $fs-22px, $fs-22px) 0 clamp(8px, $fs-15px, $fs-15px);
+                            max-height: 100%;
+                            .supplier-header{
+                                display: flex;
+                                gap: clamp(10px, $fs-20px, $fs-20px);
+                                align-items: center;
+                                justify-content: space-between;
+                                margin-bottom: clamp(3px, $fs-7px, $fs-7px);
+                                padding-left: clamp(12px, $fs-25px, $fs-25px);
+                                padding-right: clamp(10px, $fs-20px, $fs-20px) ;
+                                h3{
+                                    font-weight: 500;
+                                    font-size: clamp(12px, $fs-20px, $fs-20px);
+                                }
+                                button{
+                                    background-color: transparent;
+                                    border: none;
+                                    
+                                    &.expand-btn{
+                                        img{
+
+                                            display: block;
+                                            width: clamp(9px, $fs-19px, $fs-19px);
+                                        }
+                                    }
+                                    &.close-supplier-popup-btn{
+                                        img{
+                                            display: block;
+                                            width: clamp(8px, $fs-15px, $fs-15px);
+                                        }
+                                    }
+                                }
+                            }
+                            .supplier-body{
+                                display: flex;
+                                flex-direction: column;
+                                max-height:clamp(140px, $fs-220px, $fs-220px);
+                                flex: 1;
+                                min-height: 0;
+                                .products{
+                                    flex: 1;
+                                    min-height: 0;
+                                    overflow-y: auto;
+                                    .product{
+                                        padding: clamp(5px, $fs-12px, $fs-12px) 0;
+                                        border-bottom: 1px solid #ccc;
+                                        padding-left: clamp(12px, $fs-25px, $fs-25px);
+                                        padding-right: clamp(12px, $fs-25px, $fs-25px);
+                                        position: relative;
+                                        cursor: pointer;
+                                        .detail-container{
+                                            display: flex;
+                                            gap: clamp(12px, $fs-40px, $fs-40px);
+                                            p{
+                                                display: flex;
+                                                align-items: center;
+                                                gap: 3px;
+                                                font-size: clamp(9px, $fs-14px, $fs-14px);
+                                                margin-bottom: clamp(5px, $fs-10px, $fs-10px);
+                                                line-height: 1;
+                                                .label{
+                                                    color: $black-80;     
+                                                }
+                                                .value{
+                                                    color: $black;
+                                                    font-weight: 500;
+                                                    margin-left:  5px;
+                                                }
+                                            }
+                                            
+                                        }
+                                        .supplier{
+                                            color: $blue-87;
+                                            font-weight: 600;
+                                            font-size: clamp(11px, $fs-16px, $fs-16px);
+                                            line-height: 1;
+                                            margin-bottom:clamp(7px, $fs-14px, $fs-14px);
+                                           
+                                        }
+                                        &:last-of-type{
+                                            border-bottom: none;
+                                        }
+                                        &:hover{
+                                            background-color: $blue-2ff;
+
+                                           
+                                            
+                                            
+                                        }
+                                    
+                                        
+                                    }
+                                    &::-webkit-scrollbar {
+                                        width: 4px;
+                                        // margin-right: clamp(10px, $fs-27px, $fs-27px); 
+                                      
+                                    }
+
+                                &::-webkit-scrollbar-thumb {
+                                    background: rgba(161, 161, 161, 0.5);
+                                    border-radius: 4px;        
+                                }
+                                }
+                                
+                            }
+                            &.active{
+                                display: flex;
+                            }
+                        }
+    .suggest-product-popup{
+                            position: fixed;
+                            display: none;
+                            flex-direction: column;
+                            background-color: $white;
+                            box-shadow: $box-shadow-1;
+                            z-index: 3;
+                            width: 50%;
+                            border-radius:  clamp(5px, $fs-10px, $fs-10px);
+                            // left: 16%;
+                            // top: 50%;
+                            // transform: translate(-16%, -50%);
+                            gap: clamp(8px, $fs-10px, $fs-10px);
+                            padding: clamp(15px, $fs-30px, $fs-30px) clamp(10px, $fs-20px, $fs-20px) clamp(10px, $fs-20px, $fs-20px) clamp(15px, $fs-30px, $fs-30px);
+                            // max-height: 100%;
+                            .product-header{
+                                display: flex;
+                                gap: clamp(10px, $fs-20px, $fs-20px);
+                                align-items: center;
+                                margin-bottom: clamp(3px, $fs-7px, $fs-7px);
+                                .search-suggest-product{
+                                    flex: 1;
+                                    margin-right:clamp(10px, $fs-25px, $fs-25px);
+                                    border: none;
+                                    padding-bottom: 5px;
+                                    border-bottom: 1px solid #ccc;
+                                    font-size:clamp(10px, $fs-15px, $fs-15px);
+                                    color: $grey-66;
+                                    outline: none;
+                                    &::placeholder{
+                                        color: $grey-66;
+                                    }
+                                }
+                                button{
+                                    background-color: transparent;
+                                    border: none;
+                                    &.min-suggest-btn{
+                                        display: none;
+                                        img{
+                                            display: block;
+                                            width: clamp(12px, $fs-22px, $fs-22px);  
+                                        }
+                                    }
+                                    &.expand-btn{
+                                        img{
+
+                                            display: block;
+                                            width: clamp(9px, $fs-19px, $fs-19px);
+                                        }
+                                    }
+                                    &.close-suggest-popup-btn{
+                                        img{
+                                            display: block;
+                                            width: clamp(8px, $fs-15px, $fs-15px);
+                                        }
+                                    }
+                                }
+                            }
+                            .product-body{
+                                flex: 1;
+                                min-height: 0;
+                                overflow-y: auto;
+                                max-height:clamp(150px, $fs-220px, $fs-220px) ;
+                                padding-right: clamp(10px, $fs-20px, $fs-20px);
+                                margin-right: 4px;
+                                h3{
+                                    font-size: clamp(12px, $fs-20px, $fs-20px);
+                                    margin-bottom: clamp(10px, $fs-12px, $fs-12px);
+                                }
+                                .products{
+                                    .product{
+                                        padding: clamp(5px, $fs-12px, $fs-12px) 0;
+                                        border-bottom: 1px solid #ccc;
+                                        cursor: pointer;
+                                        .detail-container{
+                                            display: flex;
+                                            gap: clamp(12px, $fs-28px, $fs-28px);
+                                            p{
+                                                font-size: clamp(9px, $fs-14px, $fs-14px);
+                                                margin-bottom: clamp(5px, $fs-10px, $fs-10px);
+                                                line-height: 1;
+                                                .label{
+                                                    color: $black-80;
+
+                                                    &.id{
+                                                        color: $blue-87;
+                                                        font-weight: 500;
+                                                    }
+                                                }
+                                                .value{
+                                                    color: $black;
+                                                    font-weight: 500;
+                                                    margin-left:  5px;
+                                                }
+                                            }
+                                            
+                                        }
+                                        .desc{
+                                            color: $grey-6c;
+                                            font-size: clamp(9px, $fs-12px, $fs-12px);
+                                            line-height: 1.2;
+                                            margin-bottom: 0;
+                                        }
+                                        &:last-of-type{
+                                            border-bottom: none;
+                                        }
+                                        &:hover{
+                                            background-color: rgba(0,0,0,0.06);
+                                        }
+                                    }
+                                    .not-found{
+                                        text-align: center;
+                                        font-size: clamp(10px, $fs-15px, $fs-15px);
+                                        margin-top:  clamp(10px, $fs-15px, $fs-15px);
+                                    }
+                                }
+                                &::-webkit-scrollbar {
+                                    width: 4px;
+                                }
+
+                                &::-webkit-scrollbar-thumb {
+                                    background: rgba(161, 161, 161, 0.5);
+                                    border-radius: 4px;        
+                                }
+                            }
+                            &.active{
+                                display: flex;
+
+                            }
+                        }
 .popup-overlay{  
     position: fixed;
     z-index: 5;
@@ -2043,6 +2092,176 @@
     justify-content: center;
     align-items: center;
 
+    .expand-modal{
+        background-color: $white;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+        max-height: 85%;
+        width: 62%;
+        height: 100%;
+        position: relative;
+        padding: clamp(12px, $fs-24px, $fs-24px) clamp(12px, $fs-24px, $fs-24px);
+        border-radius: clamp(3px, $fs-10px, $fs-10px);
+        .close-modal-btn{
+            position: absolute;
+            align-self: flex-end;
+            border: none;
+            background-color: transparent;
+            top: clamp(12px, $fs-25px, $fs-25px);
+            z-index: 4;
+            img{
+                width: clamp(11px, $fs-19px, $fs-19px);
+            }
+            // &.not-active{
+            //     display: none;
+            // }
+        }
+        .expand-modal-content{
+            display: flex;   
+            flex: 1;
+            max-height: 100%;
+            min-height: 0;
+            width: 100%;
+            .suggest-product-popup{
+                            position: relative;
+                            display: flex;
+                            flex-direction: column;
+                            // background-color: $white;
+                            box-shadow: none;
+                            z-index: 3;
+                            width: 100%;
+                            // border-radius:  clamp(5px, $fs-10px, $fs-10px);
+                            top: unset !important;
+                            left: unset !important;
+                            // left: 16%;
+                            // top: 50%;
+                            // transform: translate(-16%, -50%);
+                            gap: clamp(8px, $fs-10px, $fs-10px);
+                            padding: 0;
+                            // padding: 0 clamp(10px, $fs-20px, $fs-20px) clamp(10px, $fs-20px, $fs-20px) clamp(15px, $fs-30px, $fs-30px);
+                            // max-height: 100%;
+                            .product-header{
+                                display: flex;
+                                gap: clamp(10px, $fs-20px, $fs-20px);
+                                align-items: center;
+                                justify-content: space-between;
+                                margin-bottom: clamp(3px, $fs-7px, $fs-7px);
+                                .search-suggest-product{
+                                    flex: 0 0 60%;
+                                    margin-right:clamp(10px, $fs-25px, $fs-25px);
+                                    border: none;
+                                    padding-bottom: 5px;
+                                    border-bottom: 1px solid #ccc;
+                                    font-size:clamp(11px, $fs-16px, $fs-16px);
+                                    color: $grey-66;
+                                    outline: none;
+                                    width: 60%;
+                                    &::placeholder{
+                                        color: $grey-66;
+                                    }
+                                }
+                                button{
+                                    background-color: transparent;
+                                    border: none;
+                                    &.min-suggest-btn{
+                                        display: inline;
+                                        margin-right:clamp(16px, $fs-34px, $fs-34px) ;
+                                        img{
+                                            display: block;
+                                            width: clamp(12px, $fs-22px, $fs-22px);  
+                                        }
+                                    }
+                                    &.expand-btn{
+                                        display: none;
+                                        margin-right: clamp(9px, $fs-19px, $fs-19px);
+                                        img{
+
+                                            display: block;
+                                            width: clamp(9px, $fs-19px, $fs-19px);
+                                        }
+                                    }
+                                    &.close-suggest-popup-btn{
+                                        display: none;
+                                        img{
+                                            display: block;
+                                            width: clamp(8px, $fs-15px, $fs-15px);
+                                        }
+                                    }
+                                }
+                            }
+                            .product-body{
+                                flex: 1;
+                                min-height: 0;
+                                overflow-y: auto;
+                                // max-height:clamp(150px, $fs-220px, $fs-220px) ;
+                                max-height: 100%;
+                                padding-right: clamp(10px, $fs-20px, $fs-20px);
+                                margin-right: 4px;
+                                h3{
+                                    font-size: clamp(12px, $fs-22px, $fs-22px);
+                                    margin-bottom: clamp(10px, $fs-12px, $fs-12px);
+                                }
+                                .products{
+                                    .product{
+                                        padding: clamp(5px, $fs-12px, $fs-12px) 0;
+                                        border-bottom: 1px solid #ccc;
+
+                                        .detail-container{
+                                            display: flex;
+                                            gap: clamp(12px, $fs-32px, $fs-32px);
+                                            p{
+                                                font-size: clamp(10px, $fs-16px, $fs-16px);
+                                                margin-bottom: clamp(5px, $fs-12px, $fs-12px);
+                                                line-height: 1;
+                                                .label{
+                                                    color: $black-80;
+
+                                                    &.id{
+                                                        color: $blue-87;
+                                                        font-weight: 500;
+                                                    }
+                                                }
+                                                .value{
+                                                    color: $black;
+                                                    font-weight: 500;
+                                                    margin-left:  5px;
+                                                }
+                                            }
+                                            
+                                        }
+                                        .desc{
+                                            color: $grey-6c;
+                                            font-size: clamp(9px, $fs-14px, $fs-14px);
+                                            line-height: 1.2;
+                                            margin-bottom: 0;
+                                        }
+                                        &:last-of-type{
+                                            border-bottom: none;
+                                        }
+                                    }
+                                }
+                                &::-webkit-scrollbar {
+                                    width: 6px;
+                                }
+
+                                &::-webkit-scrollbar-thumb {
+                                    background: rgba(161, 161, 161, 0.5);
+                                    border-radius: 6px;        
+                                }
+                            }
+                            &.active{
+                                display: flex;
+
+                            }
+                    }
+        }
+        &.active{
+            display: flex;
+        }
+
+    }
     
     .add-popup{
         background-color: $white;
@@ -2656,6 +2875,51 @@
         }
         &.active{
             display: flex;
+        }
+
+    }
+    .stock-popup{
+        background-color: $white;
+        padding: clamp(15px, $fs-50px, $fs-50px)  clamp(15px, $fs-60px, $fs-60px) clamp(15px, $fs-40px, $fs-40px) ;
+        border-radius: clamp(5px, $fs-10px, $fs-10px);
+        display: none;
+        .text{
+            font-size:  clamp(9px, $fs-18px, $fs-18px);
+            color: rgba(0, 0, 0, 0.8);
+            margin-bottom: clamp(20px, $fs-40px, $fs-40px) ;
+            text-align: center;
+            .id{
+                color: $black-90;
+                font-weight: 600;
+            }
+        }
+        
+        .btn-container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap:  clamp(5px, $fs-10px, $fs-10px);
+            margin-top:clamp(10px, $fs-20px, $fs-20px); 
+            button{
+                border-radius: 5px;
+                font-size: clamp(10px, $fs-15px, $fs-15px);
+                padding:clamp(6px, $fs-12px, $fs-12px) clamp(9px, $fs-50px, $fs-50px);
+                border: 1px solid transparent;
+                line-height: 1;
+                background-color:  $blue-87;
+                color:  $white;
+
+                &.no-btn{
+                    background-color: $white;
+                    border-color: $blue-87;
+                    color: $blue-87;
+                    padding-inline: clamp(9px, $fs-52px, $fs-52px);
+                }
+            }
+        }
+            
+        &.active{
+            display: block;
         }
 
     }
