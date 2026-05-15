@@ -10,7 +10,7 @@
     </head>
     <body>
         <header>
-            <a href="./login.html" class="logo"><img src="./assets/images/login/Revalgo White Background.png" alt="Revalgo White"></a>
+            <a href="./dashboard.html" class="logo"><img src="./assets/images/login/Revalgo White Background.png" alt="Revalgo White"></a>
             <div class="search-wrapper">
                 <input type="text" id="search-quote" class="search-quote-input" name="search-quote" placeholder="PO#, Order#, Customer# / Name" autocomplete="off">
                 <button class="search-quote-btn"><img src="./assets/images/dashboard/Search icon.png" alt="Search icon"></button>
@@ -81,12 +81,12 @@
                 <div class="back-btn-container">
                     <div class="back-btn-wrapper">
                         <button type="button" class="back-create-btn">
-                            <img src="./assets/images/global/arrow-left-blue-1.png" class="back-arrow-img" alt="left arrow">
+                            <a href="./dashboard.html"><img src="./assets/images/global/arrow-left-blue-1.png" class="back-arrow-img" alt="left arrow"></a>
                             <span>Create Quote </span>
                        
                         </button>
                         
-                        <button class="del-quote-btn active">
+                        <button class="del-quote-btn">
                             <img src="./assets/images/global/delete_icon.png" class="delete-img" alt="delete icon">
                         </button>
                         <button type="button" class="undo-quote-btn">
@@ -204,7 +204,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="datepicker start-datepicker">
+                        <div class="datepicker start-datepicker filter-datepicker">
                             <div class="datepicker-top">
                             
                                 <div class="month-selector">
@@ -225,7 +225,7 @@
                             <div class="dates"></div>
                         </div>
                     </div>
-                    <div class="datepicker end-datepicker">
+                    <div class="datepicker end-datepicker filter-datepicker">
                             <div class="datepicker-top">
                                 <div class="month-selector">
                                     <button type="button" class="arrow prev-month">
@@ -534,7 +534,7 @@
                                 </div>
                             </div>
                             <button type="button" class="minimize-btn"><img src="./assets/images/create_quote/prev-arrow-blue.png" alt="prev arrow"></button>
-                            <div class="upload-btn-container">
+                            <div class="upload-btn-container active">
                                 <button type="button" class="upload-btn">Upload</button>
                             </div>
                         </div>
@@ -630,7 +630,7 @@
                 </div>  
             </div>
         </main>
-<div class="suggest-product-popup">
+        <div class="suggest-product-popup">
                 <div class="product-header">
                     <input type="text" class="search-suggest-product" name="search-suggest-product" placeholder="Search" autocomplete="off">
                     <button class="expand-btn" data-target=".suggest-product-popup" data-type="table" data-modal="suggest-popup" ><img src="./assets/images/global/email_Expand_icon.png"  alt="expand icon"></button>
@@ -843,6 +843,23 @@
                      <button type="button" class="cancel-btn">Cancel</button>
                 </div>
             </div>
+            <div class="del-popup-1 popup">
+                <p class="del-title">Delete</p>
+                <p class="text">Do you want to Delete item 2?</p>
+                <div class="btn-container">
+                    <button type="button" class="yes-btn">Yes</button>
+                    <button type="button" class="no-btn" onclick="closeModal()">No</button>
+                </div>
+            </div>
+            <div class="del-popup-2 popup">
+                <p class="del-title">Delete</p>
+                <p class="text">Are you sure you want to delete <br> this order <span class="id"> #7DBE8BFED ?</span> </p>
+                <textarea name="delete-quote" class="del-quote-text"></textarea>
+                <div class="btn-container">
+                    <button type="button" class="yes-btn">Yes</button>
+                    <button type="button" class="no-btn" onclick="closeModal()">No</button>
+                </div>
+            </div>
             <div class="success-popup popup">
                 <p class="text">Your Quote <span class="id">#7DB38FED</span> has been Approved Successfully</p>
                 <button type="button" class="ok-btn">Ok</button>
@@ -888,6 +905,31 @@
                 <div class="btn-container">
                     <button type="button" class="add-btn add-lines-btn">Add</button>
                     <button type="button" class="cancel-btn">Cancel</button>
+                </div>
+            </div>
+            <div class="add-note-popup add-quote-note-popup popup ">
+                <div class="header">
+                    <h3 class="title">Add Note</h3>
+                    <button type="button" class="close-popup-btn"><img src="./assets/images/global/close-modal.webp" alt="close"></button>
+                </div>
+                <textarea name="add-quote-note" placeholder="Notes..."></textarea>
+                <div class="btn-container">
+                    <button type="button" class="add-btn">Add</button>
+                    <button type="button" class="cancel-btn">Cancel</button>
+                </div>
+            </div>
+            <div class="add-note-popup add-line-note-popup popup">
+                <div class="header">
+                    <h3 class="title">Add Quote Note</h3>
+                    <button type="button" class="close-popup-btn"><img src="./assets/images/global/close-modal.webp" alt="close"></button>
+                </div>
+                <textarea name="add-quote-note">Alternate: Ricky 516-353-9794, Bill To Job: 2707, 
+Booked Dock Time Delivery Needed: 7- 7:30 AM Deleivery Window, Delivery Date: 3/30/2017
+Delivery Time: By 7 am, oRDER nUMBER : 007484
+                </textarea>
+                <div class="btn-container">
+                    <button type="button" class="add-btn">Add</button>
+                     <button type="button" class="cancel-btn">Cancel</button>
                 </div>
             </div>
             <div class="form-popup popup">
@@ -992,6 +1034,8 @@
         
         <!-- <script src="./assets/js/global.js"></script> -->
         <script src="./assets/js/exist-quote.js"></script>
+        <script src="./assets/js/table.js"></script>
         <script src="./assets/js/popup.js"></script>
+        
     </body>
 </html>

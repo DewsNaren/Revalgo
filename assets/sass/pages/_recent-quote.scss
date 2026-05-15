@@ -347,7 +347,7 @@ body{
                                     border-right: 1px solid rgba(0,0,0,0.2);
                                     position: relative;
 
-                                    .qty{
+                                    .qty-input{
                                         // padding:clamp(6px, $fs-12px, $fs-12px);
                                         width: 100%;
 
@@ -908,15 +908,14 @@ body{
                                     &.active{
                                         display: inline-block;
                                     }
+                                    &.selected{
+                                        visibility: visible;
+                                    }
 
                                 }
                             }
                         }
-                        &:hover{
-                            div:nth-of-type(11) button{
-                                visibility: visible;   
-                            }
-                        }
+                        
                     }
                     .body-wrapper{
                         flex: 1;
@@ -959,7 +958,9 @@ body{
                                     font-weight: 500;
                                     
                                 }
-                                
+                                &.del-id{
+                                    display: none;
+                                }
                                 &:nth-of-type(4){
                                     padding-inline: clamp(10px, $fs-50px, $fs-50px);
                                     text-align: left;
@@ -1171,7 +1172,7 @@ body{
                                     }
                                 }
                             }
-                            .add-note-btn{
+                            .add-line-note-btn{
                                 background-color: transparent;
                                 border: none;
                                 visibility: hidden;
@@ -1198,7 +1199,7 @@ body{
                             }
                             &:hover{
                                 background-color: $blue-2ff;
-                                p:nth-of-type(11) button,.add-note-btn{
+                                p:nth-of-type(11) button,.add-line-note-btn{
                                     visibility: visible;
                                 }
                             }
@@ -1206,7 +1207,7 @@ body{
                                 background-color: $grey-f15;
                                 
                                
-                                p:not(:nth-of-type(11)),.add-note-btn{
+                                p:not(:nth-of-type(11)),.add-line-note-btn{
                                     pointer-events: none;
                                     opacity: 0.5;
                                 }
@@ -1882,7 +1883,7 @@ body{
 
 }
 
-.overlay{
+.popup-overlay{
     position: fixed;
     z-index: 5;
     background-color: rgba(0,0,0,0.7);
@@ -1897,7 +1898,7 @@ body{
         flex-direction: column;
         align-items: center;
         margin-top: 10px;
-        
+        width: 62%;
         max-height: 85%;
         position: relative;
         padding: clamp(12px, $fs-24px, $fs-24px) clamp(12px, $fs-24px, $fs-24px);
@@ -1917,13 +1918,14 @@ body{
             }
         }
         
-        &.table{
-            .expand-modal-content{
-                display: flex;   
-                flex: 1;
-                max-height: 100%;
-                min-height: 0;
-                .suggest-product-popup{
+
+        .expand-modal-content{
+            display: flex;   
+            flex: 1;
+            max-height: 100%;
+            min-height: 0;
+            width: 100%;
+            .suggest-product-popup{
                     display: flex;
                     flex-direction: column;
                     // background-color: $white;
@@ -2034,27 +2036,11 @@ body{
                             border-radius: 4px;        
                         }
                     }
-                }               
-                .trend-chart-wrapper{
-                    display: none;
-                }
-                .accuracy-chart-wrapper{
-                    display: none;
-                }
-            }
-            &.quotes{
-                width:72%;
-            }
-            &.transaction{
-                width: 48%;
-            }
-            &.suggest-popup{
-                width: 62%;
-                .expand-modal-content{
-                    width: 100%;
-                }
-            }
+            }               
+               
         }
+            
+
         &.active{
             display: flex;
         }
@@ -2156,7 +2142,15 @@ body{
                 line-height: 1;
                 background-color:  $blue-87;
                 color:  $white;
+                &.yes-btn{
+                    pointer-events: none;
+                    opacity: 0.5;
 
+                    &.active{
+                        pointer-events: auto;
+                        opacity: 1;
+                    }
+                }
                 &.no-btn{
                     background-color: $white;
                     border-color: $blue-87;

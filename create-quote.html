@@ -10,7 +10,7 @@
     </head>
     <body>
         <header>
-            <a href="./login.html" class="logo"><img src="./assets/images/login/Revalgo White Background.png" alt="Revalgo White"></a>
+            <a href="./dashboard.html" class="logo"><img src="./assets/images/login/Revalgo White Background.png" alt="Revalgo White"></a>
             <div class="search-wrapper">
                 <input type="text" id="search-quote" class="search-quote-input" name="search-quote" placeholder="PO#, Order#, Customer# / Name" autocomplete="off">
                 <button class="search-quote-btn"><img src="./assets/images/dashboard/Search icon.png" alt="Search icon"></button>
@@ -79,8 +79,8 @@
         <main class="create-quote-wrapper">
             <div class="top-btn-wrapper">
                 <button type="button" class="back-create-btn">
-                    <img src="./assets/images/global/arrow-left-blue-1.png" alt="left arrow">
-                    Create Quote
+                    <a href="./dashboard.html"><img src="./assets/images/global/arrow-left-blue-1.png" alt="left arrow"></a>
+                    <span>Create Quote</span>
                 </button>
                 <div class="approve-btn-container active">
                     <button type="button" class="add-note-btn">Add Note</button>
@@ -681,6 +681,31 @@
                     <button type="button" class="no-btn">No</button>
                 </div>
             </div>
+            <div class="add-note-popup add-quote-note-popup popup ">
+                <div class="header">
+                    <h3 class="title">Add Note</h3>
+                    <button type="button" class="close-popup-btn"><img src="./assets/images/global/close-modal.webp" alt="close"></button>
+                </div>
+                <textarea name="add-quote-note" placeholder="Notes..."></textarea>
+                <div class="btn-container">
+                    <button type="button" class="add-btn">Add</button>
+                    <button type="button" class="cancel-btn">Cancel</button>
+                </div>
+            </div>
+            <div class="add-note-popup add-line-note-popup popup">
+                <div class="header">
+                    <h3 class="title">Add Quote Note</h3>
+                    <button type="button" class="close-popup-btn"><img src="./assets/images/global/close-modal.webp" alt="close"></button>
+                </div>
+                <textarea name="add-quote-note">Alternate: Ricky 516-353-9794, Bill To Job: 2707, 
+Booked Dock Time Delivery Needed: 7- 7:30 AM Deleivery Window, Delivery Date: 3/30/2017
+Delivery Time: By 7 am, oRDER nUMBER : 007484
+                </textarea>
+                <div class="btn-container">
+                    <button type="button" class="add-btn">Add</button>
+                     <button type="button" class="cancel-btn">Cancel</button>
+                </div>
+            </div>
             <div class="add-popup popup">
                 <div class="item-header">
                     <h3>Add Item</h3>
@@ -828,11 +853,30 @@
                     <button type="button" class="cancel-btn">Cancel</button>
                 </div>
             </div>
+            <div class="del-popup-1 popup">
+                <p class="del-title">Delete</p>
+                <p class="text">Do you want to Delete item 2?</p>
+                <div class="btn-container">
+                    <button type="button" class="yes-btn">Yes</button>
+                    <button type="button" class="no-btn">No</button>
+                </div>
+            </div>
+            <div class="del-popup-2 popup">
+                <p class="del-title">Delete</p>
+                <p class="text">Are you sure you want to delete <br> this order <span class="id"> #7DBE8BFED ?</span> </p>
+                <textarea name="delete-quote" class="del-quote-text"></textarea>
+                <div class="btn-container">
+                    <button type="button" class="yes-btn">Yes</button>
+                    <button type="button" class="no-btn">No</button>
+                </div>
+            </div>
             
         </div>
-        <script src="./assets/js/popup.js"></script>
+        
         <script src="./assets/js/header.js"></script>
         <script src="./assets/js/create-quote.js"></script>
+        <script src="./assets/js/table.js"></script>
+        <script src="./assets/js/popup.js"></script>
        
         
     </body>

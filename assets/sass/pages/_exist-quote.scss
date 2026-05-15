@@ -1139,7 +1139,7 @@
                    .upload-btn-container{
                         text-align: center;
                         margin-top: clamp(10px, $fs-35px, $fs-35px);
-                        // display: block;
+                        display: none;
                         .upload-btn{
                             border-radius: 5px;
                             font-size: clamp(11px, $fs-16px, $fs-16px);
@@ -1150,9 +1150,13 @@
                             background-color: $blue-87;
                             color: $white;
                         }
-                        .not-active{
-                            display: none;
+                        &.active{
+                            display: block;
+
                         }
+                        // .not-active{
+                        //     display: none;
+                        // }
                    }
                 
                 }
@@ -1572,7 +1576,7 @@
                                 }
 
                             }
-                            .add-note-btn{
+                            .add-line-note-btn{
                                 background-color: transparent;
                                 border: none;
                                 visibility: hidden;
@@ -1599,7 +1603,7 @@
                             }
                             &:hover{
                                 background-color: $blue-2ff;
-                                p:nth-of-type(12) button,.add-note-btn{
+                                p:nth-of-type(12) button,.add-line-note-btn{
                                     visibility: visible;
                                 }
                             }
@@ -1617,7 +1621,7 @@
                             background-color: $grey-f15;
                                 
                                
-                            p:not(:nth-of-type(12)),.add-note-btn{
+                            p:not(:nth-of-type(12)),.add-line-note-btn{
                                 pointer-events: none;
                                 opacity: 0.5;
                             }
@@ -1747,7 +1751,7 @@
                             top: 50%;
                             transform: translate(-50%, -50%);
                             gap: clamp(8px, $fs-10px, $fs-10px);
-                            // z-index: -1;
+                            z-index: 3;
                             button{
                                 border: none;
                                 background-color: transparent;
@@ -1765,7 +1769,7 @@
                                 align-items: flex-end;
                                 bottom: 11%;
                                 right: 5.8%;
-                                 left: unset;
+                                left: unset;
                                 top: unset;
                                 transform: unset;
                                 .text{
@@ -2816,7 +2820,119 @@
             display: flex;
         }
     }
-     .success-popup{
+    .del-popup-1{
+        background-color: $white;
+        padding: clamp(17px, $fs-35px, $fs-35px)  clamp(10px, $fs-20px, $fs-20px) clamp(20px, $fs-30px, $fs-30px);
+        margin-top: 10px;
+        max-height: 85%;
+        border-radius: clamp(5px, $fs-10px, $fs-10px);
+        display: none;
+
+        .del-title{
+            color: $blue-87;
+            font-size:  clamp(14px, $fs-24px, $fs-24px);
+            font-weight: 600;
+            margin-bottom: clamp(9px, $fs-18px, $fs-18px);
+        }
+        .text{
+            font-size:  clamp(9px, $fs-18px, $fs-18px);
+            color: $black-80;
+            font-weight: 500;
+            margin-bottom: 0;
+
+        }
+        .btn-container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap:  clamp(5px, $fs-10px, $fs-10px);
+            margin-top:clamp(10px, $fs-20px, $fs-20px); 
+            button{
+                border-radius: 5px;
+                font-size: clamp(10px, $fs-15px, $fs-15px);
+                padding:clamp(6px, $fs-12px, $fs-12px) clamp(9px, $fs-50px, $fs-50px);
+                border: 1px solid transparent;
+                line-height: 1;
+                background-color:  $blue-87;
+                color:  $white;
+
+                &.no-btn{
+                    background-color: $white;
+                    border-color: $blue-87;
+                    color: $blue-87;
+                    padding-inline: clamp(9px, $fs-52px, $fs-52px);
+                }
+            }
+        }
+            
+        &.active{
+            display: block;
+        }
+
+    }
+    .del-popup-2{
+        background-color: $white;
+        padding: clamp(15px, $fs-30px, $fs-30px)  clamp(15px, $fs-30px, $fs-30px) clamp(20px, $fs-30px, $fs-30px);
+        max-height: 85%;
+        border-radius: clamp(5px, $fs-10px, $fs-10px);
+        display: none;
+        width: 28%;
+        .del-title{
+            color: $blue-87;
+            font-size:  clamp(14px, $fs-24px, $fs-24px);
+            font-weight: 600;
+            margin-bottom: clamp(9px, $fs-18px, $fs-18px);
+        }
+        .text{
+            font-size:  clamp(9px, $fs-18px, $fs-18px);
+            color: rgba(0, 0, 0, 0.8);
+            margin-bottom: clamp(10px, $fs-20px, $fs-20px) ;
+            .id{
+                color: $black-90;
+                font-weight: 600;
+            }
+        }
+        textarea{
+            border: 1px solid rgba(0, 0, 0, 0.9);
+            padding: clamp(10px, $fs-20px, $fs-20px);
+            height: clamp(60px, $fs-100px, $fs-100px);
+            outline: rgba(0, 0, 0, 0.9);
+            border-radius: clamp(3px, $fs-7px, $fs-7px);
+            font-size: clamp(10px, $fs-16px, $fs-16px);
+            width: 100%;
+            max-height: 200px;
+        }
+        
+        .btn-container{
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap:  clamp(5px, $fs-10px, $fs-10px);
+            margin-top:clamp(10px, $fs-20px, $fs-20px); 
+            button{
+                border-radius: 5px;
+                font-size: clamp(10px, $fs-15px, $fs-15px);
+                padding:clamp(6px, $fs-12px, $fs-12px) clamp(9px, $fs-50px, $fs-50px);
+                border: 1px solid transparent;
+                line-height: 1;
+                background-color:  $blue-87;
+                color:  $white;
+
+                &.no-btn{
+                    background-color: $white;
+                    border-color: $blue-87;
+                    color: $blue-87;
+                    padding-inline: clamp(9px, $fs-52px, $fs-52px);
+                }
+            }
+        }
+            
+        &.active{
+            display: block;
+        }
+
+    }
+    .success-popup{
         background-color: $white;
         padding: clamp(20px, $fs-40px, $fs-40px)  clamp(12px, $fs-25px, $fs-25px) clamp(17px, $fs-35px, $fs-35px);
         margin-top: 10px;

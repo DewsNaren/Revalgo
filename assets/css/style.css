@@ -2567,7 +2567,7 @@ body {
   border-right: 1px solid rgba(0, 0, 0, 0.2);
   position: relative;
 }
-.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-body .table-row .qty-input-wrapper .qty {
+.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-body .table-row .qty-input-wrapper .qty-input {
   width: 100%;
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-body .table-row .desc-wrapper {
@@ -3044,7 +3044,7 @@ body {
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(11) button.active {
   display: inline-block;
 }
-.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper:hover div:nth-of-type(11) button {
+.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(11) button.selected {
   visibility: visible;
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper {
@@ -3076,6 +3076,9 @@ body {
   outline: none;
   color: #154787;
   font-weight: 500;
+}
+.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p.del-id {
+  display: none;
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) {
   padding-inline: clamp(10px, 2.61vw, 2.61vw);
@@ -3264,7 +3267,7 @@ body {
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(11) button.active {
   display: inline-block;
 }
-.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-note-btn {
+.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-line-note-btn {
   background-color: transparent;
   border: none;
   visibility: hidden;
@@ -3273,29 +3276,29 @@ body {
   right: 0;
   transition: visibility 0.2s ease;
 }
-.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-note-btn img {
+.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-line-note-btn img {
   display: none;
 }
-.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-note-btn img.img-grey {
+.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-line-note-btn img.img-grey {
   width: clamp(12px, 1.05vw, 1.05vw);
 }
-.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-note-btn img.img-blue {
+.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-line-note-btn img.img-blue {
   display: none;
   width: clamp(12px, 0.93vw, 0.93vw);
 }
-.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-note-btn img.active {
+.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-line-note-btn img.active {
   display: inline-block;
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:hover {
   background-color: #e8f2ff;
 }
-.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:hover p:nth-of-type(11) button, .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:hover .add-note-btn {
+.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:hover p:nth-of-type(11) button, .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:hover .add-line-note-btn {
   visibility: visible;
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row.not-active {
   background-color: rgba(241, 241, 241, 0.5);
 }
-.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row.not-active p:not(:nth-of-type(11)), .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row.not-active .add-note-btn {
+.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row.not-active p:not(:nth-of-type(11)), .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row.not-active .add-line-note-btn {
   pointer-events: none;
   opacity: 0.5;
 }
@@ -3814,7 +3817,7 @@ body {
   border-radius: 4px;
 }
 
-.overlay {
+.popup-overlay {
   position: fixed;
   z-index: 5;
   background-color: rgba(0, 0, 0, 0.7);
@@ -3823,18 +3826,19 @@ body {
   justify-content: center;
   align-items: center;
 }
-.overlay .expand-modal {
+.popup-overlay .expand-modal {
   background-color: white;
   display: none;
   flex-direction: column;
   align-items: center;
   margin-top: 10px;
+  width: 62%;
   max-height: 85%;
   position: relative;
   padding: clamp(12px, 1.25vw, 1.25vw) clamp(12px, 1.25vw, 1.25vw);
   border-radius: clamp(3px, 0.521vw, 0.521vw);
 }
-.overlay .expand-modal .close-modal-btn {
+.popup-overlay .expand-modal .close-modal-btn {
   position: absolute;
   align-self: flex-end;
   border: none;
@@ -3842,19 +3846,20 @@ body {
   top: clamp(12px, 1.25vw, 1.25vw);
   z-index: 4;
 }
-.overlay .expand-modal .close-modal-btn img {
+.popup-overlay .expand-modal .close-modal-btn img {
   width: clamp(14px, 1.25vw, 1.25vw);
 }
-.overlay .expand-modal .close-modal-btn.not-active {
+.popup-overlay .expand-modal .close-modal-btn.not-active {
   display: none;
 }
-.overlay .expand-modal.table .expand-modal-content {
+.popup-overlay .expand-modal .expand-modal-content {
   display: flex;
   flex: 1;
   max-height: 100%;
   min-height: 0;
+  width: 100%;
 }
-.overlay .expand-modal.table .expand-modal-content .suggest-product-popup {
+.popup-overlay .expand-modal .expand-modal-content .suggest-product-popup {
   display: flex;
   flex-direction: column;
   z-index: 3;
@@ -3864,13 +3869,13 @@ body {
   padding: clamp(4px, 0.4vw, 0.4vw) 0 clamp(10px, 1.05vw, 1.05vw) clamp(5px, 0.521vw, 0.521vw);
   max-height: 100%;
 }
-.overlay .expand-modal.table .expand-modal-content .suggest-product-popup .product-header {
+.popup-overlay .expand-modal .expand-modal-content .suggest-product-popup .product-header {
   display: flex;
   gap: clamp(10px, 1.05vw, 1.05vw);
   align-items: center;
   margin-bottom: clamp(3px, 0.4vw, 0.4vw);
 }
-.overlay .expand-modal.table .expand-modal-content .suggest-product-popup .product-header .search-suggest-product {
+.popup-overlay .expand-modal .expand-modal-content .suggest-product-popup .product-header .search-suggest-product {
   flex: 1;
   margin-right: clamp(10px, 1.304vw, 1.304vw);
   border: none;
@@ -3880,96 +3885,78 @@ body {
   color: #666666;
   outline: none;
 }
-.overlay .expand-modal.table .expand-modal-content .suggest-product-popup .product-header .search-suggest-product::placeholder {
+.popup-overlay .expand-modal .expand-modal-content .suggest-product-popup .product-header .search-suggest-product::placeholder {
   color: #666666;
 }
-.overlay .expand-modal.table .expand-modal-content .suggest-product-popup .product-header button {
+.popup-overlay .expand-modal .expand-modal-content .suggest-product-popup .product-header button {
   background-color: transparent;
   border: none;
 }
-.overlay .expand-modal.table .expand-modal-content .suggest-product-popup .product-header button.expand-btn img {
+.popup-overlay .expand-modal .expand-modal-content .suggest-product-popup .product-header button.expand-btn img {
   display: block;
   width: clamp(9px, 0.989vw, 0.989vw);
 }
-.overlay .expand-modal.table .expand-modal-content .suggest-product-popup .product-header button.close-suggest-popup-btn img {
+.popup-overlay .expand-modal .expand-modal-content .suggest-product-popup .product-header button.close-suggest-popup-btn img {
   display: block;
   width: clamp(10px, 0.93vw, 0.93vw);
 }
-.overlay .expand-modal.table .expand-modal-content .suggest-product-popup .product-body {
+.popup-overlay .expand-modal .expand-modal-content .suggest-product-popup .product-body {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
   padding-right: clamp(10px, 1.57vw, 1.57vw);
   margin-right: clamp(7px, 0.73vw, 0.73vw);
 }
-.overlay .expand-modal.table .expand-modal-content .suggest-product-popup .product-body h3 {
+.popup-overlay .expand-modal .expand-modal-content .suggest-product-popup .product-body h3 {
   font-size: clamp(14px, 1.15vw, 1.15vw);
   margin-bottom: clamp(10px, 0.93vw, 0.93vw);
 }
-.overlay .expand-modal.table .expand-modal-content .suggest-product-popup .product-body .products .product {
+.popup-overlay .expand-modal .expand-modal-content .suggest-product-popup .product-body .products .product {
   padding: clamp(10px, 1.05vw, 1.05vw) 0;
   border-bottom: 1px solid #ccc;
 }
-.overlay .expand-modal.table .expand-modal-content .suggest-product-popup .product-body .products .product .detail-container {
+.popup-overlay .expand-modal .expand-modal-content .suggest-product-popup .product-body .products .product .detail-container {
   display: flex;
   gap: clamp(25px, 2.9vw, 2.9vw);
 }
-.overlay .expand-modal.table .expand-modal-content .suggest-product-popup .product-body .products .product .detail-container p {
+.popup-overlay .expand-modal .expand-modal-content .suggest-product-popup .product-body .products .product .detail-container p {
   font-size: clamp(11px, 0.89vw, 0.89vw);
   margin-bottom: clamp(8px, 0.93vw, 0.93vw);
   line-height: 1;
 }
-.overlay .expand-modal.table .expand-modal-content .suggest-product-popup .product-body .products .product .detail-container p .label {
+.popup-overlay .expand-modal .expand-modal-content .suggest-product-popup .product-body .products .product .detail-container p .label {
   color: rgba(0, 0, 0, 0.8);
 }
-.overlay .expand-modal.table .expand-modal-content .suggest-product-popup .product-body .products .product .detail-container p .label.id {
+.popup-overlay .expand-modal .expand-modal-content .suggest-product-popup .product-body .products .product .detail-container p .label.id {
   color: #154787;
   font-weight: 500;
   margin-right: 5px;
 }
-.overlay .expand-modal.table .expand-modal-content .suggest-product-popup .product-body .products .product .detail-container p .value {
+.popup-overlay .expand-modal .expand-modal-content .suggest-product-popup .product-body .products .product .detail-container p .value {
   color: black;
   font-weight: 500;
   margin-left: 7px;
 }
-.overlay .expand-modal.table .expand-modal-content .suggest-product-popup .product-body .products .product .desc {
+.popup-overlay .expand-modal .expand-modal-content .suggest-product-popup .product-body .products .product .desc {
   color: #6c6c6c;
   font-size: clamp(9px, 0.83vw, 0.83vw);
   line-height: 1.2;
   margin-bottom: 0;
 }
-.overlay .expand-modal.table .expand-modal-content .suggest-product-popup .product-body .products .product:last-of-type {
+.popup-overlay .expand-modal .expand-modal-content .suggest-product-popup .product-body .products .product:last-of-type {
   border-bottom: none;
 }
-.overlay .expand-modal.table .expand-modal-content .suggest-product-popup .product-body::-webkit-scrollbar {
+.popup-overlay .expand-modal .expand-modal-content .suggest-product-popup .product-body::-webkit-scrollbar {
   width: clamp(6px, 0.521vw, 0.521vw);
 }
-.overlay .expand-modal.table .expand-modal-content .suggest-product-popup .product-body::-webkit-scrollbar-thumb {
+.popup-overlay .expand-modal .expand-modal-content .suggest-product-popup .product-body::-webkit-scrollbar-thumb {
   background: rgba(161, 161, 161, 0.5);
   border-radius: 4px;
 }
-.overlay .expand-modal.table .expand-modal-content .trend-chart-wrapper {
-  display: none;
-}
-.overlay .expand-modal.table .expand-modal-content .accuracy-chart-wrapper {
-  display: none;
-}
-.overlay .expand-modal.table.quotes {
-  width: 72%;
-}
-.overlay .expand-modal.table.transaction {
-  width: 48%;
-}
-.overlay .expand-modal.table.suggest-popup {
-  width: 62%;
-}
-.overlay .expand-modal.table.suggest-popup .expand-modal-content {
-  width: 100%;
-}
-.overlay .expand-modal.active {
+.popup-overlay .expand-modal.active {
   display: flex;
 }
-.overlay .del-popup-1 {
+.popup-overlay .del-popup-1 {
   background-color: white;
   padding: clamp(17px, 1.8vw, 1.8vw) clamp(10px, 1.05vw, 1.05vw) clamp(20px, 1.57vw, 1.57vw);
   margin-top: 10px;
@@ -3977,26 +3964,26 @@ body {
   border-radius: clamp(5px, 0.521vw, 0.521vw);
   display: none;
 }
-.overlay .del-popup-1 .del-title {
+.popup-overlay .del-popup-1 .del-title {
   color: #154787;
   font-size: clamp(14px, 1.25vw, 1.25vw);
   font-weight: 600;
   margin-bottom: clamp(9px, 0.93vw, 0.93vw);
 }
-.overlay .del-popup-1 .text {
+.popup-overlay .del-popup-1 .text {
   font-size: clamp(9px, 0.93vw, 0.93vw);
   color: rgba(0, 0, 0, 0.8);
   font-weight: 500;
   margin-bottom: 0;
 }
-.overlay .del-popup-1 .btn-container {
+.popup-overlay .del-popup-1 .btn-container {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: clamp(5px, 0.521vw, 0.521vw);
   margin-top: clamp(10px, 1.05vw, 1.05vw);
 }
-.overlay .del-popup-1 .btn-container button {
+.popup-overlay .del-popup-1 .btn-container button {
   border-radius: 5px;
   font-size: clamp(10px, 0.79vw, 0.79vw);
   padding: clamp(6px, 0.63vw, 0.63vw) clamp(9px, 2.61vw, 2.61vw);
@@ -4005,16 +3992,16 @@ body {
   background-color: #154787;
   color: white;
 }
-.overlay .del-popup-1 .btn-container button.no-btn {
+.popup-overlay .del-popup-1 .btn-container button.no-btn {
   background-color: white;
   border-color: #154787;
   color: #154787;
   padding-inline: clamp(9px, 2.75vw, 2.75vw);
 }
-.overlay .del-popup-1.active {
+.popup-overlay .del-popup-1.active {
   display: block;
 }
-.overlay .del-popup-2 {
+.popup-overlay .del-popup-2 {
   background-color: white;
   padding: clamp(15px, 1.57vw, 1.57vw) clamp(15px, 1.57vw, 1.57vw) clamp(20px, 1.57vw, 1.57vw);
   max-height: 85%;
@@ -4022,22 +4009,22 @@ body {
   display: none;
   width: 28%;
 }
-.overlay .del-popup-2 .del-title {
+.popup-overlay .del-popup-2 .del-title {
   color: #154787;
   font-size: clamp(14px, 1.25vw, 1.25vw);
   font-weight: 600;
   margin-bottom: clamp(9px, 0.93vw, 0.93vw);
 }
-.overlay .del-popup-2 .text {
+.popup-overlay .del-popup-2 .text {
   font-size: clamp(9px, 0.93vw, 0.93vw);
   color: rgba(0, 0, 0, 0.8);
   margin-bottom: clamp(10px, 1.05vw, 1.05vw);
 }
-.overlay .del-popup-2 .text .id {
+.popup-overlay .del-popup-2 .text .id {
   color: rgba(0, 0, 0, 0.9);
   font-weight: 600;
 }
-.overlay .del-popup-2 textarea {
+.popup-overlay .del-popup-2 textarea {
   border: 1px solid rgba(0, 0, 0, 0.9);
   padding: clamp(10px, 1.05vw, 1.05vw);
   height: clamp(60px, 5.2vw, 5.2vw);
@@ -4047,14 +4034,14 @@ body {
   width: 100%;
   max-height: 200px;
 }
-.overlay .del-popup-2 .btn-container {
+.popup-overlay .del-popup-2 .btn-container {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: clamp(5px, 0.521vw, 0.521vw);
   margin-top: clamp(10px, 1.05vw, 1.05vw);
 }
-.overlay .del-popup-2 .btn-container button {
+.popup-overlay .del-popup-2 .btn-container button {
   border-radius: 5px;
   font-size: clamp(10px, 0.79vw, 0.79vw);
   padding: clamp(6px, 0.63vw, 0.63vw) clamp(9px, 2.61vw, 2.61vw);
@@ -4063,39 +4050,47 @@ body {
   background-color: #154787;
   color: white;
 }
-.overlay .del-popup-2 .btn-container button.no-btn {
+.popup-overlay .del-popup-2 .btn-container button.yes-btn {
+  pointer-events: none;
+  opacity: 0.5;
+}
+.popup-overlay .del-popup-2 .btn-container button.yes-btn.active {
+  pointer-events: auto;
+  opacity: 1;
+}
+.popup-overlay .del-popup-2 .btn-container button.no-btn {
   background-color: white;
   border-color: #154787;
   color: #154787;
   padding-inline: clamp(9px, 2.75vw, 2.75vw);
 }
-.overlay .del-popup-2.active {
+.popup-overlay .del-popup-2.active {
   display: block;
 }
-.overlay .stock-popup {
+.popup-overlay .stock-popup {
   background-color: white;
   padding: clamp(15px, 2.61vw, 2.61vw) clamp(15px, 3.13vw, 3.13vw) clamp(15px, 2.067vw, 2.067vw);
   border-radius: clamp(5px, 0.521vw, 0.521vw);
   display: none;
 }
-.overlay .stock-popup .text {
+.popup-overlay .stock-popup .text {
   font-size: clamp(9px, 0.93vw, 0.93vw);
   color: rgba(0, 0, 0, 0.8);
   margin-bottom: clamp(20px, 2.067vw, 2.067vw);
   text-align: center;
 }
-.overlay .stock-popup .text .id {
+.popup-overlay .stock-popup .text .id {
   color: rgba(0, 0, 0, 0.9);
   font-weight: 600;
 }
-.overlay .stock-popup .btn-container {
+.popup-overlay .stock-popup .btn-container {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: clamp(5px, 0.521vw, 0.521vw);
   margin-top: clamp(10px, 1.05vw, 1.05vw);
 }
-.overlay .stock-popup .btn-container button {
+.popup-overlay .stock-popup .btn-container button {
   border-radius: 5px;
   font-size: clamp(10px, 0.79vw, 0.79vw);
   padding: clamp(6px, 0.63vw, 0.63vw) clamp(9px, 2.61vw, 2.61vw);
@@ -4104,16 +4099,16 @@ body {
   background-color: #154787;
   color: white;
 }
-.overlay .stock-popup .btn-container button.no-btn {
+.popup-overlay .stock-popup .btn-container button.no-btn {
   background-color: white;
   border-color: #154787;
   color: #154787;
   padding-inline: clamp(9px, 2.75vw, 2.75vw);
 }
-.overlay .stock-popup.active {
+.popup-overlay .stock-popup.active {
   display: block;
 }
-.overlay .add-note-popup {
+.popup-overlay .add-note-popup {
   background-color: white;
   padding: clamp(10px, 1.05vw, 1.05vw) clamp(10px, 1.05vw, 1.05vw) clamp(15px, 1.57vw, 1.57vw);
   flex-direction: column;
@@ -4123,7 +4118,7 @@ body {
   border-radius: clamp(5px, 0.521vw, 0.521vw);
   display: none;
 }
-.overlay .add-note-popup .header {
+.popup-overlay .add-note-popup .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -4131,19 +4126,19 @@ body {
   border-bottom: 1px solid #9f9e9e;
   margin-bottom: clamp(10px, 1.57vw, 1.57vw);
 }
-.overlay .add-note-popup .header h3 {
+.popup-overlay .add-note-popup .header h3 {
   font-size: clamp(12px, 1.05vw, 1.05vw);
   color: rgba(0, 0, 0, 0.9);
 }
-.overlay .add-note-popup .header .close-popup-btn {
+.popup-overlay .add-note-popup .header .close-popup-btn {
   border: none;
   background-color: transparent;
   width: clamp(10px, 0.93vw, 0.93vw);
 }
-.overlay .add-note-popup .header .close-popup-btn img {
+.popup-overlay .add-note-popup .header .close-popup-btn img {
   width: 100%;
 }
-.overlay .add-note-popup textarea {
+.popup-overlay .add-note-popup textarea {
   border: 1px solid rgba(0, 0, 0, 0.9);
   padding: clamp(10px, 1.05vw, 1.05vw);
   height: clamp(90px, 8.5vw, 8.5vw);
@@ -4151,41 +4146,41 @@ body {
   border-radius: clamp(3px, 0.4vw, 0.4vw);
   font-size: clamp(10px, 0.83vw, 0.83vw);
 }
-.overlay .add-note-popup .btn-container {
+.popup-overlay .add-note-popup .btn-container {
   margin-top: clamp(15px, 1.57vw, 1.57vw);
   display: flex;
   gap: clamp(10px, 1.05vw, 1.05vw);
   justify-content: flex-end;
   padding-right: clamp(9px, 1.45vw, 1.45vw);
 }
-.overlay .add-note-popup .btn-container button {
+.popup-overlay .add-note-popup .btn-container button {
   border-radius: 5px;
   font-size: clamp(11px, 0.79vw, 0.79vw);
   padding: clamp(7px, 0.63vw, 0.63vw) clamp(9px, 2.067vw, 2.067vw);
   border: 1px solid transparent;
   line-height: 1;
 }
-.overlay .add-note-popup .btn-container button.add-btn {
+.popup-overlay .add-note-popup .btn-container button.add-btn {
   color: white;
   background-color: #154787;
   padding-inline: clamp(22px, 2.66vw, 2.66vw);
 }
-.overlay .add-note-popup .btn-container button.add-btn:hover {
+.popup-overlay .add-note-popup .btn-container button.add-btn:hover {
   background-color: #015685;
 }
-.overlay .add-note-popup .btn-container button.cancel-btn {
+.popup-overlay .add-note-popup .btn-container button.cancel-btn {
   background-color: white;
   color: #154787;
   border-color: #154787;
 }
-.overlay .add-note-popup .btn-container button.cancel-btn:hover {
+.popup-overlay .add-note-popup .btn-container button.cancel-btn:hover {
   color: white;
   background-color: #154787;
 }
-.overlay .add-note-popup.active {
+.popup-overlay .add-note-popup.active {
   display: flex;
 }
-.overlay .add-note-popup.add-quote-note-popup textarea {
+.popup-overlay .add-note-popup.add-quote-note-popup textarea {
   border: 1px solid rgba(0, 0, 0, 0.9);
   padding: clamp(10px, 1.05vw, 1.05vw);
   height: clamp(80px, 7.3vw, 7.3vw);
@@ -4195,7 +4190,7 @@ body {
   color: rgba(0, 0, 0, 0.9);
   text-align: left;
 }
-.overlay .add-acronym-popup {
+.popup-overlay .add-acronym-popup {
   background-color: white;
   padding: clamp(10px, 1.05vw, 1.05vw) clamp(10px, 1.304vw, 1.304vw) clamp(15px, 1.57vw, 1.57vw);
   flex-direction: column;
@@ -4205,7 +4200,7 @@ body {
   border-radius: clamp(5px, 0.521vw, 0.521vw);
   display: none;
 }
-.overlay .add-acronym-popup .header {
+.popup-overlay .add-acronym-popup .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -4213,36 +4208,36 @@ body {
   border-bottom: 1px solid #9f9e9e;
   margin-bottom: clamp(7px, 0.79vw, 0.79vw);
 }
-.overlay .add-acronym-popup .header h3 {
+.popup-overlay .add-acronym-popup .header h3 {
   font-size: clamp(12px, 1.05vw, 1.05vw);
   color: rgba(0, 0, 0, 0.9);
   margin-bottom: 0;
 }
-.overlay .add-acronym-popup .header .close-popup-btn {
+.popup-overlay .add-acronym-popup .header .close-popup-btn {
   border: none;
   background-color: transparent;
   width: clamp(10px, 0.93vw, 0.93vw);
 }
-.overlay .add-acronym-popup .header .close-popup-btn img {
+.popup-overlay .add-acronym-popup .header .close-popup-btn img {
   width: 100%;
 }
-.overlay .add-acronym-popup .body .edit-acronym {
+.popup-overlay .add-acronym-popup .body .edit-acronym {
   margin-bottom: clamp(13px, 1.304vw, 1.304vw);
 }
-.overlay .add-acronym-popup .body .edit-acronym input {
+.popup-overlay .add-acronym-popup .body .edit-acronym input {
   border: none;
   outline: none;
   font-size: clamp(13px, 0.989vw, 0.989vw);
 }
-.overlay .add-acronym-popup .body .edit-acronym .edit-btn {
+.popup-overlay .add-acronym-popup .body .edit-acronym .edit-btn {
   border: none;
   background-color: transparent;
 }
-.overlay .add-acronym-popup .body .edit-acronym .edit-btn img {
+.popup-overlay .add-acronym-popup .body .edit-acronym .edit-btn img {
   display: block;
   width: clamp(8px, 0.63vw, 0.63vw);
 }
-.overlay .add-acronym-popup .body .add-acronym-input {
+.popup-overlay .add-acronym-popup .body .add-acronym-input {
   padding: clamp(5px, 0.521vw, 0.521vw);
   border: 1px solid #616161;
   border-radius: 5px;
@@ -4251,12 +4246,12 @@ body {
   width: 100%;
   margin-bottom: clamp(7px, 0.79vw, 0.79vw);
 }
-.overlay .add-acronym-popup .body .acronym-chip-container {
+.popup-overlay .add-acronym-popup .body .acronym-chip-container {
   display: flex;
   align-items: center;
   gap: clamp(8px, 0.521vw, 0.521vw);
 }
-.overlay .add-acronym-popup .body .acronym-chip-container .chip {
+.popup-overlay .add-acronym-popup .body .acronym-chip-container .chip {
   display: inline-flex;
   align-items: center;
   padding: 5px clamp(8px, 0.521vw, 0.521vw);
@@ -4267,53 +4262,53 @@ body {
   border: 1px solid transparent;
   gap: clamp(5px, 0.521vw, 0.521vw);
 }
-.overlay .add-acronym-popup .body .acronym-chip-container .chip .close-chip {
+.popup-overlay .add-acronym-popup .body .acronym-chip-container .chip .close-chip {
   display: inline-block;
   cursor: pointer;
 }
-.overlay .add-acronym-popup .body .acronym-chip-container .chip .close-chip img {
+.popup-overlay .add-acronym-popup .body .acronym-chip-container .chip .close-chip img {
   display: block;
   width: clamp(6px, 0.63vw, 0.63vw);
   filter: brightness(0) saturate(100%) invert(20%) sepia(45%) saturate(1500%) hue-rotate(190deg) brightness(90%) contrast(95%);
 }
-.overlay .add-acronym-popup .body .acronym-chip-container .chip.active {
+.popup-overlay .add-acronym-popup .body .acronym-chip-container .chip.active {
   background-color: #154787;
   color: rgba(255, 255, 255, 0.8);
 }
-.overlay .add-acronym-popup .btn-container {
+.popup-overlay .add-acronym-popup .btn-container {
   margin-top: clamp(17px, 1.8vw, 1.8vw);
   display: flex;
   gap: clamp(10px, 1.05vw, 1.05vw);
   justify-content: flex-end;
 }
-.overlay .add-acronym-popup .btn-container button {
+.popup-overlay .add-acronym-popup .btn-container button {
   border-radius: 5px;
   font-size: clamp(11px, 0.79vw, 0.79vw);
   padding: clamp(7px, 0.63vw, 0.63vw) clamp(9px, 2.067vw, 2.067vw);
   border: 1px solid transparent;
   line-height: 1;
 }
-.overlay .add-acronym-popup .btn-container button.add-btn {
+.popup-overlay .add-acronym-popup .btn-container button.add-btn {
   color: white;
   background-color: #154787;
 }
-.overlay .add-acronym-popup .btn-container button.add-btn:hover {
+.popup-overlay .add-acronym-popup .btn-container button.add-btn:hover {
   background-color: #015685;
 }
-.overlay .add-acronym-popup .btn-container button.cancel-btn {
+.popup-overlay .add-acronym-popup .btn-container button.cancel-btn {
   background-color: white;
   color: #154787;
   border-color: #154787;
   padding-inline: clamp(9px, 1.45vw, 1.45vw);
 }
-.overlay .add-acronym-popup .btn-container button.cancel-btn:hover {
+.popup-overlay .add-acronym-popup .btn-container button.cancel-btn:hover {
   color: white;
   background-color: #154787;
 }
-.overlay .add-acronym-popup.active {
+.popup-overlay .add-acronym-popup.active {
   display: flex;
 }
-.overlay .approve-quote-popup {
+.popup-overlay .approve-quote-popup {
   background-color: white;
   padding: clamp(10px, 1.05vw, 1.05vw) clamp(10px, 1.05vw, 1.05vw) clamp(15px, 1.57vw, 1.57vw);
   flex-direction: column;
@@ -4323,7 +4318,7 @@ body {
   border-radius: clamp(5px, 0.521vw, 0.521vw);
   display: none;
 }
-.overlay .approve-quote-popup .header {
+.popup-overlay .approve-quote-popup .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -4331,28 +4326,28 @@ body {
   border-bottom: 1px solid #9f9e9e;
   margin-bottom: clamp(10px, 1.05vw, 1.05vw);
 }
-.overlay .approve-quote-popup .header h3 {
+.popup-overlay .approve-quote-popup .header h3 {
   font-size: clamp(12px, 1.05vw, 1.05vw);
   color: rgba(0, 0, 0, 0.9);
 }
-.overlay .approve-quote-popup .header .close-popup-btn {
+.popup-overlay .approve-quote-popup .header .close-popup-btn {
   border: none;
   background-color: transparent;
   width: clamp(10px, 0.93vw, 0.93vw);
 }
-.overlay .approve-quote-popup .header .close-popup-btn img {
+.popup-overlay .approve-quote-popup .header .close-popup-btn img {
   width: 100%;
 }
-.overlay .approve-quote-popup .approve-content .quote-id {
+.popup-overlay .approve-quote-popup .approve-content .quote-id {
   font-size: clamp(10px, 1.45vw, 1.45vw);
   color: rgba(0, 0, 0, 0.8);
   font-weight: 500;
 }
-.overlay .approve-quote-popup .approve-content .approve-table {
+.popup-overlay .approve-quote-popup .approve-content .approve-table {
   width: 100%;
   margin-bottom: clamp(6px, 0.63vw, 0.63vw);
 }
-.overlay .approve-quote-popup .approve-content .approve-table thead tr th {
+.popup-overlay .approve-quote-popup .approve-content .approve-table thead tr th {
   text-align: center;
   padding: clamp(6px, 0.63vw, 0.63vw);
   background-color: #e8f2ff;
@@ -4361,13 +4356,13 @@ body {
   font-size: clamp(12px, 0.83vw, 0.83vw);
   border-right: 5px solid white;
 }
-.overlay .approve-quote-popup .approve-content .approve-table tbody tr td {
+.popup-overlay .approve-quote-popup .approve-content .approve-table tbody tr td {
   font-size: clamp(11px, 0.79vw, 0.79vw);
   color: #666666;
   text-align: center;
   padding: clamp(6px, 0.63vw, 0.63vw) clamp(14px, 1.45vw, 1.45vw);
 }
-.overlay .approve-quote-popup textarea {
+.popup-overlay .approve-quote-popup textarea {
   border: 1px solid rgba(0, 0, 0, 0.9);
   padding: clamp(10px, 1.05vw, 1.05vw);
   height: clamp(70px, 6.25vw, 6.25vw);
@@ -4375,41 +4370,41 @@ body {
   border-radius: clamp(3px, 0.4vw, 0.4vw);
   font-size: clamp(10px, 0.83vw, 0.83vw);
 }
-.overlay .approve-quote-popup .btn-container {
+.popup-overlay .approve-quote-popup .btn-container {
   margin-top: clamp(15px, 1.57vw, 1.57vw);
   display: flex;
   gap: clamp(10px, 1.05vw, 1.05vw);
   justify-content: flex-end;
   padding-right: clamp(9px, 1.45vw, 1.45vw);
 }
-.overlay .approve-quote-popup .btn-container button {
+.popup-overlay .approve-quote-popup .btn-container button {
   border-radius: 5px;
   font-size: clamp(11px, 0.79vw, 0.79vw);
   padding: clamp(7px, 0.63vw, 0.63vw) clamp(9px, 1.05vw, 1.05vw);
   border: 1px solid transparent;
   line-height: 1;
 }
-.overlay .approve-quote-popup .btn-container button.approve-btn {
+.popup-overlay .approve-quote-popup .btn-container button.approve-btn {
   color: white;
   background-color: #154787;
 }
-.overlay .approve-quote-popup .btn-container button.approve-btn:hover {
+.popup-overlay .approve-quote-popup .btn-container button.approve-btn:hover {
   background-color: #015685;
 }
-.overlay .approve-quote-popup .btn-container button.cancel-btn {
+.popup-overlay .approve-quote-popup .btn-container button.cancel-btn {
   background-color: white;
   color: #154787;
   border-color: #154787;
   padding-inline: clamp(22px, 1.304vw, 1.304vw);
 }
-.overlay .approve-quote-popup .btn-container button.cancel-btn:hover {
+.popup-overlay .approve-quote-popup .btn-container button.cancel-btn:hover {
   color: white;
   background-color: #154787;
 }
-.overlay .approve-quote-popup.active {
+.popup-overlay .approve-quote-popup.active {
   display: flex;
 }
-.overlay .img-popup {
+.popup-overlay .img-popup {
   background-color: white;
   padding: clamp(17px, 1.8vw, 1.8vw) clamp(17px, 1.8vw, 1.8vw) clamp(17px, 1.8vw, 1.8vw);
   flex-direction: column;
@@ -4419,7 +4414,7 @@ body {
   border-radius: clamp(5px, 0.521vw, 0.521vw);
   display: none;
 }
-.overlay .img-popup .header {
+.popup-overlay .img-popup .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -4428,128 +4423,128 @@ body {
   padding-bottom: clamp(5px, 0.521vw, 0.521vw);
   margin-bottom: clamp(10px, 1.05vw, 1.05vw);
 }
-.overlay .img-popup .header .text-container {
+.popup-overlay .img-popup .header .text-container {
   padding-left: clamp(7px, 0.79vw, 0.79vw);
 }
-.overlay .img-popup .header .text-container h3 {
+.popup-overlay .img-popup .header .text-container h3 {
   font-size: clamp(12px, 1.05vw, 1.05vw);
   color: rgba(0, 0, 0, 0.9);
 }
-.overlay .img-popup .header .text-container p {
+.popup-overlay .img-popup .header .text-container p {
   color: rgba(0, 0, 0, 0.8);
   font-size: clamp(10px, 0.79vw, 0.79vw);
 }
-.overlay .img-popup .header .text-container p span {
+.popup-overlay .img-popup .header .text-container p span {
   color: black;
 }
-.overlay .img-popup .header .text-container p {
+.popup-overlay .img-popup .header .text-container p {
   margin-bottom: 0;
 }
-.overlay .img-popup .header .close-popup-btn {
+.popup-overlay .img-popup .header .close-popup-btn {
   border: none;
   background-color: transparent;
   width: clamp(10px, 0.93vw, 0.93vw);
 }
-.overlay .img-popup .header .close-popup-btn img {
+.popup-overlay .img-popup .header .close-popup-btn img {
   width: 100%;
 }
-.overlay .img-popup .content-container {
+.popup-overlay .img-popup .content-container {
   overflow-y: auto;
   padding-left: clamp(7px, 0.79vw, 0.79vw);
 }
-.overlay .img-popup .content-container input[type=checkbox] {
+.popup-overlay .img-popup .content-container input[type=checkbox] {
   width: clamp(9px, 1.05vw, 1.05vw);
   height: clamp(9px, 1.05vw, 1.05vw);
   margin-left: 3px;
   accent-color: #154787;
 }
-.overlay .img-popup .content-container .select-all-wrapper {
+.popup-overlay .img-popup .content-container .select-all-wrapper {
   display: flex;
   align-items: center;
   gap: clamp(5px, 0.521vw, 0.521vw);
   margin-bottom: clamp(5px, 0.521vw, 0.521vw);
 }
-.overlay .img-popup .content-container .select-all-wrapper label {
+.popup-overlay .img-popup .content-container .select-all-wrapper label {
   color: #666666;
   font-size: clamp(9px, 0.73vw, 0.73vw);
   line-height: 1;
 }
-.overlay .img-popup .content-container .input-wrapper {
+.popup-overlay .img-popup .content-container .input-wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column-gap: clamp(20px, 2.34vw, 2.34vw);
   grid-row-gap: clamp(10px, 1.05vw, 1.05vw);
   padding-right: clamp(15px, 1.57vw, 1.57vw);
 }
-.overlay .img-popup .content-container .input-wrapper .input-container {
+.popup-overlay .img-popup .content-container .input-wrapper .input-container {
   display: flex;
   gap: clamp(5px, 0.521vw, 0.521vw);
 }
-.overlay .img-popup .content-container .input-wrapper .input-container input[type=checkbox] {
+.popup-overlay .img-popup .content-container .input-wrapper .input-container input[type=checkbox] {
   margin-top: clamp(10px, 1.05vw, 1.05vw);
 }
-.overlay .img-popup .content-container .input-wrapper .input-container input[type=checkbox]:checked + .text-wrapper {
+.popup-overlay .img-popup .content-container .input-wrapper .input-container input[type=checkbox]:checked + .text-wrapper {
   background-color: #e8f2ff;
   border-color: transparent;
 }
-.overlay .img-popup .content-container .input-wrapper .input-container .text-wrapper {
+.popup-overlay .img-popup .content-container .input-wrapper .input-container .text-wrapper {
   padding: clamp(8px, 0.79vw, 0.79vw) clamp(5px, 0.521vw, 0.521vw);
   border-radius: clamp(5px, 0.521vw, 0.521vw);
   font-size: clamp(10px, 0.79vw, 0.79vw);
   border: 1px solid rgba(0, 0, 0, 0.2);
   flex: 1;
 }
-.overlay .img-popup .content-container .input-wrapper .input-container .text-wrapper .label {
+.popup-overlay .img-popup .content-container .input-wrapper .input-container .text-wrapper .label {
   line-height: 1;
   margin-bottom: clamp(5px, 0.521vw, 0.521vw);
   color: black;
   font-weight: 500;
 }
-.overlay .img-popup .content-container .input-wrapper .input-container .text-wrapper .value {
+.popup-overlay .img-popup .content-container .input-wrapper .input-container .text-wrapper .value {
   color: #666666;
   margin-bottom: 0;
 }
-.overlay .img-popup .content-container::-webkit-scrollbar {
+.popup-overlay .img-popup .content-container::-webkit-scrollbar {
   width: 4px;
 }
-.overlay .img-popup .content-container::-webkit-scrollbar-thumb {
+.popup-overlay .img-popup .content-container::-webkit-scrollbar-thumb {
   background: rgba(161, 161, 161, 0.5);
   border-radius: 4px;
 }
-.overlay .img-popup .btn-container {
+.popup-overlay .img-popup .btn-container {
   margin-top: clamp(17px, 1.8vw, 1.8vw);
   display: flex;
   gap: clamp(10px, 1.05vw, 1.05vw);
   justify-content: flex-end;
   padding-right: clamp(9px, 1.45vw, 1.45vw);
 }
-.overlay .img-popup .btn-container button {
+.popup-overlay .img-popup .btn-container button {
   border-radius: 5px;
   font-size: clamp(11px, 0.79vw, 0.79vw);
   padding: clamp(7px, 0.63vw, 0.63vw) clamp(9px, 2.067vw, 2.067vw);
   border: 1px solid transparent;
   line-height: 1;
 }
-.overlay .img-popup .btn-container button.update-btn {
+.popup-overlay .img-popup .btn-container button.update-btn {
   color: white;
   background-color: #154787;
 }
-.overlay .img-popup .btn-container button.update-btn:hover {
+.popup-overlay .img-popup .btn-container button.update-btn:hover {
   background-color: #015685;
 }
-.overlay .img-popup .btn-container button.cancel-btn {
+.popup-overlay .img-popup .btn-container button.cancel-btn {
   background-color: white;
   color: #154787;
   border-color: #154787;
 }
-.overlay .img-popup .btn-container button.cancel-btn:hover {
+.popup-overlay .img-popup .btn-container button.cancel-btn:hover {
   color: white;
   background-color: #154787;
 }
-.overlay .img-popup.active {
+.popup-overlay .img-popup.active {
   display: flex;
 }
-.overlay .form-popup {
+.popup-overlay .form-popup {
   background-color: white;
   padding: clamp(10px, 1.05vw, 1.05vw) clamp(10px, 1.05vw, 1.05vw) clamp(17px, 1.8vw, 1.8vw);
   display: flex;
@@ -4560,7 +4555,7 @@ body {
   border-radius: clamp(5px, 0.521vw, 0.521vw);
   display: none;
 }
-.overlay .form-popup .header {
+.popup-overlay .form-popup .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -4568,24 +4563,24 @@ body {
   border-bottom: 1px solid #9f9e9e;
   margin-bottom: clamp(10px, 1.57vw, 1.57vw);
 }
-.overlay .form-popup .header h3 {
+.popup-overlay .form-popup .header h3 {
   font-size: clamp(12px, 1.05vw, 1.05vw);
   color: rgba(0, 0, 0, 0.9);
   text-transform: capitalize;
 }
-.overlay .form-popup .header .close-popup-btn {
+.popup-overlay .form-popup .header .close-popup-btn {
   border: none;
   background-color: transparent;
   width: clamp(10px, 0.93vw, 0.93vw);
 }
-.overlay .form-popup .header .close-popup-btn img {
+.popup-overlay .form-popup .header .close-popup-btn img {
   width: 100%;
 }
-.overlay .form-popup .update-form {
+.popup-overlay .form-popup .update-form {
   flex: 1;
   overflow-y: auto;
 }
-.overlay .form-popup .update-form .form-wrapper {
+.popup-overlay .form-popup .update-form .form-wrapper {
   display: flex;
   flex-direction: column;
   gap: clamp(20px, 1.57vw, 1.57vw);
@@ -4595,19 +4590,19 @@ body {
   padding-left: 1px;
   padding-right: 5px;
 }
-.overlay .form-popup .update-form .form-wrapper .form-container {
+.popup-overlay .form-popup .update-form .form-wrapper .form-container {
   width: 100%;
   position: relative;
   display: none;
 }
-.overlay .form-popup .update-form .form-wrapper .form-container .input-group label {
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .input-group label {
   font-size: clamp(10px, 0.93vw, 0.93vw);
   margin-bottom: clamp(6px, 0.63vw, 0.63vw);
   color: rgba(0, 0, 0, 0.9);
   display: block;
   width: 100%;
 }
-.overlay .form-popup .update-form .form-wrapper .form-container .input-group input, .overlay .form-popup .update-form .form-wrapper .form-container .input-group textarea {
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .input-group input, .popup-overlay .form-popup .update-form .form-wrapper .form-container .input-group textarea {
   border: none;
   font-size: clamp(10px, 0.89vw, 0.89vw);
   border: 1px solid rgba(0, 0, 0, 0.9);
@@ -4616,24 +4611,24 @@ body {
   outline: none;
   color: rgba(0, 0, 0, 0.9);
 }
-.overlay .form-popup .update-form .form-wrapper .form-container .input-group input:-webkit-autofill, .overlay .form-popup .update-form .form-wrapper .form-container .input-group input:-webkit-autofill:hover, .overlay .form-popup .update-form .form-wrapper .form-container .input-group input:-webkit-autofill:focus, .overlay .form-popup .update-form .form-wrapper .form-container .input-group textarea:-webkit-autofill, .overlay .form-popup .update-form .form-wrapper .form-container .input-group textarea:-webkit-autofill:hover, .overlay .form-popup .update-form .form-wrapper .form-container .input-group textarea:-webkit-autofill:focus {
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .input-group input:-webkit-autofill, .popup-overlay .form-popup .update-form .form-wrapper .form-container .input-group input:-webkit-autofill:hover, .popup-overlay .form-popup .update-form .form-wrapper .form-container .input-group input:-webkit-autofill:focus, .popup-overlay .form-popup .update-form .form-wrapper .form-container .input-group textarea:-webkit-autofill, .popup-overlay .form-popup .update-form .form-wrapper .form-container .input-group textarea:-webkit-autofill:hover, .popup-overlay .form-popup .update-form .form-wrapper .form-container .input-group textarea:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px white inset;
   -webkit-text-fill-color: rgba(0, 0, 0, 0.9);
   transition: background-color 5000s ease-in-out 0s;
 }
-.overlay .form-popup .update-form .form-wrapper .form-container .input-group::placeholder {
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .input-group::placeholder {
   font-size: clamp(13px, 1.1vw, 1.1vw);
   color: #a7a4a4;
 }
-.overlay .form-popup .update-form .form-wrapper .form-container .input-group textarea {
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .input-group textarea {
   max-height: 150px;
 }
-.overlay .form-popup .update-form .form-wrapper .form-container .input-group:-webkit-autofill, .overlay .form-popup .update-form .form-wrapper .form-container .input-group:-webkit-autofill:hover, .overlay .form-popup .update-form .form-wrapper .form-container .input-group:-webkit-autofill:focus {
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .input-group:-webkit-autofill, .popup-overlay .form-popup .update-form .form-wrapper .form-container .input-group:-webkit-autofill:hover, .popup-overlay .form-popup .update-form .form-wrapper .form-container .input-group:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px white inset;
   -webkit-text-fill-color: rgba(0, 0, 0, 0.9);
   transition: background-color 5000s ease-in-out 0s;
 }
-.overlay .form-popup .update-form .form-wrapper .form-container .date-text {
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .date-text {
   color: rgba(0, 0, 0, 0.9);
   border-bottom: 1px solid rgba(0, 0, 0, 0.9);
   font-size: clamp(10px, 0.89vw, 0.89vw);
@@ -4641,10 +4636,10 @@ body {
   width: 100%;
   position: relative;
 }
-.overlay .form-popup .update-form .form-wrapper .form-container .date-text.not-active {
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .date-text.not-active {
   border-bottom: 1px solid transparent;
 }
-.overlay .form-popup .update-form .form-wrapper .form-container .datepicker {
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker {
   position: absolute;
   width: 100%;
   background-color: #f5f5f5;
@@ -4655,26 +4650,26 @@ body {
   z-index: 2;
   top: 100%;
 }
-.overlay .form-popup .update-form .form-wrapper .form-container .datepicker button {
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker button {
   cursor: pointer;
   outline: none;
 }
-.overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar {
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar {
   visibility: visible;
 }
-.overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar .days {
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar .days {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-row-gap: 15px;
   margin-top: 15px;
   margin-bottom: 20px;
 }
-.overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar .dates {
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar .dates {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-row-gap: clamp(5px, 0.79vw, 0.79vw);
 }
-.overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar .date {
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar .date {
   justify-self: center;
   border: none;
   margin: 0;
@@ -4691,65 +4686,65 @@ body {
   font-size: clamp(10px, 0.89vw, 0.89vw);
   font-weight: 500;
 }
-.overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar .date:hover, .overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar .date:focus {
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar .date:hover, .popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar .date:focus {
   border: 2px solid rgba(0, 0, 0, 0.3);
   font-weight: 600;
 }
-.overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar .date.faded {
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar .date.faded {
   color: #999fa6;
 }
-.overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar .date.faded:focus {
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar .date.faded:focus {
   color: #999fa6;
   border: 2px solid transparent;
   pointer-events: none;
   font-weight: 500;
   background-color: transparent;
 }
-.overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar .date.faded:hover {
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar .date.faded:hover {
   border: none;
   font-weight: 500;
 }
-.overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar .date.current-date {
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar .date.current-date {
   border: 2px solid rgba(0, 0, 0, 0.8);
 }
-.overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar .date.current-day {
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar .date.current-day {
   color: white;
   border: 2px solid rgba(0, 0, 0, 0.8);
   background-color: #0073ff;
 }
-.overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar .day {
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar .day {
   color: rgba(0, 0, 0, 0.9);
   font-weight: 500;
   font-size: clamp(12px, 0.83vw, 0.83vw);
   justify-self: center;
 }
-.overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar.not-active {
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker .datepicker-calendar.not-active {
   visibility: hidden;
 }
-.overlay .form-popup .update-form .form-wrapper .form-container .datepicker.active {
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker.active {
   padding: clamp(8px, 0.79vw, 0.79vw);
   max-height: 411px;
   overflow: visible;
 }
-.overlay .form-popup .update-form .form-wrapper .form-container .datepicker-top {
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker-top {
   margin-bottom: 20px;
 }
-.overlay .form-popup .update-form .form-wrapper .form-container .datepicker-top .month-selector {
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker-top .month-selector {
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: relative;
 }
-.overlay .form-popup .update-form .form-wrapper .form-container .datepicker-top .month-selector .year-wrapper {
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker-top .month-selector .year-wrapper {
   display: flex;
   align-items: center;
   font-size: clamp(14px, 0.93vw, 0.93vw);
   gap: 5px;
 }
-.overlay .form-popup .update-form .form-wrapper .form-container .datepicker-top .month-selector .year-wrapper .month-name, .overlay .form-popup .update-form .form-wrapper .form-container .datepicker-top .month-selector .year-wrapper .year {
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker-top .month-selector .year-wrapper .month-name, .popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker-top .month-selector .year-wrapper .year {
   color: black;
 }
-.overlay .form-popup .update-form .form-wrapper .form-container .datepicker-top .month-selector .arrow {
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker-top .month-selector .arrow {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -4759,65 +4754,65 @@ body {
   height: clamp(18px, 1.71vw, 1.71vw);
   border-radius: 12px;
 }
-.overlay .form-popup .update-form .form-wrapper .form-container .datepicker-top .month-selector .arrow img {
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .datepicker-top .month-selector .arrow img {
   width: clamp(13px, 1.304vw, 1.304vw);
 }
-.overlay .form-popup .update-form .form-wrapper .form-container .error {
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .error {
   color: #eb0808;
   margin-top: 5px;
   font-size: clamp(8px, 0.79vw, 0.79vw);
   margin-bottom: 0;
   visibility: hidden;
 }
-.overlay .form-popup .update-form .form-wrapper .form-container .error.active {
+.popup-overlay .form-popup .update-form .form-wrapper .form-container .error.active {
   visibility: visible;
 }
-.overlay .form-popup .update-form .form-wrapper .form-container.active {
+.popup-overlay .form-popup .update-form .form-wrapper .form-container.active {
   display: block;
 }
-.overlay .form-popup .update-form .form-wrapper::-webkit-scrollbar {
+.popup-overlay .form-popup .update-form .form-wrapper::-webkit-scrollbar {
   width: 4px;
   height: 6px;
 }
-.overlay .form-popup .update-form .form-wrapper::-webkit-scrollbar-thumb {
+.popup-overlay .form-popup .update-form .form-wrapper::-webkit-scrollbar-thumb {
   background: rgba(161, 161, 161, 0.5);
   border-radius: 4px;
 }
-.overlay .form-popup .btn-container {
+.popup-overlay .form-popup .btn-container {
   margin-top: clamp(18px, 2.067vw, 2.067vw);
   display: flex;
   gap: clamp(10px, 1.05vw, 1.05vw);
   justify-content: flex-end;
   padding-right: clamp(9px, 1.45vw, 1.45vw);
 }
-.overlay .form-popup .btn-container button {
+.popup-overlay .form-popup .btn-container button {
   border-radius: 5px;
   font-size: clamp(11px, 0.79vw, 0.79vw);
   padding: clamp(7px, 0.63vw, 0.63vw) clamp(9px, 2.067vw, 2.067vw);
   border: 1px solid transparent;
   line-height: 1;
 }
-.overlay .form-popup .btn-container button.update-btn {
+.popup-overlay .form-popup .btn-container button.update-btn {
   color: white;
   background-color: #154787;
   padding-inline: clamp(22px, 2.66vw, 2.66vw);
 }
-.overlay .form-popup .btn-container button.update-btn:hover {
+.popup-overlay .form-popup .btn-container button.update-btn:hover {
   background-color: #015685;
 }
-.overlay .form-popup .btn-container button.cancel-btn {
+.popup-overlay .form-popup .btn-container button.cancel-btn {
   background-color: white;
   color: #154787;
   border-color: #154787;
 }
-.overlay .form-popup .btn-container button.cancel-btn:hover {
+.popup-overlay .form-popup .btn-container button.cancel-btn:hover {
   color: white;
   background-color: #154787;
 }
-.overlay .form-popup.active {
+.popup-overlay .form-popup.active {
   display: flex;
 }
-.overlay.active {
+.popup-overlay.active {
   display: flex;
 }
 
@@ -5967,7 +5962,7 @@ body {
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(11) button.active {
   display: inline-block;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-note-btn {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-line-note-btn {
   background-color: transparent;
   border: none;
   visibility: hidden;
@@ -5976,29 +5971,29 @@ body {
   right: 0;
   transition: visibility 0.2s ease;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-note-btn img {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-line-note-btn img {
   display: none;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-note-btn img.img-grey {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-line-note-btn img.img-grey {
   width: clamp(12px, 1.05vw, 1.05vw);
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-note-btn img.img-blue {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-line-note-btn img.img-blue {
   display: none;
   width: clamp(12px, 0.93vw, 0.93vw);
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-note-btn img.active {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-line-note-btn img.active {
   display: inline-block;
 }
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:hover {
   background-color: #e8f2ff;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:hover p:nth-of-type(11) button, .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:hover .add-note-btn {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:hover p:nth-of-type(11) button, .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:hover .add-line-note-btn {
   visibility: visible;
 }
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row.not-active {
   background-color: rgba(241, 241, 241, 0.5);
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row.not-active p:not(:nth-of-type(11)), .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row.not-active .add-note-btn {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row.not-active p:not(:nth-of-type(11)), .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row.not-active .add-line-note-btn {
   pointer-events: none;
   opacity: 0.5;
 }
@@ -6953,6 +6948,117 @@ body {
 }
 .popup-overlay .add-popup.active {
   display: flex;
+}
+.popup-overlay .del-popup-1 {
+  background-color: white;
+  padding: clamp(17px, 1.8vw, 1.8vw) clamp(10px, 1.05vw, 1.05vw) clamp(20px, 1.57vw, 1.57vw);
+  margin-top: 10px;
+  max-height: 85%;
+  border-radius: clamp(5px, 0.521vw, 0.521vw);
+  display: none;
+}
+.popup-overlay .del-popup-1 .del-title {
+  color: #154787;
+  font-size: clamp(14px, 1.25vw, 1.25vw);
+  font-weight: 600;
+  margin-bottom: clamp(9px, 0.93vw, 0.93vw);
+}
+.popup-overlay .del-popup-1 .text {
+  font-size: clamp(9px, 0.93vw, 0.93vw);
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 500;
+  margin-bottom: 0;
+}
+.popup-overlay .del-popup-1 .btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(5px, 0.521vw, 0.521vw);
+  margin-top: clamp(10px, 1.05vw, 1.05vw);
+}
+.popup-overlay .del-popup-1 .btn-container button {
+  border-radius: 5px;
+  font-size: clamp(10px, 0.79vw, 0.79vw);
+  padding: clamp(6px, 0.63vw, 0.63vw) clamp(9px, 2.61vw, 2.61vw);
+  border: 1px solid transparent;
+  line-height: 1;
+  background-color: #154787;
+  color: white;
+}
+.popup-overlay .del-popup-1 .btn-container button.no-btn {
+  background-color: white;
+  border-color: #154787;
+  color: #154787;
+  padding-inline: clamp(9px, 2.75vw, 2.75vw);
+}
+.popup-overlay .del-popup-1.active {
+  display: block;
+}
+.popup-overlay .del-popup-2 {
+  background-color: white;
+  padding: clamp(15px, 1.57vw, 1.57vw) clamp(15px, 1.57vw, 1.57vw) clamp(20px, 1.57vw, 1.57vw);
+  max-height: 85%;
+  border-radius: clamp(5px, 0.521vw, 0.521vw);
+  display: none;
+  width: 28%;
+}
+.popup-overlay .del-popup-2 .del-title {
+  color: #154787;
+  font-size: clamp(14px, 1.25vw, 1.25vw);
+  font-weight: 600;
+  margin-bottom: clamp(9px, 0.93vw, 0.93vw);
+}
+.popup-overlay .del-popup-2 .text {
+  font-size: clamp(9px, 0.93vw, 0.93vw);
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: clamp(10px, 1.05vw, 1.05vw);
+}
+.popup-overlay .del-popup-2 .text .id {
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 600;
+}
+.popup-overlay .del-popup-2 textarea {
+  border: 1px solid rgba(0, 0, 0, 0.9);
+  padding: clamp(10px, 1.05vw, 1.05vw);
+  height: clamp(60px, 5.2vw, 5.2vw);
+  outline: rgba(0, 0, 0, 0.9);
+  border-radius: clamp(3px, 0.4vw, 0.4vw);
+  font-size: clamp(10px, 0.83vw, 0.83vw);
+  width: 100%;
+  max-height: 200px;
+}
+.popup-overlay .del-popup-2 .btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(5px, 0.521vw, 0.521vw);
+  margin-top: clamp(10px, 1.05vw, 1.05vw);
+}
+.popup-overlay .del-popup-2 .btn-container button {
+  border-radius: 5px;
+  font-size: clamp(10px, 0.79vw, 0.79vw);
+  padding: clamp(6px, 0.63vw, 0.63vw) clamp(9px, 2.61vw, 2.61vw);
+  border: 1px solid transparent;
+  line-height: 1;
+  background-color: #154787;
+  color: white;
+}
+.popup-overlay .del-popup-2 .btn-container button.yes-btn {
+  pointer-events: none;
+  opacity: 0.5;
+}
+.popup-overlay .del-popup-2 .btn-container button.yes-btn.active {
+  pointer-events: auto;
+  opacity: 1;
+}
+.popup-overlay .del-popup-2 .btn-container button.no-btn {
+  background-color: white;
+  border-color: #154787;
+  color: #154787;
+  padding-inline: clamp(9px, 2.75vw, 2.75vw);
+}
+.popup-overlay .del-popup-2.active {
+  display: block;
 }
 .popup-overlay .success-popup {
   background-color: white;
@@ -8330,6 +8436,7 @@ body {
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-btn-container {
   text-align: center;
   margin-top: clamp(10px, 1.8vw, 1.8vw);
+  display: none;
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-btn-container .upload-btn {
   border-radius: 5px;
@@ -8341,8 +8448,8 @@ body {
   background-color: #154787;
   color: white;
 }
-.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-btn-container .not-active {
-  display: none;
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-btn-container.active {
+  display: block;
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper.minimize {
   width: clamp(20px, 2.067vw, 2.067vw);
@@ -8693,7 +8800,7 @@ body {
   height: 1px;
   background-color: #154787;
 }
-.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-note-btn {
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-line-note-btn {
   background-color: transparent;
   border: none;
   visibility: hidden;
@@ -8702,23 +8809,23 @@ body {
   right: 0;
   transition: visibility 0.2s ease;
 }
-.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-note-btn img {
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-line-note-btn img {
   display: none;
 }
-.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-note-btn img.img-grey {
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-line-note-btn img.img-grey {
   width: clamp(12px, 1.05vw, 1.05vw);
 }
-.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-note-btn img.img-blue {
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-line-note-btn img.img-blue {
   display: none;
   width: clamp(12px, 0.93vw, 0.93vw);
 }
-.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-note-btn img.active {
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-line-note-btn img.active {
   display: inline-block;
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:hover {
   background-color: #e8f2ff;
 }
-.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:hover p:nth-of-type(12) button, .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:hover .add-note-btn {
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:hover p:nth-of-type(12) button, .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:hover .add-line-note-btn {
   visibility: visible;
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:nth-last-child(2) p.bottom-line {
@@ -8733,7 +8840,7 @@ body {
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row.not-active {
   background-color: rgba(241, 241, 241, 0.5);
 }
-.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row.not-active p:not(:nth-of-type(12)), .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row.not-active .add-note-btn {
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row.not-active p:not(:nth-of-type(12)), .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row.not-active .add-line-note-btn {
   pointer-events: none;
   opacity: 0.5;
 }
@@ -8819,6 +8926,7 @@ body {
   top: 50%;
   transform: translate(-50%, -50%);
   gap: clamp(8px, 0.521vw, 0.521vw);
+  z-index: 3;
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .add-btn-container button {
   border: none;
@@ -9711,6 +9819,109 @@ body {
 }
 .popup-overlay .selected-item-popup.active {
   display: flex;
+}
+.popup-overlay .del-popup-1 {
+  background-color: white;
+  padding: clamp(17px, 1.8vw, 1.8vw) clamp(10px, 1.05vw, 1.05vw) clamp(20px, 1.57vw, 1.57vw);
+  margin-top: 10px;
+  max-height: 85%;
+  border-radius: clamp(5px, 0.521vw, 0.521vw);
+  display: none;
+}
+.popup-overlay .del-popup-1 .del-title {
+  color: #154787;
+  font-size: clamp(14px, 1.25vw, 1.25vw);
+  font-weight: 600;
+  margin-bottom: clamp(9px, 0.93vw, 0.93vw);
+}
+.popup-overlay .del-popup-1 .text {
+  font-size: clamp(9px, 0.93vw, 0.93vw);
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 500;
+  margin-bottom: 0;
+}
+.popup-overlay .del-popup-1 .btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(5px, 0.521vw, 0.521vw);
+  margin-top: clamp(10px, 1.05vw, 1.05vw);
+}
+.popup-overlay .del-popup-1 .btn-container button {
+  border-radius: 5px;
+  font-size: clamp(10px, 0.79vw, 0.79vw);
+  padding: clamp(6px, 0.63vw, 0.63vw) clamp(9px, 2.61vw, 2.61vw);
+  border: 1px solid transparent;
+  line-height: 1;
+  background-color: #154787;
+  color: white;
+}
+.popup-overlay .del-popup-1 .btn-container button.no-btn {
+  background-color: white;
+  border-color: #154787;
+  color: #154787;
+  padding-inline: clamp(9px, 2.75vw, 2.75vw);
+}
+.popup-overlay .del-popup-1.active {
+  display: block;
+}
+.popup-overlay .del-popup-2 {
+  background-color: white;
+  padding: clamp(15px, 1.57vw, 1.57vw) clamp(15px, 1.57vw, 1.57vw) clamp(20px, 1.57vw, 1.57vw);
+  max-height: 85%;
+  border-radius: clamp(5px, 0.521vw, 0.521vw);
+  display: none;
+  width: 28%;
+}
+.popup-overlay .del-popup-2 .del-title {
+  color: #154787;
+  font-size: clamp(14px, 1.25vw, 1.25vw);
+  font-weight: 600;
+  margin-bottom: clamp(9px, 0.93vw, 0.93vw);
+}
+.popup-overlay .del-popup-2 .text {
+  font-size: clamp(9px, 0.93vw, 0.93vw);
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: clamp(10px, 1.05vw, 1.05vw);
+}
+.popup-overlay .del-popup-2 .text .id {
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 600;
+}
+.popup-overlay .del-popup-2 textarea {
+  border: 1px solid rgba(0, 0, 0, 0.9);
+  padding: clamp(10px, 1.05vw, 1.05vw);
+  height: clamp(60px, 5.2vw, 5.2vw);
+  outline: rgba(0, 0, 0, 0.9);
+  border-radius: clamp(3px, 0.4vw, 0.4vw);
+  font-size: clamp(10px, 0.83vw, 0.83vw);
+  width: 100%;
+  max-height: 200px;
+}
+.popup-overlay .del-popup-2 .btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(5px, 0.521vw, 0.521vw);
+  margin-top: clamp(10px, 1.05vw, 1.05vw);
+}
+.popup-overlay .del-popup-2 .btn-container button {
+  border-radius: 5px;
+  font-size: clamp(10px, 0.79vw, 0.79vw);
+  padding: clamp(6px, 0.63vw, 0.63vw) clamp(9px, 2.61vw, 2.61vw);
+  border: 1px solid transparent;
+  line-height: 1;
+  background-color: #154787;
+  color: white;
+}
+.popup-overlay .del-popup-2 .btn-container button.no-btn {
+  background-color: white;
+  border-color: #154787;
+  color: #154787;
+  padding-inline: clamp(9px, 2.75vw, 2.75vw);
+}
+.popup-overlay .del-popup-2.active {
+  display: block;
 }
 .popup-overlay .success-popup {
   background-color: white;

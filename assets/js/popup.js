@@ -7,10 +7,9 @@ const stockPopup=document.querySelector(".stock-popup");
 const stockText=stockPopup.querySelector(".text");
 const stockYesBtn=stockPopup.querySelector(".yes-btn");
 const stockNoBtn=stockPopup.querySelector(".no-btn");
+const addLineNotePopup=document.querySelector(".add-line-note-popup");
 
-const expandBtns=document.querySelectorAll(".expand-btn");
-const expandModal=popupOverlay.querySelector(".expand-modal")
-const modalContent = document.querySelector(".expand-modal-content");
+
 function renderSuggestPopup(products){
   const productsContainer = suggestPopup.querySelector(".products")
   productsContainer.innerHTML="";
@@ -33,11 +32,17 @@ function renderSuggestPopup(products){
   else{
      productsContainer.innerHTML="<p class='not-found'>Data Not Found</p>";
   }
-  console.log(products)
   SuggestProductClick(productsContainer.querySelectorAll(".product"));
   searchSuggestPopup()
 }
 
+if(getAllProducts){
+    getAllProducts();
+}
+
+if(initProducts){
+  initProducts();
+}
 function searchSuggestPopup(){
 
   const searchSuggestInput = suggestPopup.querySelector(".search-suggest-product");
@@ -66,8 +71,7 @@ function searchSuggestPopup(){
 function closeModal(){
  
   if(formPopup.classList.contains("active")){
-    updateForm.reset();
-    dateText.textContent="dd-mm-yyyy";
+    // updateForm.reset();
     errs.forEach(err=>err.classList.remove("active"));
     formPopup.classList.remove("active");
   }
@@ -465,3 +469,156 @@ function SupplierProductClick(supplierProducts){
 }
 
 closeSupplierBtn.addEventListener('click',()=>supplierPopup.classList.remove("active"));
+
+
+//approve btn click function
+approveQuoteBtn.addEventListener('click',()=>{
+  if(newQuote.products.length!=0){
+    updateQuickInfoData()
+    updateNewQuoteData()
+    updateQuoteTotals();
+    addPopup.classList.remove("active");
+    popupOverlay.classList.add("active");
+    successPopup.classList.add("active");
+    successidText.textContent=` #${newQuote.id}`;
+  }
+
+})
+
+function updateQuickInfoData() {
+  const fields = ["po_no","job_no","buyer","deleivery_date"];
+
+  fields.forEach(key => {
+    const el = document.querySelector(`.${key}_text`);
+    if (el) {
+      newQuote[key] = el.textContent.trim();
+    }
+
+  });
+
+  ["bill_to", "ship_to"].forEach(key => {
+    const wrap = document.querySelector(`.${key}_text`);
+
+    if (!wrap) return;
+
+    const name = wrap.querySelector(".name")?.textContent.trim() || "";
+
+    const address =wrap.querySelector(".address")?.innerHTML.replace(/<br\s*\/?>/gi, "\n").trim() || "";
+    newQuote[key] = `${name}\n${address}`;
+  });
+
+}
+
+function updateNewQuoteData(){
+  const displayTable=document.querySelector(".display-table");
+  const tableRows=displayTable.querySelectorAll(".body-wrapper .table-row");
+  
+  tableRows.forEach(row=>{
+    if(row.classList.contains("not-active")){
+      const delId =Number(row.querySelector(".del-id").textContent);
+      console.log(delId)
+      newQuote.products =newQuote.products.filter(p => p.delId !== delId);
+    }
+  })
+}
+
+
+confirmSuccessBtn.addEventListener('click',()=>{
+
+  let found = false;
+  const quotes=JSON.parse(sessionStorage.getItem("quotes"))
+  quotes.forEach((q, i) => {
+    if (q.id === newQuote.id) {
+      quotes[i] = newQuote;
+      found = true;
+    }
+  });
+
+  if (!found) {
+    newQuote.status="approved";
+    quotes.push(newQuote);
+  }
+  sessionStorage.setItem('quotes',JSON.stringify(quotes))
+  const bodyWrap=displayTable.querySelector(".body-wrapper");
+  bodyWrap.innerHTML="";
+  bodyWrap.innerHTML=`<div class="add-btn-container ">
+    <button type="button"><img src="./assets/images/create_quote/add item_icon.png" alt="add"></button>
+    <p class="text">Click here to Add Item</p>
+    </div>`
+    window.location.href="./dashboard.html"
+})
+
+const delAllBtn=displayTable.querySelector(".header-wrapper .delete-all-btn");
+const undoAllBtn=displayTable.querySelector(".header-wrapper .undo-all-btn");
+const checkAllInput=displayTable.querySelector(".header-wrapper .check-all-input");
+
+function enableDeleteAllBtn(){
+  const bodyWrapper=displayTable.querySelector(".body-wrapper");
+  const checkLineInps=bodyWrapper.querySelectorAll(".check-line-input")
+  const isChecked = [...checkLineInps].some(inp => inp.checked);
+  const isAllChecked=[...checkLineInps].every(inp => inp.checked);
+  
+  if(isChecked)
+    delAllBtn.classList.add('selected');
+
+  else
+    delAllBtn.classList.remove('selected');
+
+
+  checkAllInput.checked=isAllChecked
+}
+
+function deleteAllRow(){
+  const bodyWrapper=displayTable.querySelector(".body-wrapper");
+  const tableRows=bodyWrapper.querySelectorAll(".table-row");
+  console.log(tableRows)
+  tableRows.forEach(row=>{
+    const delBtn=row.querySelector(".delete-line-btn");
+    const undoBtn=row.querySelector(".undo-line-btn");
+    row.classList.add("not-active");
+    console.log(delBtn)
+    delBtn.classList.remove("active");
+    undoBtn.classList.add("active");
+    const paras=row.querySelectorAll("p")
+    paras.forEach(p=>{
+      p.style.pointerEvents = "none";
+    })
+    
+    delBtn.style.pointerEvents = "auto";
+    undoBtn.style.pointerEvents = "auto";
+    row.removeEventListener("click",rowClickHandler);
+
+  })
+  delAllBtn.classList.remove('selected','active');
+  undoAllBtn.classList.add('selected','active');
+  approveQuoteBtn.classList.remove("active")
+  
+}
+
+function undoAllRow(){
+  const bodyWrapper=displayTable.querySelector(".body-wrapper");
+  const tableRows=bodyWrapper.querySelectorAll(".table-row");
+  tableRows.forEach(row=>{
+    const delBtn=row.querySelector(".delete-line-btn");
+    const undoBtn=row.querySelector(".undo-line-btn");
+    row.classList.remove("not-active");
+    delBtn.classList.add("active");
+    undoBtn.classList.remove("active");
+    const paras=row.querySelectorAll("p")
+    paras.forEach(p=>{
+      p.style.pointerEvents = "auto";
+    })
+
+    row.removeEventListener("click",rowClickHandler);
+
+  })
+  approveQuoteBtn.classList.add("active")
+  delAllBtn.classList.add('selected','active');
+  undoAllBtn.classList.remove('selected','active');
+}
+
+
+function openLineNotePopup(){
+  addLineNotePopup.classList.add("active");
+  popupOverlay.classList.add("active")
+}
