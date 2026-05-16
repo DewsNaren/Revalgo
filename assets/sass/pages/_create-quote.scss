@@ -2648,18 +2648,23 @@
         border-radius: clamp(5px, $fs-10px, $fs-10px);
         display: none;
 
-        h3{
+        .text.header-text{
             font-size: clamp(10px, $fs-22px, $fs-22px);
             text-align: center;
             margin-bottom: clamp(5px, $fs-25px, $fs-25px);
             color: $blue-87;
             font-weight: 600;
+            .id{
+                color: $blue-87;
+            }
         }
-        .text{
-            padding: 0 clamp(5px, $fs-25px, $fs-25px) clamp(4px, $fs-8px, $fs-8px);
-            font-size:  clamp(9px, $fs-18px, $fs-18px);
-            color: $black-80;
-            font-weight: 500;
+        .content{
+            .text{
+                padding: 0 clamp(5px, $fs-25px, $fs-25px) clamp(4px, $fs-8px, $fs-8px);
+                font-size:  clamp(9px, $fs-18px, $fs-18px);
+                color: $black-80;
+                font-weight: 500;
+            }
         }
         .ok-btn{
             border-radius: 5px;

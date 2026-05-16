@@ -250,25 +250,73 @@ datepickers.forEach(datepicker => {
 
 //open datepicker
 
+// function openDatepicker(trigger, datePicker) {
+
+//   const rect = trigger.getBoundingClientRect();
+
+//   document.querySelectorAll(".datepicker").forEach(dp => dp.classList.remove("active"));
+
+//   datePicker.style.position = "fixed";
+//   datePicker.style.top = rect.bottom + 5 + "px";
+//   datePicker.style.left = rect.left + "px";
+//   datePicker.style.zIndex = "9999";
+
+//   const pickerWidth = datePicker.offsetWidth || 300;
+//   const viewportWidth = window.innerWidth;
+
+//   if (rect.left + pickerWidth > viewportWidth) {
+//     datePicker.style.left = (viewportWidth - pickerWidth - 10) + "px";
+//   }
+
+//   datePicker.classList.add("active");
+
+//   datePicker._trigger = trigger;
+// }
 function openDatepicker(trigger, datePicker) {
 
   const rect = trigger.getBoundingClientRect();
 
-  document.querySelectorAll(".datepicker").forEach(dp => dp.classList.remove("active"));
+  document.querySelectorAll(".datepicker").forEach(dp => {
+    dp.classList.remove("active");
+  });
 
   datePicker.style.position = "fixed";
-  datePicker.style.top = rect.bottom + 5 + "px";
-  datePicker.style.left = rect.left + "px";
   datePicker.style.zIndex = "9999";
 
-  const pickerWidth = datePicker.offsetWidth || 300;
-  const viewportWidth = window.innerWidth;
+  // Temporarily show to measure height
+  datePicker.style.visibility = "hidden";
+  datePicker.classList.add("active");
 
-  if (rect.left + pickerWidth > viewportWidth) {
-    datePicker.style.left = (viewportWidth - pickerWidth - 10) + "px";
+  const pickerWidth = datePicker.offsetWidth || 300;
+  const pickerHeight = datePicker.offsetHeight || 350;
+
+  const viewportWidth = window.innerWidth;
+  const viewportHeight = window.innerHeight;
+
+  // ---------- Horizontal Position ----------
+  let left = rect.left;
+
+  if (left + pickerWidth > viewportWidth) {
+    left = viewportWidth - pickerWidth - 10;
   }
 
-  datePicker.classList.add("active");
+  // ---------- Vertical Position ----------
+  const spaceBelow = viewportHeight - rect.bottom;
+  const spaceAbove = rect.top;
+
+  let top;
+
+  // If not enough space below AND enough space above
+  if (spaceBelow < pickerHeight && spaceAbove > pickerHeight) {
+    top = rect.top - pickerHeight - 5;
+  } else {
+    top = rect.bottom + 5;
+  }
+
+  datePicker.style.left = `${left}px`;
+  datePicker.style.top = `${top}px`;
+
+  datePicker.style.visibility = "visible";
 
   datePicker._trigger = trigger;
 }
@@ -343,6 +391,7 @@ document.addEventListener("click", (e) => {
 });
 
 function handleScroll() {
+
   const activePicker = document.querySelector(".datepicker.active");
   if (!activePicker) return;
 
@@ -351,8 +400,34 @@ function handleScroll() {
 
   const rect = trigger.getBoundingClientRect();
 
-  activePicker.style.top = rect.bottom + 5 + "px";
-  activePicker.style.left = rect.left + "px";
+  const pickerWidth = activePicker.offsetWidth || 300;
+  const pickerHeight = activePicker.offsetHeight || 350;
+
+  const viewportWidth = window.innerWidth;
+  const viewportHeight = window.innerHeight;
+
+  // ---------- Horizontal Position ----------
+  let left = rect.left;
+
+  if (left + pickerWidth > viewportWidth) {
+    left = viewportWidth - pickerWidth - 10;
+  }
+
+  // ---------- Vertical Position ----------
+  const spaceBelow = viewportHeight - rect.bottom;
+  const spaceAbove = rect.top;
+
+  let top;
+
+  // Show above if not enough space below
+  if (spaceBelow < pickerHeight && spaceAbove > pickerHeight) {
+    top = rect.top - pickerHeight - 5;
+  } else {
+    top = rect.bottom + 5;
+  }
+
+  activePicker.style.left = `${left}px`;
+  activePicker.style.top = `${top}px`;
 }
 
 window.addEventListener("resize", handleScroll);

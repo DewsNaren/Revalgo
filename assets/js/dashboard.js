@@ -850,7 +850,7 @@ function renderQuoteTable(data){
         <td>${d.total_line_no}</td>
         <td>$${d.total_price}</td>
         <td>${d.status === "deleted" ? 
-          `<span class="undo-btn">Undo</span>` : `<a href="./create-quote.html">
+          `<span class="undo-btn">Undo</span>` : `<a href="./create-quote.html" class="create-quote-link" onclick="gotoCreateQuote(event)">
           <img src="./assets/images/dashboard/Add_icon.png" alt="add"> </a>`}
       </td>
     </tr>
@@ -864,6 +864,21 @@ function renderQuoteTable(data){
   else{
     tBody.innerHTML="<p class='not-found'>Data Not Found</p>";
   }
+}
+
+
+function gotoCreateQuote(event){
+  event.preventDefault();
+  let newId="";
+  newId=Math.floor(Math.random()* (9999999-1000000+1))+1000000;
+  let isExists = quotes.some(q =>q.id === newId);
+  while(isExists){
+    newId=Math.floor(Math.random()* (9999999-1000000+1))+1000000;
+    isExists =quotes.some(q => q.id === newId);
+  }
+  sessionStorage.setItem('newId',newId)
+  window.location.href="./create-quote.html"
+
 }
 
 //handle undo
@@ -889,6 +904,7 @@ function tableClickHandler(quoteTable){
   const undoBtns=quoteTable.querySelectorAll(".undo-btn");
   undoBtns.forEach(btn=>{
     btn.addEventListener('click',(e)=>{
+      closeModal();
       const id=e.target.closest("tr").dataset.id
       expandOverlay.classList.add("active");
       undoModal.classList.add("active");
@@ -1924,3 +1940,8 @@ function filterQuoteByStatus(filteredQuote){
     });
     return monthData;
 }
+
+const exportBtn = document.querySelector(".export-btn");
+exportBtn.addEventListener('click', () => {
+  window.print();
+});

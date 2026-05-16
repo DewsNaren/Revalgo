@@ -8,7 +8,11 @@ const stockText=stockPopup.querySelector(".text");
 const stockYesBtn=stockPopup.querySelector(".yes-btn");
 const stockNoBtn=stockPopup.querySelector(".no-btn");
 const addLineNotePopup=document.querySelector(".add-line-note-popup");
-
+const addLineNoteBtn=addLineNotePopup.querySelector(".add-btn");
+const addLineNoteInput=addLineNotePopup.querySelector(".add-line-note-input")
+const addQuoteNotePopup=document.querySelector(".add-quote-note-popup");
+const addQuoteNoteInput=addQuoteNotePopup.querySelector(".add-quote-note-input");
+const addQuoteNoteBtn=addQuoteNotePopup.querySelector(".add-btn");
 
 function renderSuggestPopup(products){
   const productsContainer = suggestPopup.querySelector(".products")
@@ -36,13 +40,14 @@ function renderSuggestPopup(products){
   searchSuggestPopup()
 }
 
-if(getAllProducts){
-    getAllProducts();
+if (typeof getAllProducts === "function") {
+  getAllProducts();
 }
 
-if(initProducts){
+if (typeof initProducts === "function") {
   initProducts();
 }
+
 function searchSuggestPopup(){
 
   const searchSuggestInput = suggestPopup.querySelector(".search-suggest-product");
@@ -88,7 +93,6 @@ function closeModal(){
   if(expandModal.classList.contains("active")){
     const suggestSource=modalContent.querySelector(".suggest-product-popup");
     const body=document.body
-    console.log("fdjd")
     if(suggestSource){
       body.appendChild(suggestSource)
     }
@@ -269,7 +273,6 @@ function closeSuggestPopup(){
 }
 
 document.addEventListener("click", (e) => {
-
   if (suggestPopup.classList.contains("active") &&
   !suggestPopup.contains(e.target)) {
 
@@ -548,77 +551,105 @@ confirmSuccessBtn.addEventListener('click',()=>{
     window.location.href="./dashboard.html"
 })
 
-const delAllBtn=displayTable.querySelector(".header-wrapper .delete-all-btn");
-const undoAllBtn=displayTable.querySelector(".header-wrapper .undo-all-btn");
-const checkAllInput=displayTable.querySelector(".header-wrapper .check-all-input");
-
-function enableDeleteAllBtn(){
-  const bodyWrapper=displayTable.querySelector(".body-wrapper");
-  const checkLineInps=bodyWrapper.querySelectorAll(".check-line-input")
-  const isChecked = [...checkLineInps].some(inp => inp.checked);
-  const isAllChecked=[...checkLineInps].every(inp => inp.checked);
-  
-  if(isChecked)
-    delAllBtn.classList.add('selected');
-
-  else
-    delAllBtn.classList.remove('selected');
 
 
-  checkAllInput.checked=isAllChecked
-}
-
-function deleteAllRow(){
-  const bodyWrapper=displayTable.querySelector(".body-wrapper");
-  const tableRows=bodyWrapper.querySelectorAll(".table-row");
-  console.log(tableRows)
-  tableRows.forEach(row=>{
-    const delBtn=row.querySelector(".delete-line-btn");
-    const undoBtn=row.querySelector(".undo-line-btn");
-    row.classList.add("not-active");
-    console.log(delBtn)
-    delBtn.classList.remove("active");
-    undoBtn.classList.add("active");
-    const paras=row.querySelectorAll("p")
-    paras.forEach(p=>{
-      p.style.pointerEvents = "none";
-    })
+// function deleteAllRow(){
+//   const bodyWrapper=displayTable.querySelector(".body-wrapper");
+//   const tableRows=bodyWrapper.querySelectorAll(".table-row");
+//   console.log(tableRows)
+//   tableRows.forEach(row=>{
+//     const delBtn=row.querySelector(".delete-line-btn");
+//     const undoBtn=row.querySelector(".undo-line-btn");
+//     row.classList.add("not-active");
+//     console.log(delBtn)
+//     delBtn.classList.remove("active");
+//     undoBtn.classList.add("active");
+//     const paras=row.querySelectorAll("p")
+//     paras.forEach(p=>{
+//       p.style.pointerEvents = "none";
+//     })
     
-    delBtn.style.pointerEvents = "auto";
-    undoBtn.style.pointerEvents = "auto";
-    row.removeEventListener("click",rowClickHandler);
+//     delBtn.style.pointerEvents = "auto";
+//     undoBtn.style.pointerEvents = "auto";
+//     row.removeEventListener("click",rowClickHandler);
 
-  })
-  delAllBtn.classList.remove('selected','active');
-  undoAllBtn.classList.add('selected','active');
-  approveQuoteBtn.classList.remove("active")
+//   })
+//   delAllBtn.classList.remove('selected','active');
+//   undoAllBtn.classList.add('selected','active');
+//   approveQuoteBtn.classList.remove("active")
   
-}
+// }
 
-function undoAllRow(){
-  const bodyWrapper=displayTable.querySelector(".body-wrapper");
-  const tableRows=bodyWrapper.querySelectorAll(".table-row");
-  tableRows.forEach(row=>{
-    const delBtn=row.querySelector(".delete-line-btn");
-    const undoBtn=row.querySelector(".undo-line-btn");
-    row.classList.remove("not-active");
-    delBtn.classList.add("active");
-    undoBtn.classList.remove("active");
-    const paras=row.querySelectorAll("p")
-    paras.forEach(p=>{
-      p.style.pointerEvents = "auto";
-    })
+// function undoAllRow(){
+//   const bodyWrapper=displayTable.querySelector(".body-wrapper");
+//   const tableRows=bodyWrapper.querySelectorAll(".table-row");
+//   tableRows.forEach(row=>{
+//     const delBtn=row.querySelector(".delete-line-btn");
+//     const undoBtn=row.querySelector(".undo-line-btn");
+//     row.classList.remove("not-active");
+//     delBtn.classList.add("active");
+//     undoBtn.classList.remove("active");
+//     const paras=row.querySelectorAll("p")
+//     paras.forEach(p=>{
+//       p.style.pointerEvents = "auto";
+//     })
 
-    row.removeEventListener("click",rowClickHandler);
+//     row.removeEventListener("click",rowClickHandler);
 
-  })
-  approveQuoteBtn.classList.add("active")
-  delAllBtn.classList.add('selected','active');
-  undoAllBtn.classList.remove('selected','active');
-}
+//   })
+//   approveQuoteBtn.classList.add("active")
+//   delAllBtn.classList.add('selected','active');
+//   undoAllBtn.classList.remove('selected','active');
+// }
 
-
-function openLineNotePopup(){
+let clickedRow="";
+function openLineNotePopup(event){
   addLineNotePopup.classList.add("active");
-  popupOverlay.classList.add("active")
+  popupOverlay.classList.add("active");
+  clickedRow=event.target.closest(".table-row");
+  const delId = clickedRow.querySelector(".del-id").textContent;
+  const product = newQuote.products.find(p => String(p.delId) === delId);
+    if(product){
+      if(product.lineNote)
+        addLineNoteInput.value=product.lineNote;
+    }
+
 }
+
+addLineNoteInput.addEventListener('input',()=>{
+  if(addLineNoteInput.value.trim()!=="")
+    addLineNoteBtn.classList.add("active");
+  else
+    addLineNoteBtn.classList.remove("active");
+})
+
+addLineNoteBtn.addEventListener('click',()=>{
+  const addNoteVal=addLineNoteInput.value.trim();
+  if(clickedRow){
+    const delId = clickedRow.querySelector(".del-id").textContent;
+    const product = newQuote.products.find(p => String(p.delId) === delId);
+    const greyAddImg=clickedRow.querySelector(".add-line-note-btn .img-grey");
+    const blueAddImg=clickedRow.querySelector(".add-line-note-btn .img-blue");
+    if(product){
+      product.lineNote=addNoteVal; 
+      greyAddImg.classList.remove("active");
+      blueAddImg.classList.add("active");
+      closeModal();
+    }
+  }
+})
+
+//quote note function
+function openQuoteNotPopup(){
+  popupOverlay.classList.add("active");
+  addQuoteNotePopup.classList.add("active");
+}
+
+const addNoteVal=addLineNoteInput.value.trim();
+addQuoteNoteInput.addEventListener('input',()=>{
+  if(addQuoteNoteInput.value.trim()!="")
+    addQuoteNoteBtn.classList.add("active")
+  else
+    addQuoteNoteBtn.classList.remove("active")
+})
+

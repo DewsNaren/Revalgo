@@ -26,7 +26,13 @@
         "margin": 3,
         "selling_price": 83.43,
         "total_cost": 7174.98,
-        "delId": 3036012
+        "delId": 3036012,
+        "sourceImg": "default thumbnail image",
+        "brand": "Steelron",
+        "wire_size": 8,
+        "outlet": 2,
+        "type": "non-metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 80,
@@ -37,7 +43,13 @@
         "margin": 22,
         "selling_price": 47.58,
         "total_cost": 3806.4,
-        "delId": 4194324
+        "delId": 4194324,
+        "sourceImg": "default thumbnail image",
+        "brand": "Steelron",
+        "wire_size": 15,
+        "outlet": 3,
+        "type": "standard",
+        "housing_material": "steel"
       }
     ]
   },
@@ -68,7 +80,13 @@
         "margin": 44,
         "selling_price": 103.68,
         "total_cost": 9849.6,
-        "delId": 7219366
+        "delId": 7219366,
+        "sourceImg": "default thumbnail image",
+        "brand": "Nexwire",
+        "wire_size": 19,
+        "outlet": 3,
+        "type": "armored",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 60,
@@ -79,7 +97,13 @@
         "margin": 76,
         "selling_price": 172.48,
         "total_cost": 10348.8,
-        "delId": 4585947
+        "delId": 4585947,
+        "sourceImg": "Product img",
+        "brand": "Cablux",
+        "wire_size": 10,
+        "outlet": 3,
+        "type": "metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 52,
@@ -90,7 +114,13 @@
         "margin": 25,
         "selling_price": 83.75,
         "total_cost": 4355,
-        "delId": 9261514
+        "delId": 9261514,
+        "sourceImg": "Product img",
+        "brand": "Wirezone",
+        "wire_size": 12,
+        "outlet": 6,
+        "type": "armored",
+        "housing_material": "steel"
       }
     ]
   },
@@ -121,7 +151,13 @@
         "margin": 42,
         "selling_price": 28.4,
         "total_cost": 1363.2,
-        "delId": 3404158
+        "delId": 3404158,
+        "sourceImg": "default thumbnail image",
+        "brand": "Wirezone",
+        "wire_size": 20,
+        "outlet": 2,
+        "type": "standard",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 14,
@@ -132,7 +168,13 @@
         "margin": 36,
         "selling_price": 73.44,
         "total_cost": 1028.16,
-        "delId": 6422455
+        "delId": 6422455,
+        "sourceImg": "Product img",
+        "brand": "Amperon",
+        "wire_size": 7,
+        "outlet": 6,
+        "type": "metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 40,
@@ -143,7 +185,13 @@
         "margin": 91,
         "selling_price": 97.41,
         "total_cost": 3896.4,
-        "delId": 8831292
+        "delId": 8831292,
+        "sourceImg": "default thumbnail image",
+        "brand": "Gridmax",
+        "wire_size": 5,
+        "outlet": 3,
+        "type": "standard",
+        "housing_material": "steel"
       }
     ]
   },
@@ -174,7 +222,13 @@
         "margin": 6,
         "selling_price": 30.74,
         "total_cost": 2489.94,
-        "delId": 6160940
+        "delId": 6160940,
+        "sourceImg": "Product img",
+        "brand": "Gridmax",
+        "wire_size": 14,
+        "outlet": 2,
+        "type": "armored",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 52,
@@ -185,7 +239,13 @@
         "margin": 16,
         "selling_price": 37.12,
         "total_cost": 1930.24,
-        "delId": 5106599
+        "delId": 5106599,
+        "sourceImg": "default thumbnail image",
+        "brand": "Armetek",
+        "wire_size": 18,
+        "outlet": 4,
+        "type": "non-metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 95,
@@ -196,7 +256,13 @@
         "margin": 1,
         "selling_price": 16.16,
         "total_cost": 1535.2,
-        "delId": 5863163
+        "delId": 5863163,
+        "sourceImg": "default thumbnail image",
+        "brand": "Gridmax",
+        "wire_size": 12,
+        "outlet": 10,
+        "type": "standard",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 72,
@@ -207,7 +273,13 @@
         "margin": 4,
         "selling_price": 3.12,
         "total_cost": 224.64,
-        "delId": 9098899
+        "delId": 9098899,
+        "sourceImg": "default thumbnail image",
+        "brand": "Nexwire",
+        "wire_size": 8,
+        "outlet": 7,
+        "type": "metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 30,
@@ -218,7 +290,13 @@
         "margin": 73,
         "selling_price": 166.08,
         "total_cost": 4982.4,
-        "delId": 4659975
+        "delId": 4659975,
+        "sourceImg": "default thumbnail image",
+        "brand": "Copperln",
+        "wire_size": 18,
+        "outlet": 4,
+        "type": "metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 12,
@@ -229,7 +307,13 @@
         "margin": 13,
         "selling_price": 111.87,
         "total_cost": 1342.44,
-        "delId": 3877548
+        "delId": 3877548,
+        "sourceImg": "default thumbnail image",
+        "brand": "Wirezone",
+        "wire_size": 19,
+        "outlet": 2,
+        "type": "armored",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 90,
@@ -240,7 +324,13 @@
         "margin": 61,
         "selling_price": 20.93,
         "total_cost": 1883.7,
-        "delId": 5084435
+        "delId": 5084435,
+        "sourceImg": "default thumbnail image",
+        "brand": "Amperon",
+        "wire_size": 11,
+        "outlet": 5,
+        "type": "metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 39,
@@ -251,7 +341,13 @@
         "margin": 93,
         "selling_price": 187.21,
         "total_cost": 7301.19,
-        "delId": 9341161
+        "delId": 9341161,
+        "sourceImg": "default thumbnail image",
+        "brand": "Copperln",
+        "wire_size": 9,
+        "outlet": 5,
+        "type": "metallic",
+        "housing_material": "copper"
       }
     ]
   },
@@ -282,7 +378,13 @@
         "margin": 51,
         "selling_price": 123.82,
         "total_cost": 2476.4,
-        "delId": 4369614
+        "delId": 4369614,
+        "sourceImg": "Product img",
+        "brand": "Armetek",
+        "wire_size": 10,
+        "outlet": 4,
+        "type": "armored",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 43,
@@ -293,7 +395,13 @@
         "margin": 6,
         "selling_price": 4.24,
         "total_cost": 182.32,
-        "delId": 6547081
+        "delId": 6547081,
+        "sourceImg": "default thumbnail image",
+        "brand": "Gridmax",
+        "wire_size": 12,
+        "outlet": 5,
+        "type": "standard",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 24,
@@ -304,7 +412,13 @@
         "margin": 37,
         "selling_price": 75.35,
         "total_cost": 1808.4,
-        "delId": 8774369
+        "delId": 8774369,
+        "sourceImg": "Product img",
+        "brand": "Amperon",
+        "wire_size": 11,
+        "outlet": 1,
+        "type": "standard",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 25,
@@ -315,7 +429,13 @@
         "margin": 73,
         "selling_price": 72.66,
         "total_cost": 1816.5,
-        "delId": 8680013
+        "delId": 8680013,
+        "sourceImg": "default thumbnail image",
+        "brand": "Amperon",
+        "wire_size": 11,
+        "outlet": 2,
+        "type": "metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 15,
@@ -326,7 +446,13 @@
         "margin": 82,
         "selling_price": 29.12,
         "total_cost": 436.8,
-        "delId": 6131536
+        "delId": 6131536,
+        "sourceImg": "default thumbnail image",
+        "brand": "Copperln",
+        "wire_size": 11,
+        "outlet": 3,
+        "type": "standard",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 95,
@@ -337,7 +463,13 @@
         "margin": 22,
         "selling_price": 15.86,
         "total_cost": 1506.7,
-        "delId": 4186723
+        "delId": 4186723,
+        "sourceImg": "Product img",
+        "brand": "Gridmax",
+        "wire_size": 12,
+        "outlet": 3,
+        "type": "metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 79,
@@ -348,7 +480,13 @@
         "margin": 45,
         "selling_price": 120.35,
         "total_cost": 9507.65,
-        "delId": 5354045
+        "delId": 5354045,
+        "sourceImg": "default thumbnail image",
+        "brand": "Armetek",
+        "wire_size": 14,
+        "outlet": 4,
+        "type": "standard",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 29,
@@ -359,7 +497,13 @@
         "margin": 27,
         "selling_price": 20.32,
         "total_cost": 589.28,
-        "delId": 3805210
+        "delId": 3805210,
+        "sourceImg": "default thumbnail image",
+        "brand": "Armetek",
+        "wire_size": 5,
+        "outlet": 2,
+        "type": "standard",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 18,
@@ -370,7 +514,13 @@
         "margin": 40,
         "selling_price": 126,
         "total_cost": 2268,
-        "delId": 9498338
+        "delId": 9498338,
+        "sourceImg": "default thumbnail image",
+        "brand": "Nexwire",
+        "wire_size": 12,
+        "outlet": 8,
+        "type": "armored",
+        "housing_material": "steel"
       }
     ]
   },
@@ -401,7 +551,13 @@
         "margin": 26,
         "selling_price": 118.44,
         "total_cost": 11488.68,
-        "delId": 9817360
+        "delId": 9817360,
+        "sourceImg": "default thumbnail image",
+        "brand": "Steelron",
+        "wire_size": 9,
+        "outlet": 4,
+        "type": "metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 27,
@@ -412,7 +568,13 @@
         "margin": 72,
         "selling_price": 142.76,
         "total_cost": 3854.52,
-        "delId": 2979632
+        "delId": 2979632,
+        "sourceImg": "default thumbnail image",
+        "brand": "Flexduct",
+        "wire_size": 16,
+        "outlet": 7,
+        "type": "standard",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 22,
@@ -423,7 +585,13 @@
         "margin": 66,
         "selling_price": 54.78,
         "total_cost": 1205.16,
-        "delId": 9080208
+        "delId": 9080208,
+        "sourceImg": "Product img",
+        "brand": "Cablux",
+        "wire_size": 11,
+        "outlet": 1,
+        "type": "armored",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 9,
@@ -434,7 +602,13 @@
         "margin": 70,
         "selling_price": 61.2,
         "total_cost": 550.8,
-        "delId": 3732975
+        "delId": 3732975,
+        "sourceImg": "Product img",
+        "brand": "Gridmax",
+        "wire_size": 19,
+        "outlet": 3,
+        "type": "metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 57,
@@ -445,7 +619,13 @@
         "margin": 47,
         "selling_price": 48.51,
         "total_cost": 2765.07,
-        "delId": 1161699
+        "delId": 1161699,
+        "sourceImg": "Product img",
+        "brand": "Copperln",
+        "wire_size": 20,
+        "outlet": 7,
+        "type": "metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 66,
@@ -456,7 +636,13 @@
         "margin": 67,
         "selling_price": 123.58,
         "total_cost": 8156.28,
-        "delId": 5626310
+        "delId": 5626310,
+        "sourceImg": "Product img",
+        "brand": "Wirezone",
+        "wire_size": 5,
+        "outlet": 3,
+        "type": "non-metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 42,
@@ -467,7 +653,13 @@
         "margin": 50,
         "selling_price": 144,
         "total_cost": 6048,
-        "delId": 3317309
+        "delId": 3317309,
+        "sourceImg": "default thumbnail image",
+        "brand": "Steelron",
+        "wire_size": 19,
+        "outlet": 2,
+        "type": "metallic",
+        "housing_material": "copper"
       }
     ]
   },
@@ -498,7 +690,13 @@
         "margin": 77,
         "selling_price": 90.27,
         "total_cost": 5055.12,
-        "delId": 4542107
+        "delId": 4542107,
+        "sourceImg": "Product img",
+        "brand": "Wirezone",
+        "wire_size": 13,
+        "outlet": 5,
+        "type": "metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 42,
@@ -509,7 +707,13 @@
         "margin": 43,
         "selling_price": 48.62,
         "total_cost": 2042.04,
-        "delId": 4329463
+        "delId": 4329463,
+        "sourceImg": "default thumbnail image",
+        "brand": "Cablux",
+        "wire_size": 11,
+        "outlet": 1,
+        "type": "standard",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 37,
@@ -520,7 +724,13 @@
         "margin": 95,
         "selling_price": 128.7,
         "total_cost": 4761.9,
-        "delId": 8601888
+        "delId": 8601888,
+        "sourceImg": "default thumbnail image",
+        "brand": "Nexwire",
+        "wire_size": 18,
+        "outlet": 8,
+        "type": "metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 95,
@@ -531,7 +741,13 @@
         "margin": 89,
         "selling_price": 32.13,
         "total_cost": 3052.35,
-        "delId": 6471296
+        "delId": 6471296,
+        "sourceImg": "default thumbnail image",
+        "brand": "Wirezone",
+        "wire_size": 15,
+        "outlet": 2,
+        "type": "standard",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 77,
@@ -542,7 +758,13 @@
         "margin": 97,
         "selling_price": 169.42,
         "total_cost": 13045.34,
-        "delId": 5132565
+        "delId": 5132565,
+        "sourceImg": "Product img",
+        "brand": "Flexduct",
+        "wire_size": 17,
+        "outlet": 3,
+        "type": "non-metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 9,
@@ -553,7 +775,13 @@
         "margin": 46,
         "selling_price": 140.16,
         "total_cost": 1261.44,
-        "delId": 5578819
+        "delId": 5578819,
+        "sourceImg": "Product img",
+        "brand": "Nexwire",
+        "wire_size": 7,
+        "outlet": 1,
+        "type": "standard",
+        "housing_material": "steel"
       }
     ]
   },
@@ -584,7 +812,13 @@
         "margin": 39,
         "selling_price": 62.55,
         "total_cost": 6255,
-        "delId": 1990034
+        "delId": 1990034,
+        "sourceImg": "Product img",
+        "brand": "Voltex",
+        "wire_size": 14,
+        "outlet": 1,
+        "type": "armored",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 61,
@@ -595,7 +829,13 @@
         "margin": 51,
         "selling_price": 39.26,
         "total_cost": 2394.86,
-        "delId": 5423369
+        "delId": 5423369,
+        "sourceImg": "Product img",
+        "brand": "Nexwire",
+        "wire_size": 11,
+        "outlet": 7,
+        "type": "standard",
+        "housing_material": "steel"
       }
     ]
   },
@@ -626,7 +866,13 @@
         "margin": 74,
         "selling_price": 69.6,
         "total_cost": 6612,
-        "delId": 2502563
+        "delId": 2502563,
+        "sourceImg": "Product img",
+        "brand": "Cablux",
+        "wire_size": 6,
+        "outlet": 8,
+        "type": "standard",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 60,
@@ -637,7 +883,13 @@
         "margin": 30,
         "selling_price": 19.5,
         "total_cost": 1170,
-        "delId": 3047970
+        "delId": 3047970,
+        "sourceImg": "default thumbnail image",
+        "brand": "Voltex",
+        "wire_size": 16,
+        "outlet": 6,
+        "type": "standard",
+        "housing_material": "steel"
       }
     ]
   },
@@ -668,7 +920,13 @@
         "margin": 36,
         "selling_price": 6.8,
         "total_cost": 360.4,
-        "delId": 2432410
+        "delId": 2432410,
+        "sourceImg": "default thumbnail image",
+        "brand": "Steelron",
+        "wire_size": 11,
+        "outlet": 5,
+        "type": "standard",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 85,
@@ -679,7 +937,13 @@
         "margin": 74,
         "selling_price": 160.08,
         "total_cost": 13606.8,
-        "delId": 7395202
+        "delId": 7395202,
+        "sourceImg": "default thumbnail image",
+        "brand": "Copperln",
+        "wire_size": 20,
+        "outlet": 4,
+        "type": "standard",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 88,
@@ -690,7 +954,13 @@
         "margin": 9,
         "selling_price": 2.18,
         "total_cost": 191.84,
-        "delId": 4054714
+        "delId": 4054714,
+        "sourceImg": "default thumbnail image",
+        "brand": "Wirezone",
+        "wire_size": 16,
+        "outlet": 7,
+        "type": "armored",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 92,
@@ -701,7 +971,13 @@
         "margin": 65,
         "selling_price": 138.6,
         "total_cost": 12751.2,
-        "delId": 4206886
+        "delId": 4206886,
+        "sourceImg": "default thumbnail image",
+        "brand": "Wirezone",
+        "wire_size": 18,
+        "outlet": 10,
+        "type": "non-metallic",
+        "housing_material": "steel"
       }
     ]
   },
@@ -732,7 +1008,13 @@
         "margin": 57,
         "selling_price": 117.75,
         "total_cost": 4356.75,
-        "delId": 2767018
+        "delId": 2767018,
+        "sourceImg": "default thumbnail image",
+        "brand": "Steelron",
+        "wire_size": 17,
+        "outlet": 7,
+        "type": "armored",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 25,
@@ -743,7 +1025,13 @@
         "margin": 28,
         "selling_price": 6.4,
         "total_cost": 160,
-        "delId": 3185362
+        "delId": 3185362,
+        "sourceImg": "default thumbnail image",
+        "brand": "Copperln",
+        "wire_size": 9,
+        "outlet": 1,
+        "type": "standard",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 90,
@@ -754,7 +1042,13 @@
         "margin": 78,
         "selling_price": 145.96,
         "total_cost": 13136.4,
-        "delId": 4391978
+        "delId": 4391978,
+        "sourceImg": "Product img",
+        "brand": "Steelron",
+        "wire_size": 9,
+        "outlet": 1,
+        "type": "standard",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 98,
@@ -765,7 +1059,13 @@
         "margin": 96,
         "selling_price": 160.72,
         "total_cost": 15750.56,
-        "delId": 2678628
+        "delId": 2678628,
+        "sourceImg": "Product img",
+        "brand": "Gridmax",
+        "wire_size": 9,
+        "outlet": 4,
+        "type": "metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 42,
@@ -776,7 +1076,13 @@
         "margin": 64,
         "selling_price": 121.36,
         "total_cost": 5097.12,
-        "delId": 3964396
+        "delId": 3964396,
+        "sourceImg": "default thumbnail image",
+        "brand": "Wirezone",
+        "wire_size": 12,
+        "outlet": 5,
+        "type": "metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 68,
@@ -787,7 +1093,13 @@
         "margin": 19,
         "selling_price": 70.21,
         "total_cost": 4774.28,
-        "delId": 3190242
+        "delId": 3190242,
+        "sourceImg": "default thumbnail image",
+        "brand": "Gridmax",
+        "wire_size": 8,
+        "outlet": 7,
+        "type": "standard",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 61,
@@ -798,7 +1110,13 @@
         "margin": 92,
         "selling_price": 11.52,
         "total_cost": 702.72,
-        "delId": 3527007
+        "delId": 3527007,
+        "sourceImg": "default thumbnail image",
+        "brand": "Flexduct",
+        "wire_size": 14,
+        "outlet": 6,
+        "type": "metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 99,
@@ -809,7 +1127,13 @@
         "margin": 43,
         "selling_price": 35.75,
         "total_cost": 3539.25,
-        "delId": 3231724
+        "delId": 3231724,
+        "sourceImg": "default thumbnail image",
+        "brand": "Voltex",
+        "wire_size": 19,
+        "outlet": 10,
+        "type": "standard",
+        "housing_material": "steel"
       }
     ]
   },
@@ -840,7 +1164,13 @@
         "margin": 76,
         "selling_price": 144.32,
         "total_cost": 5195.52,
-        "delId": 9758674
+        "delId": 9758674,
+        "sourceImg": "default thumbnail image",
+        "brand": "Voltex",
+        "wire_size": 16,
+        "outlet": 9,
+        "type": "metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 42,
@@ -851,7 +1181,13 @@
         "margin": 100,
         "selling_price": 106,
         "total_cost": 4452,
-        "delId": 3477870
+        "delId": 3477870,
+        "sourceImg": "default thumbnail image",
+        "brand": "Gridmax",
+        "wire_size": 20,
+        "outlet": 3,
+        "type": "armored",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 94,
@@ -862,7 +1198,13 @@
         "margin": 83,
         "selling_price": 98.82,
         "total_cost": 9289.08,
-        "delId": 7890039
+        "delId": 7890039,
+        "sourceImg": "Product img",
+        "brand": "Wirezone",
+        "wire_size": 5,
+        "outlet": 9,
+        "type": "metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 77,
@@ -873,7 +1215,13 @@
         "margin": 31,
         "selling_price": 106.11,
         "total_cost": 8170.47,
-        "delId": 1006146
+        "delId": 1006146,
+        "sourceImg": "default thumbnail image",
+        "brand": "Amperon",
+        "wire_size": 14,
+        "outlet": 2,
+        "type": "armored",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 94,
@@ -884,7 +1232,13 @@
         "margin": 79,
         "selling_price": 110.98,
         "total_cost": 10432.12,
-        "delId": 4800549
+        "delId": 4800549,
+        "sourceImg": "default thumbnail image",
+        "brand": "Copperln",
+        "wire_size": 6,
+        "outlet": 7,
+        "type": "standard",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 95,
@@ -895,7 +1249,13 @@
         "margin": 42,
         "selling_price": 109.34,
         "total_cost": 10387.3,
-        "delId": 3348867
+        "delId": 3348867,
+        "sourceImg": "Product img",
+        "brand": "Cablux",
+        "wire_size": 6,
+        "outlet": 7,
+        "type": "standard",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 85,
@@ -906,7 +1266,13 @@
         "margin": 85,
         "selling_price": 103.6,
         "total_cost": 8806,
-        "delId": 6277553
+        "delId": 6277553,
+        "sourceImg": "default thumbnail image",
+        "brand": "Nexwire",
+        "wire_size": 6,
+        "outlet": 6,
+        "type": "standard",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 71,
@@ -917,7 +1283,13 @@
         "margin": 14,
         "selling_price": 107.16,
         "total_cost": 7608.36,
-        "delId": 7230892
+        "delId": 7230892,
+        "sourceImg": "Product img",
+        "brand": "Cablux",
+        "wire_size": 5,
+        "outlet": 7,
+        "type": "armored",
+        "housing_material": "copper"
       }
     ]
   },
@@ -948,7 +1320,13 @@
         "margin": 5,
         "selling_price": 27.3,
         "total_cost": 1092,
-        "delId": 1300441
+        "delId": 1300441,
+        "sourceImg": "Product img",
+        "brand": "Flexduct",
+        "wire_size": 11,
+        "outlet": 10,
+        "type": "non-metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 34,
@@ -959,7 +1337,13 @@
         "margin": 36,
         "selling_price": 112.88,
         "total_cost": 3837.92,
-        "delId": 8228181
+        "delId": 8228181,
+        "sourceImg": "Product img",
+        "brand": "Flexduct",
+        "wire_size": 11,
+        "outlet": 10,
+        "type": "metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 65,
@@ -970,7 +1354,13 @@
         "margin": 99,
         "selling_price": 143.28,
         "total_cost": 9313.2,
-        "delId": 1891671
+        "delId": 1891671,
+        "sourceImg": "default thumbnail image",
+        "brand": "Cablux",
+        "wire_size": 11,
+        "outlet": 1,
+        "type": "non-metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 43,
@@ -981,7 +1371,13 @@
         "margin": 30,
         "selling_price": 15.6,
         "total_cost": 670.8,
-        "delId": 4590160
+        "delId": 4590160,
+        "sourceImg": "Product img",
+        "brand": "Amperon",
+        "wire_size": 14,
+        "outlet": 7,
+        "type": "non-metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 96,
@@ -992,7 +1388,13 @@
         "margin": 36,
         "selling_price": 81.6,
         "total_cost": 7833.6,
-        "delId": 8130043
+        "delId": 8130043,
+        "sourceImg": "Product img",
+        "brand": "Steelron",
+        "wire_size": 14,
+        "outlet": 1,
+        "type": "armored",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 31,
@@ -1003,7 +1405,13 @@
         "margin": 75,
         "selling_price": 43.75,
         "total_cost": 1356.25,
-        "delId": 3449038
+        "delId": 3449038,
+        "sourceImg": "Product img",
+        "brand": "Wirezone",
+        "wire_size": 12,
+        "outlet": 5,
+        "type": "non-metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 77,
@@ -1014,7 +1422,13 @@
         "margin": 40,
         "selling_price": 75.6,
         "total_cost": 5821.2,
-        "delId": 2387528
+        "delId": 2387528,
+        "sourceImg": "default thumbnail image",
+        "brand": "Amperon",
+        "wire_size": 15,
+        "outlet": 3,
+        "type": "non-metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 53,
@@ -1025,7 +1439,13 @@
         "margin": 49,
         "selling_price": 134.1,
         "total_cost": 7107.3,
-        "delId": 6787102
+        "delId": 6787102,
+        "sourceImg": "default thumbnail image",
+        "brand": "Copperln",
+        "wire_size": 20,
+        "outlet": 9,
+        "type": "armored",
+        "housing_material": "steel"
       }
     ]
   },
@@ -1056,7 +1476,13 @@
         "margin": 19,
         "selling_price": 117.81,
         "total_cost": 7068.6,
-        "delId": 2927652
+        "delId": 2927652,
+        "sourceImg": "default thumbnail image",
+        "brand": "Amperon",
+        "wire_size": 19,
+        "outlet": 3,
+        "type": "standard",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 9,
@@ -1067,7 +1493,13 @@
         "margin": 39,
         "selling_price": 126.49,
         "total_cost": 1138.41,
-        "delId": 1355681
+        "delId": 1355681,
+        "sourceImg": "default thumbnail image",
+        "brand": "Steelron",
+        "wire_size": 8,
+        "outlet": 1,
+        "type": "armored",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 77,
@@ -1078,7 +1510,13 @@
         "margin": 29,
         "selling_price": 39.99,
         "total_cost": 3079.23,
-        "delId": 8401572
+        "delId": 8401572,
+        "sourceImg": "default thumbnail image",
+        "brand": "Voltex",
+        "wire_size": 19,
+        "outlet": 2,
+        "type": "armored",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 20,
@@ -1089,7 +1527,13 @@
         "margin": 95,
         "selling_price": 142.35,
         "total_cost": 2847,
-        "delId": 1250772
+        "delId": 1250772,
+        "sourceImg": "Product img",
+        "brand": "Nexwire",
+        "wire_size": 19,
+        "outlet": 5,
+        "type": "metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 33,
@@ -1100,7 +1544,13 @@
         "margin": 4,
         "selling_price": 5.2,
         "total_cost": 171.6,
-        "delId": 1868832
+        "delId": 1868832,
+        "sourceImg": "default thumbnail image",
+        "brand": "Amperon",
+        "wire_size": 16,
+        "outlet": 7,
+        "type": "metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 95,
@@ -1111,7 +1561,13 @@
         "margin": 15,
         "selling_price": 34.5,
         "total_cost": 3277.5,
-        "delId": 1733522
+        "delId": 1733522,
+        "sourceImg": "Product img",
+        "brand": "Cablux",
+        "wire_size": 20,
+        "outlet": 3,
+        "type": "standard",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 97,
@@ -1122,7 +1578,13 @@
         "margin": 92,
         "selling_price": 32.64,
         "total_cost": 3166.08,
-        "delId": 4105037
+        "delId": 4105037,
+        "sourceImg": "default thumbnail image",
+        "brand": "Copperln",
+        "wire_size": 13,
+        "outlet": 2,
+        "type": "metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 2,
@@ -1133,7 +1595,13 @@
         "margin": 10,
         "selling_price": 61.6,
         "total_cost": 123.2,
-        "delId": 4306774
+        "delId": 4306774,
+        "sourceImg": "default thumbnail image",
+        "brand": "Amperon",
+        "wire_size": 7,
+        "outlet": 1,
+        "type": "armored",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 96,
@@ -1144,7 +1612,13 @@
         "margin": 39,
         "selling_price": 70.89,
         "total_cost": 6805.44,
-        "delId": 8672607
+        "delId": 8672607,
+        "sourceImg": "Product img",
+        "brand": "Flexduct",
+        "wire_size": 8,
+        "outlet": 4,
+        "type": "armored",
+        "housing_material": "copper"
       }
     ]
   },
@@ -1175,7 +1649,13 @@
         "margin": 95,
         "selling_price": 29.25,
         "total_cost": 1170,
-        "delId": 6354279
+        "delId": 6354279,
+        "sourceImg": "default thumbnail image",
+        "brand": "Steelron",
+        "wire_size": 11,
+        "outlet": 4,
+        "type": "non-metallic",
+        "housing_material": "steel"
       }
     ]
   },
@@ -1206,7 +1686,13 @@
         "margin": 95,
         "selling_price": 138.45,
         "total_cost": 4153.5,
-        "delId": 9021439
+        "delId": 9021439,
+        "sourceImg": "default thumbnail image",
+        "brand": "Nexwire",
+        "wire_size": 20,
+        "outlet": 6,
+        "type": "metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 32,
@@ -1217,7 +1703,13 @@
         "margin": 26,
         "selling_price": 95.76,
         "total_cost": 3064.32,
-        "delId": 2922781
+        "delId": 2922781,
+        "sourceImg": "Product img",
+        "brand": "Voltex",
+        "wire_size": 13,
+        "outlet": 6,
+        "type": "armored",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 13,
@@ -1228,7 +1720,13 @@
         "margin": 87,
         "selling_price": 29.92,
         "total_cost": 388.96,
-        "delId": 8468123
+        "delId": 8468123,
+        "sourceImg": "default thumbnail image",
+        "brand": "Flexduct",
+        "wire_size": 14,
+        "outlet": 9,
+        "type": "metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 97,
@@ -1239,7 +1737,13 @@
         "margin": 93,
         "selling_price": 140.89,
         "total_cost": 13666.33,
-        "delId": 7300655
+        "delId": 7300655,
+        "sourceImg": "default thumbnail image",
+        "brand": "Nexwire",
+        "wire_size": 12,
+        "outlet": 2,
+        "type": "standard",
+        "housing_material": "steel"
       }
     ]
   },
@@ -1270,7 +1774,13 @@
         "margin": 35,
         "selling_price": 117.45,
         "total_cost": 10335.6,
-        "delId": 4604038
+        "delId": 4604038,
+        "sourceImg": "default thumbnail image",
+        "brand": "Amperon",
+        "wire_size": 10,
+        "outlet": 9,
+        "type": "standard",
+        "housing_material": "steel"
       }
     ]
   },
@@ -1301,7 +1811,13 @@
         "margin": 73,
         "selling_price": 43.25,
         "total_cost": 2508.5,
-        "delId": 6454779
+        "delId": 6454779,
+        "sourceImg": "default thumbnail image",
+        "brand": "Nexwire",
+        "wire_size": 9,
+        "outlet": 3,
+        "type": "metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 48,
@@ -1312,7 +1828,13 @@
         "margin": 6,
         "selling_price": 1.06,
         "total_cost": 50.88,
-        "delId": 1339017
+        "delId": 1339017,
+        "sourceImg": "default thumbnail image",
+        "brand": "Flexduct",
+        "wire_size": 9,
+        "outlet": 9,
+        "type": "standard",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 97,
@@ -1323,7 +1845,13 @@
         "margin": 26,
         "selling_price": 81.9,
         "total_cost": 7944.3,
-        "delId": 1657922
+        "delId": 1657922,
+        "sourceImg": "default thumbnail image",
+        "brand": "Wirezone",
+        "wire_size": 18,
+        "outlet": 7,
+        "type": "armored",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 62,
@@ -1334,7 +1862,13 @@
         "margin": 42,
         "selling_price": 124.96,
         "total_cost": 7747.52,
-        "delId": 1384490
+        "delId": 1384490,
+        "sourceImg": "default thumbnail image",
+        "brand": "Voltex",
+        "wire_size": 17,
+        "outlet": 1,
+        "type": "armored",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 8,
@@ -1345,7 +1879,13 @@
         "margin": 37,
         "selling_price": 2.74,
         "total_cost": 21.92,
-        "delId": 4086210
+        "delId": 4086210,
+        "sourceImg": "default thumbnail image",
+        "brand": "Gridmax",
+        "wire_size": 12,
+        "outlet": 10,
+        "type": "armored",
+        "housing_material": "copper"
       }
     ]
   },
@@ -1376,7 +1916,13 @@
         "margin": 76,
         "selling_price": 123.2,
         "total_cost": 985.6,
-        "delId": 3315357
+        "delId": 3315357,
+        "sourceImg": "Product img",
+        "brand": "Voltex",
+        "wire_size": 15,
+        "outlet": 3,
+        "type": "armored",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 18,
@@ -1387,7 +1933,13 @@
         "margin": 23,
         "selling_price": 77.49,
         "total_cost": 1394.82,
-        "delId": 7006455
+        "delId": 7006455,
+        "sourceImg": "default thumbnail image",
+        "brand": "Wirezone",
+        "wire_size": 20,
+        "outlet": 3,
+        "type": "armored",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 94,
@@ -1398,7 +1950,13 @@
         "margin": 65,
         "selling_price": 37.95,
         "total_cost": 3567.3,
-        "delId": 9201507
+        "delId": 9201507,
+        "sourceImg": "default thumbnail image",
+        "brand": "Armetek",
+        "wire_size": 11,
+        "outlet": 7,
+        "type": "non-metallic",
+        "housing_material": "steel"
       }
     ]
   },
@@ -1429,7 +1987,13 @@
         "margin": 4,
         "selling_price": 94.64,
         "total_cost": 4069.52,
-        "delId": 9422468
+        "delId": 9422468,
+        "sourceImg": "Product img",
+        "brand": "Flexduct",
+        "wire_size": 20,
+        "outlet": 5,
+        "type": "armored",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 10,
@@ -1440,7 +2004,13 @@
         "margin": 56,
         "selling_price": 115.44,
         "total_cost": 1154.4,
-        "delId": 3666201
+        "delId": 3666201,
+        "sourceImg": "default thumbnail image",
+        "brand": "Nexwire",
+        "wire_size": 15,
+        "outlet": 2,
+        "type": "armored",
+        "housing_material": "steel"
       }
     ]
   },
@@ -1471,7 +2041,13 @@
         "margin": 79,
         "selling_price": 71.6,
         "total_cost": 429.6,
-        "delId": 1340483
+        "delId": 1340483,
+        "sourceImg": "default thumbnail image",
+        "brand": "Wirezone",
+        "wire_size": 12,
+        "outlet": 7,
+        "type": "metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 44,
@@ -1482,7 +2058,13 @@
         "margin": 41,
         "selling_price": 42.3,
         "total_cost": 1861.2,
-        "delId": 6160144
+        "delId": 6160144,
+        "sourceImg": "default thumbnail image",
+        "brand": "Voltex",
+        "wire_size": 6,
+        "outlet": 1,
+        "type": "standard",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 86,
@@ -1493,7 +2075,13 @@
         "margin": 31,
         "selling_price": 127.07,
         "total_cost": 10928.02,
-        "delId": 1002526
+        "delId": 1002526,
+        "sourceImg": "default thumbnail image",
+        "brand": "Voltex",
+        "wire_size": 14,
+        "outlet": 1,
+        "type": "standard",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 33,
@@ -1504,7 +2092,13 @@
         "margin": 8,
         "selling_price": 31.32,
         "total_cost": 1033.56,
-        "delId": 4647547
+        "delId": 4647547,
+        "sourceImg": "Product img",
+        "brand": "Flexduct",
+        "wire_size": 10,
+        "outlet": 10,
+        "type": "standard",
+        "housing_material": "copper"
       }
     ]
   },
@@ -1535,7 +2129,13 @@
         "margin": 53,
         "selling_price": 16.83,
         "total_cost": 1295.91,
-        "delId": 3717028
+        "delId": 3717028,
+        "sourceImg": "default thumbnail image",
+        "brand": "Copperln",
+        "wire_size": 19,
+        "outlet": 6,
+        "type": "non-metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 66,
@@ -1546,7 +2146,13 @@
         "margin": 38,
         "selling_price": 11.04,
         "total_cost": 728.64,
-        "delId": 2887929
+        "delId": 2887929,
+        "sourceImg": "Product img",
+        "brand": "Copperln",
+        "wire_size": 11,
+        "outlet": 7,
+        "type": "standard",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 35,
@@ -1557,7 +2163,13 @@
         "margin": 80,
         "selling_price": 111.6,
         "total_cost": 3906,
-        "delId": 8470429
+        "delId": 8470429,
+        "sourceImg": "default thumbnail image",
+        "brand": "Amperon",
+        "wire_size": 8,
+        "outlet": 6,
+        "type": "standard",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 37,
@@ -1568,7 +2180,13 @@
         "margin": 78,
         "selling_price": 71.2,
         "total_cost": 2634.4,
-        "delId": 7022844
+        "delId": 7022844,
+        "sourceImg": "default thumbnail image",
+        "brand": "Copperln",
+        "wire_size": 8,
+        "outlet": 2,
+        "type": "armored",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 56,
@@ -1579,7 +2197,13 @@
         "margin": 30,
         "selling_price": 88.4,
         "total_cost": 4950.4,
-        "delId": 4971052
+        "delId": 4971052,
+        "sourceImg": "default thumbnail image",
+        "brand": "Gridmax",
+        "wire_size": 18,
+        "outlet": 3,
+        "type": "metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 67,
@@ -1590,7 +2214,13 @@
         "margin": 27,
         "selling_price": 81.28,
         "total_cost": 5445.76,
-        "delId": 8342513
+        "delId": 8342513,
+        "sourceImg": "default thumbnail image",
+        "brand": "Flexduct",
+        "wire_size": 20,
+        "outlet": 9,
+        "type": "standard",
+        "housing_material": "copper"
       }
     ]
   },
@@ -1621,7 +2251,13 @@
         "margin": 4,
         "selling_price": 40.56,
         "total_cost": 3163.68,
-        "delId": 1310321
+        "delId": 1310321,
+        "sourceImg": "default thumbnail image",
+        "brand": "Nexwire",
+        "wire_size": 16,
+        "outlet": 9,
+        "type": "metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 86,
@@ -1632,7 +2268,13 @@
         "margin": 52,
         "selling_price": 121.6,
         "total_cost": 10457.6,
-        "delId": 8903222
+        "delId": 8903222,
+        "sourceImg": "Product img",
+        "brand": "Cablux",
+        "wire_size": 14,
+        "outlet": 1,
+        "type": "non-metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 83,
@@ -1643,7 +2285,13 @@
         "margin": 39,
         "selling_price": 47.26,
         "total_cost": 3922.58,
-        "delId": 7192795
+        "delId": 7192795,
+        "sourceImg": "default thumbnail image",
+        "brand": "Armetek",
+        "wire_size": 18,
+        "outlet": 7,
+        "type": "metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 43,
@@ -1654,7 +2302,13 @@
         "margin": 8,
         "selling_price": 85.32,
         "total_cost": 3668.76,
-        "delId": 9044444
+        "delId": 9044444,
+        "sourceImg": "default thumbnail image",
+        "brand": "Wirezone",
+        "wire_size": 9,
+        "outlet": 1,
+        "type": "armored",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 59,
@@ -1665,7 +2319,13 @@
         "margin": 22,
         "selling_price": 25.62,
         "total_cost": 1511.58,
-        "delId": 6686236
+        "delId": 6686236,
+        "sourceImg": "default thumbnail image",
+        "brand": "Gridmax",
+        "wire_size": 7,
+        "outlet": 6,
+        "type": "non-metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 27,
@@ -1676,7 +2336,13 @@
         "margin": 79,
         "selling_price": 30.43,
         "total_cost": 821.61,
-        "delId": 7729985
+        "delId": 7729985,
+        "sourceImg": "Product img",
+        "brand": "Copperln",
+        "wire_size": 7,
+        "outlet": 4,
+        "type": "armored",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 67,
@@ -1687,7 +2353,13 @@
         "margin": 44,
         "selling_price": 66.24,
         "total_cost": 4438.08,
-        "delId": 1892347
+        "delId": 1892347,
+        "sourceImg": "Product img",
+        "brand": "Voltex",
+        "wire_size": 19,
+        "outlet": 8,
+        "type": "metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 41,
@@ -1698,7 +2370,13 @@
         "margin": 37,
         "selling_price": 94.53,
         "total_cost": 3875.73,
-        "delId": 2711549
+        "delId": 2711549,
+        "sourceImg": "Product img",
+        "brand": "Flexduct",
+        "wire_size": 9,
+        "outlet": 4,
+        "type": "non-metallic",
+        "housing_material": "steel"
       }
     ]
   },
@@ -1729,7 +2407,13 @@
         "margin": 92,
         "selling_price": 128.64,
         "total_cost": 10548.48,
-        "delId": 1324406
+        "delId": 1324406,
+        "sourceImg": "Product img",
+        "brand": "Steelron",
+        "wire_size": 8,
+        "outlet": 10,
+        "type": "armored",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 35,
@@ -1740,7 +2424,13 @@
         "margin": 43,
         "selling_price": 125.84,
         "total_cost": 4404.4,
-        "delId": 2028679
+        "delId": 2028679,
+        "sourceImg": "default thumbnail image",
+        "brand": "Amperon",
+        "wire_size": 17,
+        "outlet": 9,
+        "type": "standard",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 89,
@@ -1751,7 +2441,13 @@
         "margin": 68,
         "selling_price": 53.76,
         "total_cost": 4784.64,
-        "delId": 6031175
+        "delId": 6031175,
+        "sourceImg": "Product img",
+        "brand": "Armetek",
+        "wire_size": 19,
+        "outlet": 1,
+        "type": "non-metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 2,
@@ -1762,7 +2458,13 @@
         "margin": 88,
         "selling_price": 18.8,
         "total_cost": 37.6,
-        "delId": 7069050
+        "delId": 7069050,
+        "sourceImg": "default thumbnail image",
+        "brand": "Voltex",
+        "wire_size": 5,
+        "outlet": 7,
+        "type": "non-metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 43,
@@ -1773,7 +2475,13 @@
         "margin": 81,
         "selling_price": 148.42,
         "total_cost": 6382.06,
-        "delId": 4286984
+        "delId": 4286984,
+        "sourceImg": "default thumbnail image",
+        "brand": "Steelron",
+        "wire_size": 13,
+        "outlet": 3,
+        "type": "standard",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 41,
@@ -1784,7 +2492,13 @@
         "margin": 22,
         "selling_price": 31.72,
         "total_cost": 1300.52,
-        "delId": 7094740
+        "delId": 7094740,
+        "sourceImg": "default thumbnail image",
+        "brand": "Voltex",
+        "wire_size": 12,
+        "outlet": 8,
+        "type": "armored",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 18,
@@ -1795,7 +2509,13 @@
         "margin": 58,
         "selling_price": 121.66,
         "total_cost": 2189.88,
-        "delId": 5068868
+        "delId": 5068868,
+        "sourceImg": "Product img",
+        "brand": "Amperon",
+        "wire_size": 8,
+        "outlet": 1,
+        "type": "standard",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 79,
@@ -1806,7 +2526,13 @@
         "margin": 78,
         "selling_price": 26.7,
         "total_cost": 2109.3,
-        "delId": 3522116
+        "delId": 3522116,
+        "sourceImg": "Product img",
+        "brand": "Amperon",
+        "wire_size": 15,
+        "outlet": 4,
+        "type": "armored",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 9,
@@ -1817,7 +2543,13 @@
         "margin": 95,
         "selling_price": 144.3,
         "total_cost": 1298.7,
-        "delId": 8141961
+        "delId": 8141961,
+        "sourceImg": "default thumbnail image",
+        "brand": "Steelron",
+        "wire_size": 5,
+        "outlet": 2,
+        "type": "standard",
+        "housing_material": "copper"
       }
     ]
   },
@@ -1848,7 +2580,13 @@
         "margin": 84,
         "selling_price": 156.4,
         "total_cost": 2658.8,
-        "delId": 7380526
+        "delId": 7380526,
+        "sourceImg": "default thumbnail image",
+        "brand": "Nexwire",
+        "wire_size": 7,
+        "outlet": 5,
+        "type": "standard",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 3,
@@ -1859,7 +2597,13 @@
         "margin": 35,
         "selling_price": 105.3,
         "total_cost": 315.9,
-        "delId": 4567540
+        "delId": 4567540,
+        "sourceImg": "default thumbnail image",
+        "brand": "Steelron",
+        "wire_size": 10,
+        "outlet": 8,
+        "type": "armored",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 83,
@@ -1870,7 +2614,13 @@
         "margin": 80,
         "selling_price": 158.4,
         "total_cost": 13147.2,
-        "delId": 9297444
+        "delId": 9297444,
+        "sourceImg": "Product img",
+        "brand": "Flexduct",
+        "wire_size": 11,
+        "outlet": 1,
+        "type": "metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 45,
@@ -1881,7 +2631,13 @@
         "margin": 48,
         "selling_price": 44.4,
         "total_cost": 1998,
-        "delId": 8735307
+        "delId": 8735307,
+        "sourceImg": "default thumbnail image",
+        "brand": "Gridmax",
+        "wire_size": 6,
+        "outlet": 5,
+        "type": "armored",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 50,
@@ -1892,7 +2648,13 @@
         "margin": 9,
         "selling_price": 1.09,
         "total_cost": 54.5,
-        "delId": 6924757
+        "delId": 6924757,
+        "sourceImg": "Product img",
+        "brand": "Voltex",
+        "wire_size": 15,
+        "outlet": 6,
+        "type": "armored",
+        "housing_material": "steel"
       }
     ]
   },
@@ -1923,7 +2685,13 @@
         "margin": 88,
         "selling_price": 116.56,
         "total_cost": 2098.08,
-        "delId": 3567208
+        "delId": 3567208,
+        "sourceImg": "Product img",
+        "brand": "Copperln",
+        "wire_size": 20,
+        "outlet": 5,
+        "type": "standard",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 65,
@@ -1934,7 +2702,13 @@
         "margin": 76,
         "selling_price": 35.2,
         "total_cost": 2288,
-        "delId": 5349655
+        "delId": 5349655,
+        "sourceImg": "Product img",
+        "brand": "Nexwire",
+        "wire_size": 5,
+        "outlet": 2,
+        "type": "armored",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 41,
@@ -1945,7 +2719,13 @@
         "margin": 40,
         "selling_price": 15.4,
         "total_cost": 631.4,
-        "delId": 7315322
+        "delId": 7315322,
+        "sourceImg": "Product img",
+        "brand": "Gridmax",
+        "wire_size": 12,
+        "outlet": 4,
+        "type": "metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 16,
@@ -1956,7 +2736,13 @@
         "margin": 21,
         "selling_price": 59.29,
         "total_cost": 948.64,
-        "delId": 1794562
+        "delId": 1794562,
+        "sourceImg": "Product img",
+        "brand": "Wirezone",
+        "wire_size": 13,
+        "outlet": 6,
+        "type": "standard",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 28,
@@ -1967,7 +2753,13 @@
         "margin": 91,
         "selling_price": 7.64,
         "total_cost": 213.92,
-        "delId": 4734626
+        "delId": 4734626,
+        "sourceImg": "default thumbnail image",
+        "brand": "Voltex",
+        "wire_size": 13,
+        "outlet": 4,
+        "type": "standard",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 62,
@@ -1978,7 +2770,13 @@
         "margin": 100,
         "selling_price": 182,
         "total_cost": 11284,
-        "delId": 8252518
+        "delId": 8252518,
+        "sourceImg": "default thumbnail image",
+        "brand": "Cablux",
+        "wire_size": 14,
+        "outlet": 10,
+        "type": "armored",
+        "housing_material": "copper"
       }
     ]
   },
@@ -2009,7 +2807,13 @@
         "margin": 99,
         "selling_price": 113.43,
         "total_cost": 4196.91,
-        "delId": 7468345
+        "delId": 7468345,
+        "sourceImg": "default thumbnail image",
+        "brand": "Wirezone",
+        "wire_size": 13,
+        "outlet": 9,
+        "type": "non-metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 1,
@@ -2020,7 +2824,13 @@
         "margin": 50,
         "selling_price": 3,
         "total_cost": 3,
-        "delId": 2185084
+        "delId": 2185084,
+        "sourceImg": "Product img",
+        "brand": "Steelron",
+        "wire_size": 12,
+        "outlet": 5,
+        "type": "armored",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 64,
@@ -2031,7 +2841,13 @@
         "margin": 51,
         "selling_price": 57.38,
         "total_cost": 3672.32,
-        "delId": 5270396
+        "delId": 5270396,
+        "sourceImg": "Product img",
+        "brand": "Gridmax",
+        "wire_size": 19,
+        "outlet": 4,
+        "type": "non-metallic",
+        "housing_material": "copper"
       }
     ]
   },
@@ -2062,7 +2878,13 @@
         "margin": 22,
         "selling_price": 54.9,
         "total_cost": 3458.7,
-        "delId": 4677897
+        "delId": 4677897,
+        "sourceImg": "Product img",
+        "brand": "Amperon",
+        "wire_size": 9,
+        "outlet": 10,
+        "type": "standard",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 80,
@@ -2073,7 +2895,13 @@
         "margin": 44,
         "selling_price": 105.12,
         "total_cost": 8409.6,
-        "delId": 8165440
+        "delId": 8165440,
+        "sourceImg": "Product img",
+        "brand": "Cablux",
+        "wire_size": 14,
+        "outlet": 5,
+        "type": "armored",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 85,
@@ -2084,7 +2912,13 @@
         "margin": 6,
         "selling_price": 28.62,
         "total_cost": 2432.7,
-        "delId": 9654852
+        "delId": 9654852,
+        "sourceImg": "Product img",
+        "brand": "Amperon",
+        "wire_size": 9,
+        "outlet": 5,
+        "type": "armored",
+        "housing_material": "copper"
       }
     ]
   },
@@ -2115,7 +2949,13 @@
         "margin": 14,
         "selling_price": 80.94,
         "total_cost": 4613.58,
-        "delId": 2755831
+        "delId": 2755831,
+        "sourceImg": "default thumbnail image",
+        "brand": "Copperln",
+        "wire_size": 15,
+        "outlet": 4,
+        "type": "standard",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 31,
@@ -2126,7 +2966,13 @@
         "margin": 47,
         "selling_price": 54.39,
         "total_cost": 1686.09,
-        "delId": 7722288
+        "delId": 7722288,
+        "sourceImg": "default thumbnail image",
+        "brand": "Nexwire",
+        "wire_size": 20,
+        "outlet": 8,
+        "type": "armored",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 49,
@@ -2137,7 +2983,13 @@
         "margin": 86,
         "selling_price": 100.44,
         "total_cost": 4921.56,
-        "delId": 6849457
+        "delId": 6849457,
+        "sourceImg": "Product img",
+        "brand": "Cablux",
+        "wire_size": 13,
+        "outlet": 9,
+        "type": "metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 42,
@@ -2148,7 +3000,13 @@
         "margin": 16,
         "selling_price": 99.76,
         "total_cost": 4189.92,
-        "delId": 2657112
+        "delId": 2657112,
+        "sourceImg": "Product img",
+        "brand": "Amperon",
+        "wire_size": 19,
+        "outlet": 1,
+        "type": "metallic",
+        "housing_material": "copper"
       }
     ]
   },
@@ -2179,7 +3037,13 @@
         "margin": 67,
         "selling_price": 8.35,
         "total_cost": 726.45,
-        "delId": 9357706
+        "delId": 9357706,
+        "sourceImg": "default thumbnail image",
+        "brand": "Steelron",
+        "wire_size": 17,
+        "outlet": 6,
+        "type": "standard",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 31,
@@ -2190,7 +3054,13 @@
         "margin": 3,
         "selling_price": 74.16,
         "total_cost": 2298.96,
-        "delId": 3792383
+        "delId": 3792383,
+        "sourceImg": "Product img",
+        "brand": "Cablux",
+        "wire_size": 19,
+        "outlet": 5,
+        "type": "metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 48,
@@ -2201,7 +3071,13 @@
         "margin": 11,
         "selling_price": 36.63,
         "total_cost": 1758.24,
-        "delId": 2385151
+        "delId": 2385151,
+        "sourceImg": "default thumbnail image",
+        "brand": "Armetek",
+        "wire_size": 12,
+        "outlet": 6,
+        "type": "non-metallic",
+        "housing_material": "steel"
       }
     ]
   },
@@ -2232,7 +3108,13 @@
         "margin": 94,
         "selling_price": 124.16,
         "total_cost": 6828.8,
-        "delId": 7252144
+        "delId": 7252144,
+        "sourceImg": "default thumbnail image",
+        "brand": "Cablux",
+        "wire_size": 17,
+        "outlet": 1,
+        "type": "standard",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 9,
@@ -2243,7 +3125,13 @@
         "margin": 85,
         "selling_price": 11.1,
         "total_cost": 99.9,
-        "delId": 1041349
+        "delId": 1041349,
+        "sourceImg": "default thumbnail image",
+        "brand": "Cablux",
+        "wire_size": 9,
+        "outlet": 10,
+        "type": "metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 14,
@@ -2254,7 +3142,13 @@
         "margin": 17,
         "selling_price": 19.89,
         "total_cost": 278.46,
-        "delId": 5213055
+        "delId": 5213055,
+        "sourceImg": "Product img",
+        "brand": "Armetek",
+        "wire_size": 13,
+        "outlet": 4,
+        "type": "non-metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 18,
@@ -2265,7 +3159,13 @@
         "margin": 78,
         "selling_price": 10.68,
         "total_cost": 192.24,
-        "delId": 6854587
+        "delId": 6854587,
+        "sourceImg": "Product img",
+        "brand": "Voltex",
+        "wire_size": 12,
+        "outlet": 8,
+        "type": "metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 2,
@@ -2276,7 +3176,13 @@
         "margin": 54,
         "selling_price": 90.86,
         "total_cost": 181.72,
-        "delId": 8344389
+        "delId": 8344389,
+        "sourceImg": "default thumbnail image",
+        "brand": "Steelron",
+        "wire_size": 18,
+        "outlet": 4,
+        "type": "metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 82,
@@ -2287,7 +3193,13 @@
         "margin": 71,
         "selling_price": 10.26,
         "total_cost": 841.32,
-        "delId": 4025546
+        "delId": 4025546,
+        "sourceImg": "default thumbnail image",
+        "brand": "Cablux",
+        "wire_size": 12,
+        "outlet": 2,
+        "type": "non-metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 46,
@@ -2298,7 +3210,13 @@
         "margin": 62,
         "selling_price": 71.28,
         "total_cost": 3278.88,
-        "delId": 7053165
+        "delId": 7053165,
+        "sourceImg": "default thumbnail image",
+        "brand": "Nexwire",
+        "wire_size": 20,
+        "outlet": 6,
+        "type": "armored",
+        "housing_material": "copper"
       }
     ]
   },
@@ -2329,7 +3247,13 @@
         "margin": 32,
         "selling_price": 71.28,
         "total_cost": 1639.44,
-        "delId": 1820195
+        "delId": 1820195,
+        "sourceImg": "default thumbnail image",
+        "brand": "Wirezone",
+        "wire_size": 7,
+        "outlet": 1,
+        "type": "armored",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 83,
@@ -2340,7 +3264,13 @@
         "margin": 8,
         "selling_price": 58.32,
         "total_cost": 4840.56,
-        "delId": 3773584
+        "delId": 3773584,
+        "sourceImg": "Product img",
+        "brand": "Cablux",
+        "wire_size": 20,
+        "outlet": 10,
+        "type": "metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 2,
@@ -2351,7 +3281,13 @@
         "margin": 49,
         "selling_price": 20.86,
         "total_cost": 41.72,
-        "delId": 1356618
+        "delId": 1356618,
+        "sourceImg": "default thumbnail image",
+        "brand": "Cablux",
+        "wire_size": 8,
+        "outlet": 10,
+        "type": "standard",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 20,
@@ -2362,7 +3298,13 @@
         "margin": 85,
         "selling_price": 27.75,
         "total_cost": 555,
-        "delId": 6832635
+        "delId": 6832635,
+        "sourceImg": "default thumbnail image",
+        "brand": "Flexduct",
+        "wire_size": 10,
+        "outlet": 4,
+        "type": "armored",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 36,
@@ -2373,7 +3315,13 @@
         "margin": 52,
         "selling_price": 129.2,
         "total_cost": 4651.2,
-        "delId": 7909767
+        "delId": 7909767,
+        "sourceImg": "default thumbnail image",
+        "brand": "Gridmax",
+        "wire_size": 19,
+        "outlet": 10,
+        "type": "standard",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 58,
@@ -2384,7 +3332,13 @@
         "margin": 39,
         "selling_price": 126.49,
         "total_cost": 7336.42,
-        "delId": 2086262
+        "delId": 2086262,
+        "sourceImg": "default thumbnail image",
+        "brand": "Nexwire",
+        "wire_size": 15,
+        "outlet": 5,
+        "type": "non-metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 57,
@@ -2395,7 +3349,13 @@
         "margin": 38,
         "selling_price": 12.42,
         "total_cost": 707.94,
-        "delId": 6329583
+        "delId": 6329583,
+        "sourceImg": "default thumbnail image",
+        "brand": "Wirezone",
+        "wire_size": 6,
+        "outlet": 9,
+        "type": "non-metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 55,
@@ -2406,7 +3366,13 @@
         "margin": 15,
         "selling_price": 88.55,
         "total_cost": 4870.25,
-        "delId": 3150824
+        "delId": 3150824,
+        "sourceImg": "default thumbnail image",
+        "brand": "Steelron",
+        "wire_size": 12,
+        "outlet": 2,
+        "type": "non-metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 4,
@@ -2417,7 +3383,13 @@
         "margin": 30,
         "selling_price": 113.1,
         "total_cost": 452.4,
-        "delId": 2730412
+        "delId": 2730412,
+        "sourceImg": "Product img",
+        "brand": "Armetek",
+        "wire_size": 5,
+        "outlet": 9,
+        "type": "standard",
+        "housing_material": "steel"
       }
     ]
   },
@@ -2448,7 +3420,13 @@
         "margin": 80,
         "selling_price": 131.4,
         "total_cost": 6307.2,
-        "delId": 8675604
+        "delId": 8675604,
+        "sourceImg": "default thumbnail image",
+        "brand": "Copperln",
+        "wire_size": 15,
+        "outlet": 2,
+        "type": "non-metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 25,
@@ -2459,7 +3437,13 @@
         "margin": 56,
         "selling_price": 73.32,
         "total_cost": 1833,
-        "delId": 4596214
+        "delId": 4596214,
+        "sourceImg": "default thumbnail image",
+        "brand": "Steelron",
+        "wire_size": 14,
+        "outlet": 3,
+        "type": "metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 42,
@@ -2470,7 +3454,13 @@
         "margin": 12,
         "selling_price": 84,
         "total_cost": 3528,
-        "delId": 9255298
+        "delId": 9255298,
+        "sourceImg": "Product img",
+        "brand": "Cablux",
+        "wire_size": 19,
+        "outlet": 2,
+        "type": "non-metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 5,
@@ -2481,7 +3471,13 @@
         "margin": 96,
         "selling_price": 90.16,
         "total_cost": 450.8,
-        "delId": 4712781
+        "delId": 4712781,
+        "sourceImg": "default thumbnail image",
+        "brand": "Copperln",
+        "wire_size": 10,
+        "outlet": 9,
+        "type": "standard",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 46,
@@ -2492,7 +3488,13 @@
         "margin": 36,
         "selling_price": 97.92,
         "total_cost": 4504.32,
-        "delId": 2363751
+        "delId": 2363751,
+        "sourceImg": "default thumbnail image",
+        "brand": "Wirezone",
+        "wire_size": 9,
+        "outlet": 5,
+        "type": "non-metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 100,
@@ -2503,7 +3505,13 @@
         "margin": 100,
         "selling_price": 14,
         "total_cost": 1400,
-        "delId": 5305324
+        "delId": 5305324,
+        "sourceImg": "Product img",
+        "brand": "Amperon",
+        "wire_size": 15,
+        "outlet": 3,
+        "type": "armored",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 100,
@@ -2514,7 +3522,13 @@
         "margin": 24,
         "selling_price": 1.24,
         "total_cost": 124,
-        "delId": 7537563
+        "delId": 7537563,
+        "sourceImg": "default thumbnail image",
+        "brand": "Voltex",
+        "wire_size": 20,
+        "outlet": 6,
+        "type": "armored",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 40,
@@ -2525,7 +3539,13 @@
         "margin": 22,
         "selling_price": 36.6,
         "total_cost": 1464,
-        "delId": 9904845
+        "delId": 9904845,
+        "sourceImg": "default thumbnail image",
+        "brand": "Nexwire",
+        "wire_size": 17,
+        "outlet": 6,
+        "type": "armored",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 82,
@@ -2536,7 +3556,13 @@
         "margin": 72,
         "selling_price": 30.96,
         "total_cost": 2538.72,
-        "delId": 2692467
+        "delId": 2692467,
+        "sourceImg": "default thumbnail image",
+        "brand": "Voltex",
+        "wire_size": 20,
+        "outlet": 4,
+        "type": "standard",
+        "housing_material": "copper"
       }
     ]
   },
@@ -2567,7 +3593,13 @@
         "margin": 17,
         "selling_price": 87.75,
         "total_cost": 4036.5,
-        "delId": 2472908
+        "delId": 2472908,
+        "sourceImg": "default thumbnail image",
+        "brand": "Flexduct",
+        "wire_size": 6,
+        "outlet": 4,
+        "type": "standard",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 47,
@@ -2578,7 +3610,13 @@
         "margin": 36,
         "selling_price": 136,
         "total_cost": 6392,
-        "delId": 5639471
+        "delId": 5639471,
+        "sourceImg": "default thumbnail image",
+        "brand": "Cablux",
+        "wire_size": 9,
+        "outlet": 10,
+        "type": "standard",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 68,
@@ -2589,7 +3627,13 @@
         "margin": 55,
         "selling_price": 57.35,
         "total_cost": 3899.8,
-        "delId": 1414180
+        "delId": 1414180,
+        "sourceImg": "default thumbnail image",
+        "brand": "Copperln",
+        "wire_size": 14,
+        "outlet": 6,
+        "type": "metallic",
+        "housing_material": "copper"
       }
     ]
   },
@@ -2620,7 +3664,13 @@
         "margin": 12,
         "selling_price": 12.32,
         "total_cost": 936.32,
-        "delId": 5067876
+        "delId": 5067876,
+        "sourceImg": "Product img",
+        "brand": "Copperln",
+        "wire_size": 7,
+        "outlet": 4,
+        "type": "standard",
+        "housing_material": "steel"
       }
     ]
   },
@@ -2651,7 +3701,13 @@
         "margin": 30,
         "selling_price": 80.6,
         "total_cost": 1128.4,
-        "delId": 6787889
+        "delId": 6787889,
+        "sourceImg": "Product img",
+        "brand": "Amperon",
+        "wire_size": 5,
+        "outlet": 9,
+        "type": "metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 72,
@@ -2662,7 +3718,13 @@
         "margin": 50,
         "selling_price": 1.5,
         "total_cost": 108,
-        "delId": 2795254
+        "delId": 2795254,
+        "sourceImg": "default thumbnail image",
+        "brand": "Amperon",
+        "wire_size": 18,
+        "outlet": 5,
+        "type": "armored",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 28,
@@ -2673,7 +3735,13 @@
         "margin": 22,
         "selling_price": 97.6,
         "total_cost": 2732.8,
-        "delId": 2876190
+        "delId": 2876190,
+        "sourceImg": "default thumbnail image",
+        "brand": "Flexduct",
+        "wire_size": 9,
+        "outlet": 9,
+        "type": "standard",
+        "housing_material": "copper"
       }
     ]
   },
@@ -2704,7 +3772,13 @@
         "margin": 76,
         "selling_price": 45.76,
         "total_cost": 4072.64,
-        "delId": 3510121
+        "delId": 3510121,
+        "sourceImg": "Product img",
+        "brand": "Cablux",
+        "wire_size": 11,
+        "outlet": 8,
+        "type": "non-metallic",
+        "housing_material": "copper"
       }
     ]
   },
@@ -2735,7 +3809,13 @@
         "margin": 60,
         "selling_price": 70.4,
         "total_cost": 6617.6,
-        "delId": 7947240
+        "delId": 7947240,
+        "sourceImg": "default thumbnail image",
+        "brand": "Copperln",
+        "wire_size": 20,
+        "outlet": 9,
+        "type": "non-metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 62,
@@ -2746,7 +3826,13 @@
         "margin": 28,
         "selling_price": 15.36,
         "total_cost": 952.32,
-        "delId": 3220628
+        "delId": 3220628,
+        "sourceImg": "Product img",
+        "brand": "Flexduct",
+        "wire_size": 13,
+        "outlet": 7,
+        "type": "non-metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 55,
@@ -2757,7 +3843,13 @@
         "margin": 67,
         "selling_price": 145.29,
         "total_cost": 7990.95,
-        "delId": 9162341
+        "delId": 9162341,
+        "sourceImg": "default thumbnail image",
+        "brand": "Gridmax",
+        "wire_size": 20,
+        "outlet": 6,
+        "type": "metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 43,
@@ -2768,7 +3860,13 @@
         "margin": 75,
         "selling_price": 168,
         "total_cost": 7224,
-        "delId": 2857439
+        "delId": 2857439,
+        "sourceImg": "default thumbnail image",
+        "brand": "Gridmax",
+        "wire_size": 15,
+        "outlet": 6,
+        "type": "armored",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 59,
@@ -2779,7 +3877,13 @@
         "margin": 50,
         "selling_price": 148.5,
         "total_cost": 8761.5,
-        "delId": 2534726
+        "delId": 2534726,
+        "sourceImg": "default thumbnail image",
+        "brand": "Gridmax",
+        "wire_size": 7,
+        "outlet": 1,
+        "type": "metallic",
+        "housing_material": "copper"
       }
     ]
   },
@@ -2810,7 +3914,13 @@
         "margin": 98,
         "selling_price": 23.76,
         "total_cost": 95.04,
-        "delId": 7051682
+        "delId": 7051682,
+        "sourceImg": "Product img",
+        "brand": "Voltex",
+        "wire_size": 9,
+        "outlet": 8,
+        "type": "non-metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 86,
@@ -2821,7 +3931,13 @@
         "margin": 73,
         "selling_price": 119.37,
         "total_cost": 10265.82,
-        "delId": 9349198
+        "delId": 9349198,
+        "sourceImg": "default thumbnail image",
+        "brand": "Armetek",
+        "wire_size": 14,
+        "outlet": 8,
+        "type": "non-metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 78,
@@ -2832,7 +3948,13 @@
         "margin": 62,
         "selling_price": 93.96,
         "total_cost": 7328.88,
-        "delId": 4805338
+        "delId": 4805338,
+        "sourceImg": "Product img",
+        "brand": "Wirezone",
+        "wire_size": 18,
+        "outlet": 6,
+        "type": "metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 58,
@@ -2843,7 +3965,13 @@
         "margin": 93,
         "selling_price": 133.17,
         "total_cost": 7723.86,
-        "delId": 7266362
+        "delId": 7266362,
+        "sourceImg": "Product img",
+        "brand": "Nexwire",
+        "wire_size": 8,
+        "outlet": 9,
+        "type": "armored",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 94,
@@ -2854,7 +3982,13 @@
         "margin": 72,
         "selling_price": 170.28,
         "total_cost": 16006.32,
-        "delId": 3255237
+        "delId": 3255237,
+        "sourceImg": "default thumbnail image",
+        "brand": "Flexduct",
+        "wire_size": 7,
+        "outlet": 9,
+        "type": "metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 78,
@@ -2865,7 +3999,13 @@
         "margin": 9,
         "selling_price": 86.11,
         "total_cost": 6716.58,
-        "delId": 3672823
+        "delId": 3672823,
+        "sourceImg": "default thumbnail image",
+        "brand": "Voltex",
+        "wire_size": 9,
+        "outlet": 2,
+        "type": "armored",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 89,
@@ -2876,7 +4016,13 @@
         "margin": 96,
         "selling_price": 66.64,
         "total_cost": 5930.96,
-        "delId": 9073410
+        "delId": 9073410,
+        "sourceImg": "Product img",
+        "brand": "Flexduct",
+        "wire_size": 19,
+        "outlet": 9,
+        "type": "non-metallic",
+        "housing_material": "copper"
       }
     ]
   },
@@ -2907,7 +4053,13 @@
         "margin": 74,
         "selling_price": 121.8,
         "total_cost": 1461.6,
-        "delId": 7066092
+        "delId": 7066092,
+        "sourceImg": "Product img",
+        "brand": "Steelron",
+        "wire_size": 7,
+        "outlet": 2,
+        "type": "standard",
+        "housing_material": "copper"
       }
     ]
   },
@@ -2938,7 +4090,13 @@
         "margin": 92,
         "selling_price": 7.68,
         "total_cost": 7.68,
-        "delId": 3245212
+        "delId": 3245212,
+        "sourceImg": "default thumbnail image",
+        "brand": "Voltex",
+        "wire_size": 20,
+        "outlet": 7,
+        "type": "non-metallic",
+        "housing_material": "copper"
       }
     ]
   },
@@ -2969,7 +4127,13 @@
         "margin": 51,
         "selling_price": 146.47,
         "total_cost": 8641.73,
-        "delId": 3673773
+        "delId": 3673773,
+        "sourceImg": "default thumbnail image",
+        "brand": "Wirezone",
+        "wire_size": 12,
+        "outlet": 10,
+        "type": "metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 47,
@@ -2980,7 +4144,13 @@
         "margin": 38,
         "selling_price": 125.58,
         "total_cost": 5902.26,
-        "delId": 5435297
+        "delId": 5435297,
+        "sourceImg": "Product img",
+        "brand": "Nexwire",
+        "wire_size": 8,
+        "outlet": 10,
+        "type": "non-metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 92,
@@ -2991,7 +4161,13 @@
         "margin": 31,
         "selling_price": 58.95,
         "total_cost": 5423.4,
-        "delId": 4233500
+        "delId": 4233500,
+        "sourceImg": "default thumbnail image",
+        "brand": "Wirezone",
+        "wire_size": 20,
+        "outlet": 4,
+        "type": "non-metallic",
+        "housing_material": "steel"
       }
     ]
   },
@@ -3022,7 +4198,13 @@
         "margin": 4,
         "selling_price": 38.48,
         "total_cost": 2886,
-        "delId": 8129587
+        "delId": 8129587,
+        "sourceImg": "Product img",
+        "brand": "Nexwire",
+        "wire_size": 20,
+        "outlet": 4,
+        "type": "armored",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 36,
@@ -3033,7 +4215,13 @@
         "margin": 34,
         "selling_price": 32.16,
         "total_cost": 1157.76,
-        "delId": 4315015
+        "delId": 4315015,
+        "sourceImg": "Product img",
+        "brand": "Amperon",
+        "wire_size": 18,
+        "outlet": 5,
+        "type": "standard",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 89,
@@ -3044,7 +4232,13 @@
         "margin": 75,
         "selling_price": 150.5,
         "total_cost": 13394.5,
-        "delId": 9437709
+        "delId": 9437709,
+        "sourceImg": "default thumbnail image",
+        "brand": "Amperon",
+        "wire_size": 5,
+        "outlet": 7,
+        "type": "metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 89,
@@ -3055,7 +4249,13 @@
         "margin": 10,
         "selling_price": 91.3,
         "total_cost": 8125.7,
-        "delId": 1278078
+        "delId": 1278078,
+        "sourceImg": "Product img",
+        "brand": "Voltex",
+        "wire_size": 11,
+        "outlet": 5,
+        "type": "armored",
+        "housing_material": "steel"
       }
     ]
   },
@@ -3086,7 +4286,13 @@
         "margin": 100,
         "selling_price": 34,
         "total_cost": 918,
-        "delId": 1225660
+        "delId": 1225660,
+        "sourceImg": "default thumbnail image",
+        "brand": "Flexduct",
+        "wire_size": 15,
+        "outlet": 1,
+        "type": "metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 91,
@@ -3097,7 +4303,13 @@
         "margin": 5,
         "selling_price": 74.55,
         "total_cost": 6784.05,
-        "delId": 7008491
+        "delId": 7008491,
+        "sourceImg": "Product img",
+        "brand": "Armetek",
+        "wire_size": 8,
+        "outlet": 6,
+        "type": "armored",
+        "housing_material": "copper"
       }
     ]
   },
@@ -3128,7 +4340,13 @@
         "margin": 63,
         "selling_price": 115.73,
         "total_cost": 1041.57,
-        "delId": 4068219
+        "delId": 4068219,
+        "sourceImg": "Product img",
+        "brand": "Flexduct",
+        "wire_size": 7,
+        "outlet": 5,
+        "type": "armored",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 69,
@@ -3139,7 +4357,13 @@
         "margin": 46,
         "selling_price": 91.98,
         "total_cost": 6346.62,
-        "delId": 4474842
+        "delId": 4474842,
+        "sourceImg": "default thumbnail image",
+        "brand": "Copperln",
+        "wire_size": 7,
+        "outlet": 10,
+        "type": "metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 1,
@@ -3150,7 +4374,13 @@
         "margin": 25,
         "selling_price": 95,
         "total_cost": 95,
-        "delId": 9919090
+        "delId": 9919090,
+        "sourceImg": "Product img",
+        "brand": "Cablux",
+        "wire_size": 13,
+        "outlet": 8,
+        "type": "non-metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 37,
@@ -3161,7 +4391,13 @@
         "margin": 90,
         "selling_price": 87.4,
         "total_cost": 3233.8,
-        "delId": 3881843
+        "delId": 3881843,
+        "sourceImg": "default thumbnail image",
+        "brand": "Copperln",
+        "wire_size": 7,
+        "outlet": 8,
+        "type": "metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 40,
@@ -3172,7 +4408,13 @@
         "margin": 49,
         "selling_price": 137.08,
         "total_cost": 5483.2,
-        "delId": 1186152
+        "delId": 1186152,
+        "sourceImg": "default thumbnail image",
+        "brand": "Cablux",
+        "wire_size": 5,
+        "outlet": 9,
+        "type": "standard",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 34,
@@ -3183,7 +4425,13 @@
         "margin": 54,
         "selling_price": 112.42,
         "total_cost": 3822.28,
-        "delId": 2250916
+        "delId": 2250916,
+        "sourceImg": "default thumbnail image",
+        "brand": "Gridmax",
+        "wire_size": 10,
+        "outlet": 10,
+        "type": "standard",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 26,
@@ -3194,7 +4442,13 @@
         "margin": 40,
         "selling_price": 42,
         "total_cost": 1092,
-        "delId": 5327005
+        "delId": 5327005,
+        "sourceImg": "Product img",
+        "brand": "Cablux",
+        "wire_size": 5,
+        "outlet": 8,
+        "type": "metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 55,
@@ -3205,7 +4459,13 @@
         "margin": 44,
         "selling_price": 11.52,
         "total_cost": 633.6,
-        "delId": 4110583
+        "delId": 4110583,
+        "sourceImg": "default thumbnail image",
+        "brand": "Voltex",
+        "wire_size": 9,
+        "outlet": 6,
+        "type": "non-metallic",
+        "housing_material": "steel"
       }
     ]
   },
@@ -3236,7 +4496,13 @@
         "margin": 75,
         "selling_price": 15.75,
         "total_cost": 1260,
-        "delId": 4046313
+        "delId": 4046313,
+        "sourceImg": "default thumbnail image",
+        "brand": "Armetek",
+        "wire_size": 7,
+        "outlet": 7,
+        "type": "standard",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 53,
@@ -3247,7 +4513,13 @@
         "margin": 92,
         "selling_price": 136.32,
         "total_cost": 7224.96,
-        "delId": 4313906
+        "delId": 4313906,
+        "sourceImg": "default thumbnail image",
+        "brand": "Copperln",
+        "wire_size": 14,
+        "outlet": 10,
+        "type": "metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 15,
@@ -3258,7 +4530,13 @@
         "margin": 28,
         "selling_price": 44.8,
         "total_cost": 672,
-        "delId": 6964306
+        "delId": 6964306,
+        "sourceImg": "default thumbnail image",
+        "brand": "Amperon",
+        "wire_size": 8,
+        "outlet": 7,
+        "type": "armored",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 36,
@@ -3269,7 +4547,13 @@
         "margin": 79,
         "selling_price": 123.51,
         "total_cost": 4446.36,
-        "delId": 1890476
+        "delId": 1890476,
+        "sourceImg": "default thumbnail image",
+        "brand": "Steelron",
+        "wire_size": 9,
+        "outlet": 8,
+        "type": "non-metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 79,
@@ -3280,7 +4564,13 @@
         "margin": 93,
         "selling_price": 156.33,
         "total_cost": 12350.07,
-        "delId": 9454988
+        "delId": 9454988,
+        "sourceImg": "default thumbnail image",
+        "brand": "Wirezone",
+        "wire_size": 18,
+        "outlet": 1,
+        "type": "standard",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 16,
@@ -3291,7 +4581,13 @@
         "margin": 52,
         "selling_price": 83.6,
         "total_cost": 1337.6,
-        "delId": 9590969
+        "delId": 9590969,
+        "sourceImg": "default thumbnail image",
+        "brand": "Voltex",
+        "wire_size": 19,
+        "outlet": 5,
+        "type": "armored",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 38,
@@ -3302,7 +4598,13 @@
         "margin": 30,
         "selling_price": 100.1,
         "total_cost": 3803.8,
-        "delId": 2574717
+        "delId": 2574717,
+        "sourceImg": "default thumbnail image",
+        "brand": "Voltex",
+        "wire_size": 8,
+        "outlet": 2,
+        "type": "metallic",
+        "housing_material": "copper"
       }
     ]
   },
@@ -3333,7 +4635,13 @@
         "margin": 30,
         "selling_price": 57.2,
         "total_cost": 4290,
-        "delId": 1156840
+        "delId": 1156840,
+        "sourceImg": "Product img",
+        "brand": "Voltex",
+        "wire_size": 15,
+        "outlet": 6,
+        "type": "armored",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 67,
@@ -3344,7 +4652,13 @@
         "margin": 40,
         "selling_price": 30.8,
         "total_cost": 2063.6,
-        "delId": 6594591
+        "delId": 6594591,
+        "sourceImg": "default thumbnail image",
+        "brand": "Wirezone",
+        "wire_size": 13,
+        "outlet": 9,
+        "type": "non-metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 81,
@@ -3355,7 +4669,13 @@
         "margin": 43,
         "selling_price": 114.4,
         "total_cost": 9266.4,
-        "delId": 6515735
+        "delId": 6515735,
+        "sourceImg": "default thumbnail image",
+        "brand": "Steelron",
+        "wire_size": 7,
+        "outlet": 4,
+        "type": "metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 60,
@@ -3366,7 +4686,13 @@
         "margin": 41,
         "selling_price": 136.77,
         "total_cost": 8206.2,
-        "delId": 2536841
+        "delId": 2536841,
+        "sourceImg": "default thumbnail image",
+        "brand": "Nexwire",
+        "wire_size": 11,
+        "outlet": 8,
+        "type": "non-metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 48,
@@ -3377,7 +4703,13 @@
         "margin": 26,
         "selling_price": 104.58,
         "total_cost": 5019.84,
-        "delId": 1515400
+        "delId": 1515400,
+        "sourceImg": "Product img",
+        "brand": "Nexwire",
+        "wire_size": 16,
+        "outlet": 2,
+        "type": "standard",
+        "housing_material": "copper"
       }
     ]
   },
@@ -3408,7 +4740,13 @@
         "margin": 63,
         "selling_price": 84.76,
         "total_cost": 7035.08,
-        "delId": 8914607
+        "delId": 8914607,
+        "sourceImg": "default thumbnail image",
+        "brand": "Amperon",
+        "wire_size": 12,
+        "outlet": 4,
+        "type": "standard",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 73,
@@ -3419,7 +4757,13 @@
         "margin": 79,
         "selling_price": 146.78,
         "total_cost": 10714.94,
-        "delId": 5336961
+        "delId": 5336961,
+        "sourceImg": "default thumbnail image",
+        "brand": "Gridmax",
+        "wire_size": 6,
+        "outlet": 7,
+        "type": "armored",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 60,
@@ -3430,7 +4774,13 @@
         "margin": 49,
         "selling_price": 34.27,
         "total_cost": 2056.2,
-        "delId": 9629200
+        "delId": 9629200,
+        "sourceImg": "default thumbnail image",
+        "brand": "Flexduct",
+        "wire_size": 5,
+        "outlet": 9,
+        "type": "non-metallic",
+        "housing_material": "steel"
       }
     ]
   },
@@ -3461,7 +4811,13 @@
         "margin": 38,
         "selling_price": 104.88,
         "total_cost": 1887.84,
-        "delId": 1914710
+        "delId": 1914710,
+        "sourceImg": "default thumbnail image",
+        "brand": "Wirezone",
+        "wire_size": 16,
+        "outlet": 1,
+        "type": "metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 84,
@@ -3472,7 +4828,13 @@
         "margin": 85,
         "selling_price": 94.35,
         "total_cost": 7925.4,
-        "delId": 4403805
+        "delId": 4403805,
+        "sourceImg": "Product img",
+        "brand": "Steelron",
+        "wire_size": 10,
+        "outlet": 6,
+        "type": "armored",
+        "housing_material": "copper"
       }
     ]
   },
@@ -3503,7 +4865,13 @@
         "margin": 46,
         "selling_price": 14.6,
         "total_cost": 1211.8,
-        "delId": 9187088
+        "delId": 9187088,
+        "sourceImg": "Product img",
+        "brand": "Copperln",
+        "wire_size": 12,
+        "outlet": 3,
+        "type": "non-metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 59,
@@ -3514,7 +4882,13 @@
         "margin": 95,
         "selling_price": 21.45,
         "total_cost": 1265.55,
-        "delId": 5266026
+        "delId": 5266026,
+        "sourceImg": "default thumbnail image",
+        "brand": "Copperln",
+        "wire_size": 19,
+        "outlet": 6,
+        "type": "non-metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 37,
@@ -3525,7 +4899,13 @@
         "margin": 32,
         "selling_price": 84.48,
         "total_cost": 3125.76,
-        "delId": 6751608
+        "delId": 6751608,
+        "sourceImg": "default thumbnail image",
+        "brand": "Cablux",
+        "wire_size": 14,
+        "outlet": 10,
+        "type": "metallic",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 50,
@@ -3536,7 +4916,13 @@
         "margin": 19,
         "selling_price": 109.48,
         "total_cost": 5474,
-        "delId": 1963654
+        "delId": 1963654,
+        "sourceImg": "default thumbnail image",
+        "brand": "Nexwire",
+        "wire_size": 10,
+        "outlet": 3,
+        "type": "standard",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 18,
@@ -3547,7 +4933,13 @@
         "margin": 29,
         "selling_price": 24.51,
         "total_cost": 441.18,
-        "delId": 4941284
+        "delId": 4941284,
+        "sourceImg": "default thumbnail image",
+        "brand": "Armetek",
+        "wire_size": 15,
+        "outlet": 9,
+        "type": "standard",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 96,
@@ -3558,7 +4950,13 @@
         "margin": 94,
         "selling_price": 77.6,
         "total_cost": 7449.6,
-        "delId": 3964257
+        "delId": 3964257,
+        "sourceImg": "Product img",
+        "brand": "Armetek",
+        "wire_size": 18,
+        "outlet": 4,
+        "type": "non-metallic",
+        "housing_material": "steel"
       },
       {
         "qty_requested": 91,
@@ -3569,7 +4967,13 @@
         "margin": 96,
         "selling_price": 86.24,
         "total_cost": 7847.84,
-        "delId": 5888939
+        "delId": 5888939,
+        "sourceImg": "default thumbnail image",
+        "brand": "Nexwire",
+        "wire_size": 6,
+        "outlet": 9,
+        "type": "standard",
+        "housing_material": "copper"
       },
       {
         "qty_requested": 59,
@@ -3580,7 +4984,13 @@
         "margin": 7,
         "selling_price": 60.99,
         "total_cost": 3598.41,
-        "delId": 2892485
+        "delId": 2892485,
+        "sourceImg": "Product img",
+        "brand": "Flexduct",
+        "wire_size": 13,
+        "outlet": 5,
+        "type": "metallic",
+        "housing_material": "steel"
       }
     ]
   }

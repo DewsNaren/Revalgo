@@ -100,7 +100,7 @@
                 </div>
                 
                 <div class="approve-btn-container active">
-                    <button type="button" class="add-note-btn">Add Note</button>
+                    <button type="button" class="add-note-btn" onclick="openQuoteNotPopup()">Add Note</button>
                     <button type="button" class="approve-btn active">Approve Quote</button>
                 </div>
             </div>
@@ -912,7 +912,7 @@
                     <h3 class="title">Add Note</h3>
                     <button type="button" class="close-popup-btn"><img src="./assets/images/global/close-modal.webp" alt="close"></button>
                 </div>
-                <textarea name="add-quote-note" placeholder="Notes..."></textarea>
+                <textarea name="add-quote-note" placeholder="Notes..." class="add-quote-note-input"></textarea>
                 <div class="btn-container">
                     <button type="button" class="add-btn">Add</button>
                     <button type="button" class="cancel-btn">Cancel</button>
@@ -923,10 +923,7 @@
                     <h3 class="title">Add Quote Note</h3>
                     <button type="button" class="close-popup-btn"><img src="./assets/images/global/close-modal.webp" alt="close"></button>
                 </div>
-                <textarea name="add-quote-note">Alternate: Ricky 516-353-9794, Bill To Job: 2707, 
-Booked Dock Time Delivery Needed: 7- 7:30 AM Deleivery Window, Delivery Date: 3/30/2017
-Delivery Time: By 7 am, oRDER nUMBER : 007484
-                </textarea>
+                <textarea name="add-quote-note" class="add-line-note-input"></textarea>
                 <div class="btn-container">
                     <button type="button" class="add-btn">Add</button>
                      <button type="button" class="cancel-btn">Cancel</button>

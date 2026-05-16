@@ -20,6 +20,7 @@ const addTable=addPopup.querySelector(".add-table");
 const addLineBtns=addTable.querySelectorAll(".add-line-btn");
 const canceladdpopupBtn=addPopup.querySelector(".cancel-btn");
 const delQuoteBtn=document.querySelector(".del-quote-btn");
+const undoQuoteBtn =document.querySelector(".undo-quote-btn");
 function setexistQuoteWrapperHeight(){
   const headerHeight=header.getBoundingClientRect().height;
   existQuoteWrapper.style.height=`calc(100vh - ${headerHeight}px)`;
@@ -948,6 +949,13 @@ function updatenewQuoteId(newQuote){
   CreateBtn.querySelector("span").textContent=`#${newQuote.id}`
   delQuoteBtn.classList.add('active')
 }
+
+delQuoteBtn.addEventListener('click',()=>{
+  quoteOrderWrapper.classList.add("not-active")
+  undoQuoteBtn.classList.add("active")
+  delQuoteBtn.classList.remove("active")
+})
+
 //render quote data
 const CreateBtn=document.querySelector(".back-create-btn");
 const oldQuoteText=document.querySelector(".old-quote-id");
@@ -1171,7 +1179,7 @@ function renderDisplayTable(newQuote){
     <div class="${p.isDeleted==true?"table-row not-active":"table-row"}">
       <p></p>
       <p><input type="checkbox" class="check-line-input" onclick=enableDeleteAllBtn()></p>
-      <p><span>${i+1}</span>
+      <p><span class="line-no">${i+1}</span>
       </p>
       <p><input type="text" value="${p.qty_requested}" name="qty-requested"></p>
       <p>
@@ -1186,7 +1194,7 @@ function renderDisplayTable(newQuote){
               <span class="tooltiptext">${p.stock=="S"?"Stock":"Non Stock"}</span>
             </span> - 
            </span>
-          <span class="tag-text"><img src="./assets/images/global/tag.png" alt="tag">Kanebridge</span>
+          <span class="tag-text"><img src="./assets/images/global/tag.png" alt="tag">${p.brand}</span>
           </span>
         <span class="text">${p.desc?p.desc:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus hic facere, veniam in distinctio id tempora voluptatum? Facilis eius aut numquam. Alias perferendis sunt veniam reprehenderit officiis quas delectus.'}</span>  
       </p>
@@ -1202,14 +1210,13 @@ function renderDisplayTable(newQuote){
         <button type="button" class="undo-line-btn" onclick=undoRow(event)> <img src="./assets/images/dashboard/Undo_icon.png" alt="undo"></button>
       </p>
       <p class="bottom-line"><img src="./assets/images/create_quote/line_add icon.png" alt="add icon" ><span class="line"></span></p>
-      <button class="add-line-note-btn" onclick="openLineNotePopup()"><img src="./assets/images/create_quote/add note_grey bg.png" class="img-grey active" alt="add note grey"> <img src="./assets/images/create_quote/add note icon_blue.png" class="img-blue " alt="add note blue "></button>
+      <button class="add-line-note-btn" onclick="openLineNotePopup(event)"><img src="./assets/images/create_quote/add note_grey bg.png" class="img-grey active" alt="add note grey"> <img src="./assets/images/create_quote/add note icon_blue.png" class="img-blue " alt="add note blue "></button>
       <p class="del-id">${p.delId}</p>
       </div>
       <div class="${p.isSourcing==true?"sourcing-dropdown active":"sourcing-dropdown"}">
       <div class="desc-wrapper">
         <div class="img-wrapper">
-          <label for="thumbnail-img"><img src="./assets/images/orderpad/default thumbnail image.png" class="thumbnail-img" alt="default"></label>
-          <input type="file" id="thumbnail-img" class="thumbnail-img-input" hidden accept="image/*">
+          <div><img src="./assets/images/orderpad/${p.sourceImg}.png" class="thumbnail-img" alt="default"></div>
         </div>
 
         <div class="desc-container">
@@ -1222,16 +1229,16 @@ function renderDisplayTable(newQuote){
         <h3>Specifications</h3>
         <div class="content-container">
           <div class="left-content">
-            <p><span class="label">Wire Size</span> <span class="value">12 AWG</span></p>
+            <p><span class="label">Wire Size</span> <span class="value">${p.wire_size} AWG</span></p>
             <p><span class="label">Material</span> <span class="value">Ploepropylene</span></p>
             <p><span class="label">Specifications</span> <span class="value">#10 Fork Material </span></p>
             <p><span class="label">Dimensions</span> <span class="value">1-1/2 In L</span></p>
           </div>
           <div class="right-content">
-            <p><span class="label">Housing Material</span> <span class="value">Steel</span></p>
-            <p><span class="label">Number of outlets</span> <span class="value">1</span></p>
-            <p><span class="label">Brand</span> <span class="value">Kanebridge</span></p>
-            <p><span class="label">Type</span> <span class="value">Standard</span></p>
+            <p><span class="label">Housing Material</span> <span class="value">${p.housing_material}</span></p>
+            <p><span class="label">Number of outlets</span> <span class="value">${p.outlet}</span></p>
+            <p><span class="label">Brand</span> <span class="value">${p.brand}</span></p>
+            <p><span class="label">Type</span> <span class="value">${p.type}</span></p>
           </div>                                   
         </div>
       </div>
@@ -1419,47 +1426,6 @@ function allowNumbers(inp){
 
 }
 
-
-
-// //delete table row
-function delRow(event){
-  const delBtn=event.target.parentElement;
-  const row=delBtn.parentElement.parentElement;
-  const undoBtn=row.querySelector(".undo-line-btn");
-  row.classList.add("not-active");
-  console.log(undoBtn)
-  delBtn.classList.remove("active");
-  undoBtn.classList.add("active");
-  const paras=row.querySelectorAll("p")
-  paras.forEach(p=>{
-    p.style.pointerEvents = "none";
-  })
-  
-  // enable only delete & undo
-  delBtn.style.pointerEvents = "auto";
-  undoBtn.style.pointerEvents = "auto";
-
-  row.removeEventListener("click",rowClickHandler);
-}
-
-//undo table row
-function undoRow(event){
-  const undoBtn=event.target.parentElement;
-  const row=undoBtn.parentElement.parentElement;
-  const delBtn=row.querySelector(".delete-line-btn");
-
-  row.classList.remove("not-active");
-  
-  delBtn.classList.add("active");
-  undoBtn.classList.remove("active");
-  const paras=row.querySelectorAll("p")
-  paras.forEach(p=>{
-    p.style.pointerEvents = "auto";
-  })
-  
-
-  row.addEventListener("click",rowClickHandler);
-}
 
 const leftHeaderBtns=leftWrapper.querySelectorAll(".header-wrapper .btn-container button");
 const uploadWrapper=leftWrapper.querySelector(".upload-wrapper");
@@ -1654,78 +1620,6 @@ function getSearchedProducts(){
   }
 }
 
-
-
-function enableDeleteAllBtn(){
-  const bodyWrapper=displayTable.querySelector(".body-wrapper");
-  const checkLineInps=bodyWrapper.querySelectorAll(".check-line-input")
-  const isChecked = [...checkLineInps].some(inp => inp.checked);
-  const isAllChecked=[...checkLineInps].every(inp => inp.checked);
-  
-  if(isChecked)
-    delAllBtn.classList.add('selected');
-
-  else
-    delAllBtn.classList.remove('selected');
-
-
-  checkAllInput.checked=isAllChecked
-}
-
-function deleteAllRow(){
-  const bodyWrapper=displayTable.querySelector(".body-wrapper");
-  const tableRows=bodyWrapper.querySelectorAll(".table-row");
-  tableRows.forEach(row=>{
-    const delBtn=row.querySelector(".delete-line-btn");
-    const undoBtn=row.querySelector(".undo-line-btn");
-    row.classList.add("not-active");
-    delBtn.classList.remove("active");
-    undoBtn.classList.add("active");
-    const paras=row.querySelectorAll("p")
-    paras.forEach(p=>{
-      p.style.pointerEvents = "none";
-    })
-  
-    delBtn.style.pointerEvents = "auto";
-    undoBtn.style.pointerEvents = "auto";
-    row.removeEventListener("click",rowClickHandler);
-
-  })
-  const delId = row.querySelector(".del-id").textContent;
-  const product = newQuote.products.find(p => String(p.delId) === delId);
-  if(product){
-    product.isDeleted=true; 
-  }
-  delAllBtn.classList.remove('selected','active');
-  undoAllBtn.classList.add('selected','active');
-  approveQuoteBtn.classList.remove("active")
-  
-}
-
-function undoAllRow(){
-  const bodyWrapper=displayTable.querySelector(".body-wrapper");
-  const tableRows=bodyWrapper.querySelectorAll(".table-row");
-  tableRows.forEach(row=>{
-    const delBtn=row.querySelector(".delete-line-btn");
-    const undoBtn=row.querySelector(".undo-line-btn");
-    row.classList.remove("not-active");
-    delBtn.classList.add("active");
-    undoBtn.classList.remove("active");
-    const paras=row.querySelectorAll("p")
-    paras.forEach(p=>{
-      p.style.pointerEvents = "auto";
-    })
-    row.removeEventListener("click",rowClickHandler);
-  })
-  const delId = row.querySelector(".del-id").textContent;
-  const product = newQuote.products.find(p => String(p.delId) === delId);
-  if(product){
-    product.isDeleted=true; 
-  }
-  approveQuoteBtn.classList.add("active")
-  delAllBtn.classList.add('selected','active');
-  undoAllBtn.classList.remove('selected','active');
-}
 
 
 function checkDeleted(bodyWrap){

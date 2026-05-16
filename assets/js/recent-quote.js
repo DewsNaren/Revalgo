@@ -1,4 +1,5 @@
 const quoteWrapper=document.querySelector(".quote-wrapper");
+const quickOrderWrapper=document.querySelector(".quick-order-wrapper")
 const popupOverlay=document.querySelector(".popup-overlay");
 const delPopup1=document.querySelector(".del-popup-1");
 const delPopup2=document.querySelector(".del-popup-2");
@@ -396,6 +397,9 @@ const quickInfoWrapper=document.querySelector(".quick-info-wrapper");
 const formTitle=document.querySelector(".form-title");
 const formContainers=document.querySelectorAll(".form-container");
 const cancelFormPopupBtn=formPopup.querySelector(".cancel-btn");
+const delQuoteBtn=document.querySelector(".del-quote-btn");
+const undoQuoteBtn=document.querySelector(".undo-quote-btn");
+const approveBtnContainer=document.querySelector(".approve-btn-container");
 // const displayTable=document.querySelector(".display-table");
 let selectedQuote="";
 let newQuote="";
@@ -407,9 +411,25 @@ if(sessionStorage.getItem("selectedQuote")){
   CreateBtn.querySelector("span").textContent=`#${selectedQuote.id}`
   quoteStat.classList.add(`${selectedQuote.status}`)
   quoteStat.textContent=`${selectedQuote.status}`
+  if(selectedQuote.status == "deleted"){
+    undoQuoteBtn.classList.add("active")
+    quickOrderWrapper.classList.add("not-active");
+    approveBtnContainer.classList.add("not-active");
+  }
   renderQuickInfo(selectedQuote);
   renderDisplayTable(selectedQuote);
 }
+
+undoQuoteBtn.addEventListener("click",()=>{
+  quickOrderWrapper.classList.remove("not-active");
+  approveBtnContainer.classList.remove("not-active");
+  undoQuoteBtn.classList.remove("active")
+  newQuote.status="pending";
+  selectedQuote.status="pending"
+  quoteStat.classList.remove("deleted")
+  quoteStat.classList.add(`${selectedQuote.status}`)
+  quoteStat.textContent=`${selectedQuote.status}`
+})
 
 function  renderQuickInfo(selectedQuote){
   const splittedBill = selectedQuote.bill_to.split("\n");
@@ -479,9 +499,10 @@ function renderDisplayTable(selectedQuote){
 
   products.forEach((p,i)=>{
     bodyWrapper.innerHTML+=`
-    <div class="${p.isDeleted==true?"table-row not-active":"table-row"}">
+    <div class="${p.isDeleted==true?"table-row not-active":"table-row"}" >
+      <p><img src="./assets/images/global/drag-menu.png" alt="drag menu"     class="drag-handle"  data-index="${i}" draggable="true" ></p>
       <p><input type="checkbox" class="check-line-input" onclick="enableDeleteAllBtn()"></p>
-      <p><span>${i+1}</span>
+      <p><span class="line-no">${i+1}</span>
       </p>
       <p><input type="text" value="${p.qty_requested}" name="qty-requested" autocomplete="off"></p>
       <p>
@@ -491,7 +512,7 @@ function renderDisplayTable(selectedQuote){
           <span class="detail" onclick="enableSourceText(event)">tydlx4ypi6</span> - 
           <span class="${p.isSource==true?"sourcing active":"sourcing"}" onclick="openSourcingPopup(event)"><img src="./assets/images/orderpad/Sourcing_icon.png" alt="sourcing">Sourcing</span>
           <span class="${p.isStock==true?"stock-wrapper active":"stock-wrapper"}"><span class="supplier-text text-uppercase" onclick="openSupplierPopup(event)">${p.supplier?p.supplier:"eaton"}</span> - <span class="${p.stock=="NS"?"stock-text red":" stock-text green"}">${p.stock?p.stock:"S"}   <span class="tooltiptext">${p.stock=="S"?"Stock":"Non Stock"}</span></span> - </span>
-          <span class="tag-text"><img src="./assets/images/global/tag.png" alt="tag">Kanebridge</span>
+          <span class="tag-text"><img src="./assets/images/global/tag.png" alt="tag">${p.brand}</span>
           </span>
         <span class="text">${p.desc?p.desc:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus hic facere, veniam in distinctio id tempora voluptatum? Facilis eius aut numquam. Alias perferendis sunt veniam reprehenderit officiis quas delectus.'}</span>  
       </p>
@@ -506,15 +527,14 @@ function renderDisplayTable(selectedQuote){
         <button type="button" class="delete-line-btn active" onclick=delRow(event)><img src="./assets/images/global/delete_icon.png" alt="delete"></button>
         <button type="button" class="undo-line-btn" onclick=undoRow(event)> <img src="./assets/images/dashboard/Undo_icon.png" alt="undo"></button>
       </p>
-      <button class="add-line-note-btn" onclick="openLineNotePopup()"><img src="./assets/images/create_quote/add note_grey bg.png" class="img-grey active" alt="add note grey"> <img src="./assets/images/create_quote/add note icon_blue.png" class="img-blue " alt="add note blue "></button>
+      <button class="add-line-note-btn" onclick="openLineNotePopup(event)"><img src="./assets/images/create_quote/add note_grey bg.png"  class="${p.lineNote?"img-grey ":"img-grey active"}" alt="add note grey"> <img src="./assets/images/create_quote/add note icon_blue.png" class="${p.lineNote?"img-blue active":"img-blue"}" alt="add note blue "></button>
       <p class="del-id">${p.delId}</p>
-      </div>
+    </div>
     
     <div class="${p.isSourcing==true?"sourcing-dropdown active":"sourcing-dropdown"}">
       <div class="desc-wrapper">
         <div class="img-wrapper">
-          <label for="thumbnail-img"><img src="./assets/images/orderpad/default thumbnail image.png" class="thumbnail-img" alt="default"></label>
-          <input type="file" id="thumbnail-img" class="thumbnail-img-input" hidden accept="image/*">
+          <div><img src="./assets/images/orderpad/${p.sourceImg}.png" class="thumbnail-img" alt="default"></div>
         </div>
 
         <div class="desc-container">
@@ -527,16 +547,16 @@ function renderDisplayTable(selectedQuote){
         <h3>Specifications</h3>
         <div class="content-container">
           <div class="left-content">
-            <p><span class="label">Wire Size</span> <span class="value">12 AWG</span></p>
+            <p><span class="label">Wire Size</span> <span class="value">${p.wire_size} AWG</span></p>
             <p><span class="label">Material</span> <span class="value">Ploepropylene</span></p>
             <p><span class="label">Specifications</span> <span class="value">#10 Fork Material </span></p>
             <p><span class="label">Dimensions</span> <span class="value">1-1/2 In L</span></p>
           </div>
           <div class="right-content">
-            <p><span class="label">Housing Material</span> <span class="value">Steel</span></p>
-            <p><span class="label">Number of outlets</span> <span class="value">1</span></p>
-            <p><span class="label">Brand</span> <span class="value">Kanebridge</span></p>
-            <p><span class="label">Type</span> <span class="value">Standard</span></p>
+            <p><span class="label">Housing Material</span> <span class="value">${p.housing_material}</span></p>
+            <p><span class="label">Number of outlets</span> <span class="value">${p.outlet}</span></p>
+            <p><span class="label">Brand</span> <span class="value">${p.brand}</span></p>
+            <p><span class="label">Type</span> <span class="value">${p.type}</span></p>
           </div>
                                                     
         </div>
@@ -553,7 +573,77 @@ function renderDisplayTable(selectedQuote){
   checkDeleted(displayTable.querySelector(".body-wrapper"));
 }
 
+//drag function 
+const handles = document.querySelectorAll(".drag-handle");
 
+let draggedRow = null;
+
+handles.forEach(handle => {
+
+  handle.addEventListener("dragstart", e => {
+
+    draggedRow = handle.closest(".table-row");
+
+    setTimeout(() => {
+      draggedRow.classList.add("dragging");
+    }, 0);
+
+  });
+
+  handle.addEventListener("dragend", () => {
+
+    draggedRow.classList.remove("dragging");
+
+    draggedRow = null;
+
+    updateLineNumbers();
+
+  });
+
+});
+
+const rows = document.querySelectorAll(".table-row");
+
+rows.forEach(row => {
+
+  row.addEventListener("dragover", e => {
+    e.preventDefault();
+  });
+
+  row.addEventListener("drop", e => {
+
+    e.preventDefault();
+
+    if (!draggedRow || draggedRow === row) return;
+
+    const allRows = [...document.querySelectorAll(".table-row")];
+
+    const draggedIndex = allRows.indexOf(draggedRow);
+
+    const targetIndex = allRows.indexOf(row);
+
+    if (draggedIndex < targetIndex) {
+      row.after(draggedRow);
+    } else {
+      row.before(draggedRow);
+    }
+
+    updateLineNumbers();
+
+  });
+
+});
+
+function updateLineNumbers() {
+
+  document.querySelectorAll(".table-row")
+    .forEach((row, index) => {
+
+      row.querySelector(".line-no").textContent = index + 1;
+
+    });
+
+}
 
 //sorcing dropdown
 // function clickTable(bodyWrap){
@@ -792,6 +882,28 @@ const uploadBtnContainer=leftWrapper.querySelector(".upload-btn-container");
 // const imgInfoContainer=mailWrapper.querySelector(".img-info-container");
 const mailExpandBtn=leftWrapper.querySelector(".mail-expand-btn");
 const mailMinimizeBtn=leftWrapper.querySelector(".minimize-btn");
+const selectFileInput=document.querySelector(".select-file-input");
+
+selectFileInput.addEventListener('input',(event)=>{
+  const file=selectFileInput.files[0]
+  const validTypes = ["application/pdf","application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "application/vnd.ms-excel"];
+
+  if(!validTypes.includes(file.type)){
+    return ;
+  }
+   if(!file){
+    errorElement.textContent="";
+    return true; 
+  }
+})
+
+ function formatSize(bytes) {
+    if (bytes < 1024) return `${bytes} B`;
+    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+    return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
+  }
+
 
 
 mailExpandBtn.addEventListener("click", () => {
@@ -1092,223 +1204,3 @@ function getSearchedProducts(){
 }
 
 
-//get all products
-// const descInputs =leftTableWrapper.querySelectorAll(".desc-input");
-// const qtyInputs=leftTableWrapper.querySelectorAll(".qty-input");
-// let products=[];
-// let filteredProducts=[];
-// async function getAllProducts() {
-//   try {
-//     const resp = await fetch("../assets/json/product.json")
-//     const data = await resp.json()
-//     products=data;
-   
-//   } catch (err) {
-//     console.error("Error:", err)
-//   }
-// }
-
-// async function initProducts() {
-
-//   await getAllProducts();
-//   // updateProducts();
-//   // renderAddPopupTable();
-//   renderSuggestPopup(products);
-//   renderSourcingPopup(products);
-//   renderSupplierPopup(products);
-//   initProductSearch();
-// }
-
-
-// function searchProducts(inp) {
-
-//   const value =inp.value.trim().toLowerCase();
-
-//   const descDropdown =document.querySelector(".desc-dropdown");
-
-//   const descList =descDropdown.querySelector(".desc-list");
-
-//   descList.innerHTML = "";
-
-//   if (value === "") {
-
-//     descDropdown.classList.remove("active");
-
-//     return;
-
-//   }
-
-//   const rect =inp.getBoundingClientRect();
-
-
-//   descDropdown.style.top =`${rect.bottom + window.scrollY + 4}px`;
-
-//   descDropdown.style.left =`${rect.left + window.scrollX}px`;
-
-//   const spaceBelow =window.innerHeight - rect.bottom;
-
-//   descDropdown.style.maxHeight =`${spaceBelow - 20}px`;
-//   descDropdown.classList.add("active");
-
-//   filteredProducts = products.filter(p => {
-
-//     const isMatch =p.desc.toLowerCase().includes(value);
-    
-//     if (isMatch) {
-
-//       descList.innerHTML += `
-//         <li data-id="${p.id}">
-//           ${p.desc}
-//         </li>
-//       `;
-
-//     }
-
-//     return isMatch;
-
-//   });
-
-// }
-// function handleProductItemClick(e){
-//   const li = e.target.closest("li");
-
-//   if(!li) return;
-
-//   searchedProduct=[];
-//   currentDescInput.value=li.textContent.trim();
-  
-
-//   descInputs.forEach(inp=>{
-//     if(inp.value){
-//       const val=inp.value
-//       products.forEach(p=>{
-//         if(p.desc.includes(val))
-//           searchedProduct.push(p)
-//       })
-//     }
-//   })
-
-//   descDropdown.classList.remove("active");
-// }
-
-// function initProductSearch(){
-//   descInputs.forEach(inp => {
-//     inp.addEventListener("input", () => {
-//      currentDescInput=inp;
-//       searchProducts(inp);
-//     });
-//   })
-// }
-// // let totalQuotes = [];
-// // if(sessionStorage.getItem("searchedQuotes")){
-// descDropdown.addEventListener("click",handleProductItemClick);
-
-// descDropdown.addEventListener("click",handleProductItemClick);
-
-// const uploadBtn=uploadBtnContainer.querySelector(".upload-btn")
-// uploadBtn.addEventListener('click',()=>{
-//   if(leftTableWrapper.classList.contains("active")){
-//     getSearchedProducts();
-//     renderDisplayTable(newQuote)
-//     approveQuoteBtn.classList.add("active")
-//     const addBtn=document.querySelector(".add-btn-container .add-btn");
-//   }
-// })
- 
-// function getSearchedProducts(){
-//   const newProducts=newQuote.products;
-//   if(searchedProduct.length >0){
-//     descInputs.forEach(inp=>inp.value="");
-//     qtyInputs.forEach(inp=>inp.value="")
-//     searchedProduct.forEach(p => {
-//       let newReqId =Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
-//       let isExists = allQuotes.forEach(q=>[...q.products].some(q => q.requested_id ===  "ID" + newReqId)) ||
-//       newQuote.products.some(prod => prod.requested_id === "ID" + newReqId);
-
-//       while (isExists) {
-
-//         newReqId =Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
-
-//         isExists =[...allQuotes.products].some(q => q.requested_id ===  "ID" + newReqId) ||
-//         newQuote.products.some(prod => prod.requested_id === "ID" + newReqId);
-//       }
-
-//       p.requested_id = "ID" + newReqId;
-//       p.delId=getDelId();
-//       newQuote.products.push(p);
-
-//     });
-//     updateQuoteTotals();
-//   }
-// }
-
-function enableDeleteAllBtn(){
-  const bodyWrapper=displayTable.querySelector(".body-wrapper");
-  const checkLineInps=bodyWrapper.querySelectorAll(".check-line-input")
-  const isChecked = [...checkLineInps].some(inp => inp.checked);
-  const isAllChecked=[...checkLineInps].every(inp => inp.checked);
-  
-  if(isChecked)
-    delAllBtn.classList.add('selected');
-
-  else
-    delAllBtn.classList.remove('selected');
-
-
-  checkAllInput.checked=isAllChecked
-}
-
-function deleteAllRow(){
-  const bodyWrapper=displayTable.querySelector(".body-wrapper");
-  const tableRows=bodyWrapper.querySelectorAll(".table-row");
-  tableRows.forEach(row=>{
-    const delBtn=row.querySelector(".delete-line-btn");
-    const undoBtn=row.querySelector(".undo-line-btn");
-    row.classList.add("not-active");
-    delBtn.classList.remove("active");
-    undoBtn.classList.add("active");
-    const paras=row.querySelectorAll("p")
-    paras.forEach(p=>{
-      p.style.pointerEvents = "none";
-    })
-  
-    delBtn.style.pointerEvents = "auto";
-    undoBtn.style.pointerEvents = "auto";
-    row.removeEventListener("click",rowClickHandler);
-
-  })
-  const delId = row.querySelector(".del-id").textContent;
-  const product = newQuote.products.find(p => String(p.delId) === delId);
-  if(product){
-    product.isDeleted=true; 
-  }
-  delAllBtn.classList.remove('selected','active');
-  undoAllBtn.classList.add('selected','active');
-  approveQuoteBtn.classList.remove("active")
-  
-}
-
-function undoAllRow(){
-  const bodyWrapper=displayTable.querySelector(".body-wrapper");
-  const tableRows=bodyWrapper.querySelectorAll(".table-row");
-  tableRows.forEach(row=>{
-    const delBtn=row.querySelector(".delete-line-btn");
-    const undoBtn=row.querySelector(".undo-line-btn");
-    row.classList.remove("not-active");
-    delBtn.classList.add("active");
-    undoBtn.classList.remove("active");
-    const paras=row.querySelectorAll("p")
-    paras.forEach(p=>{
-      p.style.pointerEvents = "auto";
-    })
-    row.removeEventListener("click",rowClickHandler);
-  })
-  const delId = row.querySelector(".del-id").textContent;
-  const product = newQuote.products.find(p => String(p.delId) === delId);
-  if(product){
-    product.isDeleted=true; 
-  }
-  approveQuoteBtn.classList.add("active")
-  delAllBtn.classList.add('selected','active');
-  undoAllBtn.classList.remove('selected','active');
-}
