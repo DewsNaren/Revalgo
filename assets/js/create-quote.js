@@ -876,95 +876,13 @@ formContainers.forEach(container => {
 
 
 //mail img container
-const mailWrapper=quickContentWrapper.querySelector(".mail-wrapper");
-const mailImgContainers=mailWrapper.querySelectorAll(".img-container");
 const leftWrapper=quickContentWrapper.querySelector(".left-wrapper");
-const rightWrapper=quickContentWrapper.querySelector(".right-wrapper");
-const imgInfoContainer=mailWrapper.querySelector(".img-info-container");
-const mailExpandBtn=leftWrapper.querySelector(".mail-expand-btn");
-const mailMinimizeBtn=leftWrapper.querySelector(".minimize-btn");
 
-mailImgContainers.forEach(container => {
 
-  container.addEventListener("click", () => {
-
-    const isActive =container.classList.contains("active");
-
-    mailImgContainers.forEach(c =>c.classList.remove("active"));
-
-    if (!isActive) {
-      container.classList.add("active");
-      imgInfoContainer.classList.add("active");
-    } else {
-      imgInfoContainer.classList.remove("active");
-    }
-
-  });
-
-});
-
-mailExpandBtn.addEventListener("click", () => {
-
-  if (leftWrapper.classList.contains("maximize")) {
-
-    leftWrapper.classList.remove("minimize");
-    leftWrapper.classList.remove("maximize");
-    rightWrapper.classList.remove("maximize");
-    rightWrapper.classList.remove("minimize");
-
-  } else {
-
-    leftWrapper.classList.remove("minimize");
-    leftWrapper.classList.add("maximize");
-    rightWrapper.classList.remove("maximize");
-    rightWrapper.classList.add("minimize");
-
-  }
-
-});
-
-mailMinimizeBtn.addEventListener("click", () => {
-  if (leftWrapper.classList.contains("minimize")) {
-
-    leftWrapper.classList.remove("minimize");
-    leftWrapper.classList.remove("maximize");
-    rightWrapper.classList.remove("maximize");
-    rightWrapper.classList.remove("minimize");
-
-  } 
-  
-  else {
-
-    leftWrapper.classList.add("minimize");
-    leftWrapper.classList.remove("maximize");
-    rightWrapper.classList.add("maximize");
-    rightWrapper.classList.remove("minimize");
-  }
-
-});
-
-const leftHeaderBtns=leftWrapper.querySelectorAll(".header-wrapper .btn-container button");
-const uploadWrapper=leftWrapper.querySelector(".upload-wrapper");
 const leftTableWrapper=leftWrapper.querySelector(".table-wrapper");
 const uploadBtnContainer=leftWrapper.querySelector(".upload-btn-container");
 
-leftHeaderBtns.forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    leftHeaderBtns.forEach(btn=> btn.classList.remove("active"));
-    btn.classList.add("active");
-    uploadBtnContainer.classList.remove("active");
-    uploadWrapper.classList.remove("active");
-    mailWrapper.classList.remove("active");
-    leftTableWrapper.classList.remove("active");
-    const target=btn.dataset.target;
-    const wrappper=leftWrapper.querySelector(target);
 
-    wrappper.classList.add("active");
-    if(target!=".mail-wrapper"){
-      uploadBtnContainer.classList.add("active");
-    }
-  })
-})
 
 const displayTable=document.querySelector(".display-table")
 
@@ -976,7 +894,8 @@ function renderDisplayTable(newQuote){
 
   products.forEach((p,i)=>{
     bodyWrapper.innerHTML+=`
-    <div class="${p.isDeleted==true?"table-row not-active":"table-row"}">
+    <div class="${p.isDeleted==true?"table-row not-active":"table-row"}" draggable="flase">
+      <p><img src="./assets/images/global/drag-menu.png" alt="drag menu" class="drag-handle"   data-index="${i}"  ></p>
       <p><input type="checkbox" class="check-line-input" onclick="enableDeleteAllBtn()"></p>
       <p><span class="line-no">${i+1}</span>
       </p>
@@ -1054,6 +973,7 @@ function renderDisplayTable(newQuote){
   clickTable(displayTable.querySelector(".body-wrapper"));
   editTableData(displayTable.querySelector(".body-wrapper"));
   checkDeleted(displayTable.querySelector(".body-wrapper"));
+  enableDrag(displayTable.querySelector(".body-wrapper"));
 }
 
 
@@ -1178,7 +1098,148 @@ function allowNumbers(inp){
 
 }
 
+function enableDrag(bodyWrap) {
 
+  const rows = bodyWrap.querySelectorAll(".table-row");
+
+  let draggedRow = null;
+
+  let canDrag = false;
+
+
+  rows.forEach(row => {
+
+    const handle = row.querySelector(".drag-handle");
+
+    handle.addEventListener("mousedown", () => {
+      canDrag = true;
+      row.classList.add("drag-enabled");
+    });
+
+
+    document.addEventListener("mouseup", () => {
+      canDrag = false;
+      row.classList.remove("drag-enabled");
+
+    });
+
+
+    // START DRAG
+    row.addEventListener("dragstart", e => {
+      if (!canDrag) {
+        e.preventDefault();
+        return;
+      }
+      draggedRow = row;
+      // setTimeout(() => {
+      //  row.classList.add("dragging");
+      // }, 0);
+    });
+
+
+    row.addEventListener("dragend", () => {
+      row.classList.remove("dragging");
+      row.classList.remove("drag-enabled");
+      draggedRow = null;
+      canDrag = false;
+
+      bodyWrap.querySelectorAll(".drop-target")
+      .forEach(r => r.classList.remove("drop-target"));
+
+      updateLineNumbers(bodyWrap);
+    });
+
+
+    // ALLOW DROP
+    row.addEventListener("dragover", e => {
+      e.preventDefault();
+    });
+
+
+    row.addEventListener("dragenter", () => {
+      if (!draggedRow || draggedRow === row) return;
+      bodyWrap.querySelectorAll(".drop-target")
+      .forEach(r => r.classList.remove("drop-target"));
+      row.classList.add("drop-target");
+    });
+
+
+
+    row.addEventListener("dragleave", () => {
+      row.classList.remove("drop-target");
+    });
+
+
+    row.addEventListener("drop", e => {
+      e.preventDefault();
+      row.classList.remove("drop-target");
+      if (!draggedRow || draggedRow === row) return;
+
+      const draggedDropdown = draggedRow.nextElementSibling;
+      const targetRow = row;
+      const targetDropdown = targetRow.nextElementSibling;
+
+      const placeholder = document.createElement("div");
+
+      if (targetDropdown &&targetDropdown.classList.contains("sourcing-dropdown")) {
+        targetDropdown.after(placeholder);
+
+      } else {
+
+        targetRow.after(placeholder);
+
+      }
+
+
+      // MOVE TARGET GROUP TO DRAGGED POSITION
+      draggedRow.before(targetRow);
+
+      if (
+        targetDropdown &&
+        targetDropdown.classList.contains("sourcing-dropdown")
+      ) {
+
+        targetRow.after(targetDropdown);
+
+      }
+
+
+      // MOVE DRAGGED GROUP TO TARGET POSITION
+      placeholder.before(draggedRow);
+
+      if (
+        draggedDropdown &&
+        draggedDropdown.classList.contains("sourcing-dropdown")
+      ) {
+
+        draggedRow.after(draggedDropdown);
+
+      }
+
+
+      // REMOVE PLACEHOLDER
+      placeholder.remove();
+
+
+      updateLineNumbers(bodyWrap);
+
+    });
+
+  });
+
+}
+
+
+function updateLineNumbers() {
+   const tableRows = displayTable.querySelectorAll(".body-wrapper .table-row");
+
+    tableRows.forEach((row, index) => {
+
+      row.querySelector(".line-no").textContent = index + 1;
+
+    });
+
+}
 
 
 //select all 
@@ -1328,6 +1389,7 @@ function initProductSearch(){
     inp.addEventListener("input", () => {
      currentDescInput=inp;
       searchProducts(inp);
+      uploadBtn.classList.remove("not-active")
     });
   })
 }
@@ -1338,6 +1400,8 @@ descDropdown.addEventListener("click",handleProductItemClick);
 
 
 const uploadBtn=uploadBtnContainer.querySelector(".upload-btn")
+const selectFileInput=document.querySelector(".select-file-input");
+const selectedFileWrapper=document.querySelector(".selected-file");
 uploadBtn.addEventListener('click',()=>{
   if(leftTableWrapper.classList.contains("active")){
     getSearchedProducts();
@@ -1345,6 +1409,15 @@ uploadBtn.addEventListener('click',()=>{
     approveQuoteBtn.classList.add("active")
     const addBtn=document.querySelector(".add-btn-container .add-btn");
     addBtn.classList.add("left");
+  }
+  if(uploadWrapper.classList.contains('active')){
+    console.log(exCelData)
+    getCrtData(exCelData)
+    renderDisplayTable(newQuote)
+    approveQuoteBtn.classList.add("active")
+    selectFileInput.value="";
+    selectedFileWrapper.innerHTML="";
+    uploadBtn.classList.add("not-active");
   }
 })
  

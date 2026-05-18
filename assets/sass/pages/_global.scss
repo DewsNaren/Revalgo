@@ -164,7 +164,7 @@
                         .filter-chip-container{
                             display: flex;
                             align-items: center;
-                            // justify-content: flex-end;
+                            justify-content: flex-end;
                             gap: 5px;
                             margin-top: 4px;
                             margin-left: clamp(8px, $fs-15px, $fs-15px);
@@ -175,7 +175,7 @@
                                 font-size: clamp(10px, $fs-15px, $fs-15px);
                                 color: $grey-80;
                                 border: 1px solid $grey-80;
-
+                                text-transform: capitalize;
                                 &.active{
                                     background-color: $blue-87;
                                     color: $white-80;
@@ -251,6 +251,10 @@
                             color: $blue-87;
                             font-weight: 500;
                             margin-left: clamp(8px, $fs-15px, $fs-15px);
+
+                            &.not-active{
+                                display: none;
+                            }
                         }
                         &:last-of-type{
                             border-bottom: none;

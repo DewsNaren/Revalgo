@@ -1,5 +1,5 @@
 function getDelId(){
-
+  let allQuotes=JSON.parse(sessionStorage.getItem("quotes"))
   let delId =Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
   let isExists = allQuotes.forEach(q=>[...q.products].some(q => q.delId ===  delId)) ||
   newQuote.products.some(prod => prod.delId === delId);
@@ -334,3 +334,359 @@ function updateQuoteTotals(){
   linesText.textContent=newQuote.products.length;
 
 }
+
+const mailWrapper=quickContentWrapper.querySelector(".mail-wrapper");
+const mailImgContainers=mailWrapper.querySelectorAll(".img-container");
+const rightWrapper=quickContentWrapper.querySelector(".right-wrapper");
+const imgInfoContainer=mailWrapper.querySelector(".img-info-container");
+const mailExpandBtn=leftWrapper.querySelector(".mail-expand-btn");
+const mailMinimizeBtn=leftWrapper.querySelector(".minimize-btn");
+
+
+const imgCloseBtn=imgInfoContainer.querySelector(".img-close-btn");
+const imgInfoBtn=imgInfoContainer.querySelector(".info-btn");
+const imgPopup=document.querySelector(".img-popup")
+mailExpandBtn.addEventListener("click", () => {
+
+  if (leftWrapper.classList.contains("maximize")) {
+
+    leftWrapper.classList.remove("minimize");
+    leftWrapper.classList.remove("maximize");
+    rightWrapper.classList.remove("maximize");
+    rightWrapper.classList.remove("minimize");
+
+  } else {
+
+    leftWrapper.classList.remove("minimize");
+    leftWrapper.classList.add("maximize");
+    rightWrapper.classList.remove("maximize");
+    rightWrapper.classList.add("minimize");
+
+  }
+
+});
+
+mailMinimizeBtn.addEventListener("click", () => {
+  if (leftWrapper.classList.contains("minimize")) {
+
+    leftWrapper.classList.remove("minimize");
+    leftWrapper.classList.remove("maximize");
+    rightWrapper.classList.remove("maximize");
+    rightWrapper.classList.remove("minimize");
+    uploadBtnContainer.classList.add('active')
+  } 
+  
+  else {
+
+    leftWrapper.classList.add("minimize");
+    leftWrapper.classList.remove("maximize");
+    rightWrapper.classList.add("maximize");
+    rightWrapper.classList.remove("minimize");
+      uploadBtnContainer.classList.remove('active')
+  }
+
+});
+
+
+
+
+mailImgContainers.forEach(container => {
+
+  container.addEventListener("click", () => {
+
+    const isActive =container.classList.contains("active");
+
+    mailImgContainers.forEach(c =>c.classList.remove("active"));
+
+    if (!isActive) {
+      container.classList.add("active");
+      imgInfoContainer.classList.add("active");
+    } else {
+      imgInfoContainer.classList.remove("active");
+    }
+
+  });
+
+});
+
+imgInfoBtn.addEventListener('click',()=>{
+  popupOverlay.classList.add("active");
+  imgPopup.classList.add("active");
+})
+
+imgCloseBtn.addEventListener('click',()=>{
+  imgInfoContainer.classList.toggle("active");
+  mailImgContainers.forEach(c =>c.classList.remove("active"));
+})
+
+
+const leftHeaderBtns=leftWrapper.querySelectorAll(".header-wrapper .btn-container button");
+const uploadWrapper=leftWrapper.querySelector(".upload-wrapper");
+
+
+leftHeaderBtns.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    leftHeaderBtns.forEach(btn=> btn.classList.remove("active"));
+    btn.classList.add("active");
+    uploadBtnContainer.classList.remove("active");
+    uploadWrapper.classList.remove("active");
+    mailWrapper.classList.remove("active");
+    leftTableWrapper.classList.remove("active");
+    const target=btn.dataset.target;
+    const wrappper=leftWrapper.querySelector(target);
+
+    wrappper.classList.add("active");
+    if(target!=".mail-wrapper"){
+      uploadBtnContainer.classList.add("active");
+      uploadBtn.classList.add('not-active')
+    }
+  })
+})
+
+
+let exCelData=[];
+const expectedKeys = [
+  "requested_id",
+  "qty_requested",
+  "margin",
+  "selling_price",
+  "total_cost",
+  "unit_cost",
+  "available_qty",
+  "score",
+  "brand",
+  "sourceImg",
+  "housing_material",
+  "wire_size",
+  "outlet",
+  "type"
+];
+//file upload function 
+selectFileInput.addEventListener('input', (event) => {
+
+  const file = selectFileInput.files[0];
+
+  if (!file) {
+    console.log("No file selected");
+    return;
+  }
+
+ 
+
+  const validTypes = [
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "application/vnd.ms-excel"
+  ];
+
+  if (!validTypes.includes(file.type)) {
+
+    selectedFileWrapper.innerHTML += `
+      <div class="file-container error">
+        <div class="file">
+          <div class="file-info">
+            <img src="./assets/images/create_quote/emil pad_Pdf icon.png" alt="pdf"> 
+            ${file.name.length > 10 ? file.name.slice(0,20) + "..." : file.name}
+            (${formatSize(file.size)})
+          </div>
+
+          <button type="button" class="del-file-btn" onclick="delFile(event)">
+            <img src="./assets/images/global/delete_icon.png" alt="delete">
+          </button>
+        </div>
+
+        <p class="file-text">
+          <img src="./assets/images/create_quote/Error_icon.png" alt="Error icon">
+
+          <span class="status-text">
+            <span class="status">Error: </span>
+            Format is not Supported
+          </span>
+        </p>
+      </div>
+    `;
+
+    return;
+  }
+
+  getJsonData(file);
+  uploadBtn.classList.remove("not-active");
+ 
+});
+function formatSize(bytes) {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
+}
+
+
+function isValidExcelFormat(data) {
+
+  if (!Array.isArray(data) || data.length === 0) {
+    return false;
+  }
+
+
+  const firstRow = data[0];
+
+  return expectedKeys.every(key => key in firstRow);
+}
+
+
+async function getJsonData(file){
+  const arrayBuffer = await file.arrayBuffer();
+  const workbook = await JSZip.loadAsync(arrayBuffer);
+
+  const sharedStringsXML = await workbook.file("xl/sharedStrings.xml")?.async("string");
+  const sharedStrings = parseSharedStrings(sharedStringsXML);
+
+  const sheetXML = await workbook.file("xl/worksheets/sheet1.xml")?.async("string");
+  const rows = parseSheetAsJSON(sheetXML, sharedStrings);
+   if (!isValidExcelFormat(rows)) {
+
+    selectedFileWrapper.innerHTML += `
+      <div class="file-container error">
+        <div class="file">
+          <div class="file-info">
+            <img src="./assets/images/create_quote/emil pad_Pdf icon.png" alt="pdf">
+
+            ${file.name.length > 10
+              ? file.name.slice(0, 20) + "..."
+              : file.name}
+
+            (${formatSize(file.size)})
+          </div>
+
+          <button type="button"
+            class="del-file-btn"
+            onclick="delFile(event)">
+            
+            <img src="./assets/images/global/delete_icon.png" alt="delete">
+          </button>
+        </div>
+
+        <p class="file-text">
+          <img src="./assets/images/create_quote/Error_icon.png" alt="Error icon">
+
+          <span class="status-text">
+            <span class="status">Error:</span>
+            Invalid Excel Structure
+          </span>
+        </p>
+      </div>
+    `;
+
+    return false;
+  }
+  // else{
+     selectedFileWrapper.innerHTML += `
+   
+    <div class="file-container success">
+      <div class="file">
+        <div class="file-info">
+          <img src="./assets/images/create_quote/emil pad_Pdf icon.png" alt="pdf"> 
+          ${file.name.length > 10 ? file.name.slice(0,20) + "..." : file.name}
+          (${formatSize(file.size)})
+        </div>
+
+        <button type="button" class="del-file-btn" onclick="delFile(event)">
+          <img src="./assets/images/global/delete_icon.png" alt="delete">
+        </button>
+      </div>
+
+      <p class="file-text">
+        <img src="./assets/images/create_quote/Uploaded_icon.png" alt="Upload icon">
+
+        <span class="status-text">
+          <span class="status">Uploaded: </span>
+          ${file.name}
+        </span>
+      </p>
+    </div>
+  `;
+  // }
+  rows.forEach(r=>{
+    r.qty_requested=Number(r.qty_requested)
+    r.score=Number(r.score)
+    r.available_qty=Number(r.available_qty)
+    r.unit_cost=Number(r.unit_cost)
+    r.margin=Number(r.margin)
+    r.selling_price=Number(r.selling_price)
+    r.total_cost=Number(r.total_cost)
+    r.delId=Number(r.delId)
+    r.wire_size=Number(r.wire_size)
+    r.outlet=Number(r.outlet)
+    exCelData.push(r)
+
+  })
+
+}
+
+
+function getCrtData(exCelData){ 
+  exCelData.forEach(d=>{
+    console.log(d)
+    const delid=d.delId;
+    let isExists = allQuotes.forEach(q=>[...q.products].some(q => q.delId ===  delid)) ||
+    newQuote.products.some(prod => prod.delId === delid);
+    while (isExists) {
+      d.delId=getDelId();
+    }
+    
+    newQuote.products.push(d);  
+    updateQuoteTotals();
+  })
+}
+
+//Fetch data from excel
+function parseSharedStrings(xml) {
+  if (!xml) return [];
+  const doc = new DOMParser().parseFromString(xml, "text/xml");
+  return [...doc.getElementsByTagName("t")].map(t => t.textContent);
+}
+
+function parseSheetAsJSON(sheetXML, sharedStrings = []) {
+  if (!sheetXML) return [];
+
+  const xmlDoc = new DOMParser().parseFromString(sheetXML, "text/xml");
+  const rowElements = xmlDoc.getElementsByTagName("row");
+
+  const rows = [];
+
+  for (let row of rowElements) {
+    const cells = [];
+    for (let c of row.getElementsByTagName("c")) {
+     
+      const v = c.getElementsByTagName("v")[0];
+
+      let value = v ? v.textContent : "";
+      if (c.getAttribute("t") === "s") value = sharedStrings[Number(value)];
+      cells.push(value);
+    }
+    rows.push(cells);
+    console.log(exCelData)
+  }
+
+  if (rows.length === 0) return [];
+
+  const keys = rows[0];
+  const json = [];
+
+  for (let i = 1; i < rows.length; i++) {
+    const obj = {};
+    rows[i].forEach((cell, index) => {
+      obj[keys[index] || `column${index + 1}`] = cell;
+    });
+    json.push(obj);
+  }
+
+  return json;
+
+}
+
+function delFile(event){
+  const fileContainer=event.target.closest(".file-container");
+  fileContainer.remove();
+}
+
+
+

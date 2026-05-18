@@ -279,6 +279,7 @@ body{
                             }
                             &.upload-btn{
                                 padding-inline:clamp(18px, $fs-30px, $fs-30px);
+                                
                             }
                             &.email-btn{
                                 padding-inline:clamp(18px, $fs-35px, $fs-35px);
@@ -473,14 +474,16 @@ body{
                                     border: 1px solid $grey-6c;
                                     padding: clamp(5px, $fs-10px, $fs-10px);
                                     border-radius: 5px;
-
+                                    gap: clamp(5px, $fs-10px, $fs-10px);
                                     .file-info{
                                         font-size: clamp(10px, $fs-14px, $fs-14px);
                                         color: $grey-34;
                                         display: flex;
                                         align-items: center;
                                         gap: 5px;
-
+                                        white-space: nowrap;
+                                        text-overflow: ellipsis;
+                                        overflow: hidden;
                                         img{
                                             width: clamp(20px, $fs-35px, $fs-35px);
                                         }
@@ -646,8 +649,8 @@ body{
                                             &.info-btn{
                                                 span{
                                                     position: absolute;
-                                                    width:clamp(4px, $fs-9px, $fs-9px);
-                                                    height:clamp(4px, $fs-9px, $fs-9px);
+                                                    width:clamp(3px, $fs-9px, $fs-9px);
+                                                    height:clamp(3px, $fs-9px, $fs-9px);
                                                     border-radius: 50%;
                                                     background-color: $red-08;
                                                     right: -3px;
@@ -789,6 +792,10 @@ body{
                             cursor: pointer;
                             background-color: $blue-87;
                             color: $white;
+                            &.not-active{
+                                opacity: 0.5;
+                                pointer-events: none;
+                            }
                         }
                         &.active{
                             display: block;
@@ -844,7 +851,7 @@ body{
                         max-content
                         clamp(22px, $fs-50px, $fs-50px)  
                         clamp(32px, $fs-75px, $fs-75px)
-                        41%
+                        40%
                         max-content
                         clamp(32px, $fs-115px, $fs-115px) 
                         clamp(25px, $fs-110px, $fs-110px)    
@@ -927,8 +934,8 @@ body{
                     .body-wrapper{
                         flex: 1;
                         position: relative;
-                        // overflow: hidden;
                         overflow-y: auto;
+                        overflow-x: hidden;
                         .table-row{
                             padding: clamp(4px, $fs-12px, $fs-12px) clamp(4px, $fs-7px, $fs-7px)  clamp(4px, $fs-12px, $fs-12px);
                             display: grid;
@@ -939,14 +946,14 @@ body{
                             max-content
                             clamp(22px, $fs-50px, $fs-50px)  
                             clamp(32px, $fs-75px, $fs-75px)
-                            41%
+                            40%
                             clamp(15px, $fs-70px, $fs-70px)
                             clamp(32px, $fs-115px, $fs-115px) 
                             clamp(25px, $fs-100px, $fs-100px)    
                             clamp(25px, $fs-100px, $fs-100px)  
                             clamp(25px, $fs-100px, $fs-100px)  
-                            clamp(25px, $fs-90px, $fs-90px) 
-                            clamp(10px, $fs-40px, $fs-40px);
+                            clamp(25px, $fs-89px, $fs-89px) 
+                            clamp(10px, $fs-45px, $fs-45px);
                             align-items: center;
                             position: relative;
                             border-bottom: 1px solid rgba(0,0,0,0.2);
@@ -1244,6 +1251,29 @@ body{
                               
                                
                             }
+
+                    
+
+                            &.drag-enabled{
+                            cursor:grabbing;
+                            }
+
+                            &.dragging{
+
+                            opacity:1;
+
+                            background:#fff;
+
+                            box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+                            z-index:1000;
+
+                            position:relative;
+
+                            transition:.2s;
+                            }
+
+                       
                         }
                         .sourcing-dropdown{
                             display: none;
@@ -1407,8 +1437,9 @@ body{
 
                 &.maximize{
                     .header-wrapper{
-                        padding-left:clamp(12px, $fs-28px, $fs-28px);
+                        // padding-left:clamp(12px, $fs-28px, $fs-28px);
                         grid-template-columns:     
+                        clamp(15px, $fs-45px, $fs-45px) 
                         max-content
                         clamp(35px, $fs-75px, $fs-75px)  
                         clamp(32px, $fs-75px, $fs-75px)
@@ -1421,25 +1452,25 @@ body{
                         clamp(25px, $fs-60px, $fs-60px) 
                         clamp(10px, $fs-51px, $fs-51px);
                         div{
-                            &:nth-of-type(1){
+                            &:nth-of-type(2){
                                 padding-right:  clamp(10px, $fs-35px, $fs-35px);
                             }
-                            &:nth-of-type(2){
+                            &:nth-of-type(3){
                                 padding-right:  clamp(10px, $fs-50px, $fs-50px);
                             }
-                            &:nth-of-type(4){
+                            &:nth-of-type(5){
                                 padding-inline: clamp(40px, $fs-80px, $fs-80px);
                             }
-                            &:nth-of-type(6){
+                            &:nth-of-type(7){
                                 padding-right:  clamp(10px, $fs-50px, $fs-50px);
                             }
-                            &:nth-of-type(7){
+                            &:nth-of-type(8){
                                 padding-right:  clamp(10px, $fs-65px, $fs-65px);
                             }
-                            &:nth-of-type(8){
+                            &:nth-of-type(9){
                                 padding-right:  clamp(10px, $fs-80px, $fs-80px);
                             }
-                            &:nth-of-type(9){
+                            &:nth-of-type(10){
                                 padding-right:  clamp(10px, $fs-80px, $fs-80px);
                             }
 
@@ -1447,8 +1478,9 @@ body{
                     }
                     .body-wrapper{
                         .table-row{
-                            padding-left:clamp(12px, $fs-28px, $fs-28px);
-                            grid-template-columns:     
+                            // padding-left:clamp(12px, $fs-28px, $fs-28px);
+                            grid-template-columns: 
+                            clamp(15px, $fs-45px, $fs-45px)    
                             max-content
                             clamp(35px, $fs-75px, $fs-75px)  
                             clamp(32px, $fs-75px, $fs-75px)
@@ -1461,31 +1493,31 @@ body{
                             clamp(25px, $fs-100px, $fs-100px) 
                             clamp(10px, $fs-39px, $fs-39px);
                             p{
-                                &:nth-of-type(1){
+                                &:nth-of-type(2){
                                     padding-right:  clamp(10px, $fs-35px, $fs-35px);
                                 }
-                                &:nth-of-type(2){
+                                &:nth-of-type(3){
                                     padding-right:  clamp(10px, $fs-50px, $fs-50px);
-                                }
-                                &:nth-of-type(4){
-                                    padding-inline: clamp(40px, $fs-80px, $fs-80px);
                                 }
                                 &:nth-of-type(5){
-                                  text-align: center;
+                                    padding-inline: clamp(40px, $fs-80px, $fs-80px);
                                 }
                                 &:nth-of-type(6){
-                                    padding-right:  clamp(10px, $fs-50px, $fs-50px);
+                                  text-align: center;
                                 }
                                 &:nth-of-type(7){
+                                    padding-right:  clamp(10px, $fs-50px, $fs-50px);
+                                }
+                                &:nth-of-type(8){
                                     padding-right:  clamp(10px, $fs-65px, $fs-65px);
                                 }
                                 &:nth-of-type(8){
                                     padding-right:  clamp(10px, $fs-80px, $fs-80px);
                                 }
-                                &:nth-of-type(9){
+                                &:nth-of-type(10){
                                     padding-right:  clamp(10px, $fs-50px, $fs-50px);
                                 }
-                                &:nth-of-type(10){
+                                &:nth-of-type(11){
                                     padding-right:  clamp(5px, $fs-10px, $fs-10px);
                                     padding-left: 0;
                                     text-align: right;
@@ -1501,7 +1533,20 @@ body{
                     // flex-basis: calc(100% - clamp(20px, $fs-40px, $fs-40px));
                     width: auto;
                     .display-table{
-                        width: 150%;
+                        width: 155%;
+                        .body-wrapper{
+                            .table-row{
+                                width: 100%;
+                            }
+                            &::-webkit-scrollbar {
+                                width: 4px;
+                            }
+                            &::-webkit-scrollbar-thumb {
+                                background: rgba(161, 161, 161, 0.5);
+                                border-radius: 4px;        
+                            }
+                        }
+                        
                     }
                     &::-webkit-scrollbar {
                         height: 4px;
@@ -2330,6 +2375,13 @@ body{
                             color: $grey-66;
                             margin-bottom: 0;
                         }
+                        textarea,input{
+                            width: 100%;
+                            color: $grey-66;
+                            border: none;
+                            outline: none;
+                            background-color: transparent;
+                        }
                     }
                 }
             }
@@ -2359,7 +2411,10 @@ body{
                     color: $white;
                     background-color: $blue-87;
                     
-
+                    &.not-active{
+                        opacity: 0.5;
+                        pointer-events: none;
+                    }
                     &:hover{
                         background-color: $blue-85;
                     }
@@ -2716,7 +2771,15 @@ body{
         .dashboard-header-wrapper {
             margin-bottom: clamp(20px, $fs-40px, $fs-40px);
         }
+        .recent-quote-wrapper .quick-order-wrapper
+         .quick-content-wrapper .left-wrapper .body-wrapper 
+         .mail-wrapper .mail-body-container .img-info-container
+         .img-header .btn-container button.info-btn span {
+            top: 4px;
+            right: -2px;
+         }
     }
+
 }
 
 
@@ -2757,6 +2820,11 @@ body{
                                 margin-bottom: clamp(5px, $fs-9px, $fs-9px);
                             }
                         } 
+                        .img-info-container
+                        .img-header .btn-container button.info-btn span {
+                            top: 5px;
+                            right: -3px;
+                        }
                     }
                 }
             } 

@@ -396,8 +396,9 @@
                     <div class="left-wrapper">
                         <div class="header-wrapper">
                             <div class="btn-container">
+                                <button type="button" class="email-btn active" data-target=".mail-wrapper">Email</button>
                                 <button type="button" class="quick-order-btn" data-target=".table-wrapper">Quick Order</button>
-                                <button type="button" class="upload-btn active" data-target=".upload-wrapper">Upload</button>
+                                <button type="button" class="upload-btn " data-target=".upload-wrapper">Upload</button>
                             </div>
                             <button type="button" class="mail-expand-btn"><img src="./assets/images/global/email_Expand_icon.png" alt="expand icon"></button>
                             
@@ -494,45 +495,95 @@
                                          
                                     </div>
                                 </div>
-                            <div class="upload-wrapper active">
+                            <div class="upload-wrapper">
                                 <div class="select-input-wrapper">
                                     <label for="select-file">Select Files</label>
                                     <input type="file" name="select-file" id="select-file" class="select-file-input" multiple>
                                     <p class="text">File Supported: PDF,XSLS,Image</p>
                                 </div>
                                 <div class="selected-file">
-                                    <!-- <div class="file-wrapper"> -->
-                                        <div class="file-container success">
-                                            <div class="file">
-                                                <div class="file-info">
-                                                    <img src="./assets/images/create_quote/emil pad_Pdf icon.png" alt="pdf"> 
-                                                    Client 123 Proposal.pdf (2.1 MB)
-                                                </div>
-                                                <button type="button" class="del-file-btn"><img src="./assets/images/global/delete_icon.png" alt="delete"></button>
-                                            </div>
-                                            <p class="file-text">
-                                                <img src="./assets/images/create_quote/Uploaded_icon.png" alt="Upload icon">
-                                                <span class="status-text"> <span class="status">Uploaded: </span>Client 123 Proposal.pdf</span>
-                                            </p>
-                                        </div>
-                                        <div class="file-container error">
-                                            <div class="file">
-                                                <div class="file-info">
-                                                    <img src="./assets/images/create_quote/emil pad_Psd icon.png" alt="psd"> 
-                                                    74424AE Proposal.psd (2.1 MB)
-                                                </div>
-                                                <button type="button" class="del-file-btn"><img src="./assets/images/global/delete_icon.png" alt="delete"></button>
-                                            </div>
-                                            <p class="file-text">
-                                                <img src="./assets/images/create_quote/Error_icon.png" alt="Error icon">
-                                                <span class="status-text"> <span class="status">Error: </span>74424AE Proposal.psd</span>
-                                            </p>
-                                        </div>
-                                        
-                                    <!-- </div> -->
-                                    
                                 </div>
                             </div>
+                            <div class="mail-wrapper active">
+                                    <div class="mail-header-container">
+                                        <p class="test">Quote test #6295478644</p>
+                                        <p class="from-text">Info@astral.com</p>
+                                        <div class="to-text">
+                                            <span class="mail">To: sales@revalgo.com</span>
+                                            <span class="date">wed 29/4/2026 3.11 PM</span>
+                                        </div>
+                                    </div>
+                                    <div class="mail-body-container">
+                                        <div class="img-wrapper">
+                                            <div class="img-container">
+                                                <div class="img-detail">
+                                                    <img src="./assets/images/dashboard/JPG_icon.png" alt="jpg">
+                                                    <span class="img-text">img23.jpg</span>
+                                                </div>
+                                                <button class="download-btn"><img src="./assets/images/dashboard/Download_icon.png" alt="download"></button>
+                                                
+                                            </div>
+                                            <div class="img-container">
+                                                <div class="img-detail">
+                                                    <img src="./assets/images/dashboard/JPG_icon.png" alt="jpg">
+                                                    <span class="img-text">img23.jpg</span>
+                                                </div>
+                                                <button class="download-btn"><img src="./assets/images/dashboard/Download_icon.png" alt="download"></button>
+                                            </div>
+                                             <div class="img-container hidden">
+                                                <div class="img-detail">
+                                                    <img src="./assets/images/dashboard/JPG_icon.png" alt="jpg">
+                                                    <span class="img-text">img23.jpg</span>
+                                                </div>
+                                                <button class="download-btn"><img src="./assets/images/dashboard/Download_icon.png" alt="download"></button>
+                                            </div>
+                                             <div class="img-container hidden">
+                                                <div class="img-detail">
+                                                    <img src="./assets/images/dashboard/JPG_icon.png" alt="jpg">
+                                                    <span class="img-text">img23.jpg</span>
+                                                </div>
+                                                <button class="download-btn"><img src="./assets/images/dashboard/Download_icon.png" alt="download"></button>
+                                            </div>
+                                        </div>
+                                        <div class="img-info-container">
+                                            <div class="img-header">
+                                                <p class="file-name">Img23</p>
+                                                <div class="btn-container">
+                                                    <button type="button" class="info-btn"><img src="./assets/images/orderpad/info_icon.png" alt="info"> <span></span></button>
+                                                    <button type="button" class="rotate-btn"><img src="./assets/images/orderpad/Rotate icon.png" alt="rotate"></button>
+                                                    <button type="button" class="img-close-btn"><img src="./assets/images/orderpad/image_close icon.png" alt="image close"></button>
+                                                </div>
+                                            </div>
+                                            <div class="sample-img-wrapper">
+                                                <img src="./assets/images/orderpad/Email pad_aatchement img File.png" alt="attachment image">
+                                            </div>
+                                        </div>
+                                        <div class="text-container">
+                                            <p class="title">Hi</p>
+                                            <div class="list-wrapper">
+                                                <p class="list-title">Please find the order below:</p>
+                                                <ul class="list">
+                                                    <li>Inch pvc <span>conduit 
+                                                        <span class="acronym-dropdown">
+                                                            <ul>
+                                                                <li>Add Item</li>
+                                                                <li>Add Acronym</li>
+                                                            </ul>
+                                                        </span></span>
+                                                    </li>
+                                                    <li>Inch Plastic Plain conduit</li>
+                                                    <li>1-1/2 aluminium conduit</li>
+                                                    <li>2-1/2 aluminium conduit</li>
+                                                </ul>
+                                            </div>
+                                            <div class="bottom-container">
+                                                <p>King Regards,</p>
+                                                <P>Kevin</P>
+                                            </div>
+                                        </div>
+                                    </div>
+                                      
+                                </div>
                             <button type="button" class="minimize-btn"><img src="./assets/images/create_quote/prev-arrow-blue.png" alt="prev arrow"></button>
                             <div class="upload-btn-container active">
                                 <button type="button" class="upload-btn">Upload</button>
@@ -1033,6 +1084,7 @@
         <script src="./assets/js/exist-quote.js"></script>
         <script src="./assets/js/table.js"></script>
         <script src="./assets/js/popup.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
         
     </body>
 </html>

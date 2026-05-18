@@ -1,3 +1,4 @@
+const quickContentWrapper=document.querySelector(".quick-content-wrapper")
 const existQuoteWrapper=document.querySelector(".exist-quote-wrapper");
 const popupOverlay=document.querySelector(".popup-overlay");
 const expandModal=popupOverlay.querySelector(".expand-modal");
@@ -445,6 +446,7 @@ if(sessionStorage.getItem("searchedQuotes")){
   renderFilterTable(filteredData)
   changeNameFilters(filteredData)
   changeModes(filteredData)
+  changeFilterChip(filteredData)
 }
 
 function renderFilterTable(data){
@@ -514,23 +516,28 @@ function applyFilters() {
 
 
 selectAllChipsBtn.addEventListener('click',()=>{
+  const filterChipBtns=document.querySelectorAll(".filter-chip-btn");
   filterChipBtns.forEach(btn=>btn.classList.add("active"))
   statusFilter();
 })
 
 clearAllChipsBtn.addEventListener('click',()=>{
+  const filterChipBtns=document.querySelectorAll(".filter-chip-btn");
   filterChipBtns.forEach(btn=>btn.classList.remove("active"));
   statusFilter();
 })
 
-filterChipBtns.forEach(btn =>{
-  btn.addEventListener('click',()=>{
-    btn.classList.toggle("active");
-    statusFilter();
+function enableFilterChipClick(filterChipBtns){
+  filterChipBtns.forEach(btn =>{
+    btn.addEventListener('click',()=>{
+      btn.classList.toggle("active");
+      statusFilter();
+    })
   })
-})
+}
 
 function statusFilter(){
+  const filterChipBtns=document.querySelectorAll(".filter-chip-btn");
   selectedStatus=[...filterChipBtns].filter(btn =>btn.classList.contains("active")) .map(btn => btn.textContent.trim().toLowerCase());
   applyFilters();
 }
@@ -594,6 +601,22 @@ function searchNames() {
 
 }
 
+function changeFilterChip(filData){
+  const filterChipContainer=document.querySelector(".filter-chip-container");
+  const stats=[...new Set(filData.map(p=>p.status))]
+  stats.sort();
+  filterChipContainer.innerHTML="";
+  stats.forEach(s=>{
+    filterChipContainer.innerHTML+=`
+    <button type="button" class="filter-chip filter-chip-btn">${s}</button>
+  `
+  })
+
+  enableFilterChipClick(document.querySelectorAll(".filter-chip-btn"))
+  
+
+}
+
 function changeNameFilters(filData) {
   const customerFilterWrapper=document.querySelector(".customer-filter-wrapper");
   const customerFilterContainer=document.querySelector(".customer-filter-container");
@@ -613,6 +636,7 @@ function changeNameFilters(filData) {
   });
 
   if (totalNames.length > 5) {
+    custMoreLink.classList.remove("not-active")
     custMoreLink.textContent = `See More`;
 
     custMoreLink.onclick = (e) => {
@@ -628,6 +652,9 @@ function changeNameFilters(filData) {
         custMoreLink.textContent = `See More`;
       }
     };
+  }
+  else{
+    custMoreLink.classList.add('not-active')
   }
 
   const customCheckBoxInputs=document.querySelectorAll(".customer-filter input[type='checkbox']");
@@ -1177,7 +1204,7 @@ function renderDisplayTable(newQuote){
   products.forEach((p,i)=>{
     bodyWrapper.innerHTML+=`
     <div class="${p.isDeleted==true?"table-row not-active":"table-row"}">
-      <p></p>
+      <p><img src="./assets/images/global/drag-menu.png" alt="drag menu" class="drag-handle"   data-index="${i}"  ></p>
       <p><input type="checkbox" class="check-line-input" onclick=enableDeleteAllBtn()></p>
       <p><span class="line-no">${i+1}</span>
       </p>
@@ -1252,6 +1279,7 @@ function renderDisplayTable(newQuote){
   clickTable(displayTable.querySelector(".body-wrapper"));
   editTableData(displayTable.querySelector(".body-wrapper"));
   checkDeleted(displayTable.querySelector(".body-wrapper"));
+  enableDrag(displayTable.querySelector(".body-wrapper"));
 }
 
 
@@ -1298,57 +1326,6 @@ function rowClickHandler(e){
     }
   }
 }
-
-//min and max table btn function
-const leftWrapper=quoteOrderWrapper.querySelector(".left-wrapper");
-const rightWrapper=quoteOrderWrapper.querySelector(".right-wrapper");
-const mailExpandBtn=leftWrapper.querySelector(".mail-expand-btn");
-const uploadBtnContainer=leftWrapper.querySelector(".upload-btn-container");
-const mailMinimizeBtn=leftWrapper.querySelector(".minimize-btn");
-
-mailExpandBtn.addEventListener("click", () => {
-
-  if (leftWrapper.classList.contains("maximize")) {
-
-    leftWrapper.classList.remove("minimize");
-    leftWrapper.classList.remove("maximize");
-    rightWrapper.classList.remove("maximize");
-    rightWrapper.classList.remove("minimize");
-
-  } else {
-
-    leftWrapper.classList.remove("minimize");
-    leftWrapper.classList.add("maximize");
-    rightWrapper.classList.remove("maximize");
-    rightWrapper.classList.add("minimize");
-
-  }
-
-});
-
-mailMinimizeBtn.addEventListener("click", () => {
-  if (leftWrapper.classList.contains("minimize")) {
-
-    leftWrapper.classList.remove("minimize");
-    leftWrapper.classList.remove("maximize");
-    rightWrapper.classList.remove("maximize");
-    rightWrapper.classList.remove("minimize");
-    uploadBtnContainer.classList.add('active')
-
-  } 
-  
-  else {
-
-    leftWrapper.classList.add("minimize");
-    leftWrapper.classList.remove("maximize");
-    rightWrapper.classList.add("maximize");
-    rightWrapper.classList.remove("minimize");
-    // uploadBtnContainer.classList.add("not-active")
-    uploadBtnContainer.classList.remove('active')
-    
-  }
-
-});
 
 //edit table data
 function editTableData(bodyWrap){
@@ -1426,42 +1403,226 @@ function allowNumbers(inp){
 
 }
 
+function enableDrag(bodyWrap) {
 
-const leftHeaderBtns=leftWrapper.querySelectorAll(".header-wrapper .btn-container button");
-const uploadWrapper=leftWrapper.querySelector(".upload-wrapper");
-const leftTableWrapper=leftWrapper.querySelector(".table-wrapper");
+  const rows = bodyWrap.querySelectorAll(".table-row");
+
+  let draggedRow = null;
+
+  let canDrag = false;
 
 
-leftHeaderBtns.forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    leftHeaderBtns.forEach(btn=> btn.classList.remove("active"));
-    btn.classList.add("active");
-    uploadBtnContainer.classList.remove("active");
-    uploadWrapper.classList.remove("active");
-    leftTableWrapper.classList.remove("active");
-    const target=btn.dataset.target;
-    const wrappper=leftWrapper.querySelector(target);
+  rows.forEach(row => {
 
-    wrappper.classList.add("active");
-    // if(target!=".mail-wrapper"){
-    //   uploadBtnContainer.classList.add("active");
-    // }
-  })
-})
+    const handle = row.querySelector(".drag-handle");
 
-function updateQuoteTotals(){
 
-  newQuote.lines =newQuote.products.length;
+    // ENABLE DRAG ONLY FROM HANDLE
+    handle.addEventListener("mousedown", () => {
 
-  newQuote.total_line_no =newQuote.products.length;
+      canDrag = true;
 
-  newQuote.total_price =newQuote.products.reduce((sum, p) =>sum + p.total_cost,0).toFixed(2);
-  const totPriceText=quickInfoWrapper.querySelector(".total_price_text");
-  const linesText=quickInfoWrapper.querySelector(".lines_text");
-  totPriceText.textContent=`$${newQuote.total_price}`
-  linesText.textContent=newQuote.products.length;
+      row.classList.add("drag-enabled");
+
+    });
+
+
+    // STOP DRAG AFTER RELEASE
+    document.addEventListener("mouseup", () => {
+
+      canDrag = false;
+
+      row.classList.remove("drag-enabled");
+
+    });
+
+
+    // START DRAG
+    row.addEventListener("dragstart", e => {
+
+      if (!canDrag) {
+
+        e.preventDefault();
+
+        return;
+
+      }
+
+      draggedRow = row;
+
+      setTimeout(() => {
+
+        row.classList.add("dragging");
+
+      }, 0);
+
+    });
+
+
+    // END DRAG
+    row.addEventListener("dragend", () => {
+
+      row.classList.remove("dragging");
+
+      row.classList.remove("drag-enabled");
+
+      draggedRow = null;
+
+      canDrag = false;
+
+
+      // REMOVE TARGET HIGHLIGHTS
+      bodyWrap.querySelectorAll(".drop-target")
+      .forEach(r => r.classList.remove("drop-target"));
+
+
+      updateLineNumbers(bodyWrap);
+
+    });
+
+
+    // ALLOW DROP
+    row.addEventListener("dragover", e => {
+
+      e.preventDefault();
+
+    });
+
+
+    // TARGET HIGHLIGHT
+    row.addEventListener("dragenter", () => {
+
+      if (!draggedRow || draggedRow === row) return;
+
+      bodyWrap.querySelectorAll(".drop-target")
+      .forEach(r => r.classList.remove("drop-target"));
+
+      row.classList.add("drop-target");
+
+    });
+
+
+    // REMOVE TARGET
+    row.addEventListener("dragleave", () => {
+
+      row.classList.remove("drop-target");
+
+    });
+
+
+    // DROP
+    row.addEventListener("drop", e => {
+
+      e.preventDefault();
+
+      row.classList.remove("drop-target");
+
+      if (!draggedRow || draggedRow === row) return;
+
+
+      // DRAGGED ELEMENTS
+      const draggedDropdown = draggedRow.nextElementSibling;
+
+
+      // TARGET ELEMENTS
+      const targetRow = row;
+
+      const targetDropdown = targetRow.nextElementSibling;
+
+
+      // PLACEHOLDER
+      const placeholder = document.createElement("div");
+
+
+      // INSERT PLACEHOLDER AFTER TARGET GROUP
+      if (
+        targetDropdown &&
+        targetDropdown.classList.contains("sourcing-dropdown")
+      ) {
+
+        targetDropdown.after(placeholder);
+
+      } else {
+
+        targetRow.after(placeholder);
+
+      }
+
+
+      // MOVE TARGET GROUP TO DRAGGED POSITION
+      draggedRow.before(targetRow);
+
+      if (
+        targetDropdown &&
+        targetDropdown.classList.contains("sourcing-dropdown")
+      ) {
+
+        targetRow.after(targetDropdown);
+
+      }
+
+
+      // MOVE DRAGGED GROUP TO TARGET POSITION
+      placeholder.before(draggedRow);
+
+      if (
+        draggedDropdown &&
+        draggedDropdown.classList.contains("sourcing-dropdown")
+      ) {
+
+        draggedRow.after(draggedDropdown);
+
+      }
+
+
+      // REMOVE PLACEHOLDER
+      placeholder.remove();
+
+
+      updateLineNumbers(bodyWrap);
+
+    });
+
+  });
 
 }
+
+function updateLineNumbers() {
+   const tableRows = displayTable.querySelectorAll(".body-wrapper .table-row");
+
+    tableRows.forEach((row, index) => {
+
+      row.querySelector(".line-no").textContent = index + 1;
+
+    });
+
+}
+
+function checkDeleted(bodyWrap){
+  const rows=bodyWrap.querySelectorAll(".table-row");
+  rows.forEach(row=>{
+    if(row.classList.contains('not-active')){
+      const delBtn=row.querySelector('.delete-line-btn');
+      const undoBtn=row.querySelector('.undo-line-btn');
+       delBtn.classList.remove("active");
+      undoBtn.classList.add("active");
+      const paras=row.querySelectorAll("p")
+      paras.forEach(p=>{
+        p.style.pointerEvents = "none";
+      })
+      delBtn.style.pointerEvents = "auto";
+      undoBtn.style.pointerEvents = "auto";
+      row.removeEventListener("click",rowClickHandler);
+    }
+  })
+  
+}
+
+//min and max table btn function
+const leftWrapper=quoteOrderWrapper.querySelector(".left-wrapper");
+const uploadBtnContainer=leftWrapper.querySelector(".upload-btn-container");
+const leftTableWrapper=leftWrapper.querySelector(".table-wrapper");
+const selectedFileWrapper=document.querySelector(".selected-file");
 
 //get all products
 const descInputs =leftTableWrapper.querySelectorAll(".desc-input");
@@ -1576,12 +1737,14 @@ function initProductSearch(){
     inp.addEventListener("input", () => {
      currentDescInput=inp;
       searchProducts(inp);
+      uploadBtn.classList.remove("active")
     });
   })
 }
-// let totalQuotes = [];
-// if(sessionStorage.getItem("searchedQuotes")){
+
 descDropdown.addEventListener("click",handleProductItemClick);
+
+const selectFileInput=document.querySelector(".select-file-input");
 
 const uploadBtn=uploadBtnContainer.querySelector(".upload-btn")
 uploadBtn.addEventListener('click',()=>{
@@ -1590,6 +1753,15 @@ uploadBtn.addEventListener('click',()=>{
     renderDisplayTable(newQuote)
     approveQuoteBtn.classList.add("active")
     const addBtn=document.querySelector(".add-btn-container .add-btn");
+  }
+  if(uploadWrapper.classList.contains('active')){
+    console.log(exCelData)
+    getCrtData(exCelData)
+    renderDisplayTable(newQuote)
+    approveQuoteBtn.classList.add("active");
+     selectFileInput.value="";
+    selectedFileWrapper.innerHTML="";
+    uploadBtn.classList.add("not-active");
   }
 })
  
@@ -1618,26 +1790,4 @@ function getSearchedProducts(){
     });
     updateQuoteTotals();
   }
-}
-
-
-
-function checkDeleted(bodyWrap){
-  const rows=bodyWrap.querySelectorAll(".table-row");
-  rows.forEach(row=>{
-    if(row.classList.contains('not-active')){
-      const delBtn=row.querySelector('.delete-line-btn');
-      const undoBtn=row.querySelector('.undo-line-btn');
-       delBtn.classList.remove("active");
-      undoBtn.classList.add("active");
-      const paras=row.querySelectorAll("p")
-      paras.forEach(p=>{
-        p.style.pointerEvents = "none";
-      })
-      delBtn.style.pointerEvents = "auto";
-      undoBtn.style.pointerEvents = "auto";
-      row.removeEventListener("click",rowClickHandler);
-    }
-  })
-  
 }

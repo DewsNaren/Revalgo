@@ -15,6 +15,12 @@
     "updated_date": "10-02-2022",
     "stock":"S",
     "supplier":"EATON",
+    "brand":"Voltex",
+    "sourceImg": "Product img",
+    "housing_material": "steel",
+    "wire_size": 8,
+    "outlet": 3,
+    "type": "standard",
     "desc": "Nec vel magna faucibus quis duis neque condimentum amet vulputate ligula nunc."
   },
   {
@@ -33,6 +39,12 @@
     "updated_date": "05-03-2021",
     "stock":"NS",
     "supplier":"Direct Trading",
+    "brand":"Flexduct",
+    "sourceImg": "default thumbnail image",
+    "housing_material": "copper",
+      "wire_size": 19,
+      "outlet": 2,
+      "type": "armored",
     "desc": "Integer etiam urna mauris in odio leo maecenas sed sem ac donec."
   },
   {
@@ -51,6 +63,12 @@
     "updated_date": "10-09-2023",
     "stock":"S",
     "supplier":"Fund Masters",
+    "brand":"Amperon",
+     "sourceImg": "Product img",
+    "housing_material": "steel",
+    "wire_size": 17,
+    "outlet":9,
+    "type": "metallic",
     "desc": "Sem in pellentesque ante orci mi sed faucibus ut libero sit fringilla aliquet adipiscing faucibus"
   },
   {
@@ -69,6 +87,12 @@
     "updated_date": "25-05-2022",
     "stock":"NS",
     "supplier":"Leo and Co",
+    "brand":"Nexwire",
+    "sourceImg": "default thumbnail image",
+    "housing_material": "copper",
+    "wire_size": 8,
+        "outlet": 4,
+        "type": "standard",
     "desc": "Tincidunt tellus consectetur neque sed vitae mi praesent bibendum maecenas."
   },
   {
@@ -87,6 +111,12 @@
     "updated_date": "22-06-2024",
     "stock":"S",
     "supplier":"Meridian Group",
+    "brand":"Cablux",
+    "sourceImg": "Product img",
+    "housing_material": "steel",
+    "wire_size": 11,
+        "outlet": 6,
+        "type": "metallic",
     "desc": "Scelerisque sit cursus tellus etiam ante purus magna donec odio ligula"
   },
   {
@@ -105,6 +135,12 @@
     "updated_date": "16-11-2021",
     "stock":"NS",
     "supplier":"TRUNKY",
+    "brand":"Steelron",
+    "sourceImg": "default thumbnail image",
+    "housing_material": "copper",
+    "wire_size": 15,
+        "outlet": 1,
+        "type": "non-metallic",
     "desc": "Consequat nec leo condimentum fusce sed fusce odio mauris nullam."
   },
   {
@@ -123,6 +159,12 @@
     "updated_date": "23-05-2021",
     "stock":"S",
     "supplier":"Flanaut",
+    "brand":"Copperline",
+    "sourceImg": "Product img",
+    "housing_material": "steel",
+    "wire_size": 14,
+        "outlet": 9,
+        "type": "standard",
     "desc": "Gravida nibh mauris vitae nec purus etiam libero."
   },
   {
@@ -141,6 +183,12 @@
     "updated_date": "04-03-2020",
     "stock":"NS",
     "supplier":"Evolysia",
+    "brand":"Gridmax",
+    "sourceImg": "default thumbnail image",
+    "housing_material": "copper",
+    "wire_size": 18,
+        "outlet": 5,
+        "type": "armored",
     "desc": "Luctus ipsum donec fusce fusce semper vulputate in nunc laoreet rutrum purus auctor leo donec"
   }
 ]

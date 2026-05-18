@@ -1103,7 +1103,15 @@ body {
   padding-left: clamp(10px, 0.79vw, 0.79vw);
   text-align: center;
 }
-.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:last-of-type span {
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:last-of-type .undo-btn {
+  width: 100%;
+  display: inline-block;
+  background-color: #154787;
+  color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  border-radius: 5px;
+}
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td .undo-btn {
   width: 100%;
   display: inline-block;
   background-color: #154787;
@@ -1769,6 +1777,8 @@ body {
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(7) {
   width: clamp(75px, 5.75vw, 5.75vw);
+  text-align: center;
+  padding-right: clamp(10px, 2vw, 2vw);
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(8) {
   width: clamp(100px, 8.5vw, 8.5vw);
@@ -1776,10 +1786,24 @@ body {
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:last-of-type {
   width: clamp(40px, 3.6vw, 3.6vw);
+  text-align: center;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:last-of-type span {
+  width: 100%;
+  display: inline-block;
+  background-color: #154787;
+  color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  border-radius: 5px;
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr:last-of-type td {
   border-bottom: none;
   padding-bottom: 0;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody .not-found {
+  margin-top: clamp(11px, 0.83vw, 0.83vw);
+  font-size: clamp(10px, 0.79vw, 0.79vw);
+  text-align: center;
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody::-webkit-scrollbar {
   width: 4px;
@@ -2252,7 +2276,8 @@ body {
   }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:last-of-type {
     width: clamp(40px, 3.6vw, 3.6vw);
-    padding-left: clamp(10px, 0.79vw, 0.79vw);
+    padding-inline: 5px;
+    border-radius: 2px;
   }
   .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody th:last-of-type {
     width: clamp(40px, 3.5vw, 3.5vw);
@@ -2266,135 +2291,97 @@ body {
 }
 @media print {
   @page {
-    margin: 30px 30px 20px 10px;
+    margin: 0;
     size: A4;
+  }
+  .dashboard-wrapper {
+    padding-right: 0;
+    padding: 20px 10px;
+  }
+  .dashboard-wrapper .dashboard-body-wrapper {
+    gap: 0;
   }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container {
     width: 100%;
   }
-  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead {
-    display: table;
-    width: 100%;
-    table-layout: fixed;
-    flex-shrink: 0;
-  }
-  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.6);
-  }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th {
     font-size: clamp(10px, 0.79vw, 0.79vw);
-    color: rgba(0, 0, 0, 0.9);
-    font-weight: 500;
-    padding: clamp(8px, 0.521vw, 0.521vw) clamp(10px, 0.79vw, 0.79vw) clamp(8px, 0.521vw, 0.521vw) 0;
+    padding: 8px 8px 8px 0;
     text-align: left;
   }
-  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th span {
-    display: inline-flex;
-    align-items: center;
-    gap: clamp(7px, 0.79vw, 0.79vw);
-    font-size: clamp(10px, 0.79vw, 0.79vw);
-    color: rgba(0, 0, 0, 0.9);
-    font-weight: 500;
-    cursor: pointer;
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th span img {
+    width: 8px;
   }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:first-of-type {
     width: 15px;
   }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(2) {
-    width: 70px;
+    width: 79px;
   }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(3) {
-    width: 175px;
+    width: 170px;
   }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(4) {
     width: 110px;
   }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(5) {
-    width: 100px;
+    width: 115px;
   }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(6) {
     width: 70px;
   }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(7) {
-    width: 70px;
+    width: 60px;
   }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(8) {
-    width: 80px;
-    padding-right: 0;
+    width: 70px;
   }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:last-of-type {
-    width: 40px;
+    width: 50px;
   }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td {
     font-size: clamp(10px, 0.73vw, 0.73vw);
-    padding: 5px clamp(10px, 0.79vw, 0.79vw) 5px 0;
-  }
-  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:first-of-type img, .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:last-of-type img {
-    display: block;
-    width: 0.83vw;
-  }
-  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:last-of-type a {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
+    padding: 5px 10px 5px 0;
   }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:first-of-type {
-    width: 1.65vw;
+    width: 15px;
   }
-  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td a.quote-id-data {
-    color: #154787;
-    font-weight: 500;
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(2) {
+    width: 79px;
   }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(3) {
-    width: 13.5vw;
+    width: 170px;
+    text-align: left;
   }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(4) {
-    width: 8.5vw;
+    width: 110px;
+    text-align: left;
   }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(5) {
-    width: 8.5vw;
+    width: 115px;
   }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(6) {
-    width: clamp(70px, 5.2vw, 5.2vw);
-    color: #f73333;
-    text-transform: capitalize;
-  }
-  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(6).approved {
-    color: #3daf28;
-  }
-  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(6).pending {
-    color: #ff7129;
+    width: 70px;
   }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(7) {
-    width: clamp(75px, 5.2vw, 5.2vw);
-    padding-left: clamp(10px, 0.79vw, 0.79vw);
+    width: 60px;
   }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(8) {
-    font-weight: 500;
-    width: clamp(70px, 4.69vw, 4.69vw);
+    width: 70px;
+    padding-right: 0;
   }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:last-of-type {
-    width: clamp(40px, 4.4vw, 4.4vw);
-    padding-left: clamp(10px, 0.79vw, 0.79vw);
-    text-align: center;
+    width: 50px;
   }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:last-of-type span {
-    width: 100%;
-    display: inline-block;
-    background-color: #154787;
-    color: rgba(255, 255, 255, 0.9);
-    cursor: pointer;
-    border-radius: 5px;
+    border-radius: 3px;
   }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr:last-of-type td {
     border-bottom: none;
     padding-bottom: 0;
   }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody .not-found {
-    text-align: center;
-    padding-top: clamp(10px, 1.05vw, 1.05vw);
     font-size: clamp(10px, 0.79vw, 0.79vw);
-    margin-bottom: 0;
   }
   .dashboard-wrapper .dashboard-body-wrapper .chart-wrapper {
     display: none;
@@ -2813,6 +2800,7 @@ body {
   border: 1px solid #6c6c6c;
   padding: clamp(5px, 0.521vw, 0.521vw);
   border-radius: 5px;
+  gap: clamp(5px, 0.521vw, 0.521vw);
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .selected-file .file-container .file .file-info {
   font-size: clamp(10px, 0.73vw, 0.73vw);
@@ -2820,6 +2808,9 @@ body {
   display: flex;
   align-items: center;
   gap: 5px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper .selected-file .file-container .file .file-info img {
   width: clamp(20px, 1.8vw, 1.8vw);
@@ -2968,8 +2959,8 @@ body {
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-info-container .img-header .btn-container button.info-btn span {
   position: absolute;
-  width: clamp(4px, 0.48vw, 0.48vw);
-  height: clamp(4px, 0.48vw, 0.48vw);
+  width: clamp(3px, 0.48vw, 0.48vw);
+  height: clamp(3px, 0.48vw, 0.48vw);
   border-radius: 50%;
   background-color: #eb0808;
   right: -3px;
@@ -3085,6 +3076,10 @@ body {
   background-color: #154787;
   color: white;
 }
+.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-btn-container .upload-btn.not-active {
+  opacity: 0.5;
+  pointer-events: none;
+}
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-btn-container.active {
   display: block;
 }
@@ -3123,7 +3118,7 @@ body {
   border-top-right-radius: clamp(5px, 0.521vw, 0.521vw);
   padding: clamp(4px, 0.4vw, 0.4vw);
   display: grid;
-  grid-template-columns: clamp(15px, 1.57vw, 1.57vw) max-content clamp(22px, 2.61vw, 2.61vw) clamp(32px, 3.91vw, 3.91vw) 41% max-content clamp(32px, 5.98vw, 5.98vw) clamp(25px, 5.75vw, 5.75vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 2.61vw, 2.61vw) clamp(10px, 2.5vw, 2.5vw);
+  grid-template-columns: clamp(15px, 1.57vw, 1.57vw) max-content clamp(22px, 2.61vw, 2.61vw) clamp(32px, 3.91vw, 3.91vw) 40% max-content clamp(32px, 5.98vw, 5.98vw) clamp(25px, 5.75vw, 5.75vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 2.61vw, 2.61vw) clamp(10px, 2.5vw, 2.5vw);
   align-items: center;
   border-bottom: 1px solid rgba(27, 26, 26, 0.6);
 }
@@ -3192,11 +3187,12 @@ body {
   flex: 1;
   position: relative;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row {
   padding: clamp(4px, 0.63vw, 0.63vw) clamp(4px, 0.4vw, 0.4vw) clamp(4px, 0.63vw, 0.63vw);
   display: grid;
-  grid-template-columns: clamp(15px, 1.57vw, 1.57vw) max-content clamp(22px, 2.61vw, 2.61vw) clamp(32px, 3.91vw, 3.91vw) 41% clamp(15px, 3.6vw, 3.6vw) clamp(32px, 5.98vw, 5.98vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 4.69vw, 4.69vw) clamp(10px, 2.067vw, 2.067vw);
+  grid-template-columns: clamp(15px, 1.57vw, 1.57vw) max-content clamp(22px, 2.61vw, 2.61vw) clamp(32px, 3.91vw, 3.91vw) 40% clamp(15px, 3.6vw, 3.6vw) clamp(32px, 5.98vw, 5.98vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 4.66vw, 4.66vw) clamp(10px, 2.34vw, 2.34vw);
   align-items: center;
   position: relative;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -3458,6 +3454,17 @@ body {
   pointer-events: none;
   opacity: 0.5;
 }
+.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row.drag-enabled {
+  cursor: grabbing;
+}
+.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row.dragging {
+  opacity: 1;
+  background: #fff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  position: relative;
+  transition: 0.2s;
+}
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .sourcing-dropdown {
   display: none;
   background-color: #e8f2ff;
@@ -3572,59 +3579,57 @@ body {
   border-radius: 4px;
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper {
-  padding-left: clamp(12px, 1.45vw, 1.45vw);
-  grid-template-columns: max-content clamp(35px, 3.91vw, 3.91vw) clamp(32px, 3.91vw, 3.91vw) 44% max-content clamp(32px, 6.8vw, 6.8vw) clamp(25px, 6.51vw, 6.51vw) clamp(25px, 6.8vw, 6.8vw) clamp(25px, 7.3vw, 7.3vw) clamp(25px, 3.13vw, 3.13vw) clamp(10px, 2.66vw, 2.66vw);
-}
-.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(1) {
-  padding-right: clamp(10px, 1.8vw, 1.8vw);
+  grid-template-columns: clamp(15px, 2.34vw, 2.34vw) max-content clamp(35px, 3.91vw, 3.91vw) clamp(32px, 3.91vw, 3.91vw) 44% max-content clamp(32px, 6.8vw, 6.8vw) clamp(25px, 6.51vw, 6.51vw) clamp(25px, 6.8vw, 6.8vw) clamp(25px, 7.3vw, 7.3vw) clamp(25px, 3.13vw, 3.13vw) clamp(10px, 2.66vw, 2.66vw);
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(2) {
+  padding-right: clamp(10px, 1.8vw, 1.8vw);
+}
+.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(3) {
   padding-right: clamp(10px, 2.61vw, 2.61vw);
 }
-.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(4) {
+.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(5) {
   padding-inline: clamp(40px, 4.2vw, 4.2vw);
 }
-.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(6) {
+.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(7) {
   padding-right: clamp(10px, 2.61vw, 2.61vw);
 }
-.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(7) {
-  padding-right: clamp(10px, 3.4vw, 3.4vw);
-}
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(8) {
-  padding-right: clamp(10px, 4.2vw, 4.2vw);
+  padding-right: clamp(10px, 3.4vw, 3.4vw);
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(9) {
   padding-right: clamp(10px, 4.2vw, 4.2vw);
 }
-.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row {
-  padding-left: clamp(12px, 1.45vw, 1.45vw);
-  grid-template-columns: max-content clamp(35px, 3.91vw, 3.91vw) clamp(32px, 3.91vw, 3.91vw) 44% clamp(32px, 4.69vw, 4.69vw) clamp(32px, 6.8vw, 6.8vw) clamp(25px, 6.51vw, 6.51vw) clamp(25px, 6.8vw, 6.8vw) clamp(25px, 5.75vw, 5.75vw) clamp(25px, 5.2vw, 5.2vw) clamp(10px, 2.03vw, 2.03vw);
+.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(10) {
+  padding-right: clamp(10px, 4.2vw, 4.2vw);
 }
-.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(1) {
-  padding-right: clamp(10px, 1.8vw, 1.8vw);
+.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row {
+  grid-template-columns: clamp(15px, 2.34vw, 2.34vw) max-content clamp(35px, 3.91vw, 3.91vw) clamp(32px, 3.91vw, 3.91vw) 44% clamp(32px, 4.69vw, 4.69vw) clamp(32px, 6.8vw, 6.8vw) clamp(25px, 6.51vw, 6.51vw) clamp(25px, 6.8vw, 6.8vw) clamp(25px, 5.75vw, 5.75vw) clamp(25px, 5.2vw, 5.2vw) clamp(10px, 2.03vw, 2.03vw);
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(2) {
-  padding-right: clamp(10px, 2.61vw, 2.61vw);
+  padding-right: clamp(10px, 1.8vw, 1.8vw);
 }
-.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(4) {
-  padding-inline: clamp(40px, 4.2vw, 4.2vw);
+.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(3) {
+  padding-right: clamp(10px, 2.61vw, 2.61vw);
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(5) {
-  text-align: center;
+  padding-inline: clamp(40px, 4.2vw, 4.2vw);
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(6) {
-  padding-right: clamp(10px, 2.61vw, 2.61vw);
+  text-align: center;
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(7) {
+  padding-right: clamp(10px, 2.61vw, 2.61vw);
+}
+.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(8) {
   padding-right: clamp(10px, 3.4vw, 3.4vw);
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(8) {
   padding-right: clamp(10px, 4.2vw, 4.2vw);
 }
-.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(9) {
+.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(10) {
   padding-right: clamp(10px, 2.61vw, 2.61vw);
 }
-.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(10) {
+.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(11) {
   padding-right: clamp(5px, 0.521vw, 0.521vw);
   padding-left: 0;
   text-align: right;
@@ -3633,7 +3638,17 @@ body {
   width: auto;
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.minimize .display-table {
-  width: 150%;
+  width: 155%;
+}
+.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.minimize .display-table .body-wrapper .table-row {
+  width: 100%;
+}
+.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.minimize .display-table .body-wrapper::-webkit-scrollbar {
+  width: 4px;
+}
+.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.minimize .display-table .body-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(161, 161, 161, 0.5);
+  border-radius: 4px;
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.minimize::-webkit-scrollbar {
   height: 4px;
@@ -4347,6 +4362,13 @@ body {
   color: #666666;
   margin-bottom: 0;
 }
+.popup-overlay .img-popup .content-container .input-wrapper .input-container .text-wrapper textarea, .popup-overlay .img-popup .content-container .input-wrapper .input-container .text-wrapper input {
+  width: 100%;
+  color: #666666;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
 .popup-overlay .img-popup .content-container::-webkit-scrollbar {
   width: 4px;
 }
@@ -4371,6 +4393,10 @@ body {
 .popup-overlay .img-popup .btn-container button.update-btn {
   color: white;
   background-color: #154787;
+}
+.popup-overlay .img-popup .btn-container button.update-btn.not-active {
+  opacity: 0.5;
+  pointer-events: none;
 }
 .popup-overlay .img-popup .btn-container button.update-btn:hover {
   background-color: #015685;
@@ -4663,6 +4689,10 @@ body {
   .quote-wrapper .dashboard-header-wrapper {
     margin-bottom: clamp(20px, 2.067vw, 2.067vw);
   }
+  .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-info-container .img-header .btn-container button.info-btn span {
+    top: 4px;
+    right: -2px;
+  }
 }
 @media screen and (max-width: 1400px) {
   .quote-wrapper {
@@ -4697,6 +4727,10 @@ body {
   }
   .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .bottom-container p:first-of-type {
     margin-bottom: clamp(5px, 0.48vw, 0.48vw);
+  }
+  .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-info-container .img-header .btn-container button.info-btn span {
+    top: 5px;
+    right: -3px;
   }
 }
 @media screen and (max-width: 1300px) {
@@ -5468,6 +5502,10 @@ body {
   background-color: #154787;
   color: white;
 }
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-btn-container .upload-btn.not-active {
+  opacity: 0.5;
+  pointer-events: none;
+}
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-btn-container.active {
   display: block;
 }
@@ -5507,7 +5545,7 @@ body {
   padding: clamp(4px, 0.4vw, 0.4vw);
   padding-left: clamp(10px, 1.05vw, 1.05vw);
   display: grid;
-  grid-template-columns: max-content clamp(22px, 2.61vw, 2.61vw) clamp(32px, 3.91vw, 3.91vw) 42% max-content clamp(32px, 5.98vw, 5.98vw) clamp(25px, 5.75vw, 5.75vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 2.61vw, 2.61vw) clamp(10px, 2.5vw, 2.5vw);
+  grid-template-columns: clamp(15px, 1.57vw, 1.57vw) max-content clamp(22px, 2.61vw, 2.61vw) clamp(32px, 3.91vw, 3.91vw) 40% max-content clamp(32px, 5.98vw, 5.98vw) clamp(25px, 5.75vw, 5.75vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 2.61vw, 2.61vw) clamp(10px, 2.5vw, 2.5vw);
   align-items: center;
   border-bottom: 1px solid rgba(27, 26, 26, 0.6);
 }
@@ -5515,60 +5553,60 @@ body {
   font-size: clamp(8px, 0.73vw, 0.73vw);
   text-align: right;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(1) {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(2) {
   padding-right: clamp(10px, 1.05vw, 1.05vw);
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(1) input {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(2) input {
   width: clamp(9px, 1.05vw, 1.05vw);
   height: clamp(9px, 1.05vw, 1.05vw);
   margin-left: 3px;
   accent-color: #154787;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(2) {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(3) {
   padding-right: clamp(10px, 1.304vw, 1.304vw);
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(3) {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(4) {
   color: #154787;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(4) {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(5) {
   padding-inline: clamp(10px, 2.067vw, 2.067vw);
   text-align: left;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(4) span {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(5) span {
   color: #154787;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(5), .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(7), .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(8) {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(6), .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(8), .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(9) {
   padding-right: clamp(10px, 2.61vw, 2.61vw);
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(6) {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(7) {
   padding-right: clamp(10px, 2.067vw, 2.067vw);
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(8), .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(7) {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(9), .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(8) {
   color: #154787;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(9) {
-  padding-right: clamp(10px, 3.13vw, 3.13vw);
-}
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(10) {
-  padding-left: clamp(5px, 0.521vw, 0.521vw);
+  padding-right: clamp(10px, 3.13vw, 3.13vw);
 }
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(11) {
   padding-left: clamp(5px, 0.521vw, 0.521vw);
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(11) button {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(12) {
+  padding-left: clamp(5px, 0.521vw, 0.521vw);
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(12) button {
   background-color: transparent;
   border: none;
   visibility: hidden;
   transition: visibility 0.2s ease;
   display: none;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(11) button img {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(12) button img {
   width: clamp(10px, 0.89vw, 0.89vw);
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(11) button.active {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(12) button.active {
   display: inline-block;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(11) button.selected {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .header-wrapper div:nth-of-type(12) button.selected {
   visibility: visible;
 }
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper {
@@ -5580,7 +5618,7 @@ body {
   padding: clamp(4px, 0.63vw, 0.63vw) clamp(4px, 0.4vw, 0.4vw) clamp(4px, 0.63vw, 0.63vw);
   display: grid;
   padding-left: clamp(10px, 1.05vw, 1.05vw);
-  grid-template-columns: max-content clamp(22px, 2.61vw, 2.61vw) clamp(32px, 3.91vw, 3.91vw) 42% clamp(15px, 3.6vw, 3.6vw) clamp(32px, 5.98vw, 5.98vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 4.69vw, 4.69vw) clamp(10px, 2.067vw, 2.067vw);
+  grid-template-columns: clamp(15px, 1.57vw, 1.57vw) max-content clamp(22px, 2.61vw, 2.61vw) clamp(32px, 3.91vw, 3.91vw) 40% clamp(15px, 3.6vw, 3.6vw) clamp(32px, 5.98vw, 5.98vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 4.69vw, 4.69vw) clamp(10px, 2.067vw, 2.067vw);
   align-items: center;
   position: relative;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -5604,24 +5642,31 @@ body {
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p.del-id {
   display: none;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(1) {
+  text-align: center;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(1) img {
+  width: clamp(10px, 0.83vw, 0.83vw);
+  cursor: pointer;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) {
   padding-inline: clamp(10px, 2.067vw, 2.067vw);
   padding-right: 0;
   text-align: left;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) .down-arrow-img {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) .down-arrow-img {
   width: clamp(12px, 1.304vw, 1.304vw);
   margin-right: 5px;
   cursor: pointer;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) .title-text {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) .title-text {
   font-weight: 400;
   color: rgba(0, 0, 0, 0.95);
   margin-left: clamp(23px, 1.8vw, 1.8vw);
   margin-bottom: 3px;
   display: block;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) .dropdown-text {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) .dropdown-text {
   display: inline-flex;
   align-items: center;
   gap: 3px;
@@ -5629,10 +5674,10 @@ body {
   margin-bottom: 3px;
   flex-wrap: wrap;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) .dropdown-text .requested-id, .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) .dropdown-text .detail {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) .dropdown-text .requested-id, .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) .dropdown-text .detail {
   color: #154787;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) .dropdown-text .detail {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) .dropdown-text .detail {
   display: inline-block;
   padding: 3px;
   border: 1px solid #154787;
@@ -5641,7 +5686,7 @@ body {
   font-weight: 500;
   cursor: pointer;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) .dropdown-text .sourcing {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) .dropdown-text .sourcing {
   display: none;
   align-items: center;
   gap: 5px;
@@ -5653,21 +5698,21 @@ body {
   font-size: clamp(8px, 0.63vw, 0.63vw);
   cursor: pointer;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) .dropdown-text .sourcing img {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) .dropdown-text .sourcing img {
   width: clamp(8px, 0.578vw, 0.578vw);
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) .dropdown-text .sourcing.active {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) .dropdown-text .sourcing.active {
   display: inline-flex;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) .dropdown-text .stock-wrapper {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) .dropdown-text .stock-wrapper {
   display: none;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) .dropdown-text .stock-wrapper .supplier-text {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) .dropdown-text .stock-wrapper .supplier-text {
   color: #0073ff;
   text-decoration: underline;
   cursor: pointer;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) .dropdown-text .stock-wrapper .stock-text {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) .dropdown-text .stock-wrapper .stock-text {
   color: #ff0000;
   border: 1px solid #ff0000;
   line-height: 1;
@@ -5676,15 +5721,15 @@ body {
   position: relative;
   cursor: default;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) .dropdown-text .stock-wrapper .stock-text.red {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) .dropdown-text .stock-wrapper .stock-text.red {
   color: #ff0000;
   border: 1px solid #ff0000;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) .dropdown-text .stock-wrapper .stock-text.green {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) .dropdown-text .stock-wrapper .stock-text.green {
   color: #3daf28;
   border: 1px solid #3daf28;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) .dropdown-text .stock-wrapper .stock-text .tooltiptext {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) .dropdown-text .stock-wrapper .stock-text .tooltiptext {
   visibility: hidden;
   background-color: white;
   color: #666666;
@@ -5697,7 +5742,7 @@ body {
   left: 0;
   text-wrap: nowrap;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) .dropdown-text .stock-wrapper .stock-text .tooltiptext:after {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) .dropdown-text .stock-wrapper .stock-text .tooltiptext:after {
   position: absolute;
   content: "";
   bottom: -5px;
@@ -5707,20 +5752,20 @@ body {
   border-right: 5px solid transparent;
   border-top: 5px solid white;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) .dropdown-text .stock-wrapper .stock-text:hover .tooltiptext {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) .dropdown-text .stock-wrapper .stock-text:hover .tooltiptext {
   visibility: visible;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) .dropdown-text .stock-wrapper.active {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) .dropdown-text .stock-wrapper.active {
   display: inline-block;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) .dropdown-text .tag-text {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) .dropdown-text .tag-text {
   margin-left: 4px;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) .dropdown-text .tag-text img {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) .dropdown-text .tag-text img {
   width: clamp(13px, 1.15vw, 1.15vw);
   margin-right: 5px;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) .text {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) .text {
   display: block;
   max-width: 100%;
   white-space: nowrap;
@@ -5728,49 +5773,37 @@ body {
   text-overflow: ellipsis;
   margin-left: clamp(23px, 1.8vw, 1.8vw);
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(1) {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(2) {
   padding-right: clamp(10px, 1.05vw, 1.05vw);
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(1) input {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(2) input {
   width: clamp(9px, 1.05vw, 1.05vw);
   height: clamp(9px, 1.05vw, 1.05vw);
   accent-color: #154787;
   margin-left: 3px;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(1) input:hover {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(2) input:hover {
   accent-color: #154787;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(2) {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(3) {
   padding-right: clamp(10px, 1.304vw, 1.304vw);
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(3) {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) {
   color: #154787;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(3) input {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(4) input {
   width: 50%;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(6) {
-  padding-right: clamp(10px, 1.57vw, 1.57vw);
-  text-align: right;
-}
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(7) {
-  text-align: right;
   padding-right: clamp(10px, 1.57vw, 1.57vw);
-}
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(7) span {
-  width: 70%;
-  border-bottom: 1px solid #154787;
-  display: inline-flex;
-  color: black;
-}
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(7) span input {
-  border-bottom: none;
+  text-align: right;
 }
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(8) {
+  text-align: right;
   padding-right: clamp(10px, 1.57vw, 1.57vw);
 }
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(8) span {
-  width: 50%;
+  width: 70%;
   border-bottom: 1px solid #154787;
   display: inline-flex;
   color: black;
@@ -5778,31 +5811,43 @@ body {
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(8) span input {
   border-bottom: none;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) {
-  padding-right: clamp(10px, 1.57vw, 1.57vw);
-  text-align: right;
-}
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(9) {
+  padding-right: clamp(10px, 1.57vw, 1.57vw);
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(9) span {
+  width: 50%;
+  border-bottom: 1px solid #154787;
+  display: inline-flex;
+  color: black;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(9) span input {
+  border-bottom: none;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(6) {
   padding-right: clamp(10px, 1.57vw, 1.57vw);
   text-align: right;
 }
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(10) {
+  padding-right: clamp(10px, 1.57vw, 1.57vw);
+  text-align: right;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(11) {
   text-align: right;
   padding-left: clamp(5px, 0.521vw, 0.521vw);
   color: black;
   font-weight: 500;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(11) button {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(12) button {
   background-color: transparent;
   border: none;
   visibility: hidden;
   transition: visibility 0.2s ease;
   display: none;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(11) button img {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(12) button img {
   width: clamp(10px, 0.89vw, 0.89vw);
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(11) button.active {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(12) button.active {
   display: inline-block;
 }
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row .add-line-note-btn {
@@ -5830,13 +5875,13 @@ body {
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:hover {
   background-color: #e8f2ff;
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:hover p:nth-of-type(11) button, .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:hover .add-line-note-btn {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:hover p:nth-of-type(12) button, .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:hover .add-line-note-btn {
   visibility: visible;
 }
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row.not-active {
   background-color: rgba(241, 241, 241, 0.5);
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row.not-active p:not(:nth-of-type(11)), .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row.not-active .add-line-note-btn {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row.not-active p:not(:nth-of-type(12)), .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row.not-active .add-line-note-btn {
   pointer-events: none;
   opacity: 0.5;
 }
@@ -5948,59 +5993,57 @@ body {
   display: none;
 }
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper {
-  padding-left: clamp(12px, 1.45vw, 1.45vw);
-  grid-template-columns: max-content clamp(35px, 3.91vw, 3.91vw) clamp(32px, 3.91vw, 3.91vw) 44% max-content clamp(32px, 6.8vw, 6.8vw) clamp(25px, 6.51vw, 6.51vw) clamp(25px, 6.8vw, 6.8vw) clamp(25px, 7.3vw, 7.3vw) clamp(25px, 3.13vw, 3.13vw) clamp(10px, 2.66vw, 2.66vw);
-}
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(1) {
-  padding-right: clamp(10px, 1.8vw, 1.8vw);
+  grid-template-columns: clamp(15px, 2.34vw, 2.34vw) max-content clamp(35px, 3.91vw, 3.91vw) clamp(32px, 3.91vw, 3.91vw) 44% max-content clamp(32px, 6.8vw, 6.8vw) clamp(25px, 6.51vw, 6.51vw) clamp(25px, 6.8vw, 6.8vw) clamp(25px, 7.3vw, 7.3vw) clamp(25px, 3.13vw, 3.13vw) clamp(10px, 2.66vw, 2.66vw);
 }
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(2) {
+  padding-right: clamp(10px, 1.8vw, 1.8vw);
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(3) {
   padding-right: clamp(10px, 2.61vw, 2.61vw);
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(4) {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(5) {
   padding-inline: clamp(40px, 4.2vw, 4.2vw);
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(6) {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(7) {
   padding-right: clamp(10px, 2.61vw, 2.61vw);
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(7) {
-  padding-right: clamp(10px, 3.4vw, 3.4vw);
-}
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(8) {
-  padding-right: clamp(10px, 4.2vw, 4.2vw);
+  padding-right: clamp(10px, 3.4vw, 3.4vw);
 }
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(9) {
   padding-right: clamp(10px, 4.2vw, 4.2vw);
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row {
-  padding-left: clamp(12px, 1.45vw, 1.45vw);
-  grid-template-columns: max-content clamp(35px, 3.91vw, 3.91vw) clamp(32px, 3.91vw, 3.91vw) 44% clamp(32px, 4.69vw, 4.69vw) clamp(32px, 6.8vw, 6.8vw) clamp(25px, 6.51vw, 6.51vw) clamp(25px, 6.8vw, 6.8vw) clamp(25px, 5.75vw, 5.75vw) clamp(25px, 5.2vw, 5.2vw) clamp(10px, 2.03vw, 2.03vw);
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(10) {
+  padding-right: clamp(10px, 4.2vw, 4.2vw);
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(1) {
-  padding-right: clamp(10px, 1.8vw, 1.8vw);
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row {
+  grid-template-columns: clamp(15px, 2.34vw, 2.34vw) max-content clamp(35px, 3.91vw, 3.91vw) clamp(32px, 3.91vw, 3.91vw) 44% clamp(32px, 4.69vw, 4.69vw) clamp(32px, 6.8vw, 6.8vw) clamp(25px, 6.51vw, 6.51vw) clamp(25px, 6.8vw, 6.8vw) clamp(25px, 5.75vw, 5.75vw) clamp(25px, 5.2vw, 5.2vw) clamp(10px, 2.03vw, 2.03vw);
 }
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(2) {
-  padding-right: clamp(10px, 2.61vw, 2.61vw);
+  padding-right: clamp(10px, 1.8vw, 1.8vw);
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(4) {
-  padding-inline: clamp(40px, 4.2vw, 4.2vw);
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(3) {
+  padding-right: clamp(10px, 2.61vw, 2.61vw);
 }
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(5) {
-  text-align: center;
+  padding-inline: clamp(40px, 4.2vw, 4.2vw);
 }
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(6) {
-  padding-right: clamp(10px, 2.61vw, 2.61vw);
+  text-align: center;
 }
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(7) {
+  padding-right: clamp(10px, 2.61vw, 2.61vw);
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(8) {
   padding-right: clamp(10px, 3.4vw, 3.4vw);
 }
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(8) {
   padding-right: clamp(10px, 4.2vw, 4.2vw);
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(9) {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(10) {
   padding-right: clamp(10px, 2.61vw, 2.61vw);
 }
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(10) {
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(11) {
   padding-right: clamp(5px, 0.521vw, 0.521vw);
   padding-left: 0;
   text-align: right;
@@ -6009,7 +6052,7 @@ body {
   width: auto;
 }
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.minimize .display-table {
-  width: 150%;
+  width: 155%;
 }
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.minimize::-webkit-scrollbar {
   height: 4px;
@@ -7617,6 +7660,9 @@ body {
   font-weight: 500;
   margin-left: clamp(8px, 0.79vw, 0.79vw);
 }
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .see-more-link.not-active {
+  display: none;
+}
 .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container:last-of-type {
   border-bottom: none;
 }
@@ -8259,6 +8305,190 @@ body {
   background: rgba(161, 161, 161, 0.5);
   border-radius: 4px;
 }
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper {
+  padding: clamp(13px, 1.45vw, 1.45vw) 5px 0 0;
+  display: none;
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  max-height: 100%;
+  flex-direction: column;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-header-container {
+  border-bottom: 1px solid #686868;
+  text-wrap: nowrap;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-header-container .test {
+  color: rgba(0, 0, 0, 0.9);
+  font-size: clamp(12px, 1.05vw, 1.05vw);
+  margin-bottom: clamp(7px, 0.79vw, 0.79vw);
+  white-space: nowrap;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-header-container .from-text {
+  color: rgba(0, 0, 0, 0.9);
+  font-size: clamp(12px, 0.93vw, 0.93vw);
+  margin-bottom: 4px;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-header-container .to-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #6c6c6c;
+  font-size: clamp(8px, 0.73vw, 0.73vw);
+  margin-bottom: 4px;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-header-container .to-text .mail {
+  margin-bottom: 4px;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container {
+  padding-top: clamp(6px, 0.63vw, 0.63vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-wrapper {
+  display: flex;
+  gap: clamp(5px, 0.521vw, 0.521vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-wrapper .img-container {
+  padding: clamp(5px, 0.521vw, 0.521vw);
+  border: 1px solid #ddd;
+  display: flex;
+  gap: clamp(15px, 1.57vw, 1.57vw);
+  border-radius: 5px;
+  cursor: pointer;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-wrapper .img-container .img-detail {
+  display: flex;
+  align-items: center;
+  gap: clamp(5px, 0.521vw, 0.521vw);
+  font-size: clamp(9px, 0.73vw, 0.73vw);
+  color: rgba(0, 0, 0, 0.8);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-wrapper .img-container .img-detail img {
+  width: clamp(12px, 0.93vw, 0.93vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-wrapper .img-container .download-btn {
+  background-color: transparent;
+  border: none;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-wrapper .img-container .download-btn img {
+  display: block;
+  width: clamp(9px, 0.73vw, 0.73vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-wrapper .img-container.active {
+  background-color: #e8f2ff;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-wrapper .img-container.hidden {
+  display: none;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-info-container {
+  padding: clamp(13px, 1.15vw, 1.15vw) 0 0;
+  display: none;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-info-container .img-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-info-container .img-header .file-name {
+  font-size: clamp(9px, 0.73vw, 0.73vw);
+  margin-bottom: 0;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-info-container .img-header .btn-container {
+  display: flex;
+  gap: clamp(5px, 0.521vw, 0.521vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-info-container .img-header .btn-container button {
+  border: none;
+  background-color: transparent;
+  position: relative;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-info-container .img-header .btn-container button.info-btn img, .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-info-container .img-header .btn-container button.img-close-btn img {
+  width: clamp(10px, 0.83vw, 0.83vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-info-container .img-header .btn-container button.info-btn span {
+  position: absolute;
+  width: clamp(3px, 0.48vw, 0.48vw);
+  height: clamp(3px, 0.48vw, 0.48vw);
+  border-radius: 50%;
+  background-color: #eb0808;
+  right: -3px;
+  top: 3px;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-info-container .img-header .btn-container button.rotate-btn img {
+  width: clamp(8px, 0.68vw, 0.68vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-info-container .sample-img-wrapper {
+  width: clamp(246px, 21vw, 399px);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-info-container .sample-img-wrapper img {
+  display: block;
+  width: 100%;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-info-container.active {
+  display: block;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container {
+  color: #616161;
+  font-size: clamp(10px, 0.79vw, 0.79vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .title {
+  padding: clamp(13px, 1.15vw, 1.15vw) 0;
+  margin-bottom: 0;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .list-wrapper .list-title {
+  margin-bottom: clamp(5px, 0.521vw, 0.521vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .list-wrapper .list {
+  list-style: decimal;
+  padding-left: clamp(7px, 0.79vw, 0.79vw);
+  margin-bottom: clamp(5px, 1.304vw, 1.304vw);
+  position: relative;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .list-wrapper .list span .acronym-dropdown {
+  position: absolute;
+  bottom: 100%;
+  display: none;
+  width: fit-content;
+  padding: clamp(4px, 0.4vw, 0.4vw) clamp(5px, 0.521vw, 0.521vw);
+  background-color: white;
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.23);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .list-wrapper .list span .acronym-dropdown ul {
+  padding-left: 0;
+  list-style-type: none;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .list-wrapper .list span .acronym-dropdown ul li {
+  font-size: clamp(8px, 0.68vw, 0.68vw);
+  color: #154787;
+  padding-bottom: clamp(3px, 0.4vw, 0.4vw);
+  white-space: nowrap;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .list-wrapper .list span .acronym-dropdown ul li:last-of-type {
+  padding-bottom: 0;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .list-wrapper .list span .acronym-dropdown.active {
+  display: inline-block;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .bottom-container p {
+  line-height: 1.1;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .bottom-container p:first-of-type {
+  margin-bottom: clamp(5px, 0.63vw, 0.63vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .bottom-container p:last-of-type {
+  margin-bottom: 0;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper::-webkit-scrollbar {
+  width: 4px;
+  height: 6px;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(161, 161, 161, 0.5);
+  border-radius: 4px;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper.active {
+  display: flex;
+}
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .minimize-btn {
   position: absolute;
   right: calc(clamp(8px, 0.521vw, 0.521vw) * -1);
@@ -8293,6 +8523,10 @@ body {
   cursor: pointer;
   background-color: #154787;
   color: white;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-btn-container .upload-btn.not-active {
+  opacity: 0.5;
+  pointer-events: none;
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-btn-container.active {
   display: block;
@@ -8425,6 +8659,13 @@ body {
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p.del-id {
   display: none;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(1) {
+  text-align: center;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(1) img {
+  width: clamp(10px, 0.83vw, 0.83vw);
+  cursor: pointer;
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row p:nth-of-type(5) {
   padding-inline: clamp(10px, 2.61vw, 2.61vw);
@@ -8798,64 +9039,66 @@ body {
   display: none;
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper {
-  grid-template-columns: clamp(15px, 3.13vw, 3.13vw) max-content clamp(35px, 3.91vw, 3.91vw) clamp(35px, 5.2vw, 5.2vw) 41.5% max-content clamp(32px, 6.8vw, 6.8vw) clamp(25px, 6.51vw, 6.51vw) clamp(25px, 6.8vw, 6.8vw) clamp(25px, 4.69vw, 4.69vw) clamp(25px, 3.6vw, 3.6vw) clamp(10px, 3.13vw, 3.13vw) clamp(10px, 3.13vw, 3.13vw);
-}
-.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div {
-  font-size: clamp(8px, 0.73vw, 0.73vw);
-  text-align: right;
-}
-.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(5) {
-  padding-inline: clamp(10px, 2.61vw, 2.61vw);
-  text-align: left;
-}
-.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(5) span {
-  color: #154787;
+  grid-template-columns: clamp(15px, 2.34vw, 2.34vw) max-content clamp(35px, 3.91vw, 3.91vw) clamp(32px, 3.91vw, 3.91vw) 44% max-content clamp(32px, 6.8vw, 6.8vw) clamp(25px, 6.51vw, 6.51vw) clamp(25px, 6.8vw, 6.8vw) clamp(25px, 7.3vw, 7.3vw) clamp(25px, 3.13vw, 3.13vw) clamp(10px, 2.66vw, 2.66vw);
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(2) {
-  padding-right: clamp(10px, 1.05vw, 1.05vw);
-}
-.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(2) input {
-  width: clamp(9px, 1.05vw, 1.05vw);
-  height: clamp(9px, 1.05vw, 1.05vw);
+  padding-right: clamp(10px, 1.8vw, 1.8vw);
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(3) {
-  padding-right: clamp(10px, 1.304vw, 1.304vw);
-}
-.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(6), .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(8), .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(9) {
   padding-right: clamp(10px, 2.61vw, 2.61vw);
 }
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(5) {
+  padding-inline: clamp(40px, 4.2vw, 4.2vw);
+}
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(7) {
-  padding-right: clamp(10px, 2.067vw, 2.067vw);
+  padding-right: clamp(10px, 2.61vw, 2.61vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(8) {
+  padding-right: clamp(10px, 3.4vw, 3.4vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(9) {
+  padding-right: clamp(10px, 4.2vw, 4.2vw);
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(10) {
-  padding-right: clamp(10px, 3.13vw, 3.13vw);
-}
-.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(11) {
-  padding-left: clamp(5px, 0.521vw, 0.521vw);
-}
-.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(12) {
-  padding-left: clamp(5px, 0.521vw, 0.521vw);
-}
-.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper div:nth-of-type(12) button img {
-  width: clamp(10px, 0.89vw, 0.89vw);
+  padding-right: clamp(10px, 4.2vw, 4.2vw);
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row {
-  grid-template-columns: clamp(15px, 3.13vw, 3.13vw) max-content clamp(35px, 3.91vw, 3.91vw) clamp(35px, 5.2vw, 5.2vw) 41.5% clamp(32px, 4.2vw, 4.2vw) clamp(25px, 6.51vw, 6.51vw) clamp(25px, 6.8vw, 6.8vw) clamp(25px, 5.75vw, 5.75vw) clamp(25px, 5.75vw, 5.75vw) clamp(10px, 5.2vw, 5.2vw) clamp(10px, 3.13vw, 3.13vw);
+  grid-template-columns: clamp(15px, 2.34vw, 2.34vw) max-content clamp(35px, 3.91vw, 3.91vw) clamp(32px, 3.91vw, 3.91vw) 44% clamp(32px, 4.69vw, 4.69vw) clamp(32px, 6.8vw, 6.8vw) clamp(25px, 6.51vw, 6.51vw) clamp(25px, 6.8vw, 6.8vw) clamp(25px, 5.75vw, 5.75vw) clamp(25px, 5.2vw, 5.2vw) clamp(10px, 2.03vw, 2.03vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(2) {
+  padding-right: clamp(10px, 1.8vw, 1.8vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(3) {
+  padding-right: clamp(10px, 2.61vw, 2.61vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(5) {
+  padding-inline: clamp(40px, 4.2vw, 4.2vw);
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(6) {
   text-align: center;
 }
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(7) {
+  padding-right: clamp(10px, 2.61vw, 2.61vw);
+}
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(8) {
-  width: 85%;
+  padding-right: clamp(10px, 3.4vw, 3.4vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(8) {
+  padding-right: clamp(10px, 4.2vw, 4.2vw);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(10) {
+  padding-right: clamp(10px, 2.61vw, 2.61vw);
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .body-wrapper .table-row p:nth-of-type(11) {
-  text-align: center;
+  padding-right: clamp(5px, 0.521vw, 0.521vw);
+  padding-left: 0;
+  text-align: right;
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.minimize {
   width: auto;
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.minimize .display-table {
-  width: 150%;
+  width: 155%;
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.minimize::-webkit-scrollbar {
   height: 4px;
@@ -10257,6 +10500,7 @@ body {
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .filter-chip-container {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 5px;
   margin-top: 4px;
   margin-left: clamp(8px, 0.79vw, 0.79vw);
@@ -10268,6 +10512,7 @@ body {
   font-size: clamp(10px, 0.79vw, 0.79vw);
   color: #818080;
   border: 1px solid #818080;
+  text-transform: capitalize;
 }
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .filter-chip-container .filter-chip.active {
   background-color: #154787;
@@ -10336,6 +10581,9 @@ body {
   color: #154787;
   font-weight: 500;
   margin-left: clamp(8px, 0.79vw, 0.79vw);
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .see-more-link.not-active {
+  display: none;
 }
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container:last-of-type {
   border-bottom: none;

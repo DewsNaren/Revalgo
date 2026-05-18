@@ -1015,6 +1015,7 @@ tableBtns.forEach(btn=>{
 
 
 const filterBtn=quotesContainer.querySelector(".filter-text");
+
 const filterDropdown=document.querySelector(".filter-dropdown");
 const filterItems=filterDropdown.querySelectorAll("ul li");
 filterBtn.addEventListener('click',()=>{

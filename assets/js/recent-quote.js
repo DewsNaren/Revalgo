@@ -499,8 +499,8 @@ function renderDisplayTable(selectedQuote){
 
   products.forEach((p,i)=>{
     bodyWrapper.innerHTML+=`
-    <div class="${p.isDeleted==true?"table-row not-active":"table-row"}" >
-      <p><img src="./assets/images/global/drag-menu.png" alt="drag menu"     class="drag-handle"  data-index="${i}" draggable="true" ></p>
+    <div class="${p.isDeleted==true?"table-row not-active":"table-row"}" draggable="flase">
+      <p><img src="./assets/images/global/drag-menu.png" alt="drag menu" class="drag-handle"   data-index="${i}"  ></p>
       <p><input type="checkbox" class="check-line-input" onclick="enableDeleteAllBtn()"></p>
       <p><span class="line-no">${i+1}</span>
       </p>
@@ -571,73 +571,199 @@ function renderDisplayTable(selectedQuote){
   clickTable(displayTable.querySelector(".body-wrapper"));
   editTableData(displayTable.querySelector(".body-wrapper"));
   checkDeleted(displayTable.querySelector(".body-wrapper"));
+  enableDrag(displayTable.querySelector(".body-wrapper"));
 }
 
-//drag function 
-const handles = document.querySelectorAll(".drag-handle");
+// drag function
 
-let draggedRow = null;
+function enableDrag(bodyWrap) {
 
-handles.forEach(handle => {
+  const rows = bodyWrap.querySelectorAll(".table-row");
 
-  handle.addEventListener("dragstart", e => {
+  let draggedRow = null;
 
-    draggedRow = handle.closest(".table-row");
+  let canDrag = false;
 
-    setTimeout(() => {
-      draggedRow.classList.add("dragging");
-    }, 0);
+
+  rows.forEach(row => {
+
+    const handle = row.querySelector(".drag-handle");
+
+
+    // ENABLE DRAG ONLY FROM HANDLE
+    handle.addEventListener("mousedown", () => {
+
+      canDrag = true;
+
+      row.classList.add("drag-enabled");
+
+    });
+
+
+    // STOP DRAG AFTER RELEASE
+    document.addEventListener("mouseup", () => {
+
+      canDrag = false;
+
+      row.classList.remove("drag-enabled");
+
+    });
+
+
+    // START DRAG
+    row.addEventListener("dragstart", e => {
+
+      if (!canDrag) {
+
+        e.preventDefault();
+
+        return;
+
+      }
+
+      draggedRow = row;
+
+      setTimeout(() => {
+
+        row.classList.add("dragging");
+
+      }, 0);
+
+    });
+
+
+    // END DRAG
+    row.addEventListener("dragend", () => {
+
+      row.classList.remove("dragging");
+
+      row.classList.remove("drag-enabled");
+
+      draggedRow = null;
+
+      canDrag = false;
+
+
+      // REMOVE TARGET HIGHLIGHTS
+      bodyWrap.querySelectorAll(".drop-target")
+      .forEach(r => r.classList.remove("drop-target"));
+
+
+      updateLineNumbers(bodyWrap);
+
+    });
+
+
+    // ALLOW DROP
+    row.addEventListener("dragover", e => {
+
+      e.preventDefault();
+
+    });
+
+
+    // TARGET HIGHLIGHT
+    row.addEventListener("dragenter", () => {
+
+      if (!draggedRow || draggedRow === row) return;
+
+      bodyWrap.querySelectorAll(".drop-target")
+      .forEach(r => r.classList.remove("drop-target"));
+
+      row.classList.add("drop-target");
+
+    });
+
+
+    // REMOVE TARGET
+    row.addEventListener("dragleave", () => {
+
+      row.classList.remove("drop-target");
+
+    });
+
+
+    // DROP
+    row.addEventListener("drop", e => {
+
+      e.preventDefault();
+
+      row.classList.remove("drop-target");
+
+      if (!draggedRow || draggedRow === row) return;
+
+
+      // DRAGGED ELEMENTS
+      const draggedDropdown = draggedRow.nextElementSibling;
+
+
+      // TARGET ELEMENTS
+      const targetRow = row;
+
+      const targetDropdown = targetRow.nextElementSibling;
+
+
+      // PLACEHOLDER
+      const placeholder = document.createElement("div");
+
+
+      // INSERT PLACEHOLDER AFTER TARGET GROUP
+      if (
+        targetDropdown &&
+        targetDropdown.classList.contains("sourcing-dropdown")
+      ) {
+
+        targetDropdown.after(placeholder);
+
+      } else {
+
+        targetRow.after(placeholder);
+
+      }
+
+
+      // MOVE TARGET GROUP TO DRAGGED POSITION
+      draggedRow.before(targetRow);
+
+      if (
+        targetDropdown &&
+        targetDropdown.classList.contains("sourcing-dropdown")
+      ) {
+
+        targetRow.after(targetDropdown);
+
+      }
+
+
+      // MOVE DRAGGED GROUP TO TARGET POSITION
+      placeholder.before(draggedRow);
+
+      if (
+        draggedDropdown &&
+        draggedDropdown.classList.contains("sourcing-dropdown")
+      ) {
+
+        draggedRow.after(draggedDropdown);
+
+      }
+
+
+      // REMOVE PLACEHOLDER
+      placeholder.remove();
+
+
+      updateLineNumbers(bodyWrap);
+
+    });
 
   });
 
-  handle.addEventListener("dragend", () => {
-
-    draggedRow.classList.remove("dragging");
-
-    draggedRow = null;
-
-    updateLineNumbers();
-
-  });
-
-});
-
-const rows = document.querySelectorAll(".table-row");
-
-rows.forEach(row => {
-
-  row.addEventListener("dragover", e => {
-    e.preventDefault();
-  });
-
-  row.addEventListener("drop", e => {
-
-    e.preventDefault();
-
-    if (!draggedRow || draggedRow === row) return;
-
-    const allRows = [...document.querySelectorAll(".table-row")];
-
-    const draggedIndex = allRows.indexOf(draggedRow);
-
-    const targetIndex = allRows.indexOf(row);
-
-    if (draggedIndex < targetIndex) {
-      row.after(draggedRow);
-    } else {
-      row.before(draggedRow);
-    }
-
-    updateLineNumbers();
-
-  });
-
-});
+}
 
 function updateLineNumbers() {
+   const tableRows = displayTable.querySelectorAll(".body-wrapper .table-row");
 
-  document.querySelectorAll(".table-row")
-    .forEach((row, index) => {
+    tableRows.forEach((row, index) => {
 
       row.querySelector(".line-no").textContent = index + 1;
 
@@ -645,28 +771,6 @@ function updateLineNumbers() {
 
 }
 
-//sorcing dropdown
-// function clickTable(bodyWrap){
-//   const rows=bodyWrap.querySelectorAll(".table-row");
-//   rows.forEach(row=>{
-//     row.addEventListener('click',(e)=>{
-//       const pTag = e.target.closest("p");
-
-
-//   // clicked directly on text/child inside p
-//       if (pTag && e.target !== pTag ) {
-//         return;
-//       }
-
-//       if (e.target.closest("button")) {
-//         return;
-//       }
-//       row.style.cursor="pointer"
-//       const sourceDropDown=row.nextElementSibling;
-//       sourceDropDown.classList.toggle("active");
-//     })
-//   })
-// }
 
 function clickTable(bodyWrap){
 
@@ -876,76 +980,78 @@ formContainers.forEach(container => {
 
 //mail img container
 // const mailWrapper=quickContentWrapper.querySelector(".mail-wrapper");
-const leftWrapper=quickContentWrapper.querySelector(".left-wrapper");
-const rightWrapper=quickContentWrapper.querySelector(".right-wrapper");
-const uploadBtnContainer=leftWrapper.querySelector(".upload-btn-container");
+// const mailImgContainers=mailWrapper.querySelectorAll(".img-container");
+// const leftWrapper=quickContentWrapper.querySelector(".left-wrapper");
+// const rightWrapper=quickContentWrapper.querySelector(".right-wrapper");
+// const uploadBtnContainer=leftWrapper.querySelector(".upload-btn-container");
 // const imgInfoContainer=mailWrapper.querySelector(".img-info-container");
-const mailExpandBtn=leftWrapper.querySelector(".mail-expand-btn");
-const mailMinimizeBtn=leftWrapper.querySelector(".minimize-btn");
-const selectFileInput=document.querySelector(".select-file-input");
-
-selectFileInput.addEventListener('input',(event)=>{
-  const file=selectFileInput.files[0]
-  const validTypes = ["application/pdf","application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    "application/vnd.ms-excel"];
-
-  if(!validTypes.includes(file.type)){
-    return ;
-  }
-   if(!file){
-    errorElement.textContent="";
-    return true; 
-  }
-})
-
- function formatSize(bytes) {
-    if (bytes < 1024) return `${bytes} B`;
-    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
-    return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
-  }
+// const mailExpandBtn=leftWrapper.querySelector(".mail-expand-btn");
+// const mailMinimizeBtn=leftWrapper.querySelector(".minimize-btn");
+// const selectFileInput=document.querySelector(".select-file-input");
+// const selectedFileWrapper=document.querySelector(".selected-file");
 
 
+// mailExpandBtn.addEventListener("click", () => {
 
-mailExpandBtn.addEventListener("click", () => {
+//   if (leftWrapper.classList.contains("maximize")) {
 
-  if (leftWrapper.classList.contains("maximize")) {
+//     leftWrapper.classList.remove("minimize");
+//     leftWrapper.classList.remove("maximize");
+//     rightWrapper.classList.remove("maximize");
+//     rightWrapper.classList.remove("minimize");
 
-    leftWrapper.classList.remove("minimize");
-    leftWrapper.classList.remove("maximize");
-    rightWrapper.classList.remove("maximize");
-    rightWrapper.classList.remove("minimize");
+//   } else {
 
-  } else {
+//     leftWrapper.classList.remove("minimize");
+//     leftWrapper.classList.add("maximize");
+//     rightWrapper.classList.remove("maximize");
+//     rightWrapper.classList.add("minimize");
 
-    leftWrapper.classList.remove("minimize");
-    leftWrapper.classList.add("maximize");
-    rightWrapper.classList.remove("maximize");
-    rightWrapper.classList.add("minimize");
+//   }
 
-  }
+// });
 
-});
+// mailImgContainers.forEach(container => {
 
-mailMinimizeBtn.addEventListener("click", () => {
-  if (leftWrapper.classList.contains("minimize")) {
+//   container.addEventListener("click", () => {
 
-    leftWrapper.classList.remove("minimize");
-    leftWrapper.classList.remove("maximize");
-    rightWrapper.classList.remove("maximize");
-    rightWrapper.classList.remove("minimize");
-    uploadBtnContainer.classList.add('active')
-  } 
+//     const isActive =container.classList.contains("active");
+
+//     mailImgContainers.forEach(c =>c.classList.remove("active"));
+
+//     if (!isActive) {
+//       container.classList.add("active");
+//       imgInfoContainer.classList.add("active");
+//     } else {
+//       imgInfoContainer.classList.remove("active");
+//     }
+
+//   });
+
+// });
+
+
+
+// mailMinimizeBtn.addEventListener("click", () => {
+//   if (leftWrapper.classList.contains("minimize")) {
+
+//     leftWrapper.classList.remove("minimize");
+//     leftWrapper.classList.remove("maximize");
+//     rightWrapper.classList.remove("maximize");
+//     rightWrapper.classList.remove("minimize");
+//     uploadBtnContainer.classList.add('active')
+//   } 
   
-  else {
+//   else {
 
-    leftWrapper.classList.add("minimize");
-    leftWrapper.classList.remove("maximize");
-    rightWrapper.classList.add("maximize");
-    rightWrapper.classList.remove("minimize");
-      uploadBtnContainer.classList.remove('active')
-  }
+//     leftWrapper.classList.add("minimize");
+//     leftWrapper.classList.remove("maximize");
+//     rightWrapper.classList.add("maximize");
+//     rightWrapper.classList.remove("minimize");
+//       uploadBtnContainer.classList.remove('active')
+//   }
 
-});
+// });
 
 
 
@@ -1027,29 +1133,11 @@ function allowNumbers(inp){
 
 
 //add data and left tab btn click 
-const leftHeaderBtns=leftWrapper.querySelectorAll(".header-wrapper .btn-container button");
-const uploadWrapper=leftWrapper.querySelector(".upload-wrapper");
+const leftWrapper=quickContentWrapper.querySelector(".left-wrapper");
 const leftTableWrapper=leftWrapper.querySelector(".table-wrapper");
-
-leftHeaderBtns.forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    leftHeaderBtns.forEach(btn=> btn.classList.remove("active"));
-    btn.classList.add("active");
-    // uploadBtnContainer.classList.remove("active");
-    uploadWrapper.classList.remove("active");
-    leftTableWrapper.classList.remove("active");
-    const target=btn.dataset.target;
-    const wrappper=leftWrapper.querySelector(target);
-
-    wrappper.classList.add("active");
-    // if(target!=".mail-wrapper"){
-    //   uploadBtnContainer.classList.add("active");
-    // }
-  })
-})
-
 const descInputs =leftTableWrapper.querySelectorAll(".desc-input");
 const qtyInputs=leftTableWrapper.querySelectorAll(".qty-input");
+const uploadBtnContainer=leftWrapper.querySelector(".upload-btn-container");
 let products=[];
 let filteredProducts=[];
 async function getAllProducts() {
@@ -1150,7 +1238,7 @@ function handleProductItemClick(e){
       })
     }
   })
-
+  uploadBtn.classList.remove("not-active");
   descDropdown.classList.remove("active");
 }
 
@@ -1165,8 +1253,9 @@ function initProductSearch(){
 // let totalQuotes = [];
 // if(sessionStorage.getItem("searchedQuotes")){
 descDropdown.addEventListener("click",handleProductItemClick);
-
+const selectedFileWrapper=document.querySelector(".selected-file");
 const uploadBtn=uploadBtnContainer.querySelector(".upload-btn")
+const selectFileInput=document.querySelector(".select-file-input");
 uploadBtn.addEventListener('click',()=>{
   if(leftTableWrapper.classList.contains("active")){
     getSearchedProducts();
@@ -1174,7 +1263,17 @@ uploadBtn.addEventListener('click',()=>{
     approveQuoteBtn.classList.add("active")
     const addBtn=document.querySelector(".add-btn-container .add-btn");
   }
+  if(uploadWrapper.classList.contains('active')){
+    console.log(exCelData)
+    getCrtData(exCelData)
+    renderDisplayTable(newQuote)
+    selectFileInput.value="";
+    selectedFileWrapper.innerHTML="";
+    uploadBtn.classList.add("not-active")
+  }
 })
+
+
  
 function getSearchedProducts(){
   const newProducts=newQuote.products;
@@ -1196,9 +1295,10 @@ function getSearchedProducts(){
 
       p.requested_id = "ID" + newReqId;
       p.delId=getDelId();
-      newQuote.products.push(p);
+      newQuote.products.push(p);    
 
     });
+    
     updateQuoteTotals();
   }
 }

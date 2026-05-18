@@ -761,7 +761,7 @@ body{
                                width: clamp(40px,$fs-85px, $fs-85px);
                                padding-left:  clamp(10px,$fs-15px, $fs-15px);
                                 text-align: center;
-                                span{
+                                .undo-btn{
                                     width: 100%;
                                     display: inline-block;
                                     background-color: $blue-87;
@@ -769,14 +769,24 @@ body{
                                     cursor: pointer;
                                     border-radius: 5px;
                                 }
+                                
                             }
+                            .undo-btn{
+                                width: 100%;
+                                display: inline-block;
+                                background-color: $blue-87;
+                                color: rgba(255, 255, 255,0.9);
+                                cursor: pointer;
+                                border-radius: 5px;
+                            }
+                        
+
 
                         }
                         &:last-of-type td {
                             border-bottom: none;
                             padding-bottom: 0;
                          
-
                         }
                         
                     }
@@ -1541,6 +1551,8 @@ body{
                                         }
                                         &:nth-of-type(7){
                                             width: clamp(75px,$fs-110px, $fs-110px);
+                                            text-align: center;
+                                            padding-right: clamp(10px,$fs-38px, $fs-38px);
                                         }
                                         &:nth-of-type(8){
                                             width: clamp(100px,$fs-160px, $fs-160px);
@@ -1548,6 +1560,16 @@ body{
                                         }
                                         &:last-of-type {
                                             width: clamp(40px,$fs-70px, $fs-70px);
+                                            // padding-left:  clamp(10px,$fs-15px, $fs-15px);
+                                            text-align: center;
+                                            span{
+                                                width: 100%;
+                                                display: inline-block;
+                                                background-color: $blue-87;
+                                                color: rgba(255, 255, 255,0.9);
+                                                cursor: pointer;
+                                                border-radius: 5px;
+                                            }
                                         }
                                         
 
@@ -1557,6 +1579,11 @@ body{
                                         padding-bottom: 0;
                                     }
                                     
+                                }
+                                .not-found{
+                                    margin-top: clamp(11px, $fs-16px, $fs-16px);
+                                    font-size: clamp(10px, $fs-15px, $fs-15px);
+                                    text-align: center;
                                 }
                                 &::-webkit-scrollbar {
                                     width: 4px;
@@ -2157,7 +2184,8 @@ body{
                             }
                              &:last-of-type{
                                width: clamp(40px,$fs-70px, $fs-70px);
-                               padding-left:  clamp(10px,$fs-15px, $fs-15px)
+                               padding-inline: 5px;
+                               border-radius: 2px;
                             }
 
                         }
@@ -2190,70 +2218,61 @@ body{
 
 @media print{
     @page {
-        margin: 30px 30px 20px 10px;
+        margin:  0;
         size: A4;
     }
-    .dashboard-wrapper .dashboard-body-wrapper{
+    .dashboard-wrapper{
+        padding-right: 0;
+        padding: 20px 10px;
+        .dashboard-body-wrapper{
+            gap: 0;
         .quotes-container{
             width: 100%;
             .table-wrapper{
                 .quote-table{
-                     thead {
-                    display: table;
-                    width: 100%;
-                    table-layout: fixed;
-                    flex-shrink: 0;
+                    thead {
                     tr {
-                        
-                        border-bottom: 1px solid rgba(0,0,0,0.6);
                         th {
                             font-size: clamp(10px, $fs-15px, $fs-15px);
-                            color: $black-90;
-                            font-weight: 500;
-                            padding: clamp(8px, $fs-10px, $fs-10px) clamp(10px, $fs-15px, $fs-15px) clamp(8px, $fs-10px, $fs-10px) 0;
+                            padding: 8px 8px 8px 0;
                             text-align: left;
 
                             span {
 
-                                display: inline-flex;
-                                align-items: center;
-                                gap: clamp(7px, $fs-15px, $fs-15px);
-                                font-size: clamp(10px, $fs-15px, $fs-15px);
-                                color: $black-90;
-                                font-weight: 500;
-                                cursor: pointer;
+                                img{
+                                    width: 8px;
+                                }
                             }
 
                             &:first-of-type{
                                 width:  15px;
                             }
                             &:nth-of-type(2){
-                                width: 70px;
+                                width: 79px;
                             }
                             &:nth-of-type(3){
-                                width: 175px;
+                                width: 170px;
                             }
                             &:nth-of-type(4) {
                                 width: 110px;
                             }
                             &:nth-of-type(5){
-                                width: 100px;
+                                width: 115px;
                             }
                             &:nth-of-type(6){
                                 width: 70px;
                                 
                             }
                             &:nth-of-type(7){
-                                width: 70px;
+                                width: 60px;
                             }
                             &:nth-of-type(8){
-                                width: 80px;
-                                padding-right: 0;
+                                width: 70px;
                                 
                             }
                     
                             &:last-of-type{
-                               width: 40px;
+                               width: 50px;
                                
                             }
                         }
@@ -2265,95 +2284,67 @@ body{
                     tr{
                         td{
                             font-size: clamp(10px, $fs-14px, $fs-14px);
-                            padding:5px clamp(10px, $fs-15px, $fs-15px) 5px 0;
-                               
-                            &:first-of-type, &:last-of-type{
-                                img{
-                                    display: block;
-                                    width: $fs-16px;
-                                }
+                            padding:5px 10px 5px 0;
+                          
+                          &:first-of-type{
+                                width:  15px;
                             }
-                            &:last-of-type{
-                                a{
-                                    display: inline-flex;
-                                    justify-content: center;
-                                    align-items: center;
-                                }
-                            }
-                            &:first-of-type{
-                                width: $fs-32px;
-                            }
-
-                            a.quote-id-data{
-                                color: $blue-87;
-                                font-weight: 500;
+                            &:nth-of-type(2){
+                                width: 79px;
                             }
                             &:nth-of-type(3){
-                                width: $fs-250px;
+                                width: 170px;
+                                text-align: left;
                             }
                             &:nth-of-type(4) {
-                                width: $fs-160px;
+                                width: 110px;
+                                text-align: left;
                             }
                             &:nth-of-type(5){
-                                width: $fs-160px;
+                                width: 115px;
                             }
                             &:nth-of-type(6){
-                                width: clamp(70px,$fs-100px, $fs-100px);
-                                color: $red-33;
-                                text-transform: capitalize;
-                                &.approved{
-                                    color:$green-28;
-                                }
-                                &.pending{
-                                    color:$orange-29;
-                                }
-
+                                width: 70px;
+                                
                             }
                             &:nth-of-type(7){
-                                width: clamp(75px,$fs-100px, $fs-100px);
-                                padding-left: clamp(10px,$fs-15px, $fs-15px);
+                                width: 60px;
                             }
-                             &:nth-of-type(8){
-                               font-weight: 500;
-                               width: clamp(70px,$fs-90px, $fs-90px);
+                            &:nth-of-type(8){
+                                width: 70px;
+                                padding-right: 0;
+                                
                             }
+                    
                             &:last-of-type{
-                               width: clamp(40px,$fs-85px, $fs-85px);
-                               padding-left:  clamp(10px,$fs-15px, $fs-15px);
-                                text-align: center;
-                                span{
-                                    width: 100%;
-                                    display: inline-block;
-                                    background-color: $blue-87;
-                                    color: rgba(255, 255, 255,0.9);
-                                    cursor: pointer;
-                                    border-radius: 5px;
+                               width: 50px;
+                               span{
+                                    border-radius: 3px;
                                 }
+                               
                             }
 
                         }
                         &:last-of-type td {
                             border-bottom: none;
                             padding-bottom: 0;
-                         
 
                         }
                         
                     }
                     .not-found{
-                        text-align: center;
-                        padding-top: clamp(10px, $fs-20px, $fs-20px) ;
                         font-size: clamp(10px, $fs-15px, $fs-15px);
-                        margin-bottom: 0;
                     }
                     
-                }
+                    }
                 }
             }
         }
         .chart-wrapper {
-        display: none;
-    }
+            display: none;
+        }
 
     } 
+    } 
+  
 }

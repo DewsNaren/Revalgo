@@ -13,6 +13,11 @@ const addLineNoteInput=addLineNotePopup.querySelector(".add-line-note-input")
 const addQuoteNotePopup=document.querySelector(".add-quote-note-popup");
 const addQuoteNoteInput=addQuoteNotePopup.querySelector(".add-quote-note-input");
 const addQuoteNoteBtn=addQuoteNotePopup.querySelector(".add-btn");
+const imgUpdateBtn=imgPopup.querySelector(".update-btn");
+const selectAllWrapInput=imgPopup.querySelector(".select-all-input");
+const imgPopCount=imgPopup.querySelector(".title span");
+console.log(selectAllWrapInput)
+const selectImgInputs=imgPopup.querySelectorAll('.select-input')
 
 function renderSuggestPopup(products){
   const productsContainer = suggestPopup.querySelector(".products")
@@ -653,3 +658,129 @@ addQuoteNoteInput.addEventListener('input',()=>{
     addQuoteNoteBtn.classList.remove("active")
 })
 
+
+//select img-popup
+console.log(selectImgInputs)
+selectAllWrapInput.addEventListener("change",()=>{
+  if(selectAllWrapInput.checked){
+    selectImgInputs.forEach(inp=>inp.checked=true)
+    imgUpdateBtn.classList.remove('not-active');
+    imgPopCount.textContent=`12/12`
+  }
+  else  {
+    selectImgInputs.forEach(inp=>inp.checked=false)
+      imgUpdateBtn.classList.add('not-active');
+      imgPopCount.textContent=`0/12`
+  }
+})
+
+selectImgInputs.forEach(inp => {
+  inp.addEventListener('input', () => {
+    const checkedInputs = [...selectImgInputs].filter(inp => inp.checked);
+    imgPopCount.textContent=`${checkedInputs.length}/12`
+    if (checkedInputs.length > 7) {
+      imgUpdateBtn.classList.remove('not-active');
+    } else {
+      imgUpdateBtn.classList.add('not-active');
+    }
+
+  });
+
+});
+
+
+imgUpdateBtn.addEventListener('click', () => {
+
+  const delDateText = quickInfoWrapper.querySelector(".deleivery_date_text");
+
+  const billContainer = quickInfoWrapper.querySelector(".bill_to_text");
+
+  const shipContainer = quickInfoWrapper.querySelector(".ship_to_text");
+
+  const buyertext = quickInfoWrapper.querySelector(".buyer_text");
+
+  const checkedInputs = [];
+
+  [...imgPopup.querySelectorAll('.select-input')].forEach(inp => {
+
+    if (inp.checked) {
+
+      const textWrapper = inp.parentElement.querySelector(".text-wrapper");
+
+      const input = textWrapper.querySelector("input");
+
+      const textarea = textWrapper.querySelector("textarea");
+
+      if (input) checkedInputs.push(input);
+
+      if (textarea) checkedInputs.push(textarea);
+
+    }
+
+  });
+
+  console.log(checkedInputs);
+
+  checkedInputs.forEach(inp => {
+
+    if (inp.value !== "") {
+
+      // BUYER
+      if (inp.name === "buyer") {
+
+        buyertext.textContent = inp.value;
+
+      }
+
+      // SHIP TO
+      if (inp.name === "ship-via") {
+
+        let shipData = inp.value
+          .split("\n")
+          .map(item => item.trim())
+          .filter(item => item !== "");
+
+        console.log(shipData);
+
+        shipContainer.querySelector(".name").textContent = shipData[0] || "";
+
+        shipContainer.querySelector(".address").innerHTML =
+          `${shipData[1] || ""}<br>${shipData[2] || ""}`;
+
+      }
+
+      // BILL TO
+      if (inp.name === "bill_to_job") {
+
+        let billData = inp.value
+          .split("\n")
+          .map(item => item.trim())
+          .filter(item => item !== "");
+
+        console.log(billData);
+
+        billContainer.querySelector(".name").textContent = billData[0] || "";
+
+        billContainer.querySelector(".address").innerHTML =
+          `${billData[1] || ""}<br>${billData[2] || ""}`;
+
+      }
+
+      if (inp.name === "deleivery-date") {
+        const minDate = new Date(2025, 4, 1);   
+        const maxDate = new Date(2026, 3, 30);  
+     
+        const [day, month, year] = inputValue.split("/");
+
+      const selectedDate = new Date(year, month - 1, day);
+
+      if (selectedDate >= minDate && selectedDate <= maxDate) {
+        delDateText.textContent = inp.value.replaceAll("/", "-");
+      }
+
+    }
+  }
+
+  });
+
+});

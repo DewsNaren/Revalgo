@@ -884,6 +884,11 @@
                             cursor: pointer;
                             background-color: $blue-87;
                             color: $white;
+
+                            &.not-active{
+                                opacity: 0.5;
+                                pointer-events: none;
+                            }
                         }
                         &.active{
                             display: block;
@@ -933,11 +938,12 @@
                         padding: clamp(4px, $fs-7px, $fs-7px);
                         padding-left:clamp(10px, $fs-20px, $fs-20px);
                         display: grid;
-                        grid-template-columns:     
+                        grid-template-columns:  
+                        clamp(15px, $fs-30px, $fs-30px)    
                         max-content
                         clamp(22px, $fs-50px, $fs-50px)  
                         clamp(32px, $fs-75px, $fs-75px)
-                        42%
+                        40%
                         max-content
                         clamp(32px, $fs-115px, $fs-115px) 
                         clamp(25px, $fs-110px, $fs-110px)    
@@ -954,7 +960,7 @@
                             text-align: right;
                             
                             
-                            &:nth-of-type(1){
+                            &:nth-of-type(2){
                                 padding-right:  clamp(10px, $fs-20px, $fs-20px);
 
                                 input{
@@ -964,36 +970,36 @@
                                     accent-color: $blue-87;
                                 }
                             }
-                            &:nth-of-type(2){
+                            &:nth-of-type(3){
                                 padding-right:  clamp(10px, $fs-25px, $fs-25px);
                             }
-                            &:nth-of-type(3){
+                            &:nth-of-type(4){
                               color: $blue-87;
                             }
-                            &:nth-of-type(4){
+                            &:nth-of-type(5){
                                 padding-inline: clamp(10px, $fs-40px, $fs-40px);
                                 text-align: left;
                                 span{
                                     color: $blue-87;
                                 }
                             }
-                            &:nth-of-type(5), &:nth-of-type(7),&:nth-of-type(8){
+                            &:nth-of-type(6), &:nth-of-type(8),&:nth-of-type(9){
                             padding-right:  clamp(10px, $fs-50px, $fs-50px);
                             }
-                            &:nth-of-type(6){
+                            &:nth-of-type(7){
                                 padding-right:  clamp(10px, $fs-40px, $fs-40px);
                             }
-                            &:nth-of-type(8),  &:nth-of-type(7){
+                            &:nth-of-type(9),  &:nth-of-type(8){
                                 color: $blue-87;
 
                             }
-                            &:nth-of-type(9){
+                            &:nth-of-type(10){
                                 padding-right:  clamp(10px, $fs-60px, $fs-60px);
                             }
-                            &:nth-of-type(10){
+                            &:nth-of-type(11){
                                 padding-left:  clamp(5px, $fs-10px, $fs-10px);
                             }
-                            &:nth-of-type(11){
+                            &:nth-of-type(12){
                                 padding-left:  clamp(5px, $fs-10px, $fs-10px);
                                 button{
                                     background-color: transparent;
@@ -1029,11 +1035,11 @@
                             display: grid;
                             padding-left:clamp(10px, $fs-20px, $fs-20px);
                             grid-template-columns: 
-                            // clamp(15px, $fs-45px, $fs-45px)    
+                            clamp(15px, $fs-30px, $fs-30px)   
                             max-content
                             clamp(22px, $fs-50px, $fs-50px)  
                             clamp(32px, $fs-75px, $fs-75px)
-                            42%
+                            40%
                             clamp(15px, $fs-70px, $fs-70px)
                             clamp(32px, $fs-115px, $fs-115px) 
                             clamp(25px, $fs-100px, $fs-100px)    
@@ -1064,8 +1070,15 @@
                                 &.del-id{
                                     display: none;
                                 }
-                                
-                                &:nth-of-type(4){
+                                &:nth-of-type(1){
+                                    text-align: center;
+                                    img{
+                                        width:  clamp(10px, $fs-16px, $fs-16px);
+                                        cursor: pointer;
+                                    }
+
+                                }
+                                &:nth-of-type(5){
                                     padding-inline: clamp(10px, $fs-40px, $fs-40px);
                                     padding-right: 0;
                                     text-align: left;
@@ -1202,7 +1215,7 @@
                                        margin-left:clamp(23px, $fs-35px, $fs-35px);
                                     }
                                 }
-                                &:nth-of-type(1){
+                                &:nth-of-type(2){
                                     padding-right:  clamp(10px, $fs-20px, $fs-20px);
                                     
                                     input{
@@ -1215,10 +1228,10 @@
                                         }
                                     }
                                 }
-                                &:nth-of-type(2){
+                                &:nth-of-type(3){
                                     padding-right:  clamp(10px, $fs-25px, $fs-25px);
                                 }
-                                &:nth-of-type(3){
+                                &:nth-of-type(4){
                                     color: $blue-87;
                                     
                                     input{
@@ -1226,11 +1239,11 @@
                                     }
                                    
                                 }
-                                &:nth-of-type(6){
+                                &:nth-of-type(7){
                                     padding-right:  clamp(10px, $fs-30px, $fs-30px);
                                     text-align: right;
                                 }
-                                &:nth-of-type(7){
+                                &:nth-of-type(8){
                                     text-align: right;
                                     padding-right:  clamp(10px, $fs-30px, $fs-30px);
                                      
@@ -1245,7 +1258,7 @@
                                     }
                                      
                                 }
-                                &:nth-of-type(8){
+                                &:nth-of-type(9){
                                     padding-right:  clamp(10px, $fs-30px, $fs-30px);
                                     span{
                                         width: 50%;
@@ -1258,22 +1271,22 @@
                                     }
                                 }
 
-                                &:nth-of-type(5){
-                                    padding-right:  clamp(10px, $fs-30px, $fs-30px);
-                                    text-align: right;
-                                }
-                                &:nth-of-type(9){
+                                &:nth-of-type(6){
                                     padding-right:  clamp(10px, $fs-30px, $fs-30px);
                                     text-align: right;
                                 }
                                 &:nth-of-type(10){
+                                    padding-right:  clamp(10px, $fs-30px, $fs-30px);
+                                    text-align: right;
+                                }
+                                &:nth-of-type(11){
                                     text-align: right;
                                     padding-left:  clamp(5px, $fs-10px, $fs-10px);
                                     color: $black;
                                     font-weight: 500;
                             
                                 }
-                                &:nth-of-type(11){
+                                &:nth-of-type(12){
                                     button{
                                         background-color: transparent;
                                         border: none;
@@ -1318,7 +1331,7 @@
                             }
                             &:hover{
                                 background-color: $blue-2ff;
-                                p:nth-of-type(11) button,.add-line-note-btn{
+                                p:nth-of-type(12) button,.add-line-note-btn{
                                     visibility: visible;
                                 }
                             }
@@ -1326,7 +1339,7 @@
                                 background-color: $grey-f15;
                                 
                                
-                                p:not(:nth-of-type(11)),.add-line-note-btn{
+                                p:not(:nth-of-type(12)),.add-line-note-btn{
                                     pointer-events: none;
                                     opacity: 0.5;
                                 }
@@ -1491,8 +1504,9 @@
 
                 &.maximize{
                     .header-wrapper{
-                        padding-left:clamp(12px, $fs-28px, $fs-28px);
+                        // padding-left:clamp(12px, $fs-28px, $fs-28px);
                         grid-template-columns:     
+                        clamp(15px, $fs-45px, $fs-45px) 
                         max-content
                         clamp(35px, $fs-75px, $fs-75px)  
                         clamp(32px, $fs-75px, $fs-75px)
@@ -1505,25 +1519,25 @@
                         clamp(25px, $fs-60px, $fs-60px) 
                         clamp(10px, $fs-51px, $fs-51px);
                         div{
-                            &:nth-of-type(1){
+                            &:nth-of-type(2){
                                 padding-right:  clamp(10px, $fs-35px, $fs-35px);
                             }
-                            &:nth-of-type(2){
+                            &:nth-of-type(3){
                                 padding-right:  clamp(10px, $fs-50px, $fs-50px);
                             }
-                            &:nth-of-type(4){
+                            &:nth-of-type(5){
                                 padding-inline: clamp(40px, $fs-80px, $fs-80px);
                             }
-                            &:nth-of-type(6){
+                            &:nth-of-type(7){
                                 padding-right:  clamp(10px, $fs-50px, $fs-50px);
                             }
-                            &:nth-of-type(7){
+                            &:nth-of-type(8){
                                 padding-right:  clamp(10px, $fs-65px, $fs-65px);
                             }
-                            &:nth-of-type(8){
+                            &:nth-of-type(9){
                                 padding-right:  clamp(10px, $fs-80px, $fs-80px);
                             }
-                            &:nth-of-type(9){
+                            &:nth-of-type(10){
                                 padding-right:  clamp(10px, $fs-80px, $fs-80px);
                             }
 
@@ -1531,8 +1545,9 @@
                     }
                     .body-wrapper{
                         .table-row{
-                            padding-left:clamp(12px, $fs-28px, $fs-28px);
-                            grid-template-columns:     
+                            // padding-left:clamp(12px, $fs-28px, $fs-28px);
+                            grid-template-columns: 
+                            clamp(15px, $fs-45px, $fs-45px)    
                             max-content
                             clamp(35px, $fs-75px, $fs-75px)  
                             clamp(32px, $fs-75px, $fs-75px)
@@ -1545,31 +1560,31 @@
                             clamp(25px, $fs-100px, $fs-100px) 
                             clamp(10px, $fs-39px, $fs-39px);
                             p{
-                                &:nth-of-type(1){
+                                &:nth-of-type(2){
                                     padding-right:  clamp(10px, $fs-35px, $fs-35px);
                                 }
-                                &:nth-of-type(2){
+                                &:nth-of-type(3){
                                     padding-right:  clamp(10px, $fs-50px, $fs-50px);
-                                }
-                                &:nth-of-type(4){
-                                    padding-inline: clamp(40px, $fs-80px, $fs-80px);
                                 }
                                 &:nth-of-type(5){
-                                  text-align: center;
+                                    padding-inline: clamp(40px, $fs-80px, $fs-80px);
                                 }
                                 &:nth-of-type(6){
-                                    padding-right:  clamp(10px, $fs-50px, $fs-50px);
+                                  text-align: center;
                                 }
                                 &:nth-of-type(7){
+                                    padding-right:  clamp(10px, $fs-50px, $fs-50px);
+                                }
+                                &:nth-of-type(8){
                                     padding-right:  clamp(10px, $fs-65px, $fs-65px);
                                 }
                                 &:nth-of-type(8){
                                     padding-right:  clamp(10px, $fs-80px, $fs-80px);
                                 }
-                                &:nth-of-type(9){
+                                &:nth-of-type(10){
                                     padding-right:  clamp(10px, $fs-50px, $fs-50px);
                                 }
-                                &:nth-of-type(10){
+                                &:nth-of-type(11){
                                     padding-right:  clamp(5px, $fs-10px, $fs-10px);
                                     padding-left: 0;
                                     text-align: right;
@@ -1585,7 +1600,7 @@
                     // flex-basis: calc(100% - clamp(20px, $fs-40px, $fs-40px));
                     width: auto;
                     .display-table{
-                        width: 150%;
+                        width: 155%;
                     }
                     &::-webkit-scrollbar {
                         height: 4px;

@@ -455,7 +455,7 @@ let filteredData = [];
 
 const selectAllChipsBtn=document.querySelector(".select-all-btn");
 const clearAllChipsBtn=document.querySelector(".clear-all-chips-btn");
-const filterChipBtns=document.querySelectorAll(".filter-chip-btn");
+// const filterChipBtns=document.querySelectorAll(".filter-chip-btn");
 const clearAllStatusBtn=document.querySelector(".clear-all-stats-btn");
 
 const statusContainer=document.querySelector(".status-container");
@@ -478,6 +478,7 @@ if(sessionStorage.getItem("searchedQuotes")){
   renderFilterTable(currentPage)
   changeNameFilters(filteredData)
   changeModes(filteredData)
+  changeFilterChip(filteredData)
 }
 
 //render quotes into table
@@ -611,26 +612,32 @@ function applyFilters() {
 
 
 selectAllChipsBtn.addEventListener('click',()=>{
+  const filterChipBtns=document.querySelectorAll(".filter-chip-btn");
   filterChipBtns.forEach(btn=>btn.classList.add("active"))
   changeStatusChips();
 })
 
 clearAllChipsBtn.addEventListener('click',()=>{
+    const filterChipBtns=document.querySelectorAll(".filter-chip-btn");
   filterChipBtns.forEach(btn=>btn.classList.remove("active"));
   changeStatusChips();
 })
 
-filterChipBtns.forEach(btn =>{
-  btn.addEventListener('click',()=>{
-    btn.classList.toggle("active");
-    changeStatusChips();
-  })
-})
+function enableFilterChipClick(filterChipBtns){
 
+  filterChipBtns.forEach(btn =>{
+    btn.addEventListener('click',()=>{
+      btn.classList.toggle("active");
+      changeStatusChips();
+    })
+  })
+
+}
 
 
 
 function changeStatusChips() {
+  const filterChipBtns=document.querySelectorAll(".filter-chip-btn");
   selectedStatus=[...filterChipBtns].filter(btn =>btn.classList.contains("active")) .map(btn => btn.textContent.trim().toLowerCase());
   const  selectedStatChips = selectedStatus.map(stat => ({
     type: "status",
@@ -867,7 +874,7 @@ function changeNameFilters(filData) {
 
   if (totalNames.length > 5) {
     custMoreLink.textContent = `See More`;
-
+    custMoreLink.classList.remove('not-active');
     custMoreLink.onclick = (e) => {
       e.preventDefault();
       const hiddenBrands = customerFilterWrapper.querySelectorAll(".hidden");
@@ -881,6 +888,9 @@ function changeNameFilters(filData) {
         custMoreLink.textContent = `See More`;
       }
     };
+  }
+  else{
+    custMoreLink.classList.add('not-active');
   }
 
   const customCheckBoxInputs=document.querySelectorAll(".customer-filter input[type='checkbox']");
@@ -916,7 +926,6 @@ function changeModes(filData){
   const modeFilterContainer=document.querySelector(".mode-filter-container");
   const totalModes = [...new Set(filData.map((p) => p.mode))];
   
-
   modeFilterContainer.innerHTML = "";
 
   totalModes.forEach((mode, index) => {
@@ -937,6 +946,22 @@ function changeModes(filData){
       });
     });
   }
+}
+
+function changeFilterChip(filData){
+  const filterChipContainer=document.querySelector(".filter-chip-container");
+  const stats=[...new Set(filData.map(p=>p.status))]
+  stats.sort();
+  filterChipContainer.innerHTML="";
+  stats.forEach(s=>{
+    filterChipContainer.innerHTML+=`
+    <button type="button" class="filter-chip filter-chip-btn">${s}</button>
+  `
+  })
+
+  enableFilterChipClick(document.querySelectorAll(".filter-chip-btn"))
+  
+
 }
 
 function handleModeFilter() {
