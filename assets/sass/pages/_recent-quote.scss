@@ -695,7 +695,8 @@ body{
                                         margin-bottom: clamp(5px, $fs-25px, $fs-25px);
                                         position: relative;
                                         span{
-                                            // position: relative;
+                                            cursor: pointer;
+                                            position: relative;
                                             .acronym-dropdown{
                                                 position: absolute;
                                                 bottom: 100%;
@@ -1254,25 +1255,6 @@ body{
 
                     
 
-                            &.drag-enabled{
-                            cursor:grabbing;
-                            }
-
-                            &.dragging{
-
-                            opacity:1;
-
-                            background:#fff;
-
-                            box-shadow:0 10px 25px rgba(0,0,0,.15);
-
-                            z-index:1000;
-
-                            position:relative;
-
-                            transition:.2s;
-                            }
-
                        
                         }
                         .sourcing-dropdown{
@@ -1383,7 +1365,12 @@ body{
                                 display: flex;
                             }
                         }
-                        
+                        // .drag-placeholder{
+                        //         border: 2px dashed #3f8cff;
+                        //         background: rgba(63,140,255,.08);
+                        //         margin: 2px 0;
+                        //         border-radius: 4px;
+                        //     }
                         .add-btn-container{
                             position: fixed;
                             // display: flex;
@@ -1580,7 +1567,29 @@ body{
   }
 
 }
+.row-group{
 
+    transition:
+    transform .18s ease,
+    background-color .18s ease;
+
+}
+
+.row-group.dragging{
+
+    opacity: 1;
+
+    background: #fff;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,.15);
+
+    transform: scale(1);
+
+    z-index: 1000;
+
+    position: relative;
+
+}
 .popup-overlay{
     position: fixed;
     z-index: 5;
@@ -2057,22 +2066,9 @@ body{
             
         }
         .body{
-            .edit-acronym{
+            .acronym-text{
                 margin-bottom: clamp(13px, $fs-25px, $fs-25px);
-                input{
-                    border: none;
-                    outline: none;
-                    font-size: clamp(13px, $fs-19px, $fs-19px);
-                }
-                .edit-btn{
-                    border: none;
-                    background-color: transparent;
-                    img{
-                        display: block;
-                        width: clamp(8px, $fs-12px, $fs-12px);
-                    }
-                }
-                    
+                font-size: clamp(13px, $fs-19px, $fs-19px);  
             }
 
             .add-acronym-input{

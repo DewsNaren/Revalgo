@@ -30,9 +30,6 @@ async function initializeQuotes() {
 
 initializeQuotes();
 
-// if(sessionStorage.getItem("quotes")){
-
-// }
 
 
 
@@ -825,8 +822,6 @@ overlay.addEventListener("click", (e) => {
 
 
 //table
-
-
 const quoteTable=document.querySelector(".quote-table");
 
 function  getPrice(price){
@@ -916,6 +911,7 @@ function tableClickHandler(quoteTable){
   
 }
 
+//undo btn function
 function undoQuoteStatus(id){
   undoYesBtn.addEventListener('click',()=>{
     quotes.forEach(q => {
@@ -934,9 +930,6 @@ function undoQuoteStatus(id){
 
 
     });
-    
-    // console.log(chg)
-    
   })
 }
 
@@ -949,6 +942,7 @@ undoNoBtn.addEventListener('click',()=>{
   closeUndoModal();
 })
 
+//update counts form data 
 function renderQuoteCounts(data){
   const approveCounts=document.querySelectorAll(".apprv-count");
   const pendCounts=document.querySelectorAll(".pend-count");
@@ -1014,6 +1008,7 @@ tableBtns.forEach(btn=>{
 })
 
 
+//filter function
 const filterBtn=quotesContainer.querySelector(".filter-text");
 
 const filterDropdown=document.querySelector(".filter-dropdown");
@@ -1942,6 +1937,7 @@ function filterQuoteByStatus(filteredQuote){
     return monthData;
 }
 
+//export function
 const exportBtn = document.querySelector(".export-btn");
 exportBtn.addEventListener('click', () => {
   window.print();

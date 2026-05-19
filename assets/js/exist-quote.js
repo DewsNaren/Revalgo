@@ -20,8 +20,10 @@ const addPopup=document.querySelector(".add-popup");
 const addTable=addPopup.querySelector(".add-table");
 const addLineBtns=addTable.querySelectorAll(".add-line-btn");
 const canceladdpopupBtn=addPopup.querySelector(".cancel-btn");
-const delQuoteBtn=document.querySelector(".del-quote-btn");
+// const delQuoteBtn=document.querySelector(".del-quote-btn");
 const undoQuoteBtn =document.querySelector(".undo-quote-btn");
+
+//set height for main wrapper
 function setexistQuoteWrapperHeight(){
   const headerHeight=header.getBoundingClientRect().height;
   existQuoteWrapper.style.height=`calc(100vh - ${headerHeight}px)`;
@@ -249,25 +251,59 @@ function openDatepicker(trigger, datePicker) {
 
   const rect = trigger.getBoundingClientRect();
 
-  document.querySelectorAll(".datepicker").forEach(dp => dp.classList.remove("active"));
+  document.querySelectorAll(".datepicker").forEach(dp => {
+    dp.classList.remove("active");
+  });
 
-  datePicker.style.position = "fixed";
-  datePicker.style.top = rect.bottom + 5 + "px";
-  datePicker.style.left = rect.left + "px";
-  datePicker.style.zIndex = "9999";
-
-  const pickerWidth = datePicker.offsetWidth || 300;
-  const viewportWidth = window.innerWidth;
-
-  if (rect.left + pickerWidth > viewportWidth) {
-    datePicker.style.left = (viewportWidth - pickerWidth - 10) + "px";
-  }
 
   datePicker.classList.add("active");
 
-  datePicker._trigger = trigger;
-}
+  requestAnimationFrame(() => {
 
+    const pickerWidth = datePicker.offsetWidth || 300;
+    const pickerHeight = datePicker.offsetHeight || 350;
+
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+
+    // Horizontal
+    let left = rect.left;
+
+    if (left + pickerWidth > viewportWidth) {
+      left = viewportWidth - pickerWidth - 10;
+    }
+
+    if (left < 10) {
+      left = 10;
+    }
+
+    // Vertical
+    const spaceBelow = viewportHeight - rect.bottom;
+    const spaceAbove = rect.top;
+
+    let top;
+
+    // OPEN ABOVE
+    if (spaceBelow < pickerHeight && spaceAbove > pickerHeight) {
+
+      top = rect.top - pickerHeight - 5;
+
+    } else {
+
+      top = rect.bottom + 5;
+
+    }
+
+    datePicker.style.left = `${left}px`;
+    datePicker.style.top = `${top}px`;
+
+    datePicker.style.visibility = "visible";
+
+    datePicker._trigger = trigger;
+
+  });
+
+}
 
 //open datepicker on click
 dateTexts.forEach(dateText => {
@@ -391,6 +427,7 @@ document.addEventListener("click", (e) => {
 });
 
 function handleScroll() {
+
   const activePicker = document.querySelector(".datepicker.active");
   if (!activePicker) return;
 
@@ -399,8 +436,34 @@ function handleScroll() {
 
   const rect = trigger.getBoundingClientRect();
 
-  activePicker.style.top = rect.bottom + 5 + "px";
-  activePicker.style.left = rect.left + "px";
+  const pickerWidth = activePicker.offsetWidth || 300;
+  const pickerHeight = activePicker.offsetHeight || 350;
+
+  const viewportWidth = window.innerWidth;
+  const viewportHeight = window.innerHeight;
+
+  
+  let left = rect.left;
+
+  if (left + pickerWidth > viewportWidth) {
+    left = viewportWidth - pickerWidth - 10;
+  }
+
+  
+  const spaceBelow = viewportHeight - rect.bottom;
+  const spaceAbove = rect.top;
+
+  let top;
+
+ 
+  if (spaceBelow < pickerHeight && spaceAbove > pickerHeight) {
+    top = rect.top - pickerHeight - 5;
+  } else {
+    top = rect.bottom + 5;
+  }
+
+  activePicker.style.left = `${left}px`;
+  activePicker.style.top = `${top}px`;
 }
 
 window.addEventListener("resize", handleScroll);
@@ -512,9 +575,6 @@ function applyFilters() {
 }
 
 //status filter function
-
-
-
 selectAllChipsBtn.addEventListener('click',()=>{
   const filterChipBtns=document.querySelectorAll(".filter-chip-btn");
   filterChipBtns.forEach(btn=>btn.classList.add("active"))
@@ -600,6 +660,7 @@ function searchNames() {
   changeNameFilters(filteredNameQuotes)
 
 }
+
 
 function changeFilterChip(filData){
   const filterChipContainer=document.querySelector(".filter-chip-container");
@@ -812,34 +873,6 @@ popupOverlay.addEventListener("click", (e) => {
   }
 });
 
-// function closeModal(){
-//   popupOverlay.classList.remove("active");
-//   popups.forEach(pop=>pop.classList.remove("active"));
-//   if(formPopup.classList.contains("active")){
-//     updateForm.reset();
-//     dateText.textContent="dd-mm-yyyy";
-//     errs.forEach(err=>err.classList.remove("active"));
-//     formPopup.classList.remove("active");
-//   }
-//   if(addPopup.classList.contains("active")){
-//     const rows=addPopup.querySelectorAll(".body-wrapper .table-row");
-//     rows.forEach((row, index) => {
-
-//       if(index !== 0){
-//         row.remove();
-//       }
-//     })
-//   }
-//    if(expandModal.classList.contains("active")){
-//     const suggestSource=modalContent.querySelector(".suggest-product-popup");
-//     const body=document.body
-//     console.log("fdjd")
-//     if(suggestSource){
-//       body.appendChild(suggestSource)
-//     }
-//   }
-
-// }
 
 //get products
 let selectedQuote;
@@ -854,7 +887,7 @@ function getProducts(event){
 }
 
 
-
+//open selected quote
 function openSelectedPopup(clickedId,q){
   popupOverlay.classList.add("active");
   selectedItemPopup.classList.add("active");
@@ -903,13 +936,14 @@ function selectAllItems(){
 }
 
 
-
 cancelSelectedBtn.addEventListener('click',()=>{
   closeModal();
   selectedTableCheckInputs.forEach(inp=>inp.checked=false);
 })
 
 let selectedProdId=[]
+
+//input checked function for selected quote
 function clickCheckInput(tBody){
   const checkInputs=tBody.querySelectorAll("tr td input[type='checkbox']");
   checkInputs.forEach(inp=>{
@@ -974,14 +1008,14 @@ importBtn.addEventListener('click',()=>{
 
 function updatenewQuoteId(newQuote){
   CreateBtn.querySelector("span").textContent=`#${newQuote.id}`
-  delQuoteBtn.classList.add('active')
+  // delQuoteBtn.classList.add('active')
 }
 
-delQuoteBtn.addEventListener('click',()=>{
-  quoteOrderWrapper.classList.add("not-active")
-  undoQuoteBtn.classList.add("active")
-  delQuoteBtn.classList.remove("active")
-})
+// delQuoteBtn.addEventListener('click',()=>{
+//   quoteOrderWrapper.classList.add("not-active")
+//   undoQuoteBtn.classList.add("active")
+//   delQuoteBtn.classList.remove("active")
+// })
 
 //render quote data
 const CreateBtn=document.querySelector(".back-create-btn");
@@ -989,7 +1023,6 @@ const oldQuoteText=document.querySelector(".old-quote-id");
 const quickInfoWrapper=quoteOrderWrapper.querySelector(".quick-info-wrapper");
 const displayTable=quoteOrderWrapper.querySelector(".display-table");
 const disTableBodyWrapper=displayTable.querySelector(".body-wrapper");
-// const expandBtns=document.querySelectorAll(".expand-btn");
 const closeBtn = document.querySelector(".close-modal-btn");
 
 function renderQuickInfo(newQuote){
@@ -1088,6 +1121,7 @@ updateBtn.addEventListener('click',()=>{
   
 })
 
+//validate update form 
 function validateUpdateForm(container){
 
   const inpFields = container.querySelectorAll("input, textarea");
@@ -1124,6 +1158,7 @@ function validateUpdateForm(container){
 
 }
 
+//update changed form  data in ui
 let nameInp = "";
 let addrInp = "";
 function changeQuickInfo(inp,con){
@@ -1164,12 +1199,10 @@ function changeQuickInfo(inp,con){
 
     }
   })
-  // closeModal()
-  
 }
 
+//input listeners to the update form inputs
 formContainers.forEach(container => {
-
   const inpFields = container.querySelectorAll("input, textarea");
 
   const errEl = container.querySelector(".error");
@@ -1202,7 +1235,7 @@ function renderDisplayTable(newQuote){
   const products=newQuote.products;
 
   products.forEach((p,i)=>{
-    bodyWrapper.innerHTML+=`
+    bodyWrapper.innerHTML+=`<div class="row-group" draggable="true">
     <div class="${p.isDeleted==true?"table-row not-active":"table-row"}">
       <p><img src="./assets/images/global/drag-menu.png" alt="drag menu" class="drag-handle"   data-index="${i}"  ></p>
       <p><input type="checkbox" class="check-line-input" onclick=enableDeleteAllBtn()></p>
@@ -1237,7 +1270,7 @@ function renderDisplayTable(newQuote){
         <button type="button" class="undo-line-btn" onclick=undoRow(event)> <img src="./assets/images/dashboard/Undo_icon.png" alt="undo"></button>
       </p>
       <p class="bottom-line"><img src="./assets/images/create_quote/line_add icon.png" alt="add icon" ><span class="line"></span></p>
-      <button class="add-line-note-btn" onclick="openLineNotePopup(event)"><img src="./assets/images/create_quote/add note_grey bg.png" class="img-grey active" alt="add note grey"> <img src="./assets/images/create_quote/add note icon_blue.png" class="img-blue " alt="add note blue "></button>
+      <button class="add-line-note-btn" onclick="openLineNotePopup(event)"><img src="./assets/images/create_quote/add note_grey bg.png" class="${p.lineNote?"img-grey ":"img-grey active"}" alt="add note grey"> <img src="./assets/images/create_quote/add note icon_blue.png" class="${p.lineNote?"img-blue active":"img-blue"}" alt="add note blue "></button>
       <p class="del-id">${p.delId}</p>
       </div>
       <div class="${p.isSourcing==true?"sourcing-dropdown active":"sourcing-dropdown"}">
@@ -1270,6 +1303,7 @@ function renderDisplayTable(newQuote){
         </div>
       </div>
     </div>
+    </div>
     `;
   })
   bodyWrapper.innerHTML+=`<div class="add-btn-container left">
@@ -1282,7 +1316,7 @@ function renderDisplayTable(newQuote){
   enableDrag(displayTable.querySelector(".body-wrapper"));
 }
 
-
+//click function
 function clickTable(bodyWrap){
 
   const rows =bodyWrap.querySelectorAll(".table-row");
@@ -1405,40 +1439,37 @@ function allowNumbers(inp){
 
 function enableDrag(bodyWrap) {
 
-  const rows = bodyWrap.querySelectorAll(".table-row");
+  const groups = bodyWrap.querySelectorAll(".row-group");
 
-  let draggedRow = null;
+  let draggedGroup = null;
 
   let canDrag = false;
 
 
-  rows.forEach(row => {
+  groups.forEach(group => {
+
+    const row = group.querySelector(".table-row");
 
     const handle = row.querySelector(".drag-handle");
 
 
-    // ENABLE DRAG ONLY FROM HANDLE
+    group.draggable = true;
+
+
     handle.addEventListener("mousedown", () => {
 
       canDrag = true;
 
-      row.classList.add("drag-enabled");
-
     });
 
 
-    // STOP DRAG AFTER RELEASE
     document.addEventListener("mouseup", () => {
 
       canDrag = false;
 
-      row.classList.remove("drag-enabled");
-
     });
 
-
-    // START DRAG
-    row.addEventListener("dragstart", e => {
+    group.addEventListener("dragstart", e => {
 
       if (!canDrag) {
 
@@ -1448,144 +1479,64 @@ function enableDrag(bodyWrap) {
 
       }
 
-      draggedRow = row;
+      draggedGroup = group;
 
-      setTimeout(() => {
+      requestAnimationFrame(() => {
 
-        row.classList.add("dragging");
+        group.classList.add("dragging");
 
-      }, 0);
+      });
 
     });
 
 
-    // END DRAG
-    row.addEventListener("dragend", () => {
 
-      row.classList.remove("dragging");
+    group.addEventListener("dragend", () => {
 
-      row.classList.remove("drag-enabled");
+      group.classList.remove("dragging");
 
-      draggedRow = null;
-
-      canDrag = false;
-
-
-      // REMOVE TARGET HIGHLIGHTS
-      bodyWrap.querySelectorAll(".drop-target")
-      .forEach(r => r.classList.remove("drop-target"));
-
+      draggedGroup = null;
 
       updateLineNumbers(bodyWrap);
 
     });
 
 
-    // ALLOW DROP
-    row.addEventListener("dragover", e => {
+
+    group.addEventListener("dragover", e => {
 
       e.preventDefault();
 
-    });
+      if (!draggedGroup || draggedGroup === group) return;
 
 
-    // TARGET HIGHLIGHT
-    row.addEventListener("dragenter", () => {
+      const rect = group.getBoundingClientRect();
 
-      if (!draggedRow || draggedRow === row) return;
-
-      bodyWrap.querySelectorAll(".drop-target")
-      .forEach(r => r.classList.remove("drop-target"));
-
-      row.classList.add("drop-target");
-
-    });
+      const offset = e.clientY - rect.top;
 
 
-    // REMOVE TARGET
-    row.addEventListener("dragleave", () => {
+      if (offset < rect.height / 2) {
 
-      row.classList.remove("drop-target");
-
-    });
-
-
-    // DROP
-    row.addEventListener("drop", e => {
-
-      e.preventDefault();
-
-      row.classList.remove("drop-target");
-
-      if (!draggedRow || draggedRow === row) return;
-
-
-      // DRAGGED ELEMENTS
-      const draggedDropdown = draggedRow.nextElementSibling;
-
-
-      // TARGET ELEMENTS
-      const targetRow = row;
-
-      const targetDropdown = targetRow.nextElementSibling;
-
-
-      // PLACEHOLDER
-      const placeholder = document.createElement("div");
-
-
-      // INSERT PLACEHOLDER AFTER TARGET GROUP
-      if (
-        targetDropdown &&
-        targetDropdown.classList.contains("sourcing-dropdown")
-      ) {
-
-        targetDropdown.after(placeholder);
-
-      } else {
-
-        targetRow.after(placeholder);
+        bodyWrap.insertBefore(draggedGroup, group);
 
       }
 
 
-      // MOVE TARGET GROUP TO DRAGGED POSITION
-      draggedRow.before(targetRow);
+      else {
 
-      if (
-        targetDropdown &&
-        targetDropdown.classList.contains("sourcing-dropdown")
-      ) {
-
-        targetRow.after(targetDropdown);
+        bodyWrap.insertBefore(
+          draggedGroup,
+          group.nextSibling
+        );
 
       }
-
-
-      // MOVE DRAGGED GROUP TO TARGET POSITION
-      placeholder.before(draggedRow);
-
-      if (
-        draggedDropdown &&
-        draggedDropdown.classList.contains("sourcing-dropdown")
-      ) {
-
-        draggedRow.after(draggedDropdown);
-
-      }
-
-
-      // REMOVE PLACEHOLDER
-      placeholder.remove();
-
-
-      updateLineNumbers(bodyWrap);
 
     });
 
   });
 
 }
+
 
 function updateLineNumbers() {
    const tableRows = displayTable.querySelectorAll(".body-wrapper .table-row");
@@ -1598,6 +1549,7 @@ function updateLineNumbers() {
 
 }
 
+//check if it is deleted line
 function checkDeleted(bodyWrap){
   const rows=bodyWrap.querySelectorAll(".table-row");
   rows.forEach(row=>{
@@ -1655,7 +1607,7 @@ async function initProducts() {
 
 
 
-
+//desc input function
 const descDropdown=leftTableWrapper.querySelector(".desc-dropdown");
 const descList =descDropdown.querySelector(".desc-list");
 let currentDescInput = null;
@@ -1710,6 +1662,8 @@ function searchProducts(inp) {
   });
 
 }
+
+//li click function
 function handleProductItemClick(e){
   const li = e.target.closest("li");
 
@@ -1725,6 +1679,7 @@ function handleProductItemClick(e){
       products.forEach(p=>{
         if(p.desc.includes(val))
           searchedProduct.push(p)
+        uploadBtn.classList.remove("not-active")
       })
     }
   })
@@ -1764,7 +1719,7 @@ uploadBtn.addEventListener('click',()=>{
     uploadBtn.classList.add("not-active");
   }
 })
- 
+
 function getSearchedProducts(){
   const newProducts=newQuote.products;
   if(searchedProduct.length >0){

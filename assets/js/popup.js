@@ -16,9 +16,15 @@ const addQuoteNoteBtn=addQuoteNotePopup.querySelector(".add-btn");
 const imgUpdateBtn=imgPopup.querySelector(".update-btn");
 const selectAllWrapInput=imgPopup.querySelector(".select-all-input");
 const imgPopCount=imgPopup.querySelector(".title span");
-console.log(selectAllWrapInput)
-const selectImgInputs=imgPopup.querySelectorAll('.select-input')
+const selectImgInputs=imgPopup.querySelectorAll('.select-input');
+const acronymPopup=document.querySelector(".add-acronym-popup");
+const acronymText=document.querySelector(".acronym-text");
+const acronymInput=acronymPopup.querySelector(".add-acronym-input");
+const acronymChipContainer=acronymPopup.querySelector(".acronym-chip-container");
+const addAcronymBtn=acronymPopup.querySelector(".add-btn")
 
+
+//suggest popup
 function renderSuggestPopup(products){
   const productsContainer = suggestPopup.querySelector(".products")
   productsContainer.innerHTML="";
@@ -77,7 +83,7 @@ function searchSuggestPopup(){
 }
 
 
-
+//close modal
 function closeModal(){
  
   if(formPopup.classList.contains("active")){
@@ -107,6 +113,7 @@ function closeModal(){
 
 }
 
+//expand  btn function
 expandBtns.forEach(btn => {
   btn.addEventListener("click", () => {
      const type = btn.dataset.type;
@@ -123,6 +130,7 @@ expandBtns.forEach(btn => {
 })
 
 
+//supplier popup function
 function renderSupplierPopup(products){
   const productsContainer = supplierPopup.querySelector(".products");
   productsContainer.innerHTML=''
@@ -147,6 +155,7 @@ function renderSupplierPopup(products){
   SupplierProductClick(productsContainer.querySelectorAll(".product"));
 }
 
+//sourcing popup function
 function renderSourcingPopup(products){
   const productsContainer = sourcingPopup.querySelector(".products");
   productsContainer.innerHTML=''
@@ -177,7 +186,7 @@ function searchSourcingPopup(){
   searchSourcingInput.addEventListener("input", () => {
 
     const searchValue = searchSourcingInput.value.toLowerCase().trim();
-    console.log(searchSourcingInput.value)
+
     const filteredProducts = products.filter(p => {
 
       return (
@@ -208,14 +217,7 @@ function openSuggestPopup(event){
   suggestPopup.classList.toggle("active");
 }
 
-// function updatePopupPosition(rect,container){
-//   container.style.top =`${rect.bottom + window.scrollY + 4}px`;
-
-//   container.style.left =`${rect.left-50 + window.scrollX}px`;
-
-//   const spaceBelow =window.innerHeight - rect.bottom;
-//   container.style.maxHeight =`${spaceBelow - 20}px`;
-// }
+//update popup position
 function updatePopupPosition(rect, container){
 
   const popupHeight = container.offsetHeight || 200;
@@ -224,7 +226,6 @@ function updatePopupPosition(rect, container){
 
   const spaceAbove = rect.top;
 
-  // show below
   if(spaceBelow > popupHeight){
 
     container.style.top = `${rect.bottom + window.scrollY + 4}px`;
@@ -239,7 +240,6 @@ function updatePopupPosition(rect, container){
 
   }
 
-  // fallback
   else{
 
     container.style.top = `${rect.bottom + window.scrollY + 4}px`;
@@ -254,6 +254,7 @@ function updatePopupPosition(rect, container){
 }
 
 window.addEventListener('resize',updatePopupPosition(imgRect,suggestPopup))
+
 
 //open supplier popup
 function openSupplierPopup(event){
@@ -271,8 +272,6 @@ function openSupplierPopup(event){
 //suggest popup expand btn 
 
 // const closeBtn = document.querySelector(".close-modal-btn");
-
-
 function closeSuggestPopup(){
   suggestPopup.classList.remove("active");
 }
@@ -318,6 +317,7 @@ function retrieveSuggestPopup(){
 
 }
 
+
 function SuggestProductClick(suggestProducts){
   suggestProducts.forEach(p => {
 
@@ -341,7 +341,7 @@ function updateRow(product){
   const delId=currentRow.querySelector(".del-id").textContent;
 
   const newQuotP = newQuote.products.find(p => String(p.delId) === delId);
-  console.log(newQuotP)
+
   currentRow.querySelector('[name="qty-requested"]').value = product.qty_requested;
   newQuotP.qty_requested=product.qty_requested;
 
@@ -384,7 +384,6 @@ function updateRow(product){
 }
 
 //source popup function
-
 function SourceProductClick(sourcingProducts){
   
   sourcingProducts.forEach(p => {
@@ -438,7 +437,6 @@ closeSourcingBtn.addEventListener('click',()=>sourcingPopup.classList.remove("ac
 //supplier product click
 function openSourcingPopup(event){
   event.stopPropagation();
-  console.log("ghghgh")
   const sourcing=event.target.closest(".sourcing");
     
   const rect=sourcing.getBoundingClientRect();
@@ -524,7 +522,7 @@ function updateNewQuoteData(){
   tableRows.forEach(row=>{
     if(row.classList.contains("not-active")){
       const delId =Number(row.querySelector(".del-id").textContent);
-      console.log(delId)
+
       newQuote.products =newQuote.products.filter(p => p.delId !== delId);
     }
   })
@@ -557,56 +555,7 @@ confirmSuccessBtn.addEventListener('click',()=>{
 })
 
 
-
-// function deleteAllRow(){
-//   const bodyWrapper=displayTable.querySelector(".body-wrapper");
-//   const tableRows=bodyWrapper.querySelectorAll(".table-row");
-//   console.log(tableRows)
-//   tableRows.forEach(row=>{
-//     const delBtn=row.querySelector(".delete-line-btn");
-//     const undoBtn=row.querySelector(".undo-line-btn");
-//     row.classList.add("not-active");
-//     console.log(delBtn)
-//     delBtn.classList.remove("active");
-//     undoBtn.classList.add("active");
-//     const paras=row.querySelectorAll("p")
-//     paras.forEach(p=>{
-//       p.style.pointerEvents = "none";
-//     })
-    
-//     delBtn.style.pointerEvents = "auto";
-//     undoBtn.style.pointerEvents = "auto";
-//     row.removeEventListener("click",rowClickHandler);
-
-//   })
-//   delAllBtn.classList.remove('selected','active');
-//   undoAllBtn.classList.add('selected','active');
-//   approveQuoteBtn.classList.remove("active")
-  
-// }
-
-// function undoAllRow(){
-//   const bodyWrapper=displayTable.querySelector(".body-wrapper");
-//   const tableRows=bodyWrapper.querySelectorAll(".table-row");
-//   tableRows.forEach(row=>{
-//     const delBtn=row.querySelector(".delete-line-btn");
-//     const undoBtn=row.querySelector(".undo-line-btn");
-//     row.classList.remove("not-active");
-//     delBtn.classList.add("active");
-//     undoBtn.classList.remove("active");
-//     const paras=row.querySelectorAll("p")
-//     paras.forEach(p=>{
-//       p.style.pointerEvents = "auto";
-//     })
-
-//     row.removeEventListener("click",rowClickHandler);
-
-//   })
-//   approveQuoteBtn.classList.add("active")
-//   delAllBtn.classList.add('selected','active');
-//   undoAllBtn.classList.remove('selected','active');
-// }
-
+//add line note function
 let clickedRow="";
 function openLineNotePopup(event){
   addLineNotePopup.classList.add("active");
@@ -660,35 +609,88 @@ addQuoteNoteInput.addEventListener('input',()=>{
 
 
 //select img-popup
-console.log(selectImgInputs)
-selectAllWrapInput.addEventListener("change",()=>{
-  if(selectAllWrapInput.checked){
-    selectImgInputs.forEach(inp=>inp.checked=true)
-    imgUpdateBtn.classList.remove('not-active');
-    imgPopCount.textContent=`12/12`
-  }
-  else  {
-    selectImgInputs.forEach(inp=>inp.checked=false)
-      imgUpdateBtn.classList.add('not-active');
-      imgPopCount.textContent=`0/12`
-  }
-})
+selectAllWrapInput.addEventListener("change", () => {
 
-selectImgInputs.forEach(inp => {
-  inp.addEventListener('input', () => {
-    const checkedInputs = [...selectImgInputs].filter(inp => inp.checked);
-    imgPopCount.textContent=`${checkedInputs.length}/12`
-    if (checkedInputs.length > 7) {
-      imgUpdateBtn.classList.remove('not-active');
-    } else {
-      imgUpdateBtn.classList.add('not-active');
-    }
+  if (selectAllWrapInput.checked) {
 
-  });
+    selectImgInputs.forEach((inp, index) => {
+      inp.checked = index < 8; 
+
+      if(index>8){
+        const textWrapper=inp.parentElement.querySelector(".text-wrapper");
+        const field =textWrapper.querySelector("input, textarea");
+
+        if (field) {
+          field.disabled = true;
+        }
+      }
+    });
+
+    imgUpdateBtn.classList.remove("not-active");
+    imgPopCount.textContent = `8/12`;
+
+
+  } else {
+
+    selectImgInputs.forEach(inp =>{
+      inp.checked = false
+      const textWrapper=inp.parentElement.querySelector(".text-wrapper");
+        const field =textWrapper.querySelector("input, textarea");
+
+        if (field) {
+          field.disabled = false;
+        }
+    } 
+  );
+
+    imgUpdateBtn.classList.add("not-active");
+    imgPopCount.textContent = `0/12`;
+  }
 
 });
 
+selectImgInputs.forEach(inp => {
+  inp.addEventListener("input", () => {
 
+    const checkedInputs = [...selectImgInputs].filter(inp => inp.checked);
+
+    imgPopCount.textContent = `${checkedInputs.length}/12`;
+
+    if (checkedInputs.length >= 8) {
+      imgUpdateBtn.classList.remove("not-active");
+      
+      selectImgInputs.forEach(input => {
+        if (!input.checked) {
+          input.disabled = true;
+          const textWrapper=input.parentElement.querySelector(".text-wrapper");
+          const field =textWrapper.querySelector("input, textarea");
+
+          if (field) {
+            field.disabled = true;
+          }
+        }
+      });
+
+    } else {
+
+      imgUpdateBtn.classList.add("not-active");
+
+
+      selectImgInputs.forEach(inp =>{
+        inp.disabled = false
+        const textWrapper=inp.parentElement.querySelector(".text-wrapper");
+          const field =textWrapper.querySelector("input, textarea");
+
+          if (field) {
+            field.disabled = false;
+          }
+    });
+    }
+
+  });
+})
+
+//update img popup data 
 imgUpdateBtn.addEventListener('click', () => {
 
   const delDateText = quickInfoWrapper.querySelector(".deleivery_date_text");
@@ -716,31 +718,28 @@ imgUpdateBtn.addEventListener('click', () => {
       if (textarea) checkedInputs.push(textarea);
 
     }
+    closeModal();
 
   });
 
-  console.log(checkedInputs);
 
   checkedInputs.forEach(inp => {
 
     if (inp.value !== "") {
 
-      // BUYER
       if (inp.name === "buyer") {
 
         buyertext.textContent = inp.value;
 
       }
 
-      // SHIP TO
+
       if (inp.name === "ship-via") {
 
         let shipData = inp.value
           .split("\n")
           .map(item => item.trim())
           .filter(item => item !== "");
-
-        console.log(shipData);
 
         shipContainer.querySelector(".name").textContent = shipData[0] || "";
 
@@ -749,7 +748,7 @@ imgUpdateBtn.addEventListener('click', () => {
 
       }
 
-      // BILL TO
+
       if (inp.name === "bill_to_job") {
 
         let billData = inp.value
@@ -757,7 +756,6 @@ imgUpdateBtn.addEventListener('click', () => {
           .map(item => item.trim())
           .filter(item => item !== "");
 
-        console.log(billData);
 
         billContainer.querySelector(".name").textContent = billData[0] || "";
 
@@ -767,15 +765,27 @@ imgUpdateBtn.addEventListener('click', () => {
       }
 
       if (inp.name === "deleivery-date") {
-        const minDate = new Date(2025, 4, 1);   
-        const maxDate = new Date(2026, 3, 30);  
-     
-        const [day, month, year] = inputValue.split("/");
+
+      const minDate = new Date(2025, 3, 1);
+      const maxDate = new Date(2026, 3, 30);
+
+      const [day, month, year] = inp.value.split("/");
 
       const selectedDate = new Date(year, month - 1, day);
 
+      selectedDate.setHours(0,0,0,0);
+      minDate.setHours(0,0,0,0);
+      maxDate.setHours(0,0,0,0);
+
+
+
       if (selectedDate >= minDate && selectedDate <= maxDate) {
-        delDateText.textContent = inp.value.replaceAll("/", "-");
+
+
+
+        delDateText.textContent =
+          inp.value.replaceAll("/", "-");
+
       }
 
     }
@@ -784,3 +794,129 @@ imgUpdateBtn.addEventListener('click', () => {
   });
 
 });
+
+
+//acronym function
+const acronymData = {};
+
+let currentAcronymItem = null;
+
+const acronymItems=document.querySelectorAll(".acronym-item");
+acronymItems.forEach(item => {
+
+  item.addEventListener("click", () => {
+
+    const itemText = item.childNodes[0].data.trim();
+
+    acronymText.textContent = itemText;
+
+    const dropdown = item.querySelector(".acronym-dropdown");
+
+    const isActive = dropdown.classList.contains("active");
+    acronymItems.forEach(item => {
+      const dropdown = item.querySelector(".acronym-dropdown");
+      dropdown.classList.remove("active");
+    });
+
+    if (!isActive) {
+      dropdown.classList.add("active");
+    }
+
+  });
+
+});
+
+
+function openAcronymPopup(el){
+  popupOverlay.classList.add("active");
+  acronymPopup.classList.add("active");
+
+  currentAcronymItem = el.closest(".acronym-item");
+  const key = getAcronymKey(currentAcronymItem);
+  acronymChipContainer.innerHTML = "";
+
+  if(acronymData[key]){
+
+    acronymData[key].forEach(chip=>{
+      renderAcronymChip(chip,false);
+    });
+
+  }
+
+}
+
+function getAcronymKey(item){
+  return item.dataset.id;
+}
+
+function removeAcronymChip(event){
+
+  const chip = event.target.closest(".chip");
+
+  const value = chip.childNodes[0].textContent.trim();
+
+  const key = getAcronymKey(currentAcronymItem);
+
+  acronymData[key] =
+    acronymData[key].filter(v => v !== value);
+
+  chip.remove();
+
+}
+
+acronymInput.addEventListener("keydown", (e) => {
+
+  if (e.key === "Enter") {
+
+    e.preventDefault();
+
+    const value = acronymInput.value.trim().toLowerCase();
+
+    if(value !== ""){
+      renderAcronymChip(value);
+    }
+
+  }
+
+});
+
+addAcronymBtn.addEventListener("click", ()=>{
+
+  const value = acronymInput.value.trim().toLowerCase();
+
+  if(value !== ""){
+    renderAcronymChip(value);
+  }
+
+});
+
+//render acronym chip
+function renderAcronymChip(value, save=true){
+
+  const key = getAcronymKey(currentAcronymItem);
+
+  if(save){
+
+    if(!acronymData[key]){
+      acronymData[key] = [];
+    }
+
+    if(acronymData[key].includes(value)){
+      acronymInput.value = "";
+      return;
+    }
+
+    acronymData[key].push(value);
+  }
+
+  acronymChipContainer.innerHTML += `
+    <span class="chip">
+      ${value}
+      <span class="close-chip" onclick="removeAcronymChip(event)">
+        <img src="./assets/images/global/close-modal.webp" alt="close">
+      </span>
+    </span>
+  `;
+
+  acronymInput.value = "";
+}

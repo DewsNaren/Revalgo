@@ -1430,7 +1430,7 @@
                         max-content
                         clamp(22px, $fs-50px, $fs-50px)  
                         clamp(32px, $fs-75px, $fs-75px)
-                        39%
+                        40%
                         max-content
                         clamp(32px, $fs-115px, $fs-115px) 
                         clamp(25px, $fs-110px, $fs-110px)    
@@ -1520,7 +1520,7 @@
                             max-content
                             clamp(22px, $fs-50px, $fs-50px)  
                             clamp(32px, $fs-75px, $fs-75px)
-                            39%
+                            40%
                             clamp(15px, $fs-70px, $fs-70px)
                             clamp(32px, $fs-115px, $fs-115px) 
                             clamp(25px, $fs-100px, $fs-100px)    
@@ -2008,6 +2008,14 @@
 
                             }
                         }
+                        &::-webkit-scrollbar {
+                                width: 4px;
+                                height: 6px;
+                        }
+                        &::-webkit-scrollbar-thumb {
+                                background: rgba(161, 161, 161, 0.5);
+                                border-radius: 4px;
+                            }
                          
                     }
                 }

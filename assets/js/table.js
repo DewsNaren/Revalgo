@@ -153,7 +153,6 @@ function selectAllRow(event){
   const tableRows =bodyWrap.querySelectorAll(".table-row");
   const isChecked = event.target.checked;
   const delAllBtn=displayTable.querySelector(".delete-all-btn")
-  console.log(delAllBtn)
    tableRows.forEach(row => {
       const inp=row.querySelector("input[type='checkbox']")
       inp.checked=isChecked;
@@ -275,6 +274,7 @@ addLinesBtn.addEventListener("click", () => {
   closeModal();
 });
 
+//add table data to array
 function addProductsToQuote(){
 
   const rows =addTable.querySelectorAll(".body-wrapper .table-row");
@@ -321,6 +321,7 @@ function addProductsToQuote(){
 
 }
 
+//update line count
 function updateQuoteTotals(){
 
   newQuote.lines =newQuote.products.length;
@@ -335,6 +336,7 @@ function updateQuoteTotals(){
 
 }
 
+//left wrapper click function
 const mailWrapper=quickContentWrapper.querySelector(".mail-wrapper");
 const mailImgContainers=mailWrapper.querySelectorAll(".img-container");
 const rightWrapper=quickContentWrapper.querySelector(".right-wrapper");
@@ -389,7 +391,7 @@ mailMinimizeBtn.addEventListener("click", () => {
 
 
 
-
+//mail img click function
 mailImgContainers.forEach(container => {
 
   container.addEventListener("click", () => {
@@ -419,7 +421,7 @@ imgCloseBtn.addEventListener('click',()=>{
   mailImgContainers.forEach(c =>c.classList.remove("active"));
 })
 
-
+//left top btn click function
 const leftHeaderBtns=leftWrapper.querySelectorAll(".header-wrapper .btn-container button");
 const uploadWrapper=leftWrapper.querySelector(".upload-wrapper");
 
@@ -440,6 +442,18 @@ leftHeaderBtns.forEach(btn=>{
       uploadBtnContainer.classList.add("active");
       uploadBtn.classList.add('not-active')
     }
+    if(target==".table-wrapper"){
+      const hasVal=[...descInputs].some(inp=>inp.value.trim()!=="")
+      if(hasVal){
+        uploadBtn.classList.remove('not-active')
+      }
+
+    }
+    if(target==".upload-wrapper"){
+      if(selectFileInput.value!=""){
+        uploadBtn.classList.remove('not-active')
+      }
+    }
   })
 })
 
@@ -447,31 +461,30 @@ leftHeaderBtns.forEach(btn=>{
 let exCelData=[];
 const expectedKeys = [
   "requested_id",
-  "qty_requested",
+  "score",
+  "available_qty",
+  "unit_cost",
   "margin",
   "selling_price",
   "total_cost",
-  "unit_cost",
-  "available_qty",
-  "score",
-  "brand",
+  "delId",
   "sourceImg",
-  "housing_material",
+  "brand",
   "wire_size",
   "outlet",
-  "type"
+  "type",
+  "housing_material",
+  "qty_requested"
 ];
+
 //file upload function 
 selectFileInput.addEventListener('input', (event) => {
-
   const file = selectFileInput.files[0];
 
   if (!file) {
     console.log("No file selected");
     return;
   }
-
- 
 
   const validTypes = [
     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
@@ -518,7 +531,7 @@ function formatSize(bytes) {
   return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
 }
 
-
+//check valid excel file
 function isValidExcelFormat(data) {
 
   if (!Array.isArray(data) || data.length === 0) {
@@ -531,7 +544,7 @@ function isValidExcelFormat(data) {
   return expectedKeys.every(key => key in firstRow);
 }
 
-
+//convert  excel data to json
 async function getJsonData(file){
   const arrayBuffer = await file.arrayBuffer();
   const workbook = await JSZip.loadAsync(arrayBuffer);
@@ -603,7 +616,7 @@ async function getJsonData(file){
       </p>
     </div>
   `;
-  // }
+
   rows.forEach(r=>{
     r.qty_requested=Number(r.qty_requested)
     r.score=Number(r.score)
@@ -621,20 +634,36 @@ async function getJsonData(file){
 
 }
 
-
+//update excel data in array
 function getCrtData(exCelData){ 
-  exCelData.forEach(d=>{
-    console.log(d)
-    const delid=d.delId;
-    let isExists = allQuotes.forEach(q=>[...q.products].some(q => q.delId ===  delid)) ||
-    newQuote.products.some(prod => prod.delId === delid);
+  exCelData.forEach(d => {
+
+    let delid = d.delId;
+
+    let isExists =
+      allQuotes.some(q =>
+        q.products.some(prod => prod.delId === delid)
+      ) ||
+      newQuote.products.some(prod => prod.delId === delid);
+
     while (isExists) {
-      d.delId=getDelId();
+
+      delid = getDelId();
+
+      isExists =
+        allQuotes.some(q =>
+          q.products.some(prod => prod.delId === delid)
+        ) ||
+        newQuote.products.some(prod => prod.delId === delid);
     }
-    
-    newQuote.products.push(d);  
-    updateQuoteTotals();
-  })
+
+    d.delId = delid;
+
+    newQuote.products.push(d);
+
+  });
+
+  updateQuoteTotals();
 }
 
 //Fetch data from excel
@@ -663,7 +692,6 @@ function parseSheetAsJSON(sheetXML, sharedStrings = []) {
       cells.push(value);
     }
     rows.push(cells);
-    console.log(exCelData)
   }
 
   if (rows.length === 0) return [];
@@ -683,6 +711,7 @@ function parseSheetAsJSON(sheetXML, sharedStrings = []) {
 
 }
 
+//del file function
 function delFile(event){
   const fileContainer=event.target.closest(".file-container");
   fileContainer.remove();

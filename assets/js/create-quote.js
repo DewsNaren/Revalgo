@@ -893,8 +893,8 @@ function renderDisplayTable(newQuote){
   const products=newQuote.products;
 
   products.forEach((p,i)=>{
-    bodyWrapper.innerHTML+=`
-    <div class="${p.isDeleted==true?"table-row not-active":"table-row"}" draggable="flase">
+    bodyWrapper.innerHTML+=`<div class="row-group" draggable="true">
+    <div class="${p.isDeleted==true?"table-row not-active":"table-row"}">
       <p><img src="./assets/images/global/drag-menu.png" alt="drag menu" class="drag-handle"   data-index="${i}"  ></p>
       <p><input type="checkbox" class="check-line-input" onclick="enableDeleteAllBtn()"></p>
       <p><span class="line-no">${i+1}</span>
@@ -928,7 +928,7 @@ function renderDisplayTable(newQuote){
         <button type="button" class="delete-line-btn active" onclick=delRow(event)><img src="./assets/images/global/delete_icon.png" alt="delete"></button>
         <button type="button" class="undo-line-btn" onclick=undoRow(event)> <img src="./assets/images/dashboard/Undo_icon.png" alt="undo"></button>
       </p>
-      <button class="add-line-note-btn" onclick="openLineNotePopup(event)"><img src="./assets/images/create_quote/add note_grey bg.png" class="img-grey active" alt="add note grey"> <img src="./assets/images/create_quote/add note icon_blue.png" class="img-blue " alt="add note blue "></button>
+      <button class="add-line-note-btn" onclick="openLineNotePopup(event)"><img src="./assets/images/create_quote/add note_grey bg.png" class="${p.lineNote?"img-grey ":"img-grey active"}" alt="add note grey"> <img src="./assets/images/create_quote/add note icon_blue.png" class="img-blue " alt="add note blue "></button>
       <p class="del-id">${p.delId}</p>
       </div>
     
@@ -961,6 +961,7 @@ function renderDisplayTable(newQuote){
           </div>                                   
         </div>
       </div>
+    </div>
     </div>
     `;
     bodyWrapper.innerHTML+=`
@@ -1100,128 +1101,95 @@ function allowNumbers(inp){
 
 function enableDrag(bodyWrap) {
 
-  const rows = bodyWrap.querySelectorAll(".table-row");
+  const groups = bodyWrap.querySelectorAll(".row-group");
 
-  let draggedRow = null;
+  let draggedGroup = null;
 
   let canDrag = false;
 
 
-  rows.forEach(row => {
+  groups.forEach(group => {
+
+    const row = group.querySelector(".table-row");
 
     const handle = row.querySelector(".drag-handle");
 
+
+    group.draggable = true;
+
+
+    // ENABLE DRAG
     handle.addEventListener("mousedown", () => {
+
       canDrag = true;
-      row.classList.add("drag-enabled");
+
     });
 
 
+    // DISABLE DRAG
     document.addEventListener("mouseup", () => {
       canDrag = false;
-      row.classList.remove("drag-enabled");
-
     });
 
 
-    // START DRAG
-    row.addEventListener("dragstart", e => {
+    group.addEventListener("dragstart", e => {
       if (!canDrag) {
         e.preventDefault();
         return;
       }
-      draggedRow = row;
-      // setTimeout(() => {
-      //  row.classList.add("dragging");
-      // }, 0);
+
+      draggedGroup = group;
+
+      requestAnimationFrame(() => {
+
+        group.classList.add("dragging");
+
+      });
+
     });
 
 
-    row.addEventListener("dragend", () => {
-      row.classList.remove("dragging");
-      row.classList.remove("drag-enabled");
-      draggedRow = null;
-      canDrag = false;
+    // END
+    group.addEventListener("dragend", () => {
 
-      bodyWrap.querySelectorAll(".drop-target")
-      .forEach(r => r.classList.remove("drop-target"));
+      group.classList.remove("dragging");
+
+      draggedGroup = null;
 
       updateLineNumbers(bodyWrap);
+
     });
 
 
-    // ALLOW DROP
-    row.addEventListener("dragover", e => {
+    // LIVE SHIFTING
+    group.addEventListener("dragover", e => {
+
       e.preventDefault();
-    });
+
+      if (!draggedGroup || draggedGroup === group) return;
 
 
-    row.addEventListener("dragenter", () => {
-      if (!draggedRow || draggedRow === row) return;
-      bodyWrap.querySelectorAll(".drop-target")
-      .forEach(r => r.classList.remove("drop-target"));
-      row.classList.add("drop-target");
-    });
+      const rect = group.getBoundingClientRect();
+
+      const offset = e.clientY - rect.top;
 
 
+      // TOP HALF
+      if (offset < rect.height / 2) {
 
-    row.addEventListener("dragleave", () => {
-      row.classList.remove("drop-target");
-    });
-
-
-    row.addEventListener("drop", e => {
-      e.preventDefault();
-      row.classList.remove("drop-target");
-      if (!draggedRow || draggedRow === row) return;
-
-      const draggedDropdown = draggedRow.nextElementSibling;
-      const targetRow = row;
-      const targetDropdown = targetRow.nextElementSibling;
-
-      const placeholder = document.createElement("div");
-
-      if (targetDropdown &&targetDropdown.classList.contains("sourcing-dropdown")) {
-        targetDropdown.after(placeholder);
-
-      } else {
-
-        targetRow.after(placeholder);
+        bodyWrap.insertBefore(draggedGroup, group);
 
       }
 
+      // BOTTOM HALF
+      else {
 
-      // MOVE TARGET GROUP TO DRAGGED POSITION
-      draggedRow.before(targetRow);
-
-      if (
-        targetDropdown &&
-        targetDropdown.classList.contains("sourcing-dropdown")
-      ) {
-
-        targetRow.after(targetDropdown);
+        bodyWrap.insertBefore(
+          draggedGroup,
+          group.nextSibling
+        );
 
       }
-
-
-      // MOVE DRAGGED GROUP TO TARGET POSITION
-      placeholder.before(draggedRow);
-
-      if (
-        draggedDropdown &&
-        draggedDropdown.classList.contains("sourcing-dropdown")
-      ) {
-
-        draggedRow.after(draggedDropdown);
-
-      }
-
-
-      // REMOVE PLACEHOLDER
-      placeholder.remove();
-
-
-      updateLineNumbers(bodyWrap);
 
     });
 

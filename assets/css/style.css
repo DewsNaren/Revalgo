@@ -1658,6 +1658,7 @@ body {
   border: none;
   background-color: transparent;
   margin-left: clamp(9px, 0.79vw, 0.79vw);
+  display: none;
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .export-btn img {
   width: clamp(15px, 1.15vw, 1.15vw);
@@ -2996,6 +2997,10 @@ body {
   margin-bottom: clamp(5px, 1.304vw, 1.304vw);
   position: relative;
 }
+.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .list-wrapper .list span {
+  cursor: pointer;
+  position: relative;
+}
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .list-wrapper .list span .acronym-dropdown {
   position: absolute;
   bottom: 100%;
@@ -3454,17 +3459,6 @@ body {
   pointer-events: none;
   opacity: 0.5;
 }
-.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row.drag-enabled {
-  cursor: grabbing;
-}
-.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row.dragging {
-  opacity: 1;
-  background: #fff;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-  z-index: 1000;
-  position: relative;
-  transition: 0.2s;
-}
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .sourcing-dropdown {
   display: none;
   background-color: #e8f2ff;
@@ -3667,6 +3661,19 @@ body {
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper.not-active {
   opacity: 0.5;
   pointer-events: none;
+}
+
+.row-group {
+  transition: transform 0.18s ease, background-color 0.18s ease;
+}
+
+.row-group.dragging {
+  opacity: 1;
+  background: #fff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transform: scale(1);
+  z-index: 1000;
+  position: relative;
 }
 
 .popup-overlay {
@@ -4079,21 +4086,9 @@ body {
 .popup-overlay .add-acronym-popup .header .close-popup-btn img {
   width: 100%;
 }
-.popup-overlay .add-acronym-popup .body .edit-acronym {
+.popup-overlay .add-acronym-popup .body .acronym-text {
   margin-bottom: clamp(13px, 1.304vw, 1.304vw);
-}
-.popup-overlay .add-acronym-popup .body .edit-acronym input {
-  border: none;
-  outline: none;
   font-size: clamp(13px, 0.989vw, 0.989vw);
-}
-.popup-overlay .add-acronym-popup .body .edit-acronym .edit-btn {
-  border: none;
-  background-color: transparent;
-}
-.popup-overlay .add-acronym-popup .body .edit-acronym .edit-btn img {
-  display: block;
-  width: clamp(8px, 0.63vw, 0.63vw);
 }
 .popup-overlay .add-acronym-popup .body .add-acronym-input {
   padding: clamp(5px, 0.521vw, 0.521vw);
@@ -8566,7 +8561,7 @@ body {
   border-top-right-radius: clamp(5px, 0.521vw, 0.521vw);
   padding: clamp(4px, 0.4vw, 0.4vw);
   display: grid;
-  grid-template-columns: clamp(15px, 2.34vw, 2.34vw) max-content clamp(22px, 2.61vw, 2.61vw) clamp(32px, 3.91vw, 3.91vw) 39% max-content clamp(32px, 5.98vw, 5.98vw) clamp(25px, 5.75vw, 5.75vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 2.61vw, 2.61vw) clamp(10px, 2.61vw, 2.61vw);
+  grid-template-columns: clamp(15px, 2.34vw, 2.34vw) max-content clamp(22px, 2.61vw, 2.61vw) clamp(32px, 3.91vw, 3.91vw) 40% max-content clamp(32px, 5.98vw, 5.98vw) clamp(25px, 5.75vw, 5.75vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 2.61vw, 2.61vw) clamp(10px, 2.61vw, 2.61vw);
   align-items: center;
   border-bottom: 1px solid rgba(27, 26, 26, 0.6);
 }
@@ -8637,7 +8632,7 @@ body {
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row {
   padding: clamp(4px, 0.63vw, 0.63vw) clamp(4px, 0.4vw, 0.4vw) clamp(4px, 0.63vw, 0.63vw);
   display: grid;
-  grid-template-columns: clamp(15px, 2.34vw, 2.34vw) max-content clamp(22px, 2.61vw, 2.61vw) clamp(32px, 3.91vw, 3.91vw) 39% clamp(15px, 3.6vw, 3.6vw) clamp(32px, 5.98vw, 5.98vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 4.69vw, 4.69vw) clamp(10px, 2.067vw, 2.067vw);
+  grid-template-columns: clamp(15px, 2.34vw, 2.34vw) max-content clamp(22px, 2.61vw, 2.61vw) clamp(32px, 3.91vw, 3.91vw) 40% clamp(15px, 3.6vw, 3.6vw) clamp(32px, 5.98vw, 5.98vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 5.2vw, 5.2vw) clamp(25px, 4.69vw, 4.69vw) clamp(10px, 2.067vw, 2.067vw);
   align-items: center;
   position: relative;
 }
@@ -9037,6 +9032,14 @@ body {
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .add-btn-container.left .text {
   display: none;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper::-webkit-scrollbar {
+  width: 4px;
+  height: 6px;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(161, 161, 161, 0.5);
+  border-radius: 4px;
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper.maximize .header-wrapper {
   grid-template-columns: clamp(15px, 2.34vw, 2.34vw) max-content clamp(35px, 3.91vw, 3.91vw) clamp(32px, 3.91vw, 3.91vw) 44% max-content clamp(32px, 6.8vw, 6.8vw) clamp(25px, 6.51vw, 6.51vw) clamp(25px, 6.8vw, 6.8vw) clamp(25px, 7.3vw, 7.3vw) clamp(25px, 3.13vw, 3.13vw) clamp(10px, 2.66vw, 2.66vw);
