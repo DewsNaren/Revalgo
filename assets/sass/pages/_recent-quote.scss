@@ -275,6 +275,7 @@
                             border-top-right-radius: 5px;
                             font-weight: 500;
                             color: $black;
+                            background-color: transparent;
                             &.active{
                                 background-color: $white;
                                 color: $blue-87;
@@ -292,7 +293,7 @@
                     }
                     .mail-expand-btn{
                         padding-right: clamp(8px, $fs-15px, $fs-15px);
-
+                        background-color: transparent;
                         img{
                             width: clamp(9px, $fs-19px, $fs-19px);
                         }
@@ -1058,6 +1059,14 @@
                                                 border-radius: 3px;
                                                 position: relative;
                                                 cursor: default;
+                                                 &.red{
+                                                    color: $red-00;
+                                                    border: 1px solid $red-00;
+                                                }
+                                                &.green{
+                                                    color: $green-28;
+                                                    border: 1px solid $green-28;
+                                                }
                                                 .tooltiptext {
                                                     visibility: hidden;
                                                     background-color: $white;
@@ -1140,12 +1149,12 @@
                                    
                                 }
                                 &:nth-of-type(6){
-                                    text-align: right;
+                                    text-align: center;
                                     padding-right:  clamp(10px, $fs-30px, $fs-30px);
                                      
                                     span{
-                                        width: 70%;
-                                        border-bottom: 1px solid $blue-87;
+                                        // width: 70%;
+                                        // border-bottom: 1px solid $blue-87;
                                         display: inline-flex;
                                         color: $black;
                                         input{
@@ -1157,8 +1166,8 @@
                                 &:nth-of-type(7){
                                     padding-right:  clamp(10px, $fs-30px, $fs-30px);
                                     span{
-                                        width: 50%;
-                                        border-bottom: 1px solid $blue-87;
+                                        // width: 50%;
+                                        // border-bottom: 1px solid $blue-87;
                                         display: inline-flex;
                                         color: $black;
                                         input{

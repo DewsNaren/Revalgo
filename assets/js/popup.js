@@ -496,6 +496,7 @@ confirmSuccessBtn.addEventListener("click", () => {
   const quotes = JSON.parse(sessionStorage.getItem("quotes"));
   quotes.forEach((q, i) => {
     if (q.id === newQuote.id) {
+      newQuote.status="approved";
       quotes[i] = newQuote;
       found = true;
     }

@@ -6,19 +6,19 @@
 .dashboard-wrapper {
   margin-top: 6px;
   background-color: $white-f5;
-  padding: clamp(20px, $fs-35px, $fs-35px) clamp(12px, $fs-24px, $fs-24px);
+  padding: clamp(12px, $fs-25px, $fs-25px) clamp(12px, $fs-24px, $fs-24px);
   display: none;
   flex-direction: column;
   flex: 1;
   min-height: 0;
   .dashboard-header-wrapper {
-    margin-bottom: clamp(23px, $fs-46px, $fs-46px);
+    margin-bottom: clamp(12px, $fs-25px, $fs-25px);
     display: block;
     .header-container {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-bottom: clamp(24px, $fs-48px, $fs-48px);
+        margin-bottom: clamp(15px, $fs-30px, $fs-30px);
       h2 {
         color: $black-90;
         font-weight: 600;
@@ -386,6 +386,7 @@
         .stat-container{
             display: flex;
             gap: clamp(10px, $fs-20px, $fs-20px);
+            align-items: center;
             .img-wrapper{
                width:  clamp(26px, $fs-57px, $fs-57px);
                height:  clamp(26px, $fs-57px, $fs-57px);
@@ -524,7 +525,7 @@
                             border: none;
                             outline: none;
                             font-size: clamp(10px, $fs-12px, $fs-12px);
-
+                            width: 100%;
                             &::placeholder{
                                 font-size: clamp(10px, $fs-12px, $fs-12px);
                             }
@@ -1070,6 +1071,13 @@
                         img{
                             width: clamp(13px, $fs-22px, $fs-22px);
                             margin-right: 5px;
+                            transition: transform 0.3s ease;
+                        }
+                        font-size: clamp(13px, $fs-22px, $fs-22px);
+                    }
+                     &.dropdown-btn.collapsed{
+                        img{
+                           transform: rotate(180deg);
                         }
                         font-size: clamp(13px, $fs-22px, $fs-22px);
                     }
@@ -2045,8 +2053,10 @@
 
 @media screen and (max-width:1600px){
     .dashboard-wrapper{
+        
+        padding: clamp(12px, $fs-25px, $fs-25px) clamp(12px, $fs-24px, $fs-24px);
         .dashboard-header-wrapper {
-            margin-bottom: clamp(20px, $fs-40px, $fs-40px);
+            margin-bottom: clamp(12px, $fs-25px, $fs-25px);
              .header-container .dropdown-wrapper .widget-btn .widget-dropdown-menu li input {
                 border-radius: 4px;
             }
@@ -2087,7 +2097,7 @@
         .dashboard-header-wrapper {
             margin-bottom: clamp(10px, $fs-20px, $fs-20px);
             .header-container{
-                 margin-bottom: clamp(10px, $fs-20px, $fs-20px);
+                margin-bottom: clamp(10px, $fs-20px, $fs-20px);
                 .dropdown-wrapper .widget-btn .widget-dropdown-menu li input {
                     border-radius: 3px;
                 }

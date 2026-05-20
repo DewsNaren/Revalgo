@@ -185,6 +185,268 @@
             display: flex;
         }
     }
+    .selected-item-popup{
+        background-color: $white;
+        padding: clamp(10px, $fs-40px, $fs-40px)  clamp(10px, $fs-30px, $fs-30px) clamp(17px, $fs-35px, $fs-35px);
+        display: none;
+        flex-direction: column;
+        margin-top: 10px;
+        max-height: 85%;
+        width: 53.5%;
+        border-radius: clamp(5px, $fs-10px, $fs-10px);
+        .selected-popup-header{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: clamp(4px, $fs-8px, $fs-8px);
+            border-bottom: 1px solid $grey-9e;
+            margin-bottom: clamp(5px, $fs-10px, $fs-10px);
+            h3{
+                font-size: clamp(12px, $fs-20px, $fs-20px);
+                color: rgba(0,0,0,0.95);
+                font-weight: 500;
+            }
+            .close-popup-btn{
+                border: none;
+                background-color: transparent;
+                width: clamp(10px, $fs-19px, $fs-19px);
+                img{
+                    width: 100%;
+                    display: block;
+                }
+            }
+        }
+        .selected-table{
+            table-layout: fixed;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-height: 0;
+            thead {
+                display: table;
+                width: 100%;
+                table-layout: fixed;
+                flex-shrink: 0;
+                tr {     
+                    border-bottom: 1px solid rgba(0,0,0,0.6);
+                    th {
+                        font-size: clamp(10px, $fs-15px, $fs-15px);
+                        color: rgba(0,0,0,0.85);
+                        font-weight: 500;
+                        padding: clamp(8px, $fs-15px, $fs-15px) clamp(10px, $fs-15px, $fs-15px) clamp(8px, $fs-15px, $fs-15px);
+                        text-align: left;
+                        vertical-align: bottom;
+                        span {
+
+                            display: inline-flex;
+                            align-items: center;
+                            gap: clamp(7px, $fs-15px, $fs-15px);
+                            font-size: clamp(10px, $fs-15px, $fs-15px);
+                            color: $black-90;
+                            font-weight: 500;
+                        }
+
+                        &:first-of-type{
+                            padding-left: clamp(12px, $fs-20px, $fs-20px);
+                            width: clamp(9px, $fs-60px, $fs-60px);
+                            input{
+                                width: clamp(9px, $fs-18px, $fs-18px);
+                                height:clamp(9px, $fs-18px, $fs-18px);
+                                border-radius: 5px;
+                                accent-color: $blue-87;
+                            }
+                        }
+
+                        &:nth-of-type(2){
+                            padding-left: clamp(4px, $fs-7px, $fs-7px);
+                            width: clamp(9px, $fs-55px, $fs-55px);
+                            text-align: right;
+
+                        }
+                        &:nth-of-type(3){
+                            padding-left: clamp(4px, $fs-7px, $fs-7px);
+                            width: clamp(9px, $fs-110px, $fs-110px);
+                            text-align: right;
+                        }
+                        &:nth-of-type(4){
+                            padding-inline: clamp(4px, $fs-30px, $fs-30px);
+                            span{
+                                width: clamp(9px, $fs-120px, $fs-120px);
+                            }
+                        }
+                         &:nth-of-type(5){
+                            width: clamp(9px, $fs-380px, $fs-380px);
+                           
+                        }
+                          &:last-of-type{
+                            padding-right: clamp(10px, $fs-45px, $fs-45px);
+                            width: clamp(9px, $fs-120px, $fs-120px);
+                            text-align: right;
+                        }
+                    }
+                }
+            }
+            tbody{
+                display: block;
+                flex: 1;
+                overflow-y: auto;       
+                tr{
+                    display: table;
+                    width: 100%;
+                    table-layout: fixed;
+                    td {
+                        font-size: clamp(10px, $fs-15px, $fs-15px);
+                        color: $grey-61;
+                        border-bottom: 1px solid #ccc;
+                        padding: clamp(8px, $fs-15px, $fs-15px) clamp(10px, $fs-15px, $fs-15px) clamp(10px, $fs-20px, $fs-20px);
+                        text-align: left;
+                        vertical-align: bottom;
+
+                        span {
+
+                            display: inline-flex;
+                            align-items: center;
+                            gap: clamp(7px, $fs-15px, $fs-15px);
+                            font-size: clamp(10px, $fs-15px, $fs-15px);
+                            color: $black-90;
+                            font-weight: 500;
+                        }
+
+                        &:first-of-type{
+                            padding-left: clamp(12px, $fs-20px, $fs-20px);
+                            width: clamp(9px, $fs-60px, $fs-60px);
+                            input{
+                                width: clamp(9px, $fs-18px, $fs-18px);
+                                height:clamp(9px, $fs-18px, $fs-18px);
+                                border-radius: 5px;
+                                accent-color: $blue-87;
+                            }
+                        }
+
+                        &:nth-of-type(2){
+                            padding-left: clamp(4px, $fs-7px, $fs-7px);
+                            width: clamp(9px, $fs-55px, $fs-55px);
+                            text-align: right;
+
+                        }
+                        &:nth-of-type(3){
+                            padding-left: clamp(4px, $fs-7px, $fs-7px);
+                            width: clamp(9px, $fs-110px, $fs-110px);
+                            text-align: right;
+                        }
+                        &:nth-of-type(4){
+                            padding-inline: clamp(4px, $fs-30px, $fs-30px);
+                            white-space: nowrap;
+                            span{
+                                max-width: 85%;
+                                display: inline-block;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                color: $grey-61;
+                            }
+                        }
+                         &:nth-of-type(5){
+                            width: clamp(9px, $fs-380px, $fs-380px);
+                             .content{
+                                max-width: 78%;
+                                display: inline-flex;
+                                align-items: center;
+                                gap: clamp(7px, $fs-15px, $fs-15px);
+                                white-space: nowrap;
+                        
+                                .id{
+                                    color: $blue-87;
+                                    font-weight: 600;
+                                    flex-shrink: 0; 
+                                }
+                                .text{
+                                    display: inline-block;
+                                    flex: 1;  
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                    color: $grey-61;
+                                }
+                                
+                            }
+                        }
+                          &:last-of-type{
+                            padding-right: clamp(10px, $fs-45px, $fs-45px);
+                            // padding-inline: clamp(4px, $fs-30px, $fs-30px);
+                            // span{
+                                width: clamp(9px, $fs-120px, $fs-120px);
+                            // }
+                            text-align: right;
+                            white-space: nowrap;
+                            
+                        }
+                    }
+                    &:last-of-type td {
+                        border-bottom: none;
+                    }
+                    &.active{
+                        background-color: $blue-2ff;                                  
+                    }
+                                    
+                }
+                &::-webkit-scrollbar {
+                    width: 4px;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background: rgba(161, 161, 161, 0.5);
+                    border-radius: 4px;
+                                
+                }
+            }
+        }
+        .btn-container{
+            margin-top: clamp(18px, $fs-25px, $fs-25px);
+            display: flex;
+            gap: clamp(10px, $fs-20px, $fs-20px);
+            justify-content: flex-end;
+            padding-right:  clamp(9px, $fs-28px, $fs-28px);
+            button{
+                border-radius: 5px;
+                font-size: clamp(11px, $fs-15px, $fs-15px);
+                padding:clamp(6px, $fs-10px, $fs-10px) clamp(9px, $fs-44px, $fs-44px);
+                border: 1px solid transparent;
+                line-height: 1;
+                cursor: pointer;
+                &.import-btn{
+                    color: $white;
+                    background-color: $blue-87;
+                    padding-inline: clamp(22px, $fs-46px, $fs-46px);
+                    opacity: 0.5;
+                    pointer-events: none;
+
+                    &:hover{
+                        background-color: $blue-85;
+                    }
+                   
+                    &.active{
+                        opacity: 1;
+                        pointer-events: auto;
+                    }
+
+                    
+                }
+                &.cancel-btn{
+                    background-color: $white;
+                    color: $blue-87;
+                    border-color:$blue-87;
+
+                    &:hover{
+                        color: $white;
+                        background-color: $blue-87;
+                    }
+                }
+                
+            }
+        }
+        &.active{
+            display: flex;
+        }
+    }
     .del-popup-1{
         background-color: $white;
         padding: clamp(17px, $fs-35px, $fs-35px)  clamp(10px, $fs-20px, $fs-20px) clamp(20px, $fs-30px, $fs-30px);

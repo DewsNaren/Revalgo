@@ -381,9 +381,8 @@ if (sessionStorage.getItem("selectedQuote")) {
 
     undoQuoteBtn.classList.add("active");
     quickOrderWrapper.classList.add("not-active");
-    approveBtnContainer.classList.add("not-active");
   }
-  if(selectedQuote.status == "approved"){
+  if(selectedQuote.status == "approved" || selectedQuote.status == "deleted"){
     approveQuoteBtn.classList.add("not-active")
   }
   renderQuickInfo(selectedQuote);
@@ -399,6 +398,14 @@ undoQuoteBtn.addEventListener("click", () => {
   quoteStat.classList.remove("deleted");
   quoteStat.classList.add(`${selectedQuote.status}`);
   quoteStat.textContent = `${selectedQuote.status}`;
+  approveQuoteBtn.classList.remove("not-active")
+  allQuotes.forEach((q, i) => {
+    if (q.id === newQuote.id) {
+      allQuotes[i] = newQuote;
+      sessionStorage.setItem("quotes", JSON.stringify(allQuotes));
+    }
+  })
+
 });
 
 function renderQuickInfo(selectedQuote) {
@@ -831,6 +838,13 @@ function changeQuickInfo(inp, con) {
       }
     }
   });
+  updateQuickInfoData();
+  allQuotes.forEach((q, i) => {
+    if (q.id === newQuote.id) {
+      allQuotes[i] = newQuote;
+      sessionStorage.setItem("quotes", JSON.stringify(allQuotes));
+    }
+  })
 }
 
 //add input event listeners

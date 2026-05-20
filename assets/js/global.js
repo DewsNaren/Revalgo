@@ -439,9 +439,9 @@ function renderFilterTable(currentPage) {
   if (paginatedData.length) {
     paginatedData.forEach((d) => {
       tBody.innerHTML += `
-      <tr>
+      <tr  data-id="${d.id}">
         <td><img src="./assets/images/dashboard/${d.mode}_icon.png" alt="${d.mode}"></td>
-          <td><a href="./recent-quote.html" class="quote-id-data">#${d.id}</a></td>
+          <td><a href="./recent-quote.html" class="quote-id-btn">#${d.id}</a></td>
               <td>${d.number ? ` ${d.name} /${d.number}` : `${d.name}`}</td>
               <td>${d.received_date}</td>
           <td>${d.approved_date}</td>
@@ -452,9 +452,27 @@ function renderFilterTable(currentPage) {
         </tr>                               
     `;
     });
+    const filterTable = document.querySelector(".filter-table");
+    tableClickHandler(filterTable);
   } else {
     tBody.innerHTML = `<p class="not-found">Data Not Found</p>`;
   }
+}
+
+function tableClickHandler(filterTable) {
+  const idBtns = filterTable.querySelectorAll(".quote-id-btn");
+  idBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const id = e.target.closest("tr").dataset.id;
+      totalQuotes.forEach((q) => {
+        if (q.id == id) {
+          sessionStorage.setItem("selectedQuote", JSON.stringify(q));
+          window.location.href = "./recent-quote.html";
+        }
+      });
+    });
+  });
 }
 
 //pagination

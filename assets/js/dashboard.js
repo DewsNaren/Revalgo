@@ -1114,8 +1114,20 @@ function renderTrendChart(totalQuotes, filterQuotes, filterItem) {
     series: [
       {
         name: "Total",
-        color: "#ff09b5",
-        fillColor: "transparent",
+        color: "rgb(255, 9, 181)",
+        fillColor: {
+          linearGradient: {
+            x1: 0,
+            y1: 0,
+            x2: 0,
+            y2: 1,
+          },
+          stops: [
+            [0, "rgb(212, 40, 161)"],
+            [0.5, "rgba(184, 71, 199, 0.64)"],
+            [1, "rgba(71, 175, 223, 0.05)"],
+          ],
+        },
         data: totalQuotes,
         marker: {
           enabled: false,

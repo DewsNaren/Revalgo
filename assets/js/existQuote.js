@@ -1169,9 +1169,11 @@ formContainers.forEach((container) => {
     inp.addEventListener("input", () => {
       if (inp.value.trim() !== "") {
         errEl.classList.remove("active");
+        // updateBtn.classList.add('not-active')
       } else {
         errEl.classList.add("active");
         errEl.textContent = `Please enter the ${inp.placeholder}`;
+        // updateBtn.classList.remove('not-active')
       }
     });
   });
