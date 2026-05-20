@@ -218,8 +218,8 @@ const logoutBtn=header.querySelector(".logout-btn");
 
 logoutBtn.addEventListener('click',(e)=>{
   e.preventDefault();
-  if(sessionStorage.getItem("loginDetails")){
-    sessionStorage.removeItem("loginDetails")
+  if(localStorage.getItem("loginDetails")){
+    localStorage.removeItem("loginDetails")
   }
   window.location.href="./index.html";
 })

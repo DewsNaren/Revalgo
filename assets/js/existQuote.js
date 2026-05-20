@@ -24,15 +24,7 @@ const canceladdpopupBtn = addPopup.querySelector(".cancel-btn");
 const undoQuoteBtn = document.querySelector(".undo-quote-btn");
 
 //set height for main wrapper
-function setexistQuoteWrapperHeight() {
-  const headerHeight = header.getBoundingClientRect().height;
-  existQuoteWrapper.style.height = `calc(100vh - ${headerHeight}px)`;
-  popupOverlay.style.height = `calc(100vh - ${headerHeight}px)`;
-}
 
-setexistQuoteWrapperHeight();
-
-window.addEventListener("resize", setexistQuoteWrapperHeight);
 
 const existFilterWrapper = document.querySelector(
   ".exist-quote-filter-wrapper",

@@ -1,17 +1,7 @@
-const dashBoardWrapper = document.querySelector(".dashboard-wrapper");
 const dashBoardBodyWrapper = document.querySelector(".dashboard-body-wrapper");
 const expandOverlay = document.querySelector(".expand-overlay");
-
-function setDashWrapperHeight() {
-  const headerHeight = header.getBoundingClientRect().height;
-  dashBoardWrapper.style.height = `calc(100vh - ${headerHeight}px)`;
-  expandOverlay.style.height = `calc(100vh - ${headerHeight}px)`;
-}
-
-setDashWrapperHeight();
-
-window.addEventListener("resize", setDashWrapperHeight);
-
+const loaderWrapper=document.querySelector(".loader-wrapper");
+const dashboardWrapper=document.querySelector(".dashboard-wrapper")
 let quotes;
 let filteredQuotes;
 let start = new Date(new Date().setMonth(new Date().getMonth() - 6));
@@ -115,6 +105,7 @@ function filterQuotesByDate(filterQuotes, start, end) {
 
     return quoteDate >= startObj && quoteDate <= endObj;
   });
+  dateFilteredQuotes=dateFilteredQuotes.sort((a, b) => a.name.localeCompare(b.name))
 
   renderQuoteTable(dateFilteredQuotes);
 
@@ -307,44 +298,7 @@ function createDatepicker(datePicker) {
       });
     }
 
-    // days.forEach((d, index) => {
-    //   const btn = document.createElement("button");
-    //   btn.classList.add("date");
-    //   btn.type = "button";
-    //   btn.textContent = d.day;
 
-    //   if (d.faded) btn.classList.add("faded");
-
-    //   if (
-    //     selectedDate &&
-    //     d.date.toDateString() === selectedDate.toDateString() &&
-    //     !btn.classList.contains("faded")
-    //   ) {
-    //     btn.classList.add("current-day");
-    //   }
-
-    //   btn.addEventListener("click", () => {
-    //     const allButtons = datesContainer.querySelectorAll(".date");
-    //     selectedDate = d.date;
-
-    //     allButtons.forEach(b => b.classList.remove("current-day"));
-    //     btn.classList.add("current-day");
-    //     datePicker.classList.remove("active");
-    //     getSelectedDate(datePicker);
-    //     const dateSpan= dateInpWrapper.querySelectorAll("span");
-    //     dateSpan.forEach(span=>{
-    //       if(span.classList.contains("start")){
-    //         startText.textContent=span.textContent;
-    //       }
-    //       else{
-    //           endText.textContent=span.textContent;
-    //       }
-    //     })
-
-    //   });
-
-    //   datesContainer.appendChild(btn);
-    // });
     days.forEach((d, index) => {
       const btn = document.createElement("button");
 
@@ -972,10 +926,7 @@ filterItems.forEach((item) => {
       } else {
         sortedQuote = filteredCopy.sort((a, b) => a.id - b.id);
       }
-    } else {
-      sortedQuote = filteredCopy;
-    }
-
+    } 
     renderQuoteTable(sortedQuote);
   });
 });
@@ -1185,9 +1136,9 @@ function renderTrendChart(totalQuotes, filterQuotes, filterItem) {
             y2: 1,
           },
           stops: [
-            [0, "rgb(73, 180, 255)"],
+            [0, "rgb(103, 199, 255)"],
             [0.5, "rgba(65, 183, 238, 0.64)"],
-            [1, "rgba(224, 224, 224, 0.05)"],
+            [1, "rgba(71, 175, 223, 0.05)"],
           ],
         },
         data: filterQuotes,
@@ -1549,9 +1500,9 @@ function renderModalTrendChart(totalQuotes, filterQuotes, filterItem) {
             y2: 1,
           },
           stops: [
-            [0, "rgb(73, 180, 255)"],
+            [0, "rgb(103, 199, 255)"],
             [0.5, "rgba(65, 183, 238, 0.64)"],
-            [1, "rgba(224, 224, 224, 0.05)"],
+            [1, "rgba(71, 175, 223, 0.05)"],
           ],
         },
         data: filterQuotes,
@@ -1851,3 +1802,12 @@ const exportBtn = document.querySelector(".export-btn");
 exportBtn.addEventListener("click", () => {
   window.print();
 });
+
+//loader function
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    loaderWrapper.classList.add("not-active");
+    dashboardWrapper.classList.add("active");
+  }, 1500);
+});
+

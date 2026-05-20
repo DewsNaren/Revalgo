@@ -97,9 +97,9 @@ function closeModal() {
   }
   if (expandModal.classList.contains("active")) {
     const suggestSource = modalContent.querySelector(".suggest-product-popup");
-    const body = document.body;
+
     if (suggestSource) {
-      body.appendChild(suggestSource);
+      document.body.appendChild(suggestSource);
     }
   }
   popupOverlay.classList.remove("active");
@@ -704,6 +704,8 @@ imgUpdateBtn.addEventListener("click", () => {
       }
     }
   });
+
+  editQuoteInfo(document.querySelector(".quick-info-wrapper"))
 });
 
 //acronym function

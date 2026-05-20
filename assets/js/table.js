@@ -21,37 +21,51 @@ function delRow(event) {
   const lineNo = row.querySelector(".line-no").textContent;
 
   delPopup1.classList.add("active");
-  delPopup1.querySelector(".text").textContent =
-    `Do you want to Delete item ${lineNo}?`;
+  delPopup1.querySelector(".text").textContent =`Do you want to Delete item ${lineNo}?`;
   popupOverlay.classList.add("active");
-  del1YesBtn.addEventListener("click", () => {
-    delPopup1.classList.remove("active");
-    delPopup2.classList.add("active");
-    delPopup2Id.textContent = `#${newQuote.id}`;
-    del2YesBtn.addEventListener("click", () => {
+
+  
+
+    del2YesBtn.onclick = () => {
+
       delBtn.classList.remove("active");
       delQuoteText.value = "";
       row.classList.add("not-active");
       undoBtn.classList.add("active");
-      const paras = row.querySelectorAll("p");
 
+      const paras = row.querySelectorAll("p");
       const delId = row.querySelector(".del-id").textContent;
-      const product = newQuote.products.find((p) => String(p.delId) === delId);
+      const product = newQuote.products.find(p => String(p.delId) === delId);
+
       if (product) {
         product.isDeleted = true;
       }
+
       paras.forEach((p) => {
         p.style.pointerEvents = "none";
       });
 
       delBtn.style.pointerEvents = "auto";
+
       undoBtn.style.pointerEvents = "auto";
 
       row.removeEventListener("click", rowClickHandler);
+
+      approveQuoteBtn.classList.add("active");
+
       closeModal();
-    });
-  });
+    };
+};
+
+function openDelPopup1(){
+    delPopup1.classList.remove("active");
+    delPopup2.classList.add("active");
+    delPopup2Id.textContent = `#${newQuote.id}`;
 }
+del1YesBtn.onclick = () => {
+openDelPopup1()
+}
+
 delQuoteText.addEventListener("input", () => {
   if (delQuoteText.value.trim() != "") {
     del2YesBtn.classList.add("active");
@@ -77,54 +91,72 @@ function undoRow(event) {
   if (product) {
     product.isDeleted = false;
   }
-
+  delAllBtn.classList.add("selected", "active");
+  undoAllBtn.classList.remove("selected", "active");
   row.addEventListener("click", rowClickHandler);
 }
 
 function deleteAllRow() {
+
   const bodyWrapper = displayTable.querySelector(".body-wrapper");
+
   const tableRows = bodyWrapper.querySelectorAll(".table-row");
 
   popupOverlay.classList.add("active");
+
   delPopup1.classList.add("active");
+
   delPopup1.querySelector(".text").textContent =
     "Do you want to Delete All lines?";
 
-  del1YesBtn.addEventListener("click", () => {
-    delPopup1.classList.remove("active");
-    delPopup2.classList.add("active");
-    delPopup2Id.textContent = `#${newQuote.id}`;
-    del2YesBtn.addEventListener("click", () => {
-      tableRows.forEach((row) => {
-        const delBtn = row.querySelector(".delete-line-btn");
-        const undoBtn = row.querySelector(".undo-line-btn");
-        row.classList.add("not-active");
-        delBtn.classList.remove("active");
-        undoBtn.classList.add("active");
-        const paras = row.querySelectorAll("p");
-        paras.forEach((p) => {
-          p.style.pointerEvents = "none";
-        });
+  del2YesBtn.onclick = () => {
 
-        delBtn.style.pointerEvents = "auto";
-        undoBtn.style.pointerEvents = "auto";
-        row.removeEventListener("click", rowClickHandler);
+    tableRows.forEach((row) => {
 
-        const delId = row.querySelector(".del-id").textContent;
-        const product = newQuote.products.find(
-          (p) => String(p.delId) === delId,
-        );
-        if (product) {
-          product.isDeleted = true;
-        }
+      const delBtn = row.querySelector(".delete-line-btn");
+
+      const undoBtn = row.querySelector(".undo-line-btn");
+
+      row.classList.add("not-active");
+
+      delBtn.classList.remove("active");
+
+      undoBtn.classList.add("active");
+
+      const paras = row.querySelectorAll("p");
+
+      paras.forEach((p) => {
+        p.style.pointerEvents = "none";
       });
 
-      delAllBtn.classList.remove("selected", "active");
-      undoAllBtn.classList.add("selected", "active");
-      approveQuoteBtn.classList.remove("active");
-      closeModal();
+      delBtn.style.pointerEvents = "auto";
+
+      undoBtn.style.pointerEvents = "auto";
+
+      row.removeEventListener("click", rowClickHandler);
+
+      const delId = row.querySelector(".del-id").textContent;
+
+      const product = newQuote.products.find(
+        (p) => String(p.delId) === delId
+      );
+
+      if (product) {
+        product.isDeleted = true;
+      }
+
     });
-  });
+
+    delAllBtn.classList.remove("selected", "active");
+
+    undoAllBtn.classList.add("selected", "active");
+
+    approveQuoteBtn.classList.remove("active");
+
+    closeModal();
+
+  };
+
 }
 
 function undoAllRow() {
@@ -158,10 +190,14 @@ function selectAllRow(event) {
     const inp = row.querySelector("input[type='checkbox']");
     inp.checked = isChecked;
   });
-  if (isChecked) {
-    delAllBtn.classList.add("active", "selected");
-  } else {
-    delAllBtn.classList.remove("active", "selected");
+  if(!undoAllBtn.classList.contains('selected')){
+    if (isChecked) {
+      
+      
+      delAllBtn.classList.add("active", "selected");
+    } else {
+      delAllBtn.classList.remove("active", "selected");
+    }
   }
 }
 
@@ -336,7 +372,8 @@ function updateQuoteTotals() {
 
 //left wrapper click function
 const mailWrapper = quickContentWrapper.querySelector(".mail-wrapper");
-const mailImgContainers = mailWrapper.querySelectorAll(".img-container");
+const mailImgContainers=mailWrapper.querySelectorAll(".img-container");
+const mailImgDetails = mailWrapper.querySelectorAll(".img-detail");
 const rightWrapper = quickContentWrapper.querySelector(".right-wrapper");
 const imgInfoContainer = mailWrapper.querySelector(".img-info-container");
 const mailExpandBtn = leftWrapper.querySelector(".mail-expand-btn");
@@ -376,8 +413,9 @@ mailMinimizeBtn.addEventListener("click", () => {
 });
 
 //mail img click function
-mailImgContainers.forEach((container) => {
-  container.addEventListener("click", () => {
+mailImgDetails.forEach((detail) => {
+  detail.addEventListener("click", () => {
+    const container=detail.parentElement;
     const isActive = container.classList.contains("active");
 
     mailImgContainers.forEach((c) => c.classList.remove("active"));

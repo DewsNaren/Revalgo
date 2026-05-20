@@ -96,5 +96,5 @@ function storeLoginData(){
         "username":loginName.value,
         "password":loginPassword.value
     }
-    sessionStorage.setItem("loginDetails",JSON.stringify(obj));
+    localStorage.setItem("loginDetails",JSON.stringify(obj));
 }

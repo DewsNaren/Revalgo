@@ -1,13 +1,5 @@
 const globalWrapper = document.querySelector(".global-wrapper");
 
-function setGlobalWrapperHeight() {
-  const headerHeight = header.getBoundingClientRect().height;
-  globalWrapper.style.height = `calc(100vh - ${headerHeight}px)`;
-}
-
-setGlobalWrapperHeight();
-
-window.addEventListener("resize", setGlobalWrapperHeight);
 
 //Datepicker
 const filterWrapper = document.querySelector(".filter-wrapper");
@@ -620,7 +612,7 @@ function changeStatusChips() {
   const endDate = document.querySelector(".end-text").childNodes[0].textContent;
 
   let dateChips = [];
-  console.log(startDate);
+
   if (startDate.trim().toLowerCase() != "mm/dd/yyyy") {
     dateChips.push({
       type: "start-date",
@@ -672,7 +664,7 @@ function closeChip(event) {
   const chip = event.target.closest(".chip");
   const type = chip.dataset.type;
   const val = chip.dataset.value;
-  console.log(chip);
+
   if (type == "status") {
     filterChipBtns.forEach((btn) => {
       if (btn.textContent.trim().toLowerCase() == val) {
@@ -805,6 +797,7 @@ const searchCustomerInput = document.querySelector(".search-customer-input");
 const searchCustomerBtn = document.querySelector(".search-customer-btn");
 let filteredNameQuotes = [];
 function searchNames() {
+  const searchCustomerInput = document.querySelector(".search-customer-input");
   const searchNameVal = searchCustomerInput.value.trim().toLowerCase();
   if (searchNameVal != "") {
     filteredNameQuotes = filteredData.filter((dat) =>
@@ -883,11 +876,8 @@ function handleCustomerFilter() {
   applyFilters();
 }
 
-searchCustomerInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    searchNames();
-  }
-});
+searchCustomerInput.addEventListener('input', () => searchNames());
+
 
 searchCustomerBtn.addEventListener("click", searchNames);
 
@@ -953,11 +943,7 @@ function searchQuotes() {
 
 searchBtn.addEventListener("click", searchQuotes);
 
-searchInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    searchQuotes();
-  }
-});
+searchInput.addEventListener('input',()=>searchQuotes())
 
 //sort function
 const tabHeaderSpans = filterTable.querySelectorAll("th span");
@@ -970,7 +956,7 @@ tabHeaderSpans.forEach((sp) => {
   sp.addEventListener("click", () => {
     const filteredCopy = [...filteredData];
     const sortItem = sp.dataset.sort;
-    console.log(sortItem);
+
     if (isAscending) {
       if (sortItem == "id") {
         filteredData = filteredCopy.sort((a, b) => a.id - b.id);

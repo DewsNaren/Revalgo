@@ -7,7 +7,11 @@
 
 
 body{
-    font-family: "Poppins", sans-serif !important;
+    height: 100vh;
+    overflow: hidden;
+    font-family: "Poppins", sans-serif ;
+    display: flex;
+    flex-direction: column;
 }
 
 body.not-active{
@@ -15,5 +19,5 @@ body.not-active{
 }
 
 a{
-    text-decoration: none !important;
+    text-decoration: none ;
 }

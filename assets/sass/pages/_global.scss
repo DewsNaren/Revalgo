@@ -7,6 +7,8 @@
     padding: clamp(15px, $fs-30px, $fs-30px)  0 clamp(15px, $fs-30px, $fs-30px) clamp(12px, $fs-24px, $fs-24px);
     display: flex;
     flex-direction: column;
+    flex: 1;
+    min-height: 0;
     .quote-filter-wrapper{
         margin-top: clamp(6px, $fs-12px, $fs-12px);
         display: flex;

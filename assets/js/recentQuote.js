@@ -19,15 +19,6 @@ const successPopup = document.querySelector(".success-popup");
 const successidText = successPopup.querySelector(".text .id");
 const confirmSuccessBtn = successPopup.querySelector(".ok-btn");
 
-function setQuoteWrapperHeight() {
-  const headerHeight = header.getBoundingClientRect().height;
-  quoteWrapper.style.height = `calc(100vh - ${headerHeight}px)`;
-  popupOverlay.style.height = `calc(100vh - ${headerHeight}px)`;
-}
-
-setQuoteWrapperHeight();
-
-window.addEventListener("resize", setQuoteWrapperHeight);
 
 //Datepicker
 const formPopup = document.querySelector(".form-popup");
@@ -344,25 +335,10 @@ expandBtns.forEach((btn) => {
 
 closePopupBtns.forEach((btn) =>
   btn.addEventListener("click", () => {
-    popups.forEach((pop) => pop.classList.remove("active"));
-    popupOverlay.classList.remove("active");
+    closeModal();
   }),
 );
 
-function closeModal() {
-  popupOverlay.classList.remove("active");
-  modalBox.classList.remove("active");
-  const suggestSource = modalContent.querySelector(".suggest-product-popup");
-  if (suggestSource) {
-    disTableBodyWrapper.appendChild(suggestSource);
-  }
-  if (formPopup.classList.contains("active")) {
-    updateForm.reset();
-    dateText.textContent = "dd-mm-yyyy";
-    errs.forEach((err) => err.classList.remove("active"));
-    formPopup.classList.remove("active");
-  }
-}
 function closeSuggestExpandModal() {
   const closeSuggestExpandBtn = modalContent.querySelector(
     ".close-suggest-popup-btn",
@@ -379,14 +355,6 @@ popupOverlay.addEventListener("click", (e) => {
   }
 });
 
-//
-// const thumbImgInput =document.querySelector(".thumbnail-img-input");
-// const thumbImg=document.querySelector(".thumbnail-img");
-// thumbImgInput.addEventListener('change',(e)=>{
-//   const file = e.target.files[0];
-//   thumbImg.src=`./assets/images/orderpad/${file.name}`
-//   console.log(file)
-// })
 
 const backBtnContainer = document.querySelector(".back-btn-container");
 const CreateBtn = backBtnContainer.querySelector(".back-create-btn");
@@ -410,9 +378,13 @@ if (sessionStorage.getItem("selectedQuote")) {
   quoteStat.classList.add(`${selectedQuote.status}`);
   quoteStat.textContent = `${selectedQuote.status}`;
   if (selectedQuote.status == "deleted") {
+
     undoQuoteBtn.classList.add("active");
     quickOrderWrapper.classList.add("not-active");
     approveBtnContainer.classList.add("not-active");
+  }
+  if(selectedQuote.status == "approved"){
+    approveQuoteBtn.classList.add("not-active")
   }
   renderQuickInfo(selectedQuote);
   renderDisplayTable(selectedQuote);
@@ -728,8 +700,50 @@ function editQuoteInfo(quoteInfoWrap) {
           container.classList.add("active");
         }
       });
+       updateFormData(quoteInfoWrap,editItem)
     });
   });
+}
+function updateFormData(quoteInfoWrap,editItem){
+  // console.log(editItem)
+  const wrapper=document.querySelector(`.${editItem}_text`)
+  
+    formContainers.forEach((container) => {
+      if (container.classList.contains(editItem)) {
+        if(editItem==="bill_to" || editItem=="ship_to"){
+          const inp=container.querySelector("input[name='name']")
+          const textarea=container.querySelector("textarea[name='address']")
+          if(inp){
+            inp.value=wrapper.querySelector(".name").textContent;
+          }
+          if(textarea){
+            const addrText=wrapper.querySelector(".address").innerHTML;
+            textarea.value=addrText.replace("<br>",'\n');
+          }
+        }
+        else if(editItem=="deleivery_date"){
+          const dateText=container.querySelector(".date-text");
+          const datePicker=container.querySelector(".datepicker");
+          const minDate = new Date(2025, 4, 1);
+          const maxDate = new Date(2026, 3, 30);
+          const [day, month, year] = wrapper.textContent.split("-");
+          const newSelectedDate = new Date(year, month - 1, day);
+          dateText.textContent=wrapper.textContent.replaceAll("-","/");
+          if (newSelectedDate >= minDate && newSelectedDate <= maxDate) {
+            selectedDate = newSelectedDate;
+            current = new Date(newSelectedDate.getFullYear(),newSelectedDate.getMonth(),1);
+            createDatepicker(datePicker)
+            const inp=container.querySelector("input")
+            inp.value=`${year}-${month}-${day}`;
+          }
+        }
+        else{
+          const inp=container.querySelector("input")
+          inp.value=wrapper.textContent
+        }
+  
+      }
+  }) 
 }
 
 const updateForm = formPopup.querySelector(".update-form");
@@ -837,77 +851,6 @@ formContainers.forEach((container) => {
   });
 });
 
-//mail img container
-// const mailWrapper=quickContentWrapper.querySelector(".mail-wrapper");
-// const mailImgContainers=mailWrapper.querySelectorAll(".img-container");
-// const leftWrapper=quickContentWrapper.querySelector(".left-wrapper");
-// const rightWrapper=quickContentWrapper.querySelector(".right-wrapper");
-// const uploadBtnContainer=leftWrapper.querySelector(".upload-btn-container");
-// const imgInfoContainer=mailWrapper.querySelector(".img-info-container");
-// const mailExpandBtn=leftWrapper.querySelector(".mail-expand-btn");
-// const mailMinimizeBtn=leftWrapper.querySelector(".minimize-btn");
-// const selectFileInput=document.querySelector(".select-file-input");
-// const selectedFileWrapper=document.querySelector(".selected-file");
-
-// mailExpandBtn.addEventListener("click", () => {
-
-//   if (leftWrapper.classList.contains("maximize")) {
-
-//     leftWrapper.classList.remove("minimize");
-//     leftWrapper.classList.remove("maximize");
-//     rightWrapper.classList.remove("maximize");
-//     rightWrapper.classList.remove("minimize");
-
-//   } else {
-
-//     leftWrapper.classList.remove("minimize");
-//     leftWrapper.classList.add("maximize");
-//     rightWrapper.classList.remove("maximize");
-//     rightWrapper.classList.add("minimize");
-
-//   }
-
-// });
-
-// mailImgContainers.forEach(container => {
-
-//   container.addEventListener("click", () => {
-
-//     const isActive =container.classList.contains("active");
-
-//     mailImgContainers.forEach(c =>c.classList.remove("active"));
-
-//     if (!isActive) {
-//       container.classList.add("active");
-//       imgInfoContainer.classList.add("active");
-//     } else {
-//       imgInfoContainer.classList.remove("active");
-//     }
-
-//   });
-
-// });
-
-// mailMinimizeBtn.addEventListener("click", () => {
-//   if (leftWrapper.classList.contains("minimize")) {
-
-//     leftWrapper.classList.remove("minimize");
-//     leftWrapper.classList.remove("maximize");
-//     rightWrapper.classList.remove("maximize");
-//     rightWrapper.classList.remove("minimize");
-//     uploadBtnContainer.classList.add('active')
-//   }
-
-//   else {
-
-//     leftWrapper.classList.add("minimize");
-//     leftWrapper.classList.remove("maximize");
-//     rightWrapper.classList.add("maximize");
-//     rightWrapper.classList.remove("minimize");
-//       uploadBtnContainer.classList.remove('active')
-//   }
-
-// });
 
 function editTableData(bodyWrap) {
   const tableRows = bodyWrap.querySelectorAll(".table-row");

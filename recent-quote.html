@@ -6,7 +6,6 @@
         <title>Recent Quotes | Revalgo</title>
         
         <link rel="stylesheet" href="./assets/vendor/bootstrap/css/bootstrap.min.css">
-        <!-- <link rel="stylesheet" href="./assets/vendor/fontawesome/css/all.min.css"> -->
         <link rel="stylesheet" href="./assets/css/style.css">
     </head>
     
@@ -111,14 +110,14 @@
                     <div class="quick-info-wrapper">
                         <div class="info">
                             <p class="header">Bill To</p>
-                            <div class="details">
+                            <div class="details bill_to_text">
                                 <p class="name">Astral India Pvt ltd</p>
                                 <p class="address">606,knolwood,brick <br> NJ 096478</p>
                             </div>
                         </div>
                         <div class="info">
                             <p class="header">Ship To <button type="button" class="edit-btn"><img src="./assets/images/global/edit_icon.png" alt="Edit icon"></button></p>
-                            <div class="details">
+                            <div class="details ship_to_text">
                                 <p class="name">Astral India Pvt ltd</p>
                                 <p class="address">606,knolwood,brick <br> NJ 096478</p>
                             </div>
@@ -126,37 +125,37 @@
                         <div class="info">
                             <p class="header">PO No <button type="button" class="edit-btn"><img src="./assets/images/global/edit_icon.png" alt="Edit icon"></button></p>
                             <div class="details">
-                                <p class="po-no-text text">AB32120/486</p>
+                                <p class="po_no_text text">AB32120/486</p>
                             </div>
                         </div>
                         <div class="info">
                             <p class="header">Job No <button type="button" class="edit-btn"><img src="./assets/images/global/edit_icon.png" alt="Edit icon"></button></p>
                             <div class="details">
-                                <p class="job-no-text text">AB32120/486</p>
+                                <p class="job_no_text text">AB32120/486</p>
                             </div>
                         </div>
                         <div class="info">
                             <p class="header">Buyer <button type="button" class="edit-btn"><img src="./assets/images/global/edit_icon.png" alt="Edit icon"></button></p>
                             <div class="details">
-                                <p class="buyer-text text">Ast India Pvt. Ltd</p>
+                                <p class="buyer_text text">Ast India Pvt. Ltd</p>
                             </div>
                         </div>
                         <div class="info">
                             <p class="header">Deleivery Date <button type="button" class="edit-btn"><img src="./assets/images/global/edit_icon.png" alt="Edit icon"></button></p>
                             <div class="details">
-                                <p class="deleivery-text text">05/05/34</p>
+                                <p class="deleivery_date_text text">05/05/34</p>
                             </div>
                         </div>
                         <div class="info">
                             <p class="header">#Lines</p>
                             <div class="details">
-                                <p class="line-text">4</p>
+                                <p class="lines_text text">4</p>
                             </div>
                         </div>
                         <div class="info">
                             <p class="header">Total Price</p>
                             <div class="details">
-                                <p class="price-text">$6565.87</p>
+                                <p class="total_price_text text">$6565.87</p>
                             </div>
                         </div>
 
@@ -289,7 +288,7 @@
                                                     <img src="./assets/images/dashboard/jpg_icon.png" alt="jpg">
                                                     <span class="img-text">img23.jpg</span>
                                                 </div>
-                                                <button class="download-btn"><img src="./assets/images/dashboard/download_icon.png" alt="download"></button>
+                                                <a class="download-btn" href="./assets/images/orderpad/email_pad_atchement_img_file.png" download="Email Pad Attachment"><img src="./assets/images/dashboard/download_icon.png" alt="download"></a>
                                                 
                                             </div>
                                             <div class="img-container">
@@ -297,21 +296,21 @@
                                                     <img src="./assets/images/dashboard/jpg_icon.png" alt="jpg">
                                                     <span class="img-text">img23.jpg</span>
                                                 </div>
-                                                <button class="download-btn"><img src="./assets/images/dashboard/download_icon.png" alt="download"></button>
+                                                <a class="download-btn" href="./assets/images/orderpad/email_pad_atchement_img_file.png" download="Email Pad Attachment"><img src="./assets/images/dashboard/download_icon.png" alt="download"></a>
                                             </div>
                                              <div class="img-container hidden">
                                                 <div class="img-detail">
                                                     <img src="./assets/images/dashboard/jpg_icon.png" alt="jpg">
                                                     <span class="img-text">img23.jpg</span>
                                                 </div>
-                                                <button class="download-btn"><img src="./assets/images/dashboard/download_icon.png" alt="download"></button>
+                                                <a class="download-btn" href="./assets/images/orderpad/email_pad_atchement_img_file.png" download="Email Pad Attachment"><img src="./assets/images/dashboard/download_icon.png" alt="download"></a>
                                             </div>
                                              <div class="img-container hidden">
                                                 <div class="img-detail">
                                                     <img src="./assets/images/dashboard/jpg_icon.png" alt="jpg">
                                                     <span class="img-text">img23.jpg</span>
                                                 </div>
-                                                <button class="download-btn"><img src="./assets/images/dashboard/download_icon.png" alt="download"></button>
+                                                <a class="download-btn" href="./assets/images/orderpad/email_pad_atchement_img_file.png" download="Email Pad Attachment"><img src="./assets/images/dashboard/download_icon.png" alt="download"></a>
                                             </div>
                                         </div>
                                         <div class="img-info-container">
@@ -477,6 +476,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="right-wrapper">
                             <div class="display-table">
                                 <div class="table-row header-wrapper">
@@ -772,8 +772,8 @@
                                             </div>
         </div>
         <div class="popup-overlay">
-            <div class="expand-modal">
-                <button class="close-modal-btn"><img src="./assets/images/global/close_modal.webp" alt="close"></button>
+            <div class="expand-modal popup">
+                <button class="close-modal-btn close-popup-btn"><img src="./assets/images/global/close_modal.webp" alt="close"></button>
                 <div class="expand-modal-content">
                 </div>
             </div>
@@ -1140,7 +1140,7 @@
         <script src="./assets/js/recentQuote.js"></script>
         <script src="./assets/js/table.js"></script>
         <script src="./assets/js/popup.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+        <script src="./assets/vendor/jsZip/jszip.min.js"></script>
         <script src="./assets/js/checkValid.js"></script>
     </body>
 </html>

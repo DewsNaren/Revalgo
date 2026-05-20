@@ -18,15 +18,6 @@ const successPopup = document.querySelector(".success-popup");
 const successidText = successPopup.querySelector(".text .id");
 const confirmSuccessBtn = successPopup.querySelector(".ok-btn");
 
-function setcreateQuoteWrapperHeight() {
-  const headerHeight = header.getBoundingClientRect().height;
-  createQuoteWrapper.style.height = `calc(100vh - ${headerHeight}px)`;
-  popupOverlay.style.height = `calc(100vh - ${headerHeight}px)`;
-}
-
-setcreateQuoteWrapperHeight();
-
-window.addEventListener("resize", setcreateQuoteWrapperHeight);
 
 const createInpWrapper = document.querySelector(".create-input-wrapper");
 const quoteOrderWrapper = document.querySelector(".quick-order-wrapper");
@@ -334,7 +325,7 @@ document.addEventListener("click", (e) => {
 });
 
 //default newQuote Data
-const loginDetails = JSON.parse(sessionStorage.getItem("loginDetails"));
+const loginDetails = JSON.parse(localStorage.getItem("loginDetails"));
 const modes = ["Call", "Email", "ERP"];
 
 function getRandomDate(minDate, maxDate) {

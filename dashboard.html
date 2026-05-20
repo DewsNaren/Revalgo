@@ -303,12 +303,11 @@
                   </div>
                   <div class="filter-dropdown">
                     <ul>
-                      <li data-sort="name" data-ascending="true">Name (A-Z)</li>
+                      <li data-sort="name" class="active" data-ascending="true">Name (A-Z)</li>
                       <li data-sort="name" data-ascending="false">
                         Name (Z-A)
                       </li>
                       <li data-sort="id">ID</li>
-                      <li data-sort="default" active>Default</li>
                     </ul>
                   </div>
                 </div>
@@ -683,7 +682,7 @@
           </div>
           <div class="transaction-wrapper">
             <div class="btn-container">
-              <button class="dropdown-btn">
+              <button type="button" class="dropdown-btn transaction-button accordion-button" data-bs-toggle="collapse" data-bs-target="#transaction-table-content" >
                 <img
                   src="./assets/images/dashboard/down_arrow_blue.png"
                   alt="down-arrow"
@@ -700,7 +699,8 @@
                 View More
               </button>
             </div>
-            <table class="transaction-table">
+            <div class="transaction-table-content collapse show" id="transaction-table-content">
+            <table class="transaction-table" >
               <thead>
                 <th>Customer</th>
                 <th>Date</th>
@@ -739,12 +739,13 @@
                 </tr>
               </tbody>
             </table>
+            </div>
           </div>
         </div>
       </div>
     </main>
     <div class="expand-overlay">
-      <div class="expand-modal">
+      <div class="expand-modal ">
         <button class="close-modal-btn">
           <img src="./assets/images/global/close_modal.webp" alt="close" />
         </button>
@@ -815,10 +816,13 @@
         </div>
       </div>
     </div>
-
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/highcharts-more.js"></script>
-    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+    <div class="loader-wrapper">
+      <div class="loader"></div>
+    </div>
+    <script src="./assets/vendor/highcharts/highcharts.js"></script>
+    <script src="./assets/vendor/highcharts/highcharts-more.js"></script>
+    <script src="./assets/vendor/highcharts/solid-gauge.js"></script>
+    <script src="./assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="./assets/js/header.js"></script>
     <script src="./assets/js/dashboard.js"></script>
     <script src="./assets/js/checkValid.js"></script>
