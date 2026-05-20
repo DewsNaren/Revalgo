@@ -212,3 +212,14 @@ function initializeSearch() {
 
   });
 }
+
+
+const logoutBtn=header.querySelector(".logout-btn");
+
+logoutBtn.addEventListener('click',(e)=>{
+  e.preventDefault();
+  if(sessionStorage.getItem("loginDetails")){
+    sessionStorage.removeItem("loginDetails")
+  }
+  window.location.href="./index.html";
+})

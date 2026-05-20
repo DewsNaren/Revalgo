@@ -19,12 +19,6 @@ a {
 
 @font-face {
   font-family: "Poppins";
-  font-weight: 400;
-  font-style: normal;
-  src: url("../fonts/poppins-400.ttf") format("truetype");
-}
-@font-face {
-  font-family: "Poppins";
   font-weight: 500;
   font-style: normal;
   src: url("../fonts/poppins-500.ttf") format("truetype");
@@ -821,6 +815,7 @@ body {
   padding: clamp(12px, 1.25vw, 1.25vw) clamp(12px, 1.25vw, 1.25vw);
   border-radius: clamp(3px, 0.521vw, 0.521vw);
   background-color: white;
+  height: 100%;
   max-height: 100%;
   display: flex;
   flex-direction: column;
@@ -1509,6 +1504,7 @@ body {
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper {
   background-color: white;
+  height: 100%;
   max-height: 100%;
   display: flex;
   flex-direction: column;

@@ -2,7 +2,7 @@ const loginForm=document.querySelector(".login-form");
 const loginName=loginForm.querySelector(".username");
 const loginPassword=loginForm.querySelector(".password");
 const loginBtn=document.querySelector(".login-btn");
-
+console.log(loginName)
 function ValidateLoginForm(){
     let success=true;
     const nameVal=loginName.value;
@@ -19,8 +19,9 @@ function ValidateLoginForm(){
     
 }
 
-function validateUsername(loginName, nameVal){
+function validateUsername(nameVal){
     if (nameVal === "") {
+        
         setError(loginName,"please enter the username");
        return false;
     }
@@ -31,6 +32,10 @@ function validateUsername(loginName, nameVal){
     
 }
 
+loginName.addEventListener('input',()=>{
+    const nameVal=loginName.value;
+    validateUsername(nameVal)
+})
 loginPassword.addEventListener('input',()=>{
     validatePassword(loginPassword.value,loginPassword)
 })
@@ -91,9 +96,5 @@ function storeLoginData(){
         "username":loginName.value,
         "password":loginPassword.value
     }
-    console.log(obj)
-    sessionStorage.setItem("loginDetails",JSON.stringify(obj))
-    
-    
-    
+    sessionStorage.setItem("loginDetails",JSON.stringify(obj));
 }

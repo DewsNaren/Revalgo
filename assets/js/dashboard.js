@@ -1,53 +1,46 @@
+const dashBoardWrapper = document.querySelector(".dashboard-wrapper");
+const dashBoardBodyWrapper = document.querySelector(".dashboard-body-wrapper");
+const expandOverlay = document.querySelector(".expand-overlay");
 
-const dashBoardWrapper=document.querySelector(".dashboard-wrapper");
-const dashBoardBodyWrapper=document.querySelector(".dashboard-body-wrapper");
-const expandOverlay=document.querySelector(".expand-overlay");
-
-function setDashWrapperHeight(){
-  const headerHeight=header.getBoundingClientRect().height;
-  dashBoardWrapper.style.height=`calc(100vh - ${headerHeight}px)`
-  expandOverlay.style.height=`calc(100vh - ${headerHeight}px)`;
+function setDashWrapperHeight() {
+  const headerHeight = header.getBoundingClientRect().height;
+  dashBoardWrapper.style.height = `calc(100vh - ${headerHeight}px)`;
+  expandOverlay.style.height = `calc(100vh - ${headerHeight}px)`;
 }
 
 setDashWrapperHeight();
 
-window.addEventListener('resize',setDashWrapperHeight)
-
+window.addEventListener("resize", setDashWrapperHeight);
 
 let quotes;
 let filteredQuotes;
-let start=new Date(new Date().setMonth(new Date().getMonth() - 6)); 
-end=new Date();
+let start = new Date(new Date().setMonth(new Date().getMonth() - 6));
+end = new Date();
 
 async function initializeQuotes() {
   await loadQuotes();
 
-  quotes=JSON.parse((sessionStorage.getItem("quotes")));
-  filteredQuotes=JSON.parse((sessionStorage.getItem("quotes")));
-  filterQuotesByDate(quotes, format(start), format(end))
-
+  quotes = JSON.parse(sessionStorage.getItem("quotes"));
+  filteredQuotes = JSON.parse(sessionStorage.getItem("quotes"));
+  filterQuotesByDate(quotes, format(start), format(end));
 }
 
 initializeQuotes();
 
-
-
-
 //datepicker
 const dateText = document.querySelector(".date-text");
-const dateFilter=document.querySelector(".date-filter");
+const dateFilter = document.querySelector(".date-filter");
 const dateMenu = dateFilter.querySelector(".dropdown-menu");
-const customText=document.querySelector(".custom-text");
-const startText=document.querySelector(".start-text");
-const endText=document.querySelector(".end-text");
+const customText = document.querySelector(".custom-text");
+const startText = document.querySelector(".start-text");
+const endText = document.querySelector(".end-text");
 
 const minDate = new Date(2025, 4, 1);
 const maxDate = new Date(2026, 3, 30);
 dateText.addEventListener("click", () => {
-  if(!datePicker.classList.contains("active")){
+  if (!datePicker.classList.contains("active")) {
     dateMenu.classList.toggle("active");
   }
-  
 });
 
 dateMenu.addEventListener("click", (e) => {
@@ -66,7 +59,6 @@ function handleSelection(value) {
 
   const today = new Date();
 
-
   switch (value) {
     case "today":
       start = end = today;
@@ -79,13 +71,11 @@ function handleSelection(value) {
       const current = new Date();
 
       const day = current.getDay();
-      const diff = (day === 0 ? 6 : day - 1); 
-
+      const diff = day === 0 ? 6 : day - 1;
 
       end = new Date(current);
       end.setDate(current.getDate() - diff - 1);
 
-   
       start = new Date(end);
       start.setDate(end.getDate() - 6);
       break;
@@ -110,8 +100,7 @@ function handleSelection(value) {
       return;
   }
 
-
-  filterQuotesByDate(quotes, format(start), format(end))
+  filterQuotesByDate(quotes, format(start), format(end));
 }
 
 let dateFilteredQuotes;
@@ -121,39 +110,24 @@ function filterQuotesByDate(filterQuotes, start, end) {
   const startObj = parseDate(startDate);
   const endObj = parseDate(endDate);
 
-   dateFilteredQuotes= filterQuotes.filter(q => {
+  dateFilteredQuotes = filterQuotes.filter((q) => {
     const quoteDate = parseDate(q.received_date);
 
-    return (
-      quoteDate >= startObj &&
-      quoteDate <= endObj
-    );
+    return quoteDate >= startObj && quoteDate <= endObj;
   });
-  const stat = [...tableBtns].find(btn =>btn.classList.contains("active"))?.dataset.filter;
 
+  renderQuoteTable(dateFilteredQuotes);
 
-  // console.log(stat)
-  let first=true;
-  if(first){
-    filteredQuotes=dateFilteredQuotes.filter(q=>q.status==stat.toLowerCase());
-    renderQuoteTable(filteredQuotes)
-  }
-  else{
-     renderQuoteTable(dateFilteredQuotes)
-  }
- 
-  renderQuoteCounts(dateFilteredQuotes)
-  // console.log(dateFilteredQuotes)
+  renderQuoteCounts(dateFilteredQuotes);
 
-  getTrendChartData(dateFilteredQuotes,"approved")
-  
+  getTrendChartData(dateFilteredQuotes, "all");
 }
 
 const startDate = document.querySelector(".start-date");
 const endDate = document.querySelector(".end-date");
 const datePicker = document.querySelector(".date-picker");
 
-let activeDate = null; 
+let activeDate = null;
 
 startDate.addEventListener("click", () => {
   activeDate = "start";
@@ -187,48 +161,55 @@ function selectDate(year, month, day) {
   datePicker.classList.remove("active");
 }
 
-customText.addEventListener('click',(e)=>{
+customText.addEventListener("click", (e) => {
   e.stopPropagation();
   datePicker.classList.toggle("active");
   dateMenu.classList.remove("active");
-
-})
+});
 
 //Datepicker
 
 const calendarDays = document.querySelectorAll(".custom-date-day");
 
-calendarDays.forEach(dayBtn => {
+calendarDays.forEach((dayBtn) => {
   dayBtn.addEventListener("click", () => {
     let day = Number(dayBtn.dataset.day);
     let month = Number(dayBtn.dataset.month);
     let year = Number(dayBtn.dataset.year);
 
     let selectedDate = new Date(year, month - 1, day);
-
   });
 });
 
-function padZero(num){
-  if(num > 9){
+function padZero(num) {
+  if (num > 9) {
     return num;
-  }
-  else{
-    return "0"+num;
+  } else {
+    return "0" + num;
   }
 }
-let flag=0;
+let flag = 0;
 let selectedMonth;
 let selectedDatee;
-let selectedYear=new Date().getFullYear();
+let selectedYear = new Date().getFullYear();
 
- const MONTHS = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
-  ];
+const MONTHS = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 
-  const DAYS=["S","M","T","W","T","F","S"];
- 
+const DAYS = ["S", "M", "T", "W", "T", "F", "S"];
+
 //create datepicker
 
 let today = new Date();
@@ -243,15 +224,14 @@ if (current > maxDate) {
 let selectedDate = null;
 function createDatepicker(datePicker) {
   const monthNameEl = datePicker.querySelector(".month-name");
-  const yearEl=datePicker.querySelector(".year");
+  const yearEl = datePicker.querySelector(".year");
   const datesContainer = datePicker.querySelector(".dates");
   const prevBtn = datePicker.querySelector(".prev-month");
   const nextBtn = datePicker.querySelector(".next-month");
   const tags = datePicker.querySelectorAll(".tag");
 
-  const START_YEAR = Number(new Date().getFullYear())-200;
+  const START_YEAR = Number(new Date().getFullYear()) - 200;
   const END_YEAR = Number(new Date().getFullYear());
-
 
   for (let y = START_YEAR; y <= END_YEAR; y++) {
     const div = document.createElement("div");
@@ -261,41 +241,38 @@ function createDatepicker(datePicker) {
     div.addEventListener("click", () => {
       const activeSpan = datePicker.querySelector(".input-wrapper span.active");
 
-      let day = 1, month = 0;
+      let day = 1,
+        month = 0;
 
       if (activeSpan) {
-        const [dayText, monthText] =
-        activeSpan.textContent.trim().split("/");
+        const [dayText, monthText] = activeSpan.textContent.trim().split("/");
 
         day = Number(dayText);
         month = Number(monthText) - 1;
 
-        activeSpan.textContent=`${dayText}/${monthText}/${y}`;
+        activeSpan.textContent = `${dayText}/${monthText}/${y}`;
       }
 
-    selectedDate = new Date(y, month, day);
-    current = new Date(selectedDate);
+      selectedDate = new Date(y, month, day);
+      current = new Date(selectedDate);
 
-    selectedYear = y;
+      selectedYear = y;
 
-    const content = datePicker.querySelector(".content");
-    content.classList.remove("not-active");
+      const content = datePicker.querySelector(".content");
+      content.classList.remove("not-active");
 
-    setActiveYear(datePicker, y);
+      setActiveYear(datePicker, y);
 
-
-    renderCalendar();
-  });
-
+      renderCalendar();
+    });
   }
-
 
   function renderCalendar() {
     const year = current.getFullYear();
     const month = current.getMonth();
 
     monthNameEl.textContent = `${MONTHS[month]}`;
-    yearEl.textContent=`${year}`;
+    yearEl.textContent = `${year}`;
     datesContainer.innerHTML = "";
 
     const firstDay = new Date(year, month, 1).getDay();
@@ -308,7 +285,7 @@ function createDatepicker(datePicker) {
       days.push({
         day: prevLastDate - i + 1,
         faded: true,
-        date: new Date(year, month - 1, prevLastDate - i + 1)
+        date: new Date(year, month - 1, prevLastDate - i + 1),
       });
     }
 
@@ -316,7 +293,7 @@ function createDatepicker(datePicker) {
       days.push({
         day: i,
         faded: false,
-        date: new Date(year, month, i)
+        date: new Date(year, month, i),
       });
     }
 
@@ -326,7 +303,7 @@ function createDatepicker(datePicker) {
       days.push({
         day: i,
         faded: true,
-        date: new Date(year, month + 1, i)
+        date: new Date(year, month + 1, i),
       });
     }
 
@@ -369,143 +346,114 @@ function createDatepicker(datePicker) {
     //   datesContainer.appendChild(btn);
     // });
     days.forEach((d, index) => {
+      const btn = document.createElement("button");
 
-    const btn = document.createElement("button");
+      btn.classList.add("date");
 
-    btn.classList.add("date");
+      btn.type = "button";
 
-    btn.type = "button";
+      btn.textContent = d.day;
 
-    btn.textContent = d.day;
+      const isOutOfRange = d.date < minDate || d.date > maxDate;
 
-    const isOutOfRange =d.date < minDate || d.date > maxDate;
+      if (d.faded) btn.classList.add("faded");
 
-    if (d.faded)
-    btn.classList.add("faded");
+      if (isOutOfRange) {
+        btn.classList.add("disabled");
+        btn.disabled = true;
+      }
 
-    if (isOutOfRange) {
-      btn.classList.add("disabled");
-      btn.disabled = true;
-    }
+      if (
+        selectedDate &&
+        d.date.toDateString() === selectedDate.toDateString() &&
+        !btn.classList.contains("faded")
+      ) {
+        btn.classList.add("current-day");
+      }
 
-    if (
-      selectedDate &&
-      d.date.toDateString() ===
-      selectedDate.toDateString() &&
-      !btn.classList.contains("faded")
-    ) {
-      btn.classList.add("current-day");
-    }
+      btn.addEventListener("click", () => {
+        if (isOutOfRange) return;
 
-    btn.addEventListener("click", () => {
+        const allButtons = datesContainer.querySelectorAll(".date");
 
-    if (isOutOfRange) return;
+        selectedDate = d.date;
 
-      const allButtons =
-      datesContainer.querySelectorAll(".date");
+        allButtons.forEach((b) => b.classList.remove("current-day"));
 
-      selectedDate = d.date;
+        btn.classList.add("current-day");
 
-      allButtons.forEach(b =>
-        b.classList.remove("current-day")
-      );
+        datePicker.classList.remove("active");
 
-      btn.classList.add("current-day");
+        getSelectedDate(datePicker);
+        // console.log(startDate)
+      });
 
-      datePicker.classList.remove("active");
-
-      getSelectedDate(datePicker);
-      // console.log(startDate)
-
-  });
-
-    datesContainer.appendChild(btn);
-
-  });
-  
+      datesContainer.appendChild(btn);
+    });
   }
 
-//prev button click 
-prevBtn.addEventListener("click", () => {
-  const prevMonth =
-    new Date(
+  //prev button click
+  prevBtn.addEventListener("click", () => {
+    const prevMonth = new Date(
       current.getFullYear(),
       current.getMonth() - 1,
-      1
+      1,
     );
 
-  if (
-    prevMonth.getFullYear() < minDate.getFullYear()
-    ||
-    (
-      prevMonth.getFullYear() === minDate.getFullYear()
-      &&
-      prevMonth.getMonth() < minDate.getMonth()
-    )
-  ) {
-    return;
-  }
-
-  const actDate = setActiveDate();
-
-  current.setMonth(current.getMonth() - 1);
-
-  renderCalendar();
-
-  const dates =
-    document.querySelectorAll(".date");
-
-  dates.forEach(date => {
-
-    if (date.textContent == String(actDate)) {
-      date.classList.add("current-day");
+    if (
+      prevMonth.getFullYear() < minDate.getFullYear() ||
+      (prevMonth.getFullYear() === minDate.getFullYear() &&
+        prevMonth.getMonth() < minDate.getMonth())
+    ) {
+      return;
     }
 
+    const actDate = setActiveDate();
+
+    current.setMonth(current.getMonth() - 1);
+
+    renderCalendar();
+
+    const dates = document.querySelectorAll(".date");
+
+    dates.forEach((date) => {
+      if (date.textContent == String(actDate)) {
+        date.classList.add("current-day");
+      }
+    });
   });
 
-});
-
-//next button click 
-nextBtn.addEventListener("click", () => {
-
-  const nextMonth =
-    new Date(
+  //next button click
+  nextBtn.addEventListener("click", () => {
+    const nextMonth = new Date(
       current.getFullYear(),
       current.getMonth() + 1,
-      1
+      1,
     );
 
-  if (
-    nextMonth.getFullYear() > maxDate.getFullYear()
-    ||
-    (
-      nextMonth.getFullYear() === maxDate.getFullYear()
-      &&
-      nextMonth.getMonth() > maxDate.getMonth()
-    )
-  ) {
-    return;
-  }
-
-  const actDate = setActiveDate();
-
-  current.setMonth(current.getMonth() + 1);
-
-  renderCalendar();
-
-  const dates =
-    document.querySelectorAll(".date");
-
-  dates.forEach(date => {
-
-    if (date.textContent == String(actDate)) {
-      date.classList.add("current-day");
+    if (
+      nextMonth.getFullYear() > maxDate.getFullYear() ||
+      (nextMonth.getFullYear() === maxDate.getFullYear() &&
+        nextMonth.getMonth() > maxDate.getMonth())
+    ) {
+      return;
     }
 
-  });
+    const actDate = setActiveDate();
 
-});
-  tags.forEach(tag => {
+    current.setMonth(current.getMonth() + 1);
+
+    renderCalendar();
+
+    const dates = document.querySelectorAll(".date");
+
+    dates.forEach((date) => {
+      if (date.textContent == String(actDate)) {
+        date.classList.add("current-day");
+      }
+    });
+  });
+  tags.forEach((tag) => {
     tag.addEventListener("click", () => {
       let type = tag.dataset.type;
 
@@ -521,88 +469,82 @@ nextBtn.addEventListener("click", () => {
   const year = current.getFullYear();
   setActiveYear(datePicker, year);
   renderCalendar();
-   
 }
 
 function setActiveDate() {
-  const activeSpan =datePicker.querySelector(".input-wrapper span.active");
+  const activeSpan = datePicker.querySelector(".input-wrapper span.active");
   let day = 1;
 
   if (activeSpan) {
-
-    let [dayText, monthText, yearText] =activeSpan.textContent.trim().split("/");
+    let [dayText, monthText, yearText] = activeSpan.textContent
+      .trim()
+      .split("/");
 
     day = Number(dayText);
     return day;
-     
   }
 }
-
-
-
 
 //activeyear
 function setActiveYear(datePicker, year) {
   const yearItems = datePicker.querySelectorAll(".year-item");
 
-  yearItems.forEach(item => {
+  yearItems.forEach((item) => {
     item.classList.toggle("active", Number(item.textContent) === year);
   });
 }
 
+const datepicker = dateFilter.querySelector(".date-picker");
 
-const datepicker=dateFilter.querySelector(".date-picker");
+createDatepicker(datepicker);
 
-createDatepicker(datepicker)
-
-const days=datepicker.querySelector(".days")
-for(let i=0;i<DAYS.length;i++){
-  const dayEl=document.createElement("span");
-  dayEl.className="day"
-  dayEl.textContent=DAYS[i];
+const days = datepicker.querySelector(".days");
+for (let i = 0; i < DAYS.length; i++) {
+  const dayEl = document.createElement("span");
+  dayEl.className = "day";
+  dayEl.textContent = DAYS[i];
   days.appendChild(dayEl);
 }
 
-function getSelectedDate(datePicker){
-  const monthNameEl=datePicker.querySelector(".month-name");
-  const yearEl=datePicker.querySelector(".year");
-  const dateInpWrapper=datePicker.querySelector(".input-wrapper");
-  const MonthArr=monthNameEl.textContent.split(" ")
-  selectedMonth=Number(MONTHS.findIndex(m => m === MonthArr[0]))+1
-  selectedMonth=padZero(selectedMonth)
+function getSelectedDate(datePicker) {
+  const monthNameEl = datePicker.querySelector(".month-name");
+  const yearEl = datePicker.querySelector(".year");
+  const dateInpWrapper = datePicker.querySelector(".input-wrapper");
+  const MonthArr = monthNameEl.textContent.split(" ");
+  selectedMonth = Number(MONTHS.findIndex((m) => m === MonthArr[0])) + 1;
+  selectedMonth = padZero(selectedMonth);
   // yearEl.
-  const dates=datePicker.querySelectorAll(".dates .date");
-  const startDateText=document.querySelector(".start-text");
-  const endDateText=document.querySelector(".end-text");
-  const startDat=datePicker.querySelector(".start");
-  const endDat=datePicker.querySelector(".end");
-  dates.forEach(d=>{
-    if(d.classList.contains("current-day")){
-      selectedDatee=padZero(Number(d.textContent))
+  const dates = datePicker.querySelectorAll(".dates .date");
+  const startDateText = document.querySelector(".start-text");
+  const endDateText = document.querySelector(".end-text");
+  const startDat = datePicker.querySelector(".start");
+  const endDat = datePicker.querySelector(".end");
+  dates.forEach((d) => {
+    if (d.classList.contains("current-day")) {
+      selectedDatee = padZero(Number(d.textContent));
     }
-  })
+  });
 
-  dateInpWrapper.querySelectorAll("span").forEach(dat=>{
-    if(dat.classList.contains("active")){
-      dat.textContent=`${selectedDatee}/${selectedMonth}/${ yearEl.textContent}`;
+  dateInpWrapper.querySelectorAll("span").forEach((dat) => {
+    if (dat.classList.contains("active")) {
+      dat.textContent = `${selectedDatee}/${selectedMonth}/${yearEl.textContent}`;
     }
-    startDateText.textContent=startDat.textContent;
-    endDateText.textContent=endDat.textContent;
+    startDateText.textContent = startDat.textContent;
+    endDateText.textContent = endDat.textContent;
 
-    filterQuotesByDate(dateFilteredQuotes, startDateText.textContent, endDateText.textContent)
-  })
-
-  
+    filterQuotesByDate(
+      dateFilteredQuotes,
+      startDateText.textContent,
+      endDateText.textContent,
+    );
+  });
 }
 
-
-
-const dateInpWrapper=datePicker.querySelector(".input-wrapper");
-const dateSpan= dateInpWrapper.querySelectorAll("span");
-dateSpan.forEach(span => {
+const dateInpWrapper = datePicker.querySelector(".input-wrapper");
+const dateSpan = dateInpWrapper.querySelectorAll("span");
+dateSpan.forEach((span) => {
   span.addEventListener("click", () => {
-
-  dateSpan.forEach(span => span.classList.remove("active"));
+    dateSpan.forEach((span) => span.classList.remove("active"));
     span.classList.add("active");
 
     const dateText = span.textContent.trim();
@@ -615,7 +557,7 @@ dateSpan.forEach(span => {
     setActiveYear(datePicker, year);
     datepicker.renderCalendar();
   });
-  if(span.classList.contains("active")){
+  if (span.classList.contains("active")) {
     const dateText = span.textContent.trim();
 
     const [day, month, year] = dateText.split("/").map(Number);
@@ -629,13 +571,10 @@ dateSpan.forEach(span => {
   }
 });
 
-
 document.addEventListener("click", (e) => {
-
   const dp = document.querySelector(".date-picker");
   const dateText = document.querySelector(".date-text");
   const customText = document.querySelector(".custom-text");
-
 
   if (!dp) return;
 
@@ -645,9 +584,7 @@ document.addEventListener("click", (e) => {
 
   // close picker when clicking dateText
   if (clickedDateText) {
-
     dp.classList.remove("active");
-
 
     dp.querySelector(".content")?.classList.remove("not-active");
 
@@ -655,8 +592,7 @@ document.addEventListener("click", (e) => {
   }
 
   // outside click
-  if (!clickedInsidePicker &&!clickedCustomText) {
-
+  if (!clickedInsidePicker && !clickedCustomText) {
     dp.classList.remove("active");
 
     dp.querySelector(".content")?.classList.remove("not-active");
@@ -667,146 +603,153 @@ document.addEventListener("click", (e) => {
 
 //widget button
 
-const widgetText=document.querySelector(".widget-text");
-const widgetDropdown=document.querySelector(".widget-dropdown-menu")
+const widgetText = document.querySelector(".widget-text");
+const widgetDropdown = document.querySelector(".widget-dropdown-menu");
 
-widgetText.addEventListener('click',()=>{
-  widgetDropdown.classList.toggle("active")
-})
+widgetText.addEventListener("click", () => {
+  widgetDropdown.classList.toggle("active");
+});
 document.addEventListener("click", (e) => {
-
-  if (!widgetText.contains(e.target) &&!widgetDropdown.contains(e.target)) {
+  if (!widgetText.contains(e.target) && !widgetDropdown.contains(e.target)) {
     widgetDropdown.classList.remove("active");
   }
 });
-renderWidgets()
-function renderWidgets(){
-  const widgetInputs=widgetDropdown.querySelectorAll("input");
-  const trendWrapper=document.querySelector(".trend-chart-wrapper");
-  const accuracyWrapper=document.querySelector(".accuracy-chart-wrapper");
-  const transactionWrapper=document.querySelector(".transaction-wrapper");
+renderWidgets();
+function renderWidgets() {
+  const widgetInputs = widgetDropdown.querySelectorAll("input");
+  const trendWrapper = document.querySelector(".trend-chart-wrapper");
+  const accuracyWrapper = document.querySelector(".accuracy-chart-wrapper");
+  const transactionWrapper = document.querySelector(".transaction-wrapper");
 
-  widgetInputs.forEach(inp=>{
-    inp.addEventListener('change',()=>{
-      if (inp.id=="select-all") {
-        if(inp.checked){
-          widgetInputs.forEach(inp=>inp.checked=true);
+  widgetInputs.forEach((inp) => {
+    inp.addEventListener("change", () => {
+      if (inp.id == "select-all") {
+        if (inp.checked) {
+          widgetInputs.forEach((inp) => (inp.checked = true));
           dashBoardBodyWrapper.classList.remove("not-active");
-        }
-
-        else{
-          widgetInputs.forEach(inp=>inp.checked=false);
+        } else {
+          widgetInputs.forEach((inp) => (inp.checked = false));
           dashBoardBodyWrapper.classList.add("not-active");
         }
-      }
-      else if(inp.id=="recent"){
+      } else if (inp.id == "recent") {
         quotesContainer.classList.toggle("not-active");
         trendWrapper.classList.toggle("minimize");
         accuracyWrapper.classList.toggle("minimize");
         transactionWrapper.classList.toggle("maximize");
-      }
-      else if(inp.id=="trend"){
+      } else if (inp.id == "trend") {
         trendWrapper.classList.toggle("not-active");
-
-       
-      }
-      else if(inp.id=="accuracy"){
+      } else if (inp.id == "accuracy") {
         accuracyWrapper.classList.toggle("not-active");
-      }
-      else {
+      } else {
         transactionWrapper.classList.toggle("not-active");
       }
-    })
-   
-  })
+    });
+  });
 }
 
-//expand function 
+//expand function
 const overlay = document.querySelector(".expand-overlay");
 const modalBox = document.querySelector(".expand-modal");
 const modalContent = document.querySelector(".expand-modal-content");
-const modalTrendChartWrapper=modalContent.querySelector(".trend-chart-wrapper");
-const modalaccurChartWrapper=modalContent.querySelector(".accuracy-chart-wrapper");
-const expandBtns=document.querySelectorAll(".expand-btn");
+const modalTrendChartWrapper = modalContent.querySelector(
+  ".trend-chart-wrapper",
+);
+const modalaccurChartWrapper = modalContent.querySelector(
+  ".accuracy-chart-wrapper",
+);
+const expandBtns = document.querySelectorAll(".expand-btn");
 const closeBtn = document.querySelector(".close-modal-btn");
 
-expandBtns.forEach(btn => {
+expandBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     const type = btn.dataset.type;
     const target = btn.dataset.target;
-    const modalData=btn.dataset.modal
+    const modalData = btn.dataset.modal;
     const source = document.querySelector(target);
     if (!source) return;
-    modalBox.className = "expand-modal " + type +" "+ modalData +" "+ "active";
+    modalBox.className =
+      "expand-modal " + type + " " + modalData + " " + "active";
 
     if (type === "table") {
-      const modalTransactionWrapper=modalContent.querySelector(".transaction-wrapper");
-      const modalQuoteContainer=modalContent.querySelector(".quotes-container");
+      const modalTransactionWrapper = modalContent.querySelector(
+        ".transaction-wrapper",
+      );
+      const modalQuoteContainer =
+        modalContent.querySelector(".quotes-container");
       modalQuoteContainer?.classList.remove("active");
       modalTransactionWrapper?.classList.remove("active");
-      const clone = source.cloneNode(true);      
-      
-      if(target ==".quotes-container"){
+      const clone = source.cloneNode(true);
+
+      if (target == ".quotes-container") {
         modalContent.appendChild(source);
-        const modQuoteContainer=modalContent.querySelector(".quotes-container");
+        const modQuoteContainer =
+          modalContent.querySelector(".quotes-container");
         modQuoteContainer.classList.add("active");
-        dashBoardBodyWrapper.insertBefore(clone, dashBoardBodyWrapper.firstChild);
-      }
-      else if(target==".transaction-wrapper"){
-        const modalTransactionWrapper=modalContent.querySelector(".transaction-wrapper");
-        if(!modalTransactionWrapper){
+        dashBoardBodyWrapper.insertBefore(
+          clone,
+          dashBoardBodyWrapper.firstChild,
+        );
+      } else if (target == ".transaction-wrapper") {
+        const modalTransactionWrapper = modalContent.querySelector(
+          ".transaction-wrapper",
+        );
+        if (!modalTransactionWrapper) {
           modalContent.appendChild(clone);
         }
-        const modTransactionWrapper=modalContent.querySelector(".transaction-wrapper");
+        const modTransactionWrapper = modalContent.querySelector(
+          ".transaction-wrapper",
+        );
         modTransactionWrapper?.classList.add("active");
-      }
-       else if(target==".suggest-product-popup"){
+      } else if (target == ".suggest-product-popup") {
         modalContent.appendChild(source);
         closeBtn.classList.add("not-active");
         closeSuggestExpandModal();
       }
     }
-   
 
     if (type === "chart") {
-      const modalTransactionWrapper=modalContent.querySelector(".transaction-wrapper");
+      const modalTransactionWrapper = modalContent.querySelector(
+        ".transaction-wrapper",
+      );
       modalTrendChartWrapper?.classList.remove("active");
       modalaccurChartWrapper?.classList.remove("active");
       modalTransactionWrapper?.classList.remove("active");
-      if (target ==".trend-chart-wrapper") {
+      if (target == ".trend-chart-wrapper") {
         modalTrendChartWrapper.classList.add("active");
-      } else if (target === ".accuracy-chart-wrapper" ) {
+      } else if (target === ".accuracy-chart-wrapper") {
         modalAccurChart.reflow();
         modalaccurChartWrapper.classList.add("active");
-        
       }
     }
     overlay.classList.add("active");
   });
 });
 
-
-function closeModal(){
+function closeModal() {
   overlay.classList.remove("active");
   modalBox.classList.remove("active");
-  const quoteContainer=document.querySelector(".quotes-container");
-  const originalSource=modalContent.querySelector(".quotes-container");
-  const suggestSource=modalContent.querySelector(".suggest-product-popup");
-  if(originalSource){
+  const quoteContainer = document.querySelector(".quotes-container");
+  const originalSource = modalContent.querySelector(".quotes-container");
+  const suggestSource = modalContent.querySelector(".suggest-product-popup");
+  if (originalSource) {
     quoteContainer.remove();
-    dashBoardBodyWrapper.insertBefore(originalSource, dashBoardBodyWrapper.firstChild);
+    dashBoardBodyWrapper.insertBefore(
+      originalSource,
+      dashBoardBodyWrapper.firstChild,
+    );
   }
-  if(suggestSource){
-    disTableBodyWrapper.appendChild(suggestSource)
+  if (suggestSource) {
+    disTableBodyWrapper.appendChild(suggestSource);
   }
-
 }
 // close button
 closeBtn.addEventListener("click", () => {
   closeModal();
 });
-function closeSuggestExpandModal(){
-  const closeSuggestExpandBtn=modalContent.querySelector(".close-suggest-popup-btn");
+function closeSuggestExpandModal() {
+  const closeSuggestExpandBtn = modalContent.querySelector(
+    ".close-suggest-popup-btn",
+  );
   closeSuggestExpandBtn.addEventListener("click", () => {
     closeModal();
     closeBtn.classList.remove("not-active");
@@ -820,144 +763,137 @@ overlay.addEventListener("click", (e) => {
   }
 });
 
-
 //table
-const quoteTable=document.querySelector(".quote-table");
+const quoteTable = document.querySelector(".quote-table");
 
-function  getPrice(price){
+function getPrice(price) {
   return parseFloat(price.replace(/[^\d.]/g, "").replace(/\.(?=.*\.)/g, ""));
 }
-function renderQuoteTable(data){
+function renderQuoteTable(data) {
+  const tBody = quoteTable.querySelector("tbody");
 
-  const tBody=quoteTable.querySelector("tbody");
-
-  tBody.innerHTML="";
-  let tabHtml="";
-  if(data.length!=0){
-    data.forEach(d=>{
-      tabHtml+=`<tr data-id="${d.id}">
+  tBody.innerHTML = "";
+  let tabHtml = "";
+  if (data.length != 0) {
+    data.forEach((d) => {
+      tabHtml += `<tr data-id="${d.id}">
         <td><img src="./assets/images/dashboard/${d.mode}_icon.png" alt="${d.img}"></td>
         <td><a href="./recent-quote.html" class="quote-id-btn">#${d.id}</a></td>
-        <td>${d.number ?` ${d.name} /${d.number}`:`${d.name}`}</td>
+        <td>${d.number ? ` ${d.name} /${d.number}` : `${d.name}`}</td>
         <td>${d.received_date}</td>
         <td>${d.approved_date}</td>
         <td class=${d.status === "approved" ? "approved" : d.status === "pending" ? "pending" : ""} }>${d.status}</td>
         <td>${d.total_line_no}</td>
         <td>$${d.total_price}</td>
-        <td>${d.status === "deleted" ? 
-          `<span class="undo-btn">Undo</span>` : `<a href="./create-quote.html" class="create-quote-link" onclick="gotoCreateQuote(event)">
-          <img src="./assets/images/dashboard/Add_icon.png" alt="add"> </a>`}
+        <td>${
+          d.status === "deleted"
+            ? `<span class="undo-btn">Undo</span>`
+            : `<a href="./create-quote.html" class="create-quote-link" onclick="gotoCreateQuote(event)">
+          <img src="./assets/images/dashboard/add_icon.png" alt="add"> </a>`
+        }
       </td>
     </tr>
-      ` 
-    })
+      `;
+    });
 
-    tBody.innerHTML=tabHtml;
-    const quoteTable=document.querySelector(".quote-table");
+    tBody.innerHTML = tabHtml;
+    const quoteTable = document.querySelector(".quote-table");
     tableClickHandler(quoteTable);
-  }
-  else{
-    tBody.innerHTML="<p class='not-found'>Data Not Found</p>";
+  } else {
+    tBody.innerHTML = "<p class='not-found'>Data Not Found</p>";
   }
 }
 
-
-function gotoCreateQuote(event){
+function gotoCreateQuote(event) {
   event.preventDefault();
-  let newId="";
-  newId=Math.floor(Math.random()* (9999999-1000000+1))+1000000;
-  let isExists = quotes.some(q =>q.id === newId);
-  while(isExists){
-    newId=Math.floor(Math.random()* (9999999-1000000+1))+1000000;
-    isExists =quotes.some(q => q.id === newId);
+  let newId = "";
+  newId = Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
+  let isExists = quotes.some((q) => q.id === newId);
+  while (isExists) {
+    newId = Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
+    isExists = quotes.some((q) => q.id === newId);
   }
-  sessionStorage.setItem('newId',newId)
-  window.location.href="./create-quote.html"
-
+  sessionStorage.setItem("newId", newId);
+  window.location.href = "./create-quote.html";
 }
 
 //handle undo
-const undoModal=document.querySelector(".undo-modal");
-const undoYesBtn=undoModal.querySelector(".yes-btn");
-const undoNoBtn=undoModal.querySelector(".no-btn");
+const undoModal = document.querySelector(".undo-modal");
+const undoYesBtn = undoModal.querySelector(".yes-btn");
+const undoNoBtn = undoModal.querySelector(".no-btn");
 
-const undoText=undoModal.querySelector(".text");
-function tableClickHandler(quoteTable){
-  const idBtns=quoteTable.querySelectorAll(".quote-id-btn");
-  idBtns.forEach(btn=>{
-    btn.addEventListener('click',(e)=>{
+const undoText = undoModal.querySelector(".text");
+function tableClickHandler(quoteTable) {
+  const idBtns = quoteTable.querySelectorAll(".quote-id-btn");
+  idBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
       e.preventDefault();
-      const id=e.target.closest("tr").dataset.id;
-      quotes.forEach(q => {
-        if(q.id==id){
-          sessionStorage.setItem('selectedQuote',JSON.stringify(q));
-          window.location.href="./recent-quote.html"
+      const id = e.target.closest("tr").dataset.id;
+      quotes.forEach((q) => {
+        if (q.id == id) {
+          sessionStorage.setItem("selectedQuote", JSON.stringify(q));
+          window.location.href = "./recent-quote.html";
         }
-      })
-    })
-  })
-  const undoBtns=quoteTable.querySelectorAll(".undo-btn");
-  undoBtns.forEach(btn=>{
-    btn.addEventListener('click',(e)=>{
+      });
+    });
+  });
+  const undoBtns = quoteTable.querySelectorAll(".undo-btn");
+  undoBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
       closeModal();
-      const id=e.target.closest("tr").dataset.id
+      const id = e.target.closest("tr").dataset.id;
       expandOverlay.classList.add("active");
       undoModal.classList.add("active");
-      undoText.innerHTML=`Are you sure you want to undo this  <br> Quote ID #${id}</p>`
-      undoQuoteStatus(id)
-    })
-  })
-  
-  
+      undoText.innerHTML = `Are you sure you want to undo this  <br> Quote ID #${id}</p>`;
+      undoQuoteStatus(id);
+    });
+  });
 }
 
 //undo btn function
-function undoQuoteStatus(id){
-  undoYesBtn.addEventListener('click',()=>{
-    quotes.forEach(q => {
+function undoQuoteStatus(id) {
+  undoYesBtn.addEventListener("click", () => {
+    quotes.forEach((q) => {
       if (q.id == id) {
-        console.log(q)
+        console.log(q);
         q.status = "pending";
 
-        sessionStorage.setItem('quotes',JSON.stringify(quotes));
+        sessionStorage.setItem("quotes", JSON.stringify(quotes));
         initializeSearch();
-        quotes=JSON.parse((sessionStorage.getItem("quotes")));
-        filteredQuotes=JSON.parse((sessionStorage.getItem("quotes")));
-        filterQuotesByDate(quotes, format(start), format(end))
+        quotes = JSON.parse(sessionStorage.getItem("quotes"));
+        filteredQuotes = JSON.parse(sessionStorage.getItem("quotes"));
+        filterQuotesByDate(quotes, format(start), format(end));
         closeUndoModal();
       }
-      
-
-
     });
-  })
+  });
 }
 
-function closeUndoModal(){
+function closeUndoModal() {
   expandOverlay.classList.remove("active");
   undoModal.classList.remove("active");
 }
 
-undoNoBtn.addEventListener('click',()=>{
+undoNoBtn.addEventListener("click", () => {
   closeUndoModal();
-})
+});
 
-//update counts form data 
-function renderQuoteCounts(data){
-  const approveCounts=document.querySelectorAll(".apprv-count");
-  const pendCounts=document.querySelectorAll(".pend-count");
-  const delCounts=document.querySelectorAll(".del-count");
-  const allCount=document.querySelector(".all-count");
-  const totalRev=document.querySelector(".total-revenue");
-  const totalCounts=document.querySelectorAll(".total-count")
-  let approve=0;
-  let pend=0;
-  let del=0;
-  let tot=0;
-  let totalPrice=0;
-  data.forEach(d=>{
-    const status=d.status
-    switch(status){
+//update counts form data
+function renderQuoteCounts(data) {
+  const approveCounts = document.querySelectorAll(".apprv-count");
+  const pendCounts = document.querySelectorAll(".pend-count");
+  const delCounts = document.querySelectorAll(".del-count");
+  const allCount = document.querySelector(".all-count");
+  const totalRev = document.querySelector(".total-revenue");
+  const totalCounts = document.querySelectorAll(".total-count");
+  let approve = 0;
+  let pend = 0;
+  let del = 0;
+  let tot = 0;
+  let totalPrice = 0;
+  data.forEach((d) => {
+    const status = d.status;
+    switch (status) {
       case "approved":
         approve++;
         break;
@@ -970,190 +906,180 @@ function renderQuoteCounts(data){
     }
     const str = d.total_price;
 
-    const num = getPrice(str) ;
+    const num = getPrice(str);
 
-    totalPrice+=num;
-  })
+    totalPrice += num;
+  });
 
-  approveCounts.forEach(c=>c.textContent=approve);
-  pendCounts.forEach(c=>c.textContent=pend);
-  delCounts.forEach(c=>c.textContent=del);
-  
-  totalCounts.forEach(c=>c.textContent=approve+pend);
-  allCount.textContent=data.length
-  totalRev.textContent="$"+totalPrice.toFixed(2);
+  approveCounts.forEach((c) => (c.textContent = approve));
+  pendCounts.forEach((c) => (c.textContent = pend));
+  delCounts.forEach((c) => (c.textContent = del));
+
+  totalCounts.forEach((c) => (c.textContent = approve + pend));
+  allCount.textContent = data.length;
+  totalRev.textContent = "$" + totalPrice.toFixed(2);
 }
 
+//filter function
 
+const quotesContainer = document.querySelector(".quotes-container");
+const tableBtns = document.querySelectorAll(
+  ".top-container .btn-container button",
+);
 
-//filter function 
-
-const quotesContainer=document.querySelector(".quotes-container");
-const tableBtns=document.querySelectorAll(".top-container .btn-container button")
-
-tableBtns.forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    tableBtns.forEach(btn=>btn.classList.remove("active"));
+tableBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    tableBtns.forEach((btn) => btn.classList.remove("active"));
     btn.classList.add("active");
-    const filterItem=btn.dataset.filter;
-    
-    if(filterItem!="all")
-      filteredQuotes=dateFilteredQuotes.filter(q=>q.status==filterItem);
-    else
-      filteredQuotes = [...dateFilteredQuotes];
+    const filterItem = btn.dataset.filter;
 
-    renderQuoteTable(filteredQuotes)
-    getTrendChartData(dateFilteredQuotes,filterItem)
-  })
-})
+    if (filterItem != "all")
+      filteredQuotes = dateFilteredQuotes.filter((q) => q.status == filterItem);
+    else filteredQuotes = [...dateFilteredQuotes];
 
+    renderQuoteTable(filteredQuotes);
+    getTrendChartData(dateFilteredQuotes, filterItem);
+  });
+});
 
 //filter function
-const filterBtn=quotesContainer.querySelector(".filter-text");
+const filterBtn = quotesContainer.querySelector(".filter-text");
 
-const filterDropdown=document.querySelector(".filter-dropdown");
-const filterItems=filterDropdown.querySelectorAll("ul li");
-filterBtn.addEventListener('click',()=>{
-  filterDropdown.classList.toggle("active")
-})
+const filterDropdown = document.querySelector(".filter-dropdown");
+const filterItems = filterDropdown.querySelectorAll("ul li");
+filterBtn.addEventListener("click", () => {
+  filterDropdown.classList.toggle("active");
+});
 
-filterItems.forEach(item=>{
-  item.addEventListener('click',()=>{
-    const filteredCopy=[...filteredQuotes]
-    filterItems.forEach(item=>item.classList.remove("active"));
-    filterDropdown.classList.remove("active")
-    const sortItem=item.dataset.sort;
-    const ascend=item.dataset.ascending;
-    item.classList.add("active")
+filterItems.forEach((item) => {
+  item.addEventListener("click", () => {
+    const filteredCopy = [...filteredQuotes];
+    filterItems.forEach((item) => item.classList.remove("active"));
+    filterDropdown.classList.remove("active");
+    const sortItem = item.dataset.sort;
+    const ascend = item.dataset.ascending;
+    item.classList.add("active");
 
-    if(sortItem=="name"){
-      if(ascend=="true"){
-        sortedQuote=filteredCopy.sort((a, b) => a.name.localeCompare(b.name))
+    if (sortItem == "name") {
+      if (ascend == "true") {
+        sortedQuote = filteredCopy.sort((a, b) => a.name.localeCompare(b.name));
+      } else {
+        sortedQuote = filteredCopy.sort((a, b) => b.name.localeCompare(a.name));
       }
-      else{
-        sortedQuote=filteredCopy.sort((a, b) => b.name.localeCompare(a.name))
+    } else if (sortItem == "id") {
+      if (ascend == "true") {
+        sortedQuote = filteredCopy.sort((a, b) => a.id - b.id);
+      } else {
+        sortedQuote = filteredCopy.sort((a, b) => a.id - b.id);
       }
-    }
-    else if(sortItem=="id"){
-      if(ascend=="true"){
-        sortedQuote= filteredCopy.sort((a, b) => a.id - b.id);
-      }
-      else{
-        sortedQuote= filteredCopy.sort((a, b) => a.id - b.id);
-      }
-    }
-    else{
-      sortedQuote=filteredCopy;
+    } else {
+      sortedQuote = filteredCopy;
     }
 
-    renderQuoteTable(sortedQuote)
-  })
-})
-document.addEventListener('click',(e)=>{
-
-  if(!e.target.contains(filterBtn))
-    filterDropdown.classList.remove("active")
-})
+    renderQuoteTable(sortedQuote);
+  });
+});
+document.addEventListener("click", (e) => {
+  if (!e.target.contains(filterBtn)) filterDropdown.classList.remove("active");
+});
 
 //sort
 
-const tabHeaderSpans=quoteTable.querySelectorAll("th span");
+const tabHeaderSpans = quoteTable.querySelectorAll("th span");
 let sortedQuote;
 let isAscending = true;
 function parseDate(dateStr) {
-
   const [day, month, year] = dateStr.split("-");
 
   return new Date(year, month - 1, day);
 }
 
-tabHeaderSpans.forEach(sp=>{
-  sp.addEventListener('click',()=>{
-    const filteredCopy=[...filteredQuotes]
-    const sortItem=sp.dataset.sort;
-    if(isAscending){
-      if(sortItem=="id"){
-        sortedQuote=filteredCopy.sort((a, b) => a.id - b.id);
+tabHeaderSpans.forEach((sp) => {
+  sp.addEventListener("click", () => {
+    const filteredCopy = [...filteredQuotes];
+    const sortItem = sp.dataset.sort;
+    if (isAscending) {
+      if (sortItem == "id") {
+        sortedQuote = filteredCopy.sort((a, b) => a.id - b.id);
+      } else if (sortItem == "name") {
+        sortedQuote = filteredCopy.sort((a, b) => a.name.localeCompare(b.name));
+      } else if (sortItem == "received_date") {
+        sortedQuote = filteredCopy.sort(
+          (a, b) => parseDate(a.received_date) - parseDate(b.received_date),
+        );
+      } else if (sortItem == "approved_date") {
+        sortedQuote = filteredCopy.sort(
+          (a, b) => parseDate(a.approved_date) - parseDate(b.approved_date),
+        );
+      } else if (sortItem == "status") {
+        sortedQuote = filteredCopy.sort((a, b) =>
+          a.status.localeCompare(b.status),
+        );
+      } else if (sortItem == "total_line_no") {
+        sortedQuote = filteredCopy.sort(
+          (a, b) => a.total_line_no - b.total_line_no,
+        );
+      } else if (sortItem == "total_line_no") {
+        sortedQuote = filteredCopy.sort(
+          (a, b) => a.total_line_no - b.total_line_no,
+        );
+      } else if (sortItem == "total_price") {
+        sortedQuote = filteredCopy.sort(
+          (a, b) => getPrice(a.total_price) - getPrice(b.total_price),
+        );
       }
-      else if(sortItem=="name"){
-        sortedQuote=filteredCopy.sort((a, b) => a.name.localeCompare(b.name))
-      }
-      else if(sortItem=="received_date"){
-        sortedQuote = filteredCopy.sort((a, b) => parseDate(a.received_date) - parseDate(b.received_date));
-      }
-      else if(sortItem=="approved_date"){
-        sortedQuote = filteredCopy.sort((a, b) => parseDate(a.approved_date) - parseDate(b.approved_date));
-      }
-      else if(sortItem=="status"){
-        sortedQuote = filteredCopy.sort((a, b) => a.status.localeCompare(b.status));
-      }
-      else if(sortItem=="total_line_no"){
-        sortedQuote = filteredCopy.sort((a, b) => a.total_line_no - b.total_line_no);
-      }
-      else if(sortItem=="total_line_no"){
-        sortedQuote = filteredCopy.sort((a, b) => a.total_line_no - b.total_line_no);
-      }
-      else if(sortItem=="total_price"){
-        sortedQuote = filteredCopy.sort((a, b) => getPrice(a.total_price) - getPrice(b.total_price));
+    } else if (!isAscending) {
+      if (sortItem == "id") {
+        sortedQuote = filteredCopy.sort((a, b) => b.id - a.id);
+      } else if (sortItem == "name") {
+        sortedQuote = filteredCopy.sort((a, b) => b.name.localeCompare(a.name));
+      } else if (sortItem == "received_date") {
+        sortedQuote = filteredCopy.sort(
+          (a, b) => parseDate(b.received_date) - parseDate(a.received_date),
+        );
+      } else if (sortItem == "approved_date") {
+        sortedQuote = filteredCopy.sort(
+          (a, b) => parseDate(b.approved_date) - parseDate(a.approved_date),
+        );
+      } else if (sortItem == "status") {
+        sortedQuote = filteredCopy.sort((a, b) =>
+          b.status.localeCompare(a.status),
+        );
+      } else if (sortItem == "total_line_no") {
+        sortedQuote = filteredCopy.sort(
+          (a, b) => b.total_line_no - a.total_line_no,
+        );
+      } else if (sortItem == "total_price") {
+        sortedQuote = filteredCopy.sort(
+          (a, b) => getPrice(b.total_price) - getPrice(a.total_price),
+        );
       }
     }
-    else if(!isAscending){
-      if(sortItem=="id"){
-        sortedQuote=filteredCopy.sort((a, b) =>b.id - a.id)
-      }
-       else if(sortItem=="name"){
-        sortedQuote=filteredCopy.sort((a, b) =>b.name.localeCompare(a.name))
-      }
-      else if(sortItem=="received_date"){
-        sortedQuote = filteredCopy.sort((a, b) => parseDate(b.received_date) - parseDate(a.received_date));
-      }
-      else if(sortItem=="approved_date"){
-        sortedQuote = filteredCopy.sort((a, b) => parseDate(b.approved_date) - parseDate(a.approved_date));
-      }
-      else if(sortItem=="status"){
-        sortedQuote = filteredCopy.sort((a, b) => b.status.localeCompare(a.status));
-      }
-      else if(sortItem=="total_line_no"){
-        sortedQuote = filteredCopy.sort((a, b) => b.total_line_no - a.total_line_no);
-      }
-      else if(sortItem=="total_price"){
-        sortedQuote = filteredCopy.sort((a, b) => getPrice(b.total_price) - getPrice(a.total_price));
-      }
-    }
-   
-    renderQuoteTable(sortedQuote)
-    isAscending=!isAscending;
-  })
- 
-})
 
-//search function 
+    renderQuoteTable(sortedQuote);
+    isAscending = !isAscending;
+  });
+});
 
-const searchInput =document.querySelector(".search-table-quote-input");
-const searchBtn =document.querySelector(".search-table-quote-btn");
+//search function
+
+const searchInput = document.querySelector(".search-table-quote-input");
+const searchBtn = document.querySelector(".search-table-quote-btn");
 
 function searchQuotes() {
   const value = searchInput.value.trim().toLowerCase();
-  const filteredCopy=[...filteredQuotes]
-  if(value!=""){
-    sortedQuote = filteredCopy.filter(q => {
-
+  const filteredCopy = [...filteredQuotes];
+  if (value != "") {
+    sortedQuote = filteredCopy.filter((q) => {
       return (
-
         q.id.toString().toLowerCase().includes(value) ||
-
-        q.name.toLowerCase().includes(value)||
-        
-        q.number.toString().toLowerCase().includes(value)||
-
+        q.name.toLowerCase().includes(value) ||
+        q.number.toString().toLowerCase().includes(value) ||
         q.status.toLowerCase().includes(value)
-
       );
-
     });
-  }
-  else{
-    sortedQuote=filteredCopy;
+  } else {
+    sortedQuote = filteredCopy;
   }
 
   renderQuoteTable(sortedQuote);
@@ -1163,123 +1089,123 @@ function searchQuotes() {
 searchBtn.addEventListener("click", searchQuotes);
 
 // enter key
-searchInput.addEventListener("keydown", (e) => {
+searchInput.addEventListener('input', () => searchQuotes());
 
-  if (e.key === "Enter") {
-    searchQuotes();
-  }
-});
 
 //charts
 let trendChart;
-const trendChartContainer=document.getElementById("trend-chart")
+const trendChartContainer = document.getElementById("trend-chart");
 
-function renderTrendChart(totalQuotes, filterQuotes,filterItem){
-  trendChart=Highcharts.chart('trend-chart', {
+function renderTrendChart(totalQuotes, filterQuotes, filterItem) {
+  trendChart = Highcharts.chart("trend-chart", {
     chart: {
-      type: 'area',
-      animation: true
+      type: "area",
+      animation: true,
     },
     xAxis: {
-      lineColor:'#e6e6e6',
+      lineColor: "#e6e6e6",
       categories: [
-          'Jan', 'Feb', 'Mar', 'Apr',
-          'May', 'Jun', 'Jul', 'Aug','Sep','Oct','Nov','Dec'
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
       ],
       title: {
-          text: ''
+        text: "",
       },
-      labels: { 
-        useHTML: true ,
-        format: '<div class="trend-x-label">{value}</div>', 
-          
+      labels: {
+        useHTML: true,
+        format: '<div class="trend-x-label">{value}</div>',
       },
-
     },
     title: {
-      text: ''
+      text: "",
     },
     yAxis: {
       title: {
-        text: ''
+        text: "",
       },
-      labels: { 
-          useHTML: true ,
-         format: '<div class="trend-y-label">{value}</div>', 
-          
+      labels: {
+        useHTML: true,
+        format: '<div class="trend-y-label">{value}</div>',
       },
     },
-    tooltip:{
-      outside:true,
+    tooltip: {
+      outside: true,
     },
-    legend:{
-      enabled:false
+    legend: {
+      enabled: false,
     },
     plotOptions: {
-        series: {
+      series: {
         animation: {
-          duration: 500
-        }
+          duration: 500,
+        },
       },
-        area: {
-          fillOpacity: 0.5,
-    
-        }
+      area: {
+        fillOpacity: 0.5,
+      },
     },
     credits: {
-        enabled: false
+      enabled: false,
     },
-    accessibility:{
-      enabled:false
+    accessibility: {
+      enabled: false,
     },
-    series: [{
-        name: 'Total',
-        color:'#ff09b5',
-        fillColor: 'transparent',
+    series: [
+      {
+        name: "Total",
+        color: "#ff09b5",
+        fillColor: "transparent",
         data: totalQuotes,
         marker: {
           enabled: false,
           states: {
-              hover: { enabled: false, lineWidth: 0,borderWidth: 0 },
-              inactive: { opacity: 1 }
-            },
-      } 
-    }, {
-      name: filterItem,
-      color:'rgb(73, 180, 255)',
-      fillColor: {
+            hover: { enabled: false, lineWidth: 0, borderWidth: 0 },
+            inactive: { opacity: 1 },
+          },
+        },
+      },
+      {
+        name: filterItem,
+        color: "rgb(73, 180, 255)",
+        fillColor: {
           linearGradient: {
             x1: 0,
             y1: 0,
             x2: 0,
-            y2: 1
+            y2: 1,
           },
           stops: [
-            [0, 'rgb(73, 180, 255)'],
-            [0.5, 'rgba(65, 183, 238, 0.64)'],
-            [1, 'rgba(224, 224, 224, 0.05)']
-          ]
-      },
-      data: filterQuotes,
-      marker: {
-        symbol: 'circle', 
-        fillColor: '#ffffff',  
-        lineColor: '#49b4ff',  
-        lineWidth: 1,
-        radius:window.innerWidth <= 1400 ? 2 : 3,
-        states: {
-          hover: { enabled: false, lineWidth: 0,borderWidth: 0 },
-          inactive: { opacity: 1 }
+            [0, "rgb(73, 180, 255)"],
+            [0.5, "rgba(65, 183, 238, 0.64)"],
+            [1, "rgba(224, 224, 224, 0.05)"],
+          ],
         },
-
-      }
-    }]
-});
+        data: filterQuotes,
+        marker: {
+          symbol: "circle",
+          fillColor: "#ffffff",
+          lineColor: "#49b4ff",
+          lineWidth: 1,
+          radius: window.innerWidth <= 1400 ? 2 : 3,
+          states: {
+            hover: { enabled: false, lineWidth: 0, borderWidth: 0 },
+            inactive: { opacity: 1 },
+          },
+        },
+      },
+    ],
+  });
 }
-
-
-
-
 
 // function enableTrendLegend(){
 //   if(trendChart){
@@ -1296,29 +1222,23 @@ function renderTrendChart(totalQuotes, filterQuotes,filterItem){
 //   }
 // }
 function enableTrendLegend() {
-
   // if (!trendChart) return;
 
-  const trendWrapper =document.querySelector(".trend-chart-wrapper");
+  const trendWrapper = document.querySelector(".trend-chart-wrapper");
 
-  const legends =trendWrapper.querySelectorAll(".legend");
+  const legends = trendWrapper.querySelectorAll(".legend");
 
   legends.forEach((legend, index) => {
-
     legend.onclick = () => {
-
       legend.classList.toggle("inactive");
 
       const series = trendChart.series[index];
 
-      series.setVisible(!series.visible,false);
+      series.setVisible(!series.visible, false);
 
       trendChart.redraw();
-
     };
-
   });
-
 }
 
 enableTrendLegend();
@@ -1329,27 +1249,27 @@ let sizes = getAccurSizes();
 function getAccurSizes() {
   const w = window.innerWidth;
 
-  let baseWidth = 10;  
+  let baseWidth = 10;
   if (w <= 1200) baseWidth = 6;
-    else if (w <= 1400) baseWidth = 7;
-    else if (w <= 1600) baseWidth = 8;
+  else if (w <= 1400) baseWidth = 7;
+  else if (w <= 1600) baseWidth = 8;
 
   return {
     baseWidth: baseWidth,
-    pivotRadius: w <= 1600 ? 3 : 4
+    pivotRadius: w <= 1600 ? 3 : 4,
   };
 }
 
-function enableModalTrendLegend(){
+function enableModalTrendLegend() {
   const modalContent = document.querySelector(".expand-modal-content");
-  const modalTrendWrapper=modalContent.querySelector(".trend-chart-wrapper");
-  const legends = modalTrendWrapper.querySelectorAll('.legend');
+  const modalTrendWrapper = modalContent.querySelector(".trend-chart-wrapper");
+  const legends = modalTrendWrapper.querySelectorAll(".legend");
 
   legends.forEach((legend, index) => {
-    legend.addEventListener('click', () => {
-      legend.classList.toggle('inactive');
-      const series=modalTrendChart.series[index] ;
-      series.setVisible(!series.visible,false);
+    legend.addEventListener("click", () => {
+      legend.classList.toggle("inactive");
+      const series = modalTrendChart.series[index];
+      series.setVisible(!series.visible, false);
       modalTrendChart.redraw();
     });
   });
@@ -1357,117 +1277,106 @@ function enableModalTrendLegend(){
 
 enableModalTrendLegend();
 
-const accurChart=Highcharts.chart('accuracy-chart', {
-
+const accurChart = Highcharts.chart("accuracy-chart", {
   chart: {
-    type: 'gauge',
+    type: "gauge",
     plotBackgroundColor: null,
     plotBackgroundImage: null,
     plotBorderWidth: 0,
     plotShadow: false,
-    height: '80%',
+    height: "80%",
     spacingBottom: 20,
     // useHTML:true,
-      styledMode:true,
-      reflow: true ,
-   
+    styledMode: true,
+    reflow: true,
 
     events: {
       load: function () {
         drawCustomArc(this);
       },
-       redraw: function () {
-    drawCustomArc(this);
-  }
-      
-    }
+      redraw: function () {
+        drawCustomArc(this);
+      },
+    },
   },
 
   title: {
-    text: ''
+    text: "",
   },
 
   pane: {
     startAngle: -90,
     endAngle: 89.9,
     background: null,
-    center: ['50%', '75%'],
-    size: '110%'
+    center: ["50%", "75%"],
+    size: "110%",
   },
 
   // the value axis
   yAxis: {
     min: 0,
     max: 100,
-   
+
     tickWidth: 0,
     minorTickWidth: 0,
     lineWidth: 0,
     labels: {
-      enabled:false,
+      enabled: false,
     },
-    
-
   },
 
-
-  series: [{
-    name: 'Accuracy',
-    data: [96.6],
-    dataLabels: {
-      useHTML: true,
-      format: '<div class="accur-label">{y}</div>',
-      borderWidth: 0,
-      y:25,
-      x:-20,
-      verticalAlign: 'bottom',
-      
-      
-         
+  series: [
+    {
+      name: "Accuracy",
+      data: [96.6],
+      dataLabels: {
+        useHTML: true,
+        format: '<div class="accur-label">{y}</div>',
+        borderWidth: 0,
+        y: 25,
+        x: -20,
+        verticalAlign: "bottom",
+      },
+      dial: {
+        radius: "110%",
+        backgroundColor: "#000000",
+        borderColor: "white",
+        borderWidth: 0,
+        // topWidth: 3,
+        baseWidth: sizes.baseWidth,
+        baseLength: "2%",
+        rearLength: "0%",
+      },
+      pivot: {
+        backgroundColor: "white",
+        borderColor: "#000000",
+        borderWidth: 2,
+        radius: sizes.pivotRadius,
+      },
     },
-    dial: {
-      radius: '110%', 
-      backgroundColor: '#000000',
-      borderColor: 'white',
-      borderWidth: 0, 
-      // topWidth: 3, 
-      baseWidth: sizes.baseWidth, 
-      baseLength: '2%',
-      rearLength: '0%'
-    },
-    pivot: {
-      backgroundColor: 'white', 
-      borderColor: '#000000', 
-      borderWidth: 2, 
-      radius:sizes.pivotRadius,
-    }
-  }],
+  ],
 
-  credits:{
-    enabled:false
+  credits: {
+    enabled: false,
   },
-  accessibility:{
-    enabled:false
-  }
+  accessibility: {
+    enabled: false,
+  },
 });
 
-
-
 function drawCustomArc(chart) {
-
   if (chart.customGaugeGroup) {
     chart.customGaugeGroup.destroy();
     chart.customGaugeGroup = null;
   }
 
-
   if (chart.customLabels) {
-    chart.customLabels.forEach(label => label.destroy());
+    chart.customLabels.forEach((label) => label.destroy());
   }
   chart.customLabels = [];
 
   // create new group
-  const group = chart.renderer.g('custom-gauge').add();
+  const group = chart.renderer.g("custom-gauge").add();
   chart.customGaugeGroup = group;
 
   const centerX = chart.plotLeft + chart.plotWidth * 0.5;
@@ -1479,9 +1388,18 @@ function drawCustomArc(chart) {
   const steps = 12;
 
   const colors = [
-    '#ef1c23','#ed531d','#ff7b19','#fec900',
-    '#fee600','#d7df23','#b9c036','#8dc63f',
-    '#51b64c','#52b44d','#33ac45','#2daa70'
+    "#ef1c23",
+    "#ed531d",
+    "#ff7b19",
+    "#fec900",
+    "#fee600",
+    "#d7df23",
+    "#b9c036",
+    "#8dc63f",
+    "#51b64c",
+    "#52b44d",
+    "#33ac45",
+    "#2daa70",
   ];
 
   const baseOuter = chart.plotWidth / 2 - 20;
@@ -1489,26 +1407,21 @@ function drawCustomArc(chart) {
   for (let i = 0; i < steps; i++) {
     const gap = 0.02;
 
-    const angleStart = startAngle + (i * (endAngle - startAngle) / steps) + gap;
-    const angleEnd = startAngle + ((i + 1) * (endAngle - startAngle) / steps) - gap;
+    const angleStart = startAngle + (i * (endAngle - startAngle)) / steps + gap;
+    const angleEnd =
+      startAngle + ((i + 1) * (endAngle - startAngle)) / steps - gap;
 
     const thickness = 10 + i * 2;
 
-    chart.renderer.arc(
-      centerX,
-      centerY,
-      baseOuter,
-      baseOuter,
-      angleStart,
-      angleEnd
-    )
-    .attr({
-      stroke: colors[i],
-      'stroke-width': thickness,
-      fill: 'none',
-      'stroke-linecap': 'round'
-    })
-    .add(group);
+    chart.renderer
+      .arc(centerX, centerY, baseOuter, baseOuter, angleStart, angleEnd)
+      .attr({
+        stroke: colors[i],
+        "stroke-width": thickness,
+        fill: "none",
+        "stroke-linecap": "round",
+      })
+      .add(group);
   }
 
   const labelRadius = baseOuter + 25;
@@ -1519,147 +1432,144 @@ function drawCustomArc(chart) {
   const x100 = centerX + labelRadius * Math.cos(endAngle);
   const y100 = centerY + labelRadius * Math.sin(endAngle);
 
+  const label0 = chart.renderer
+    .text('<span class="gauge-label">0</span>', x0 + 20, y0 + 15, true)
+    .add();
 
-  const label0 = chart.renderer.text(
-    '<span class="gauge-label">0</span>',
-    x0 + 20,
-    y0 + 15,
-    true
-  ).add();
-
-  const label100 = chart.renderer.text(
-    '<span class="gauge-label">100</span>',
-    x100 - 35,
-    y100 + 15,
-    true
-  ).add();
+  const label100 = chart.renderer
+    .text('<span class="gauge-label">100</span>', x100 - 35, y100 + 15, true)
+    .add();
 
   chart.customLabels.push(label0, label100);
 }
 
-
-
-function renderAccurChart(Data){
+function renderAccurChart(Data) {
   accurChart.update({
-    series:[{
-      data: [Data],
-    }]
-  })
+    series: [
+      {
+        data: [Data],
+      },
+    ],
+  });
 }
-
 
 let lastSmall = window.innerWidth < 1600;
 
 //modal chart
 
 let modalTrendChart;
-const modalTrendChartContainer=document.getElementById("trend-modal-chart");
-function renderModalTrendChart(totalQuotes, filterQuotes,filterItem){
-  modalTrendChart=Highcharts.chart('trend-modal-chart', {
+const modalTrendChartContainer = document.getElementById("trend-modal-chart");
+function renderModalTrendChart(totalQuotes, filterQuotes, filterItem) {
+  modalTrendChart = Highcharts.chart("trend-modal-chart", {
     chart: {
-      type: 'area',
-      animation: true
+      type: "area",
+      animation: true,
     },
     xAxis: {
       // lineWidth: 0,
-      lineColor:'#e6e6e6',
+      lineColor: "#e6e6e6",
       categories: [
-          'Jan', 'Feb', 'Mar', 'Apr','May', 'Jun', 'Jul', 'Aug','Sep','Oct','Nov','Dec'
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
       ],
       title: {
-          text: ''
+        text: "",
       },
-      labels: { 
-        useHTML: true ,
-        format: '<div class="trend-x-label">{value}</div>', 
-          
+      labels: {
+        useHTML: true,
+        format: '<div class="trend-x-label">{value}</div>',
       },
-
     },
     title: {
-      text: ''
+      text: "",
     },
     yAxis: {
       title: {
-        text: ''
+        text: "",
       },
-      labels: { 
-          useHTML: true ,
-         format: '<div class="trend-y-label">{value}</div>', 
-          
+      labels: {
+        useHTML: true,
+        format: '<div class="trend-y-label">{value}</div>',
       },
     },
-    tooltip:{
-      outside:true,
+    tooltip: {
+      outside: true,
     },
-    legend:{
-      enabled:false
+    legend: {
+      enabled: false,
     },
     plotOptions: {
-        series: {
+      series: {
         animation: {
-          duration: 500
-        }
+          duration: 500,
+        },
       },
-        area: {
-          fillOpacity: 0.5,
-    
-        }
+      area: {
+        fillOpacity: 0.5,
+      },
     },
     credits: {
-        enabled: false
+      enabled: false,
     },
-    accessibility:{
-      enabled:false
+    accessibility: {
+      enabled: false,
     },
-    series: [{
-        name: 'Total',
-        color:'#ff09b5',
-        fillColor: 'transparent',
+    series: [
+      {
+        name: "Total",
+        color: "#ff09b5",
+        fillColor: "transparent",
         data: totalQuotes,
         marker: {
           enabled: false,
           states: {
-              hover: { enabled: false, lineWidth: 0,borderWidth: 0 },
-              inactive: { opacity: 1 }
-            },
-      } 
-    }, {
+            hover: { enabled: false, lineWidth: 0, borderWidth: 0 },
+            inactive: { opacity: 1 },
+          },
+        },
+      },
+      {
         name: filterItem,
-        color:'#49b4ff',
+        color: "#49b4ff",
         fillColor: {
           linearGradient: {
             x1: 0,
             y1: 0,
             x2: 0,
-            y2: 1
+            y2: 1,
           },
           stops: [
-            [0, 'rgb(73, 180, 255)'],
-            [0.5, 'rgba(65, 183, 238, 0.64)'],
-            [1, 'rgba(224, 224, 224, 0.05)']
-          ]
-        },  
+            [0, "rgb(73, 180, 255)"],
+            [0.5, "rgba(65, 183, 238, 0.64)"],
+            [1, "rgba(224, 224, 224, 0.05)"],
+          ],
+        },
         data: filterQuotes,
-          marker: {
-            symbol: 'circle', 
-            fillColor: '#ffffff',  
-            lineColor: '#49b4ff',  
-            lineWidth: 1,
-            radius:window.innerWidth <= 1400 ? 3 : 4,
-            states: {
-              hover: { enabled: false, lineWidth: 0,borderWidth: 0 },
-              inactive: { opacity: 1 }
-            },
-
-          }
-    }]
-});
+        marker: {
+          symbol: "circle",
+          fillColor: "#ffffff",
+          lineColor: "#49b4ff",
+          lineWidth: 1,
+          radius: window.innerWidth <= 1400 ? 3 : 4,
+          states: {
+            hover: { enabled: false, lineWidth: 0, borderWidth: 0 },
+            inactive: { opacity: 1 },
+          },
+        },
+      },
+    ],
+  });
 }
-
-
-
-
 
 //modal gauge chart
 
@@ -1668,124 +1578,117 @@ let modalSizes = getmodalAccurSizes();
 function getmodalAccurSizes() {
   const w = window.innerWidth;
 
-  let baseWidth = 15;  
+  let baseWidth = 15;
   if (w <= 1200) baseWidth = 10;
-    else if (w <= 1400) baseWidth = 11;
-    else if (w <= 1600) baseWidth =  12;
+  else if (w <= 1400) baseWidth = 11;
+  else if (w <= 1600) baseWidth = 12;
 
   return {
     baseWidth: baseWidth,
-    pivotRadius: w <= 1600 ? 6 : 7
+    pivotRadius: w <= 1600 ? 6 : 7,
   };
 }
 
-const modalAccurChart=Highcharts.chart('accuracy-modal-chart', {
-
+const modalAccurChart = Highcharts.chart("accuracy-modal-chart", {
   chart: {
-    type: 'gauge',
+    type: "gauge",
     plotBackgroundColor: null,
     plotBackgroundImage: null,
     plotBorderWidth: 0,
     plotShadow: false,
-    height: '68%',
+    height: "68%",
     spacingBottom: 20,
     // useHTML:true,
-      styledMode:true,
-      reflow: true ,
-   
+    styledMode: true,
+    reflow: true,
 
     events: {
       load: function () {
         drawModalCustomArc(this);
       },
-       redraw: function () {
-    drawModalCustomArc(this);
-  }
-      
-    }
+      redraw: function () {
+        drawModalCustomArc(this);
+      },
+    },
   },
 
   title: {
-    text: ''
+    text: "",
   },
 
   pane: {
     startAngle: -90,
     endAngle: 89.9,
     background: null,
-    center: ['50%', '75%'],
-    size: '100%'
+    center: ["50%", "75%"],
+    size: "100%",
   },
 
   // the value axis
   yAxis: {
     min: 0,
     max: 100,
-   
+
     tickWidth: 0,
     minorTickWidth: 0,
     lineWidth: 0,
     labels: {
-      enabled:false,
+      enabled: false,
     },
-    
-
   },
 
-
-  series: [{
-    name: 'Accuracy',
-    data: [96.6],
-    dataLabels: {
-      useHTML: true,
-      format: '<div class="accur-label">{y}</div>',
-      borderWidth: 0,
-      y:55,
-      // x:-25,
-      verticalAlign: 'bottom',
-         
+  series: [
+    {
+      name: "Accuracy",
+      data: [96.6],
+      dataLabels: {
+        useHTML: true,
+        format: '<div class="accur-label">{y}</div>',
+        borderWidth: 0,
+        y: 55,
+        // x:-25,
+        verticalAlign: "bottom",
+      },
+      dial: {
+        radius: "140%",
+        backgroundColor: "#000000",
+        borderColor: "white",
+        borderWidth: 0,
+        // topWidth: 3,
+        baseWidth: modalSizes.baseWidth,
+        baseLength: "7%",
+        rearLength: "0%",
+      },
+      pivot: {
+        backgroundColor: "white",
+        borderColor: "#000000",
+        borderWidth: 2,
+        radius: modalSizes.pivotRadius,
+      },
     },
-    dial: {
-      radius: '140%', 
-      backgroundColor: '#000000',
-      borderColor: 'white',
-      borderWidth: 0, 
-      // topWidth: 3, 
-      baseWidth: modalSizes.baseWidth, 
-      baseLength: '7%',
-      rearLength: '0%'
-    },
-    pivot: {
-      backgroundColor: 'white', 
-      borderColor: '#000000', 
-      borderWidth: 2, 
-      radius:modalSizes.pivotRadius,
-    }
-  }],
+  ],
 
-  credits:{
-    enabled:false
+  credits: {
+    enabled: false,
   },
-  accessibility:{
-    enabled:false
-  }
+  accessibility: {
+    enabled: false,
+  },
 });
 
 function drawModalCustomArc(chart) {
-
   if (chart.customGaugeGroup) {
     chart.customGaugeGroup.destroy();
     chart.customGaugeGroup = null;
   }
 
-
   if (chart.customLabels) {
-    chart.customLabels.forEach(label => label.destroy());
+    chart.customLabels.forEach((label) => label.destroy());
   }
   chart.customLabels = [];
 
   // create new group
-  const group = chart.renderer.g('custom-gauge').add();
+  const group = chart.renderer.g("custom-gauge").add();
   chart.customGaugeGroup = group;
 
   const centerX = chart.plotLeft + chart.plotWidth * 0.5;
@@ -1797,9 +1700,18 @@ function drawModalCustomArc(chart) {
   const steps = 12;
 
   const colors = [
-    '#ef1c23','#ed531d','#ff7b19','#fec900',
-    '#fee600','#d7df23','#b9c036','#8dc63f',
-    '#51b64c','#52b44d','#33ac45','#2daa70'
+    "#ef1c23",
+    "#ed531d",
+    "#ff7b19",
+    "#fec900",
+    "#fee600",
+    "#d7df23",
+    "#b9c036",
+    "#8dc63f",
+    "#51b64c",
+    "#52b44d",
+    "#33ac45",
+    "#2daa70",
   ];
 
   const baseOuter = chart.plotWidth / 2 - 20;
@@ -1807,26 +1719,21 @@ function drawModalCustomArc(chart) {
   for (let i = 0; i < steps; i++) {
     const gap = 0.02;
 
-    const angleStart = startAngle + (i * (endAngle - startAngle) / steps) + gap;
-    const angleEnd = startAngle + ((i + 1) * (endAngle - startAngle) / steps) - gap;
+    const angleStart = startAngle + (i * (endAngle - startAngle)) / steps + gap;
+    const angleEnd =
+      startAngle + ((i + 1) * (endAngle - startAngle)) / steps - gap;
 
     const thickness = 23 + i * 2;
 
-    chart.renderer.arc(
-      centerX,
-      centerY,
-      baseOuter,
-      baseOuter,
-      angleStart,
-      angleEnd
-    )
-    .attr({
-      stroke: colors[i],
-      'stroke-width': thickness,
-      fill: 'none',
-      'stroke-linecap': 'round'
-    })
-    .add(group);
+    chart.renderer
+      .arc(centerX, centerY, baseOuter, baseOuter, angleStart, angleEnd)
+      .attr({
+        stroke: colors[i],
+        "stroke-width": thickness,
+        fill: "none",
+        "stroke-linecap": "round",
+      })
+      .add(group);
   }
 
   const labelRadius = baseOuter + 25;
@@ -1837,32 +1744,26 @@ function drawModalCustomArc(chart) {
   const x100 = centerX + labelRadius * Math.cos(endAngle);
   const y100 = centerY + labelRadius * Math.sin(endAngle);
 
+  const label0 = chart.renderer
+    .text('<span class="gauge-label">0</span>', x0 + 20, y0 + 15, true)
+    .add();
 
-  const label0 = chart.renderer.text(
-    '<span class="gauge-label">0</span>',
-    x0 + 20,
-    y0 + 15,
-    true
-  ).add();
-
-  const label100 = chart.renderer.text(
-    '<span class="gauge-label">100</span>',
-    x100 - 35,
-    y100 + 15,
-    true
-  ).add();
+  const label100 = chart.renderer
+    .text('<span class="gauge-label">100</span>', x100 - 35, y100 + 15, true)
+    .add();
 
   chart.customLabels.push(label0, label100);
 }
 
-function renderModalAccurChart(Data){
+function renderModalAccurChart(Data) {
   modalAccurChart.update({
-    series:[{
-      data: [Data],
-    }]
-  })
+    series: [
+      {
+        data: [Data],
+      },
+    ],
+  });
 }
-
 
 //resize listener
 window.addEventListener("resize", () => {
@@ -1872,73 +1773,81 @@ window.addEventListener("resize", () => {
 
     const s = getAccurSizes();
 
-    accurChart.update({
-      series: [{
-        dial: { baseWidth: s.baseWidth },
-        pivot: { radius: s.pivotRadius }
-      }]
-    }, true); 
+    accurChart.update(
+      {
+        series: [
+          {
+            dial: { baseWidth: s.baseWidth },
+            pivot: { radius: s.pivotRadius },
+          },
+        ],
+      },
+      true,
+    );
     const ms = getmodalAccurSizes();
-    modalAccurChart.update({
-      series: [{
-        dial: { baseWidth: ms.baseWidth },
-        pivot: { radius: ms.pivotRadius }
-      }]
-    }, true); 
-
+    modalAccurChart.update(
+      {
+        series: [
+          {
+            dial: { baseWidth: ms.baseWidth },
+            pivot: { radius: ms.pivotRadius },
+          },
+        ],
+      },
+      true,
+    );
   } else {
-    accurChart.reflow(); 
+    accurChart.reflow();
     modalAccurChart.reflow();
   }
 
-
-  if (trendChart){
+  if (trendChart) {
     trendChart.reflow();
   }
-  if(modalTrendChart){
+  if (modalTrendChart) {
     modalTrendChart.reflow();
   }
-
 });
 
-function getTrendChartData(dateFilteredQuotes,filterItem) {
-  const filterCopy=[...dateFilteredQuotes];
-  const totalQuotes=filterQuoteByStatus(filterCopy.filter(f=>f.status=="pending" || f.status=="approved"));
+function getTrendChartData(dateFilteredQuotes, filterItem) {
+  const filterCopy = [...dateFilteredQuotes];
+  const totalQuotes = filterQuoteByStatus(
+    filterCopy.filter((f) => f.status == "pending" || f.status == "approved"),
+  );
 
   let filterQuotes;
-  if(filterItem!="all"){
-    filterQuotes=filterQuoteByStatus(filterCopy.filter(f=>f.status==filterItem));
+  if (filterItem != "all") {
+    filterQuotes = filterQuoteByStatus(
+      filterCopy.filter((f) => f.status == filterItem),
+    );
+  } else {
+    filterQuotes = totalQuotes;
   }
-  else{
-    filterQuotes=totalQuotes;
-  }
-  
-  const filterLegendtexts=document.querySelectorAll(".approved-legend")
-  filterLegendtexts.forEach(text=>text.innerHTML= `<span></span>${filterItem}`)
 
-  renderTrendChart(totalQuotes, filterQuotes,filterItem)
+  const filterLegendtexts = document.querySelectorAll(".approved-legend");
+  filterLegendtexts.forEach(
+    (text) => (text.innerHTML = `<span></span>${filterItem}`),
+  );
 
-  renderModalTrendChart(totalQuotes, filterQuotes,filterItem)
+  renderTrendChart(totalQuotes, filterQuotes, filterItem);
 
+  renderModalTrendChart(totalQuotes, filterQuotes, filterItem);
 }
 
-
-function filterQuoteByStatus(filteredQuote){
+function filterQuoteByStatus(filteredQuote) {
   const monthData = new Array(12).fill(0);
-  filteredQuote.forEach(q => {
-
+  filteredQuote.forEach((q) => {
     const date = parseDate(q.received_date);
 
     const monthIndex = date.getMonth();
 
-      monthData[monthIndex]++;
-      
-    });
-    return monthData;
+    monthData[monthIndex]++;
+  });
+  return monthData;
 }
 
 //export function
 const exportBtn = document.querySelector(".export-btn");
-exportBtn.addEventListener('click', () => {
+exportBtn.addEventListener("click", () => {
   window.print();
 });

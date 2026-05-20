@@ -447,6 +447,7 @@ body{
             padding: clamp(12px, $fs-24px, $fs-24px) clamp(12px, $fs-24px, $fs-24px);
             border-radius: clamp(3px, $fs-10px, $fs-10px);
             background-color: $white;
+            height: 100%;
             max-height: 100%;
             display: flex;
             flex-direction: column;
@@ -1250,7 +1251,7 @@ body{
                     max-height: 100%;
                     display: none;
                     flex-direction: column;
-                     min-height: 0; 
+                    min-height: 0; 
                     h3{
                         font-size: clamp(14px, $fs-22px, $fs-22px);
                         font-weight: normal;
@@ -1259,6 +1260,7 @@ body{
                     }
                     .table-wrapper{
                         background-color: $white;
+                        height: 100%;
                         max-height: 100%;
                         display: flex;
                         flex-direction: column;
