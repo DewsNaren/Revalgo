@@ -4044,9 +4044,7 @@ header nav ul li a.new-quote-btn:hover {
   font-weight: 500;
   line-height: 1;
 }
-.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-body .table-row .desc-wrapper {
-  /* dropdown */
-}
+
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-body .table-row .desc-wrapper .dropdown {
   position: absolute;
   top: 100%;
