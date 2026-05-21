@@ -7,7 +7,7 @@
 .exist-quote-wrapper{
     margin-top: 6px;
     padding: clamp(15px, $fs-30px, $fs-30px) clamp(12px, $fs-22px, $fs-22px);
-    display: flex;
+    display: none;
     flex-direction: column;
     flex: 1;
     min-height: 0;
@@ -1975,7 +1975,7 @@
                             }
                         }
                         .add-btn-container{
-                            position: fixed;
+                            position: absolute;
                             // display: flex;
                             // flex-direction: column;
                             // justify-content: center;
@@ -2000,6 +2000,7 @@
                             color: $grey-a4;
                             }
                             &.left{
+                                position: fixed;
                                 justify-content: flex-end;
                                 align-items: flex-end;
                                 bottom: 11%;
@@ -2152,7 +2153,13 @@
         &.active{
             display: flex;
         }
-
+        &.not-active{
+            opacity: 0.5;
+            pointer-events: none;
+        }
+    }
+    &.active{
+        display: flex;
     }
 }
 /* dropdown */
@@ -2311,9 +2318,13 @@
                                                             color: $red-00;
                                                             border: 1px solid $red-00;
                                                         }
-                                                        &.green{
-                                                            color: $green-28;
-                                                            border: 1px solid $green-28;
+                                                        // &.green{
+                                                        //     color: $green-28;
+                                                        //     border: 1px solid $green-28;
+                                                        // }
+                                                        &.not-active{
+                                                            visibility: hidden;
+                                                            pointer-events: none;
                                                         }
                                                     }
                                                 }

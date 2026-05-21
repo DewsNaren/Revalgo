@@ -15,13 +15,9 @@ async function loadQuotes() {
 loadQuotes();
 
 async function init() {
-
   await loadQuotes();
-
   initializeSearch();
-
 }
-
 init();
 
 

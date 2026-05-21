@@ -94,13 +94,12 @@ function handleSelection(value) {
 }
 
 let dateFilteredQuotes;
-function filterQuotesByDate(filterQuotes, start, end) {
+function filterQuotesByDate(quotes, start, end) {
   const startDate = start.replaceAll("/", "-");
   const endDate = end.replaceAll("/", "-");
   const startObj = parseDate(startDate);
   const endObj = parseDate(endDate);
-
-  dateFilteredQuotes = filterQuotes.filter((q) => {
+  dateFilteredQuotes = quotes.filter((q) => {
     const quoteDate = parseDate(q.received_date);
 
     return quoteDate >= startObj && quoteDate <= endObj;
@@ -112,6 +111,13 @@ function filterQuotesByDate(filterQuotes, start, end) {
   renderQuoteCounts(dateFilteredQuotes);
 
   getTrendChartData(dateFilteredQuotes, "all");
+  tableBtns.forEach(btn=>{
+    btn.classList.remove("active");
+    if(btn.dataset.filter=="all"){
+       btn.classList.add("active");
+    }
+  })
+
 }
 
 const startDate = document.querySelector(".start-date");
@@ -487,7 +493,7 @@ function getSelectedDate(datePicker) {
     endDateText.textContent = endDat.textContent;
 
     filterQuotesByDate(
-      dateFilteredQuotes,
+      quotes,
       startDateText.textContent,
       endDateText.textContent,
     );

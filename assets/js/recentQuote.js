@@ -11,14 +11,20 @@ const delQuoteText = delPopup2.querySelector(".del-quote-text");
 const expandBtns = document.querySelectorAll(".expand-btn");
 const addPopup = document.querySelector(".add-popup");
 const addTable = addPopup.querySelector(".add-table");
+const quickContentWrapper = document.querySelector(".quick-content-wrapper");
+const displayTable = quickContentWrapper.querySelector(".display-table");
 const addLineBtns = addTable.querySelectorAll(".add-line-btn");
 const canceladdpopupBtn = addPopup.querySelector(".cancel-btn");
-
 const approveQuoteBtn = document.querySelector(".approve-btn");
 const successPopup = document.querySelector(".success-popup");
 const successidText = successPopup.querySelector(".text .id");
 const confirmSuccessBtn = successPopup.querySelector(".ok-btn");
-
+const leftWrapper = quickContentWrapper.querySelector(".left-wrapper");
+const leftTableWrapper = leftWrapper.querySelector(".table-wrapper");
+const descInputs = leftTableWrapper.querySelectorAll(".desc-input");
+const qtyInputs = leftTableWrapper.querySelectorAll(".qty-input");
+const uploadBtnContainer = leftWrapper.querySelector(".upload-btn-container");
+const loaderWrapper=document.querySelector(".loader-wrapper")
 
 //Datepicker
 const formPopup = document.querySelector(".form-popup");
@@ -303,8 +309,7 @@ const modalBox = document.querySelector(".expand-modal");
 const modalContent = document.querySelector(".expand-modal-content");
 const closePopupBtns = document.querySelectorAll(".close-popup-btn");
 const popups = document.querySelectorAll(".popup");
-const quickContentWrapper = document.querySelector(".quick-content-wrapper");
-const displayTable = quickContentWrapper.querySelector(".display-table");
+
 const disTableBodyWrapper = displayTable.querySelector(".body-wrapper");
 const closeBtn = document.querySelector(".close-modal-btn");
 const errs = formPopup.querySelectorAll(".error");
@@ -367,50 +372,53 @@ const delQuoteBtn = document.querySelector(".del-quote-btn");
 const undoQuoteBtn = document.querySelector(".undo-quote-btn");
 const approveBtnContainer = document.querySelector(".approve-btn-container");
 // const displayTable=document.querySelector(".display-table");
-let selectedQuote = "";
+
 let newQuote = "";
 // let allQuotes=[];
 if (sessionStorage.getItem("selectedQuote")) {
-  selectedQuote = JSON.parse(sessionStorage.getItem("selectedQuote"));
   newQuote = JSON.parse(sessionStorage.getItem("selectedQuote"));
   allQuotes = JSON.parse(sessionStorage.getItem("quotes"));
-  CreateBtn.querySelector("span").textContent = `#${selectedQuote.id}`;
-  quoteStat.classList.add(`${selectedQuote.status}`);
-  quoteStat.textContent = `${selectedQuote.status}`;
-  if (selectedQuote.status == "deleted") {
+  CreateBtn.querySelector("span").textContent = `#${newQuote.id}`;
+  quoteStat.classList.add(`${newQuote.status}`);
+  quoteStat.textContent = `${newQuote.status}`;
+  if (newQuote.status == "deleted") {
 
     undoQuoteBtn.classList.add("active");
     quickOrderWrapper.classList.add("not-active");
   }
-  if(selectedQuote.status == "approved" || selectedQuote.status == "deleted"){
+  if(newQuote.status == "approved" || newQuote.status == "deleted"){
     approveQuoteBtn.classList.add("not-active")
   }
-  renderQuickInfo(selectedQuote);
-  renderDisplayTable(selectedQuote);
+  renderQuickInfo(newQuote);
+  renderDisplayTable(newQuote);
 }
+
+CreateBtn.addEventListener('click',(e)=>{
+  e.preventDefault();
+  updateQuickInfoData();
+  updateNewQuoteData();
+  updateQuoteTotals();
+  updateNewQuoteData();
+  storeQuote();
+  window.location.href="./dashboard.html"
+})
 
 undoQuoteBtn.addEventListener("click", () => {
   quickOrderWrapper.classList.remove("not-active");
   approveBtnContainer.classList.remove("not-active");
   undoQuoteBtn.classList.remove("active");
   newQuote.status = "pending";
-  selectedQuote.status = "pending";
+  newQuote.status = "pending";
   quoteStat.classList.remove("deleted");
-  quoteStat.classList.add(`${selectedQuote.status}`);
-  quoteStat.textContent = `${selectedQuote.status}`;
+  quoteStat.classList.add(`${newQuote.status}`);
+  quoteStat.textContent = `${newQuote.status}`;
   approveQuoteBtn.classList.remove("not-active")
-  allQuotes.forEach((q, i) => {
-    if (q.id === newQuote.id) {
-      allQuotes[i] = newQuote;
-      sessionStorage.setItem("quotes", JSON.stringify(allQuotes));
-    }
-  })
-
+   storeQuote();
 });
 
-function renderQuickInfo(selectedQuote) {
-  const splittedBill = selectedQuote.bill_to.split("\n");
-  const splittedShip = selectedQuote.ship_to.split(",");
+function renderQuickInfo(newQuote) {
+  const splittedBill = newQuote.bill_to.split("\n");
+  const splittedShip = newQuote.ship_to.split("\n");
   quickInfoWrapper.innerHTML = "";
   quickInfoWrapper.innerHTML = `
     <div class="info">
@@ -467,11 +475,11 @@ function renderQuickInfo(selectedQuote) {
   editQuoteInfo(document.querySelector(".quick-info-wrapper"));
 }
 
-function renderDisplayTable(selectedQuote) {
+function renderDisplayTable(newQuote) {
   const bodyWrapper = displayTable.querySelector(".body-wrapper");
   bodyWrapper.innerHTML = "";
 
-  const products = selectedQuote.products;
+  const products = newQuote.products;
 
   products.forEach((p, i) => {
     bodyWrapper.innerHTML += `
@@ -483,12 +491,13 @@ function renderDisplayTable(selectedQuote) {
       </p>
       <p><input type="text" value="${p.qty_requested}" name="qty-requested" autocomplete="off"></p>
       <p>
-        <span class="title-text">Lorem ipsum dolor sit.</span>
+        <span class="title-text">${p.company_name?p.company_name:"Mjhsjhs"}</span>
         <span class="dropdown-text">
           <img src="./assets/images/global/down_arrow.png" alt="down-arrow" class="down-arrow-img" onclick=openSuggestPopup(event)> <span class="id requested-id">${p.requested_id}</span> - 
           <span class="detail" onclick="enableSourceText(event)">tydlx4ypi6</span> - 
           <span class="${p.isSource == true ? "sourcing active" : "sourcing"}" onclick="openSourcingPopup(event)"><img src="./assets/images/orderpad/sourcing_icon.png" alt="sourcing">Sourcing</span>
-          <span class="${p.isStock == true ? "stock-wrapper active" : "stock-wrapper"}"><span class="supplier-text text-uppercase" onclick="openSupplierPopup(event)">${p.supplier ? p.supplier : "eaton"}</span> - <span class="${p.stock == "NS" ? "stock-text red" : " stock-text green"}">${p.stock ? p.stock : "S"}   <span class="tooltiptext">${p.stock == "S" ? "Stock" : "Non Stock"}</span></span> - </span>
+          <span class="${p.isStock == true ? "stock-wrapper active" : "stock-wrapper"}">
+          <span class="supplier-text text-uppercase" onclick="openSupplierPopup(event)">${p.supplier ? p.supplier : "eaton"}</span> - <span class="${p.stock === "Ns" ? "stock-text  red" : "stock-text green"}">${p.stock}<span class="tooltiptext">${p.stock == "S" ? "Stock" : "Non Stock"}</span> </span>&nbsp; - </span>
           <span class="tag-text"><img src="./assets/images/global/tag.png" alt="tag">${p.brand}</span>
           </span>
         <span class="text">${p.desc ? p.desc : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus hic facere, veniam in distinctio id tempora voluptatum? Facilis eius aut numquam. Alias perferendis sunt veniam reprehenderit officiis quas delectus."}</span>  
@@ -498,7 +507,7 @@ function renderDisplayTable(selectedQuote) {
       <p> <span class="available-qty">${p.available_qty}</span></p>
       <p><span>$<input type="text" value="${p.unit_cost}" name="cost" autocomplete="off"></span></p>
       <p><span><input type="text" value="${p.margin}" name="margin" autocomplete="off">%</span></p>
-      <p><span class="selling-price">${p.selling_price}</span></p>
+      <p><span class="selling-price">$${p.selling_price}</span></p>
       <p><span class="total-cost">$${p.total_cost.toFixed(2)}</span></p>
       <p>
         <button type="button" class="delete-line-btn active" onclick=delRow(event)><img src="./assets/images/global/delete_icon.png" alt="delete"></button>
@@ -554,14 +563,98 @@ function renderDisplayTable(selectedQuote) {
 
 // drag function
 
+// function enableDrag(bodyWrap) {
+//   const groups = bodyWrap.querySelectorAll(".row-group");
+
+//   let draggedGroup = null;
+
+//   let canDrag = false;
+
+//   groups.forEach((group) => {
+//     const row = group.querySelector(".table-row");
+
+//     const handle = row.querySelector(".drag-handle");
+
+//     group.draggable = true;
+
+//     // ENABLE DRAG
+//     handle.addEventListener("mousedown", () => {
+//       canDrag = true;
+//     });
+
+//     // DISABLE DRAG
+//     document.addEventListener("mouseup", () => {
+//       canDrag = false;
+//     });
+
+//     // START
+//     group.addEventListener("dragstart", (e) => {
+//       if (!canDrag) {
+//         e.preventDefault();
+
+//         return;
+//       }
+
+//       draggedGroup = group;
+
+//       requestAnimationFrame(() => {
+//         group.classList.add("dragging");
+//       });
+//     });
+
+//     // END
+//     group.addEventListener("dragend", () => {
+//       group.classList.remove("dragging");
+
+//       draggedGroup = null;
+
+//       updateLineNumbers(bodyWrap);
+//     });
+
+//     // LIVE SHIFTING
+//     group.addEventListener("dragover", (e) => {
+//       e.preventDefault();
+
+//       if (!draggedGroup || draggedGroup === group) return;
+
+//       const rect = group.getBoundingClientRect();
+
+//       const offset = e.clientY - rect.top;
+
+//       // TOP HALF
+//       if (offset < rect.height / 2) {
+//         bodyWrap.insertBefore(draggedGroup, group);
+//       }
+
+//       // BOTTOM HALF
+//       else {
+//         bodyWrap.insertBefore(draggedGroup, group.nextSibling);
+//       }
+//     });
+//   });
+// }
+
+// function updateLineNumbers() {
+//   const tableRows = displayTable.querySelectorAll(".body-wrapper .table-row");
+
+//   tableRows.forEach((row, index) => {
+//     row.querySelector(".line-no").textContent = index + 1;
+//   });
+// }
+
 function enableDrag(bodyWrap) {
+
   const groups = bodyWrap.querySelectorAll(".row-group");
 
   let draggedGroup = null;
 
   let canDrag = false;
 
-  groups.forEach((group) => {
+  groups.forEach((group, index) => {
+
+    // STORE ORIGINAL PRODUCT INDEX
+    group.dataset.index = index;
+
     const row = group.querySelector(".table-row");
 
     const handle = row.querySelector(".drag-handle");
@@ -570,40 +663,56 @@ function enableDrag(bodyWrap) {
 
     // ENABLE DRAG
     handle.addEventListener("mousedown", () => {
+
       canDrag = true;
+
     });
 
     // DISABLE DRAG
     document.addEventListener("mouseup", () => {
+
       canDrag = false;
+
     });
 
     // START
     group.addEventListener("dragstart", (e) => {
+
       if (!canDrag) {
+
         e.preventDefault();
 
         return;
+
       }
 
       draggedGroup = group;
 
       requestAnimationFrame(() => {
+
         group.classList.add("dragging");
+
       });
+
     });
 
     // END
     group.addEventListener("dragend", () => {
+
       group.classList.remove("dragging");
 
       draggedGroup = null;
 
       updateLineNumbers(bodyWrap);
+
+      // UPDATE PRODUCTS ORDER
+      updateProductsOrder(bodyWrap);
+
     });
 
     // LIVE SHIFTING
     group.addEventListener("dragover", (e) => {
+
       e.preventDefault();
 
       if (!draggedGroup || draggedGroup === group) return;
@@ -614,24 +723,61 @@ function enableDrag(bodyWrap) {
 
       // TOP HALF
       if (offset < rect.height / 2) {
+
         bodyWrap.insertBefore(draggedGroup, group);
+
       }
 
       // BOTTOM HALF
       else {
+
         bodyWrap.insertBefore(draggedGroup, group.nextSibling);
+
       }
+
     });
+
   });
+
 }
 
-function updateLineNumbers() {
-  const tableRows = displayTable.querySelectorAll(".body-wrapper .table-row");
 
+// UPDATE LINE NUMBERS
+function updateLineNumbers(bodyWrap) {
+  const tableRows = bodyWrap.querySelectorAll(".table-row");
   tableRows.forEach((row, index) => {
     row.querySelector(".line-no").textContent = index + 1;
   });
+
 }
+
+
+// UPDATE PRODUCTS ARRAY
+function updateProductsOrder(bodyWrap) {
+
+  const groups = bodyWrap.querySelectorAll(".row-group");
+
+  const reorderedProducts = [];
+
+  groups.forEach(group => {
+
+    const originalIndex = Number(group.dataset.index);
+
+    reorderedProducts.push(newQuote.products[originalIndex]);
+
+  });
+
+  newQuote.products = reorderedProducts;
+
+  groups.forEach((group, index) => {
+    group.dataset.index = index;
+  });
+
+  storeQuote();
+
+}
+
+
 
 function clickTable(bodyWrap) {
   const rows = bodyWrap.querySelectorAll(".table-row");
@@ -839,13 +985,10 @@ function changeQuickInfo(inp, con) {
     }
   });
   updateQuickInfoData();
-  allQuotes.forEach((q, i) => {
-    if (q.id === newQuote.id) {
-      allQuotes[i] = newQuote;
-      sessionStorage.setItem("quotes", JSON.stringify(allQuotes));
-    }
-  })
+  storeQuote();
 }
+
+
 
 //add input event listeners
 formContainers.forEach((container) => {
@@ -913,6 +1056,7 @@ function editTableData(bodyWrap) {
         product.total_cost = Number(totalPrice.toFixed(2));
       }
       updateQuoteTotals();
+      storeQuote()
     }
 
     [qtyInp, costInp, marginInp].forEach((inp) => {
@@ -929,165 +1073,10 @@ function allowNumbers(inp) {
   });
 }
 
-//add data and left tab btn click
-const leftWrapper = quickContentWrapper.querySelector(".left-wrapper");
-const leftTableWrapper = leftWrapper.querySelector(".table-wrapper");
-const descInputs = leftTableWrapper.querySelectorAll(".desc-input");
-const qtyInputs = leftTableWrapper.querySelectorAll(".qty-input");
-const uploadBtnContainer = leftWrapper.querySelector(".upload-btn-container");
-let products = [];
-let filteredProducts = [];
-async function getAllProducts() {
-  try {
-    const resp = await fetch("../assets/json/product.json");
-    const data = await resp.json();
-    products = data;
-  } catch (err) {
-    console.error("Error:", err);
-  }
-}
-getAllProducts();
-
-async function initProducts() {
-  await getAllProducts();
-  // updateProducts();
-  // renderAddPopupTable();
-  renderSuggestPopup(products);
-  renderSourcingPopup(products);
-  renderSupplierPopup(products);
-  initProductSearch();
-}
-
-initProducts();
-
-const descDropdown = leftTableWrapper.querySelector(".desc-dropdown");
-const descList = descDropdown.querySelector(".desc-list");
-let currentDescInput = null;
-let searchedProduct = [];
-
-function searchProducts(inp) {
-  const value = inp.value.trim().toLowerCase();
-
-  const descDropdown = document.querySelector(".desc-dropdown");
-
-  const descList = descDropdown.querySelector(".desc-list");
-
-  descList.innerHTML = "";
-
-  if (value === "") {
-    descDropdown.classList.remove("active");
-
-    return;
-  }
-
-  const rect = inp.getBoundingClientRect();
-
-  descDropdown.style.top = `${rect.bottom + window.scrollY + 4}px`;
-
-  descDropdown.style.left = `${rect.left + window.scrollX}px`;
-
-  const spaceBelow = window.innerHeight - rect.bottom;
-
-  descDropdown.style.maxHeight = `${spaceBelow - 20}px`;
-  descDropdown.classList.add("active");
-
-  filteredProducts = products.filter((p) => {
-    const isMatch = p.desc.toLowerCase().includes(value);
-
-    if (isMatch) {
-      descList.innerHTML += `
-        <li data-id="${p.id}">
-          ${p.desc}
-        </li>
-      `;
-    }
-
-    return isMatch;
-  });
-}
-function handleProductItemClick(e) {
-  const li = e.target.closest("li");
-
-  if (!li) return;
-
-  searchedProduct = [];
-  currentDescInput.value = li.textContent.trim();
-
-  descInputs.forEach((inp) => {
-    if (inp.value) {
-      const val = inp.value;
-      products.forEach((p) => {
-        if (p.desc.includes(val)) searchedProduct.push(p);
-      });
-    }
-  });
-  uploadBtn.classList.remove("not-active");
-  descDropdown.classList.remove("active");
-}
-
-function initProductSearch() {
-  descInputs.forEach((inp) => {
-    inp.addEventListener("input", () => {
-      currentDescInput = inp;
-      searchProducts(inp);
-    });
-  });
-}
-// let totalQuotes = [];
-// if(sessionStorage.getItem("searchedQuotes")){
-descDropdown.addEventListener("click", handleProductItemClick);
-const selectedFileWrapper = document.querySelector(".selected-file");
-const uploadBtn = uploadBtnContainer.querySelector(".upload-btn");
-const selectFileInput = document.querySelector(".select-file-input");
-uploadBtn.addEventListener("click", () => {
-  if (leftTableWrapper.classList.contains("active")) {
-    getSearchedProducts();
-    renderDisplayTable(newQuote);
-    approveQuoteBtn.classList.add("active");
-    const addBtn = document.querySelector(".add-btn-container .add-btn");
-  }
-  if (uploadWrapper.classList.contains("active")) {
-    getCrtData(exCelData);
-    exCelData = [];
-    renderDisplayTable(newQuote);
-    selectFileInput.value = "";
-    selectedFileWrapper.innerHTML = "";
-    uploadBtn.classList.add("not-active");
-  }
+//loader function
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    loaderWrapper.classList.add("not-active");
+    quoteWrapper.classList.add("active");
+  }, 1500);
 });
-
-function getSearchedProducts() {
-  const newProducts = newQuote.products;
-  if (searchedProduct.length > 0) {
-    descInputs.forEach((inp) => (inp.value = ""));
-    qtyInputs.forEach((inp) => (inp.value = ""));
-    searchedProduct.forEach((p) => {
-      let newReqId =
-        Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
-      let isExists =
-        allQuotes.forEach((q) =>
-          [...q.products].some((q) => q.requested_id === "ID" + newReqId),
-        ) ||
-        newQuote.products.some((prod) => prod.requested_id === "ID" + newReqId);
-
-      while (isExists) {
-        newReqId =
-          Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
-
-        isExists =
-          [...allQuotes.products].some(
-            (q) => q.requested_id === "ID" + newReqId,
-          ) ||
-          newQuote.products.some(
-            (prod) => prod.requested_id === "ID" + newReqId,
-          );
-      }
-
-      p.requested_id = "ID" + newReqId;
-      p.delId = getDelId();
-      newQuote.products.push(p);
-    });
-
-    updateQuoteTotals();
-  }
-}

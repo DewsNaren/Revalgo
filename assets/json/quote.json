@@ -14,7 +14,7 @@
     "ship_to": "Buzzdog\n145, Bay, Blois\nA3 093441",
     "po_no": "AM51514/998",
     "job_no": "RX87113/920",
-    "deleivery_date": "18-06-2023",
+    "deleivery_date": "24-03-2026",
     "lines": 2,
     "products": [
       {
@@ -32,7 +32,14 @@
         "wire_size": 8,
         "outlet": 2,
         "type": "non-metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Premium Steelron non-metallic designed and built for industrial use. Code: ID9490822.",
+        "company_name": "Nexus Group",
+        "lead_time": 9,
+        "location": "Chicago",
+        "updated_date": "27-02-2026",
+        "stock": "Ns",
+        "supplier": "Aero Group"
       },
       {
         "qty_requested": 80,
@@ -49,7 +56,14 @@
         "wire_size": 15,
         "outlet": 3,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Reliable Steelron standard designed and built for power distribution. Code: ID3686353.",
+        "company_name": "Vanguard Dynamics",
+        "lead_time": 1,
+        "location": "Seattle",
+        "updated_date": "10-08-2025",
+        "stock": "Ns",
+        "supplier": "Sol Zone"
       }
     ]
   },
@@ -68,7 +82,7 @@
     "ship_to": "Realmix\n514, Golden Leaf, Salon-de-Provence\nB8 034922",
     "po_no": "VI55518/553",
     "job_no": "YM90987/934",
-    "deleivery_date": "04-09-2025",
+    "deleivery_date": "16-12-2025",
     "lines": 3,
     "products": [
       {
@@ -86,7 +100,14 @@
         "wire_size": 19,
         "outlet": 3,
         "type": "armored",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Advanced Nexwire armored designed and built for modern systems. Code: ID1676518.",
+        "company_name": "Omega Solutions",
+        "lead_time": 7,
+        "location": "Austin",
+        "updated_date": "20-09-2025",
+        "stock": "S",
+        "supplier": "Aero Net"
       },
       {
         "qty_requested": 60,
@@ -103,7 +124,14 @@
         "wire_size": 10,
         "outlet": 3,
         "type": "metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Compact Cablux metallic designed and built for harsh conditions. Code: ID1721818.",
+        "company_name": "Quantum Industries",
+        "lead_time": 2,
+        "location": "Jacksonville",
+        "updated_date": "24-10-2025",
+        "stock": "Ns",
+        "supplier": "Nexus Hub"
       },
       {
         "qty_requested": 52,
@@ -120,7 +148,14 @@
         "wire_size": 12,
         "outlet": 6,
         "type": "armored",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Efficient Wirezone armored designed and built for safe routing. Code: ID8541212.",
+        "company_name": "Echo Energy",
+        "lead_time": 2,
+        "location": "San Francisco",
+        "updated_date": "10-06-2025",
+        "stock": "Ns",
+        "supplier": "Prime Hub"
       }
     ]
   },
@@ -139,7 +174,7 @@
     "ship_to": "Demimbu\n214, Stoughton, Yanggang\n 089029",
     "po_no": "AA70857/295",
     "job_no": "PJ93147/738",
-    "deleivery_date": "09-04-2024",
+    "deleivery_date": "20-02-2026",
     "lines": 3,
     "products": [
       {
@@ -157,7 +192,14 @@
         "wire_size": 20,
         "outlet": 2,
         "type": "standard",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Durable Wirezone standard designed and built for panel wiring. Code: ID8310922.",
+        "company_name": "Matrix Solutions",
+        "lead_time": 2,
+        "location": "Los Angeles",
+        "updated_date": "04-04-2026",
+        "stock": "S",
+        "supplier": "Omega Labs"
       },
       {
         "qty_requested": 14,
@@ -174,7 +216,14 @@
         "wire_size": 7,
         "outlet": 6,
         "type": "metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Rugged Amperon metallic designed and built for daily operations. Code: ID8278673.",
+        "company_name": "Quantum Works",
+        "lead_time": 4,
+        "location": "Louisville",
+        "updated_date": "21-06-2025",
+        "stock": "Ns",
+        "supplier": "Vanguard Source"
       },
       {
         "qty_requested": 40,
@@ -191,7 +240,14 @@
         "wire_size": 5,
         "outlet": 3,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Versatile Gridmax standard designed and built for electrical setups. Code: ID2044162.",
+        "company_name": "Beacon Systems",
+        "lead_time": 4,
+        "location": "Detroit",
+        "updated_date": "14-09-2025",
+        "stock": "S",
+        "supplier": "Stellar Ind"
       }
     ]
   },
@@ -210,7 +266,7 @@
     "ship_to": "Skipstorm \n995, Johnson, Tojeira\n11 014974",
     "po_no": "WA90721/937",
     "job_no": "TJ10381/259",
-    "deleivery_date": "15-10-2025",
+    "deleivery_date": "29-01-2026",
     "lines": 8,
     "products": [
       {
@@ -228,7 +284,14 @@
         "wire_size": 14,
         "outlet": 2,
         "type": "armored",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Top-tier Gridmax armored designed and built for industrial use. Code: ID4065181.",
+        "company_name": "Echo Industries",
+        "lead_time": 5,
+        "location": "Boston",
+        "updated_date": "18-04-2026",
+        "stock": "S",
+        "supplier": "Delta Net"
       },
       {
         "qty_requested": 52,
@@ -245,7 +308,14 @@
         "wire_size": 18,
         "outlet": 4,
         "type": "non-metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Standard Armetek non-metallic designed and built for power distribution. Code: ID6241538.",
+        "company_name": "Titan Industries",
+        "lead_time": 5,
+        "location": "Chicago",
+        "updated_date": "17-08-2025",
+        "stock": "Ns",
+        "supplier": "Beacon Net"
       },
       {
         "qty_requested": 95,
@@ -262,7 +332,14 @@
         "wire_size": 12,
         "outlet": 10,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Quality Gridmax standard designed and built for modern systems. Code: ID6324773.",
+        "company_name": "Zenith Industries",
+        "lead_time": 8,
+        "location": "Phoenix",
+        "updated_date": "13-09-2025",
+        "stock": "S",
+        "supplier": "Ultra Corp"
       },
       {
         "qty_requested": 72,
@@ -279,7 +356,14 @@
         "wire_size": 8,
         "outlet": 7,
         "type": "metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Optimal Nexwire metallic designed and built for harsh conditions. Code: ID2592245.",
+        "company_name": "Horizon Energy",
+        "lead_time": 5,
+        "location": "Memphis",
+        "updated_date": "24-02-2026",
+        "stock": "Ns",
+        "supplier": "Link Ind"
       },
       {
         "qty_requested": 30,
@@ -296,7 +380,14 @@
         "wire_size": 18,
         "outlet": 4,
         "type": "metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Modern Copperln metallic designed and built for safe routing. Code: ID9627791.",
+        "company_name": "Vertex Energy",
+        "lead_time": 8,
+        "location": "Chicago",
+        "updated_date": "25-05-2025",
+        "stock": "S",
+        "supplier": "Bio Ind"
       },
       {
         "qty_requested": 12,
@@ -313,7 +404,14 @@
         "wire_size": 19,
         "outlet": 2,
         "type": "armored",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Robust Wirezone armored designed and built for panel wiring. Code: ID8199063.",
+        "company_name": "Delta Dynamics",
+        "lead_time": 2,
+        "location": "San Francisco",
+        "updated_date": "12-11-2025",
+        "stock": "Ns",
+        "supplier": "Apex Net"
       },
       {
         "qty_requested": 90,
@@ -330,7 +428,14 @@
         "wire_size": 11,
         "outlet": 5,
         "type": "metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Premium Amperon metallic designed and built for daily operations. Code: ID4790069.",
+        "company_name": "Horizon Works",
+        "lead_time": 1,
+        "location": "Detroit",
+        "updated_date": "28-06-2025",
+        "stock": "Ns",
+        "supplier": "Titan Ltd"
       },
       {
         "qty_requested": 39,
@@ -347,7 +452,14 @@
         "wire_size": 9,
         "outlet": 5,
         "type": "metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Reliable Copperln metallic designed and built for electrical setups. Code: ID1911889.",
+        "company_name": "Nexus Global",
+        "lead_time": 7,
+        "location": "Philadelphia",
+        "updated_date": "19-12-2025",
+        "stock": "S",
+        "supplier": "Horizon Corp"
       }
     ]
   },
@@ -362,11 +474,11 @@
     "total_line_no": 9,
     "total_price": "20,591.05",
     "buyer": "Fritsch-Leffler",
-    "bill_to": "Fritsch-Leffler\n227, Westend, Sayḩūt\n 043162",
-    "ship_to": "Gabtune\n965, Meadow Valley, Sayḩūt\n 022046",
+    "bill_to": "Fritsch-Leffler\n227, Westend, Say\u1e29\u016bt\n 043162",
+    "ship_to": "Gabtune\n965, Meadow Valley, Say\u1e29\u016bt\n 022046",
     "po_no": "SL40780/943",
     "job_no": "ZM79307/209",
-    "deleivery_date": "21-07-2024",
+    "deleivery_date": "12-01-2026",
     "lines": 9,
     "products": [
       {
@@ -384,7 +496,14 @@
         "wire_size": 10,
         "outlet": 4,
         "type": "armored",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Advanced Armetek armored designed and built for industrial use. Code: ID9256159.",
+        "company_name": "Omega Energy",
+        "lead_time": 2,
+        "location": "Louisville",
+        "updated_date": "17-03-2026",
+        "stock": "Ns",
+        "supplier": "Max Works"
       },
       {
         "qty_requested": 43,
@@ -401,7 +520,14 @@
         "wire_size": 12,
         "outlet": 5,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Compact Gridmax standard designed and built for power distribution. Code: ID2447986.",
+        "company_name": "Vertex Systems",
+        "lead_time": 3,
+        "location": "Seattle",
+        "updated_date": "27-01-2026",
+        "stock": "S",
+        "supplier": "Star Sys"
       },
       {
         "qty_requested": 24,
@@ -418,7 +544,14 @@
         "wire_size": 11,
         "outlet": 1,
         "type": "standard",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Efficient Amperon standard designed and built for modern systems. Code: ID9368726.",
+        "company_name": "Zenith Tech",
+        "lead_time": 2,
+        "location": "Jacksonville",
+        "updated_date": "05-10-2025",
+        "stock": "S",
+        "supplier": "Omni Tech"
       },
       {
         "qty_requested": 25,
@@ -435,7 +568,14 @@
         "wire_size": 11,
         "outlet": 2,
         "type": "metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Durable Amperon metallic designed and built for harsh conditions. Code: ID8205823.",
+        "company_name": "Apex Ventures",
+        "lead_time": 10,
+        "location": "Chicago",
+        "updated_date": "13-06-2025",
+        "stock": "Ns",
+        "supplier": "Bio Parts"
       },
       {
         "qty_requested": 15,
@@ -452,7 +592,14 @@
         "wire_size": 11,
         "outlet": 3,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Rugged Copperln standard designed and built for safe routing. Code: ID5457001.",
+        "company_name": "Horizon Labs",
+        "lead_time": 3,
+        "location": "Phoenix",
+        "updated_date": "03-04-2026",
+        "stock": "Ns",
+        "supplier": "Vanguard Inc"
       },
       {
         "qty_requested": 95,
@@ -469,7 +616,14 @@
         "wire_size": 12,
         "outlet": 3,
         "type": "metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Versatile Gridmax metallic designed and built for panel wiring. Code: ID3968325.",
+        "company_name": "Nova Energy",
+        "lead_time": 10,
+        "location": "Indianapolis",
+        "updated_date": "17-08-2025",
+        "stock": "S",
+        "supplier": "Alpha Zone"
       },
       {
         "qty_requested": 79,
@@ -486,7 +640,14 @@
         "wire_size": 14,
         "outlet": 4,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Top-tier Armetek standard designed and built for daily operations. Code: ID4134031.",
+        "company_name": "Beacon Logistics",
+        "lead_time": 9,
+        "location": "Columbus",
+        "updated_date": "01-07-2025",
+        "stock": "S",
+        "supplier": "Link Source"
       },
       {
         "qty_requested": 29,
@@ -503,7 +664,14 @@
         "wire_size": 5,
         "outlet": 2,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Standard Armetek standard designed and built for electrical setups. Code: ID6491722.",
+        "company_name": "Quantum Systems",
+        "lead_time": 1,
+        "location": "Denver",
+        "updated_date": "08-02-2026",
+        "stock": "S",
+        "supplier": "Aero Labs"
       },
       {
         "qty_requested": 18,
@@ -520,7 +688,14 @@
         "wire_size": 12,
         "outlet": 8,
         "type": "armored",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Quality Nexwire armored designed and built for industrial use. Code: ID1754370.",
+        "company_name": "Quantum Ventures",
+        "lead_time": 1,
+        "location": "Louisville",
+        "updated_date": "17-10-2025",
+        "stock": "S",
+        "supplier": "Sol Labs"
       }
     ]
   },
@@ -535,11 +710,11 @@
     "total_line_no": 7,
     "total_price": "34,068.51",
     "buyer": "Sanford Inc",
-    "bill_to": "Sanford Inc\n678, Waubesa, Thị Trấn Quan Hóa\n 027336",
-    "ship_to": "Devpoint\n901, Comanche, Thị Trấn Quan Hóa\n 074991",
+    "bill_to": "Sanford Inc\n678, Waubesa, Th\u1ecb Tr\u1ea5n Quan H\u00f3a\n 027336",
+    "ship_to": "Devpoint\n901, Comanche, Th\u1ecb Tr\u1ea5n Quan H\u00f3a\n 074991",
     "po_no": "CP44748/367",
     "job_no": "QF98237/722",
-    "deleivery_date": "31-05-2021",
+    "deleivery_date": "20-09-2025",
     "lines": 7,
     "products": [
       {
@@ -557,7 +732,14 @@
         "wire_size": 9,
         "outlet": 4,
         "type": "metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Optimal Steelron metallic designed and built for power distribution. Code: ID8381024.",
+        "company_name": "Horizon Inc",
+        "lead_time": 10,
+        "location": "Denver",
+        "updated_date": "29-12-2025",
+        "stock": "S",
+        "supplier": "Prime Supply"
       },
       {
         "qty_requested": 27,
@@ -574,7 +756,14 @@
         "wire_size": 16,
         "outlet": 7,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Modern Flexduct standard designed and built for modern systems. Code: ID2733995.",
+        "company_name": "Delta Systems",
+        "lead_time": 7,
+        "location": "Indianapolis",
+        "updated_date": "26-12-2025",
+        "stock": "S",
+        "supplier": "Zenith Supply"
       },
       {
         "qty_requested": 22,
@@ -591,7 +780,14 @@
         "wire_size": 11,
         "outlet": 1,
         "type": "armored",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Robust Cablux armored designed and built for harsh conditions. Code: ID1353813.",
+        "company_name": "Beta Industries",
+        "lead_time": 6,
+        "location": "Oklahoma City",
+        "updated_date": "25-06-2025",
+        "stock": "S",
+        "supplier": "Vertex Labs"
       },
       {
         "qty_requested": 9,
@@ -608,7 +804,14 @@
         "wire_size": 19,
         "outlet": 3,
         "type": "metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Premium Gridmax metallic designed and built for safe routing. Code: ID2335982.",
+        "company_name": "Matrix Energy",
+        "lead_time": 8,
+        "location": "Phoenix",
+        "updated_date": "03-12-2025",
+        "stock": "S",
+        "supplier": "Vanguard Zone"
       },
       {
         "qty_requested": 57,
@@ -625,7 +828,14 @@
         "wire_size": 20,
         "outlet": 7,
         "type": "metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Reliable Copperln metallic designed and built for panel wiring. Code: ID2701956.",
+        "company_name": "Quantum Logistics",
+        "lead_time": 9,
+        "location": "Houston",
+        "updated_date": "26-05-2025",
+        "stock": "S",
+        "supplier": "Link Group"
       },
       {
         "qty_requested": 66,
@@ -642,7 +852,14 @@
         "wire_size": 5,
         "outlet": 3,
         "type": "non-metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Advanced Wirezone non-metallic designed and built for daily operations. Code: ID1783956.",
+        "company_name": "Delta Logistics",
+        "lead_time": 8,
+        "location": "San Antonio",
+        "updated_date": "22-11-2025",
+        "stock": "S",
+        "supplier": "Beacon Works"
       },
       {
         "qty_requested": 42,
@@ -659,7 +876,14 @@
         "wire_size": 19,
         "outlet": 2,
         "type": "metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Compact Steelron metallic designed and built for electrical setups. Code: ID6880804.",
+        "company_name": "Core Global",
+        "lead_time": 8,
+        "location": "San Jose",
+        "updated_date": "03-12-2025",
+        "stock": "Ns",
+        "supplier": "Sol Sys"
       }
     ]
   },
@@ -678,7 +902,7 @@
     "ship_to": "Yodel\n826, Northview, Bonpland\n 091545",
     "po_no": "GK90151/819",
     "job_no": "DU21735/949",
-    "deleivery_date": "10-09-2020",
+    "deleivery_date": "06-08-2025",
     "lines": 6,
     "products": [
       {
@@ -696,7 +920,14 @@
         "wire_size": 13,
         "outlet": 5,
         "type": "metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Efficient Wirezone metallic designed and built for industrial use. Code: ID4284782.",
+        "company_name": "Stellar Ltd",
+        "lead_time": 1,
+        "location": "Denver",
+        "updated_date": "02-02-2026",
+        "stock": "S",
+        "supplier": "Nova Trading"
       },
       {
         "qty_requested": 42,
@@ -713,7 +944,14 @@
         "wire_size": 11,
         "outlet": 1,
         "type": "standard",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Durable Cablux standard designed and built for power distribution. Code: ID3122483.",
+        "company_name": "Zenith Energy",
+        "lead_time": 9,
+        "location": "Philadelphia",
+        "updated_date": "30-05-2025",
+        "stock": "S",
+        "supplier": "Core Tech"
       },
       {
         "qty_requested": 37,
@@ -730,7 +968,14 @@
         "wire_size": 18,
         "outlet": 8,
         "type": "metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Rugged Nexwire metallic designed and built for modern systems. Code: ID1829212.",
+        "company_name": "Quantum Dynamics",
+        "lead_time": 2,
+        "location": "Detroit",
+        "updated_date": "29-08-2025",
+        "stock": "Ns",
+        "supplier": "Vanguard Sys"
       },
       {
         "qty_requested": 95,
@@ -747,7 +992,14 @@
         "wire_size": 15,
         "outlet": 2,
         "type": "standard",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Versatile Wirezone standard designed and built for harsh conditions. Code: ID1105078.",
+        "company_name": "Apex Dynamics",
+        "lead_time": 10,
+        "location": "Los Angeles",
+        "updated_date": "14-03-2026",
+        "stock": "S",
+        "supplier": "Echo Tech"
       },
       {
         "qty_requested": 77,
@@ -764,7 +1016,14 @@
         "wire_size": 17,
         "outlet": 3,
         "type": "non-metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Top-tier Flexduct non-metallic designed and built for safe routing. Code: ID5417487.",
+        "company_name": "Vanguard Systems",
+        "lead_time": 5,
+        "location": "San Antonio",
+        "updated_date": "08-04-2026",
+        "stock": "Ns",
+        "supplier": "Vanguard Labs"
       },
       {
         "qty_requested": 9,
@@ -781,7 +1040,14 @@
         "wire_size": 7,
         "outlet": 1,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Standard Nexwire standard designed and built for panel wiring. Code: ID5819198.",
+        "company_name": "Nova Industries",
+        "lead_time": 3,
+        "location": "Detroit",
+        "updated_date": "27-03-2026",
+        "stock": "Ns",
+        "supplier": "Omni Ind"
       }
     ]
   },
@@ -800,7 +1066,7 @@
     "ship_to": "Buzzster\n246, Bashford, Utara\n 052737",
     "po_no": "JD35815/302",
     "job_no": "XE41092/860",
-    "deleivery_date": "01-02-2024",
+    "deleivery_date": "09-10-2025",
     "lines": 2,
     "products": [
       {
@@ -818,7 +1084,14 @@
         "wire_size": 14,
         "outlet": 1,
         "type": "armored",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Quality Voltex armored designed and built for daily operations. Code: ID7001573.",
+        "company_name": "Quantum Tech",
+        "lead_time": 8,
+        "location": "El Paso",
+        "updated_date": "13-02-2026",
+        "stock": "S",
+        "supplier": "Echo Group"
       },
       {
         "qty_requested": 61,
@@ -835,7 +1108,14 @@
         "wire_size": 11,
         "outlet": 7,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Optimal Nexwire standard designed and built for electrical setups. Code: ID1744800.",
+        "company_name": "Horizon Ltd",
+        "lead_time": 9,
+        "location": "Dallas",
+        "updated_date": "07-07-2025",
+        "stock": "Ns",
+        "supplier": "Ultra Hub"
       }
     ]
   },
@@ -854,7 +1134,7 @@
     "ship_to": "Jabbertype\n218, Chinook, Freiburg im Breisgau\nBW 062476",
     "po_no": "BA64753/748",
     "job_no": "VZ30810/745",
-    "deleivery_date": "13-11-2020",
+    "deleivery_date": "03-09-2025",
     "lines": 2,
     "products": [
       {
@@ -872,7 +1152,14 @@
         "wire_size": 6,
         "outlet": 8,
         "type": "standard",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Modern Cablux standard designed and built for industrial use. Code: ID4454263.",
+        "company_name": "Beacon Global",
+        "lead_time": 3,
+        "location": "Columbus",
+        "updated_date": "03-02-2026",
+        "stock": "Ns",
+        "supplier": "Beacon Inc"
       },
       {
         "qty_requested": 60,
@@ -889,7 +1176,14 @@
         "wire_size": 16,
         "outlet": 6,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Robust Voltex standard designed and built for power distribution. Code: ID6340988.",
+        "company_name": "Horizon Global",
+        "lead_time": 2,
+        "location": "Baltimore",
+        "updated_date": "08-07-2025",
+        "stock": "Ns",
+        "supplier": "Delta Co"
       }
     ]
   },
@@ -908,7 +1202,7 @@
     "ship_to": "Avamba\n757, Buena Vista, Vila Fria\n11 053520",
     "po_no": "WN32793/360",
     "job_no": "KP72517/256",
-    "deleivery_date": "10-07-2020",
+    "deleivery_date": "24-06-2025",
     "lines": 4,
     "products": [
       {
@@ -926,7 +1220,14 @@
         "wire_size": 11,
         "outlet": 5,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Premium Steelron standard designed and built for modern systems. Code: ID5038935.",
+        "company_name": "Horizon Inc",
+        "lead_time": 5,
+        "location": "San Jose",
+        "updated_date": "06-03-2026",
+        "stock": "S",
+        "supplier": "Matrix Global"
       },
       {
         "qty_requested": 85,
@@ -943,7 +1244,14 @@
         "wire_size": 20,
         "outlet": 4,
         "type": "standard",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Reliable Copperln standard designed and built for harsh conditions. Code: ID1388408.",
+        "company_name": "Matrix Group",
+        "lead_time": 5,
+        "location": "Charlotte",
+        "updated_date": "06-01-2026",
+        "stock": "Ns",
+        "supplier": "Link Co"
       },
       {
         "qty_requested": 88,
@@ -960,7 +1268,14 @@
         "wire_size": 16,
         "outlet": 7,
         "type": "armored",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Advanced Wirezone armored designed and built for safe routing. Code: ID1808655.",
+        "company_name": "Quantum Group",
+        "lead_time": 7,
+        "location": "Las Vegas",
+        "updated_date": "19-09-2025",
+        "stock": "S",
+        "supplier": "Titan Parts"
       },
       {
         "qty_requested": 92,
@@ -977,7 +1292,14 @@
         "wire_size": 18,
         "outlet": 10,
         "type": "non-metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Compact Wirezone non-metallic designed and built for panel wiring. Code: ID9170103.",
+        "company_name": "Vertex Group",
+        "lead_time": 5,
+        "location": "Philadelphia",
+        "updated_date": "13-12-2025",
+        "stock": "Ns",
+        "supplier": "Stellar Parts"
       }
     ]
   },
@@ -996,7 +1318,7 @@
     "ship_to": "Vidoo\n196, Dahle, Bentar\n 025017",
     "po_no": "YL22586/246",
     "job_no": "PH54582/491",
-    "deleivery_date": "10-10-2022",
+    "deleivery_date": "27-06-2025",
     "lines": 8,
     "products": [
       {
@@ -1014,7 +1336,14 @@
         "wire_size": 17,
         "outlet": 7,
         "type": "armored",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Efficient Steelron armored designed and built for daily operations. Code: ID8475501.",
+        "company_name": "Quantum Ventures",
+        "lead_time": 3,
+        "location": "Seattle",
+        "updated_date": "19-05-2025",
+        "stock": "Ns",
+        "supplier": "Omni Corp"
       },
       {
         "qty_requested": 25,
@@ -1031,7 +1360,14 @@
         "wire_size": 9,
         "outlet": 1,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Durable Copperln standard designed and built for electrical setups. Code: ID8292786.",
+        "company_name": "Beta Global",
+        "lead_time": 6,
+        "location": "Baltimore",
+        "updated_date": "21-05-2025",
+        "stock": "Ns",
+        "supplier": "Max Source"
       },
       {
         "qty_requested": 90,
@@ -1048,7 +1384,14 @@
         "wire_size": 9,
         "outlet": 1,
         "type": "standard",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Rugged Steelron standard designed and built for industrial use. Code: ID7112894.",
+        "company_name": "Nexus Systems",
+        "lead_time": 9,
+        "location": "Baltimore",
+        "updated_date": "25-11-2025",
+        "stock": "S",
+        "supplier": "Horizon Parts"
       },
       {
         "qty_requested": 98,
@@ -1065,7 +1408,14 @@
         "wire_size": 9,
         "outlet": 4,
         "type": "metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Versatile Gridmax metallic designed and built for power distribution. Code: ID2878680.",
+        "company_name": "Omega Ventures",
+        "lead_time": 7,
+        "location": "New York",
+        "updated_date": "31-07-2025",
+        "stock": "Ns",
+        "supplier": "Zenith Ind"
       },
       {
         "qty_requested": 42,
@@ -1082,7 +1432,14 @@
         "wire_size": 12,
         "outlet": 5,
         "type": "metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Top-tier Wirezone metallic designed and built for modern systems. Code: ID6332815.",
+        "company_name": "Apex Global",
+        "lead_time": 3,
+        "location": "Oklahoma City",
+        "updated_date": "25-04-2026",
+        "stock": "S",
+        "supplier": "Link Tech"
       },
       {
         "qty_requested": 68,
@@ -1099,7 +1456,14 @@
         "wire_size": 8,
         "outlet": 7,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Standard Gridmax standard designed and built for harsh conditions. Code: ID8448161.",
+        "company_name": "Matrix Works",
+        "lead_time": 8,
+        "location": "Jacksonville",
+        "updated_date": "04-10-2025",
+        "stock": "S",
+        "supplier": "Sol Trading"
       },
       {
         "qty_requested": 61,
@@ -1116,7 +1480,14 @@
         "wire_size": 14,
         "outlet": 6,
         "type": "metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Quality Flexduct metallic designed and built for safe routing. Code: ID7361679.",
+        "company_name": "Alpha Group",
+        "lead_time": 4,
+        "location": "San Francisco",
+        "updated_date": "16-10-2025",
+        "stock": "Ns",
+        "supplier": "Flux Global"
       },
       {
         "qty_requested": 99,
@@ -1133,7 +1504,14 @@
         "wire_size": 19,
         "outlet": 10,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Optimal Voltex standard designed and built for panel wiring. Code: ID8752281.",
+        "company_name": "Nova Systems",
+        "lead_time": 9,
+        "location": "San Francisco",
+        "updated_date": "13-04-2026",
+        "stock": "Ns",
+        "supplier": "Zenith Parts"
       }
     ]
   },
@@ -1152,7 +1530,7 @@
     "ship_to": "Divavu\n568, Pawling, Korenovsk\n 015697",
     "po_no": "SW54643/877",
     "job_no": "RD94346/423",
-    "deleivery_date": "08-01-2021",
+    "deleivery_date": "29-06-2025",
     "lines": 8,
     "products": [
       {
@@ -1170,7 +1548,14 @@
         "wire_size": 16,
         "outlet": 9,
         "type": "metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Modern Voltex metallic designed and built for daily operations. Code: ID9606609.",
+        "company_name": "Nexus Dynamics",
+        "lead_time": 7,
+        "location": "Jacksonville",
+        "updated_date": "08-10-2025",
+        "stock": "Ns",
+        "supplier": "Nexus Inc"
       },
       {
         "qty_requested": 42,
@@ -1187,7 +1572,14 @@
         "wire_size": 20,
         "outlet": 3,
         "type": "armored",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Robust Gridmax armored designed and built for electrical setups. Code: ID6190997.",
+        "company_name": "Core Ventures",
+        "lead_time": 10,
+        "location": "San Antonio",
+        "updated_date": "08-09-2025",
+        "stock": "S",
+        "supplier": "Stellar Inc"
       },
       {
         "qty_requested": 94,
@@ -1204,7 +1596,14 @@
         "wire_size": 5,
         "outlet": 9,
         "type": "metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Premium Wirezone metallic designed and built for industrial use. Code: ID2608640.",
+        "company_name": "Alpha Energy",
+        "lead_time": 9,
+        "location": "Detroit",
+        "updated_date": "09-04-2026",
+        "stock": "S",
+        "supplier": "Nova Works"
       },
       {
         "qty_requested": 77,
@@ -1221,7 +1620,14 @@
         "wire_size": 14,
         "outlet": 2,
         "type": "armored",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Reliable Amperon armored designed and built for power distribution. Code: ID3958348.",
+        "company_name": "Titan Dynamics",
+        "lead_time": 6,
+        "location": "Detroit",
+        "updated_date": "03-07-2025",
+        "stock": "Ns",
+        "supplier": "Echo Inc"
       },
       {
         "qty_requested": 94,
@@ -1238,7 +1644,14 @@
         "wire_size": 6,
         "outlet": 7,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Advanced Copperln standard designed and built for modern systems. Code: ID4588183.",
+        "company_name": "Delta Systems",
+        "lead_time": 7,
+        "location": "Nashville",
+        "updated_date": "29-09-2025",
+        "stock": "S",
+        "supplier": "Alpha Tech"
       },
       {
         "qty_requested": 95,
@@ -1255,7 +1668,14 @@
         "wire_size": 6,
         "outlet": 7,
         "type": "standard",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Compact Cablux standard designed and built for harsh conditions. Code: ID9226310.",
+        "company_name": "Delta Group",
+        "lead_time": 7,
+        "location": "Detroit",
+        "updated_date": "29-07-2025",
+        "stock": "Ns",
+        "supplier": "Flux Net"
       },
       {
         "qty_requested": 85,
@@ -1272,7 +1692,14 @@
         "wire_size": 6,
         "outlet": 6,
         "type": "standard",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Efficient Nexwire standard designed and built for safe routing. Code: ID1926874.",
+        "company_name": "Horizon Works",
+        "lead_time": 1,
+        "location": "San Jose",
+        "updated_date": "24-09-2025",
+        "stock": "S",
+        "supplier": "Max Inc"
       },
       {
         "qty_requested": 71,
@@ -1289,7 +1716,14 @@
         "wire_size": 5,
         "outlet": 7,
         "type": "armored",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Durable Cablux armored designed and built for panel wiring. Code: ID1688444.",
+        "company_name": "Titan Logistics",
+        "lead_time": 8,
+        "location": "Columbus",
+        "updated_date": "11-04-2026",
+        "stock": "S",
+        "supplier": "Zenith Sys"
       }
     ]
   },
@@ -1304,11 +1738,11 @@
     "total_line_no": 8,
     "total_price": "37,032.27",
     "buyer": "Konopelski, Raynor and Doyle",
-    "bill_to": "Konopelski, Raynor and Doyle\n848, Corry, Tall aḑ Ḑamān\n 056652",
-    "ship_to": "Viva\n884, Old Shore, Tall aḑ Ḑamān\n 064699",
+    "bill_to": "Konopelski, Raynor and Doyle\n848, Corry, Tall a\u1e11 \u1e10am\u0101n\n 056652",
+    "ship_to": "Viva\n884, Old Shore, Tall a\u1e11 \u1e10am\u0101n\n 064699",
     "po_no": "FG15818/546",
     "job_no": "DB87964/923",
-    "deleivery_date": "10-11-2024",
+    "deleivery_date": "26-07-2025",
     "lines": 8,
     "products": [
       {
@@ -1326,7 +1760,14 @@
         "wire_size": 11,
         "outlet": 10,
         "type": "non-metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Rugged Flexduct non-metallic designed and built for daily operations. Code: ID6051048.",
+        "company_name": "Quantum Global",
+        "lead_time": 9,
+        "location": "Detroit",
+        "updated_date": "21-03-2026",
+        "stock": "Ns",
+        "supplier": "Bio Zone"
       },
       {
         "qty_requested": 34,
@@ -1343,7 +1784,14 @@
         "wire_size": 11,
         "outlet": 10,
         "type": "metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Versatile Flexduct metallic designed and built for electrical setups. Code: ID8718197.",
+        "company_name": "Stellar Ltd",
+        "lead_time": 4,
+        "location": "Phoenix",
+        "updated_date": "13-05-2025",
+        "stock": "S",
+        "supplier": "Bio Net"
       },
       {
         "qty_requested": 65,
@@ -1360,7 +1808,14 @@
         "wire_size": 11,
         "outlet": 1,
         "type": "non-metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Top-tier Cablux non-metallic designed and built for industrial use. Code: ID3385954.",
+        "company_name": "Zenith Dynamics",
+        "lead_time": 2,
+        "location": "Columbus",
+        "updated_date": "29-11-2025",
+        "stock": "S",
+        "supplier": "Link Ltd"
       },
       {
         "qty_requested": 43,
@@ -1377,7 +1832,14 @@
         "wire_size": 14,
         "outlet": 7,
         "type": "non-metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Standard Amperon non-metallic designed and built for power distribution. Code: ID6854987.",
+        "company_name": "Zenith Industries",
+        "lead_time": 4,
+        "location": "Phoenix",
+        "updated_date": "01-04-2026",
+        "stock": "S",
+        "supplier": "Sky Corp"
       },
       {
         "qty_requested": 96,
@@ -1394,7 +1856,14 @@
         "wire_size": 14,
         "outlet": 1,
         "type": "armored",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Quality Steelron armored designed and built for modern systems. Code: ID9992537.",
+        "company_name": "Vanguard Logistics",
+        "lead_time": 1,
+        "location": "Seattle",
+        "updated_date": "05-09-2025",
+        "stock": "S",
+        "supplier": "Star Global"
       },
       {
         "qty_requested": 31,
@@ -1411,7 +1880,14 @@
         "wire_size": 12,
         "outlet": 5,
         "type": "non-metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Optimal Wirezone non-metallic designed and built for harsh conditions. Code: ID3885873.",
+        "company_name": "Vertex Labs",
+        "lead_time": 8,
+        "location": "Detroit",
+        "updated_date": "27-01-2026",
+        "stock": "Ns",
+        "supplier": "Aero Inc"
       },
       {
         "qty_requested": 77,
@@ -1428,7 +1904,14 @@
         "wire_size": 15,
         "outlet": 3,
         "type": "non-metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Modern Amperon non-metallic designed and built for safe routing. Code: ID3154640.",
+        "company_name": "Vanguard Industries",
+        "lead_time": 9,
+        "location": "Columbus",
+        "updated_date": "21-07-2025",
+        "stock": "Ns",
+        "supplier": "Link Supply"
       },
       {
         "qty_requested": 53,
@@ -1445,7 +1928,14 @@
         "wire_size": 20,
         "outlet": 9,
         "type": "armored",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Robust Copperln armored designed and built for panel wiring. Code: ID4030163.",
+        "company_name": "Vanguard Logistics",
+        "lead_time": 4,
+        "location": "Dallas",
+        "updated_date": "12-12-2025",
+        "stock": "S",
+        "supplier": "Nexus Ind"
       }
     ]
   },
@@ -1464,7 +1954,7 @@
     "ship_to": "Twitterbeat\n713, Rockefeller, Spitsevka\n 094378",
     "po_no": "LZ71599/538",
     "job_no": "AR11823/903",
-    "deleivery_date": "24-07-2024",
+    "deleivery_date": "29-08-2025",
     "lines": 9,
     "products": [
       {
@@ -1482,7 +1972,14 @@
         "wire_size": 19,
         "outlet": 3,
         "type": "standard",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Premium Amperon standard designed and built for daily operations. Code: ID7309967.",
+        "company_name": "Nova Systems",
+        "lead_time": 6,
+        "location": "Baltimore",
+        "updated_date": "01-02-2026",
+        "stock": "S",
+        "supplier": "Echo Labs"
       },
       {
         "qty_requested": 9,
@@ -1499,7 +1996,14 @@
         "wire_size": 8,
         "outlet": 1,
         "type": "armored",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Reliable Steelron armored designed and built for electrical setups. Code: ID1318069.",
+        "company_name": "Core Solutions",
+        "lead_time": 3,
+        "location": "Nashville",
+        "updated_date": "18-08-2025",
+        "stock": "S",
+        "supplier": "Aero Tech"
       },
       {
         "qty_requested": 77,
@@ -1516,7 +2020,14 @@
         "wire_size": 19,
         "outlet": 2,
         "type": "armored",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Advanced Voltex armored designed and built for industrial use. Code: ID9126917.",
+        "company_name": "Delta Systems",
+        "lead_time": 9,
+        "location": "Columbus",
+        "updated_date": "29-11-2025",
+        "stock": "S",
+        "supplier": "Titan Net"
       },
       {
         "qty_requested": 20,
@@ -1533,7 +2044,14 @@
         "wire_size": 19,
         "outlet": 5,
         "type": "metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Compact Nexwire metallic designed and built for power distribution. Code: ID4783966.",
+        "company_name": "Delta Industries",
+        "lead_time": 10,
+        "location": "Nashville",
+        "updated_date": "11-05-2025",
+        "stock": "Ns",
+        "supplier": "Sky Trading"
       },
       {
         "qty_requested": 33,
@@ -1550,7 +2068,14 @@
         "wire_size": 16,
         "outlet": 7,
         "type": "metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Efficient Amperon metallic designed and built for modern systems. Code: ID9132931.",
+        "company_name": "Alpha Systems",
+        "lead_time": 5,
+        "location": "Portland",
+        "updated_date": "16-11-2025",
+        "stock": "Ns",
+        "supplier": "Matrix Hub"
       },
       {
         "qty_requested": 95,
@@ -1567,7 +2092,14 @@
         "wire_size": 20,
         "outlet": 3,
         "type": "standard",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Durable Cablux standard designed and built for harsh conditions. Code: ID3015390.",
+        "company_name": "Nova Industries",
+        "lead_time": 8,
+        "location": "New York",
+        "updated_date": "16-11-2025",
+        "stock": "Ns",
+        "supplier": "Max Ltd"
       },
       {
         "qty_requested": 97,
@@ -1584,7 +2116,14 @@
         "wire_size": 13,
         "outlet": 2,
         "type": "metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Rugged Copperln metallic designed and built for safe routing. Code: ID1617595.",
+        "company_name": "Omega Works",
+        "lead_time": 8,
+        "location": "Phoenix",
+        "updated_date": "15-03-2026",
+        "stock": "S",
+        "supplier": "Delta Zone"
       },
       {
         "qty_requested": 2,
@@ -1601,7 +2140,14 @@
         "wire_size": 7,
         "outlet": 1,
         "type": "armored",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Versatile Amperon armored designed and built for panel wiring. Code: ID7880791.",
+        "company_name": "Beta Global",
+        "lead_time": 7,
+        "location": "Austin",
+        "updated_date": "17-08-2025",
+        "stock": "Ns",
+        "supplier": "Titan Co"
       },
       {
         "qty_requested": 96,
@@ -1618,7 +2164,14 @@
         "wire_size": 8,
         "outlet": 4,
         "type": "armored",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Top-tier Flexduct armored designed and built for daily operations. Code: ID9733889.",
+        "company_name": "Core Global",
+        "lead_time": 7,
+        "location": "Dallas",
+        "updated_date": "11-06-2025",
+        "stock": "Ns",
+        "supplier": "Max Net"
       }
     ]
   },
@@ -1633,11 +2186,11 @@
     "total_line_no": 1,
     "total_price": "1,170.00",
     "buyer": "Morar-Wolff",
-    "bill_to": "Morar-Wolff\n352, Evergreen, Acandí\n 099628",
-    "ship_to": "Tambee\n119, Holmberg, Acandí\n 019957",
+    "bill_to": "Morar-Wolff\n352, Evergreen, Acand\u00ed\n 099628",
+    "ship_to": "Tambee\n119, Holmberg, Acand\u00ed\n 019957",
     "po_no": "PK58968/435",
     "job_no": "NJ85778/984",
-    "deleivery_date": "17-11-2022",
+    "deleivery_date": "01-02-2026",
     "lines": 1,
     "products": [
       {
@@ -1655,7 +2208,14 @@
         "wire_size": 11,
         "outlet": 4,
         "type": "non-metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Standard Steelron non-metallic designed and built for electrical setups. Code: ID4484722.",
+        "company_name": "Beta Systems",
+        "lead_time": 4,
+        "location": "Boston",
+        "updated_date": "05-06-2025",
+        "stock": "S",
+        "supplier": "Aero Sys"
       }
     ]
   },
@@ -1674,7 +2234,7 @@
     "ship_to": "Voolith\n513, Bay, Dykan'ka\n 058042",
     "po_no": "QV49597/602",
     "job_no": "DY65888/317",
-    "deleivery_date": "08-12-2024",
+    "deleivery_date": "04-09-2025",
     "lines": 4,
     "products": [
       {
@@ -1692,7 +2252,14 @@
         "wire_size": 20,
         "outlet": 6,
         "type": "metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Quality Nexwire metallic designed and built for industrial use. Code: ID6862944.",
+        "company_name": "Matrix Works",
+        "lead_time": 1,
+        "location": "El Paso",
+        "updated_date": "18-07-2025",
+        "stock": "S",
+        "supplier": "Bio Corp"
       },
       {
         "qty_requested": 32,
@@ -1709,7 +2276,14 @@
         "wire_size": 13,
         "outlet": 6,
         "type": "armored",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Optimal Voltex armored designed and built for power distribution. Code: ID9212500.",
+        "company_name": "Zenith Group",
+        "lead_time": 2,
+        "location": "Denver",
+        "updated_date": "20-08-2025",
+        "stock": "Ns",
+        "supplier": "Nova Inc"
       },
       {
         "qty_requested": 13,
@@ -1726,7 +2300,14 @@
         "wire_size": 14,
         "outlet": 9,
         "type": "metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Modern Flexduct metallic designed and built for modern systems. Code: ID9437083.",
+        "company_name": "Omega Global",
+        "lead_time": 2,
+        "location": "Denver",
+        "updated_date": "14-05-2025",
+        "stock": "Ns",
+        "supplier": "Star Net"
       },
       {
         "qty_requested": 97,
@@ -1743,7 +2324,14 @@
         "wire_size": 12,
         "outlet": 2,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Robust Nexwire standard designed and built for harsh conditions. Code: ID6394812.",
+        "company_name": "Core Solutions",
+        "lead_time": 4,
+        "location": "Chicago",
+        "updated_date": "28-02-2026",
+        "stock": "S",
+        "supplier": "Nova Corp"
       }
     ]
   },
@@ -1762,7 +2350,7 @@
     "ship_to": "Minyx\n768, Ilene, Toulouse\nB3 020001",
     "po_no": "VJ57415/772",
     "job_no": "CI81796/824",
-    "deleivery_date": "29-09-2025",
+    "deleivery_date": "22-04-2026",
     "lines": 1,
     "products": [
       {
@@ -1780,7 +2368,14 @@
         "wire_size": 10,
         "outlet": 9,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Premium Amperon standard designed and built for safe routing. Code: ID6894930.",
+        "company_name": "Stellar Works",
+        "lead_time": 10,
+        "location": "Oklahoma City",
+        "updated_date": "01-07-2025",
+        "stock": "S",
+        "supplier": "Apex Inc"
       }
     ]
   },
@@ -1799,7 +2394,7 @@
     "ship_to": "Rhynyx\n844, Leroy, Malakhovka\n 017423",
     "po_no": "MV95441/943",
     "job_no": "JC67017/837",
-    "deleivery_date": "18-11-2021",
+    "deleivery_date": "28-01-2026",
     "lines": 5,
     "products": [
       {
@@ -1817,7 +2412,14 @@
         "wire_size": 9,
         "outlet": 3,
         "type": "metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Reliable Nexwire metallic designed and built for panel wiring. Code: ID7862862.",
+        "company_name": "Delta Group",
+        "lead_time": 6,
+        "location": "Chicago",
+        "updated_date": "15-01-2026",
+        "stock": "Ns",
+        "supplier": "Vertex Ltd"
       },
       {
         "qty_requested": 48,
@@ -1834,7 +2436,14 @@
         "wire_size": 9,
         "outlet": 9,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Advanced Flexduct standard designed and built for daily operations. Code: ID9840394.",
+        "company_name": "Delta Works",
+        "lead_time": 8,
+        "location": "Houston",
+        "updated_date": "08-12-2025",
+        "stock": "Ns",
+        "supplier": "Nexus Global"
       },
       {
         "qty_requested": 97,
@@ -1851,7 +2460,14 @@
         "wire_size": 18,
         "outlet": 7,
         "type": "armored",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Compact Wirezone armored designed and built for electrical setups. Code: ID7206548.",
+        "company_name": "Vertex Industries",
+        "lead_time": 3,
+        "location": "Memphis",
+        "updated_date": "23-01-2026",
+        "stock": "Ns",
+        "supplier": "Beta Global"
       },
       {
         "qty_requested": 62,
@@ -1868,7 +2484,14 @@
         "wire_size": 17,
         "outlet": 1,
         "type": "armored",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Efficient Voltex armored designed and built for industrial use. Code: ID4761420.",
+        "company_name": "Echo Industries",
+        "lead_time": 10,
+        "location": "Dallas",
+        "updated_date": "13-10-2025",
+        "stock": "S",
+        "supplier": "Echo Zone"
       },
       {
         "qty_requested": 8,
@@ -1885,7 +2508,14 @@
         "wire_size": 12,
         "outlet": 10,
         "type": "armored",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Durable Gridmax armored designed and built for power distribution. Code: ID3665303.",
+        "company_name": "Nova Ventures",
+        "lead_time": 8,
+        "location": "San Diego",
+        "updated_date": "24-12-2025",
+        "stock": "Ns",
+        "supplier": "Bio Trading"
       }
     ]
   },
@@ -1904,7 +2534,7 @@
     "ship_to": "Lazzy\n208, Caliangt, Viljandi\n 056356",
     "po_no": "SP41023/419",
     "job_no": "LW51941/841",
-    "deleivery_date": "11-10-2023",
+    "deleivery_date": "15-05-2025",
     "lines": 3,
     "products": [
       {
@@ -1922,7 +2552,14 @@
         "wire_size": 15,
         "outlet": 3,
         "type": "armored",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Rugged Voltex armored designed and built for modern systems. Code: ID6507117.",
+        "company_name": "Zenith Works",
+        "lead_time": 6,
+        "location": "Philadelphia",
+        "updated_date": "05-01-2026",
+        "stock": "S",
+        "supplier": "Omega Direct"
       },
       {
         "qty_requested": 18,
@@ -1939,7 +2576,14 @@
         "wire_size": 20,
         "outlet": 3,
         "type": "armored",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Versatile Wirezone armored designed and built for harsh conditions. Code: ID6351006.",
+        "company_name": "Nova Systems",
+        "lead_time": 5,
+        "location": "Baltimore",
+        "updated_date": "02-03-2026",
+        "stock": "Ns",
+        "supplier": "Nexus Tech"
       },
       {
         "qty_requested": 94,
@@ -1956,7 +2600,14 @@
         "wire_size": 11,
         "outlet": 7,
         "type": "non-metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Top-tier Armetek non-metallic designed and built for safe routing. Code: ID6306031.",
+        "company_name": "Vanguard Ltd",
+        "lead_time": 2,
+        "location": "San Diego",
+        "updated_date": "25-11-2025",
+        "stock": "Ns",
+        "supplier": "Sky Zone"
       }
     ]
   },
@@ -1971,11 +2622,11 @@
     "total_line_no": 2,
     "total_price": "5,223.92",
     "buyer": "Dietrich-Schulist",
-    "bill_to": "Dietrich-Schulist\n958, Fulton, Cotuí\n 010684",
-    "ship_to": "Skinder\n537, Sullivan, Cotuí\n 051346",
+    "bill_to": "Dietrich-Schulist\n958, Fulton, Cotu\u00ed\n 010684",
+    "ship_to": "Skinder\n537, Sullivan, Cotu\u00ed\n 051346",
     "po_no": "UM35824/586",
     "job_no": "BW54004/853",
-    "deleivery_date": "01-06-2025",
+    "deleivery_date": "19-04-2026",
     "lines": 2,
     "products": [
       {
@@ -1993,7 +2644,14 @@
         "wire_size": 20,
         "outlet": 5,
         "type": "armored",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Standard Flexduct armored designed and built for panel wiring. Code: ID1052809.",
+        "company_name": "Zenith Group",
+        "lead_time": 8,
+        "location": "Columbus",
+        "updated_date": "09-05-2025",
+        "stock": "S",
+        "supplier": "Alpha Labs"
       },
       {
         "qty_requested": 10,
@@ -2010,7 +2668,14 @@
         "wire_size": 15,
         "outlet": 2,
         "type": "armored",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Quality Nexwire armored designed and built for daily operations. Code: ID3644601.",
+        "company_name": "Apex Industries",
+        "lead_time": 4,
+        "location": "San Jose",
+        "updated_date": "05-04-2026",
+        "stock": "Ns",
+        "supplier": "Apex Co"
       }
     ]
   },
@@ -2029,7 +2694,7 @@
     "ship_to": "Linklinks\n385, Northland, San Carlos\n 077244",
     "po_no": "TT66857/197",
     "job_no": "XT14022/847",
-    "deleivery_date": "28-11-2025",
+    "deleivery_date": "08-02-2026",
     "lines": 4,
     "products": [
       {
@@ -2047,7 +2712,14 @@
         "wire_size": 12,
         "outlet": 7,
         "type": "metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Optimal Wirezone metallic designed and built for electrical setups. Code: ID5431243.",
+        "company_name": "Vanguard Systems",
+        "lead_time": 7,
+        "location": "Memphis",
+        "updated_date": "06-02-2026",
+        "stock": "Ns",
+        "supplier": "Beacon Supply"
       },
       {
         "qty_requested": 44,
@@ -2064,7 +2736,14 @@
         "wire_size": 6,
         "outlet": 1,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Modern Voltex standard designed and built for industrial use. Code: ID3315576.",
+        "company_name": "Echo Global",
+        "lead_time": 5,
+        "location": "Dallas",
+        "updated_date": "27-08-2025",
+        "stock": "S",
+        "supplier": "Nova Tech"
       },
       {
         "qty_requested": 86,
@@ -2081,7 +2760,14 @@
         "wire_size": 14,
         "outlet": 1,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Robust Voltex standard designed and built for power distribution. Code: ID5808844.",
+        "company_name": "Horizon Labs",
+        "lead_time": 3,
+        "location": "San Antonio",
+        "updated_date": "19-08-2025",
+        "stock": "Ns",
+        "supplier": "Nexus Supply"
       },
       {
         "qty_requested": 33,
@@ -2098,7 +2784,14 @@
         "wire_size": 10,
         "outlet": 10,
         "type": "standard",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Premium Flexduct standard designed and built for modern systems. Code: ID8565716.",
+        "company_name": "Vanguard Dynamics",
+        "lead_time": 5,
+        "location": "Houston",
+        "updated_date": "08-08-2025",
+        "stock": "Ns",
+        "supplier": "Sky Inc"
       }
     ]
   },
@@ -2117,7 +2810,7 @@
     "ship_to": "Pixoboo\n329, Maywood, Xibing\n 046098",
     "po_no": "BR92787/709",
     "job_no": "CR59975/857",
-    "deleivery_date": "18-05-2025",
+    "deleivery_date": "01-11-2025",
     "lines": 6,
     "products": [
       {
@@ -2135,7 +2828,14 @@
         "wire_size": 19,
         "outlet": 6,
         "type": "non-metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Reliable Copperln non-metallic designed and built for harsh conditions. Code: ID8431908.",
+        "company_name": "Omega Global",
+        "lead_time": 1,
+        "location": "Nashville",
+        "updated_date": "29-01-2026",
+        "stock": "S",
+        "supplier": "Nova Parts"
       },
       {
         "qty_requested": 66,
@@ -2152,7 +2852,14 @@
         "wire_size": 11,
         "outlet": 7,
         "type": "standard",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Advanced Copperln standard designed and built for safe routing. Code: ID6020290.",
+        "company_name": "Horizon Global",
+        "lead_time": 3,
+        "location": "Boston",
+        "updated_date": "07-01-2026",
+        "stock": "S",
+        "supplier": "Ultra Ind"
       },
       {
         "qty_requested": 35,
@@ -2169,7 +2876,14 @@
         "wire_size": 8,
         "outlet": 6,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Compact Amperon standard designed and built for panel wiring. Code: ID1770815.",
+        "company_name": "Stellar Logistics",
+        "lead_time": 8,
+        "location": "Columbus",
+        "updated_date": "22-10-2025",
+        "stock": "S",
+        "supplier": "Aero Co"
       },
       {
         "qty_requested": 37,
@@ -2186,7 +2900,14 @@
         "wire_size": 8,
         "outlet": 2,
         "type": "armored",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Efficient Copperln armored designed and built for daily operations. Code: ID3799461.",
+        "company_name": "Zenith Corp",
+        "lead_time": 2,
+        "location": "San Francisco",
+        "updated_date": "07-01-2026",
+        "stock": "S",
+        "supplier": "Core Supply"
       },
       {
         "qty_requested": 56,
@@ -2203,7 +2924,14 @@
         "wire_size": 18,
         "outlet": 3,
         "type": "metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Durable Gridmax metallic designed and built for electrical setups. Code: ID4829257.",
+        "company_name": "Stellar Corp",
+        "lead_time": 4,
+        "location": "Houston",
+        "updated_date": "10-02-2026",
+        "stock": "Ns",
+        "supplier": "Link Net"
       },
       {
         "qty_requested": 67,
@@ -2220,7 +2948,14 @@
         "wire_size": 20,
         "outlet": 9,
         "type": "standard",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Rugged Flexduct standard designed and built for industrial use. Code: ID8216229.",
+        "company_name": "Vanguard Industries",
+        "lead_time": 8,
+        "location": "Columbus",
+        "updated_date": "30-09-2025",
+        "stock": "Ns",
+        "supplier": "Matrix Parts"
       }
     ]
   },
@@ -2239,7 +2974,7 @@
     "ship_to": "Chatterpoint\n130, Lighthouse Bay, Niaojin\n 063262",
     "po_no": "XR81534/750",
     "job_no": "WP96963/976",
-    "deleivery_date": "27-01-2022",
+    "deleivery_date": "16-02-2026",
     "lines": 8,
     "products": [
       {
@@ -2257,7 +2992,14 @@
         "wire_size": 16,
         "outlet": 9,
         "type": "metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Versatile Nexwire metallic designed and built for power distribution. Code: ID1549697.",
+        "company_name": "Beta Dynamics",
+        "lead_time": 2,
+        "location": "Portland",
+        "updated_date": "15-08-2025",
+        "stock": "S",
+        "supplier": "Delta Parts"
       },
       {
         "qty_requested": 86,
@@ -2274,7 +3016,14 @@
         "wire_size": 14,
         "outlet": 1,
         "type": "non-metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Top-tier Cablux non-metallic designed and built for modern systems. Code: ID8990957.",
+        "company_name": "Quantum Inc",
+        "lead_time": 4,
+        "location": "Philadelphia",
+        "updated_date": "07-02-2026",
+        "stock": "S",
+        "supplier": "Omni Group"
       },
       {
         "qty_requested": 83,
@@ -2291,7 +3040,14 @@
         "wire_size": 18,
         "outlet": 7,
         "type": "metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Standard Armetek metallic designed and built for harsh conditions. Code: ID7998330.",
+        "company_name": "Alpha Industries",
+        "lead_time": 8,
+        "location": "Nashville",
+        "updated_date": "01-03-2026",
+        "stock": "Ns",
+        "supplier": "Beacon Global"
       },
       {
         "qty_requested": 43,
@@ -2308,7 +3064,14 @@
         "wire_size": 9,
         "outlet": 1,
         "type": "armored",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Quality Wirezone armored designed and built for safe routing. Code: ID5516272.",
+        "company_name": "Stellar Solutions",
+        "lead_time": 5,
+        "location": "Nashville",
+        "updated_date": "19-12-2025",
+        "stock": "S",
+        "supplier": "Apex Parts"
       },
       {
         "qty_requested": 59,
@@ -2325,7 +3088,14 @@
         "wire_size": 7,
         "outlet": 6,
         "type": "non-metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Optimal Gridmax non-metallic designed and built for panel wiring. Code: ID5790126.",
+        "company_name": "Matrix Industries",
+        "lead_time": 2,
+        "location": "Seattle",
+        "updated_date": "24-08-2025",
+        "stock": "S",
+        "supplier": "Flux Source"
       },
       {
         "qty_requested": 27,
@@ -2342,7 +3112,14 @@
         "wire_size": 7,
         "outlet": 4,
         "type": "armored",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Modern Copperln armored designed and built for daily operations. Code: ID3618045.",
+        "company_name": "Vertex Corp",
+        "lead_time": 1,
+        "location": "Philadelphia",
+        "updated_date": "05-10-2025",
+        "stock": "Ns",
+        "supplier": "Flux Zone"
       },
       {
         "qty_requested": 67,
@@ -2359,7 +3136,14 @@
         "wire_size": 19,
         "outlet": 8,
         "type": "metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Robust Voltex metallic designed and built for electrical setups. Code: ID7639431.",
+        "company_name": "Nexus Logistics",
+        "lead_time": 5,
+        "location": "Nashville",
+        "updated_date": "23-11-2025",
+        "stock": "Ns",
+        "supplier": "Nexus Group"
       },
       {
         "qty_requested": 41,
@@ -2376,7 +3160,14 @@
         "wire_size": 9,
         "outlet": 4,
         "type": "non-metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Premium Flexduct non-metallic designed and built for industrial use. Code: ID4777535.",
+        "company_name": "Beta Ventures",
+        "lead_time": 7,
+        "location": "Memphis",
+        "updated_date": "13-10-2025",
+        "stock": "Ns",
+        "supplier": "Sky Parts"
       }
     ]
   },
@@ -2395,7 +3186,7 @@
     "ship_to": "Realcube\n462, Hermina, Akebielidou\n 063890",
     "po_no": "YR46018/995",
     "job_no": "CG60191/763",
-    "deleivery_date": "13-09-2020",
+    "deleivery_date": "16-06-2025",
     "lines": 9,
     "products": [
       {
@@ -2413,7 +3204,14 @@
         "wire_size": 8,
         "outlet": 10,
         "type": "armored",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Reliable Steelron armored designed and built for power distribution. Code: ID4575472.",
+        "company_name": "Nova Dynamics",
+        "lead_time": 1,
+        "location": "Portland",
+        "updated_date": "29-07-2025",
+        "stock": "Ns",
+        "supplier": "Echo Works"
       },
       {
         "qty_requested": 35,
@@ -2430,7 +3228,14 @@
         "wire_size": 17,
         "outlet": 9,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Advanced Amperon standard designed and built for modern systems. Code: ID3817732.",
+        "company_name": "Delta Group",
+        "lead_time": 8,
+        "location": "Chicago",
+        "updated_date": "27-12-2025",
+        "stock": "Ns",
+        "supplier": "Link Trading"
       },
       {
         "qty_requested": 89,
@@ -2447,7 +3252,14 @@
         "wire_size": 19,
         "outlet": 1,
         "type": "non-metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Compact Armetek non-metallic designed and built for harsh conditions. Code: ID9777362.",
+        "company_name": "Titan Systems",
+        "lead_time": 2,
+        "location": "Louisville",
+        "updated_date": "22-07-2025",
+        "stock": "Ns",
+        "supplier": "Nexus Sys"
       },
       {
         "qty_requested": 2,
@@ -2464,7 +3276,14 @@
         "wire_size": 5,
         "outlet": 7,
         "type": "non-metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Efficient Voltex non-metallic designed and built for safe routing. Code: ID2856099.",
+        "company_name": "Zenith Global",
+        "lead_time": 7,
+        "location": "Las Vegas",
+        "updated_date": "06-02-2026",
+        "stock": "S",
+        "supplier": "Omni Trading"
       },
       {
         "qty_requested": 43,
@@ -2481,7 +3300,14 @@
         "wire_size": 13,
         "outlet": 3,
         "type": "standard",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Durable Steelron standard designed and built for panel wiring. Code: ID7682106.",
+        "company_name": "Quantum Systems",
+        "lead_time": 5,
+        "location": "Austin",
+        "updated_date": "29-06-2025",
+        "stock": "Ns",
+        "supplier": "Echo Direct"
       },
       {
         "qty_requested": 41,
@@ -2498,7 +3324,14 @@
         "wire_size": 12,
         "outlet": 8,
         "type": "armored",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Rugged Voltex armored designed and built for daily operations. Code: ID4894970.",
+        "company_name": "Horizon Logistics",
+        "lead_time": 7,
+        "location": "Los Angeles",
+        "updated_date": "05-08-2025",
+        "stock": "Ns",
+        "supplier": "Bio Source"
       },
       {
         "qty_requested": 18,
@@ -2515,7 +3348,14 @@
         "wire_size": 8,
         "outlet": 1,
         "type": "standard",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Versatile Amperon standard designed and built for electrical setups. Code: ID9105417.",
+        "company_name": "Nova Energy",
+        "lead_time": 3,
+        "location": "San Jose",
+        "updated_date": "11-12-2025",
+        "stock": "Ns",
+        "supplier": "Bio Ltd"
       },
       {
         "qty_requested": 79,
@@ -2532,7 +3372,14 @@
         "wire_size": 15,
         "outlet": 4,
         "type": "armored",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Top-tier Amperon armored designed and built for industrial use. Code: ID2083155.",
+        "company_name": "Alpha Group",
+        "lead_time": 10,
+        "location": "Oklahoma City",
+        "updated_date": "31-08-2025",
+        "stock": "S",
+        "supplier": "Vertex Supply"
       },
       {
         "qty_requested": 9,
@@ -2549,7 +3396,14 @@
         "wire_size": 5,
         "outlet": 2,
         "type": "standard",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Standard Steelron standard designed and built for power distribution. Code: ID4845988.",
+        "company_name": "Horizon Tech",
+        "lead_time": 9,
+        "location": "Indianapolis",
+        "updated_date": "17-06-2025",
+        "stock": "S",
+        "supplier": "Ultra Ltd"
       }
     ]
   },
@@ -2568,7 +3422,7 @@
     "ship_to": "Quimm\n964, Eliot, Loanda\n 066241",
     "po_no": "VX55208/556",
     "job_no": "UZ70570/529",
-    "deleivery_date": "30-03-2020",
+    "deleivery_date": "23-12-2025",
     "lines": 5,
     "products": [
       {
@@ -2586,7 +3440,14 @@
         "wire_size": 7,
         "outlet": 5,
         "type": "standard",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Quality Nexwire standard designed and built for modern systems. Code: ID9175851.",
+        "company_name": "Nexus Group",
+        "lead_time": 3,
+        "location": "Fort Worth",
+        "updated_date": "27-09-2025",
+        "stock": "Ns",
+        "supplier": "Nexus Co"
       },
       {
         "qty_requested": 3,
@@ -2603,7 +3464,14 @@
         "wire_size": 10,
         "outlet": 8,
         "type": "armored",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Optimal Steelron armored designed and built for harsh conditions. Code: ID3209342.",
+        "company_name": "Zenith Logistics",
+        "lead_time": 4,
+        "location": "Columbus",
+        "updated_date": "07-02-2026",
+        "stock": "S",
+        "supplier": "Beta Parts"
       },
       {
         "qty_requested": 83,
@@ -2620,7 +3488,14 @@
         "wire_size": 11,
         "outlet": 1,
         "type": "metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Modern Flexduct metallic designed and built for safe routing. Code: ID3140454.",
+        "company_name": "Matrix Ventures",
+        "lead_time": 10,
+        "location": "Charlotte",
+        "updated_date": "09-07-2025",
+        "stock": "S",
+        "supplier": "Bio Direct"
       },
       {
         "qty_requested": 45,
@@ -2637,7 +3512,14 @@
         "wire_size": 6,
         "outlet": 5,
         "type": "armored",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Robust Gridmax armored designed and built for panel wiring. Code: ID9723024.",
+        "company_name": "Delta Systems",
+        "lead_time": 9,
+        "location": "Dallas",
+        "updated_date": "02-05-2025",
+        "stock": "Ns",
+        "supplier": "Zenith Co"
       },
       {
         "qty_requested": 50,
@@ -2654,7 +3536,14 @@
         "wire_size": 15,
         "outlet": 6,
         "type": "armored",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Premium Voltex armored designed and built for daily operations. Code: ID2817336.",
+        "company_name": "Zenith Works",
+        "lead_time": 3,
+        "location": "Columbus",
+        "updated_date": "31-01-2026",
+        "stock": "Ns",
+        "supplier": "Beacon Tech"
       }
     ]
   },
@@ -2673,7 +3562,7 @@
     "ship_to": "Voonder\n353, Crowley, Tabora\n 025888",
     "po_no": "HI37957/816",
     "job_no": "FT72456/740",
-    "deleivery_date": "14-04-2023",
+    "deleivery_date": "18-10-2025",
     "lines": 6,
     "products": [
       {
@@ -2691,7 +3580,14 @@
         "wire_size": 20,
         "outlet": 5,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Reliable Copperln standard designed and built for electrical setups. Code: ID4060321.",
+        "company_name": "Horizon Labs",
+        "lead_time": 9,
+        "location": "San Francisco",
+        "updated_date": "20-12-2025",
+        "stock": "Ns",
+        "supplier": "Vertex Corp"
       },
       {
         "qty_requested": 65,
@@ -2708,7 +3604,14 @@
         "wire_size": 5,
         "outlet": 2,
         "type": "armored",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Advanced Nexwire armored designed and built for industrial use. Code: ID7860292.",
+        "company_name": "Apex Dynamics",
+        "lead_time": 7,
+        "location": "San Diego",
+        "updated_date": "27-11-2025",
+        "stock": "S",
+        "supplier": "Beacon Corp"
       },
       {
         "qty_requested": 41,
@@ -2725,7 +3628,14 @@
         "wire_size": 12,
         "outlet": 4,
         "type": "metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Compact Gridmax metallic designed and built for power distribution. Code: ID2267917.",
+        "company_name": "Zenith Solutions",
+        "lead_time": 7,
+        "location": "San Francisco",
+        "updated_date": "05-04-2026",
+        "stock": "S",
+        "supplier": "Beta Sys"
       },
       {
         "qty_requested": 16,
@@ -2742,7 +3652,14 @@
         "wire_size": 13,
         "outlet": 6,
         "type": "standard",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Efficient Wirezone standard designed and built for modern systems. Code: ID6438491.",
+        "company_name": "Vanguard Dynamics",
+        "lead_time": 6,
+        "location": "Louisville",
+        "updated_date": "21-06-2025",
+        "stock": "Ns",
+        "supplier": "Zenith Global"
       },
       {
         "qty_requested": 28,
@@ -2759,7 +3676,14 @@
         "wire_size": 13,
         "outlet": 4,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Durable Voltex standard designed and built for harsh conditions. Code: ID3895063.",
+        "company_name": "Vanguard Ventures",
+        "lead_time": 8,
+        "location": "New York",
+        "updated_date": "13-07-2025",
+        "stock": "Ns",
+        "supplier": "Beta Inc"
       },
       {
         "qty_requested": 62,
@@ -2776,7 +3700,14 @@
         "wire_size": 14,
         "outlet": 10,
         "type": "armored",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Rugged Cablux armored designed and built for safe routing. Code: ID1823617.",
+        "company_name": "Quantum Logistics",
+        "lead_time": 5,
+        "location": "Austin",
+        "updated_date": "16-03-2026",
+        "stock": "Ns",
+        "supplier": "Link Global"
       }
     ]
   },
@@ -2795,7 +3726,7 @@
     "ship_to": "Fanoodle\n671, Oneill, Porto-Novo\n 068119",
     "po_no": "KI58435/106",
     "job_no": "EG25775/386",
-    "deleivery_date": "12-03-2023",
+    "deleivery_date": "16-10-2025",
     "lines": 3,
     "products": [
       {
@@ -2813,7 +3744,14 @@
         "wire_size": 13,
         "outlet": 9,
         "type": "non-metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Versatile Wirezone non-metallic designed and built for panel wiring. Code: ID4156078.",
+        "company_name": "Horizon Industries",
+        "lead_time": 6,
+        "location": "Boston",
+        "updated_date": "05-01-2026",
+        "stock": "S",
+        "supplier": "Max Zone"
       },
       {
         "qty_requested": 1,
@@ -2830,7 +3768,14 @@
         "wire_size": 12,
         "outlet": 5,
         "type": "armored",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Top-tier Steelron armored designed and built for daily operations. Code: ID7225496.",
+        "company_name": "Stellar Ltd",
+        "lead_time": 2,
+        "location": "Indianapolis",
+        "updated_date": "20-06-2025",
+        "stock": "S",
+        "supplier": "Vanguard Ind"
       },
       {
         "qty_requested": 64,
@@ -2847,7 +3792,14 @@
         "wire_size": 19,
         "outlet": 4,
         "type": "non-metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Standard Gridmax non-metallic designed and built for electrical setups. Code: ID6353850.",
+        "company_name": "Omega Solutions",
+        "lead_time": 5,
+        "location": "Baltimore",
+        "updated_date": "15-05-2025",
+        "stock": "S",
+        "supplier": "Max Supply"
       }
     ]
   },
@@ -2866,7 +3818,7 @@
     "ship_to": "Demizz\n666, Miller, Jiandou\n 042989",
     "po_no": "NL26842/452",
     "job_no": "WW77537/649",
-    "deleivery_date": "08-08-2023",
+    "deleivery_date": "29-05-2025",
     "lines": 3,
     "products": [
       {
@@ -2884,7 +3836,14 @@
         "wire_size": 9,
         "outlet": 10,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Quality Amperon standard designed and built for industrial use. Code: ID8808703.",
+        "company_name": "Stellar Systems",
+        "lead_time": 6,
+        "location": "Indianapolis",
+        "updated_date": "14-07-2025",
+        "stock": "S",
+        "supplier": "Stellar Trading"
       },
       {
         "qty_requested": 80,
@@ -2901,7 +3860,14 @@
         "wire_size": 14,
         "outlet": 5,
         "type": "armored",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Optimal Cablux armored designed and built for power distribution. Code: ID1834185.",
+        "company_name": "Core Dynamics",
+        "lead_time": 4,
+        "location": "Fort Worth",
+        "updated_date": "23-02-2026",
+        "stock": "S",
+        "supplier": "Alpha Corp"
       },
       {
         "qty_requested": 85,
@@ -2918,7 +3884,14 @@
         "wire_size": 9,
         "outlet": 5,
         "type": "armored",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Modern Amperon armored designed and built for modern systems. Code: ID5113379.",
+        "company_name": "Nova Logistics",
+        "lead_time": 5,
+        "location": "Detroit",
+        "updated_date": "05-05-2025",
+        "stock": "Ns",
+        "supplier": "Vertex Inc"
       }
     ]
   },
@@ -2937,7 +3910,7 @@
     "ship_to": "Photofeed\n425, Green, L-Iklin\n 046078",
     "po_no": "NB54288/337",
     "job_no": "PT28848/971",
-    "deleivery_date": "17-03-2024",
+    "deleivery_date": "12-04-2026",
     "lines": 4,
     "products": [
       {
@@ -2955,7 +3928,14 @@
         "wire_size": 15,
         "outlet": 4,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Robust Copperln standard designed and built for harsh conditions. Code: ID7405852.",
+        "company_name": "Horizon Inc",
+        "lead_time": 2,
+        "location": "Columbus",
+        "updated_date": "24-10-2025",
+        "stock": "Ns",
+        "supplier": "Geo Tech"
       },
       {
         "qty_requested": 31,
@@ -2972,7 +3952,14 @@
         "wire_size": 20,
         "outlet": 8,
         "type": "armored",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Premium Nexwire armored designed and built for safe routing. Code: ID4822748.",
+        "company_name": "Nova Logistics",
+        "lead_time": 5,
+        "location": "San Antonio",
+        "updated_date": "13-11-2025",
+        "stock": "Ns",
+        "supplier": "Flux Co"
       },
       {
         "qty_requested": 49,
@@ -2989,7 +3976,14 @@
         "wire_size": 13,
         "outlet": 9,
         "type": "metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Reliable Cablux metallic designed and built for panel wiring. Code: ID8403084.",
+        "company_name": "Apex Industries",
+        "lead_time": 10,
+        "location": "Jacksonville",
+        "updated_date": "19-02-2026",
+        "stock": "Ns",
+        "supplier": "Titan Trading"
       },
       {
         "qty_requested": 42,
@@ -3006,7 +4000,14 @@
         "wire_size": 19,
         "outlet": 1,
         "type": "metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Advanced Amperon metallic designed and built for daily operations. Code: ID4581260.",
+        "company_name": "Alpha Works",
+        "lead_time": 7,
+        "location": "Dallas",
+        "updated_date": "05-05-2025",
+        "stock": "S",
+        "supplier": "Apex Source"
       }
     ]
   },
@@ -3025,7 +4026,7 @@
     "ship_to": "Rooxo\n985, Huxley, El Tejocote\nMEX 033371",
     "po_no": "HI27440/990",
     "job_no": "FY43542/833",
-    "deleivery_date": "05-09-2020",
+    "deleivery_date": "24-09-2025",
     "lines": 3,
     "products": [
       {
@@ -3043,7 +4044,14 @@
         "wire_size": 17,
         "outlet": 6,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Compact Steelron standard designed and built for electrical setups. Code: ID7931280.",
+        "company_name": "Apex Dynamics",
+        "lead_time": 6,
+        "location": "San Diego",
+        "updated_date": "22-03-2026",
+        "stock": "S",
+        "supplier": "Bio Co"
       },
       {
         "qty_requested": 31,
@@ -3060,7 +4068,14 @@
         "wire_size": 19,
         "outlet": 5,
         "type": "metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Efficient Cablux metallic designed and built for industrial use. Code: ID7113113.",
+        "company_name": "Vertex Group",
+        "lead_time": 2,
+        "location": "Baltimore",
+        "updated_date": "18-03-2026",
+        "stock": "S",
+        "supplier": "Max Parts"
       },
       {
         "qty_requested": 48,
@@ -3077,7 +4092,14 @@
         "wire_size": 12,
         "outlet": 6,
         "type": "non-metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Durable Armetek non-metallic designed and built for power distribution. Code: ID7953372.",
+        "company_name": "Beacon Solutions",
+        "lead_time": 3,
+        "location": "Chicago",
+        "updated_date": "29-09-2025",
+        "stock": "Ns",
+        "supplier": "Vanguard Ltd"
       }
     ]
   },
@@ -3096,7 +4118,7 @@
     "ship_to": "Realpoint\n297, Scott, Ngampon\n 064484",
     "po_no": "BF31722/117",
     "job_no": "RE73778/841",
-    "deleivery_date": "26-01-2020",
+    "deleivery_date": "29-07-2025",
     "lines": 7,
     "products": [
       {
@@ -3114,7 +4136,14 @@
         "wire_size": 17,
         "outlet": 1,
         "type": "standard",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Rugged Cablux standard designed and built for modern systems. Code: ID8030718.",
+        "company_name": "Horizon Ventures",
+        "lead_time": 6,
+        "location": "Charlotte",
+        "updated_date": "12-01-2026",
+        "stock": "Ns",
+        "supplier": "Ultra Net"
       },
       {
         "qty_requested": 9,
@@ -3131,7 +4160,14 @@
         "wire_size": 9,
         "outlet": 10,
         "type": "metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Versatile Cablux metallic designed and built for harsh conditions. Code: ID9294569.",
+        "company_name": "Nova Ventures",
+        "lead_time": 8,
+        "location": "Oklahoma City",
+        "updated_date": "29-09-2025",
+        "stock": "Ns",
+        "supplier": "Alpha Ind"
       },
       {
         "qty_requested": 14,
@@ -3148,7 +4184,14 @@
         "wire_size": 13,
         "outlet": 4,
         "type": "non-metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Top-tier Armetek non-metallic designed and built for safe routing. Code: ID9476930.",
+        "company_name": "Vertex Labs",
+        "lead_time": 4,
+        "location": "Louisville",
+        "updated_date": "12-04-2026",
+        "stock": "Ns",
+        "supplier": "Beacon Labs"
       },
       {
         "qty_requested": 18,
@@ -3165,7 +4208,14 @@
         "wire_size": 12,
         "outlet": 8,
         "type": "metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Standard Voltex metallic designed and built for panel wiring. Code: ID1242335.",
+        "company_name": "Quantum Labs",
+        "lead_time": 7,
+        "location": "New York",
+        "updated_date": "13-09-2025",
+        "stock": "S",
+        "supplier": "Max Labs"
       },
       {
         "qty_requested": 2,
@@ -3182,7 +4232,14 @@
         "wire_size": 18,
         "outlet": 4,
         "type": "metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Quality Steelron metallic designed and built for daily operations. Code: ID8213198.",
+        "company_name": "Beacon Group",
+        "lead_time": 5,
+        "location": "Denver",
+        "updated_date": "12-11-2025",
+        "stock": "Ns",
+        "supplier": "Horizon Sys"
       },
       {
         "qty_requested": 82,
@@ -3199,7 +4256,14 @@
         "wire_size": 12,
         "outlet": 2,
         "type": "non-metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Optimal Cablux non-metallic designed and built for electrical setups. Code: ID5762756.",
+        "company_name": "Apex Logistics",
+        "lead_time": 1,
+        "location": "El Paso",
+        "updated_date": "12-02-2026",
+        "stock": "Ns",
+        "supplier": "Stellar Source"
       },
       {
         "qty_requested": 46,
@@ -3216,7 +4280,14 @@
         "wire_size": 20,
         "outlet": 6,
         "type": "armored",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Modern Nexwire armored designed and built for industrial use. Code: ID9456177.",
+        "company_name": "Quantum Group",
+        "lead_time": 8,
+        "location": "Nashville",
+        "updated_date": "02-10-2025",
+        "stock": "Ns",
+        "supplier": "Zenith Works"
       }
     ]
   },
@@ -3235,7 +4306,7 @@
     "po_no": "TE82467/883",
     "job_no": "HS61608/412",
     "ship_to": "Topicware\n680, Duke, Spartanburg\nSC 096750",
-    "deleivery_date": "13-05-2022",
+    "deleivery_date": "11-07-2025",
     "lines": 9,
     "products": [
       {
@@ -3253,7 +4324,14 @@
         "wire_size": 7,
         "outlet": 1,
         "type": "armored",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Robust Wirezone armored designed and built for power distribution. Code: ID9368574.",
+        "company_name": "Stellar Logistics",
+        "lead_time": 2,
+        "location": "Houston",
+        "updated_date": "29-08-2025",
+        "stock": "S",
+        "supplier": "Vertex Ind"
       },
       {
         "qty_requested": 83,
@@ -3270,7 +4348,14 @@
         "wire_size": 20,
         "outlet": 10,
         "type": "metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Premium Cablux metallic designed and built for modern systems. Code: ID9767025.",
+        "company_name": "Echo Systems",
+        "lead_time": 9,
+        "location": "Indianapolis",
+        "updated_date": "25-02-2026",
+        "stock": "S",
+        "supplier": "Nova Direct"
       },
       {
         "qty_requested": 2,
@@ -3287,7 +4372,14 @@
         "wire_size": 8,
         "outlet": 10,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Reliable Cablux standard designed and built for harsh conditions. Code: ID5631545.",
+        "company_name": "Nexus Works",
+        "lead_time": 8,
+        "location": "El Paso",
+        "updated_date": "25-11-2025",
+        "stock": "Ns",
+        "supplier": "Nexus Source"
       },
       {
         "qty_requested": 20,
@@ -3304,7 +4396,14 @@
         "wire_size": 10,
         "outlet": 4,
         "type": "armored",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Advanced Flexduct armored designed and built for safe routing. Code: ID5486813.",
+        "company_name": "Echo Logistics",
+        "lead_time": 4,
+        "location": "Louisville",
+        "updated_date": "02-11-2025",
+        "stock": "S",
+        "supplier": "Omni Co"
       },
       {
         "qty_requested": 36,
@@ -3321,7 +4420,14 @@
         "wire_size": 19,
         "outlet": 10,
         "type": "standard",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Compact Gridmax standard designed and built for panel wiring. Code: ID4612581.",
+        "company_name": "Horizon Ventures",
+        "lead_time": 6,
+        "location": "Los Angeles",
+        "updated_date": "20-11-2025",
+        "stock": "Ns",
+        "supplier": "Matrix Tech"
       },
       {
         "qty_requested": 58,
@@ -3338,7 +4444,14 @@
         "wire_size": 15,
         "outlet": 5,
         "type": "non-metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Efficient Nexwire non-metallic designed and built for daily operations. Code: ID7931037.",
+        "company_name": "Nexus Works",
+        "lead_time": 8,
+        "location": "Chicago",
+        "updated_date": "05-04-2026",
+        "stock": "S",
+        "supplier": "Vanguard Global"
       },
       {
         "qty_requested": 57,
@@ -3355,7 +4468,14 @@
         "wire_size": 6,
         "outlet": 9,
         "type": "non-metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Durable Wirezone non-metallic designed and built for electrical setups. Code: ID3098310.",
+        "company_name": "Vertex Labs",
+        "lead_time": 10,
+        "location": "San Antonio",
+        "updated_date": "05-06-2025",
+        "stock": "S",
+        "supplier": "Matrix Ltd"
       },
       {
         "qty_requested": 55,
@@ -3372,7 +4492,14 @@
         "wire_size": 12,
         "outlet": 2,
         "type": "non-metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Rugged Steelron non-metallic designed and built for industrial use. Code: ID5971189.",
+        "company_name": "Apex Systems",
+        "lead_time": 3,
+        "location": "Oklahoma City",
+        "updated_date": "02-03-2026",
+        "stock": "S",
+        "supplier": "Omni Zone"
       },
       {
         "qty_requested": 4,
@@ -3389,7 +4516,14 @@
         "wire_size": 5,
         "outlet": 9,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Versatile Armetek standard designed and built for power distribution. Code: ID3228655.",
+        "company_name": "Horizon Global",
+        "lead_time": 3,
+        "location": "Houston",
+        "updated_date": "04-04-2026",
+        "stock": "S",
+        "supplier": "Apex Corp"
       }
     ]
   },
@@ -3404,11 +4538,11 @@
     "total_line_no": 9,
     "total_price": "22,150.04",
     "buyer": "Botsford-Senger",
-    "bill_to": "Botsford-Senger\n761, North, Michałowice\n 015940",
-    "ship_to": "Edgeblab\n212, Farragut, Michałowice\n 029872",
+    "bill_to": "Botsford-Senger\n761, North, Micha\u0142owice\n 015940",
+    "ship_to": "Edgeblab\n212, Farragut, Micha\u0142owice\n 029872",
     "po_no": "WI55628/566",
     "job_no": "NQ64262/305",
-    "deleivery_date": "16-06-2020",
+    "deleivery_date": "08-05-2025",
     "lines": 9,
     "products": [
       {
@@ -3426,7 +4560,14 @@
         "wire_size": 15,
         "outlet": 2,
         "type": "non-metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Top-tier Copperln non-metallic designed and built for modern systems. Code: ID7129931.",
+        "company_name": "Beacon Labs",
+        "lead_time": 4,
+        "location": "Denver",
+        "updated_date": "13-10-2025",
+        "stock": "S",
+        "supplier": "Sol Hub"
       },
       {
         "qty_requested": 25,
@@ -3443,7 +4584,14 @@
         "wire_size": 14,
         "outlet": 3,
         "type": "metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Standard Steelron metallic designed and built for harsh conditions. Code: ID1488172.",
+        "company_name": "Vertex Solutions",
+        "lead_time": 7,
+        "location": "Charlotte",
+        "updated_date": "28-06-2025",
+        "stock": "S",
+        "supplier": "Omni Parts"
       },
       {
         "qty_requested": 42,
@@ -3460,7 +4608,14 @@
         "wire_size": 19,
         "outlet": 2,
         "type": "non-metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Quality Cablux non-metallic designed and built for safe routing. Code: ID8784190.",
+        "company_name": "Beacon Energy",
+        "lead_time": 10,
+        "location": "Houston",
+        "updated_date": "18-12-2025",
+        "stock": "S",
+        "supplier": "Link Parts"
       },
       {
         "qty_requested": 5,
@@ -3477,7 +4632,14 @@
         "wire_size": 10,
         "outlet": 9,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Optimal Copperln standard designed and built for panel wiring. Code: ID1337635.",
+        "company_name": "Vanguard Global",
+        "lead_time": 8,
+        "location": "Boston",
+        "updated_date": "16-05-2025",
+        "stock": "S",
+        "supplier": "Beta Supply"
       },
       {
         "qty_requested": 46,
@@ -3494,7 +4656,14 @@
         "wire_size": 9,
         "outlet": 5,
         "type": "non-metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Modern Wirezone non-metallic designed and built for daily operations. Code: ID8489298.",
+        "company_name": "Core Industries",
+        "lead_time": 2,
+        "location": "Fort Worth",
+        "updated_date": "30-04-2026",
+        "stock": "Ns",
+        "supplier": "Zenith Hub"
       },
       {
         "qty_requested": 100,
@@ -3511,7 +4680,14 @@
         "wire_size": 15,
         "outlet": 3,
         "type": "armored",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Robust Amperon armored designed and built for electrical setups. Code: ID6237125.",
+        "company_name": "Quantum Systems",
+        "lead_time": 10,
+        "location": "Phoenix",
+        "updated_date": "03-06-2025",
+        "stock": "S",
+        "supplier": "Horizon Ltd"
       },
       {
         "qty_requested": 100,
@@ -3528,7 +4704,14 @@
         "wire_size": 20,
         "outlet": 6,
         "type": "armored",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Premium Voltex armored designed and built for industrial use. Code: ID9830665.",
+        "company_name": "Horizon Solutions",
+        "lead_time": 6,
+        "location": "San Francisco",
+        "updated_date": "02-03-2026",
+        "stock": "Ns",
+        "supplier": "Sol Source"
       },
       {
         "qty_requested": 40,
@@ -3545,7 +4728,14 @@
         "wire_size": 17,
         "outlet": 6,
         "type": "armored",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Reliable Nexwire armored designed and built for power distribution. Code: ID6097880.",
+        "company_name": "Vanguard Dynamics",
+        "lead_time": 7,
+        "location": "Houston",
+        "updated_date": "25-04-2026",
+        "stock": "S",
+        "supplier": "Sky Source"
       },
       {
         "qty_requested": 82,
@@ -3562,7 +4752,14 @@
         "wire_size": 20,
         "outlet": 4,
         "type": "standard",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Advanced Voltex standard designed and built for modern systems. Code: ID9178230.",
+        "company_name": "Delta Logistics",
+        "lead_time": 4,
+        "location": "Indianapolis",
+        "updated_date": "21-10-2025",
+        "stock": "Ns",
+        "supplier": "Bio Global"
       }
     ]
   },
@@ -3581,7 +4778,7 @@
     "ship_to": "Avamm\n124, Harbort, Jialu\n 011297",
     "po_no": "GU85256/799",
     "job_no": "CW36091/703",
-    "deleivery_date": "01-05-2021",
+    "deleivery_date": "29-11-2025",
     "lines": 3,
     "products": [
       {
@@ -3599,7 +4796,14 @@
         "wire_size": 6,
         "outlet": 4,
         "type": "standard",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Compact Flexduct standard designed and built for harsh conditions. Code: ID2212521.",
+        "company_name": "Nexus Systems",
+        "lead_time": 7,
+        "location": "Austin",
+        "updated_date": "06-04-2026",
+        "stock": "Ns",
+        "supplier": "Aero Ind"
       },
       {
         "qty_requested": 47,
@@ -3616,7 +4820,14 @@
         "wire_size": 9,
         "outlet": 10,
         "type": "standard",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Efficient Cablux standard designed and built for safe routing. Code: ID4156062.",
+        "company_name": "Vertex Group",
+        "lead_time": 8,
+        "location": "Chicago",
+        "updated_date": "16-06-2025",
+        "stock": "S",
+        "supplier": "Echo Corp"
       },
       {
         "qty_requested": 68,
@@ -3633,7 +4844,14 @@
         "wire_size": 14,
         "outlet": 6,
         "type": "metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Durable Copperln metallic designed and built for panel wiring. Code: ID4021619.",
+        "company_name": "Beacon Labs",
+        "lead_time": 3,
+        "location": "Seattle",
+        "updated_date": "31-05-2025",
+        "stock": "Ns",
+        "supplier": "Echo Source"
       }
     ]
   },
@@ -3649,10 +4867,10 @@
     "total_price": "936.32",
     "buyer": "Rutherford-Schultz",
     "bill_to": "Rutherford-Schultz\n388, Esch, Mogadishu\n 052786",
-    "ship_to": "Voonder\n469, Straubel, Mogadishu\n 097867",
+    "ship_to": "Realpoint\n297, Scott, Ngampon\n 064484",
     "po_no": "ZE11737/603",
     "job_no": "PW71271/586",
-    "deleivery_date": "09-05-2021",
+    "deleivery_date": "27-11-2025",
     "lines": 1,
     "products": [
       {
@@ -3670,7 +4888,14 @@
         "wire_size": 7,
         "outlet": 4,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Rugged Copperln standard designed and built for daily operations. Code: ID8477578.",
+        "company_name": "Beacon Works",
+        "lead_time": 7,
+        "location": "Louisville",
+        "updated_date": "27-05-2025",
+        "stock": "Ns",
+        "supplier": "Omega Inc"
       }
     ]
   },
@@ -3689,7 +4914,7 @@
     "ship_to": "Janyx\n906, Eagle Crest, Sumpur Kudus\n 098143",
     "po_no": "CC10535/172",
     "job_no": "XT55055/378",
-    "deleivery_date": "18-07-2023",
+    "deleivery_date": "28-10-2025",
     "lines": 3,
     "products": [
       {
@@ -3707,7 +4932,14 @@
         "wire_size": 5,
         "outlet": 9,
         "type": "metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Versatile Amperon metallic designed and built for electrical setups. Code: ID4684346.",
+        "company_name": "Nexus Dynamics",
+        "lead_time": 9,
+        "location": "San Antonio",
+        "updated_date": "19-07-2025",
+        "stock": "Ns",
+        "supplier": "Bio Tech"
       },
       {
         "qty_requested": 72,
@@ -3724,7 +4956,14 @@
         "wire_size": 18,
         "outlet": 5,
         "type": "armored",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Top-tier Amperon armored designed and built for industrial use. Code: ID5353925.",
+        "company_name": "Nexus Systems",
+        "lead_time": 9,
+        "location": "Jacksonville",
+        "updated_date": "28-06-2025",
+        "stock": "Ns",
+        "supplier": "Stellar Hub"
       },
       {
         "qty_requested": 28,
@@ -3741,7 +4980,14 @@
         "wire_size": 9,
         "outlet": 9,
         "type": "standard",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Standard Flexduct standard designed and built for power distribution. Code: ID4070225.",
+        "company_name": "Delta Works",
+        "lead_time": 9,
+        "location": "Portland",
+        "updated_date": "15-03-2026",
+        "stock": "S",
+        "supplier": "Delta Works"
       }
     ]
   },
@@ -3760,7 +5006,7 @@
     "ship_to": "Voolith\n986, Bowman, Semambung\n 076216",
     "po_no": "XW23611/608",
     "job_no": "SO37501/718",
-    "deleivery_date": "04-10-2024",
+    "deleivery_date": "15-05-2025",
     "lines": 1,
     "products": [
       {
@@ -3778,7 +5024,14 @@
         "wire_size": 11,
         "outlet": 8,
         "type": "non-metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Quality Cablux non-metallic designed and built for modern systems. Code: ID6537895.",
+        "company_name": "Omega Global",
+        "lead_time": 5,
+        "location": "Austin",
+        "updated_date": "27-10-2025",
+        "stock": "S",
+        "supplier": "Alpha Net"
       }
     ]
   },
@@ -3797,7 +5050,7 @@
     "ship_to": "Aivee\n973, Huxley, Wang Nam Yen\n 081056",
     "po_no": "VG74977/678",
     "job_no": "HA22562/192",
-    "deleivery_date": "15-03-2022",
+    "deleivery_date": "13-07-2025",
     "lines": 5,
     "products": [
       {
@@ -3815,7 +5068,14 @@
         "wire_size": 20,
         "outlet": 9,
         "type": "non-metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Optimal Copperln non-metallic designed and built for harsh conditions. Code: ID9541274.",
+        "company_name": "Vertex Solutions",
+        "lead_time": 1,
+        "location": "Chicago",
+        "updated_date": "27-01-2026",
+        "stock": "S",
+        "supplier": "Alpha Sys"
       },
       {
         "qty_requested": 62,
@@ -3832,7 +5092,14 @@
         "wire_size": 13,
         "outlet": 7,
         "type": "non-metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Modern Flexduct non-metallic designed and built for safe routing. Code: ID1940848.",
+        "company_name": "Delta Logistics",
+        "lead_time": 6,
+        "location": "Philadelphia",
+        "updated_date": "06-11-2025",
+        "stock": "Ns",
+        "supplier": "Zenith Inc"
       },
       {
         "qty_requested": 55,
@@ -3849,7 +5116,14 @@
         "wire_size": 20,
         "outlet": 6,
         "type": "metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Robust Gridmax metallic designed and built for panel wiring. Code: ID1658169.",
+        "company_name": "Quantum Ventures",
+        "lead_time": 1,
+        "location": "Phoenix",
+        "updated_date": "20-07-2025",
+        "stock": "S",
+        "supplier": "Aero Corp"
       },
       {
         "qty_requested": 43,
@@ -3866,7 +5140,14 @@
         "wire_size": 15,
         "outlet": 6,
         "type": "armored",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Premium Gridmax armored designed and built for daily operations. Code: ID3504432.",
+        "company_name": "Nova Logistics",
+        "lead_time": 7,
+        "location": "Fort Worth",
+        "updated_date": "07-03-2026",
+        "stock": "Ns",
+        "supplier": "Max Co"
       },
       {
         "qty_requested": 59,
@@ -3883,7 +5164,14 @@
         "wire_size": 7,
         "outlet": 1,
         "type": "metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Reliable Gridmax metallic designed and built for electrical setups. Code: ID9912407.",
+        "company_name": "Vanguard Corp",
+        "lead_time": 6,
+        "location": "Indianapolis",
+        "updated_date": "26-06-2025",
+        "stock": "Ns",
+        "supplier": "Horizon Inc"
       }
     ]
   },
@@ -3902,7 +5190,7 @@
     "ship_to": "Devpulse\n377, East, Taipingchuan\n 036758",
     "po_no": "LT80970/207",
     "job_no": "GC47370/518",
-    "deleivery_date": "24-06-2021",
+    "deleivery_date": "25-01-2026",
     "lines": 7,
     "products": [
       {
@@ -3920,7 +5208,14 @@
         "wire_size": 9,
         "outlet": 8,
         "type": "non-metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Advanced Voltex non-metallic designed and built for industrial use. Code: ID6753236.",
+        "company_name": "Stellar Tech",
+        "lead_time": 4,
+        "location": "San Francisco",
+        "updated_date": "03-03-2026",
+        "stock": "S",
+        "supplier": "Geo Zone"
       },
       {
         "qty_requested": 86,
@@ -3937,7 +5232,14 @@
         "wire_size": 14,
         "outlet": 8,
         "type": "non-metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Compact Armetek non-metallic designed and built for power distribution. Code: ID6088046.",
+        "company_name": "Matrix Global",
+        "lead_time": 4,
+        "location": "Portland",
+        "updated_date": "10-07-2025",
+        "stock": "Ns",
+        "supplier": "Beta Direct"
       },
       {
         "qty_requested": 78,
@@ -3954,7 +5256,14 @@
         "wire_size": 18,
         "outlet": 6,
         "type": "metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Efficient Wirezone metallic designed and built for modern systems. Code: ID2568487.",
+        "company_name": "Alpha Logistics",
+        "lead_time": 7,
+        "location": "Philadelphia",
+        "updated_date": "06-07-2025",
+        "stock": "Ns",
+        "supplier": "Prime Corp"
       },
       {
         "qty_requested": 58,
@@ -3971,7 +5280,14 @@
         "wire_size": 8,
         "outlet": 9,
         "type": "armored",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Durable Nexwire armored designed and built for harsh conditions. Code: ID6468576.",
+        "company_name": "Vanguard Energy",
+        "lead_time": 6,
+        "location": "Chicago",
+        "updated_date": "20-11-2025",
+        "stock": "S",
+        "supplier": "Apex Global"
       },
       {
         "qty_requested": 94,
@@ -3988,7 +5304,14 @@
         "wire_size": 7,
         "outlet": 9,
         "type": "metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Rugged Flexduct metallic designed and built for safe routing. Code: ID3494096.",
+        "company_name": "Alpha Logistics",
+        "lead_time": 2,
+        "location": "Louisville",
+        "updated_date": "08-10-2025",
+        "stock": "Ns",
+        "supplier": "Core Group"
       },
       {
         "qty_requested": 78,
@@ -4005,7 +5328,14 @@
         "wire_size": 9,
         "outlet": 2,
         "type": "armored",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Versatile Voltex armored designed and built for panel wiring. Code: ID6759878.",
+        "company_name": "Delta Global",
+        "lead_time": 2,
+        "location": "San Francisco",
+        "updated_date": "11-05-2025",
+        "stock": "Ns",
+        "supplier": "Sol Tech"
       },
       {
         "qty_requested": 89,
@@ -4022,7 +5352,14 @@
         "wire_size": 19,
         "outlet": 9,
         "type": "non-metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Top-tier Flexduct non-metallic designed and built for daily operations. Code: ID7427378.",
+        "company_name": "Beacon Corp",
+        "lead_time": 7,
+        "location": "Louisville",
+        "updated_date": "24-06-2025",
+        "stock": "S",
+        "supplier": "Beta Source"
       }
     ]
   },
@@ -4041,7 +5378,7 @@
     "ship_to": "Pixoboo\n382, Mallard, Miskindzha\n 015623",
     "po_no": "KM80276/649",
     "job_no": "EL73341/779",
-    "deleivery_date": "11-11-2023",
+    "deleivery_date": "26-02-2026",
     "lines": 1,
     "products": [
       {
@@ -4059,7 +5396,14 @@
         "wire_size": 7,
         "outlet": 2,
         "type": "standard",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Standard Steelron standard designed and built for electrical setups. Code: ID8979124.",
+        "company_name": "Core Energy",
+        "lead_time": 2,
+        "location": "San Francisco",
+        "updated_date": "06-10-2025",
+        "stock": "Ns",
+        "supplier": "Matrix Zone"
       }
     ]
   },
@@ -4078,7 +5422,7 @@
     "ship_to": "Yadel\n618, Sundown, Karaundi\n 083084",
     "po_no": "UY43657/352",
     "job_no": "OU38010/239",
-    "deleivery_date": "15-02-2020",
+    "deleivery_date": "18-10-2025",
     "lines": 1,
     "products": [
       {
@@ -4096,7 +5440,14 @@
         "wire_size": 20,
         "outlet": 7,
         "type": "non-metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Quality Voltex non-metallic designed and built for industrial use. Code: ID2720813.",
+        "company_name": "Vanguard Group",
+        "lead_time": 2,
+        "location": "Charlotte",
+        "updated_date": "17-01-2026",
+        "stock": "S",
+        "supplier": "Max Group"
       }
     ]
   },
@@ -4115,7 +5466,7 @@
     "ship_to": "Myworks\n341, Derek, Shuishi\n 063443",
     "po_no": "XT52611/767",
     "job_no": "WF20347/325",
-    "deleivery_date": "08-10-2025",
+    "deleivery_date": "27-10-2025",
     "lines": 3,
     "products": [
       {
@@ -4133,7 +5484,14 @@
         "wire_size": 12,
         "outlet": 10,
         "type": "metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Optimal Wirezone metallic designed and built for power distribution. Code: ID9658355.",
+        "company_name": "Omega Dynamics",
+        "lead_time": 3,
+        "location": "Portland",
+        "updated_date": "01-04-2026",
+        "stock": "S",
+        "supplier": "Geo Ltd"
       },
       {
         "qty_requested": 47,
@@ -4150,7 +5508,14 @@
         "wire_size": 8,
         "outlet": 10,
         "type": "non-metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Modern Nexwire non-metallic designed and built for modern systems. Code: ID6562579.",
+        "company_name": "Zenith Logistics",
+        "lead_time": 10,
+        "location": "Portland",
+        "updated_date": "21-02-2026",
+        "stock": "Ns",
+        "supplier": "Geo Supply"
       },
       {
         "qty_requested": 92,
@@ -4167,7 +5532,14 @@
         "wire_size": 20,
         "outlet": 4,
         "type": "non-metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Robust Wirezone non-metallic designed and built for harsh conditions. Code: ID4822146.",
+        "company_name": "Zenith Logistics",
+        "lead_time": 5,
+        "location": "Oklahoma City",
+        "updated_date": "18-09-2025",
+        "stock": "S",
+        "supplier": "Star Ind"
       }
     ]
   },
@@ -4186,7 +5558,7 @@
     "ship_to": "Blogpad\n266, Clove, Fengting\n 045268",
     "po_no": "GQ33037/986",
     "job_no": "DG96317/473",
-    "deleivery_date": "25-02-2020",
+    "deleivery_date": "15-01-2026",
     "lines": 4,
     "products": [
       {
@@ -4204,7 +5576,14 @@
         "wire_size": 20,
         "outlet": 4,
         "type": "armored",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Premium Nexwire armored designed and built for safe routing. Code: ID9976607.",
+        "company_name": "Quantum Global",
+        "lead_time": 8,
+        "location": "Columbus",
+        "updated_date": "20-05-2025",
+        "stock": "S",
+        "supplier": "Nexus Corp"
       },
       {
         "qty_requested": 36,
@@ -4221,7 +5600,14 @@
         "wire_size": 18,
         "outlet": 5,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Reliable Amperon standard designed and built for panel wiring. Code: ID3214483.",
+        "company_name": "Stellar Corp",
+        "lead_time": 2,
+        "location": "El Paso",
+        "updated_date": "01-03-2026",
+        "stock": "Ns",
+        "supplier": "Ultra Trading"
       },
       {
         "qty_requested": 89,
@@ -4238,7 +5624,14 @@
         "wire_size": 5,
         "outlet": 7,
         "type": "metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Advanced Amperon metallic designed and built for daily operations. Code: ID6662684.",
+        "company_name": "Horizon Labs",
+        "lead_time": 1,
+        "location": "Columbus",
+        "updated_date": "17-02-2026",
+        "stock": "S",
+        "supplier": "Ultra Tech"
       },
       {
         "qty_requested": 89,
@@ -4255,7 +5648,14 @@
         "wire_size": 11,
         "outlet": 5,
         "type": "armored",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Compact Voltex armored designed and built for electrical setups. Code: ID9183022.",
+        "company_name": "Zenith Energy",
+        "lead_time": 3,
+        "location": "Los Angeles",
+        "updated_date": "17-12-2025",
+        "stock": "S",
+        "supplier": "Echo Ltd"
       }
     ]
   },
@@ -4274,7 +5674,7 @@
     "ship_to": "Fivechat\n311, Crownhardt, Onsala\nN 010261",
     "po_no": "NS25351/161",
     "job_no": "DS64587/865",
-    "deleivery_date": "07-06-2022",
+    "deleivery_date": "13-06-2025",
     "lines": 2,
     "products": [
       {
@@ -4292,7 +5692,14 @@
         "wire_size": 15,
         "outlet": 1,
         "type": "metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Efficient Flexduct metallic designed and built for industrial use. Code: ID7587877.",
+        "company_name": "Vanguard Group",
+        "lead_time": 3,
+        "location": "Los Angeles",
+        "updated_date": "04-09-2025",
+        "stock": "Ns",
+        "supplier": "Ultra Supply"
       },
       {
         "qty_requested": 91,
@@ -4309,7 +5716,14 @@
         "wire_size": 8,
         "outlet": 6,
         "type": "armored",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Durable Armetek armored designed and built for power distribution. Code: ID2317164.",
+        "company_name": "Vanguard Energy",
+        "lead_time": 10,
+        "location": "Philadelphia",
+        "updated_date": "03-11-2025",
+        "stock": "Ns",
+        "supplier": "Vanguard Parts"
       }
     ]
   },
@@ -4328,7 +5742,7 @@
     "ship_to": "Zoomdog\n283, Ryan, Mirovka\n 051019",
     "po_no": "YW74889/968",
     "job_no": "BH82306/351",
-    "deleivery_date": "19-03-2024",
+    "deleivery_date": "15-11-2025",
     "lines": 8,
     "products": [
       {
@@ -4346,7 +5760,14 @@
         "wire_size": 7,
         "outlet": 5,
         "type": "armored",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Rugged Flexduct armored designed and built for modern systems. Code: ID5314144.",
+        "company_name": "Titan Group",
+        "lead_time": 10,
+        "location": "Los Angeles",
+        "updated_date": "20-03-2026",
+        "stock": "Ns",
+        "supplier": "Titan Works"
       },
       {
         "qty_requested": 69,
@@ -4363,7 +5784,14 @@
         "wire_size": 7,
         "outlet": 10,
         "type": "metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Versatile Copperln metallic designed and built for harsh conditions. Code: ID8350410.",
+        "company_name": "Horizon Group",
+        "lead_time": 7,
+        "location": "San Jose",
+        "updated_date": "07-09-2025",
+        "stock": "S",
+        "supplier": "Alpha Source"
       },
       {
         "qty_requested": 1,
@@ -4380,7 +5808,14 @@
         "wire_size": 13,
         "outlet": 8,
         "type": "non-metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Top-tier Cablux non-metallic designed and built for safe routing. Code: ID7943350.",
+        "company_name": "Quantum Dynamics",
+        "lead_time": 3,
+        "location": "Jacksonville",
+        "updated_date": "06-10-2025",
+        "stock": "Ns",
+        "supplier": "Omni Source"
       },
       {
         "qty_requested": 37,
@@ -4397,7 +5832,14 @@
         "wire_size": 7,
         "outlet": 8,
         "type": "metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Standard Copperln metallic designed and built for panel wiring. Code: ID9484345.",
+        "company_name": "Quantum Global",
+        "lead_time": 9,
+        "location": "San Francisco",
+        "updated_date": "26-03-2026",
+        "stock": "Ns",
+        "supplier": "Matrix Direct"
       },
       {
         "qty_requested": 40,
@@ -4414,7 +5856,14 @@
         "wire_size": 5,
         "outlet": 9,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Quality Cablux standard designed and built for daily operations. Code: ID9180432.",
+        "company_name": "Vanguard Corp",
+        "lead_time": 7,
+        "location": "Charlotte",
+        "updated_date": "02-11-2025",
+        "stock": "S",
+        "supplier": "Stellar Ltd"
       },
       {
         "qty_requested": 34,
@@ -4431,7 +5880,14 @@
         "wire_size": 10,
         "outlet": 10,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Optimal Gridmax standard designed and built for electrical setups. Code: ID4850399.",
+        "company_name": "Stellar Inc",
+        "lead_time": 4,
+        "location": "Austin",
+        "updated_date": "04-01-2026",
+        "stock": "S",
+        "supplier": "Horizon Trading"
       },
       {
         "qty_requested": 26,
@@ -4448,7 +5904,14 @@
         "wire_size": 5,
         "outlet": 8,
         "type": "metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Modern Cablux metallic designed and built for industrial use. Code: ID9217554.",
+        "company_name": "Quantum Global",
+        "lead_time": 2,
+        "location": "Charlotte",
+        "updated_date": "01-02-2026",
+        "stock": "S",
+        "supplier": "Titan Direct"
       },
       {
         "qty_requested": 55,
@@ -4465,7 +5928,14 @@
         "wire_size": 9,
         "outlet": 6,
         "type": "non-metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Robust Voltex non-metallic designed and built for power distribution. Code: ID4664481.",
+        "company_name": "Vertex Dynamics",
+        "lead_time": 7,
+        "location": "Phoenix",
+        "updated_date": "23-07-2025",
+        "stock": "S",
+        "supplier": "Delta Source"
       }
     ]
   },
@@ -4484,7 +5954,7 @@
     "ship_to": "Edgewire\n374, Crownhardt, Tsengel\n 013317",
     "po_no": "BN20083/786",
     "job_no": "LF16228/291",
-    "deleivery_date": "31-05-2023",
+    "deleivery_date": "11-12-2025",
     "lines": 7,
     "products": [
       {
@@ -4502,7 +5972,14 @@
         "wire_size": 7,
         "outlet": 7,
         "type": "standard",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Premium Armetek standard designed and built for modern systems. Code: ID1652369.",
+        "company_name": "Beta Industries",
+        "lead_time": 6,
+        "location": "Detroit",
+        "updated_date": "30-08-2025",
+        "stock": "Ns",
+        "supplier": "Vanguard Net"
       },
       {
         "qty_requested": 53,
@@ -4519,7 +5996,14 @@
         "wire_size": 14,
         "outlet": 10,
         "type": "metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Reliable Copperln metallic designed and built for harsh conditions. Code: ID3994349.",
+        "company_name": "Horizon Ltd",
+        "lead_time": 5,
+        "location": "Oklahoma City",
+        "updated_date": "27-12-2025",
+        "stock": "S",
+        "supplier": "Matrix Source"
       },
       {
         "qty_requested": 15,
@@ -4536,7 +6020,14 @@
         "wire_size": 8,
         "outlet": 7,
         "type": "armored",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Advanced Amperon armored designed and built for safe routing. Code: ID4419164.",
+        "company_name": "Echo Logistics",
+        "lead_time": 5,
+        "location": "Portland",
+        "updated_date": "12-11-2025",
+        "stock": "Ns",
+        "supplier": "Delta Trading"
       },
       {
         "qty_requested": 36,
@@ -4553,7 +6044,14 @@
         "wire_size": 9,
         "outlet": 8,
         "type": "non-metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Compact Steelron non-metallic designed and built for panel wiring. Code: ID8466472.",
+        "company_name": "Matrix Labs",
+        "lead_time": 10,
+        "location": "Phoenix",
+        "updated_date": "06-09-2025",
+        "stock": "S",
+        "supplier": "Omega Works"
       },
       {
         "qty_requested": 79,
@@ -4570,7 +6068,14 @@
         "wire_size": 18,
         "outlet": 1,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Efficient Wirezone standard designed and built for daily operations. Code: ID7075701.",
+        "company_name": "Beacon Energy",
+        "lead_time": 2,
+        "location": "Nashville",
+        "updated_date": "20-01-2026",
+        "stock": "S",
+        "supplier": "Alpha Direct"
       },
       {
         "qty_requested": 16,
@@ -4587,7 +6092,14 @@
         "wire_size": 19,
         "outlet": 5,
         "type": "armored",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Durable Voltex armored designed and built for electrical setups. Code: ID9803274.",
+        "company_name": "Quantum Labs",
+        "lead_time": 3,
+        "location": "Dallas",
+        "updated_date": "17-12-2025",
+        "stock": "S",
+        "supplier": "Flux Hub"
       },
       {
         "qty_requested": 38,
@@ -4604,7 +6116,14 @@
         "wire_size": 8,
         "outlet": 2,
         "type": "metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Rugged Voltex metallic designed and built for industrial use. Code: ID4018171.",
+        "company_name": "Quantum Ventures",
+        "lead_time": 4,
+        "location": "Las Vegas",
+        "updated_date": "17-12-2025",
+        "stock": "Ns",
+        "supplier": "Omega Parts"
       }
     ]
   },
@@ -4623,7 +6142,7 @@
     "ship_to": "Bluejam\n510, Darwin, Gabaldon\n 084536",
     "po_no": "RI30750/747",
     "job_no": "VF61650/429",
-    "deleivery_date": "22-11-2023",
+    "deleivery_date": "29-11-2025",
     "lines": 5,
     "products": [
       {
@@ -4641,7 +6160,14 @@
         "wire_size": 15,
         "outlet": 6,
         "type": "armored",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Versatile Voltex armored designed and built for power distribution. Code: ID5485590.",
+        "company_name": "Beta Industries",
+        "lead_time": 9,
+        "location": "Jacksonville",
+        "updated_date": "29-08-2025",
+        "stock": "Ns",
+        "supplier": "Bio Hub"
       },
       {
         "qty_requested": 67,
@@ -4658,7 +6184,14 @@
         "wire_size": 13,
         "outlet": 9,
         "type": "non-metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Top-tier Wirezone non-metallic designed and built for modern systems. Code: ID9867762.",
+        "company_name": "Alpha Systems",
+        "lead_time": 2,
+        "location": "Las Vegas",
+        "updated_date": "29-03-2026",
+        "stock": "Ns",
+        "supplier": "Vertex Net"
       },
       {
         "qty_requested": 81,
@@ -4675,7 +6208,14 @@
         "wire_size": 7,
         "outlet": 4,
         "type": "metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Standard Steelron metallic designed and built for harsh conditions. Code: ID6530991.",
+        "company_name": "Vertex Tech",
+        "lead_time": 5,
+        "location": "Las Vegas",
+        "updated_date": "28-12-2025",
+        "stock": "S",
+        "supplier": "Star Labs"
       },
       {
         "qty_requested": 60,
@@ -4692,7 +6232,14 @@
         "wire_size": 11,
         "outlet": 8,
         "type": "non-metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Quality Nexwire non-metallic designed and built for safe routing. Code: ID3841001.",
+        "company_name": "Echo Dynamics",
+        "lead_time": 1,
+        "location": "Baltimore",
+        "updated_date": "10-06-2025",
+        "stock": "S",
+        "supplier": "Link Inc"
       },
       {
         "qty_requested": 48,
@@ -4709,7 +6256,14 @@
         "wire_size": 16,
         "outlet": 2,
         "type": "standard",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Optimal Nexwire standard designed and built for panel wiring. Code: ID4405062.",
+        "company_name": "Matrix Works",
+        "lead_time": 3,
+        "location": "Seattle",
+        "updated_date": "08-03-2026",
+        "stock": "Ns",
+        "supplier": "Horizon Works"
       }
     ]
   },
@@ -4724,11 +6278,11 @@
     "total_line_no": 3,
     "total_price": "19,806.22",
     "buyer": "Heller-Hirthe",
-    "bill_to": "Heller-Hirthe\n598, Grim, 'Arab ar Rashāydah\n 053834",
-    "ship_to": "Topicstorm\n676, Bashford, 'Arab ar Rashāydah\n 036008",
+    "bill_to": "Heller-Hirthe\n598, Grim, 'Arab ar Rash\u0101ydah\n 053834",
+    "ship_to": "Topicstorm\n676, Bashford, 'Arab ar Rash\u0101ydah\n 036008",
     "po_no": "CH83454/399",
     "job_no": "LS23936/486",
-    "deleivery_date": "02-09-2023",
+    "deleivery_date": "25-09-2025",
     "lines": 3,
     "products": [
       {
@@ -4746,7 +6300,14 @@
         "wire_size": 12,
         "outlet": 4,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Modern Amperon standard designed and built for daily operations. Code: ID2625398.",
+        "company_name": "Apex Global",
+        "lead_time": 2,
+        "location": "Los Angeles",
+        "updated_date": "31-08-2025",
+        "stock": "Ns",
+        "supplier": "Omni Labs"
       },
       {
         "qty_requested": 73,
@@ -4763,7 +6324,14 @@
         "wire_size": 6,
         "outlet": 7,
         "type": "armored",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Robust Gridmax armored designed and built for electrical setups. Code: ID4984075.",
+        "company_name": "Quantum Corp",
+        "lead_time": 8,
+        "location": "El Paso",
+        "updated_date": "30-01-2026",
+        "stock": "S",
+        "supplier": "Star Inc"
       },
       {
         "qty_requested": 60,
@@ -4780,7 +6348,14 @@
         "wire_size": 5,
         "outlet": 9,
         "type": "non-metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Premium Flexduct non-metallic designed and built for industrial use. Code: ID7919355.",
+        "company_name": "Vertex Global",
+        "lead_time": 7,
+        "location": "New York",
+        "updated_date": "11-03-2026",
+        "stock": "Ns",
+        "supplier": "Zenith Tech"
       }
     ]
   },
@@ -4799,7 +6374,7 @@
     "ship_to": "Zooveo\n228, Northview, Tangxian\n 096261",
     "po_no": "LA83222/547",
     "job_no": "CV27464/709",
-    "deleivery_date": "25-04-2022",
+    "deleivery_date": "17-02-2026",
     "lines": 2,
     "products": [
       {
@@ -4817,7 +6392,14 @@
         "wire_size": 16,
         "outlet": 1,
         "type": "metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Reliable Wirezone metallic designed and built for power distribution. Code: ID4949138.",
+        "company_name": "Quantum Energy",
+        "lead_time": 6,
+        "location": "Chicago",
+        "updated_date": "25-01-2026",
+        "stock": "S",
+        "supplier": "Beacon Zone"
       },
       {
         "qty_requested": 84,
@@ -4834,7 +6416,14 @@
         "wire_size": 10,
         "outlet": 6,
         "type": "armored",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Advanced Steelron armored designed and built for modern systems. Code: ID5157273.",
+        "company_name": "Zenith Tech",
+        "lead_time": 7,
+        "location": "Jacksonville",
+        "updated_date": "07-09-2025",
+        "stock": "S",
+        "supplier": "Aero Source"
       }
     ]
   },
@@ -4853,7 +6442,7 @@
     "ship_to": "Zava\n908, Stang, Valinhos\n13 012562",
     "po_no": "GL50591/581",
     "job_no": "KK65628/766",
-    "deleivery_date": "17-08-2024",
+    "deleivery_date": "04-06-2025",
     "lines": 8,
     "products": [
       {
@@ -4871,7 +6460,14 @@
         "wire_size": 12,
         "outlet": 3,
         "type": "non-metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Compact Copperln non-metallic designed and built for harsh conditions. Code: ID1257554.",
+        "company_name": "Beta Systems",
+        "lead_time": 9,
+        "location": "Austin",
+        "updated_date": "26-03-2026",
+        "stock": "S",
+        "supplier": "Core Direct"
       },
       {
         "qty_requested": 59,
@@ -4888,7 +6484,14 @@
         "wire_size": 19,
         "outlet": 6,
         "type": "non-metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Efficient Copperln non-metallic designed and built for safe routing. Code: ID6524077.",
+        "company_name": "Zenith Group",
+        "lead_time": 3,
+        "location": "Oklahoma City",
+        "updated_date": "09-07-2025",
+        "stock": "S",
+        "supplier": "Horizon Global"
       },
       {
         "qty_requested": 37,
@@ -4905,7 +6508,14 @@
         "wire_size": 14,
         "outlet": 10,
         "type": "metallic",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Durable Cablux metallic designed and built for panel wiring. Code: ID7544926.",
+        "company_name": "Beta Global",
+        "lead_time": 4,
+        "location": "Los Angeles",
+        "updated_date": "11-08-2025",
+        "stock": "S",
+        "supplier": "Omega Sys"
       },
       {
         "qty_requested": 50,
@@ -4922,7 +6532,14 @@
         "wire_size": 10,
         "outlet": 3,
         "type": "standard",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Rugged Nexwire standard designed and built for daily operations. Code: ID6944539.",
+        "company_name": "Stellar Energy",
+        "lead_time": 7,
+        "location": "Las Vegas",
+        "updated_date": "03-02-2026",
+        "stock": "Ns",
+        "supplier": "Prime Direct"
       },
       {
         "qty_requested": 18,
@@ -4939,7 +6556,14 @@
         "wire_size": 15,
         "outlet": 9,
         "type": "standard",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Versatile Armetek standard designed and built for electrical setups. Code: ID3806535.",
+        "company_name": "Matrix Global",
+        "lead_time": 6,
+        "location": "Louisville",
+        "updated_date": "25-05-2025",
+        "stock": "Ns",
+        "supplier": "Zenith Ltd"
       },
       {
         "qty_requested": 96,
@@ -4956,7 +6580,14 @@
         "wire_size": 18,
         "outlet": 4,
         "type": "non-metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Top-tier Armetek non-metallic designed and built for industrial use. Code: ID2765281.",
+        "company_name": "Beacon Industries",
+        "lead_time": 7,
+        "location": "Memphis",
+        "updated_date": "12-12-2025",
+        "stock": "Ns",
+        "supplier": "Apex Sys"
       },
       {
         "qty_requested": 91,
@@ -4973,7 +6604,14 @@
         "wire_size": 6,
         "outlet": 9,
         "type": "standard",
-        "housing_material": "copper"
+        "housing_material": "copper",
+        "desc": "A professional Standard Nexwire standard designed and built for power distribution. Code: ID9905727.",
+        "company_name": "Omega Logistics",
+        "lead_time": 8,
+        "location": "Jacksonville",
+        "updated_date": "21-01-2026",
+        "stock": "Ns",
+        "supplier": "Horizon Group"
       },
       {
         "qty_requested": 59,
@@ -4990,7 +6628,14 @@
         "wire_size": 13,
         "outlet": 5,
         "type": "metallic",
-        "housing_material": "steel"
+        "housing_material": "steel",
+        "desc": "A professional Quality Flexduct metallic designed and built for modern systems. Code: ID4955298.",
+        "company_name": "Delta Dynamics",
+        "lead_time": 3,
+        "location": "Seattle",
+        "updated_date": "28-09-2025",
+        "stock": "Ns",
+        "supplier": "Max Sys"
       }
     ]
   }

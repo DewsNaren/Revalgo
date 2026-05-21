@@ -1,4 +1,5 @@
 const createQuoteWrapper = document.querySelector(".create-quote-wrapper");
+const quickOrderWrapper = document.querySelector(".quick-order-wrapper");
 const popupOverlay = document.querySelector(".popup-overlay");
 const expandModal = popupOverlay.querySelector(".expand-modal");
 const modalContent = document.querySelector(".expand-modal-content");
@@ -17,13 +18,13 @@ const approveQuoteBtn = document.querySelector(".approve-btn");
 const successPopup = document.querySelector(".success-popup");
 const successidText = successPopup.querySelector(".text .id");
 const confirmSuccessBtn = successPopup.querySelector(".ok-btn");
-
-
+const approveBtnContainer=document.querySelector(".approve-btn-container");
 const createInpWrapper = document.querySelector(".create-input-wrapper");
 const quoteOrderWrapper = document.querySelector(".quick-order-wrapper");
+const delQuoteBtn = document.querySelector(".del-quote-btn");
+const undoQuoteBtn = document.querySelector(".undo-quote-btn");
+const loaderWrapper=document.querySelector(".loader-wrapper");
 
-// createInpWrapper.classList.add("active");
-// quoteOrderWrapper.classList.remove("active");
 
 //modal
 const quickContentWrapper = document.querySelector(".quick-content-wrapper");
@@ -352,10 +353,10 @@ let newQuote = {
   id: 9824404,
   name: `${loginDetails ? loginDetails.username : "ram"}`,
   number:
-    Math.floor(Math.random() * (99999999999 - 10000000000 + 1)) + 10000000000,
+  Math.floor(Math.random() * (99999999999 - 10000000000 + 1)) + 10000000000,
   received_date: formatDate(receivedDate),
   approved_date: formatDate(approvedDate),
-  status: "approved",
+  status: "deleted",
   total_line_no: 0,
   total_price: "0",
   buyer: "Ondricka-Ankunding",
@@ -627,6 +628,8 @@ function validateQuoteId(inp) {
 
       createInpWrapper.classList.remove("active");
       quoteOrderWrapper.classList.add("active");
+      approveBtnContainer.classList.add("active");
+      delQuoteBtn.classList.add("active");
       renderQuickInfo(newQuote);
     }
   }
@@ -637,17 +640,36 @@ if (sessionStorage.getItem("newId")) {
   newQuote.id = sessionStorage.getItem("newId");
   createInpWrapper.classList.remove("active");
   quoteOrderWrapper.classList.add("active");
+  approveBtnContainer.classList.add("active");
+  delQuoteBtn.classList.add("active");
   renderQuickInfo(newQuote);
   sessionStorage.removeItem("newId");
 }
 
+undoQuoteBtn.addEventListener("click", () => {
+  quickOrderWrapper.classList.remove("not-active");
+  undoQuoteBtn.classList.remove("active");
+  delQuoteBtn.classList.add("active");
+  newQuote.status = "pending";
+  storeQuote();
+});
+
+delQuoteBtn.addEventListener("click", () => {
+  quickOrderWrapper.classList.add("not-active");
+  delQuoteBtn.classList.remove("active")
+  undoQuoteBtn.classList.add("active");
+  newQuote.status = "deleted";
+  updateQuoteTotals();
+  updateNewQuoteData();
+  storeQuote();
+});
 // renderQuickInfo(JSON.parse(sessionStorage.getItem("newQuote")));
 
 function renderQuickInfo(newQuote) {
   CreateBtn.querySelector("span").textContent = `#${newQuote.id}`;
 
   const splittedBill = newQuote.bill_to.split("\n");
-  const splittedShip = newQuote.ship_to.split(",");
+  const splittedShip = newQuote.ship_to.split("\n");
   quickInfoWrapper.innerHTML = "";
   quickInfoWrapper.innerHTML = `
     <div class="info">
@@ -850,16 +872,16 @@ function renderDisplayTable(newQuote) {
       </p>
       <p><input type="text" value="${p.qty_requested}" name="qty-requested"></p>
       <p>
-        <span class="title-text">Lorem ipsum dolor sit.</span>
+        <span class="title-text">${p.company_name?p.company_name:"Mjhsjhs"}</span>
         <span class="dropdown-text">
           <img src="./assets/images/global/down_arrow.png" alt="down-arrow" class="down-arrow-img" onclick=openSuggestPopup(event)> <span class="requested-id">${p.requested_id}</span> - 
           <span class="detail" onclick="enableSourceText(event)">tydlx4ypi6</span> - 
           <span class="${p.isSource == true ? "sourcing active" : "sourcing"}"  onclick="openSourcingPopup(event)"><img src="./assets/images/orderpad/sourcing_icon.png" alt="sourcing">Sourcing</span>
           <span class="${p.isStock == true ? "stock-wrapper active" : "stock-wrapper"}"><span class="supplier-text text-uppercase" onclick="openSupplierPopup(event)">${p.supplier ? p.supplier : "eaton"}</span>
-           - <span class="${p.stock == "NS" ? "stock-text red" : " stock-text green"}">
+           - <span class="${p.stock == "Ns" ? "stock-text red" : " stock-text green"}">
               ${p.stock ? p.stock : "S"}
               <span class="tooltiptext">${p.stock == "S" ? "Stock" : "Non Stock"}</span>
-            </span> - 
+            </span>&nbsp; - 
            </span>
           <span class="tag-text"><img src="./assets/images/global/tag.png" alt="tag">${p.brand}</span>
           </span>
@@ -1110,180 +1132,6 @@ function updateLineNumbers() {
 //select all
 const descInputs = leftTableWrapper.querySelectorAll(".desc-input");
 const qtyInputs = leftTableWrapper.querySelectorAll(".qty-input");
-
-let products = [];
-let filteredProducts = [];
-
-async function getProducts() {
-  try {
-    const resp = await fetch("../assets/json/product.json");
-    const data = await resp.json();
-    products = data;
-  } catch (err) {
-    console.error("Error:", err);
-  }
-}
-getProducts();
-
-// function getDelId(){
-//   let delId =Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
-//   let isExists = allQuotes.forEach(q=>[...q.products].some(q => q.delId ===  delId)) ||
-//   newQuote.products.some(prod => prod.delId === delId);
-//   while (isExists) {
-//     delId =Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
-
-//     isExists =[...allQuotes.products].some(q => q.requested_id ===   delId) ||
-//     newQuote.products.some(prod => prod.delId === delId);
-//   }
-//   return delId;
-// }
-
-// function renderAddPopupTable(){
-//   const bodyWrap=addPopup.querySelector(".add-table .body-wrapper");
-//   bodyWrap.innerHTML="";
-//   const prod=products[0];
-
-//   bodyWrap.innerHTML=`<div class="table-row">
-//      <p><input type="text" value="${prod.qty_requested}" name="qty-requested" autocomplete="off"></p>
-//         <p><img src="./assets/images/global/down_arrow.png" alt="down-arrow" class="down-arrow-img"> <span class="id">${prod.requested_id}</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus hic facere, veniam in distinctio id tempora voluptatum? Facilis eius aut numquam. Alias perferendis sunt veniam reprehenderit officiis quas delectus.</p>
-//         <p>${prod.score}%</p>
-//         <p>${prod.available_qty}</p>
-//         <p>AD12465</p>
-//         <p class="cost">$${prod.unit_cost}</p>
-//        <p><span><input type="text" value="10" name="margin" autocomplete="off">%</span></p>
-//         <p class="selling-price">$${prod.selling_price}</p>
-//         <p class="total-cost">$${prod.total_cost.toLocaleString(undefined, {minimumFractionDigits: 2,maximumFractionDigits: 2})}</p>
-//         <button type="button"><img src="./assets/images/create_quote/edit_grey.png" alt="edit"></button>
-//       <button type="button" class="add-line-btn" onclick="addLine(event)"><img src="./assets/images/create_quote/line_add_icon.png" alt="add"></button>
-//       </div>
-//       `;
-// }
-
-async function initProducts() {
-  await getProducts();
-  // renderAddPopupTable();
-  renderSuggestPopup(products);
-  renderSourcingPopup(products);
-  renderSupplierPopup(products);
-  initProductSearch();
-}
-
-initProducts();
-
-//product description
-const descDropdown = leftTableWrapper.querySelector(".desc-dropdown");
-const descList = descDropdown.querySelector(".desc-list");
-let currentDescInput = null;
-let searchedProduct = [];
-
-function searchProducts(inp) {
-  const value = inp.value.trim().toLowerCase();
-
-  const descDropdown = document.querySelector(".desc-dropdown");
-
-  const descList = descDropdown.querySelector(".desc-list");
-
-  descList.innerHTML = "";
-
-  if (value === "") {
-    descDropdown.classList.remove("active");
-
-    return;
-  }
-
-  const rect = inp.getBoundingClientRect();
-
-  descDropdown.style.top = `${rect.bottom + window.scrollY + 4}px`;
-
-  descDropdown.style.left = `${rect.left + window.scrollX}px`;
-
-  const spaceBelow = window.innerHeight - rect.bottom;
-
-  descDropdown.style.maxHeight = `${spaceBelow - 20}px`;
-  descDropdown.classList.add("active");
-
-  filteredProducts = products.filter((p) => {
-    const isMatch = p.desc.toLowerCase().includes(value);
-
-    if (isMatch) {
-      descList.innerHTML += `
-        <li data-id="${p.id}">
-          ${p.desc}
-        </li>
-      `;
-    }
-
-    return isMatch;
-  });
-}
-function handleProductItemClick(e) {
-  const li = e.target.closest("li");
-
-  if (!li) return;
-
-  searchedProduct = [];
-  currentDescInput.value = li.textContent.trim();
-
-  descInputs.forEach((inp) => {
-    if (inp.value) {
-      const val = inp.value;
-      products.forEach((p) => {
-        if (p.desc.includes(val)) searchedProduct.push(p);
-      });
-    }
-  });
-
-  descDropdown.classList.remove("active");
-}
-
-function initProductSearch() {
-  descInputs.forEach((inp) => {
-    inp.addEventListener("input", () => {
-      currentDescInput = inp;
-      searchProducts(inp);
-      uploadBtn.classList.remove("not-active");
-    });
-  });
-}
-// let totalQuotes = [];
-// if(sessionStorage.getItem("searchedQuotes")){
-descDropdown.addEventListener("click", handleProductItemClick);
-
-const uploadBtn = uploadBtnContainer.querySelector(".upload-btn");
-const selectFileInput = document.querySelector(".select-file-input");
-const selectedFileWrapper = document.querySelector(".selected-file");
-uploadBtn.addEventListener("click", () => {
-  if (leftTableWrapper.classList.contains("active")) {
-    getSearchedProducts();
-    renderDisplayTable(newQuote);
-    approveQuoteBtn.classList.add("active");
-    const addBtn = document.querySelector(".add-btn-container .add-btn");
-    addBtn.classList.add("left");
-  }
-  if (uploadWrapper.classList.contains("active")) {
-    console.log(exCelData);
-    getCrtData(exCelData);
-    renderDisplayTable(newQuote);
-    approveQuoteBtn.classList.add("active");
-    selectFileInput.value = "";
-    selectedFileWrapper.innerHTML = "";
-    uploadBtn.classList.add("not-active");
-  }
-});
-
-function getSearchedProducts() {
-  const newProducts = newQuote.products;
-  if (searchedProduct.length > 0) {
-    descInputs.forEach((inp) => (inp.value = ""));
-    qtyInputs.forEach((inp) => (inp.value = ""));
-    searchedProduct.forEach((p) => {
-      p.delId = getDelId();
-      newQuote.products.push(p);
-    });
-    updateQuoteTotals();
-  }
-}
-
 function checkDeleted(bodyWrap) {
   const rows = bodyWrap.querySelectorAll(".table-row");
   rows.forEach((row) => {
@@ -1302,3 +1150,23 @@ function checkDeleted(bodyWrap) {
     }
   });
 }
+
+
+CreateBtn.addEventListener('click',(e)=>{
+    e.preventDefault();
+    if(newQuote.products.length>0){
+      updateQuickInfoData();
+      updateQuoteTotals();
+      updateNewQuoteData();
+      newQuote.status="pending"
+      storeQuote();
+      window.location.href="./dashboard.html"
+    }
+})
+
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    loaderWrapper.classList.add("not-active");
+    createQuoteWrapper.classList.remove("active");
+  }, 1500);
+});

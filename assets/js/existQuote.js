@@ -1,4 +1,6 @@
+const quickOrderWrapper = document.querySelector(".quick-order-wrapper");
 const quickContentWrapper = document.querySelector(".quick-content-wrapper");
+const quoteOrderWrapper = document.querySelector(".quick-order-wrapper");
 const existQuoteWrapper = document.querySelector(".exist-quote-wrapper");
 const popupOverlay = document.querySelector(".popup-overlay");
 const expandModal = popupOverlay.querySelector(".expand-modal");
@@ -20,16 +22,20 @@ const addPopup = document.querySelector(".add-popup");
 const addTable = addPopup.querySelector(".add-table");
 const addLineBtns = addTable.querySelectorAll(".add-line-btn");
 const canceladdpopupBtn = addPopup.querySelector(".cancel-btn");
-// const delQuoteBtn=document.querySelector(".del-quote-btn");
+const delQuoteBtn=document.querySelector(".del-quote-btn");
 const undoQuoteBtn = document.querySelector(".undo-quote-btn");
-
-//set height for main wrapper
-
+const approveBtnContainer=document.querySelector(".approve-btn-container");
+const loaderWrapper=document.querySelector(".loader-wrapper");
+const leftWrapper = quoteOrderWrapper.querySelector(".left-wrapper");
+const uploadBtnContainer = leftWrapper.querySelector(".upload-btn-container");
+const leftTableWrapper = leftWrapper.querySelector(".table-wrapper");
+const descInputs = leftTableWrapper.querySelectorAll(".desc-input");
+const qtyInputs = leftTableWrapper.querySelectorAll(".qty-input");
 
 const existFilterWrapper = document.querySelector(
   ".exist-quote-filter-wrapper",
 );
-const quoteOrderWrapper = document.querySelector(".quick-order-wrapper");
+
 const newBtn = document.querySelector(".new-btn");
 newBtn.addEventListener(
   "click",
@@ -955,6 +961,7 @@ importBtn.addEventListener("click", () => {
       selectedProdId.includes(p.requested_id),
     );
     newQuote = { ...selectedQuote };
+    newQuote.status="deleted"
     newQuote.products = filProds;
     newQuote.id = newId;
     newQuote.total_price = selectedQuote.products
@@ -966,6 +973,7 @@ importBtn.addEventListener("click", () => {
     selectedTableCheckInputs.forEach((inp) => (inp.checked = false));
     existFilterWrapper.classList.remove("active");
     quoteOrderWrapper.classList.add("active");
+    approveBtnContainer.classList.add("active");
     sessionStorage.setItem("newQuote", JSON.stringify(newQuote));
     renderQuickInfo(newQuote);
     updatenewQuoteId(newQuote);
@@ -975,14 +983,25 @@ importBtn.addEventListener("click", () => {
 
 function updatenewQuoteId(newQuote) {
   CreateBtn.querySelector("span").textContent = `#${newQuote.id}`;
-  // delQuoteBtn.classList.add('active')
+  delQuoteBtn.classList.add('active')
 }
 
-// delQuoteBtn.addEventListener('click',()=>{
-//   quoteOrderWrapper.classList.add("not-active")
-//   undoQuoteBtn.classList.add("active")
-//   delQuoteBtn.classList.remove("active")
-// })
+delQuoteBtn.addEventListener("click", () => {
+  quickOrderWrapper.classList.add("not-active");
+  delQuoteBtn.classList.remove("active")
+  undoQuoteBtn.classList.add("active");
+  newQuote.status = "deleted";
+  updateQuoteTotals();
+  updateNewQuoteData();
+  storeQuote();
+});
+undoQuoteBtn.addEventListener("click", () => {
+  quickOrderWrapper.classList.remove("not-active");
+  undoQuoteBtn.classList.remove("active");
+  delQuoteBtn.classList.add("active");
+  newQuote.status = "pending";
+  storeQuote();
+});
 
 //render quote data
 const CreateBtn = document.querySelector(".back-create-btn");
@@ -1200,16 +1219,16 @@ function renderDisplayTable(newQuote) {
       </p>
       <p><input type="text" value="${p.qty_requested}" name="qty-requested"></p>
       <p>
-        <span class="title-text">Lorem ipsum dolor sit.</span>
+        <span class="title-text">${p.company_name?p.company_name:"Mjhsjhs"}</span>
         <span class="dropdown-text">
           <img src="./assets/images/global/down_arrow.png" alt="down-arrow" class="down-arrow-img" onclick=openSuggestPopup(event)> <span class="requested-id">${p.requested_id}</span> - 
           <span class="detail" onclick="enableSourceText(event)">tydlx4ypi6</span> - 
           <span class="${p.isSource == true ? "sourcing active" : "sourcing"}"  onclick="openSourcingPopup(event)"><img src="./assets/images/orderpad/sourcing_icon.png" alt="sourcing">Sourcing</span>
           <span class="${p.isStock == true ? "stock-wrapper active" : "stock-wrapper"}"><span class="supplier-text text-uppercase" onclick="openSupplierPopup(event)">${p.supplier ? p.supplier : "eaton"}</span>
-           - <span class="${p.stock == "NS" ? "stock-text red" : " stock-text green"}">
+           - <span class="${p.stock == "Ns" ? "stock-text red" : " stock-text green"}">
               ${p.stock ? p.stock : "S"}
               <span class="tooltiptext">${p.stock == "S" ? "Stock" : "Non Stock"}</span>
-            </span> - 
+            </span> &nbsp;- 
            </span>
           <span class="tag-text"><img src="./assets/images/global/tag.png" alt="tag">${p.brand}</span>
           </span>
@@ -1466,170 +1485,13 @@ function checkDeleted(bodyWrap) {
   });
 }
 
-//min and max table btn function
-const leftWrapper = quoteOrderWrapper.querySelector(".left-wrapper");
-const uploadBtnContainer = leftWrapper.querySelector(".upload-btn-container");
-const leftTableWrapper = leftWrapper.querySelector(".table-wrapper");
-const selectedFileWrapper = document.querySelector(".selected-file");
 
-//get all products
-const descInputs = leftTableWrapper.querySelectorAll(".desc-input");
-const qtyInputs = leftTableWrapper.querySelectorAll(".qty-input");
-let products = [];
-let filteredProducts = [];
-async function getAllProducts() {
-  try {
-    const resp = await fetch("../assets/json/product.json");
-    const data = await resp.json();
-    products = data;
-  } catch (err) {
-    console.error("Error:", err);
-  }
-}
 
-async function initProducts() {
-  await getAllProducts();
-  // updateProducts();
-  // renderAddPopupTable();
-  renderSuggestPopup(products);
-  renderSourcingPopup(products);
-  renderSupplierPopup(products);
-  initProductSearch();
-}
 
-//desc input function
-const descDropdown = leftTableWrapper.querySelector(".desc-dropdown");
-const descList = descDropdown.querySelector(".desc-list");
-let currentDescInput = null;
-let searchedProduct = [];
 
-function searchProducts(inp) {
-  const value = inp.value.trim().toLowerCase();
-
-  const descDropdown = document.querySelector(".desc-dropdown");
-
-  const descList = descDropdown.querySelector(".desc-list");
-
-  descList.innerHTML = "";
-
-  if (value === "") {
-    descDropdown.classList.remove("active");
-
-    return;
-  }
-
-  const rect = inp.getBoundingClientRect();
-
-  descDropdown.style.top = `${rect.bottom + window.scrollY + 4}px`;
-
-  descDropdown.style.left = `${rect.left + window.scrollX}px`;
-
-  const spaceBelow = window.innerHeight - rect.bottom;
-
-  descDropdown.style.maxHeight = `${spaceBelow - 20}px`;
-  descDropdown.classList.add("active");
-
-  filteredProducts = products.filter((p) => {
-    const isMatch = p.desc.toLowerCase().includes(value);
-
-    if (isMatch) {
-      descList.innerHTML += `
-        <li data-id="${p.id}">
-          ${p.desc}
-        </li>
-      `;
-    }
-
-    return isMatch;
-  });
-}
-
-//li click function
-function handleProductItemClick(e) {
-  const li = e.target.closest("li");
-
-  if (!li) return;
-
-  searchedProduct = [];
-  currentDescInput.value = li.textContent.trim();
-
-  descInputs.forEach((inp) => {
-    if (inp.value) {
-      const val = inp.value;
-      products.forEach((p) => {
-        if (p.desc.includes(val)) searchedProduct.push(p);
-        uploadBtn.classList.remove("not-active");
-      });
-    }
-  });
-
-  descDropdown.classList.remove("active");
-}
-
-function initProductSearch() {
-  descInputs.forEach((inp) => {
-    inp.addEventListener("input", () => {
-      currentDescInput = inp;
-      searchProducts(inp);
-      uploadBtn.classList.remove("active");
-    });
-  });
-}
-
-descDropdown.addEventListener("click", handleProductItemClick);
-
-const selectFileInput = document.querySelector(".select-file-input");
-
-const uploadBtn = uploadBtnContainer.querySelector(".upload-btn");
-uploadBtn.addEventListener("click", () => {
-  if (leftTableWrapper.classList.contains("active")) {
-    getSearchedProducts();
-    renderDisplayTable(newQuote);
-    approveQuoteBtn.classList.add("active");
-    const addBtn = document.querySelector(".add-btn-container .add-btn");
-  }
-  if (uploadWrapper.classList.contains("active")) {
-    console.log(exCelData);
-    getCrtData(exCelData);
-    renderDisplayTable(newQuote);
-    approveQuoteBtn.classList.add("active");
-    selectFileInput.value = "";
-    selectedFileWrapper.innerHTML = "";
-    uploadBtn.classList.add("not-active");
-  }
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    loaderWrapper.classList.add("not-active");
+    existQuoteWrapper.classList.add("active");
+  }, 1500);
 });
-
-function getSearchedProducts() {
-  const newProducts = newQuote.products;
-  if (searchedProduct.length > 0) {
-    descInputs.forEach((inp) => (inp.value = ""));
-    qtyInputs.forEach((inp) => (inp.value = ""));
-    searchedProduct.forEach((p) => {
-      let newReqId =
-        Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
-      let isExists =
-        allQuotes.forEach((q) =>
-          [...q.products].some((q) => q.requested_id === "ID" + newReqId),
-        ) ||
-        newQuote.products.some((prod) => prod.requested_id === "ID" + newReqId);
-
-      while (isExists) {
-        newReqId =
-          Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
-
-        isExists =
-          [...allQuotes.products].some(
-            (q) => q.requested_id === "ID" + newReqId,
-          ) ||
-          newQuote.products.some(
-            (prod) => prod.requested_id === "ID" + newReqId,
-          );
-      }
-
-      p.requested_id = "ID" + newReqId;
-      p.delId = getDelId();
-      newQuote.products.push(p);
-    });
-    updateQuoteTotals();
-  }
-}

@@ -1,3 +1,7 @@
+const selectedFileWrapper = document.querySelector(".selected-file");
+const uploadBtn = uploadBtnContainer.querySelector(".upload-btn");
+const selectFileInput = document.querySelector(".select-file-input");
+
 function getDelId() {
   let allQuotes = JSON.parse(sessionStorage.getItem("quotes"));
   let delId = Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
@@ -23,11 +27,7 @@ function delRow(event) {
   delPopup1.classList.add("active");
   delPopup1.querySelector(".text").textContent =`Do you want to Delete item ${lineNo}?`;
   popupOverlay.classList.add("active");
-
-  
-
     del2YesBtn.onclick = () => {
-
       delBtn.classList.remove("active");
       delQuoteText.value = "";
       row.classList.add("not-active");
@@ -99,7 +99,7 @@ function undoRow(event) {
 function deleteAllRow() {
 
   const bodyWrapper = displayTable.querySelector(".body-wrapper");
-
+  const checkAllInput=displayTable.querySelector(".check-all-input")
   const tableRows = bodyWrapper.querySelectorAll(".table-row");
 
   popupOverlay.classList.add("active");
@@ -110,51 +110,24 @@ function deleteAllRow() {
     "Do you want to Delete All lines?";
 
   del2YesBtn.onclick = () => {
-
-    tableRows.forEach((row) => {
-
-      const delBtn = row.querySelector(".delete-line-btn");
-
-      const undoBtn = row.querySelector(".undo-line-btn");
-
-      row.classList.add("not-active");
-
-      delBtn.classList.remove("active");
-
-      undoBtn.classList.add("active");
-
-      const paras = row.querySelectorAll("p");
-
-      paras.forEach((p) => {
-        p.style.pointerEvents = "none";
-      });
-
-      delBtn.style.pointerEvents = "auto";
-
-      undoBtn.style.pointerEvents = "auto";
-
-      row.removeEventListener("click", rowClickHandler);
-
-      const delId = row.querySelector(".del-id").textContent;
-
-      const product = newQuote.products.find(
-        (p) => String(p.delId) === delId
-      );
-
-      if (product) {
-        product.isDeleted = true;
-      }
-
-    });
-
+    bodyWrapper.innerHTML='';
+    bodyWrapper.innerHTML = `<div class="add-btn-container">
+    <button type="button" onclick="openAddPopup()"><img src="./assets/images/create_quote/add_item_icon.png" alt="add"></button>
+    <p class="text">Click here to Add Item</p>
+    </div>`;
+    newQuote.products=[];
     delAllBtn.classList.remove("selected", "active");
 
-    undoAllBtn.classList.add("selected", "active");
+    // undoAllBtn.classList.add("selected", "active");
 
     approveQuoteBtn.classList.remove("active");
-
+    approveQuoteBtn.classList.add("not-active");
+    checkAllInput.checked=false;
+    updateQuickInfoData();
+    updateQuoteTotals();
+    updateNewQuoteData();
+    storeQuote();
     closeModal();
-
   };
 
 }
@@ -305,15 +278,19 @@ addLinesBtn.addEventListener("click", () => {
   updateQuoteTotals();
   renderDisplayTable(newQuote);
   approveQuoteBtn.classList.add("active");
+  storeQuote();
   closeModal();
 });
 
 //add table data to array
 function addProductsToQuote() {
+
   const rows = addTable.querySelectorAll(".body-wrapper .table-row");
 
   rows.forEach((row) => {
+
     const productObj = {
+
       qty_requested:
         parseFloat(row.querySelector('input[name="qty-requested"]').value) || 0,
 
@@ -324,22 +301,23 @@ function addProductsToQuote() {
       available_qty: parseFloat(row.children[3].textContent) || 0,
 
       unit_cost:
-        parseFloat(row.querySelector(".cost").textContent.replace("$", "")) ||
-        0,
+        parseFloat(row.querySelector(".cost").textContent.replace("$", "")) || 0,
 
-      margin: parseFloat(row.querySelector('input[name="margin"]').value) || 0,
+      margin:
+        parseFloat(row.querySelector('input[name="margin"]').value) || 0,
 
       selling_price:
         parseFloat(
-          row.querySelector(".selling-price").textContent.replace("$", ""),
+          row.querySelector(".selling-price").textContent.replace("$", "")
         ) || 0,
 
       total_cost:
         parseFloat(
           row
             .querySelector(".total-cost")
-            .textContent.replace("$", "")
-            .replaceAll(",", ""),
+            .textContent
+            .replace("$", "")
+            .replaceAll(",", "")
         ) || 0,
 
       delId: getDelId(),
@@ -347,12 +325,25 @@ function addProductsToQuote() {
       sourceImg: imgs[Math.floor(Math.random() * imgs.length)],
       brand: brands[Math.floor(Math.random() * brands.length)],
       type: types[Math.floor(Math.random() * types.length)],
-      housing_material: materials[Math.floor(Math.random() * materials.length)],
-      outlet: Math.floor(Math.random() * (10 - 1 + 1)) + 1,
-      wire_size: Math.floor(Math.random() * (20 - 5 + 1)) + 5,
+      housing_material:
+        materials[Math.floor(Math.random() * materials.length)],
+
+      outlet: Math.floor(Math.random() * 10) + 1,
+
+      wire_size: Math.floor(Math.random() * 16) + 5,
     };
-    newQuote.products.push(productObj);
+    const existingProduct = newQuote.products.find(
+      p => p.requested_id === productObj.requested_id
+    );
+    if (existingProduct) {
+      existingProduct.qty_requested += productObj.qty_requested;
+      existingProduct.total_cost= (existingProduct.qty_requested * existingProduct.selling_price )
+    } else {
+
+      newQuote.products.push(productObj);
+    }
   });
+
 }
 
 //update line count
@@ -717,8 +708,228 @@ function parseSheetAsJSON(sheetXML, sharedStrings = []) {
   return json;
 }
 
+
+let products = [];
+let filteredProducts = [];
+const defaultLine={
+    "id": "NYECL8728122",
+    "requested_id": "ID7387985",
+    "qty_requested": 25,
+    "margin": 10,
+    "selling_price": 78.1,
+    "total_cost": 1952.5,
+    "unit_cost": 71,
+    "available_qty": 24,
+    "score": 73,
+    "company_name": "Torp, Graham and Legros",
+    "lead_time": 5,
+    "location": "Fengjiang",
+    "updated_date": "05-03-2021",
+    "stock": "Ns",
+    "supplier": "Direct Trading",
+    "brand": "Flexduct",
+    "sourceImg": "default_thumbnail_image",
+    "housing_material": "copper",
+    "wire_size": 19,
+    "outlet": 2,
+    "type": "armored",
+    "desc": "Integer etiam urna mauris in odio leo maecenas sed sem ac donec."
+};
+
+async function getAllProducts() {
+  try {
+    const resp = await fetch("../assets/json/quote.json");
+    const data = await resp.json();
+    data.forEach(d=>{
+      const prods=d.products;
+      prods.forEach(p=>{
+        products.push(p)
+      });
+    });
+  } catch (err) {
+    console.error("Error:", err);
+  }
+}
+
+async function initProducts() {
+  await getAllProducts();
+  // updateProducts();
+  // renderAddPopupTable();
+  renderSuggestPopup(products);
+  renderSourcingPopup(products);
+  renderSupplierPopup(products);
+  initProductSearch();
+}
+
+initProducts();
+
+const descDropdown = leftTableWrapper.querySelector(".desc-dropdown");
+const descList = descDropdown.querySelector(".desc-list");
+let currentDescInput = null;
+let searchedProduct = [];
+
+function searchProducts(inp) {
+  const value = inp.value.trim().toLowerCase();
+
+  const descDropdown = document.querySelector(".desc-dropdown");
+
+  const descList = descDropdown.querySelector(".desc-list");
+
+  descList.innerHTML = "";
+
+  if (value === "") {
+    descDropdown.classList.remove("active");
+
+    return;
+  }
+
+  const rect = inp.getBoundingClientRect();
+
+  descDropdown.style.top = `${rect.bottom + window.scrollY + 4}px`;
+
+  descDropdown.style.left = `${rect.left + window.scrollX}px`;
+
+  const spaceBelow = window.innerHeight - rect.bottom;
+
+  descDropdown.style.maxHeight = `${spaceBelow - 20}px`;
+  descDropdown.classList.add("active");
+
+  filteredProducts = products.filter((p) => {
+    const isMatch = p.desc.toLowerCase().includes(value);
+
+    if (isMatch) {
+      descList.innerHTML += `
+        <li data-id="${p.id}">
+          ${p.desc}
+        </li>
+      `;
+    }
+
+    return isMatch;
+  });
+  uploadBtn.classList.remove("not-active");
+}
+function handleProductItemClick(e) {
+  const li = e.target.closest("li");
+
+  if (!li) return;
+
+  searchedProduct = [];
+  currentDescInput.value = li.textContent.trim();
+
+  descInputs.forEach((inp) => {
+    if (inp.value) {
+      const val = inp.value;
+      products.forEach((p) => {
+        if (p.desc.includes(val)) searchedProduct.push(p);
+      });
+    }
+  });
+  
+  descDropdown.classList.remove("active");
+}
+
+
+function initProductSearch() {
+  descInputs.forEach((inp) => {
+    inp.addEventListener("input", () => {
+      currentDescInput = inp;
+      searchProducts(inp);
+      const allEmpty=[...descInputs].every(inp => inp.value.trim() =="");
+      if(allEmpty){
+        uploadBtn.classList.add("not-active");
+      }
+    });
+  });
+  
+}
+// let totalQuotes = [];
+// if(sessionStorage.getItem("searchedQuotes")){
+descDropdown.addEventListener("click", handleProductItemClick);
+
+uploadBtn.addEventListener("click", () => {
+  if (leftTableWrapper.classList.contains("active")) {
+    getSearchedProducts();
+    renderDisplayTable(newQuote);
+    uploadBtn.classList.add("not-active");
+    approveQuoteBtn.classList.add("active");
+    const addBtn = document.querySelector(".add-btn-container .add-btn");
+  }
+  if (uploadWrapper.classList.contains("active")) {
+    getCrtData(exCelData);
+    exCelData = [];
+    renderDisplayTable(newQuote);
+    storeQuote();
+    selectFileInput.value = "";
+    selectedFileWrapper.innerHTML = "";
+    uploadBtn.classList.add("not-active");
+  }
+});
+
+function getSearchedProducts() {
+  const newProducts = newQuote.products;
+  if (searchedProduct.length > 0) {
+    
+    searchedProduct.forEach((p) => {
+      p.delId = getDelId();
+      
+      newQuote.products.push(p);
+    });
+  }
+  else{
+    const descs=[];
+    descInputs.forEach(inp =>{
+      if(inp.value.trim() != ""){
+        descs.push(inp.value)
+      }
+    });
+    if(descs.length>0){
+      descs.forEach(d => {
+      const newLine = {...defaultLine,desc: d,delId: getDelId()};
+      const prods=newQuote.products;
+      let newReqId =Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
+      let isExists = allQuotes.forEach(q=>[...q.products].some(q => q.requested_id ===  "ID" + newReqId)) ||
+      newQuote.products.some(prod => prod.requested_id === "ID" + newReqId);
+
+      while (isExists) {
+
+        newReqId =Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
+
+        isExists =[...allQuotes.products].some(q => q.requested_id ===  "ID" + newReqId) ||
+        newQuote.products.some(prod => prod.requested_id === "ID" + newReqId);
+      }
+      newLine.requested_id= "ID" + newReqId;
+      newLine.delId=getDelId();
+      newQuote.products.push(newLine);
+    });
+    }
+
+  }
+  searchedProduct=[];
+  descInputs.forEach((inp) => (inp.value = ""));
+  qtyInputs.forEach((inp) => (inp.value = ""));
+  updateQuoteTotals();
+  storeQuote();
+}
+
+
 //del file function
 function delFile(event) {
   const fileContainer = event.target.closest(".file-container");
   fileContainer.remove();
+}
+
+function storeQuote(){
+    let found = false;
+  const allQuotes=JSON.parse(sessionStorage.getItem("quotes"))
+   allQuotes.forEach((q, i) => {
+    if (q.id === newQuote.id) {
+      allQuotes[i] = newQuote;
+      found = true;
+    }
+  })
+  if (!found) {
+    allQuotes.push(newQuote);
+  }
+  sessionStorage.setItem("quotes", JSON.stringify(allQuotes));
 }

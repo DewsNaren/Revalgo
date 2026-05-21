@@ -35,7 +35,7 @@ function renderSuggestPopup(products) {
   if (products.length != 0) {
     products.forEach((p) => {
       productsContainer.innerHTML += `
-      <div class="product" data-id="${p.id}">
+      <div class="product" data-delid="${p.delId}">
         <div class="detail-container">                                                 
           <p class="product-id"> <span class="label id">${p.requested_id}</span> <span class="value"> - $${p.selling_price}</span></p>
           <p class="avil-qty"> <span class="label">Avaliable Qty</span> <span class="value"> ${p.available_qty}</span></p>
@@ -50,14 +50,6 @@ function renderSuggestPopup(products) {
   }
   SuggestProductClick(productsContainer.querySelectorAll(".product"));
   searchSuggestPopup();
-}
-
-if (typeof getAllProducts === "function") {
-  getAllProducts();
-}
-
-if (typeof initProducts === "function") {
-  initProducts();
 }
 
 function searchSuggestPopup() {
@@ -128,7 +120,7 @@ function renderSupplierPopup(products) {
   productsContainer.innerHTML = "";
   if (products.length != 0) {
     products.forEach((p) => {
-      productsContainer.innerHTML += `<div class="product" data-id="${p.id}">                       
+      productsContainer.innerHTML += `<div class="product" data-delid="${p.delId}">                       
         <p class="supplier text-uppercase">${p.supplier}</p>
         <div class="detail-container">
           <p class="qty"> <span class="label">${p.requested_id}</span> <span class="value">${p.available_qty}</span></p>
@@ -152,9 +144,10 @@ function renderSourcingPopup(products) {
   if (products.length != 0) {
     products.forEach((p) => {
       productsContainer.innerHTML += `
-        <div class="product" data-id=${p.id}>
+        <div class="product" data-delid="${p.delId}">
             <div class="detail-container">  
-            <p class="product-id"> <span class="label id">${p.requested_id}</span> <span class="${p.stock === "NS" ? "value stock-value red" : "value stock-value green"}">${p.stock}</span></p>                                                              
+            
+            <p class="product-id"> <span class="label id">${p.requested_id}</span> <span class="${p.stock === "Ns" ? "value stock-value red" : "value stock-value not-active"}">${p.stock}</span></p>                                                              
             <p class="score"> <span class="label">Score</span> <span class="value"> ${p.score}%</span></p>
             </div>
             <p class="desc">${p.desc}</p>
@@ -191,15 +184,21 @@ function searchSourcingPopup() {
 let imgRect = "";
 let currentRow = "";
 function openSuggestPopup(event) {
+  const reqId=event.target.parentElement.querySelector(".requested-id").textContent;
+  console.log(reqId)
   event.stopPropagation();
   const img = event.target.closest(".down-arrow-img");
   const rect = img.getBoundingClientRect();
   updatePopupPosition(rect, suggestPopup);
   imgRect = rect;
   currentRow = img.closest(".table-row");
+  console.log(currentRow)
   sourcingPopup.classList.remove("active");
   supplierPopup.classList.remove("active");
   suggestPopup.classList.toggle("active");
+  const filP=products.filter(p=>p.requested_id != reqId)
+  console.log(filP)
+  renderSuggestPopup(filP)
 }
 
 //update popup position
@@ -295,14 +294,15 @@ function retrieveSuggestPopup() {
 function SuggestProductClick(suggestProducts) {
   suggestProducts.forEach((p) => {
     p.addEventListener("click", () => {
-      const id = p.dataset.id;
+      const id = p.dataset.delid;
 
-      const selectedProduct = products.find((p) => p.id == id);
+      const selectedProduct = products.find((p) => p.delId == id);
 
       updateRow(selectedProduct);
 
       suggestPopup.classList.remove("active");
       updateQuoteTotals();
+      storeQuote();
     });
   });
 }
@@ -313,8 +313,7 @@ function updateRow(product) {
 
   const newQuotP = newQuote.products.find((p) => String(p.delId) === delId);
 
-  currentRow.querySelector('[name="qty-requested"]').value =
-    product.qty_requested;
+  currentRow.querySelector('[name="qty-requested"]').value =product.qty_requested;
   newQuotP.qty_requested = product.qty_requested;
 
   currentRow.querySelector(".requested-id").textContent = product.requested_id;
@@ -343,7 +342,7 @@ function updateRow(product) {
 
   const stockText = currentRow.querySelector(".stock-text");
   stockText.innerHTML = `${product.stock}<span class="tooltiptext">${product.stock == "S" ? "Stock" : "Non Stock"}</span>`;
-  if (product.stock == "NS") {
+  if (product.stock == "Ns") {
     stockText.classList.remove("green");
     stockText.classList.add("red");
   } else {
@@ -360,9 +359,9 @@ function updateRow(product) {
 function SourceProductClick(sourcingProducts) {
   sourcingProducts.forEach((p) => {
     p.addEventListener("click", () => {
-      const id = p.dataset.id;
+      const id = p.dataset.delid;
 
-      const selectedProduct = products.find((p) => p.id == id);
+      const selectedProduct = products.find((p) => p.delId  == id);
       sourcingPopup.classList.remove("active");
       popupOverlay.classList.add("active");
       stockPopup.classList.add("active");
@@ -382,6 +381,7 @@ function SourceProductClick(sourcingProducts) {
         newQuotP.isSource = false;
         closeModal();
         updateQuoteTotals();
+        storeQuote();
       });
     });
   });
@@ -420,9 +420,9 @@ function openSourcingPopup(event) {
 function SupplierProductClick(supplierProducts) {
   supplierProducts.forEach((p) => {
     p.addEventListener("click", () => {
-      const id = p.dataset.id;
+      const id = p.dataset.delid;
 
-      const selectedProduct = products.find((p) => p.id == id);
+      const selectedProduct = products.find((p) => p.delId == id)
       supplierPopup.classList.remove("active");
 
       updateRow(selectedProduct);
@@ -431,6 +431,7 @@ function SupplierProductClick(supplierProducts) {
 
       supplierPopup.classList.remove("active");
       updateQuoteTotals();
+      storeQuote();
     });
   });
 }
@@ -492,6 +493,18 @@ function updateNewQuoteData() {
 }
 
 confirmSuccessBtn.addEventListener("click", () => {
+  saveQuotes();
+  const bodyWrap = displayTable.querySelector(".body-wrapper");
+  bodyWrap.innerHTML = "";
+  bodyWrap.innerHTML = `<div class="add-btn-container ">
+    <button type="button"><img src="./assets/images/create_quote/add_item_icon.png" alt="add"></button>
+    <p class="text">Click here to Add Item</p>
+    </div>`;
+  window.location.href = "./dashboard.html";
+});
+
+
+function saveQuotes(){
   let found = false;
   const quotes = JSON.parse(sessionStorage.getItem("quotes"));
   quotes.forEach((q, i) => {
@@ -507,14 +520,7 @@ confirmSuccessBtn.addEventListener("click", () => {
     quotes.push(newQuote);
   }
   sessionStorage.setItem("quotes", JSON.stringify(quotes));
-  const bodyWrap = displayTable.querySelector(".body-wrapper");
-  bodyWrap.innerHTML = "";
-  bodyWrap.innerHTML = `<div class="add-btn-container ">
-    <button type="button"><img src="./assets/images/create_quote/add_item_icon.png" alt="add"></button>
-    <p class="text">Click here to Add Item</p>
-    </div>`;
-  window.location.href = "./dashboard.html";
-});
+}
 
 //add line note function
 let clickedRow = "";

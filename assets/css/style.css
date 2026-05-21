@@ -3976,7 +3976,7 @@ header nav ul li a.new-quote-btn:hover {
   margin-top: 6px;
   padding: clamp(15px, 1.45vw, 1.45vw) clamp(12px, 1.15vw, 1.15vw);
   background-color: white;
-  display: flex;
+  display: none;
   flex-direction: column;
   flex: 1;
   min-height: 0;
@@ -3985,6 +3985,9 @@ header nav ul li a.new-quote-btn:hover {
   display: flex;
   flex-direction: column;
   max-height: 100%;
+  flex: 1;
+  min-height: 0;
+  height: 100%;
 }
 .quote-wrapper .recent-quote-wrapper .top-btn-wrapper {
   display: flex;
@@ -4295,9 +4298,7 @@ header nav ul li a.new-quote-btn:hover {
   font-weight: 500;
   line-height: 1;
 }
-.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-body .table-row .desc-wrapper {
-  /* dropdown */
-}
+
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-body .table-row .desc-wrapper .dropdown {
   position: absolute;
   top: 100%;
@@ -5126,7 +5127,7 @@ header nav ul li a.new-quote-btn:hover {
   display: flex;
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .add-btn-container {
-  position: fixed;
+  position: absolute;
   text-align: center;
   left: 50%;
   top: 50%;
@@ -5145,6 +5146,7 @@ header nav ul li a.new-quote-btn:hover {
   color: #a7a4a4;
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .add-btn-container.left {
+  position: fixed;
   justify-content: flex-end;
   align-items: flex-end;
   bottom: 11%;
@@ -5253,6 +5255,9 @@ header nav ul li a.new-quote-btn:hover {
   opacity: 0.5;
   pointer-events: none;
 }
+.quote-wrapper.active {
+  display: flex;
+}
 
 .row-group {
   transition: transform 0.18s ease, background-color 0.18s ease;
@@ -5333,7 +5338,15 @@ header nav ul li a.new-quote-btn:hover {
   align-items: flex-start;
   justify-content: space-between;
 }
-.create-quote-wrapper .top-btn-wrapper .back-create-btn {
+.create-quote-wrapper .top-btn-wrapper .back-btn-container {
+  display: flex;
+  align-items: center;
+}
+.create-quote-wrapper .top-btn-wrapper .back-btn-container button {
+  background-color: transparent;
+  border: none;
+}
+.create-quote-wrapper .top-btn-wrapper .back-btn-container .back-create-btn {
   background-color: transparent;
   border: none;
   display: inline-flex;
@@ -5343,8 +5356,46 @@ header nav ul li a.new-quote-btn:hover {
   font-weight: 600;
   font-size: clamp(20px, 1.8vw, 1.8vw);
 }
-.create-quote-wrapper .top-btn-wrapper .back-create-btn img {
+.create-quote-wrapper .top-btn-wrapper .back-btn-container .back-create-btn img {
   width: clamp(18px, 1.57vw, 1.57vw);
+}
+.create-quote-wrapper .top-btn-wrapper .back-btn-container .del-quote-btn {
+  margin-left: clamp(8px, 0.79vw, 0.79vw);
+  display: none;
+}
+.create-quote-wrapper .top-btn-wrapper .back-btn-container .del-quote-btn img {
+  display: block;
+  width: clamp(11px, 0.89vw, 0.89vw);
+}
+.create-quote-wrapper .top-btn-wrapper .back-btn-container .del-quote-btn.active {
+  display: inline-block;
+}
+.create-quote-wrapper .top-btn-wrapper .back-btn-container .undo-quote-btn {
+  margin-left: clamp(8px, 0.79vw, 0.79vw);
+  font-size: clamp(11px, 0.79vw, 0.79vw);
+  display: none;
+}
+.create-quote-wrapper .top-btn-wrapper .back-btn-container .undo-quote-btn img {
+  width: clamp(10px, 0.93vw, 0.93vw);
+  margin-right: 5px;
+}
+.create-quote-wrapper .top-btn-wrapper .back-btn-container .undo-quote-btn.active {
+  display: inline-block;
+}
+.create-quote-wrapper .top-btn-wrapper .back-btn-container {
+  margin-left: clamp(12px, 1.304vw, 1.304vw);
+  font-size: clamp(11px, 0.89vw, 0.89vw);
+  align-items: center;
+  gap: clamp(7px, 0.79vw, 0.79vw);
+  color: #f73333;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+.create-quote-wrapper .top-btn-wrapper .back-btn-container.approved {
+  color: #3daf28;
+}
+.create-quote-wrapper .top-btn-wrapper .back-btn-container.pending {
+  color: #ff7129;
 }
 .create-quote-wrapper .top-btn-wrapper .approve-btn-container {
   display: none;
@@ -6657,6 +6708,13 @@ header nav ul li a.new-quote-btn:hover {
 .create-quote-wrapper .quick-order-wrapper.active {
   display: flex;
 }
+.create-quote-wrapper .quick-order-wrapper.not-active {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.create-quote-wrapper.active {
+  display: none;
+}
 
 /* dropdown */
 .desc-dropdown {
@@ -7076,7 +7134,7 @@ header nav ul li a.new-quote-btn:hover {
 .exist-quote-wrapper {
   margin-top: 6px;
   padding: clamp(15px, 1.57vw, 1.57vw) clamp(12px, 1.15vw, 1.15vw);
-  display: flex;
+  display: none;
   flex-direction: column;
   flex: 1;
   min-height: 0;
@@ -8766,7 +8824,7 @@ header nav ul li a.new-quote-btn:hover {
   display: flex;
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .add-btn-container {
-  position: fixed;
+  position: absolute;
   text-align: center;
   left: 50%;
   top: 50%;
@@ -8786,6 +8844,7 @@ header nav ul li a.new-quote-btn:hover {
   color: #a7a4a4;
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .add-btn-container.left {
+  position: fixed;
   justify-content: flex-end;
   align-items: flex-end;
   bottom: 11%;
@@ -8882,6 +8941,13 @@ header nav ul li a.new-quote-btn:hover {
   border-radius: 4px;
 }
 .exist-quote-wrapper .quick-order-wrapper.active {
+  display: flex;
+}
+.exist-quote-wrapper .quick-order-wrapper.not-active {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.exist-quote-wrapper.active {
   display: flex;
 }
 
@@ -9024,9 +9090,9 @@ header nav ul li a.new-quote-btn:hover {
   color: #ff0000;
   border: 1px solid #ff0000;
 }
-.sourcing-popup .sourcing-body .products .product .detail-container p.product-id .value.green {
-  color: #3daf28;
-  border: 1px solid #3daf28;
+.sourcing-popup .sourcing-body .products .product .detail-container p.product-id .value.not-active {
+  visibility: hidden;
+  pointer-events: none;
 }
 .sourcing-popup .sourcing-body .products .product .desc {
   color: #6c6c6c;
