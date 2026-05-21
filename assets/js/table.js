@@ -641,30 +641,58 @@ async function getJsonData(file) {
 
 //update excel data in array
 function getCrtData(exCelData) {
+
   exCelData.forEach((d) => {
+
+    const existingProduct = newQuote.products.find(
+      prod => prod.requested_id === d.requested_id
+    );
+
+    // IF EXISTS -> ADD VALUES
+    if (existingProduct) {
+
+      existingProduct.qty_requested += Number(d.qty_requested || 0);
+
+      existingProduct.total_cost =
+        existingProduct.qty_requested *
+        existingProduct.selling_price;
+
+      return;
+    }
+
+    // OTHERWISE CREATE UNIQUE delId
     let delid = d.delId;
 
     let isExists =
-      allQuotes.some((q) => q.products.some((prod) => prod.delId === delid)) ||
-      newQuote.products.some((prod) => prod.delId === delid);
+      allQuotes.some(q =>
+        q.products.some(prod => prod.delId === delid)
+      ) ||
+      newQuote.products.some(prod => prod.delId === delid);
 
     while (isExists) {
+
       delid = getDelId();
 
       isExists =
-        allQuotes.some((q) =>
-          q.products.some((prod) => prod.delId === delid),
-        ) || newQuote.products.some((prod) => prod.delId === delid);
+        allQuotes.some(q =>
+          q.products.some(prod => prod.delId === delid)
+        ) ||
+        newQuote.products.some(prod => prod.delId === delid);
+
     }
 
-    d.delId = delid;
+    // CREATE NEW PRODUCT
+    const newProduct = {
+      ...d,
+      delId: delid
+    };
 
-    newQuote.products.push(d);
+    newQuote.products.push(newProduct);
+
   });
 
   updateQuoteTotals();
 }
-
 //Fetch data from excel
 function parseSharedStrings(xml) {
   if (!xml) return [];
@@ -869,13 +897,49 @@ uploadBtn.addEventListener("click", () => {
 function getSearchedProducts() {
   const newProducts = newQuote.products;
   if (searchedProduct.length > 0) {
-    
-    searchedProduct.forEach((p) => {
-      p.delId = getDelId();
-      
+
+  searchedProduct.forEach((p) => {
+
+    const existingProduct = newQuote.products.find(
+      prod => prod.requested_id === p.requested_id
+    );
+
+    if (existingProduct) {
+
+      existingProduct.qty_requested += Number(p.qty_requested || 0);
+
+      existingProduct.total_cost =
+        existingProduct.qty_requested *
+        existingProduct.selling_price;
+
+    } else {
+
+      let delid = getDelId();
+      let isExists =
+        allQuotes.some(q =>
+          q.products.some(prod => prod.delId === delid)
+        ) ||
+        newQuote.products.some(prod => prod.delId === delid);
+
+      while (isExists) {
+
+        delid = getDelId();
+
+        isExists =
+          allQuotes.some(q =>
+            q.products.some(prod => prod.delId === delid)
+          ) ||
+          newQuote.products.some(prod => prod.delId === delid);
+
+      }
+
+      p.delId = delid;
+
       newQuote.products.push(p);
-    });
-  }
+    }
+
+  });
+}
   else{
     const descs=[];
     descInputs.forEach(inp =>{
