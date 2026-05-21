@@ -648,7 +648,6 @@ function getCrtData(exCelData) {
       prod => prod.requested_id === d.requested_id
     );
 
-    // IF EXISTS -> ADD VALUES
     if (existingProduct) {
 
       existingProduct.qty_requested += Number(d.qty_requested || 0);
@@ -660,7 +659,6 @@ function getCrtData(exCelData) {
       return;
     }
 
-    // OTHERWISE CREATE UNIQUE delId
     let delid = d.delId;
 
     let isExists =
@@ -681,11 +679,7 @@ function getCrtData(exCelData) {
 
     }
 
-    // CREATE NEW PRODUCT
-    const newProduct = {
-      ...d,
-      delId: delid
-    };
+    const newProduct = {...d,delId: delid};
 
     newQuote.products.push(newProduct);
 
