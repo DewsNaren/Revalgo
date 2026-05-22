@@ -24,7 +24,7 @@ const leftTableWrapper = leftWrapper.querySelector(".table-wrapper");
 const descInputs = leftTableWrapper.querySelectorAll(".desc-input");
 const qtyInputs = leftTableWrapper.querySelectorAll(".qty-input");
 const uploadBtnContainer = leftWrapper.querySelector(".upload-btn-container");
-const loaderWrapper=document.querySelector(".loader-wrapper")
+const loaderWrapper = document.querySelector(".loader-wrapper");
 
 //Datepicker
 const formPopup = document.querySelector(".form-popup");
@@ -360,7 +360,6 @@ popupOverlay.addEventListener("click", (e) => {
   }
 });
 
-
 const backBtnContainer = document.querySelector(".back-btn-container");
 const CreateBtn = backBtnContainer.querySelector(".back-create-btn");
 const quoteStat = backBtnContainer.querySelector(".quote-status");
@@ -382,38 +381,51 @@ if (sessionStorage.getItem("selectedQuote")) {
   quoteStat.classList.add(`${newQuote.status}`);
   quoteStat.textContent = `${newQuote.status}`;
   if (newQuote.status == "deleted") {
-
+    delQuoteBtn.classList.remove("active")
     undoQuoteBtn.classList.add("active");
     quickOrderWrapper.classList.add("not-active");
   }
-  if(newQuote.status == "approved" || newQuote.status == "deleted"){
-    approveQuoteBtn.classList.add("not-active")
+  if (newQuote.status == "approved" || newQuote.status == "deleted") {
+    approveQuoteBtn.classList.add("not-active");
   }
   renderQuickInfo(newQuote);
   renderDisplayTable(newQuote);
 }
 
-CreateBtn.addEventListener('click',(e)=>{
+CreateBtn.addEventListener("click", (e) => {
   e.preventDefault();
   updateQuickInfoData();
   updateNewQuoteData();
   updateQuoteTotals();
   updateNewQuoteData();
   storeQuote();
-  window.location.href="./dashboard.html"
-})
+  window.location.href = "./dashboard.html";
+});
+
+delQuoteBtn.addEventListener("click", () => {
+  quickOrderWrapper.classList.add("not-active");
+  approveBtnContainer.classList.remove("not-active");
+  undoQuoteBtn.classList.add("active");
+  newQuote.status = "deleted";
+  delQuoteBtn.classList.remove("active");
+  quoteStat.classList.remove("pending", "approved");
+  quoteStat.classList.add(`${newQuote.status}`);
+  quoteStat.textContent = `${newQuote.status}`;
+  approveQuoteBtn.classList.add("not-active");
+  storeQuote();
+});
 
 undoQuoteBtn.addEventListener("click", () => {
   quickOrderWrapper.classList.remove("not-active");
   approveBtnContainer.classList.remove("not-active");
   undoQuoteBtn.classList.remove("active");
-  newQuote.status = "pending";
+  delQuoteBtn.classList.add("active");
   newQuote.status = "pending";
   quoteStat.classList.remove("deleted");
   quoteStat.classList.add(`${newQuote.status}`);
   quoteStat.textContent = `${newQuote.status}`;
-  approveQuoteBtn.classList.remove("not-active")
-   storeQuote();
+  approveQuoteBtn.classList.remove("not-active");
+  storeQuote();
 });
 
 function renderQuickInfo(newQuote) {
@@ -491,7 +503,7 @@ function renderDisplayTable(newQuote) {
       </p>
       <p><input type="text" value="${p.qty_requested}" name="qty-requested" autocomplete="off"></p>
       <p>
-        <span class="title-text">${p.company_name?p.company_name:"Mjhsjhs"}</span>
+        <span class="title-text">${p.title ? p.title : "Mjhsjhs"}</span>
         <span class="dropdown-text">
           <img src="./assets/images/global/down_arrow.png" alt="down-arrow" class="down-arrow-img" onclick=openSuggestPopup(event)> <span class="id requested-id">${p.requested_id}</span> - 
           <span class="detail" onclick="enableSourceText(event)">tydlx4ypi6</span> - 
@@ -525,7 +537,7 @@ function renderDisplayTable(newQuote) {
 
         <div class="desc-container">
           <h3>Description</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+          <p>${p.desc ? p.desc : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."}</p>
         </div>
       </div>
 
@@ -563,87 +575,7 @@ function renderDisplayTable(newQuote) {
 
 // drag function
 
-// function enableDrag(bodyWrap) {
-//   const groups = bodyWrap.querySelectorAll(".row-group");
-
-//   let draggedGroup = null;
-
-//   let canDrag = false;
-
-//   groups.forEach((group) => {
-//     const row = group.querySelector(".table-row");
-
-//     const handle = row.querySelector(".drag-handle");
-
-//     group.draggable = true;
-
-//     // ENABLE DRAG
-//     handle.addEventListener("mousedown", () => {
-//       canDrag = true;
-//     });
-
-//     // DISABLE DRAG
-//     document.addEventListener("mouseup", () => {
-//       canDrag = false;
-//     });
-
-//     // START
-//     group.addEventListener("dragstart", (e) => {
-//       if (!canDrag) {
-//         e.preventDefault();
-
-//         return;
-//       }
-
-//       draggedGroup = group;
-
-//       requestAnimationFrame(() => {
-//         group.classList.add("dragging");
-//       });
-//     });
-
-//     // END
-//     group.addEventListener("dragend", () => {
-//       group.classList.remove("dragging");
-
-//       draggedGroup = null;
-
-//       updateLineNumbers(bodyWrap);
-//     });
-
-//     // LIVE SHIFTING
-//     group.addEventListener("dragover", (e) => {
-//       e.preventDefault();
-
-//       if (!draggedGroup || draggedGroup === group) return;
-
-//       const rect = group.getBoundingClientRect();
-
-//       const offset = e.clientY - rect.top;
-
-//       // TOP HALF
-//       if (offset < rect.height / 2) {
-//         bodyWrap.insertBefore(draggedGroup, group);
-//       }
-
-//       // BOTTOM HALF
-//       else {
-//         bodyWrap.insertBefore(draggedGroup, group.nextSibling);
-//       }
-//     });
-//   });
-// }
-
-// function updateLineNumbers() {
-//   const tableRows = displayTable.querySelectorAll(".body-wrapper .table-row");
-
-//   tableRows.forEach((row, index) => {
-//     row.querySelector(".line-no").textContent = index + 1;
-//   });
-// }
-
 function enableDrag(bodyWrap) {
-
   const groups = bodyWrap.querySelectorAll(".row-group");
 
   let draggedGroup = null;
@@ -651,7 +583,6 @@ function enableDrag(bodyWrap) {
   let canDrag = false;
 
   groups.forEach((group, index) => {
-
     // STORE ORIGINAL PRODUCT INDEX
     group.dataset.index = index;
 
@@ -663,42 +594,31 @@ function enableDrag(bodyWrap) {
 
     // ENABLE DRAG
     handle.addEventListener("mousedown", () => {
-
       canDrag = true;
-
     });
 
     // DISABLE DRAG
     document.addEventListener("mouseup", () => {
-
       canDrag = false;
-
     });
 
     // START
     group.addEventListener("dragstart", (e) => {
-
       if (!canDrag) {
-
         e.preventDefault();
 
         return;
-
       }
 
       draggedGroup = group;
 
       requestAnimationFrame(() => {
-
         group.classList.add("dragging");
-
       });
-
     });
 
     // END
     group.addEventListener("dragend", () => {
-
       group.classList.remove("dragging");
 
       draggedGroup = null;
@@ -707,12 +627,10 @@ function enableDrag(bodyWrap) {
 
       // UPDATE PRODUCTS ORDER
       updateProductsOrder(bodyWrap);
-
     });
 
     // LIVE SHIFTING
     group.addEventListener("dragover", (e) => {
-
       e.preventDefault();
 
       if (!draggedGroup || draggedGroup === group) return;
@@ -723,24 +641,16 @@ function enableDrag(bodyWrap) {
 
       // TOP HALF
       if (offset < rect.height / 2) {
-
         bodyWrap.insertBefore(draggedGroup, group);
-
       }
 
       // BOTTOM HALF
       else {
-
         bodyWrap.insertBefore(draggedGroup, group.nextSibling);
-
       }
-
     });
-
   });
-
 }
-
 
 // UPDATE LINE NUMBERS
 function updateLineNumbers(bodyWrap) {
@@ -748,23 +658,18 @@ function updateLineNumbers(bodyWrap) {
   tableRows.forEach((row, index) => {
     row.querySelector(".line-no").textContent = index + 1;
   });
-
 }
-
 
 // UPDATE PRODUCTS ARRAY
 function updateProductsOrder(bodyWrap) {
-
   const groups = bodyWrap.querySelectorAll(".row-group");
 
   const reorderedProducts = [];
 
-  groups.forEach(group => {
-
+  groups.forEach((group) => {
     const originalIndex = Number(group.dataset.index);
 
     reorderedProducts.push(newQuote.products[originalIndex]);
-
   });
 
   newQuote.products = reorderedProducts;
@@ -774,10 +679,7 @@ function updateProductsOrder(bodyWrap) {
   });
 
   storeQuote();
-
 }
-
-
 
 function clickTable(bodyWrap) {
   const rows = bodyWrap.querySelectorAll(".table-row");
@@ -853,50 +755,51 @@ function editQuoteInfo(quoteInfoWrap) {
           container.classList.add("active");
         }
       });
-       updateFormData(quoteInfoWrap,editItem)
+      updateFormData(quoteInfoWrap, editItem);
     });
   });
 }
-function updateFormData(quoteInfoWrap,editItem){
+function updateFormData(quoteInfoWrap, editItem) {
   // console.log(editItem)
-  const wrapper=document.querySelector(`.${editItem}_text`)
-  
-    formContainers.forEach((container) => {
-      if (container.classList.contains(editItem)) {
-        if(editItem==="bill_to" || editItem=="ship_to"){
-          const inp=container.querySelector("input[name='name']")
-          const textarea=container.querySelector("textarea[name='address']")
-          if(inp){
-            inp.value=wrapper.querySelector(".name").textContent;
-          }
-          if(textarea){
-            const addrText=wrapper.querySelector(".address").innerHTML;
-            textarea.value=addrText.replace("<br>",'\n');
-          }
+  const wrapper = document.querySelector(`.${editItem}_text`);
+
+  formContainers.forEach((container) => {
+    if (container.classList.contains(editItem)) {
+      if (editItem === "bill_to" || editItem == "ship_to") {
+        const inp = container.querySelector("input[name='name']");
+        const textarea = container.querySelector("textarea[name='address']");
+        if (inp) {
+          inp.value = wrapper.querySelector(".name").textContent;
         }
-        else if(editItem=="deleivery_date"){
-          const dateText=container.querySelector(".date-text");
-          const datePicker=container.querySelector(".datepicker");
-          const minDate = new Date(2025, 4, 1);
-          const maxDate = new Date(2026, 3, 30);
-          const [day, month, year] = wrapper.textContent.split("-");
-          const newSelectedDate = new Date(year, month - 1, day);
-          dateText.textContent=wrapper.textContent.replaceAll("-","/");
-          if (newSelectedDate >= minDate && newSelectedDate <= maxDate) {
-            selectedDate = newSelectedDate;
-            current = new Date(newSelectedDate.getFullYear(),newSelectedDate.getMonth(),1);
-            createDatepicker(datePicker)
-            const inp=container.querySelector("input")
-            inp.value=`${year}-${month}-${day}`;
-          }
+        if (textarea) {
+          const addrText = wrapper.querySelector(".address").innerHTML;
+          textarea.value = addrText.replace("<br>", "\n");
         }
-        else{
-          const inp=container.querySelector("input")
-          inp.value=wrapper.textContent
+      } else if (editItem == "deleivery_date") {
+        const dateText = container.querySelector(".date-text");
+        const datePicker = container.querySelector(".datepicker");
+        const minDate = new Date(2025, 4, 1);
+        const maxDate = new Date(2026, 3, 30);
+        const [day, month, year] = wrapper.textContent.split("-");
+        const newSelectedDate = new Date(year, month - 1, day);
+        dateText.textContent = wrapper.textContent.replaceAll("-", "/");
+        if (newSelectedDate >= minDate && newSelectedDate <= maxDate) {
+          selectedDate = newSelectedDate;
+          current = new Date(
+            newSelectedDate.getFullYear(),
+            newSelectedDate.getMonth(),
+            1,
+          );
+          createDatepicker(datePicker);
+          const inp = container.querySelector("input");
+          inp.value = `${year}-${month}-${day}`;
         }
-  
+      } else {
+        const inp = container.querySelector("input");
+        inp.value = wrapper.textContent;
       }
-  }) 
+    }
+  });
 }
 
 const updateForm = formPopup.querySelector(".update-form");
@@ -988,8 +891,6 @@ function changeQuickInfo(inp, con) {
   storeQuote();
 }
 
-
-
 //add input event listeners
 formContainers.forEach((container) => {
   const inpFields = container.querySelectorAll("input, textarea");
@@ -1008,26 +909,28 @@ formContainers.forEach((container) => {
   });
 });
 
-
 function editTableData(bodyWrap) {
   const tableRows = bodyWrap.querySelectorAll(".table-row");
 
   tableRows.forEach((row) => {
     const qtyInp = row.querySelector('input[name="qty-requested"]');
-
+    const availQty=row.querySelector('.available-qty').textContent;
     const costInp = row.querySelector('input[name="cost"]');
 
     const marginInp = row.querySelector('input[name="margin"]');
 
-    const sellingPriceEl = row.children[8].querySelector("span");
+    const sellingPriceEl = row.querySelector(".selling-price");
 
-    const totalPriceEl = row.children[9].querySelector("span");
+    const totalPriceEl = row.querySelector(".total-cost");
 
     const delId = row.querySelector(".del-id").textContent;
 
     function updatePrices() {
-      const qty = parseFloat(qtyInp.value) || 0;
-
+      let qty = parseFloat(qtyInp.value) || 0;
+      if (qty > Number(availQty)) {
+        qty = Number(availQty);
+        qtyInp.value = availQty;
+      }
       const cost = parseFloat(costInp.value) || 0;
 
       const margin = parseFloat(marginInp.value) || 0;
@@ -1036,7 +939,7 @@ function editTableData(bodyWrap) {
 
       const totalPrice = qty * sellingPrice;
 
-      sellingPriceEl.textContent = sellingPrice.toFixed(2);
+      sellingPriceEl.textContent = `$${sellingPrice.toFixed(2)}`;
 
       totalPriceEl.textContent = `$${totalPrice.toLocaleString("en-US", {
         minimumFractionDigits: 2,
@@ -1056,7 +959,7 @@ function editTableData(bodyWrap) {
         product.total_cost = Number(totalPrice.toFixed(2));
       }
       updateQuoteTotals();
-      storeQuote()
+      storeQuote();
     }
 
     [qtyInp, costInp, marginInp].forEach((inp) => {
@@ -1074,9 +977,3 @@ function allowNumbers(inp) {
 }
 
 //loader function
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    loaderWrapper.classList.add("not-active");
-    quoteWrapper.classList.add("active");
-  }, 1500);
-});

@@ -329,14 +329,20 @@ function getSelectedDate(datePicker) {
 // outside close
 document.addEventListener("click", (e) => {
   const dp = document.querySelector(".datepicker.active");
+
   if (!dp) return;
 
   const trigger = dp._trigger;
 
-  if (!trigger.contains(e.target) && !dp.contains(e.target)) {
+  if (!trigger ||(!trigger.contains(e.target) && !dp.contains(e.target))) {
     dp.classList.remove("active");
-    dateTexts.forEach((text) => text.classList.remove("active"));
-    dp.querySelector(".datepicker-calendar").classList.remove("not-active");
+
+    dateTexts.forEach((text) =>
+      text.classList.remove("active")
+    );
+
+    dp.querySelector(".datepicker-calendar")
+      .classList.remove("not-active");
   }
 });
 
@@ -680,29 +686,45 @@ function changeStatusChips() {
 //close chips
 function closeChip(event) {
   const chip = event.target.closest(".chip");
+
+  if (!chip) return;
+
   const type = chip.dataset.type;
   const val = chip.dataset.value;
 
+  const filterChipBtns = document.querySelectorAll(".filter-chip-btn");
+
   if (type == "status") {
+
     filterChipBtns.forEach((btn) => {
       if (btn.textContent.trim().toLowerCase() == val) {
         btn.classList.remove("active");
       }
     });
+
   } else if (type == "name") {
+
     const checkedNameInputs = document.querySelectorAll(
-      ".customer-filter input:checked",
+      ".customer-filter input:checked"
     );
+
     checkedNameInputs.forEach((inp) => {
       if (inp.value.toLowerCase() === val) {
-        inp.checked = !inp.checked;
-
-        selectedNames = selectedNames.filter((name) => name !== val);
+        inp.checked = false;
       }
     });
+
+    // REMOVE FROM ARRAY
+    selectedNames = selectedNames.filter(
+      (name) => name.toLowerCase() !== val
+    );
+
   } else if (type == "start-date") {
-    const startDate = document.querySelector(".start-text").childNodes[0];
-    const endDate = document.querySelector(".end-text").childNodes[0];
+
+    const startDate = document.querySelector(".start-text");
+
+    const endDate = document.querySelector(".end-text");
+
     startDate.textContent = "mm/dd/yyyy";
 
     let strDat =
@@ -716,10 +738,15 @@ function closeChip(event) {
         : endDate.textContent;
 
     updateDateFilter(strDat, endDat);
+
   } else if (type == "end-date") {
-    const startDate = document.querySelector(".start-text").childNodes[0];
-    const endDate = document.querySelector(".end-text").childNodes[0];
+
+    const startDate = document.querySelector(".start-text");
+
+    const endDate = document.querySelector(".end-text");
+
     endDate.textContent = "mm/dd/yyyy";
+
     let strDat =
       startDate.textContent.trim() === "mm/dd/yyyy"
         ? "05/01/2025"
@@ -731,16 +758,25 @@ function closeChip(event) {
         : endDate.textContent;
 
     updateDateFilter(strDat, endDat);
+
   } else if (type == "mode") {
+
     const checkedModeInputs = document.querySelectorAll(
-      ".mode-filter input:checked",
+      ".mode-filter input:checked"
     );
+
     checkedModeInputs.forEach((inp) => {
       if (inp.value.toLowerCase() === val) {
-        inp.checked = !inp.checked;
+        inp.checked = false;
       }
     });
+
+    // REMOVE FROM ARRAY
+    selectedModes = selectedModes.filter(
+      (mode) => mode.toLowerCase() !== val
+    );
   }
+
   changeStatusChips();
 }
 
@@ -754,6 +790,7 @@ refreshBtn.addEventListener("click", () => {
 });
 
 function resetFilters() {
+  const filterChipBtns = document.querySelectorAll(".filter-chip-btn");
   statusContainer.classList.remove("active");
   filterChipBtns.forEach((btn) => btn.classList.remove("active"));
   const nameInputs = document.querySelectorAll(".customer-filter input");

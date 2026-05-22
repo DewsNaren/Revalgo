@@ -173,7 +173,7 @@ function handleSearchItemClick(e){
 globalDropDown.addEventListener("click", handleSearchItemClick);
 
 function initializeSearch() {
-  allQuotes=JSON.parse(sessionStorage.getItem("quotes"));
+   allQuotes=JSON.parse(sessionStorage.getItem("quotes"));
   searchHeaderInput.addEventListener("input", () => {
     searchHeaderQuotes();
   });

@@ -25,8 +25,13 @@ function delRow(event) {
   const lineNo = row.querySelector(".line-no").textContent;
 
   delPopup1.classList.add("active");
-  delPopup1.querySelector(".text").textContent =`Do you want to Delete item ${lineNo}?`;
+  delPopup1.querySelector(".text").textContent =
+    `Do you want to Delete item ${lineNo}?`;
   popupOverlay.classList.add("active");
+  del1YesBtn.onclick = () => {
+    delPopup1.classList.remove("active");
+    delPopup2.classList.add("active");
+    delPopup2Id.textContent = `#${newQuote.id}`;
     del2YesBtn.onclick = () => {
       delBtn.classList.remove("active");
       delQuoteText.value = "";
@@ -35,7 +40,7 @@ function delRow(event) {
 
       const paras = row.querySelectorAll("p");
       const delId = row.querySelector(".del-id").textContent;
-      const product = newQuote.products.find(p => String(p.delId) === delId);
+      const product = newQuote.products.find((p) => String(p.delId) === delId);
 
       if (product) {
         product.isDeleted = true;
@@ -55,16 +60,10 @@ function delRow(event) {
 
       closeModal();
     };
-};
+  
+}
+}
 
-function openDelPopup1(){
-    delPopup1.classList.remove("active");
-    delPopup2.classList.add("active");
-    delPopup2Id.textContent = `#${newQuote.id}`;
-}
-del1YesBtn.onclick = () => {
-openDelPopup1()
-}
 
 delQuoteText.addEventListener("input", () => {
   if (delQuoteText.value.trim() != "") {
@@ -97,9 +96,8 @@ function undoRow(event) {
 }
 
 function deleteAllRow() {
-
   const bodyWrapper = displayTable.querySelector(".body-wrapper");
-  const checkAllInput=displayTable.querySelector(".check-all-input")
+  const checkAllInput = displayTable.querySelector(".check-all-input");
   const tableRows = bodyWrapper.querySelectorAll(".table-row");
 
   popupOverlay.classList.add("active");
@@ -109,27 +107,33 @@ function deleteAllRow() {
   delPopup1.querySelector(".text").textContent =
     "Do you want to Delete All lines?";
 
-  del2YesBtn.onclick = () => {
-    bodyWrapper.innerHTML='';
+  del1YesBtn.onclick = () => {
+
+    bodyWrapper.innerHTML = "";
     bodyWrapper.innerHTML = `<div class="add-btn-container">
     <button type="button" onclick="openAddPopup()"><img src="./assets/images/create_quote/add_item_icon.png" alt="add"></button>
     <p class="text">Click here to Add Item</p>
     </div>`;
-    newQuote.products=[];
+    newQuote.products = [];
     delAllBtn.classList.remove("selected", "active");
 
     // undoAllBtn.classList.add("selected", "active");
 
     approveQuoteBtn.classList.remove("active");
     approveQuoteBtn.classList.add("not-active");
-    checkAllInput.checked=false;
+    quoteStat.classList.remove("pending");
+    quoteStat.classList.add("deleted");
+    quoteStat.textContent ="Deleted";
+    delQuoteBtn.classList.remove("active");
+    undoQuoteBtn.classList.add("active");
+    approveQuoteBtn.classList.add("not-active")
+    checkAllInput.checked = false;
     updateQuickInfoData();
     updateQuoteTotals();
     updateNewQuoteData();
     storeQuote();
     closeModal();
   };
-
 }
 
 function undoAllRow() {
@@ -163,10 +167,8 @@ function selectAllRow(event) {
     const inp = row.querySelector("input[type='checkbox']");
     inp.checked = isChecked;
   });
-  if(!undoAllBtn.classList.contains('selected')){
+  if (!undoAllBtn.classList.contains("selected")) {
     if (isChecked) {
-      
-      
       delAllBtn.classList.add("active", "selected");
     } else {
       delAllBtn.classList.remove("active", "selected");
@@ -276,21 +278,24 @@ const addLinesBtn = addPopup.querySelector(".add-lines-btn");
 addLinesBtn.addEventListener("click", () => {
   addProductsToQuote();
   updateQuoteTotals();
+  console.log(newQuote)
   renderDisplayTable(newQuote);
   approveQuoteBtn.classList.add("active");
   storeQuote();
   closeModal();
+  quoteStat.classList.remove("deleted");
+  quoteStat.classList.add("pending");
+  quoteStat.textContent="Pending";
+  undoQuoteBtn.classList.remove("active");
+  delQuoteBtn.classList.add("active")
 });
 
 //add table data to array
 function addProductsToQuote() {
-
   const rows = addTable.querySelectorAll(".body-wrapper .table-row");
 
   rows.forEach((row) => {
-
     const productObj = {
-
       qty_requested:
         parseFloat(row.querySelector('input[name="qty-requested"]').value) || 0,
 
@@ -301,23 +306,22 @@ function addProductsToQuote() {
       available_qty: parseFloat(row.children[3].textContent) || 0,
 
       unit_cost:
-        parseFloat(row.querySelector(".cost").textContent.replace("$", "")) || 0,
+        parseFloat(row.querySelector(".cost").textContent.replace("$", "")) ||
+        0,
 
-      margin:
-        parseFloat(row.querySelector('input[name="margin"]').value) || 0,
+      margin: parseFloat(row.querySelector('input[name="margin"]').value) || 0,
 
       selling_price:
         parseFloat(
-          row.querySelector(".selling-price").textContent.replace("$", "")
+          row.querySelector(".selling-price").textContent.replace("$", ""),
         ) || 0,
 
       total_cost:
         parseFloat(
           row
             .querySelector(".total-cost")
-            .textContent
-            .replace("$", "")
-            .replaceAll(",", "")
+            .textContent.replace("$", "")
+            .replaceAll(",", ""),
         ) || 0,
 
       delId: getDelId(),
@@ -325,65 +329,66 @@ function addProductsToQuote() {
       sourceImg: imgs[Math.floor(Math.random() * imgs.length)],
       brand: brands[Math.floor(Math.random() * brands.length)],
       type: types[Math.floor(Math.random() * types.length)],
-      housing_material:
-        materials[Math.floor(Math.random() * materials.length)],
+      housing_material: materials[Math.floor(Math.random() * materials.length)],
 
       outlet: Math.floor(Math.random() * 10) + 1,
 
       wire_size: Math.floor(Math.random() * 16) + 5,
     };
     const existingProduct = newQuote.products.find(
-      p => p.requested_id === productObj.requested_id
+      (p) => p.requested_id === productObj.requested_id,
     );
     if (existingProduct) {
       existingProduct.qty_requested += productObj.qty_requested;
-      existingProduct.total_cost= (existingProduct.qty_requested * existingProduct.selling_price )
+      existingProduct.total_cost =
+        existingProduct.qty_requested * existingProduct.selling_price;
     } else {
-
       newQuote.products.push(productObj);
     }
   });
-
 }
 
 //update line count
 function updateQuoteTotals() {
-  newQuote.lines = newQuote.products.length;
+  if (newQuote) {
+    newQuote.lines = newQuote.products.length;
 
-  newQuote.total_line_no = newQuote.products.length;
+    newQuote.total_line_no = newQuote.products.length;
 
-  newQuote.total_price = newQuote.products
-    .reduce((sum, p) => sum + p.total_cost, 0)
-    .toFixed(2);
-  const totPriceText = quickInfoWrapper.querySelector(".total_price_text");
-  const linesText = quickInfoWrapper.querySelector(".lines_text");
-  totPriceText.textContent = `$${newQuote.total_price}`;
-  linesText.textContent = newQuote.products.length;
+    newQuote.total_price = newQuote.products
+      .reduce((sum, p) => sum + p.total_cost, 0)
+      .toFixed(2);
+    const totPriceText = quickInfoWrapper.querySelector(".total_price_text");
+    const linesText = quickInfoWrapper.querySelector(".lines_text");
+    totPriceText.textContent = `$${newQuote.total_price}`;
+    linesText.textContent = newQuote.products.length;
+  }
 }
 
 //left wrapper click function
 const mailWrapper = quickContentWrapper.querySelector(".mail-wrapper");
-const mailImgContainers=mailWrapper.querySelectorAll(".img-container");
+const mailImgContainers = mailWrapper.querySelectorAll(".img-container");
 const mailImgDetails = mailWrapper.querySelectorAll(".img-detail");
 const rightWrapper = quickContentWrapper.querySelector(".right-wrapper");
 const imgInfoContainer = mailWrapper.querySelector(".img-info-container");
 const mailExpandBtn = leftWrapper.querySelector(".mail-expand-btn");
-const mailMinimizeBtn = leftWrapper.querySelector(".minimize-btn");
+const mailMinimizeBtn = document.querySelector(".minimize-btn");
 
 const imgCloseBtn = imgInfoContainer.querySelector(".img-close-btn");
 const imgInfoBtn = imgInfoContainer.querySelector(".info-btn");
 const imgPopup = document.querySelector(".img-popup");
 mailExpandBtn.addEventListener("click", () => {
   if (leftWrapper.classList.contains("maximize")) {
-    leftWrapper.classList.remove("minimize");
-    leftWrapper.classList.remove("maximize");
-    rightWrapper.classList.remove("maximize");
-    rightWrapper.classList.remove("minimize");
+    leftWrapper.classList.remove("minimize","maximize");
+    rightWrapper.classList.remove("maximize","minimize");
+    mailMinimizeBtn.classList.remove("minimize","maximize");
   } else {
     leftWrapper.classList.remove("minimize");
     leftWrapper.classList.add("maximize");
     rightWrapper.classList.remove("maximize");
     rightWrapper.classList.add("minimize");
+    mailMinimizeBtn.classList.remove("minimize");
+    mailMinimizeBtn.classList.add("maximize")
   }
 });
 
@@ -394,19 +399,21 @@ mailMinimizeBtn.addEventListener("click", () => {
     rightWrapper.classList.remove("maximize");
     rightWrapper.classList.remove("minimize");
     uploadBtnContainer.classList.add("active");
+    mailMinimizeBtn.classList.remove("minimize","maximize");
   } else {
     leftWrapper.classList.add("minimize");
     leftWrapper.classList.remove("maximize");
     rightWrapper.classList.add("maximize");
     rightWrapper.classList.remove("minimize");
     uploadBtnContainer.classList.remove("active");
+    mailMinimizeBtn.classList.add("minimize");
   }
 });
 
 //mail img click function
 mailImgDetails.forEach((detail) => {
   detail.addEventListener("click", () => {
-    const container=detail.parentElement;
+    const container = detail.parentElement;
     const isActive = container.classList.contains("active");
 
     mailImgContainers.forEach((c) => c.classList.remove("active"));
@@ -475,7 +482,6 @@ const expectedKeys = [
   "margin",
   "selling_price",
   "total_cost",
-  "delId",
   "sourceImg",
   "brand",
   "wire_size",
@@ -641,50 +647,21 @@ async function getJsonData(file) {
 
 //update excel data in array
 function getCrtData(exCelData) {
-
   exCelData.forEach((d) => {
-
     const existingProduct = newQuote.products.find(
-      prod => prod.requested_id === d.requested_id
+      (prod) => prod.requested_id === d.requested_id,
     );
 
     if (existingProduct) {
-
       existingProduct.qty_requested += Number(d.qty_requested || 0);
 
       existingProduct.total_cost =
-        existingProduct.qty_requested *
-        existingProduct.selling_price;
-
+        existingProduct.qty_requested * existingProduct.selling_price;
       return;
     }
-
-    let delid = d.delId;
-
-    let isExists =
-      allQuotes.some(q =>
-        q.products.some(prod => prod.delId === delid)
-      ) ||
-      newQuote.products.some(prod => prod.delId === delid);
-
-    while (isExists) {
-
-      delid = getDelId();
-
-      isExists =
-        allQuotes.some(q =>
-          q.products.some(prod => prod.delId === delid)
-        ) ||
-        newQuote.products.some(prod => prod.delId === delid);
-
-    }
-
-    const newProduct = {...d,delId: delid};
-
-    newQuote.products.push(newProduct);
-
+    d.delId = getDelId();
+    newQuote.products.push(d);
   });
-
   updateQuoteTotals();
 }
 //Fetch data from excel
@@ -730,42 +707,41 @@ function parseSheetAsJSON(sheetXML, sharedStrings = []) {
   return json;
 }
 
-
 let products = [];
 let filteredProducts = [];
-const defaultLine={
-    "id": "NYECL8728122",
-    "requested_id": "ID7387985",
-    "qty_requested": 25,
-    "margin": 10,
-    "selling_price": 78.1,
-    "total_cost": 1952.5,
-    "unit_cost": 71,
-    "available_qty": 24,
-    "score": 73,
-    "company_name": "Torp, Graham and Legros",
-    "lead_time": 5,
-    "location": "Fengjiang",
-    "updated_date": "05-03-2021",
-    "stock": "Ns",
-    "supplier": "Direct Trading",
-    "brand": "Flexduct",
-    "sourceImg": "default_thumbnail_image",
-    "housing_material": "copper",
-    "wire_size": 19,
-    "outlet": 2,
-    "type": "armored",
-    "desc": "Integer etiam urna mauris in odio leo maecenas sed sem ac donec."
+const defaultLine = {
+  id: "NYECL8728122",
+  requested_id: "ID7387985",
+  qty_requested: 25,
+  margin: 10,
+  selling_price: 78.1,
+  total_cost: 1952.5,
+  unit_cost: 71,
+  available_qty: 24,
+  score: 73,
+  title: "Torp, Graham and Legros",
+  lead_time: 5,
+  location: "Fengjiang",
+  updated_date: "05-03-2021",
+  stock: "Ns",
+  supplier: "Direct Trading",
+  brand: "Flexduct",
+  sourceImg: "default_thumbnail_image",
+  housing_material: "copper",
+  wire_size: 19,
+  outlet: 2,
+  type: "armored",
+  desc: "Integer etiam urna mauris in odio leo maecenas sed sem ac donec.",
 };
 
 async function getAllProducts() {
   try {
     const resp = await fetch("../assets/json/quote.json");
     const data = await resp.json();
-    data.forEach(d=>{
-      const prods=d.products;
-      prods.forEach(p=>{
-        products.push(p)
+    data.forEach((d) => {
+      const prods = d.products;
+      prods.forEach((p) => {
+        products.push(p);
       });
     });
   } catch (err) {
@@ -775,12 +751,29 @@ async function getAllProducts() {
 
 async function initProducts() {
   await getAllProducts();
-  // updateProducts();
-  // renderAddPopupTable();
+
   renderSuggestPopup(products);
+  searchSuggestPopup();
+  searchSourcingPopup();
   renderSourcingPopup(products);
   renderSupplierPopup(products);
   initProductSearch();
+
+
+
+  setTimeout(() => {
+    loaderWrapper.classList.add("not-active");
+    if (typeof createQuoteWrapper !== "undefined" && createQuoteWrapper) {
+      createQuoteWrapper.classList.remove("active");
+    } 
+    else if (typeof quoteWrapper !== "undefined" && quoteWrapper) {
+      quoteWrapper.classList.add("active");
+    } 
+    else if (typeof existQuoteWrapper !== "undefined" && existQuoteWrapper) {
+      existQuoteWrapper.classList.add("active");
+    }
+  }, 300);
+
 }
 
 initProducts();
@@ -847,23 +840,21 @@ function handleProductItemClick(e) {
       });
     }
   });
-  
+
   descDropdown.classList.remove("active");
 }
-
 
 function initProductSearch() {
   descInputs.forEach((inp) => {
     inp.addEventListener("input", () => {
       currentDescInput = inp;
       searchProducts(inp);
-      const allEmpty=[...descInputs].every(inp => inp.value.trim() =="");
-      if(allEmpty){
+      const allEmpty = [...descInputs].every((inp) => inp.value.trim() == "");
+      if (allEmpty) {
         uploadBtn.classList.add("not-active");
       }
     });
   });
-  
 }
 // let totalQuotes = [];
 // if(sessionStorage.getItem("searchedQuotes")){
@@ -886,90 +877,76 @@ uploadBtn.addEventListener("click", () => {
     selectedFileWrapper.innerHTML = "";
     uploadBtn.classList.add("not-active");
   }
+  quoteStat.classList.remove("pending");
+  quoteStat.classList.add("deleted");
+  quoteStat.textContent ="Deleted";
+  delQuoteBtn.classList.remove("active");
+  undoQuoteBtn.classList.add("active");
+  approveQuoteBtn.classList.add("not-active")
 });
 
 function getSearchedProducts() {
   const newProducts = newQuote.products;
   if (searchedProduct.length > 0) {
+    searchedProduct.forEach((p) => {
+      const existingProduct = newQuote.products.find(
+        (prod) => prod.requested_id === p.requested_id,
+      );
 
-  searchedProduct.forEach((p) => {
-
-    const existingProduct = newQuote.products.find(
-      prod => prod.requested_id === p.requested_id
-    );
-
-    if (existingProduct) {
-
-      existingProduct.qty_requested += Number(p.qty_requested || 0);
-
-      existingProduct.total_cost =
-        existingProduct.qty_requested *
-        existingProduct.selling_price;
-
-    } else {
-
-      let delid = getDelId();
-      let isExists =
-        allQuotes.some(q =>
-          q.products.some(prod => prod.delId === delid)
-        ) ||
-        newQuote.products.some(prod => prod.delId === delid);
-
-      while (isExists) {
-
-        delid = getDelId();
-
-        isExists =
-          allQuotes.some(q =>
-            q.products.some(prod => prod.delId === delid)
+      if (existingProduct) {
+        existingProduct.qty_requested += Number(p.qty_requested || 0);
+        existingProduct.total_cost =
+          existingProduct.qty_requested * existingProduct.selling_price;
+      } else {
+        p.delId = getDelId();
+        newQuote.products.push(p);
+      }
+    });
+  } else {
+    const descs = [];
+    descInputs.forEach((inp) => {
+      if (inp.value.trim() != "") {
+        descs.push(inp.value);
+      }
+    });
+    if (descs.length > 0) {
+      descs.forEach((d) => {
+        const newLine = { ...defaultLine, desc: d, delId: getDelId() };
+        const prods = newQuote.products;
+        let newReqId =
+          Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
+        let isExists =
+          allQuotes.forEach((q) =>
+            [...q.products].some((q) => q.requested_id === "ID" + newReqId),
           ) ||
-          newQuote.products.some(prod => prod.delId === delid);
+          newQuote.products.some(
+            (prod) => prod.requested_id === "ID" + newReqId,
+          );
 
-      }
+        while (isExists) {
+          newReqId =
+            Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
 
-      p.delId = delid;
-
-      newQuote.products.push(p);
+          isExists =
+            [...allQuotes.products].some(
+              (q) => q.requested_id === "ID" + newReqId,
+            ) ||
+            newQuote.products.some(
+              (prod) => prod.requested_id === "ID" + newReqId,
+            );
+        }
+        newLine.requested_id = "ID" + newReqId;
+        newLine.delId = getDelId();
+        newQuote.products.push(newLine);
+      });
     }
-
-  });
-}
-  else{
-    const descs=[];
-    descInputs.forEach(inp =>{
-      if(inp.value.trim() != ""){
-        descs.push(inp.value)
-      }
-    });
-    if(descs.length>0){
-      descs.forEach(d => {
-      const newLine = {...defaultLine,desc: d,delId: getDelId()};
-      const prods=newQuote.products;
-      let newReqId =Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
-      let isExists = allQuotes.forEach(q=>[...q.products].some(q => q.requested_id ===  "ID" + newReqId)) ||
-      newQuote.products.some(prod => prod.requested_id === "ID" + newReqId);
-
-      while (isExists) {
-
-        newReqId =Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
-
-        isExists =[...allQuotes.products].some(q => q.requested_id ===  "ID" + newReqId) ||
-        newQuote.products.some(prod => prod.requested_id === "ID" + newReqId);
-      }
-      newLine.requested_id= "ID" + newReqId;
-      newLine.delId=getDelId();
-      newQuote.products.push(newLine);
-    });
-    }
-
   }
-  searchedProduct=[];
+  searchedProduct = [];
   descInputs.forEach((inp) => (inp.value = ""));
   qtyInputs.forEach((inp) => (inp.value = ""));
   updateQuoteTotals();
   storeQuote();
 }
-
 
 //del file function
 function delFile(event) {
@@ -977,15 +954,21 @@ function delFile(event) {
   fileContainer.remove();
 }
 
-function storeQuote(){
-    let found = false;
-  const allQuotes=JSON.parse(sessionStorage.getItem("quotes"))
-   allQuotes.forEach((q, i) => {
+function storeQuote() {
+  let found = false;
+  const allQuotes = JSON.parse(sessionStorage.getItem("quotes"));
+  allQuotes.forEach((q, i) => {
     if (q.id === newQuote.id) {
       allQuotes[i] = newQuote;
       found = true;
+      if(sessionStorage.getItem('selectedQuote')){
+        const selQuote=JSON.parse(sessionStorage.getItem('selectedQuote'))
+        if(selQuote.id === newQuote.id){
+          sessionStorage.setItem('selectedQuote',JSON.stringify(newQuote))
+        }
+      }
     }
-  })
+  });
   if (!found) {
     allQuotes.push(newQuote);
   }

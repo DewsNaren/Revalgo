@@ -967,9 +967,12 @@ header nav ul li a.new-quote-btn:hover {
   font-size: clamp(10px, 0.63vw, 0.63vw);
   color: #616161;
   cursor: pointer;
+  background-color: transparent;
+  border: none;
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .top-container .filter-wrapper .filter-container .filter-text img {
   width: 15px, 0.989vw, 0.989vw;
+  pointer-events: none;
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .top-container .filter-wrapper .filter-container {
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -1515,6 +1518,15 @@ header nav ul li a.new-quote-btn:hover {
 .dashboard-wrapper .dashboard-body-wrapper.not-active {
   display: none;
 }
+.dashboard-wrapper .copyright-container {
+  display: none;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  font-size: 10px;
+  color: rgba(0, 0, 0, 0.8);
+  width: 100%;
+}
 .dashboard-wrapper.active {
   display: flex;
 }
@@ -1762,6 +1774,7 @@ header nav ul li a.new-quote-btn:hover {
   font-size: clamp(10px, 0.83vw, 0.83vw);
   color: rgba(0, 0, 0, 0.9);
   font-weight: 500;
+  cursor: pointer;
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th:first-of-type {
   width: 2.75vw;
@@ -2366,15 +2379,34 @@ header nav ul li a.new-quote-btn:hover {
     margin: 0;
     size: A4;
   }
+  header .search-wrapper, header nav {
+    display: none;
+  }
   .dashboard-wrapper {
     padding-right: 0;
-    padding: 20px 10px;
+    padding: 20px 15px;
+  }
+  .dashboard-wrapper .dashboard-header-wrapper .header-container {
+    display: none;
+  }
+  .dashboard-wrapper .dashboard-header-wrapper .stats-wrapper {
+    padding-inline: 5px;
+    justify-content: space-between;
   }
   .dashboard-wrapper .dashboard-body-wrapper {
     gap: 0;
   }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container {
     width: 100%;
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container h3 {
+    padding-left: 5px;
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper {
+    padding-top: 0;
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .top-container {
+    display: none;
   }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th {
     font-size: clamp(10px, 0.79vw, 0.79vw);
@@ -2411,9 +2443,12 @@ header nav ul li a.new-quote-btn:hover {
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:last-of-type {
     width: 50px;
   }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody {
+    overflow-x: hidden;
+  }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td {
     font-size: clamp(10px, 0.73vw, 0.73vw);
-    padding: 5px 10px 5px 0;
+    padding: 6px 10px 6px 0;
   }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:first-of-type {
     width: 15px;
@@ -2457,6 +2492,9 @@ header nav ul li a.new-quote-btn:hover {
   }
   .dashboard-wrapper .dashboard-body-wrapper .chart-wrapper {
     display: none;
+  }
+  .dashboard-wrapper .copyright-container {
+    display: flex;
   }
 }
 .popup-overlay {
@@ -4232,7 +4270,7 @@ header nav ul li a.new-quote-btn:hover {
   width: clamp(9px, 0.989vw, 0.989vw);
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper {
-  padding: clamp(8px, 0.79vw, 0.79vw) clamp(12px, 1.304vw, 1.304vw) clamp(15px, 1.57vw, 1.57vw) clamp(10px, 1.05vw, 1.05vw);
+  padding: clamp(8px, 0.79vw, 0.79vw) clamp(10px, 1.05vw, 1.05vw) clamp(15px, 1.57vw, 1.57vw) clamp(10px, 1.05vw, 1.05vw);
   display: flex;
   flex-direction: column;
   min-height: 0;
@@ -4298,7 +4336,9 @@ header nav ul li a.new-quote-btn:hover {
   font-weight: 500;
   line-height: 1;
 }
-
+.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-body .table-row .desc-wrapper {
+  /* dropdown */
+}
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-body .table-row .desc-wrapper .dropdown {
   position: absolute;
   top: 100%;
@@ -4587,31 +4627,6 @@ header nav ul li a.new-quote-btn:hover {
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .list-wrapper .list span {
   cursor: pointer;
   position: relative;
-}
-.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .list-wrapper .list span .acronym-dropdown {
-  position: absolute;
-  bottom: 100%;
-  display: none;
-  width: fit-content;
-  padding: clamp(4px, 0.4vw, 0.4vw) clamp(5px, 0.521vw, 0.521vw);
-  background-color: white;
-  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.23);
-}
-.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .list-wrapper .list span .acronym-dropdown ul {
-  padding-left: 0;
-  list-style-type: none;
-}
-.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .list-wrapper .list span .acronym-dropdown ul li {
-  font-size: clamp(8px, 0.68vw, 0.68vw);
-  color: rgb(21, 71, 135);
-  padding-bottom: clamp(3px, 0.4vw, 0.4vw);
-  white-space: nowrap;
-}
-.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .list-wrapper .list span .acronym-dropdown ul li:last-of-type {
-  padding-bottom: 0;
-}
-.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .list-wrapper .list span .acronym-dropdown.active {
-  display: inline-block;
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .bottom-container p {
   line-height: 1.1;
@@ -5259,6 +5274,36 @@ header nav ul li a.new-quote-btn:hover {
   display: flex;
 }
 
+.minimize-btn {
+  position: fixed;
+  right: calc(clamp(8px, 0.521vw, 0.521vw) * -1);
+  left: 24.9%;
+  bottom: 30%;
+  border-radius: 50%;
+  border: none;
+  background-color: white;
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.23);
+  width: clamp(8px, 1.9vw, 1.9vw);
+  height: clamp(8px, 1.9vw, 1.9vw);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  transition: left 0.5s ease-in;
+}
+.minimize-btn img {
+  padding-left: clamp(3px, 0.4vw, 0.4vw);
+  width: clamp(12px, 1.25vw, 1.25vw);
+}
+.minimize-btn.minimize {
+  left: clamp(20px, 3.4vw, 3.4vw);
+}
+.minimize-btn.maximize {
+  left: 50%;
+}
+.minimize-btn.not-active {
+  display: none;
+}
+
 .row-group {
   transition: transform 0.18s ease, background-color 0.18s ease;
 }
@@ -5270,6 +5315,35 @@ header nav ul li a.new-quote-btn:hover {
   transform: scale(1);
   z-index: 1000;
   position: relative;
+}
+
+.acronym-dropdown {
+  position: fixed;
+  bottom: 100%;
+  display: none;
+  width: fit-content;
+  padding: clamp(4px, 0.4vw, 0.4vw) clamp(5px, 0.521vw, 0.521vw);
+  background-color: white;
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.23);
+  height: max-content;
+}
+.acronym-dropdown ul {
+  padding-left: 0;
+  list-style-type: none;
+  margin-bottom: 0;
+}
+.acronym-dropdown ul li {
+  font-size: clamp(8px, 0.68vw, 0.68vw);
+  color: rgb(21, 71, 135);
+  padding-bottom: clamp(3px, 0.4vw, 0.4vw);
+  white-space: nowrap;
+  cursor: pointer;
+}
+.acronym-dropdown ul li:last-of-type {
+  padding-bottom: 0;
+}
+.acronym-dropdown.active {
+  display: inline-block;
 }
 
 @media screen and (max-width: 1600px) {
@@ -5341,6 +5415,12 @@ header nav ul li a.new-quote-btn:hover {
 .create-quote-wrapper .top-btn-wrapper .back-btn-container {
   display: flex;
   align-items: center;
+  font-size: clamp(11px, 0.89vw, 0.89vw);
+  align-items: center;
+  gap: clamp(7px, 0.79vw, 0.79vw);
+  color: #f73333;
+  font-weight: 500;
+  text-transform: capitalize;
 }
 .create-quote-wrapper .top-btn-wrapper .back-btn-container button {
   background-color: transparent;
@@ -5359,8 +5439,30 @@ header nav ul li a.new-quote-btn:hover {
 .create-quote-wrapper .top-btn-wrapper .back-btn-container .back-create-btn img {
   width: clamp(18px, 1.57vw, 1.57vw);
 }
+.create-quote-wrapper .top-btn-wrapper .back-btn-container .quote-status {
+  font-size: clamp(11px, 0.89vw, 0.89vw);
+  display: none;
+  align-items: center;
+  gap: clamp(7px, 0.79vw, 0.79vw);
+  color: #f73333;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+.create-quote-wrapper .top-btn-wrapper .back-btn-container .quote-status img {
+  width: clamp(18px, 1.57vw, 1.57vw);
+  transform: rotate(180deg);
+}
+.create-quote-wrapper .top-btn-wrapper .back-btn-container .quote-status.approved {
+  color: #3daf28;
+}
+.create-quote-wrapper .top-btn-wrapper .back-btn-container .quote-status.pending {
+  color: #ff7129;
+}
+.create-quote-wrapper .top-btn-wrapper .back-btn-container .quote-status.active {
+  display: flex;
+}
 .create-quote-wrapper .top-btn-wrapper .back-btn-container .del-quote-btn {
-  margin-left: clamp(8px, 0.79vw, 0.79vw);
+  margin-left: clamp(5px, 0.521vw, 0.521vw);
   display: none;
 }
 .create-quote-wrapper .top-btn-wrapper .back-btn-container .del-quote-btn img {
@@ -5381,15 +5483,6 @@ header nav ul li a.new-quote-btn:hover {
 }
 .create-quote-wrapper .top-btn-wrapper .back-btn-container .undo-quote-btn.active {
   display: inline-block;
-}
-.create-quote-wrapper .top-btn-wrapper .back-btn-container {
-  margin-left: clamp(12px, 1.304vw, 1.304vw);
-  font-size: clamp(11px, 0.89vw, 0.89vw);
-  align-items: center;
-  gap: clamp(7px, 0.79vw, 0.79vw);
-  color: #f73333;
-  font-weight: 500;
-  text-transform: capitalize;
 }
 .create-quote-wrapper .top-btn-wrapper .back-btn-container.approved {
   color: #3daf28;
@@ -5431,6 +5524,9 @@ header nav ul li a.new-quote-btn:hover {
 .create-quote-wrapper .top-btn-wrapper .approve-btn-container button.approve-btn.active {
   opacity: 1;
   pointer-events: auto;
+}
+.create-quote-wrapper .top-btn-wrapper .approve-btn-container button.approve-btn.not-active {
+  display: none;
 }
 .create-quote-wrapper .top-btn-wrapper .approve-btn-container.active {
   display: flex;
@@ -5748,7 +5844,7 @@ header nav ul li a.new-quote-btn:hover {
   width: clamp(9px, 0.989vw, 0.989vw);
 }
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper {
-  padding: clamp(8px, 0.79vw, 0.79vw) clamp(12px, 1.304vw, 1.304vw) clamp(15px, 1.57vw, 1.57vw) clamp(10px, 1.05vw, 1.05vw);
+  padding: clamp(8px, 0.79vw, 0.79vw) clamp(10px, 1.05vw, 1.05vw) clamp(15px, 1.57vw, 1.57vw) clamp(10px, 1.05vw, 1.05vw);
   display: flex;
   flex-direction: column;
   min-height: 0;
@@ -6058,6 +6154,9 @@ header nav ul li a.new-quote-btn:hover {
   padding-left: clamp(7px, 0.79vw, 0.79vw);
   margin-bottom: clamp(5px, 1.304vw, 1.304vw);
   position: relative;
+}
+.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .list-wrapper .list span {
+  cursor: pointer;
 }
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .list-wrapper .list span .acronym-dropdown {
   position: absolute;
@@ -7144,11 +7243,38 @@ header nav ul li a.new-quote-btn:hover {
   align-items: flex-start;
   justify-content: space-between;
 }
+.exist-quote-wrapper .top-btn-wrapper .back-btn-container .back-btn-wrapper {
+  display: flex;
+  align-items: center;
+  gap: clamp(7px, 0.79vw, 0.79vw);
+}
 .exist-quote-wrapper .top-btn-wrapper .back-btn-container .back-btn-wrapper button {
   background-color: transparent;
   border: none;
   display: inline-flex;
   align-items: center;
+}
+.exist-quote-wrapper .top-btn-wrapper .back-btn-container .back-btn-wrapper .quote-status {
+  font-size: clamp(11px, 0.89vw, 0.89vw);
+  display: none;
+  align-items: center;
+  gap: clamp(7px, 0.79vw, 0.79vw);
+  color: #f73333;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+.exist-quote-wrapper .top-btn-wrapper .back-btn-container .back-btn-wrapper .quote-status img {
+  width: clamp(18px, 1.57vw, 1.57vw);
+  transform: rotate(180deg);
+}
+.exist-quote-wrapper .top-btn-wrapper .back-btn-container .back-btn-wrapper .quote-status.approved {
+  color: #3daf28;
+}
+.exist-quote-wrapper .top-btn-wrapper .back-btn-container .back-btn-wrapper .quote-status.pending {
+  color: #ff7129;
+}
+.exist-quote-wrapper .top-btn-wrapper .back-btn-container .back-btn-wrapper .quote-status.active {
+  display: flex;
 }
 .exist-quote-wrapper .top-btn-wrapper .back-btn-container .back-btn-wrapper .del-quote-btn {
   display: none;
@@ -7156,7 +7282,6 @@ header nav ul li a.new-quote-btn:hover {
 .exist-quote-wrapper .top-btn-wrapper .back-btn-container .back-btn-wrapper .del-quote-btn img {
   display: block;
   width: clamp(11px, 0.89vw, 0.89vw);
-  margin-left: clamp(5px, 0.521vw, 0.521vw);
 }
 .exist-quote-wrapper .top-btn-wrapper .back-btn-container .back-btn-wrapper .del-quote-btn.active {
   display: inline;
@@ -7227,6 +7352,9 @@ header nav ul li a.new-quote-btn:hover {
 .exist-quote-wrapper .top-btn-wrapper .approve-btn-container button.approve-btn.active {
   opacity: 1;
   pointer-events: auto;
+}
+.exist-quote-wrapper .top-btn-wrapper .approve-btn-container button.approve-btn.not-active {
+  display: none;
 }
 .exist-quote-wrapper .top-btn-wrapper .approve-btn-container.active {
   display: flex;
@@ -7313,6 +7441,19 @@ header nav ul li a.new-quote-btn:hover {
   flex: 1;
   min-height: 0;
 }
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .clear-all-filter-btn {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  text-wrap: nowrap;
+  border: none;
+  background-color: transparent;
+  color: #eb0808;
+  text-align: right;
+  font-size: clamp(9px, 0.79vw, 0.79vw);
+  cursor: pointer;
+  margin-bottom: 5px;
+}
 .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper {
   padding: clamp(6px, 1.05vw, 1.05vw) clamp(10px, 1.05vw, 1.05vw);
   width: clamp(250px, 19.5%, 19.5%);
@@ -7335,6 +7476,24 @@ header nav ul li a.new-quote-btn:hover {
   width: clamp(11px, 1.05vw, 1.05vw);
   cursor: pointer;
   transform: rotate(180deg);
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-header .down-arrow-btn {
+  width: fit-content;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-header .down-arrow-btn::after {
+  display: none;
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-header .down-arrow-btn .down-arrow {
+  width: clamp(11px, 1.05vw, 1.05vw);
+  transform: rotate(180deg);
+  transition: transform 0.2s ease;
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-header .down-arrow-btn.collapsed .down-arrow {
+  transform: rotate(0deg);
 }
 .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container {
   display: flex;
@@ -7363,6 +7522,14 @@ header nav ul li a.new-quote-btn:hover {
 .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container h3.collapsed .plus {
   display: none;
 }
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container h4 {
+  font-size: clamp(11px, 0.79vw, 0.79vw);
+  margin-bottom: 5px;
+  line-height: 1;
+  padding-bottom: clamp(4px, 0.43vw, 0.43vw);
+  color: #343434;
+  margin-left: clamp(4px, 0.43vw, 0.43vw);
+}
 .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .filter-subheader {
   display: flex;
   align-items: center;
@@ -7382,14 +7549,6 @@ header nav ul li a.new-quote-btn:hover {
   font-size: clamp(7px, 0.578vw, 0.578vw);
   color: rgb(21, 71, 135);
   position: relative;
-}
-.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .filter-subheader .control-btn-container button.select-btn::after {
-  content: "";
-  position: absolute;
-  right: calc(-1 * clamp(5px, 0.521vw, 0.521vw));
-  width: 1px;
-  height: 100%;
-  background-color: rgb(21, 71, 135);
 }
 .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .filter-chip-container {
   display: flex;
@@ -7625,6 +7784,9 @@ header nav ul li a.new-quote-btn:hover {
   max-height: 411px;
   overflow: visible;
 }
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper:first-of-type {
+  margin-bottom: clamp(7px, 0.79vw, 0.79vw);
+}
 .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper::-webkit-scrollbar {
   width: 4px;
 }
@@ -7783,6 +7945,7 @@ header nav ul li a.new-quote-btn:hover {
   font-size: clamp(10px, 0.79vw, 0.79vw);
   color: rgba(0, 0, 0, 0.9);
   font-weight: 500;
+  cursor: pointer;
 }
 .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table thead tr th:first-of-type {
   padding-left: clamp(12px, 2.067vw, 2.067vw);
@@ -7952,7 +8115,7 @@ header nav ul li a.new-quote-btn:hover {
   width: clamp(9px, 0.989vw, 0.989vw);
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper {
-  padding: clamp(8px, 0.79vw, 0.79vw) clamp(10px, 1.304vw, 1.304vw) clamp(15px, 1.57vw, 1.57vw) clamp(5px, 0.521vw, 0.521vw);
+  padding: clamp(8px, 0.79vw, 0.79vw) clamp(10px, 1.05vw, 1.05vw) clamp(15px, 1.57vw, 1.57vw) clamp(10px, 1.05vw, 1.05vw);
   display: flex;
   flex-direction: column;
   min-height: 0;
@@ -8260,6 +8423,9 @@ header nav ul li a.new-quote-btn:hover {
   padding-left: clamp(7px, 0.79vw, 0.79vw);
   margin-bottom: clamp(5px, 1.304vw, 1.304vw);
   position: relative;
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .list-wrapper .list span {
+  cursor: pointer;
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .list-wrapper .list span .acronym-dropdown {
   position: absolute;
@@ -9424,6 +9590,8 @@ header nav ul li a.new-quote-btn:hover {
   font-weight: 600;
 }
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .header-wrapper .header-container .refresh-btn {
+  display: flex;
+  align-items: center;
   border: none;
   background-color: transparent;
   cursor: pointer;
@@ -9473,6 +9641,28 @@ header nav ul li a.new-quote-btn:hover {
   width: clamp(11px, 1.05vw, 1.05vw);
   cursor: pointer;
   transform: rotate(180deg);
+  transition: transform 0.2s ease !important;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-header img.collapsed {
+  transform: rotate(0deg) !important;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-header .down-arrow-btn {
+  width: fit-content;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-header .down-arrow-btn::after {
+  display: none;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-header .down-arrow-btn .down-arrow {
+  width: clamp(11px, 1.05vw, 1.05vw);
+  transform: rotate(180deg);
+  transition: transform 0.2s ease;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-header .down-arrow-btn.collapsed .down-arrow {
+  transform: rotate(0deg);
 }
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container {
   display: flex;
@@ -9500,6 +9690,14 @@ header nav ul li a.new-quote-btn:hover {
 }
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container h3.collapsed .plus {
   display: none;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container h4 {
+  font-size: clamp(11px, 0.79vw, 0.79vw);
+  margin-bottom: 5px;
+  line-height: 1;
+  padding-bottom: clamp(4px, 0.43vw, 0.43vw);
+  color: #343434;
+  margin-left: clamp(4px, 0.43vw, 0.43vw);
 }
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .filter-subheader {
   display: flex;
@@ -9685,7 +9883,8 @@ header nav ul li a.new-quote-btn:hover {
   font-size: clamp(13px, 0.89vw, 0.89vw);
   gap: 5px;
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .month-name, .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .year {
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .month-name,
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .year {
   color: black;
 }
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .year {
@@ -9764,6 +9963,9 @@ header nav ul li a.new-quote-btn:hover {
   max-height: 411px;
   overflow: visible;
 }
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper:first-of-type {
+  margin-bottom: clamp(7px, 0.79vw, 0.79vw);
+}
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper::-webkit-scrollbar {
   width: 4px;
 }
@@ -9800,7 +10002,8 @@ header nav ul li a.new-quote-btn:hover {
   font-size: clamp(13px, 0.89vw, 0.89vw);
   gap: 5px;
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .month-name, .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .year {
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .month-name,
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .year {
   color: black;
 }
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .arrow {
@@ -10158,7 +10361,8 @@ header nav ul li a.new-quote-btn:hover {
   gap: 5px;
   align-items: center;
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .pagination-wrapper .pagination button, .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .pagination-wrapper .pagination span {
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .pagination-wrapper .pagination button,
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .pagination-wrapper .pagination span {
   border: none;
   background-color: #f5f5f5;
   color: #616161;
@@ -10169,7 +10373,8 @@ header nav ul li a.new-quote-btn:hover {
   align-items: center;
   justify-content: center;
 }
-.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .pagination-wrapper .pagination button.active, .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .pagination-wrapper .pagination span.active {
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .pagination-wrapper .pagination button.active,
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .pagination-wrapper .pagination span.active {
   background-color: rgb(21, 71, 135);
   color: rgba(255, 255, 255, 0.8);
 }

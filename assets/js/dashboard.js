@@ -13,9 +13,13 @@ async function initializeQuotes() {
   quotes = JSON.parse(sessionStorage.getItem("quotes"));
   filteredQuotes = JSON.parse(sessionStorage.getItem("quotes"));
   filterQuotesByDate(quotes, format(start), format(end));
+  setTimeout(() => {
+    loaderWrapper.classList.add("not-active");
+    dashboardWrapper.classList.add("active");
+  },400)
 }
+ 
 
-initializeQuotes();
 
 //datepicker
 const dateText = document.querySelector(".date-text");
@@ -908,6 +912,7 @@ const filterBtn = quotesContainer.querySelector(".filter-text");
 const filterDropdown = document.querySelector(".filter-dropdown");
 const filterItems = filterDropdown.querySelectorAll("ul li");
 filterBtn.addEventListener("click", () => {
+  console.log(filterBtn)
   filterDropdown.classList.toggle("active");
 });
 
@@ -937,7 +942,11 @@ filterItems.forEach((item) => {
   });
 });
 document.addEventListener("click", (e) => {
-  if (!e.target.contains(filterBtn)) filterDropdown.classList.remove("active");
+  if (!e.target.contains(filterBtn)){
+    if( filterDropdown.classList.contains("active")){
+      filterDropdown.classList.remove("active");
+    }
+  } 
 });
 
 //sort
@@ -1131,12 +1140,16 @@ function renderTrendChart(totalQuotes, filterQuotes, filterItem) {
           stops: [
             [0, "rgb(212, 40, 161)"],
             [0.5, "rgba(184, 71, 199, 0.64)"],
-            [1, "rgba(71, 175, 223, 0.05)"],
+            [1, "rgba(231, 105, 248, 0.05)"],
           ],
         },
         data: totalQuotes,
         marker: {
-          enabled: false,
+          symbol: "circle",
+          fillColor: "#ffffff",
+          lineColor: "rgb(255, 9, 181)",
+          lineWidth: 1,
+          radius: window.innerWidth <= 1400 ? 2 : 3,
           states: {
             hover: { enabled: false, lineWidth: 0, borderWidth: 0 },
             inactive: { opacity: 1 },
@@ -1145,7 +1158,7 @@ function renderTrendChart(totalQuotes, filterQuotes, filterItem) {
       },
       {
         name: filterItem,
-        color: "rgb(73, 180, 255)",
+        color: "#49b4ff",
         fillColor: {
           linearGradient: {
             x1: 0,
@@ -1246,92 +1259,95 @@ function enableModalTrendLegend() {
 
 enableModalTrendLegend();
 
-const accurChart = Highcharts.chart("accuracy-chart", {
-  chart: {
-    type: "gauge",
-    plotBackgroundColor: null,
-    plotBackgroundImage: null,
-    plotBorderWidth: 0,
-    plotShadow: false,
-    height: "80%",
-    spacingBottom: 20,
-    // useHTML:true,
-    styledMode: true,
-    reflow: true,
+let accurChart;
+setTimeout(()=>{
+  accurChart  = Highcharts.chart("accuracy-chart", {
+    chart: {
+      type: "gauge",
+      plotBackgroundColor: null,
+      plotBackgroundImage: null,
+      plotBorderWidth: 0,
+      plotShadow: false,
+      height: "80%",
+      spacingBottom: 20,
+      // useHTML:true,
+      styledMode: true,
+      reflow: true,
 
-    events: {
-      load: function () {
-        drawCustomArc(this);
-      },
-      redraw: function () {
-        drawCustomArc(this);
+      events: {
+        load: function () {
+          drawCustomArc(this);
+        },
+        redraw: function () {
+          drawCustomArc(this);
+        },
       },
     },
-  },
 
-  title: {
-    text: "",
-  },
+    title: {
+      text: "",
+    },
 
-  pane: {
-    startAngle: -90,
-    endAngle: 89.9,
-    background: null,
-    center: ["50%", "75%"],
-    size: "110%",
-  },
+    pane: {
+      startAngle: -90,
+      endAngle: 89.9,
+      background: null,
+      center: ["50%", "75%"],
+      size: "110%",
+    },
 
-  // the value axis
-  yAxis: {
-    min: 0,
-    max: 100,
+    // the value axis
+    yAxis: {
+      min: 0,
+      max: 100,
 
-    tickWidth: 0,
-    minorTickWidth: 0,
-    lineWidth: 0,
-    labels: {
+      tickWidth: 0,
+      minorTickWidth: 0,
+      lineWidth: 0,
+      labels: {
+        enabled: false,
+      },
+    },
+
+    series: [
+      {
+        name: "Accuracy",
+        data: [96.6],
+        dataLabels: {
+          useHTML: true,
+          format: '<div class="accur-label">{y}</div>',
+          borderWidth: 0,
+          y: 25,
+          x: -20,
+          verticalAlign: "bottom",
+        },
+        dial: {
+          radius: "110%",
+          backgroundColor: "#000000",
+          borderColor: "white",
+          borderWidth: 0,
+          // topWidth: 3,
+          baseWidth: sizes.baseWidth,
+          baseLength: "2%",
+          rearLength: "0%",
+        },
+        pivot: {
+          backgroundColor: "white",
+          borderColor: "#000000",
+          borderWidth: 2,
+          radius: sizes.pivotRadius,
+        },
+      },
+    ],
+
+    credits: {
       enabled: false,
     },
-  },
-
-  series: [
-    {
-      name: "Accuracy",
-      data: [96.6],
-      dataLabels: {
-        useHTML: true,
-        format: '<div class="accur-label">{y}</div>',
-        borderWidth: 0,
-        y: 25,
-        x: -20,
-        verticalAlign: "bottom",
-      },
-      dial: {
-        radius: "110%",
-        backgroundColor: "#000000",
-        borderColor: "white",
-        borderWidth: 0,
-        // topWidth: 3,
-        baseWidth: sizes.baseWidth,
-        baseLength: "2%",
-        rearLength: "0%",
-      },
-      pivot: {
-        backgroundColor: "white",
-        borderColor: "#000000",
-        borderWidth: 2,
-        radius: sizes.pivotRadius,
-      },
+    accessibility: {
+      enabled: false,
     },
-  ],
-
-  credits: {
-    enabled: false,
-  },
-  accessibility: {
-    enabled: false,
-  },
-});
+  });
+},400)
 
 function drawCustomArc(chart) {
   if (chart.customGaugeGroup) {
@@ -1497,10 +1513,26 @@ function renderModalTrendChart(totalQuotes, filterQuotes, filterItem) {
       {
         name: "Total",
         color: "#ff09b5",
-        fillColor: "transparent",
+        fillColor: {
+          linearGradient: {
+            x1: 0,
+            y1: 0,
+            x2: 0,
+            y2: 1,
+          },
+          stops: [
+            [0, "rgb(212, 40, 161)"],
+            [0.5, "rgba(184, 71, 199, 0.64)"],
+            [1, "rgba(231, 105, 248, 0.05)"],
+          ],
+        },
         data: totalQuotes,
         marker: {
-          enabled: false,
+          symbol: "circle",
+          fillColor: "#ffffff",
+          lineColor: "rgb(255, 9, 181)",
+          lineWidth: 1,
+          radius: window.innerWidth <= 1400 ? 3 : 4,
           states: {
             hover: { enabled: false, lineWidth: 0, borderWidth: 0 },
             inactive: { opacity: 1 },
@@ -1780,17 +1812,16 @@ window.addEventListener("resize", () => {
 
 function getTrendChartData(dateFilteredQuotes, filterItem) {
   const filterCopy = [...dateFilteredQuotes];
-  const totalQuotes = filterQuoteByStatus(
-    filterCopy.filter((f) => f.status == "pending" || f.status == "approved"),
-  );
-
+  const allQuotes = filterQuoteByStatus(
+    filterCopy.filter((f) => f.status == "pending" || f.status == "approved"));
+  const totalQuotes = filterQuoteByRevenue(filterCopy.filter((f) => f.status == "pending" || f.status == "approved"));
   let filterQuotes;
   if (filterItem != "all") {
     filterQuotes = filterQuoteByStatus(
       filterCopy.filter((f) => f.status == filterItem),
     );
   } else {
-    filterQuotes = totalQuotes;
+    filterQuotes = allQuotes;
   }
 
   const filterLegendtexts = document.querySelectorAll(".approved-legend");
@@ -1815,6 +1846,16 @@ function filterQuoteByStatus(filteredQuote) {
   return monthData;
 }
 
+function filterQuoteByRevenue(filteredQuote) {
+  const monthData = new Array(12).fill(0);
+  filteredQuote.forEach((q) => {
+    const date = parseDate(q.received_date);
+    const monthIndex = date.getMonth();
+    monthData[monthIndex]+=Math.round(parseFloat(q.total_price));
+  });
+  return monthData;
+}
+
 //export function
 const exportBtn = document.querySelector(".export-btn");
 exportBtn.addEventListener("click", () => {
@@ -1823,9 +1864,8 @@ exportBtn.addEventListener("click", () => {
 
 //loader function
 window.addEventListener('load', () => {
-  setTimeout(() => {
-    loaderWrapper.classList.add("not-active");
-    dashboardWrapper.classList.add("active");
-  }, 1500);
+  
+   initializeQuotes();
+
 });
 

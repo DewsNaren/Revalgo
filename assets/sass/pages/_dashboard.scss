@@ -547,6 +547,7 @@
                     }
                     .filter-container{
                         position: relative;
+                        
                         .filter-text{
                             display: flex;
                             align-items: center;
@@ -554,8 +555,11 @@
                             font-size: clamp(10px, $fs-12px, $fs-12px);
                             color: $grey-61;
                             cursor: pointer;
+                            background-color: transparent;
+                            border: none;
                             img{
                                 width: (15px, $fs-19px, $fs-19px);
+                                pointer-events: none;
                             }
                         }
                         border: 1px solid rgba(0,0,0,0.3);
@@ -1225,6 +1229,15 @@
     display: none;
   }
   }
+  .copyright-container{
+    display: none;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-size: 10px;
+    color: $black-80;
+    width: 100%;
+  }
   &.active{
     display: flex;
   }
@@ -1488,6 +1501,7 @@
                                             font-size: clamp(10px, $fs-16px, $fs-16px);
                                             color: $black-90;
                                             font-weight: 500;
+                                            cursor: pointer;
                                         }
 
                                         &:first-of-type {
@@ -2249,18 +2263,41 @@
 
 
 @media print{
+   
     @page {
         margin:  0;
         size: A4;
     }
+     header{
+        .search-wrapper,nav{
+            display: none;
+        }
+    }
     .dashboard-wrapper{
         padding-right: 0;
-        padding: 20px 10px;
+        padding: 20px 15px;
+        .dashboard-header-wrapper{
+            .header-container{
+                display: none;
+            }
+            .stats-wrapper{
+                padding-inline: 5px;
+                justify-content: space-between;
+            }
+        }
         .dashboard-body-wrapper{
             gap: 0;
         .quotes-container{
             width: 100%;
+            // overflow-x: hidden;
+            h3{
+                padding-left: 5px;
+            }
             .table-wrapper{
+                padding-top: 0;
+                .top-container{
+                    display: none;
+                }
                 .quote-table{
                     thead {
                     tr {
@@ -2313,10 +2350,11 @@
         
 
                 tbody{
+                    overflow-x: hidden;
                     tr{
                         td{
                             font-size: clamp(10px, $fs-14px, $fs-14px);
-                            padding:5px 10px 5px 0;
+                            padding:6px 10px 6px 0;
                           
                           &:first-of-type{
                                 width:  15px;
@@ -2376,7 +2414,10 @@
             display: none;
         }
 
-    } 
+        } 
+        .copyright-container{
+            display: flex;
+        }
     } 
   
 }

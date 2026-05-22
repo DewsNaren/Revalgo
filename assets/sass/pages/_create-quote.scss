@@ -16,6 +16,12 @@
         .back-btn-container{
             display: flex;
             align-items: center;
+            font-size:   clamp(11px, $fs-17px, $fs-17px);
+            align-items: center;
+            gap:clamp(7px, $fs-15px, $fs-15px);
+            color: $red-33;
+            font-weight: 500;
+            text-transform: capitalize;
             button{
                 background-color: transparent;
                 border: none;
@@ -34,8 +40,32 @@
                 }
 
             }
+            .quote-status{
+                    // margin-left: clamp(5px, $fs-10px, $fs-10px);
+                    font-size:   clamp(11px, $fs-17px, $fs-17px);
+                    display: none;
+                    align-items: center;
+                    gap:clamp(7px, $fs-15px, $fs-15px);
+                    // color: #61b752;
+                    color: $red-33;
+                    font-weight: 500;
+                    text-transform: capitalize;
+                    img{
+                        width: clamp(18px, $fs-30px, $fs-30px);
+                        transform: rotate(180deg);
+                    }
+                    &.approved{
+                        color:$green-28;
+                    }
+                    &.pending{
+                        color:$orange-29;
+                    }
+                    &.active{
+                        display: flex;
+                    }
+            }
             .del-quote-btn{
-                    margin-left: clamp(8px, $fs-15px, $fs-15px);
+                    margin-left: clamp(5px, $fs-10px, $fs-10px);
                     display: none;
                     img{
                         display: block;
@@ -60,15 +90,8 @@
                     }
                    
                 }
-                    margin-left: clamp(12px, $fs-25px, $fs-25px);
-                    font-size:   clamp(11px, $fs-17px, $fs-17px);
-                    // display: none;
-                    align-items: center;
-                    gap:clamp(7px, $fs-15px, $fs-15px);
-                    // color: #61b752;
-                    color: $red-33;
-                    font-weight: 500;
-                    text-transform: capitalize;
+
+                    
                     
                     &.approved{
                         color:$green-28;
@@ -114,6 +137,9 @@
                     &.active{
                         opacity: 1;
                         pointer-events: auto;
+                    }
+                    &.not-active{
+                      display: none;
                     }
                     
                 }
@@ -452,7 +478,6 @@
                     button{
                         margin-top: 2px;
                         border: none;
-                        
                     }
                     .btn-container{
                         button{
@@ -488,7 +513,7 @@
 
                 }
                 .body-wrapper{
-                   padding: clamp(8px, $fs-15px, $fs-15px) clamp(12px, $fs-25px, $fs-25px) clamp(15px, $fs-30px, $fs-30px) clamp(10px, $fs-20px, $fs-20px);
+                   padding: clamp(8px, $fs-15px, $fs-15px) clamp(10px, $fs-20px, $fs-20px) clamp(15px, $fs-30px, $fs-30px) clamp(10px, $fs-20px, $fs-20px);
                    display: flex;
                    flex-direction: column;
                     min-height: 0;
@@ -843,7 +868,7 @@
                                         margin-bottom: clamp(5px, $fs-25px, $fs-25px);
                                         position: relative;
                                         span{
-                                            // position: relative;
+                                            cursor: pointer;
                                             .acronym-dropdown{
                                                 position: absolute;
                                                 bottom: 100%;

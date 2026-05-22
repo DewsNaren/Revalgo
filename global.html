@@ -136,12 +136,16 @@
             <div class="filter-wrapper">
               <h3 class="filter-header">
                 Filters
-                <img
-                  class="down-arrow"
+                <button class="accordion-button down-arrow-btn"  data-bs-target="#filter-inner-container" data-bs-toggle="collapse" >
+                  <img
+                  class="down-arrow " 
                   src="./assets/images/dashboard/down_arrow_blue.png"
                   alt="down arrow"
                 />
+                </button>
+                
               </h3>
+              <div class="filter-inner-container collapse show" id="filter-inner-container">
               <div class="filter-container">
                 <div class="filter-subheader">
                   <h3
@@ -249,6 +253,30 @@
                   <span class="minus"> - </span> Date Range
                 </h3>
                 <div class="date-outer-wrapper collapse show" id="dateBody">
+                  <h4>Received Date</h4>
+                  <div class="date-wrapper">
+                    <div class="start-container date-container">
+                      <p class="start-label date-label">Start Date</p>
+                      <div class="date-text start-text">
+                        mm/dd/yyyy
+                        <img
+                          src="./assets/images/create_quote/date_range_calendar_icon.png"
+                          alt="date"
+                        />
+                      </div>
+                    </div>
+                    <div class="end-container date-container">
+                      <p class="end-label date-label">End Date</p>
+                      <div class="date-text end-text">
+                        mm/dd/yyyy
+                        <img
+                          src="./assets/images/create_quote/date_range_calendar_icon.png"
+                          alt="date"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <h4>Approved Date</h4>
                   <div class="date-wrapper">
                     <div class="start-container date-container">
                       <p class="start-label date-label">Start Date</p>
@@ -304,6 +332,7 @@
                     </div>
                   </div>
                 </div>
+              </div>
               </div>
             </div>
             <div class="datepicker start-datepicker">

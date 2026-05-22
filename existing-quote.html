@@ -84,7 +84,7 @@
                             <span>Create Quote </span>
                        
                         </button>
-                        
+                        <div class="quote-status"><span class="status approved">Approved</span> </div>
                         <button class="del-quote-btn">
                             <img src="./assets/images/global/delete_icon.png" class="delete-img" alt="delete icon">
                         </button>
@@ -119,8 +119,16 @@
                     </div>
                     
                     <div class="filter-inner-wrapper">
+                       
                         <div class="filter-wrapper">
-                            <h3 class="filter-header">Filters <img class="down-arrow"src="./assets/images/dashboard/down_arrow_blue.png"alt="down arrow"/></h3>
+                             <button type="button" class="clear-all-filter-btn">Clear all</button>
+                            <h3 class="filter-header">
+                                Filters
+                                <button class="accordion-button down-arrow-btn"  data-bs-target="#filter-inner-container" data-bs-toggle="collapse" >
+                                    <img class="down-arrow " src="./assets/images/dashboard/down_arrow_blue.png" alt="down arrow"/>
+                                </button>
+                            </h3>
+                            <div class="filter-inner-container collapse show" id="filter-inner-container">
                             <div class="filter-container">
                                 <div class="filter-subheader">
                                     <h3 class="accordion-button" data-bs-toggle="collapse"data-bs-target="#statusBody">
@@ -128,7 +136,6 @@
                                     </h3>
                                     <div class="control-btn-container">
                                         <button type="button" class="select-all-btn  select-btn">Select All</button>
-                                        <button type="button" class="clear-all-chips-btn">Clear All</button>
                                     </div>
 
                                 </div>
@@ -171,6 +178,18 @@
                             <div class="filter-container ">
                                 <h3 class="accordion-button" data-bs-toggle="collapse"data-bs-target="#dateBody"><span class="plus"> + </span> <span class="minus"> - </span> Date Range</h3>
                                 <div class="date-outer-wrapper collapse show" id="dateBody">
+                                    <h4>Received Date</h4>
+                                    <div class="date-wrapper" >
+                                        <div class="start-container date-container">
+                                            <p class="start-label date-label">Start Date</p>
+                                            <div class="date-text start-text">mm/dd/yyyy <img src="./assets/images/create_quote/date_range_calendar_icon.png" alt="date"></div>
+                                        </div> 
+                                        <div class="end-container date-container">
+                                            <p class="end-label date-label">End Date</p>
+                                            <div class="date-text end-text">mm/dd/yyyy <img src="./assets/images/create_quote/date_range_calendar_icon.png" alt="date"></div>
+                                        </div>
+                                    </div>
+                                    <h4>Approved Date</h4>
                                     <div class="date-wrapper" >
                                         <div class="start-container date-container">
                                             <p class="start-label date-label">Start Date</p>
@@ -201,6 +220,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                             </div>
                         </div>
                         <div class="datepicker start-datepicker filter-datepicker">
@@ -567,133 +587,25 @@
                                                 <p class="list-title">Please find the order below:</p>
                                                 <ul class="list">
                                                     <li>
-                                                        <span class="acronym-item" data-id="1">
-                                                            Inch 
-                                                            <span class="acronym-dropdown" >
-                                                                <ul>
-                                                                    <li>Add Item</li>
-                                                                    <li onclick="openAcronymPopup(this)" >Add Acronym</li>
-                                                                </ul>
-                                                            </span>
-                                                        </span>
-                                                          
-                                                         <span class="acronym-item" data-id="2">
-                                                            pvc 
-                                                            <span class="acronym-dropdown" >
-                                                                <ul>
-                                                                    <li>Add Item</li>
-                                                                    <li onclick="openAcronymPopup(this)" >Add Acronym</li>
-                                                                </ul>
-                                                            </span>
-                                                        </span>
-
-                                                        <span class="acronym-item" data-id="3">
-                                                            conduit 
-                                                            <span class="acronym-dropdown" >
-                                                                <ul>
-                                                                    <li>Add Item</li>
-                                                                    <li onclick="openAcronymPopup(this)" >Add Acronym</li>
-                                                                </ul>
-                                                            </span>
-                                                        </span>
+                                                        <span class="acronym-item" data-id="1">Inch </span> 
+                                                        <span class="acronym-item" data-id="2">pvc </span>
+                                                        <span class="acronym-item" data-id="3">conduit </span>
                                                     </li>
                                                     <li>
-                                                      <span class="acronym-item"  data-id="4">
-                                                            Inch 
-                                                            <span class="acronym-dropdown">
-                                                                <ul>
-                                                                    <li>Add Item</li>
-                                                                    <li onclick="openAcronymPopup(this)" >Add Acronym</li>
-                                                                </ul>
-                                                            </span>
-                                                      </span>
-                                                       <span class="acronym-item" data-id="5">
-                                                            Plastic 
-                                                            <span class="acronym-dropdown" >
-                                                                <ul>
-                                                                    <li>Add Item</li>
-                                                                    <li onclick="openAcronymPopup(this)" >Add Acronym</li>
-                                                                </ul>
-                                                            </span>
-                                                        </span>
-                                                         <span class="acronym-item" data-id="6">
-                                                            Plain 
-                                                            <span class="acronym-dropdown" >
-                                                                <ul>
-                                                                    <li>Add Item</li>
-                                                                    <li onclick="openAcronymPopup(this)" >Add Acronym</li>
-                                                                </ul>
-                                                            </span>
-                                                        </span>
-                                                        <span class="acronym-item" data-id="7">
-                                                            conduit 
-                                                            <span class="acronym-dropdown"  >
-                                                                <ul>
-                                                                    <li>Add Item</li>
-                                                                    <li onclick="openAcronymPopup(this)">Add Acronym</li>
-                                                                </ul>
-                                                            </span>
-                                                        </span>
-                                                        </li>
+                                                      <span class="acronym-item"  data-id="4">Inch </span>
+                                                       <span class="acronym-item" data-id="5"> Plastic </span>
+                                                        <span class="acronym-item" data-id="6">Plain </span>
+                                                        <span class="acronym-item" data-id="7">conduit </span>
+                                                    </li>
                                                     <li>
-                                                        <span class="acronym-item" data-id="8">
-                                                            1-1/2 
-                                                            <span class="acronym-dropdown" >
-                                                                <ul>
-                                                                    <li>Add Item</li>
-                                                                    <li onclick="openAcronymPopup(this)" >Add Acronym</li>
-                                                                </ul>
-                                                            </span>
-                                                        </span>
-                                                        <span class="acronym-item" data-id="9">
-                                                            aluminium
-                                                            <span class="acronym-dropdown" >
-                                                                <ul>
-                                                                    <li>Add Item</li>
-                                                                    <li onclick="openAcronymPopup(this)" >Add Acronym</li>
-                                                                </ul>
-                                                            </span>
-                                                        </span>
-                                                        <span class="acronym-item" data-id="10">
-                                                            conduit
-                                                            <span class="acronym-dropdown" >
-                                                                <ul>
-                                                                    <li>Add Item</li>
-                                                                    <li onclick="openAcronymPopup(this)" >Add Acronym</li>
-                                                                </ul>
-                                                            </span>
-                                                        </span>
-                                                    
+                                                        <span class="acronym-item" data-id="8">2-1/2  </span>
+                                                        <span class="acronym-item" data-id="9">aluminium</span>
+                                                        <span class="acronym-item" data-id="10">conduit</span>
                                                     </li>
                                                     <li> 
-                                                        <span class="acronym-item" data-id="11">
-                                                            2-1/2  
-                                                            <span class="acronym-dropdown" >
-                                                                <ul>
-                                                                    <li>Add Item</li>
-                                                                    <li onclick="openAcronymPopup(this)" >Add Acronym</li>
-                                                                </ul>
-                                                            </span>
-                                                        </span>
-                                                        <span class="acronym-item" data-id="12">
-                                                            aluminium 
-                                                            <span class="acronym-dropdown" >
-                                                                <ul>
-                                                                    <li>Add Item</li>
-                                                                    <li onclick="openAcronymPopup(this)" >Add Acronym</li>
-                                                                </ul>
-                                                            </span>
-                                                        </span>
-                                                        <span class="acronym-item" data-id="13">
-                                                            conduit 
-                                                            <span class="acronym-dropdown">
-                                                                <ul>
-                                                                    <li>Add Item</li>
-                                                                    <li onclick="openAcronymPopup(this)" >Add Acronym</li>
-                                                                </ul>
-                                                            </span>
-                                                        </span>
-
+                                                        <span class="acronym-item" data-id="11">2-1/2  </span>
+                                                        <span class="acronym-item" data-id="12">aluminium </span>
+                                                        <span class="acronym-item" data-id="13">conduit </span>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -705,7 +617,6 @@
                                     </div>
                                       
                                 </div>
-                            <button type="button" class="minimize-btn"><img src="./assets/images/create_quote/prev_arrow_blue.png" alt="prev arrow"></button>
                             <div class="upload-btn-container active">
                                 <button type="button" class="upload-btn">Upload</button>
                             </div>
@@ -802,6 +713,7 @@
                 </div>  
             </div>
         </main>
+        <button type="button" class="minimize-btn not-active"><img src="./assets/images/create_quote/prev_arrow_blue.png" alt="prev arrow"></button>
         <div class="suggest-product-popup">
                 <div class="product-header">
                     <input type="text" class="search-suggest-product" name="search-suggest-product" placeholder="Search" autocomplete="off">
@@ -945,6 +857,12 @@
                                                     </div>
                                             </div>
         </div>
+        <span class="acronym-dropdown" >
+            <ul>
+                <li>Add Item</li>
+                <li onclick="openAcronymPopup(this)" >Add Acronym</li>
+            </ul>
+        </span>
         <div class="popup-overlay">
             <div class="expand-modal popup">
                 <button class="close-modal-btn" onclick="closeExpandPopup()"><img src="./assets/images/global/close_modal.webp" alt="close"></button>

@@ -17,18 +17,43 @@
         justify-content: space-between;
         .back-btn-container{
             .back-btn-wrapper{
+                display: flex;
+                align-items: center;
+                gap:clamp(7px, $fs-15px, $fs-15px);
                 button{
                     background-color: transparent;
                     border: none;
                     display: inline-flex;
                     align-items: center;
                 }
+                .quote-status{
+                    font-size:   clamp(11px, $fs-17px, $fs-17px);
+                    display: none;
+                    align-items: center;
+                    gap:clamp(7px, $fs-15px, $fs-15px);
+                    // color: #61b752;
+                    color: $red-33;
+                    font-weight: 500;
+                    text-transform: capitalize;
+                    img{
+                        width: clamp(18px, $fs-30px, $fs-30px);
+                        transform: rotate(180deg);
+                    }
+                    &.approved{
+                        color:$green-28;
+                    }
+                    &.pending{
+                        color:$orange-29;
+                    }
+                    &.active{
+                        display: flex;
+                    }
+                }
                 .del-quote-btn{
                     display: none;
                     img{
                         display: block;
                         width: clamp(11px, $fs-17px, $fs-17px);
-                        margin-left: clamp(5px, $fs-10px, $fs-10px);
                     }
                     &.active{
                         display: inline;
@@ -46,7 +71,6 @@
                     }
                 }
                 .back-create-btn{
-               
                     display: inline-flex;
                     align-items: center;
                     gap:clamp(5px, $fs-15px, $fs-15px);
@@ -105,6 +129,9 @@
                     &.active{
                         opacity: 1;
                         pointer-events: auto;
+                    }
+                    &.not-active{
+                        display: none;
                     }
                     
                 }
@@ -199,6 +226,19 @@
                 gap:clamp(6px, $fs-12px, $fs-12px);
                 flex: 1;
                 min-height: 0;
+                .clear-all-filter-btn {
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-end;
+                    text-wrap: nowrap;
+                    border: none;
+                    background-color: transparent;
+                    color: $red-08;
+                    text-align: right;
+                    font-size: clamp(9px, $fs-15px, $fs-15px);
+                    cursor: pointer;
+                    margin-bottom: 5px;
+                }
                 .filter-wrapper{
                     padding: clamp(6px, $fs-20px, $fs-20px) clamp(10px, $fs-20px, $fs-20px);
                     width: clamp(250px, 19.5%, 19.5%);
@@ -220,6 +260,28 @@
                             width: clamp(11px, $fs-20px, $fs-20px);
                             cursor: pointer;
                             transform: rotate(180deg);
+                        }
+                        .down-arrow-btn {
+                            width: fit-content;
+                            background: transparent;
+                            border: none;
+                            box-shadow: none;
+                            padding: 0;
+
+                            &::after {
+                                display: none;
+                            }
+                            .down-arrow {
+                                width: clamp(11px, $fs-20px, $fs-20px);
+                                transform: rotate(180deg);
+                                transition: transform 0.2s ease;
+                            }
+
+                            &.collapsed {
+                                .down-arrow {
+                                transform: rotate(0deg);
+                                }
+                            }
                         }
                     }
 
@@ -254,6 +316,14 @@
 
                                 }
                         }
+                        h4 {
+                            font-size: clamp(11px, $fs-15px, $fs-15px);
+                            margin-bottom: 5px;
+                            line-height: 1;
+                            padding-bottom: clamp(4px, $fs-8px, $fs-8px);
+                            color: $grey-34;
+                            margin-left: clamp(4px, $fs-8px, $fs-8px);
+                        }
                         .filter-subheader{
                             display: flex;
                             align-items: center;
@@ -274,15 +344,6 @@
                                     font-size: clamp(7px, $fs-11px, $fs-11px);
                                     color: $blue-87;
                                     position: relative;
-                                    &.select-btn::after{
-                                        content: '';
-                                        position: absolute;
-                                        right: calc(-1 * clamp(5px, $fs-10px, $fs-10px));
-                                        width: 1px;
-                                        height: 100%;
-                                        background-color: $blue-87;
-                                        
-                                    }
                                     
                                 }
                             }
@@ -550,6 +611,9 @@
                                     }
                             
                                 }
+                                &:first-of-type{
+                                    margin-bottom: clamp(7px, $fs-15px, $fs-15px);
+                                }
                             
                             }
                         }
@@ -720,6 +784,7 @@
                                     font-size: clamp(10px, $fs-15px, $fs-15px);
                                     color: $black-90;
                                     font-weight: 500;
+                                    cursor: pointer;
                                 }
 
                                 &:first-of-type{
@@ -926,7 +991,7 @@
 
                 }
                 .body-wrapper{
-                   padding: clamp(8px, $fs-15px, $fs-15px) clamp(10px, $fs-25px, $fs-25px) clamp(15px, $fs-30px, $fs-30px)  clamp(5px, $fs-10px, $fs-10px);
+                   padding: clamp(8px, $fs-15px, $fs-15px) clamp(10px, $fs-20px, $fs-20px) clamp(15px, $fs-30px, $fs-30px)  clamp(10px, $fs-20px, $fs-20px);
                    display: flex;
                    flex-direction: column;
                     min-height: 0;
@@ -1278,7 +1343,7 @@
                                         margin-bottom: clamp(5px, $fs-25px, $fs-25px);
                                         position: relative;
                                         span{
-                                            // position: relative;
+                                            cursor: pointer;
                                             .acronym-dropdown{
                                                 position: absolute;
                                                 bottom: 100%;

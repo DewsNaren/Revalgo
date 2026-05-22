@@ -305,7 +305,7 @@
 
                 }
                 .body-wrapper{
-                   padding: clamp(8px, $fs-15px, $fs-15px) clamp(12px, $fs-25px, $fs-25px) clamp(15px, $fs-30px, $fs-30px) clamp(10px, $fs-20px, $fs-20px);
+                   padding: clamp(8px, $fs-15px, $fs-15px) clamp(10px, $fs-20px, $fs-20px) clamp(15px, $fs-30px, $fs-30px) clamp(10px, $fs-20px, $fs-20px);
                    display: flex;
                    flex-direction: column;
                     min-height: 0;
@@ -703,34 +703,7 @@
                                         span{
                                             cursor: pointer;
                                             position: relative;
-                                            .acronym-dropdown{
-                                                position: absolute;
-                                                bottom: 100%;
-                                                display: none;
-                                                width: fit-content;
-                                                padding:   clamp(4px, $fs-7px, $fs-7px) clamp(5px, $fs-10px, $fs-10px);
-                                                background-color: $white;
-                                                box-shadow: $box-shadow-1;
-
-                                                ul{
-                                                    padding-left: 0;
-                                                    list-style-type: none;
-                                                    li{
-                                                        font-size:  clamp(8px, $fs-13px, $fs-13px);
-                                                        color: $blue-87;
-                                                        padding-bottom: clamp(3px, $fs-7px, $fs-7px);
-                                                        white-space: nowrap;
-                                                        &:last-of-type{
-                                                            padding-bottom: 0;
-                                                        }
-
-                                                    }
-                                                }
-                                                &.active{
-                                                    display: inline-block;
-                                                }
-                                            
-                                            }
+                                       
                                         }
                                     }
 
@@ -1585,14 +1558,43 @@
   &.active{
     display: flex;
   }
+}
+
+.minimize-btn{
+    position: fixed;
+    right: calc(clamp(8px, $fs-10px, $fs-10px)* -1);
+    left: 24.9%;
+    bottom: 30%;
+    border-radius: 50%;
+    border: none;
+    background-color: $white;
+    box-shadow: $box-shadow-1;
+    width: clamp(8px, $fs-36px, $fs-36px);
+    height: clamp(8px, $fs-36px, $fs-36px);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    transition: left 0.5s ease-in;
+    img{
+        padding-left: clamp(3px, $fs-7px, $fs-7px);
+        width: clamp(12px, $fs-24px, $fs-24px);
+    }
+    &.minimize{
+        left: clamp(20px, $fs-65px, $fs-65px);
+        
+    }
+    &.maximize{
+        left:50%;
+    }
+    &.not-active{
+        display: none;
+    }
 
 }
 .row-group{
-
     transition:
     transform .18s ease,
     background-color .18s ease;
-
 }
 
 .row-group.dragging{
@@ -1610,6 +1612,36 @@
     position: relative;
 
 }
+     .acronym-dropdown{
+        position: fixed;
+        bottom: 100%;
+        display: none;
+        width: fit-content;
+        padding:   clamp(4px, $fs-7px, $fs-7px) clamp(5px, $fs-10px, $fs-10px);
+        background-color: $white;
+        box-shadow: $box-shadow-1;
+        height: max-content;
+
+        ul{
+            padding-left: 0;
+            list-style-type: none;
+            margin-bottom: 0;
+            li{
+                font-size:  clamp(8px, $fs-13px, $fs-13px);
+                color: $blue-87;
+                padding-bottom: clamp(3px, $fs-7px, $fs-7px);
+                white-space: nowrap;
+                cursor: pointer;
+                &:last-of-type{
+                    padding-bottom: 0;
+                }
+
+            }
+        }
+        &.active{
+            display: inline-block;
+        }
+    }
 
 
 @media screen and (max-width:1600px){
@@ -1660,6 +1692,7 @@
                                 }
                                 .list{
                                     margin-bottom:  clamp(8px, $fs-16px, $fs-16px);
+                                
                                 }
                             }
                             .bottom-container p:first-of-type {

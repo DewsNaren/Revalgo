@@ -30,45 +30,63 @@ const addAcronymBtn = acronymPopup.querySelector(".add-btn");
 //suggest popup
 function renderSuggestPopup(products) {
   const productsContainer = suggestPopup.querySelector(".products");
-  productsContainer.innerHTML = "";
-
-  if (products.length != 0) {
+  let html = "";
+  if (products.length !== 0) {
     products.forEach((p) => {
-      productsContainer.innerHTML += `
-      <div class="product" data-delid="${p.delId}">
+      html += `<div class="product" data-delid="${p.delId}">
         <div class="detail-container">                                                 
-          <p class="product-id"> <span class="label id">${p.requested_id}</span> <span class="value"> - $${p.selling_price}</span></p>
-          <p class="avil-qty"> <span class="label">Avaliable Qty</span> <span class="value"> ${p.available_qty}</span></p>
-          <p class="score"> <span class="label">Score</span> <span class="value"> ${p.score}%</span></p>
+          <p class="product-id"><span class="label id">${p.requested_id}</span>
+          <span class="value"> - $${p.selling_price}</span></p>
+          <p class="avil-qty"><span class="label">Avaliable Qty</span>
+          <span class="value">${p.available_qty}</span></p>
+
+          <p class="score"><span class="label">Score</span><span class="value">${p.score}%</span></p>
         </div>
-        <p class="desc">${p.desc}</p>
-        </div>
-      `;
+      <p class="desc">${p.desc}</p>
+        </div>`;
     });
   } else {
-    productsContainer.innerHTML = "<p class='not-found'>Data Not Found</p>";
+    html = "<p class='not-found'>Data Not Found</p>";
   }
+
+  productsContainer.innerHTML = html;
+
   SuggestProductClick(productsContainer.querySelectorAll(".product"));
-  searchSuggestPopup();
 }
 
 function searchSuggestPopup() {
-  const searchSuggestInput = suggestPopup.querySelector(
-    ".search-suggest-product",
-  );
+
+  const searchSuggestInput = suggestPopup.querySelector(".search-suggest-product");
 
   searchSuggestInput.addEventListener("input", () => {
+
     const searchValue = searchSuggestInput.value.toLowerCase().trim();
 
-    const filteredProducts = products.filter((p) => {
+    let filteredProducts = products;
+
+    if (currentRow) {
+
+      const reqId =
+        currentRow.querySelector(".requested-id").textContent;
+
+      filteredProducts = filteredProducts.filter(
+        (p) => p.requested_id != reqId
+      );
+    }
+
+    filteredProducts = filteredProducts.filter((p) => {
+
       return (
         p.requested_id.toLowerCase().includes(searchValue) ||
         p.desc.toLowerCase().includes(searchValue)
       );
+
     });
 
     renderSuggestPopup(filteredProducts);
+
   });
+
 }
 
 //close modal
@@ -139,45 +157,58 @@ function renderSupplierPopup(products) {
 
 //sourcing popup function
 function renderSourcingPopup(products) {
-  const productsContainer = sourcingPopup.querySelector(".products");
-  productsContainer.innerHTML = "";
-  if (products.length != 0) {
+
+  const productsContainer =sourcingPopup.querySelector(".products");
+  let html = "";
+  if (products.length !== 0) {
     products.forEach((p) => {
-      productsContainer.innerHTML += `
-        <div class="product" data-delid="${p.delId}">
-            <div class="detail-container">  
-            
-            <p class="product-id"> <span class="label id">${p.requested_id}</span> <span class="${p.stock === "Ns" ? "value stock-value red" : "value stock-value not-active"}">${p.stock}</span></p>                                                              
-            <p class="score"> <span class="label">Score</span> <span class="value"> ${p.score}%</span></p>
-            </div>
-            <p class="desc">${p.desc}</p>
+      html += `<div class="product" data-delid="${p.delId}">
+        <div class="detail-container">
+          <p class="product-id"><span class="label id">${p.requested_id}</span>
+            <span class="${p.stock === "Ns"? "value stock-value red": "value stock-value not-active"}">
+              ${p.stock}</span>
+          </p>
+          <p class="score"><span class="label">Score</span><span class="value">${p.score}%</span></p>
         </div>
-        `;
+        <p class="desc">${p.desc}</p>
+      </div>`;
     });
   } else {
-    productsContainer.innerHTML += "<p class='not-found'>Data Not Found</p>";
+    html = "<p class='not-found'>Data Not Found</p>";
   }
+
+  productsContainer.innerHTML = html;
+
   SourceProductClick(productsContainer.querySelectorAll(".product"));
-  searchSourcingPopup();
+
 }
 
 function searchSourcingPopup() {
-  const searchSourcingInput = sourcingPopup.querySelector(
-    ".search-sourcing-product",
-  );
+  const searchSourcingInput =sourcingPopup.querySelector(".search-sourcing-product");
 
   searchSourcingInput.addEventListener("input", () => {
-    const searchValue = searchSourcingInput.value.toLowerCase().trim();
 
-    const filteredProducts = products.filter((p) => {
+    const searchValue =searchSourcingInput.value.toLowerCase().trim();
+
+    let filteredProducts = products;
+
+    if (currentRow) {
+      const reqId =currentRow.querySelector(".requested-id").textContent;
+      filteredProducts = filteredProducts.filter(p => p.requested_id != reqId);
+    }
+
+    filteredProducts = filteredProducts.filter((p) => {
       return (
         p.requested_id.toLowerCase().includes(searchValue) ||
         p.desc.toLowerCase().includes(searchValue)
       );
+
     });
 
     renderSourcingPopup(filteredProducts);
+
   });
+
 }
 
 //open suggest popup
@@ -185,19 +216,16 @@ let imgRect = "";
 let currentRow = "";
 function openSuggestPopup(event) {
   const reqId=event.target.parentElement.querySelector(".requested-id").textContent;
-  console.log(reqId)
   event.stopPropagation();
   const img = event.target.closest(".down-arrow-img");
   const rect = img.getBoundingClientRect();
   updatePopupPosition(rect, suggestPopup);
   imgRect = rect;
   currentRow = img.closest(".table-row");
-  console.log(currentRow)
   sourcingPopup.classList.remove("active");
   supplierPopup.classList.remove("active");
   suggestPopup.classList.toggle("active");
   const filP=products.filter(p=>p.requested_id != reqId)
-  console.log(filP)
   renderSuggestPopup(filP)
 }
 
@@ -232,12 +260,16 @@ window.addEventListener("resize", updatePopupPosition(imgRect, suggestPopup));
 function openSupplierPopup(event) {
   event.stopPropagation();
   const supplierText = event.target.closest(".supplier-text");
+  const dropDownText=event.target.parentElement.parentElement;
+  const reqId= dropDownText.closest(".table-row").querySelector(".requested-id").textContent;
   const rect = supplierText.getBoundingClientRect();
   updatePopupPosition(rect, supplierPopup);
   currentRow = supplierText.closest(".table-row");
   suggestPopup.classList.remove("active");
   sourcingPopup.classList.remove("active");
   supplierPopup.classList.toggle("active");
+  const filP = products.filter(p => p.requested_id != String(reqId));
+  renderSupplierPopup(filP)
 }
 
 //suggest popup expand btn
@@ -408,13 +440,17 @@ closeSourcingBtn.addEventListener("click", () =>
 function openSourcingPopup(event) {
   event.stopPropagation();
   const sourcing = event.target.closest(".sourcing");
-
+  const reqId=event.target.parentElement.querySelector(".requested-id").textContent;
   const rect = sourcing.getBoundingClientRect();
   updatePopupPosition(rect, sourcingPopup);
   currentRow = sourcing.closest(".table-row");
   suggestPopup.classList.remove("active");
   supplierPopup.classList.remove("active");
   sourcingPopup.classList.toggle("active");
+
+  const filP = products.filter(p => p.requested_id != String(reqId));
+  renderSourcingPopup(filP)
+
 }
 
 function SupplierProductClick(supplierProducts) {
@@ -510,13 +546,18 @@ function saveQuotes(){
   quotes.forEach((q, i) => {
     if (q.id === newQuote.id) {
       newQuote.status="approved";
+      if (newQuote.approved_date=="-") {
+        newQuote.approved_date= `${padZero(new Date().getDate())}-${padZero(new Date().getMonth())}-${padZero(new Date().getFullYear())}`;
+      }
       quotes[i] = newQuote;
+      
       found = true;
     }
   });
 
   if (!found) {
     newQuote.status = "approved";
+    newQuote.approved_date= `${padZero(new Date().getDate())}-${padZero(new Date().getMonth())}-${padZero(new Date().getFullYear())}`,
     quotes.push(newQuote);
   }
   sessionStorage.setItem("quotes", JSON.stringify(quotes));
@@ -721,31 +762,35 @@ const acronymData = {};
 let currentAcronymItem = null;
 
 const acronymItems = document.querySelectorAll(".acronym-item");
+const acronymDropdown=document.querySelector(".acronym-dropdown");
 acronymItems.forEach((item) => {
-  item.addEventListener("click", () => {
-    const itemText = item.childNodes[0].data.trim();
-
+  item.addEventListener("click", (e) => {
+    acronymItems.forEach(item => item.classList.remove("active"))
+    e.stopPropagation();
+    activeItem = item;
+    const itemText = item.textContent.trim();
     acronymText.textContent = itemText;
-
-    const dropdown = item.querySelector(".acronym-dropdown");
-
-    const isActive = dropdown.classList.contains("active");
-    acronymItems.forEach((item) => {
-      const dropdown = item.querySelector(".acronym-dropdown");
-      dropdown.classList.remove("active");
-    });
-
-    if (!isActive) {
-      dropdown.classList.add("active");
+    item.classList.add("active")
+    const isActive = acronymDropdown.classList.contains("active");
+    acronymDropdown.classList.remove("active");
+    if (!isActive || activeItem !== item) {
+      acronymDropdown.classList.add("active");
+      const rect = item.getBoundingClientRect();
+      acronymDropdown.style.top =`${rect.top + window.scrollY - acronymDropdown.offsetHeight}px`;
+      acronymDropdown.style.left = `${rect.left + rect.width+ window.scrollX}px`;
     }
   });
 });
 
+document.addEventListener("click", () => {
+  acronymDropdown.classList.remove("active");
+});
 function openAcronymPopup(el) {
   popupOverlay.classList.add("active");
   acronymPopup.classList.add("active");
-
-  currentAcronymItem = el.closest(".acronym-item");
+  console.log(acronymItems)
+  currentAcronymItem = [...acronymItems].find(ac=>ac.classList.contains("active"));
+console.log(currentAcronymItem)
   const key = getAcronymKey(currentAcronymItem);
   acronymChipContainer.innerHTML = "";
 

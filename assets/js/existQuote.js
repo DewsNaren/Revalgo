@@ -22,16 +22,18 @@ const addPopup = document.querySelector(".add-popup");
 const addTable = addPopup.querySelector(".add-table");
 const addLineBtns = addTable.querySelectorAll(".add-line-btn");
 const canceladdpopupBtn = addPopup.querySelector(".cancel-btn");
-const delQuoteBtn=document.querySelector(".del-quote-btn");
+const delQuoteBtn = document.querySelector(".del-quote-btn");
 const undoQuoteBtn = document.querySelector(".undo-quote-btn");
-const approveBtnContainer=document.querySelector(".approve-btn-container");
-const loaderWrapper=document.querySelector(".loader-wrapper");
+const approveBtnContainer = document.querySelector(".approve-btn-container");
+const loaderWrapper = document.querySelector(".loader-wrapper");
 const leftWrapper = quoteOrderWrapper.querySelector(".left-wrapper");
 const uploadBtnContainer = leftWrapper.querySelector(".upload-btn-container");
 const leftTableWrapper = leftWrapper.querySelector(".table-wrapper");
 const descInputs = leftTableWrapper.querySelectorAll(".desc-input");
 const qtyInputs = leftTableWrapper.querySelectorAll(".qty-input");
-
+const CreateBtn = document.querySelector(".back-create-btn");
+const quoteStat = existQuoteWrapper.querySelector(".quote-status");
+const minimizeBtn=document.querySelector(".minimize-btn");
 const existFilterWrapper = document.querySelector(
   ".exist-quote-filter-wrapper",
 );
@@ -181,7 +183,6 @@ function createDatepicker(datePicker) {
         datePicker.classList.remove("active");
 
         getSelectedDate(datePicker);
-        // console.log(startDate)
       });
 
       datesContainer.appendChild(btn);
@@ -388,15 +389,21 @@ formDateText.addEventListener("click", () => {
 });
 
 document.addEventListener("click", (e) => {
-  const dp = document.querySelector(".filter-datepicker.active");
+  const dp = document.querySelector(".datepicker.active");
+
   if (!dp) return;
 
   const trigger = dp._trigger;
 
-  if (!trigger.contains(e.target) && !dp.contains(e.target)) {
+  if (!trigger ||(!trigger.contains(e.target) && !dp.contains(e.target))) {
     dp.classList.remove("active");
-    dateTexts.forEach((text) => text.classList.remove("active"));
-    dp.querySelector(".datepicker-calendar").classList.remove("not-active");
+
+    dateTexts.forEach((text) =>
+      text.classList.remove("active")
+    );
+
+    dp.querySelector(".datepicker-calendar")
+      .classList.remove("not-active");
   }
 });
 
@@ -453,7 +460,7 @@ let totalQuotes = [];
 let filteredData = [];
 
 const selectAllChipsBtn = document.querySelector(".select-all-btn");
-const clearAllChipsBtn = document.querySelector(".clear-all-chips-btn");
+const clearAllFilterBtn = document.querySelector(".clear-all-filter-btn");
 const filterChipBtns = document.querySelectorAll(".filter-chip-btn");
 
 const statusContainer = document.querySelector(".status-container");
@@ -543,12 +550,34 @@ selectAllChipsBtn.addEventListener("click", () => {
   statusFilter();
 });
 
-clearAllChipsBtn.addEventListener("click", () => {
-  const filterChipBtns = document.querySelectorAll(".filter-chip-btn");
-  filterChipBtns.forEach((btn) => btn.classList.remove("active"));
-  statusFilter();
+clearAllFilterBtn.addEventListener("click", () => {
+  resetFilters();
 });
 
+function resetFilters() {
+  const filterChipBtns = document.querySelectorAll(".filter-chip-btn");
+  // statusContainer.classList.remove("active");
+  filterChipBtns.forEach((btn) => btn.classList.remove("active"));
+  const nameInputs = document.querySelectorAll(".customer-filter input");
+  const modeInputs = document.querySelectorAll(".mode-filter input");
+  const startDate = document.querySelector(".start-text").childNodes[0];
+  const endDate = document.querySelector(".end-text").childNodes[0];
+  // searchInput.value = "";
+  searchCustomerInput.value = "";
+  startDate.textContent = "mm/dd/yyyy";
+
+  endDate.textContent = "mm/dd/yyyy";
+
+  updateDateFilter("05/01/2025", "04/30/2026");
+
+  nameInputs.forEach((inp) => (inp.checked = false));
+
+  modeInputs.forEach((inp) => (inp.checked = false));
+
+  filteredData = [...totalQuotes];
+  renderFilterTable(filteredData);
+
+}
 function enableFilterChipClick(filterChipBtns) {
   filterChipBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -749,7 +778,6 @@ tabHeaderSpans.forEach((sp) => {
   sp.addEventListener("click", () => {
     const filteredCopy = [...filteredData];
     const sortItem = sp.dataset.sort;
-    console.log(sortItem);
     if (isAscending) {
       if (sortItem == "id") {
         filteredData = filteredCopy.sort((a, b) => a.id - b.id);
@@ -910,7 +938,6 @@ function selectAllItems() {
     const prodId = tr.querySelector(".prod-id").textContent.trim();
     selectedProdId.push(prodId);
   });
-  console.log(selectedProdId);
 }
 
 cancelSelectedBtn.addEventListener("click", () => {
@@ -922,13 +949,16 @@ let selectedProdId = [];
 
 //input checked function for selected quote
 function clickCheckInput(tBody) {
+  const chkAllInput=selectedTable.querySelector(".select-all-items")
   const checkInputs = tBody.querySelectorAll("tr td input[type='checkbox']");
   checkInputs.forEach((inp) => {
     inp.addEventListener("change", () => {
       const isChecked = [...checkInputs].some((input) => input.checked == true);
+      const isAllChecked = [...checkInputs].every((input) => input.checked == true);
+     
       if (isChecked) importBtn.classList.add("active");
       else importBtn.classList.remove("active");
-
+      chkAllInput.checked=isAllChecked;
       selectedProdId = [];
       checkInputs.forEach((input) => {
         if (input.checked) {
@@ -937,7 +967,6 @@ function clickCheckInput(tBody) {
           selectedProdId.push(prodId);
         }
       });
-      console.log(selectedProdId);
     });
   });
 }
@@ -961,7 +990,9 @@ importBtn.addEventListener("click", () => {
       selectedProdId.includes(p.requested_id),
     );
     newQuote = { ...selectedQuote };
-    newQuote.status="deleted"
+    newQuote.status = "pending";
+    newQuote.received_date=`${padZero(new Date().getDate())}-${padZero(new Date().getMonth())}-${padZero(new Date().getFullYear())}`;
+    newQuote.approved_date="-",
     newQuote.products = filProds;
     newQuote.id = newId;
     newQuote.total_price = selectedQuote.products
@@ -972,25 +1003,46 @@ importBtn.addEventListener("click", () => {
     closeModal();
     selectedTableCheckInputs.forEach((inp) => (inp.checked = false));
     existFilterWrapper.classList.remove("active");
+    minimizeBtn.classList.remove("not-active");
     quoteOrderWrapper.classList.add("active");
     approveBtnContainer.classList.add("active");
     sessionStorage.setItem("newQuote", JSON.stringify(newQuote));
     renderQuickInfo(newQuote);
     updatenewQuoteId(newQuote);
     renderDisplayTable(newQuote);
+    quoteStat.classList.add("active")
+    quoteStat.classList.add("pending");
+    quoteStat.textContent ="Pending";
   }
 });
 
 function updatenewQuoteId(newQuote) {
   CreateBtn.querySelector("span").textContent = `#${newQuote.id}`;
-  delQuoteBtn.classList.add('active')
+  delQuoteBtn.classList.add("active");
 }
+
+CreateBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  if(newQuote.length>0){
+    updateQuickInfoData();
+    updateQuoteTotals();
+    updateNewQuoteData();
+    newQuote.status = "pending";
+    storeQuote();
+  }
+  window.location.href = "./dashboard.html";
+});
 
 delQuoteBtn.addEventListener("click", () => {
   quickOrderWrapper.classList.add("not-active");
-  delQuoteBtn.classList.remove("active")
+  delQuoteBtn.classList.remove("active");
   undoQuoteBtn.classList.add("active");
+  approveQuoteBtn.classList.remove("active");
+  approveQuoteBtn.classList.add("not-active");
+  quoteStat.classList.remove("pending", "approved");
   newQuote.status = "deleted";
+  quoteStat.classList.add(`${newQuote.status}`);
+  quoteStat.textContent = `${newQuote.status}`;
   updateQuoteTotals();
   updateNewQuoteData();
   storeQuote();
@@ -999,12 +1051,17 @@ undoQuoteBtn.addEventListener("click", () => {
   quickOrderWrapper.classList.remove("not-active");
   undoQuoteBtn.classList.remove("active");
   delQuoteBtn.classList.add("active");
+  approveQuoteBtn.classList.remove("not-active");
+  approveQuoteBtn.classList.add("active");
   newQuote.status = "pending";
+  quoteStat.classList.remove(`deleted`);
+  quoteStat.classList.add(`${newQuote.status}`);
+  quoteStat.textContent = `${newQuote.status}`;
   storeQuote();
 });
 
 //render quote data
-const CreateBtn = document.querySelector(".back-create-btn");
+
 const oldQuoteText = document.querySelector(".old-quote-id");
 const quickInfoWrapper = quoteOrderWrapper.querySelector(".quick-info-wrapper");
 const displayTable = quoteOrderWrapper.querySelector(".display-table");
@@ -1087,7 +1144,51 @@ function editQuoteInfo(quoteInfoWrap) {
           container.classList.add("active");
         }
       });
+      updateFormData(quoteInfoWrap, editItem);
     });
+  });
+}
+
+function updateFormData(quoteInfoWrap, editItem) {
+  // console.log(editItem)
+  const wrapper = document.querySelector(`.${editItem}_text`);
+
+  formContainers.forEach((container) => {
+    if (container.classList.contains(editItem)) {
+      if (editItem === "bill_to" || editItem == "ship_to") {
+        const inp = container.querySelector("input[name='name']");
+        const textarea = container.querySelector("textarea[name='address']");
+        if (inp) {
+          inp.value = wrapper.querySelector(".name").textContent;
+        }
+        if (textarea) {
+          const addrText = wrapper.querySelector(".address").innerHTML;
+          textarea.value = addrText.replace("<br>", "\n");
+        }
+      } else if (editItem == "deleivery_date") {
+        const dateText = container.querySelector(".date-text");
+        const datePicker = container.querySelector(".datepicker");
+        const minDate = new Date(2025, 4, 1);
+        const maxDate = new Date(2026, 3, 30);
+        const [day, month, year] = wrapper.textContent.split("-");
+        const newSelectedDate = new Date(year, month - 1, day);
+        dateText.textContent = wrapper.textContent.replaceAll("-", "/");
+        if (newSelectedDate >= minDate && newSelectedDate <= maxDate) {
+          selectedDate = newSelectedDate;
+          current = new Date(
+            newSelectedDate.getFullYear(),
+            newSelectedDate.getMonth(),
+            1,
+          );
+          createDatepicker(datePicker);
+          const inp = container.querySelector("input");
+          inp.value = `${year}-${month}-${day}`;
+        }
+      } else {
+        const inp = container.querySelector("input");
+        inp.value = wrapper.textContent;
+      }
+    }
   });
 }
 
@@ -1175,6 +1276,8 @@ function changeQuickInfo(inp, con) {
         errs.forEach((err) => err.classList.remove("active"));
       }
     }
+    updateQuickInfoData();
+    storeQuote();
   });
 }
 
@@ -1219,7 +1322,7 @@ function renderDisplayTable(newQuote) {
       </p>
       <p><input type="text" value="${p.qty_requested}" name="qty-requested"></p>
       <p>
-        <span class="title-text">${p.company_name?p.company_name:"Mjhsjhs"}</span>
+        <span class="title-text">${p.title ? p.title : "Mjhsjhs"}</span>
         <span class="dropdown-text">
           <img src="./assets/images/global/down_arrow.png" alt="down-arrow" class="down-arrow-img" onclick=openSuggestPopup(event)> <span class="requested-id">${p.requested_id}</span> - 
           <span class="detail" onclick="enableSourceText(event)">tydlx4ypi6</span> - 
@@ -1239,7 +1342,7 @@ function renderDisplayTable(newQuote) {
       <p> <span class="available-qty">${p.available_qty}</span></p>
       <p><span>$<input type="text" value="${p.unit_cost}" name="cost"></span></p>
       <p><span><input type="text" value="${p.margin}" name="margin">%</span></p>
-      <p><span class="selling-price">${p.selling_price}</span></p>
+      <p><span class="selling-price">$${p.selling_price}</span></p>
       <p><span class="total-cost">$${p.total_cost.toFixed(2)}</span></p>
       <p>
         <button type="button" class="delete-line-btn active" onclick=delRow(event)><img src="./assets/images/global/delete_icon.png" alt="delete"></button>
@@ -1257,7 +1360,7 @@ function renderDisplayTable(newQuote) {
 
         <div class="desc-container">
           <h3>Description</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+          <p>${p.desc ? p.desc : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."}</p>
         </div>
       </div>
 
@@ -1338,18 +1441,25 @@ function editTableData(bodyWrap) {
   tableRows.forEach((row) => {
     const qtyInp = row.querySelector('input[name="qty-requested"]');
 
+    const availQty=row.querySelector('.available-qty').textContent;
+
     const costInp = row.querySelector('input[name="cost"]');
 
     const marginInp = row.querySelector('input[name="margin"]');
 
-    const sellingPriceEl = row.children[8].querySelector("span");
+    const sellingPriceEl = row.querySelector(".selling-price");
 
-    const totalPriceEl = row.children[9].querySelector("span");
+    const totalPriceEl = row.querySelector(".total-cost");
 
     const delId = row.querySelector(".del-id").textContent;
 
     function updatePrices() {
-      const qty = parseFloat(qtyInp.value) || 0;
+      let qty = parseFloat(qtyInp.value) || 0;
+
+      if (qty > Number(availQty)) {
+        qty = Number(availQty);
+        qtyInp.value = availQty;
+      }
 
       const cost = parseFloat(costInp.value) || 0;
 
@@ -1359,7 +1469,7 @@ function editTableData(bodyWrap) {
 
       const totalPrice = qty * sellingPrice;
 
-      sellingPriceEl.textContent = sellingPrice.toFixed(2);
+      sellingPriceEl.textContent = `$${sellingPrice.toFixed(2)}`;
 
       totalPriceEl.textContent = `$${totalPrice.toLocaleString("en-US", {
         minimumFractionDigits: 2,
@@ -1379,6 +1489,7 @@ function editTableData(bodyWrap) {
         product.total_cost = Number(totalPrice.toFixed(2));
       }
       updateQuoteTotals();
+      storeQuote();
     }
 
     [qtyInp, costInp, marginInp].forEach((inp) => {
@@ -1402,21 +1513,27 @@ function enableDrag(bodyWrap) {
 
   let canDrag = false;
 
-  groups.forEach((group) => {
+  groups.forEach((group, index) => {
+    // STORE ORIGINAL PRODUCT INDEX
+    group.dataset.index = index;
+
     const row = group.querySelector(".table-row");
 
     const handle = row.querySelector(".drag-handle");
 
     group.draggable = true;
 
+    // ENABLE DRAG
     handle.addEventListener("mousedown", () => {
       canDrag = true;
     });
 
+    // DISABLE DRAG
     document.addEventListener("mouseup", () => {
       canDrag = false;
     });
 
+    // START
     group.addEventListener("dragstart", (e) => {
       if (!canDrag) {
         e.preventDefault();
@@ -1431,14 +1548,19 @@ function enableDrag(bodyWrap) {
       });
     });
 
+    // END
     group.addEventListener("dragend", () => {
       group.classList.remove("dragging");
 
       draggedGroup = null;
 
       updateLineNumbers(bodyWrap);
+
+      // UPDATE PRODUCTS ORDER
+      updateProductsOrder(bodyWrap);
     });
 
+    // LIVE SHIFTING
     group.addEventListener("dragover", (e) => {
       e.preventDefault();
 
@@ -1448,9 +1570,13 @@ function enableDrag(bodyWrap) {
 
       const offset = e.clientY - rect.top;
 
+      // TOP HALF
       if (offset < rect.height / 2) {
         bodyWrap.insertBefore(draggedGroup, group);
-      } else {
+      }
+
+      // BOTTOM HALF
+      else {
         bodyWrap.insertBefore(draggedGroup, group.nextSibling);
       }
     });
@@ -1463,6 +1589,26 @@ function updateLineNumbers() {
   tableRows.forEach((row, index) => {
     row.querySelector(".line-no").textContent = index + 1;
   });
+}
+
+function updateProductsOrder(bodyWrap) {
+  const groups = bodyWrap.querySelectorAll(".row-group");
+
+  const reorderedProducts = [];
+
+  groups.forEach((group) => {
+    const originalIndex = Number(group.dataset.index);
+
+    reorderedProducts.push(newQuote.products[originalIndex]);
+  });
+
+  newQuote.products = reorderedProducts;
+
+  groups.forEach((group, index) => {
+    group.dataset.index = index;
+  });
+
+  storeQuote();
 }
 
 //check if it is deleted line
@@ -1484,14 +1630,3 @@ function checkDeleted(bodyWrap) {
     }
   });
 }
-
-
-
-
-
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    loaderWrapper.classList.add("not-active");
-    existQuoteWrapper.classList.add("active");
-  }, 1500);
-});

@@ -18,14 +18,18 @@ const approveQuoteBtn = document.querySelector(".approve-btn");
 const successPopup = document.querySelector(".success-popup");
 const successidText = successPopup.querySelector(".text .id");
 const confirmSuccessBtn = successPopup.querySelector(".ok-btn");
-const approveBtnContainer=document.querySelector(".approve-btn-container");
+const approveBtnContainer = document.querySelector(".approve-btn-container");
 const createInpWrapper = document.querySelector(".create-input-wrapper");
 const quoteOrderWrapper = document.querySelector(".quick-order-wrapper");
 const delQuoteBtn = document.querySelector(".del-quote-btn");
 const undoQuoteBtn = document.querySelector(".undo-quote-btn");
-const loaderWrapper=document.querySelector(".loader-wrapper");
+const loaderWrapper = document.querySelector(".loader-wrapper");
+const quoteStat = createQuoteWrapper.querySelector(".quote-status");
+const minimizeBtn=document.querySelector(".minimize-btn");
 
-
+if (sessionStorage.getItem("selectedQuote")) {
+  sessionStorage.removeItem("selectedQuote");
+}
 //modal
 const quickContentWrapper = document.querySelector(".quick-content-wrapper");
 const popups = document.querySelectorAll(".popup");
@@ -354,9 +358,9 @@ let newQuote = {
   name: `${loginDetails ? loginDetails.username : "ram"}`,
   number:
   Math.floor(Math.random() * (99999999999 - 10000000000 + 1)) + 10000000000,
-  received_date: formatDate(receivedDate),
-  approved_date: formatDate(approvedDate),
-  status: "deleted",
+  received_date: `${padZero(new Date().getDate())}-${padZero(new Date().getMonth())}-${padZero(new Date().getFullYear())}`,
+  approved_date:"-",
+  status: "pending",
   total_line_no: 0,
   total_price: "0",
   buyer: "Ondricka-Ankunding",
@@ -625,11 +629,14 @@ function validateQuoteId(inp) {
       newQuote.id = Number(createInput.value);
       createInput.value = "";
       err.textContent = "";
-
+      quoteStat.classList.add("active")
+      quoteStat.classList.add("pending");
+      quoteStat.textContent ="Pending";
       createInpWrapper.classList.remove("active");
       quoteOrderWrapper.classList.add("active");
       approveBtnContainer.classList.add("active");
       delQuoteBtn.classList.add("active");
+      minimizeBtn.classList.remove("not-active")
       renderQuickInfo(newQuote);
     }
   }
@@ -650,15 +657,26 @@ undoQuoteBtn.addEventListener("click", () => {
   quickOrderWrapper.classList.remove("not-active");
   undoQuoteBtn.classList.remove("active");
   delQuoteBtn.classList.add("active");
+  approveQuoteBtn.classList.remove("not-active");
+  approveQuoteBtn.classList.add("active");
   newQuote.status = "pending";
+  newQuote.received_date=`${new Date().getDate()}-${new Date().getMonth()}-${new Date().getFullYear()}`;
+  quoteStat.classList.remove(`deleted`);
+  quoteStat.classList.add(`${newQuote.status}`);
+  quoteStat.textContent = `${newQuote.status}`;
   storeQuote();
 });
 
 delQuoteBtn.addEventListener("click", () => {
   quickOrderWrapper.classList.add("not-active");
-  delQuoteBtn.classList.remove("active")
+  delQuoteBtn.classList.remove("active");
   undoQuoteBtn.classList.add("active");
+  quoteStat.classList.remove("pending", "approved");
   newQuote.status = "deleted";
+  quoteStat.classList.add(`${newQuote.status}`);
+  quoteStat.textContent = `${newQuote.status}`;
+  approveQuoteBtn.classList.remove("active");
+  approveQuoteBtn.classList.add("not-active");
   updateQuoteTotals();
   updateNewQuoteData();
   storeQuote();
@@ -742,7 +760,51 @@ function editQuoteInfo(quoteInfoWrap) {
           container.classList.add("active");
         }
       });
+      updateFormData(quoteInfoWrap, editItem);
     });
+  });
+}
+
+function updateFormData(quoteInfoWrap, editItem) {
+  // console.log(editItem)
+  const wrapper = document.querySelector(`.${editItem}_text`);
+
+  formContainers.forEach((container) => {
+    if (container.classList.contains(editItem)) {
+      if (editItem === "bill_to" || editItem == "ship_to") {
+        const inp = container.querySelector("input[name='name']");
+        const textarea = container.querySelector("textarea[name='address']");
+        if (inp) {
+          inp.value = wrapper.querySelector(".name").textContent;
+        }
+        if (textarea) {
+          const addrText = wrapper.querySelector(".address").innerHTML;
+          textarea.value = addrText.replace("<br>", "\n");
+        }
+      } else if (editItem == "deleivery_date") {
+        const dateText = container.querySelector(".date-text");
+        const datePicker = container.querySelector(".datepicker");
+        const minDate = new Date(2025, 4, 1);
+        const maxDate = new Date(2026, 3, 30);
+        const [day, month, year] = wrapper.textContent.split("-");
+        const newSelectedDate = new Date(year, month - 1, day);
+        dateText.textContent = wrapper.textContent.replaceAll("-", "/");
+        if (newSelectedDate >= minDate && newSelectedDate <= maxDate) {
+          selectedDate = newSelectedDate;
+          current = new Date(
+            newSelectedDate.getFullYear(),
+            newSelectedDate.getMonth(),
+            1,
+          );
+          createDatepicker(datePicker);
+          const inp = container.querySelector("input");
+          inp.value = `${year}-${month}-${day}`;
+        }
+      } else {
+        const inp = container.querySelector("input");
+        inp.value = wrapper.textContent;
+      }
+    }
   });
 }
 
@@ -829,7 +891,8 @@ function changeQuickInfo(inp, con) {
       }
     }
   });
-  // closeModal()
+  updateQuickInfoData();
+  storeQuote();
 }
 
 formContainers.forEach((container) => {
@@ -870,9 +933,9 @@ function renderDisplayTable(newQuote) {
       <p><input type="checkbox" class="check-line-input" onclick="enableDeleteAllBtn()"></p>
       <p><span class="line-no">${i + 1}</span>
       </p>
-      <p><input type="text" value="${p.qty_requested}" name="qty-requested"></p>
+      <p><input type="text" value="${p.qty_requested}" name="qty-requested" autocomplete="off"></p>
       <p>
-        <span class="title-text">${p.company_name?p.company_name:"Mjhsjhs"}</span>
+        <span class="title-text">${p.title ? p.title : "Mjhsjhs"}</span>
         <span class="dropdown-text">
           <img src="./assets/images/global/down_arrow.png" alt="down-arrow" class="down-arrow-img" onclick=openSuggestPopup(event)> <span class="requested-id">${p.requested_id}</span> - 
           <span class="detail" onclick="enableSourceText(event)">tydlx4ypi6</span> - 
@@ -911,7 +974,7 @@ function renderDisplayTable(newQuote) {
 
         <div class="desc-container">
           <h3>Description</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+          <p>${p.desc ? p.desc : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."}</p>
         </div>
       </div>
 
@@ -992,19 +1055,24 @@ function editTableData(bodyWrap) {
   tableRows.forEach((row) => {
     const qtyInp = row.querySelector('input[name="qty-requested"]');
 
+    const availQty=row.querySelector('.available-qty').textContent;
+
     const costInp = row.querySelector('input[name="cost"]');
 
     const marginInp = row.querySelector('input[name="margin"]');
 
-    const sellingPriceEl = row.children[8].querySelector("span");
+    const sellingPriceEl = row.querySelector(".selling-price");
 
-    const totalPriceEl = row.children[9].querySelector("span");
+    const totalPriceEl = row.querySelector(".total-cost");
 
     const delId = row.querySelector(".del-id").textContent;
 
     function updatePrices() {
-      const qty = parseFloat(qtyInp.value) || 0;
-
+      let qty = parseFloat(qtyInp.value) || 0;
+      if (qty > Number(availQty)) {
+        qty = Number(availQty);
+        qtyInp.value = availQty;
+      }
       const cost = parseFloat(costInp.value) || 0;
 
       const margin = parseFloat(marginInp.value) || 0;
@@ -1015,7 +1083,7 @@ function editTableData(bodyWrap) {
       // total = qty * selling
       const totalPrice = qty * sellingPrice;
 
-      sellingPriceEl.textContent = sellingPrice.toFixed(2);
+      sellingPriceEl.textContent = `$${sellingPrice.toFixed(2)}`;
 
       totalPriceEl.textContent = `$${totalPrice.toLocaleString("en-US", {
         minimumFractionDigits: 2,
@@ -1036,6 +1104,7 @@ function editTableData(bodyWrap) {
         product.total_cost = Number(totalPrice.toFixed(2));
       }
       updateQuoteTotals();
+      storeQuote();
     }
 
     [qtyInp, costInp, marginInp].forEach((inp) => {
@@ -1059,7 +1128,10 @@ function enableDrag(bodyWrap) {
 
   let canDrag = false;
 
-  groups.forEach((group) => {
+  groups.forEach((group, index) => {
+    // STORE ORIGINAL PRODUCT INDEX
+    group.dataset.index = index;
+
     const row = group.querySelector(".table-row");
 
     const handle = row.querySelector(".drag-handle");
@@ -1076,9 +1148,11 @@ function enableDrag(bodyWrap) {
       canDrag = false;
     });
 
+    // START
     group.addEventListener("dragstart", (e) => {
       if (!canDrag) {
         e.preventDefault();
+
         return;
       }
 
@@ -1096,6 +1170,9 @@ function enableDrag(bodyWrap) {
       draggedGroup = null;
 
       updateLineNumbers(bodyWrap);
+
+      // UPDATE PRODUCTS ORDER
+      updateProductsOrder(bodyWrap);
     });
 
     // LIVE SHIFTING
@@ -1129,6 +1206,26 @@ function updateLineNumbers() {
   });
 }
 
+function updateProductsOrder(bodyWrap) {
+  const groups = bodyWrap.querySelectorAll(".row-group");
+
+  const reorderedProducts = [];
+
+  groups.forEach((group) => {
+    const originalIndex = Number(group.dataset.index);
+
+    reorderedProducts.push(newQuote.products[originalIndex]);
+  });
+
+  newQuote.products = reorderedProducts;
+
+  groups.forEach((group, index) => {
+    group.dataset.index = index;
+  });
+
+  storeQuote();
+}
+
 //select all
 const descInputs = leftTableWrapper.querySelectorAll(".desc-input");
 const qtyInputs = leftTableWrapper.querySelectorAll(".qty-input");
@@ -1151,22 +1248,13 @@ function checkDeleted(bodyWrap) {
   });
 }
 
-
-CreateBtn.addEventListener('click',(e)=>{
-    e.preventDefault();
-    if(newQuote.products.length>0){
-      updateQuickInfoData();
-      updateQuoteTotals();
-      updateNewQuoteData();
-      newQuote.status="pending"
-      storeQuote();
-      window.location.href="./dashboard.html"
-    }
-})
-
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    loaderWrapper.classList.add("not-active");
-    createQuoteWrapper.classList.remove("active");
-  }, 1500);
+CreateBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  updateQuickInfoData();
+  updateQuoteTotals();
+  updateNewQuoteData();
+  newQuote.status = "pending";
+  storeQuote();
+  window.location.href = "./dashboard.html";
 });
+
