@@ -73,6 +73,19 @@
         flex: 1;
         min-height: 0;
         padding-right: clamp(17px, $fs-35px, $fs-35px);
+       .clear-all-filter-btn {
+          width: 100%;
+          display: flex;
+          justify-content: flex-end;
+          text-wrap: nowrap;
+          border: none;
+          background-color: transparent;
+          color: $red-08;
+          text-align: right;
+          font-size: clamp(9px, $fs-15px, $fs-15px);
+          cursor: pointer;
+          margin-bottom: 5px;
+        }
         .filter-wrapper {
           padding: clamp(10px, $fs-20px, $fs-20px)
             clamp(10px, $fs-20px, $fs-20px) clamp(5px, $fs-10px, $fs-10px);
@@ -183,14 +196,6 @@
                   font-size: clamp(7px, $fs-11px, $fs-11px);
                   color: $blue-87;
                   position: relative;
-                  &.select-btn::after {
-                    content: "";
-                    position: absolute;
-                    right: calc(-1 * clamp(5px, $fs-10px, $fs-10px));
-                    width: 1px;
-                    height: 100%;
-                    background-color: $blue-87;
-                  }
                 }
               }
             }
@@ -652,9 +657,9 @@
                 border: 1px solid transparent;
                 gap: clamp(5px, $fs-10px, $fs-10px);
                 text-transform: capitalize;
+                cursor: pointer;
                 .close-chip {
                   display: inline-block;
-                  cursor: pointer;
                   img {
                     display: block;
                     width: clamp(6px, $fs-12px, $fs-12px);
@@ -714,6 +719,7 @@
                     font-size: clamp(10px, $fs-15px, $fs-15px);
                     color: $black-90;
                     font-weight: 500;
+                    cursor: pointer;
                   }
 
                   &:first-of-type {

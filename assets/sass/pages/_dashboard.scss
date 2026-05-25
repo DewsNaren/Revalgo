@@ -1409,8 +1409,11 @@
                                         font-size: clamp(10px, $fs-14px, $fs-14px);
                                         color: $grey-61;
                                         cursor: pointer;
+                                        background-color: transparent;
+                                        border: none;
                                         img{
                                             width: clamp(15px, $fs-19px, $fs-19px);
+                                            pointer-events: none;
                                         }
                                     }
                                     border: 1px solid rgba(0,0,0,0.3);

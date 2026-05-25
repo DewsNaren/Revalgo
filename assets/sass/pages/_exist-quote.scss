@@ -362,7 +362,7 @@
                                 font-size: clamp(10px, $fs-15px, $fs-15px);
                                 color: $grey-80;
                                 border: 1px solid $grey-80;
-
+                                text-transform: capitalize;
                                 &.active{
                                     background-color: $blue-87;
                                     color: $white-80;

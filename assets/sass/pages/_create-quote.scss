@@ -190,17 +190,14 @@
                     &:after{
                         position: absolute;
                         content: '';
-                        bottom: calc(clamp(15px, $fs-30px, $fs-30px)*-1);
+                        bottom: calc(clamp(15px, $fs-32px, $fs-32px)*-1);
                         left: 50%;
                         transform: translateX(-50%);
                         border-left: clamp(15px, $fs-30px, $fs-30px) solid transparent;
                         border-right: clamp(15px, $fs-30px, $fs-30px) solid transparent;
                         border-top: clamp(15px, $fs-30px, $fs-30px) solid #e6f1ff; 
                         visibility: hidden;
-                        filter: 
-                        drop-shadow(0 0 2px rgba(0,0,0,0.1))
-                        drop-shadow(0 0 6px rgba(0,0,0,0.1));
-                        
+                        filter: drop-shadow(0 0 2px rgba(0,0,0,0.1))
                     }
 
 

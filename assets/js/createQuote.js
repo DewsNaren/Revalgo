@@ -97,8 +97,9 @@ const MONTHS = [
 ];
 
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-const minDate = new Date(2025, 4, 1);
-const maxDate = new Date(2026, 3, 30);
+const minDate = new Date();
+minDate.setFullYear(minDate.getFullYear() - 100);
+const maxDate = new Date();
 let today = new Date();
 let current = new Date(today);
 
@@ -784,8 +785,9 @@ function updateFormData(quoteInfoWrap, editItem) {
       } else if (editItem == "deleivery_date") {
         const dateText = container.querySelector(".date-text");
         const datePicker = container.querySelector(".datepicker");
-        const minDate = new Date(2025, 4, 1);
-        const maxDate = new Date(2026, 3, 30);
+        const minDate = new Date();
+        minDate.setFullYear(minDate.getFullYear() - 100);
+        const maxDate = new Date();
         const [day, month, year] = wrapper.textContent.split("-");
         const newSelectedDate = new Date(year, month - 1, day);
         dateText.textContent = wrapper.textContent.replaceAll("-", "/");

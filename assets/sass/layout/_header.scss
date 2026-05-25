@@ -219,3 +219,9 @@ header{
         }
     }
 }
+
+@media print{
+    header{
+        padding-left: 20px;
+    }
+}

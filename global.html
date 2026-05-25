@@ -134,6 +134,9 @@
 
           <div class="filter-inner-wrapper">
             <div class="filter-wrapper">
+               <button type="button" class="clear-all-filter-btn">
+                  Clear All
+                </button>
               <h3 class="filter-header">
                 Filters
                 <button class="accordion-button down-arrow-btn"  data-bs-target="#filter-inner-container" data-bs-toggle="collapse" >
@@ -160,9 +163,7 @@
                     <button type="button" class="select-all-btn select-btn">
                       Select All
                     </button>
-                    <button type="button" class="clear-all-chips-btn">
-                      Clear All
-                    </button>
+                   
                   </div>
                 </div>
                 <div class="filter-chip-wrapper collapse show" id="statusBody">
@@ -255,9 +256,9 @@
                 <div class="date-outer-wrapper collapse show" id="dateBody">
                   <h4>Received Date</h4>
                   <div class="date-wrapper">
-                    <div class="start-container date-container">
+                    <div class="start-container date-container" data-filter="received">
                       <p class="start-label date-label">Start Date</p>
-                      <div class="date-text start-text">
+                      <div class="date-text start-text received-start-text">
                         mm/dd/yyyy
                         <img
                           src="./assets/images/create_quote/date_range_calendar_icon.png"
@@ -265,9 +266,9 @@
                         />
                       </div>
                     </div>
-                    <div class="end-container date-container">
+                    <div class="end-container date-container" data-filter="received">
                       <p class="end-label date-label">End Date</p>
-                      <div class="date-text end-text">
+                      <div class="date-text end-text received-end-text">
                         mm/dd/yyyy
                         <img
                           src="./assets/images/create_quote/date_range_calendar_icon.png"
@@ -278,9 +279,9 @@
                   </div>
                   <h4>Approved Date</h4>
                   <div class="date-wrapper">
-                    <div class="start-container date-container">
+                    <div class="start-container date-container" data-filter="approved">
                       <p class="start-label date-label">Start Date</p>
-                      <div class="date-text start-text">
+                      <div class="date-text start-text approved-start-text">
                         mm/dd/yyyy
                         <img
                           src="./assets/images/create_quote/date_range_calendar_icon.png"
@@ -288,9 +289,9 @@
                         />
                       </div>
                     </div>
-                    <div class="end-container date-container">
+                    <div class="end-container date-container" data-filter="approved">
                       <p class="end-label date-label">End Date</p>
-                      <div class="date-text end-text">
+                      <div class="date-text end-text approved-end-text">
                         mm/dd/yyyy
                         <img
                           src="./assets/images/create_quote/date_range_calendar_icon.png"

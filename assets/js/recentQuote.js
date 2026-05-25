@@ -30,8 +30,9 @@ const loaderWrapper = document.querySelector(".loader-wrapper");
 const formPopup = document.querySelector(".form-popup");
 const formWrapper = formPopup.querySelector(".form-wrapper");
 const dateText = formPopup.querySelector(".date-text");
-const minDate = new Date(2025, 4, 1);
-const maxDate = new Date(2026, 3, 30);
+const minDate = new Date();
+minDate.setFullYear(minDate.getFullYear() - 100);
+const maxDate = new Date();
 
 const calendarDays = document.querySelectorAll(".custom-date-day");
 
@@ -778,8 +779,9 @@ function updateFormData(quoteInfoWrap, editItem) {
       } else if (editItem == "deleivery_date") {
         const dateText = container.querySelector(".date-text");
         const datePicker = container.querySelector(".datepicker");
-        const minDate = new Date(2025, 4, 1);
-        const maxDate = new Date(2026, 3, 30);
+        const minDate = new Date();
+        minDate.setFullYear(minDate.getFullYear() - 100);
+        const maxDate = new Date();
         const [day, month, year] = wrapper.textContent.split("-");
         const newSelectedDate = new Date(year, month - 1, day);
         dateText.textContent = wrapper.textContent.replaceAll("-", "/");

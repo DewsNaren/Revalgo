@@ -29,8 +29,9 @@ const customText = document.querySelector(".custom-text");
 const startText = document.querySelector(".start-text");
 const endText = document.querySelector(".end-text");
 
-const minDate = new Date(2025, 4, 1);
-const maxDate = new Date(2026, 3, 30);
+const minDate = new Date();
+minDate.setFullYear(minDate.getFullYear() - 100);
+const maxDate = new Date();
 dateText.addEventListener("click", () => {
   if (!datePicker.classList.contains("active")) {
     dateMenu.classList.toggle("active");
@@ -1828,8 +1829,10 @@ function getTrendChartData(dateFilteredQuotes, filterItem) {
   filterLegendtexts.forEach(
     (text) => (text.innerHTML = `<span></span>${filterItem}`),
   );
-
-  renderTrendChart(totalQuotes, filterQuotes, filterItem);
+  setTimeout(()=>{
+    renderTrendChart(totalQuotes, filterQuotes, filterItem);
+  },300)
+  
 
   renderModalTrendChart(totalQuotes, filterQuotes, filterItem);
 }

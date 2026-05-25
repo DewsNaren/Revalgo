@@ -9,7 +9,7 @@
     </head>
     <body>
         <header>
-            <a href="./create-quote.html" class="logo"><img src="./assets/images/login/revalgo_white_background.png" alt="Revalgo White"></a>
+            <a href="./dashboard.html" class="logo"><img src="./assets/images/login/revalgo_white_background.png" alt="Revalgo White"></a>
             <div class="search-wrapper">
                 <input type="text" id="search-quote" class="search-quote-input" name="search-quote" placeholder="PO#, Order#, Customer# / Name" autocomplete="off">
                 <button class="search-quote-btn"><img src="./assets/images/dashboard/search_icon.png" alt="Search icon"></button>
@@ -178,29 +178,53 @@
                             <div class="filter-container ">
                                 <h3 class="accordion-button" data-bs-toggle="collapse"data-bs-target="#dateBody"><span class="plus"> + </span> <span class="minus"> - </span> Date Range</h3>
                                 <div class="date-outer-wrapper collapse show" id="dateBody">
-                                    <h4>Received Date</h4>
-                                    <div class="date-wrapper" >
-                                        <div class="start-container date-container">
-                                            <p class="start-label date-label">Start Date</p>
-                                            <div class="date-text start-text">mm/dd/yyyy <img src="./assets/images/create_quote/date_range_calendar_icon.png" alt="date"></div>
-                                        </div> 
-                                        <div class="end-container date-container">
-                                            <p class="end-label date-label">End Date</p>
-                                            <div class="date-text end-text">mm/dd/yyyy <img src="./assets/images/create_quote/date_range_calendar_icon.png" alt="date"></div>
-                                        </div>
-                                    </div>
-                                    <h4>Approved Date</h4>
-                                    <div class="date-wrapper" >
-                                        <div class="start-container date-container">
-                                            <p class="start-label date-label">Start Date</p>
-                                            <div class="date-text start-text">mm/dd/yyyy <img src="./assets/images/create_quote/date_range_calendar_icon.png" alt="date"></div>
-                                        </div> 
-                                        <div class="end-container date-container">
-                                            <p class="end-label date-label">End Date</p>
-                                            <div class="date-text end-text">mm/dd/yyyy <img src="./assets/images/create_quote/date_range_calendar_icon.png" alt="date"></div>
-                                        </div>
-                                    </div>
-                                </div>
+                  <h4>Received Date</h4>
+                  <div class="date-wrapper">
+                    <div class="start-container date-container" data-filter="received">
+                      <p class="start-label date-label">Start Date</p>
+                      <div class="date-text start-text received-start-text">
+                        mm/dd/yyyy
+                        <img
+                          src="./assets/images/create_quote/date_range_calendar_icon.png"
+                          alt="date"
+                        />
+                      </div>
+                    </div>
+                    <div class="end-container date-container" data-filter="received">
+                      <p class="end-label date-label">End Date</p>
+                      <div class="date-text end-text received-end-text">
+                        mm/dd/yyyy
+                        <img
+                          src="./assets/images/create_quote/date_range_calendar_icon.png"
+                          alt="date"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <h4>Approved Date</h4>
+                  <div class="date-wrapper">
+                    <div class="start-container date-container" data-filter="approved">
+                      <p class="start-label date-label">Start Date</p>
+                      <div class="date-text start-text approved-start-text">
+                        mm/dd/yyyy
+                        <img
+                          src="./assets/images/create_quote/date_range_calendar_icon.png"
+                          alt="date"
+                        />
+                      </div>
+                    </div>
+                    <div class="end-container date-container" data-filter="approved">
+                      <p class="end-label date-label">End Date</p>
+                      <div class="date-text end-text approved-end-text">
+                        mm/dd/yyyy
+                        <img
+                          src="./assets/images/create_quote/date_range_calendar_icon.png"
+                          alt="date"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
                             </div>
                              <div class="filter-container ">
                                 <h3 class="accordion-button" data-bs-toggle="collapse"data-bs-target="#modeBody"><span class="plus"> + </span> <span class="minus"> - </span> Mode Of Quotes</h3>
@@ -268,13 +292,13 @@
 
                             <thead>
                                 <tr>
-                                    <th><span>Quote Id <img src="./assets/images/dashboard/sort_icon.png" alt="Sort_icon"></span></th>
-                                    <th><span>Customer Name <img src="./assets/images/dashboard/sort_icon.png" alt="Sort_icon"></span></th>
-                                    <th> <span>Received Date <img src="./assets/images/dashboard/sort_icon.png" alt="Sort_icon"></span></th>
-                                    <th><span>Approved Date <img src="./assets/images/dashboard/sort_icon.png" alt="Sort_icon"></span></th>
-                                    <th><span>Status <img src="./assets/images/dashboard/sort_icon.png" alt="Sort_icon"></span></th>
-                                    <th><span>Total Line No <img src="./assets/images/dashboard/sort_icon.png" alt="Sort_icon"></span></th>
-                                    <th><span>Total price <img src="./assets/images/dashboard/sort_icon.png" alt="Sort_icon"></span></th>
+                                    <th><span data-sort="id">Quote Id <img src="./assets/images/dashboard/sort_icon.png" alt="Sort_icon"></span></th>
+                                    <th><span data-sort="name">Customer Name <img src="./assets/images/dashboard/sort_icon.png" alt="Sort_icon"></span></th>
+                                    <th><span data-sort="received_date">Received Date <img src="./assets/images/dashboard/sort_icon.png" alt="Sort_icon"></span></th>
+                                    <th><span data-sort="approved_date">Approved Date <img src="./assets/images/dashboard/sort_icon.png" alt="Sort_icon"></span></th>
+                                    <th><span data-sort="status">Status <img src="./assets/images/dashboard/sort_icon.png" alt="Sort_icon"></span></th>
+                                    <th><span data-sort="total_line_no">Total Line No <img src="./assets/images/dashboard/sort_icon.png" alt="Sort_icon"></span></th>
+                                    <th><span data-sort="total_price">Total Price <img src="./assets/images/dashboard/sort_icon.png" alt="Sort_icon"></span></th>
                                 </tr>
                             </thead>
                             <tbody>

@@ -2,7 +2,7 @@ const loginForm=document.querySelector(".login-form");
 const loginName=loginForm.querySelector(".username");
 const loginPassword=loginForm.querySelector(".password");
 const loginBtn=document.querySelector(".login-btn");
-console.log(loginName)
+
 function ValidateLoginForm(){
     let success=true;
     const nameVal=loginName.value;
@@ -97,4 +97,9 @@ function storeLoginData(){
         "password":loginPassword.value
     }
     localStorage.setItem("loginDetails",JSON.stringify(obj));
+}
+
+//remove login
+if(localStorage.getItem("loginDetails")){
+    localStorage.removeItem("loginDetails"); 
 }

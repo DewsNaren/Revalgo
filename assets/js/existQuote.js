@@ -53,8 +53,9 @@ const endPicker = document.querySelector(".end-datepicker");
 
 const datepickers = document.querySelectorAll(".datepicker");
 
-const minDate = new Date(2025, 4, 1);
-const maxDate = new Date(2026, 3, 30);
+const minDate = new Date();
+minDate.setFullYear(minDate.getFullYear() - 100);
+const maxDate = new Date();
 
 function padZero(num) {
   return num > 9 ? num : "0" + num;
@@ -327,14 +328,22 @@ function getSelectedDate(datePicker) {
     trigger.childNodes[0].textContent = `${selectedMonth}/${selectedDatee}/${yearEl.textContent}`;
     dateTexts.forEach((text) => text.classList.remove("active"));
   }
-  const start = document.querySelector(".start-text").childNodes[0].textContent;
-  const end = document.querySelector(".end-text").childNodes[0].textContent;
+  const container = trigger.closest(".date-container");
 
-  let strDate = start.trim() === "mm/dd/yyyy" ? "05/01/2025" : start;
+  const filterType = container.dataset.filter;
 
-  let endDate = end.trim() === "mm/dd/yyyy" ? "04/30/2026" : end;
+  const wrapper = container.parentElement;
 
-  updateDateFilter(strDate, endDate);
+  const start = wrapper.querySelector(".start-text").childNodes[0].textContent;
+
+  const end = wrapper.querySelector(".end-text").childNodes[0].textContent;
+
+  let startDate = start.trim() === "mm/dd/yyyy"? "05/01/2025": start;
+
+  let endDate = end.trim() === "mm/dd/yyyy"? "04/30/2026": end;
+
+updateDateFilter(filterType, startDate, endDate);
+  // changeStatusChips();
 }
 
 //form popup datetext
@@ -468,8 +477,16 @@ const statusChipContainer = document.querySelector(".status-chip-container");
 
 let sorted;
 let searchValue = "";
-let selectedStartDate;
-let selectedEndDate;
+const dateFilters = {
+  received: {
+    start: null,
+    end: null,
+  },
+  approved: {
+    start: null,
+    end: null,
+  },
+};
 let selectedNames = [];
 let selectedModes = [];
 let selectedStatus = [];
@@ -478,7 +495,7 @@ if (sessionStorage.getItem("searchedQuotes")) {
   totalQuotes = JSON.parse(sessionStorage.getItem("searchedQuotes"));
   filteredData = [...totalQuotes];
   totalItem.textContent = `${totalQuotes.length} items`;
-  // createPagination(currentPage)
+  filteredData.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()))
   renderFilterTable(filteredData);
   changeNameFilters(filteredData);
   changeModes(filteredData);
@@ -519,7 +536,13 @@ function applyFilters() {
       q.name.toLowerCase().includes(searchValue) ||
       q.number.toString().includes(searchValue);
 
-    const matchesDate = checkDateFilter(q.received_date);
+    const matchesReceivedDate = checkDateFilter(q.received_date,dateFilters.received.start,dateFilters.received.end);
+
+    const matchesApprovedDate = checkDateFilter(
+      q.approved_date,
+      dateFilters.approved.start,
+      dateFilters.approved.end
+    );
 
     const matchesName =
       selectedNames.length === 0 || selectedNames.includes(q.name);
@@ -533,7 +556,8 @@ function applyFilters() {
 
     return (
       matchesSearch &&
-      matchesDate &&
+      matchesReceivedDate &&
+      matchesApprovedDate &&
       matchesName &&
       matchesMode &&
       matchesStatus
@@ -560,15 +584,28 @@ function resetFilters() {
   filterChipBtns.forEach((btn) => btn.classList.remove("active"));
   const nameInputs = document.querySelectorAll(".customer-filter input");
   const modeInputs = document.querySelectorAll(".mode-filter input");
-  const startDate = document.querySelector(".start-text").childNodes[0];
-  const endDate = document.querySelector(".end-text").childNodes[0];
-  // searchInput.value = "";
+    const receivedStart =
+  document.querySelector(".received-start-text").childNodes[0];
+
+const receivedEnd =
+  document.querySelector(".received-end-text").childNodes[0];
+
+const approvedStart =
+  document.querySelector(".approved-start-text").childNodes[0];
+
+const approvedEnd =
+  document.querySelector(".approved-end-text").childNodes[0];
+  searchInput.value = "";
   searchCustomerInput.value = "";
-  startDate.textContent = "mm/dd/yyyy";
+  receivedStart.textContent = "mm/dd/yyyy";
+receivedEnd.textContent = "mm/dd/yyyy";
 
-  endDate.textContent = "mm/dd/yyyy";
+approvedStart.textContent = "mm/dd/yyyy";
+approvedEnd.textContent = "mm/dd/yyyy";
 
-  updateDateFilter("05/01/2025", "04/30/2026");
+updateDateFilter("received", "05/01/2025", "04/30/2026");
+
+updateDateFilter("approved", "05/01/2025", "04/30/2026");
 
   nameInputs.forEach((inp) => (inp.checked = false));
 
@@ -605,24 +642,24 @@ function parseQuoteDate(dateStr) {
   return new Date(year, month - 1, day);
 }
 
-function updateDateFilter(start, end) {
-  selectedStartDate = start;
+function updateDateFilter(type, start, end) {
+  dateFilters[type].start = start;
 
-  selectedEndDate = end;
+  dateFilters[type].end = end;
 
   applyFilters();
 }
 
-function checkDateFilter(quoteDateStr) {
-  if (!selectedStartDate || !selectedEndDate) {
+function checkDateFilter(quoteDateStr,startDateStr,endDateStr) {
+  if (!startDateStr || !endDateStr) {
     return true;
   }
 
   const quoteDate = parseQuoteDate(quoteDateStr);
 
-  const startDate = new Date(selectedStartDate);
+  const startDate = parsePickerDate(startDateStr);
 
-  const endDate = new Date(selectedEndDate);
+  const endDate = parsePickerDate(endDateStr);
 
   return quoteDate >= startDate && quoteDate <= endDate;
 }
@@ -773,8 +810,9 @@ const tabHeaderSpans = filterTable.querySelectorAll("th span");
 function getPrice(price) {
   return parseFloat(price.replace(/[^\d.]/g, "").replace(/\.(?=.*\.)/g, ""));
 }
-let isAscending = true;
+let isAscending = false;
 tabHeaderSpans.forEach((sp) => {
+ 
   sp.addEventListener("click", () => {
     const filteredCopy = [...filteredData];
     const sortItem = sp.dataset.sort;
@@ -1168,8 +1206,9 @@ function updateFormData(quoteInfoWrap, editItem) {
       } else if (editItem == "deleivery_date") {
         const dateText = container.querySelector(".date-text");
         const datePicker = container.querySelector(".datepicker");
-        const minDate = new Date(2025, 4, 1);
-        const maxDate = new Date(2026, 3, 30);
+        const minDate = new Date();
+        minDate.setFullYear(minDate.getFullYear() - 100);
+        const maxDate = new Date();
         const [day, month, year] = wrapper.textContent.split("-");
         const newSelectedDate = new Date(year, month - 1, day);
         dateText.textContent = wrapper.textContent.replaceAll("-", "/");

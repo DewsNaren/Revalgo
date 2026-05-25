@@ -740,8 +740,9 @@ imgUpdateBtn.addEventListener("click", () => {
       }
 
       if (inp.name === "deleivery-date") {
-        const minDate = new Date(2025, 3, 1);
-        const maxDate = new Date(2026, 3, 30);
+        const minDate = new Date();
+        minDate.setFullYear(minDate.getFullYear() - 100);
+        const maxDate = new Date();
 
         const [day, month, year] = inp.value.split("/");
 
@@ -790,7 +791,7 @@ function openAcronymPopup(el) {
   acronymPopup.classList.add("active");
   console.log(acronymItems)
   currentAcronymItem = [...acronymItems].find(ac=>ac.classList.contains("active"));
-console.log(currentAcronymItem)
+
   const key = getAcronymKey(currentAcronymItem);
   acronymChipContainer.innerHTML = "";
 
