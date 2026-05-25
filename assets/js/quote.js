@@ -1,4 +1,4 @@
-[
+const quotesData=[
   {
     "mode": "Email",
     "id": 7987293,

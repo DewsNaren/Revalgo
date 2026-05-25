@@ -5,7 +5,6 @@
 
 
 .exist-quote-wrapper{
-    margin-top: 6px;
     padding: clamp(15px, $fs-30px, $fs-30px) clamp(12px, $fs-22px, $fs-22px);
     display: none;
     flex-direction: column;
@@ -2705,42 +2704,83 @@
     }
 }
 @media screen and (max-width:1400px){
-    .exist-quote-wrapper .exist-quote-filter-wrapper{
-        .btn-container{
-            button{
-                font-size: clamp(11px, $fs-22px, $fs-22px);
-                .img{
-                    width: clamp(14px, $fs-26px, $fs-26px);
-                }
-            }
-            .new-btn{
-                padding:clamp(5px, $fs-12px, $fs-12px) clamp(14px, $fs-80_5px, $fs-80_5px);
-            }
-            .exist-btn{
-                padding:clamp(5px, $fs-12px, $fs-12px) clamp(14px, $fs-26px, $fs-26px);
+    .exist-quote-wrapper{
+        .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper {
+            .mail-wrapper{
+                    padding: 0px 5px 0 0;
+                    .mail-header-container{
+                        .test {
+                            margin-bottom: clamp(4px, $fs-7px, $fs-7px);
+                        }
+                        
+                        .to-text{
+                            margin-bottom: 0px;
+                        }
+                    } 
+                    .mail-body-container{
+                        padding-top: clamp(5px, $fs-8px, $fs-8px) 0;
+                        .text-container{
+                            .title {
+                                padding: clamp(6px, $fs-12px, $fs-12px) 0;
+                            }
+                            .list-wrapper{
+                                .list-title{
+                                    margin-bottom: clamp(4px, $fs-8px, $fs-8px);
+                                }
+                                .list{
+                                    margin-bottom:  clamp(8px, $fs-16px, $fs-16px);
+                                
+                                }
+                            }
+                            .bottom-container p:first-of-type {
+                                margin-bottom: clamp(5px, $fs-9px, $fs-9px);
+                            }
+                        } 
+                        .img-info-container
+                        .img-header .btn-container button.info-btn span {
+                            top: 5px;
+                            right: -3px;
+                        }
+                    }
             }
         }
-        .filter-outer-wrapper{
-            padding:clamp(20px, $fs-40px, $fs-40px) clamp(20px, $fs-40px, $fs-40px) clamp(12px, $fs-25px, $fs-25px);
-            .filter-inner-wrapper{
-                .filter-table thead tr th span {
-                    img{
-                        width: 9px;
+        .exist-quote-filter-wrapper{
+            .btn-container{
+                button{
+                    font-size: clamp(11px, $fs-22px, $fs-22px);
+                    .img{
+                        width: clamp(14px, $fs-26px, $fs-26px);
                     }
                 }
-                .filter-wrapper 
-                .filter-container{
-                    .filter-chip-container .filter-chip {
-                        padding: 4px clamp(6px, $fs-8px, $fs-8px);   
-                    }
-                    .customer-filter-container .customer-filter {
-                        input{
-                            width: clamp(9px, $fs-19px, $fs-19px);
-                            height:clamp(9px, $fs-19px, $fs-19px);
+                .new-btn{
+                    padding:clamp(5px, $fs-12px, $fs-12px) clamp(14px, $fs-80_5px, $fs-80_5px);
+                }
+                .exist-btn{
+                    padding:clamp(5px, $fs-12px, $fs-12px) clamp(14px, $fs-26px, $fs-26px);
+                }
+            }
+            .filter-outer-wrapper{
+                padding:clamp(20px, $fs-40px, $fs-40px) clamp(20px, $fs-40px, $fs-40px) clamp(12px, $fs-25px, $fs-25px);
+                .filter-inner-wrapper{
+                    .filter-table thead tr th span {
+                        img{
+                            width: 9px;
                         }
-                            
                     }
-                     
+                    .filter-wrapper 
+                    .filter-container{
+                        .filter-chip-container .filter-chip {
+                            padding: 4px clamp(6px, $fs-8px, $fs-8px);   
+                        }
+                        .customer-filter-container .customer-filter {
+                            input{
+                                width: clamp(9px, $fs-19px, $fs-19px);
+                                height:clamp(9px, $fs-19px, $fs-19px);
+                            }
+                                
+                        }
+                        
+                    }
                 }
             }
         }

@@ -2,16 +2,80 @@ const dashBoardBodyWrapper = document.querySelector(".dashboard-body-wrapper");
 const expandOverlay = document.querySelector(".expand-overlay");
 const loaderWrapper=document.querySelector(".loader-wrapper");
 const dashboardWrapper=document.querySelector(".dashboard-wrapper")
+const quoteTable = document.querySelector(".quote-table");
+
+const undoModal = document.querySelector(".undo-modal");
+const undoYesBtn = undoModal.querySelector(".yes-btn");
+const undoNoBtn = undoModal.querySelector(".no-btn");
+const undoText = undoModal.querySelector(".text");
+
+const quotesContainer = document.querySelector(".quotes-container");
+const tableBtns = document.querySelectorAll( ".top-container .btn-container button",);
+
+const filterBtn = quotesContainer.querySelector(".filter-text");
+
+const filterDropdown = document.querySelector(".filter-dropdown");
+const filterItems = filterDropdown.querySelectorAll("ul li");
+const tabHeaderSpans = quoteTable.querySelectorAll("th span");
+
+const trendChartContainer = document.getElementById("trend-chart");
+const modalTrendChartContainer = document.getElementById("trend-modal-chart");
+
+const overlay = document.querySelector(".expand-overlay");
+const modalBox = document.querySelector(".expand-modal");
+const modalContent = document.querySelector(".expand-modal-content");
+const modalTrendChartWrapper = modalContent.querySelector(".trend-chart-wrapper",);
+const modalaccurChartWrapper = modalContent.querySelector(".accuracy-chart-wrapper",);
+const expandBtns = document.querySelectorAll(".expand-btn");
+const closeBtn = document.querySelector(".close-modal-btn");
+
+
+
+const dateText = document.querySelector(".date-text");
+const dateFilter = document.querySelector(".date-filter");
+const datepicker = dateFilter.querySelector(".date-picker");
+const dateMenu = dateFilter.querySelector(".dropdown-menu");
+const customText = document.querySelector(".custom-text");
+const startText = document.querySelector(".start-text");
+const endText = document.querySelector(".end-text");
+
+const calendarDays = document.querySelectorAll(".custom-date-day");
+const startDate = document.querySelector(".start-date");
+const endDate = document.querySelector(".end-date");
+const datePicker = document.querySelector(".date-picker");
+
+const dateInpWrapper = datePicker.querySelector(".input-wrapper");
+const dateSpan = dateInpWrapper.querySelectorAll("span");
+
+const searchInput = document.querySelector(".search-table-quote-input");
+const searchBtn = document.querySelector(".search-table-quote-btn");
+
+const minDate = new Date();
+minDate.setFullYear(minDate.getFullYear() - 100);
+const maxDate = new Date();
+
+
 let quotes;
 let filteredQuotes;
+let dateFilteredQuotes;
+
+let activeDate = null;
 let start = new Date(new Date().setMonth(new Date().getMonth() - 6));
 end = new Date();
+let flag = 0;
 
+let selectedMonth;
+let selectedDatee;
+let selectedYear = new Date().getFullYear();
+let selectedDate = null;
+
+
+//get quotes from storage
 async function initializeQuotes() {
   await loadQuotes();
 
-  quotes = JSON.parse(sessionStorage.getItem("quotes"));
-  filteredQuotes = JSON.parse(sessionStorage.getItem("quotes"));
+  quotes = quotesData;
+  filteredQuotes = quotesData;
   filterQuotesByDate(quotes, format(start), format(end));
   setTimeout(() => {
     loaderWrapper.classList.add("not-active");
@@ -19,19 +83,7 @@ async function initializeQuotes() {
   },400)
 }
  
-
-
-//datepicker
-const dateText = document.querySelector(".date-text");
-const dateFilter = document.querySelector(".date-filter");
-const dateMenu = dateFilter.querySelector(".dropdown-menu");
-const customText = document.querySelector(".custom-text");
-const startText = document.querySelector(".start-text");
-const endText = document.querySelector(".end-text");
-
-const minDate = new Date();
-minDate.setFullYear(minDate.getFullYear() - 100);
-const maxDate = new Date();
+//datepicker function
 dateText.addEventListener("click", () => {
   if (!datePicker.classList.contains("active")) {
     dateMenu.classList.toggle("active");
@@ -48,6 +100,7 @@ dateMenu.addEventListener("click", (e) => {
   }
 });
 
+//get selected date from dropdown
 function handleSelection(value) {
   customText.classList.remove("active");
   datePicker.classList.remove("active");
@@ -98,7 +151,7 @@ function handleSelection(value) {
   filterQuotesByDate(quotes, format(start), format(end));
 }
 
-let dateFilteredQuotes;
+//filter quotes by date
 function filterQuotesByDate(quotes, start, end) {
   const startDate = start.replaceAll("/", "-");
   const endDate = end.replaceAll("/", "-");
@@ -125,11 +178,6 @@ function filterQuotesByDate(quotes, start, end) {
 
 }
 
-const startDate = document.querySelector(".start-date");
-const endDate = document.querySelector(".end-date");
-const datePicker = document.querySelector(".date-picker");
-
-let activeDate = null;
 
 startDate.addEventListener("click", () => {
   activeDate = "start";
@@ -170,9 +218,6 @@ customText.addEventListener("click", (e) => {
 });
 
 //Datepicker
-
-const calendarDays = document.querySelectorAll(".custom-date-day");
-
 calendarDays.forEach((dayBtn) => {
   dayBtn.addEventListener("click", () => {
     let day = Number(dayBtn.dataset.day);
@@ -190,30 +235,15 @@ function padZero(num) {
     return "0" + num;
   }
 }
-let flag = 0;
-let selectedMonth;
-let selectedDatee;
-let selectedYear = new Date().getFullYear();
 
 const MONTHS = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
+  "January","February","March","April",
+  "May","June","July","August",
+  "September","October","November","December",
 ];
-
 const DAYS = ["S", "M", "T", "W", "T", "F", "S"];
 
 //create datepicker
-
 let today = new Date();
 let current = new Date(today);
 if (current < minDate) {
@@ -223,7 +253,7 @@ if (current < minDate) {
 if (current > maxDate) {
   current = new Date(maxDate);
 }
-let selectedDate = null;
+
 function createDatepicker(datePicker) {
   const monthNameEl = datePicker.querySelector(".month-name");
   const yearEl = datePicker.querySelector(".year");
@@ -350,7 +380,6 @@ function createDatepicker(datePicker) {
         datePicker.classList.remove("active");
 
         getSelectedDate(datePicker);
-        // console.log(startDate)
       });
 
       datesContainer.appendChild(btn);
@@ -436,6 +465,7 @@ function createDatepicker(datePicker) {
   renderCalendar();
 }
 
+//activedate
 function setActiveDate() {
   const activeSpan = datePicker.querySelector(".input-wrapper span.active");
   let day = 1;
@@ -459,8 +489,6 @@ function setActiveYear(datePicker, year) {
   });
 }
 
-const datepicker = dateFilter.querySelector(".date-picker");
-
 createDatepicker(datepicker);
 
 const days = datepicker.querySelector(".days");
@@ -471,6 +499,7 @@ for (let i = 0; i < DAYS.length; i++) {
   days.appendChild(dayEl);
 }
 
+//get selected date from datepicker
 function getSelectedDate(datePicker) {
   const monthNameEl = datePicker.querySelector(".month-name");
   const yearEl = datePicker.querySelector(".year");
@@ -478,7 +507,6 @@ function getSelectedDate(datePicker) {
   const MonthArr = monthNameEl.textContent.split(" ");
   selectedMonth = Number(MONTHS.findIndex((m) => m === MonthArr[0])) + 1;
   selectedMonth = padZero(selectedMonth);
-  // yearEl.
   const dates = datePicker.querySelectorAll(".dates .date");
   const startDateText = document.querySelector(".start-text");
   const endDateText = document.querySelector(".end-text");
@@ -505,8 +533,7 @@ function getSelectedDate(datePicker) {
   });
 }
 
-const dateInpWrapper = datePicker.querySelector(".input-wrapper");
-const dateSpan = dateInpWrapper.querySelectorAll("span");
+
 dateSpan.forEach((span) => {
   span.addEventListener("click", () => {
     dateSpan.forEach((span) => span.classList.remove("active"));
@@ -567,7 +594,6 @@ document.addEventListener("click", (e) => {
 });
 
 //widget button
-
 const widgetText = document.querySelector(".widget-text");
 const widgetDropdown = document.querySelector(".widget-dropdown-menu");
 
@@ -613,17 +639,7 @@ function renderWidgets() {
 }
 
 //expand function
-const overlay = document.querySelector(".expand-overlay");
-const modalBox = document.querySelector(".expand-modal");
-const modalContent = document.querySelector(".expand-modal-content");
-const modalTrendChartWrapper = modalContent.querySelector(
-  ".trend-chart-wrapper",
-);
-const modalaccurChartWrapper = modalContent.querySelector(
-  ".accuracy-chart-wrapper",
-);
-const expandBtns = document.querySelectorAll(".expand-btn");
-const closeBtn = document.querySelector(".close-modal-btn");
+
 
 expandBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
@@ -690,6 +706,7 @@ expandBtns.forEach((btn) => {
   });
 });
 
+// close modal button function
 function closeModal() {
   overlay.classList.remove("active");
   modalBox.classList.remove("active");
@@ -707,10 +724,12 @@ function closeModal() {
     disTableBodyWrapper.appendChild(suggestSource);
   }
 }
-// close button
+
+
 closeBtn.addEventListener("click", () => {
   closeModal();
 });
+
 function closeSuggestExpandModal() {
   const closeSuggestExpandBtn = modalContent.querySelector(
     ".close-suggest-popup-btn",
@@ -729,11 +748,10 @@ overlay.addEventListener("click", (e) => {
 });
 
 //table
-const quoteTable = document.querySelector(".quote-table");
-
 function getPrice(price) {
   return parseFloat(price.replace(/[^\d.]/g, "").replace(/\.(?=.*\.)/g, ""));
 }
+
 function renderQuoteTable(data) {
   const tBody = quoteTable.querySelector("tbody");
 
@@ -783,11 +801,9 @@ function gotoCreateQuote(event) {
 }
 
 //handle undo
-const undoModal = document.querySelector(".undo-modal");
-const undoYesBtn = undoModal.querySelector(".yes-btn");
-const undoNoBtn = undoModal.querySelector(".no-btn");
 
-const undoText = undoModal.querySelector(".text");
+
+
 function tableClickHandler(quoteTable) {
   const idBtns = quoteTable.querySelectorAll(".quote-id-btn");
   idBtns.forEach((btn) => {
@@ -820,7 +836,6 @@ function undoQuoteStatus(id) {
   undoYesBtn.addEventListener("click", () => {
     quotes.forEach((q) => {
       if (q.id == id) {
-        console.log(q);
         q.status = "pending";
 
         sessionStorage.setItem("quotes", JSON.stringify(quotes));
@@ -886,12 +901,6 @@ function renderQuoteCounts(data) {
 }
 
 //filter function
-
-const quotesContainer = document.querySelector(".quotes-container");
-const tableBtns = document.querySelectorAll(
-  ".top-container .btn-container button",
-);
-
 tableBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     tableBtns.forEach((btn) => btn.classList.remove("active"));
@@ -908,12 +917,7 @@ tableBtns.forEach((btn) => {
 });
 
 //filter function
-const filterBtn = quotesContainer.querySelector(".filter-text");
-
-const filterDropdown = document.querySelector(".filter-dropdown");
-const filterItems = filterDropdown.querySelectorAll("ul li");
 filterBtn.addEventListener("click", () => {
-  console.log(filterBtn)
   filterDropdown.classList.toggle("active");
 });
 
@@ -942,6 +946,7 @@ filterItems.forEach((item) => {
     renderQuoteTable(sortedQuote);
   });
 });
+
 document.addEventListener("click", (e) => {
   if (!e.target.contains(filterBtn)){
     if( filterDropdown.classList.contains("active")){
@@ -951,8 +956,6 @@ document.addEventListener("click", (e) => {
 });
 
 //sort
-
-const tabHeaderSpans = quoteTable.querySelectorAll("th span");
 let sortedQuote;
 let isAscending = true;
 function parseDate(dateStr) {
@@ -1029,10 +1032,6 @@ tabHeaderSpans.forEach((sp) => {
 });
 
 //search function
-
-const searchInput = document.querySelector(".search-table-quote-input");
-const searchBtn = document.querySelector(".search-table-quote-btn");
-
 function searchQuotes() {
   const value = searchInput.value.trim().toLowerCase();
   const filteredCopy = [...filteredQuotes];
@@ -1054,15 +1053,11 @@ function searchQuotes() {
 
 // button click
 searchBtn.addEventListener("click", searchQuotes);
-
-// enter key
 searchInput.addEventListener('input', () => searchQuotes());
 
 
 //charts
 let trendChart;
-const trendChartContainer = document.getElementById("trend-chart");
-
 function renderTrendChart(totalQuotes, filterQuotes, filterItem) {
   trendChart = Highcharts.chart("trend-chart", {
     chart: {
@@ -1103,6 +1098,7 @@ function renderTrendChart(totalQuotes, filterQuotes, filterItem) {
       labels: {
         useHTML: true,
         format: '<div class="trend-y-label">{value}</div>',
+        x:5,
       },
     },
     tooltip: {
@@ -1190,23 +1186,8 @@ function renderTrendChart(totalQuotes, filterQuotes, filterItem) {
   });
 }
 
-// function enableTrendLegend(){
-//   if(trendChart){
-//     const trendWrapper=document.querySelector(".trend-chart-wrapper");
-//     const legends = trendWrapper.querySelectorAll('.legend');
-//     legends.forEach((legend, index) => {
-//       legend.addEventListener('click', () => {
-//       legend.classList.toggle('inactive');
-//       const series=trendChart.series[index] ;
-//       series.setVisible(!series.visible,false);
-//       trendChart.redraw();
-//       });
-//     });
-//   }
-// }
+//legend toggle function for trend chart
 function enableTrendLegend() {
-  // if (!trendChart) return;
-
   const trendWrapper = document.querySelector(".trend-chart-wrapper");
 
   const legends = trendWrapper.querySelectorAll(".legend");
@@ -1226,7 +1207,7 @@ function enableTrendLegend() {
 
 enableTrendLegend();
 
-//gauge chart
+//accuracy chart
 let sizes = getAccurSizes();
 
 function getAccurSizes() {
@@ -1261,6 +1242,7 @@ function enableModalTrendLegend() {
 enableModalTrendLegend();
 
 let accurChart;
+
 setTimeout(()=>{
   accurChart  = Highcharts.chart("accuracy-chart", {
     chart: {
@@ -1441,10 +1423,9 @@ function renderAccurChart(Data) {
 
 let lastSmall = window.innerWidth < 1600;
 
-//modal chart
-
+//modal trend chart
 let modalTrendChart;
-const modalTrendChartContainer = document.getElementById("trend-modal-chart");
+
 function renderModalTrendChart(totalQuotes, filterQuotes, filterItem) {
   modalTrendChart = Highcharts.chart("trend-modal-chart", {
     chart: {
@@ -1573,8 +1554,7 @@ function renderModalTrendChart(totalQuotes, filterQuotes, filterItem) {
   });
 }
 
-//modal gauge chart
-
+//modal accuracy chart
 let modalSizes = getmodalAccurSizes();
 
 function getmodalAccurSizes() {
@@ -1750,6 +1730,7 @@ function drawModalCustomArc(chart) {
     .text('<span class="gauge-label">0</span>', x0 + 20, y0 + 15, true)
     .add();
 
+
   const label100 = chart.renderer
     .text('<span class="gauge-label">100</span>', x100 - 35, y100 + 15, true)
     .add();
@@ -1811,6 +1792,7 @@ window.addEventListener("resize", () => {
   }
 });
 
+//get trend chart data
 function getTrendChartData(dateFilteredQuotes, filterItem) {
   const filterCopy = [...dateFilteredQuotes];
   const allQuotes = filterQuoteByStatus(
@@ -1837,6 +1819,7 @@ function getTrendChartData(dateFilteredQuotes, filterItem) {
   renderModalTrendChart(totalQuotes, filterQuotes, filterItem);
 }
 
+//filter quote by statusfor trend chart
 function filterQuoteByStatus(filteredQuote) {
   const monthData = new Array(12).fill(0);
   filteredQuote.forEach((q) => {
@@ -1849,6 +1832,7 @@ function filterQuoteByStatus(filteredQuote) {
   return monthData;
 }
 
+//filter quote by revenue for trend chart
 function filterQuoteByRevenue(filteredQuote) {
   const monthData = new Array(12).fill(0);
   filteredQuote.forEach((q) => {
@@ -1866,10 +1850,8 @@ exportBtn.addEventListener("click", () => {
   window.print();
 });
 
-//loader function
+//get quotes function
 window.addEventListener('load', () => {
-  
-   initializeQuotes();
-
+  initializeQuotes();
 });
 

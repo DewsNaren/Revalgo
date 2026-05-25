@@ -603,9 +603,9 @@ receivedEnd.textContent = "mm/dd/yyyy";
 approvedStart.textContent = "mm/dd/yyyy";
 approvedEnd.textContent = "mm/dd/yyyy";
 
-updateDateFilter("received", "05/01/2025", "04/30/2026");
+  updateDateFilter("received", `${padZero(new Date().getDate())}/${padZero(new Date().getMonth()+1)}/${padZero(new Date().getFullYear()-100)}`, `${padZero(new Date().getDate())}/${padZero(new Date().getMonth()+1)}/${padZero(new Date().getFullYear())}`);
 
-updateDateFilter("approved", "05/01/2025", "04/30/2026");
+  updateDateFilter("approved", `${padZero(new Date().getDate())}/${padZero(new Date().getMonth()+1)}/${padZero(new Date().getFullYear()-100)}`, `${padZero(new Date().getDate())}/${padZero(new Date().getMonth()+1)}/${padZero(new Date().getFullYear())}`);
 
   nameInputs.forEach((inp) => (inp.checked = false));
 
@@ -947,8 +947,8 @@ function openSelectedPopup(clickedId, q) {
       <td><input type="checkbox" id="select-item"></td>
       <td>${i + 1}</td>
       <td>${p.qty_requested}</td>
-      <td><span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt adipisci necessitatibus veritatis sit quos. Ea id, cum tempore soluta omnis, deserunt recusandae, dignissimos quasi sequi et error eum libero perferendis. </span></td>
-      <td><span class="content"><span class="prod-id">${p.requested_id}</span> <span class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt adipisci necessitatibus veritatis sit quos. Ea id, cum tempore soluta omnis, deserunt recusandae, dignissimos quasi sequi et error eum libero perferendis.</span></span></td>
+      <td><span>${p.title?p.title: 'Lorem ipsum'}</span></td>
+      <td><span class="content"><span class="prod-id">${p.requested_id}</span> <span class="text"> ${p.desc?p.desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt adipisci necessitatibus veritatis sit quos. Ea id, cum tempore soluta omnis, deserunt recusandae, dignissimos quasi sequi et error eum libero perferendis.'}</span></span></td>
       <td>AD ${Math.floor(Math.random() * (99999 - 10000 + 1)) + 10000}</td>
     </tr>
     `;
@@ -1189,7 +1189,6 @@ function editQuoteInfo(quoteInfoWrap) {
 }
 
 function updateFormData(quoteInfoWrap, editItem) {
-  // console.log(editItem)
   const wrapper = document.querySelector(`.${editItem}_text`);
 
   formContainers.forEach((container) => {

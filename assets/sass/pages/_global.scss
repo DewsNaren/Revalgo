@@ -968,13 +968,19 @@
     .filter-inner-wrapper
     .filter-table-wrapper
     .filter-table {
-    thead tr th {
-      span img {
-        width: 8px;
+      thead tr th {
+        span img {
+          width: 8px;
+        }
+        &:nth-of-type(3) {
+          width: clamp(80px, $fs-299px, $fs-299px);
+        }
       }
-    }
-    // tbody tr td{
+      tbody tr td {
+        &:nth-of-type(3) {
+          width: clamp(80px, $fs-299px, $fs-299px);
+        }
+      }
 
-    // }
   }
 }

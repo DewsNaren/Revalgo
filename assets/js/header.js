@@ -1,11 +1,20 @@
 const header=document.querySelector("header");
-async function loadQuotes() {
+const searchHeaderInput =header.querySelector(".search-quote-input");
+const searchHeaderBtn =document.querySelector(".search-quote-btn");
+let allQuotes;
+const nameWrapper=header.querySelector(".name-wrapper");
+const nameList=header.querySelector(".name-list");
+const idWrapper=header.querySelector(".id-wrapper");
+const idList=header.querySelector(".id-list");
+const poWrapper=header.querySelector(".po-wrapper");
+const poList=header.querySelector(".po-list");
+const globalDropDown=header.querySelector(".global-dropdown")
+let searchedQuotes=[];
+
+function loadQuotes() {
   try {
-    const resp = await fetch("../assets/json/quote.json")
-    const data = await resp.json()
-   
     if(!sessionStorage.getItem("quotes")){
-      sessionStorage.setItem('quotes',JSON.stringify(data))
+      sessionStorage.setItem('quotes',JSON.stringify(quotesData));
     }
   } catch (err) {
     console.error("Error:", err)
@@ -14,10 +23,11 @@ async function loadQuotes() {
 
 loadQuotes();
 
-async function init() {
-  await loadQuotes();
+function init() {
+  loadQuotes();
   initializeSearch();
 }
+
 init();
 
 
@@ -36,17 +46,7 @@ document.querySelectorAll(".profile-container").forEach((container) => {
   });
 });
 
-const searchHeaderInput =header.querySelector(".search-quote-input");
-const searchHeaderBtn =document.querySelector(".search-quote-btn");
-let allQuotes;
-const nameWrapper=header.querySelector(".name-wrapper");
-const nameList=header.querySelector(".name-list");
-const idWrapper=header.querySelector(".id-wrapper");
-const idList=header.querySelector(".id-list");
-const poWrapper=header.querySelector(".po-wrapper");
-const poList=header.querySelector(".po-list");
-const globalDropDown=header.querySelector(".global-dropdown")
-let searchedQuotes=[];
+
 
 function searchHeaderQuotes() {
   const value = searchHeaderInput.value.trim().toLowerCase();

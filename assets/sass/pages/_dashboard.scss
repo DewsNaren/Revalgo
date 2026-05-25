@@ -431,10 +431,9 @@
     height: 100%;
     .quotes-container{
         width: 62%;
-        max-height: calc(100% - clamp(20px, $fs-37px, $fs-37px));
+        max-height: 100%;
         display: flex;
         flex-direction: column;
-        
         h3{
             font-size: clamp(14px, $fs-22px, $fs-22px);
             font-weight: normal;
@@ -447,7 +446,7 @@
             border-radius: clamp(3px, $fs-10px, $fs-10px);
             background-color: $white;
             height: 100%;
-            max-height: 100%;
+            max-height: calc(100% - clamp(27px, $fs-33px, $fs-33px)); 
             display: flex;
             flex-direction: column;
           
@@ -457,7 +456,6 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-      
                 .btn-container{
                     display:flex;
                     align-items: center;
@@ -627,9 +625,7 @@
             .quote-table{
                 width: 100%;
                 table-layout: fixed;
-                height: calc(100% - clamp(20px, $fs-33px, $fs-33px));
-               
-                display: flex;
+                height: calc(100% - clamp(20px, $fs-33px, $fs-33px));                display: flex;
                 flex-direction: column;
                 flex: 1;
 
@@ -922,7 +918,9 @@
                         flex: 1;
                         height: 100%;
                         width: 100%;
-
+                        .highcharts-yaxis-labels span{
+                            left: 0px !important;
+                        }
                         .trend-x-label,.trend-y-label{
                             font-size: clamp(10px,$fs-12px, $fs-12px);
                             opacity: 0.9;
@@ -1237,6 +1235,7 @@
     font-size: 10px;
     color: $black-80;
     width: 100%;
+    margin-top: 10px;
   }
   &.active{
     display: flex;
@@ -1444,6 +1443,9 @@
                                                 font-size: clamp(11px, $fs-15px, $fs-15px);
                                                 cursor: pointer;
                                                 &:hover {
+                                                    background: #f0f0f0;
+                                                }
+                                                &.active{
                                                     background: #f0f0f0;
                                                 }
                                             }

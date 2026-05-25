@@ -2,6 +2,17 @@ const selectedFileWrapper = document.querySelector(".selected-file");
 const uploadBtn = uploadBtnContainer.querySelector(".upload-btn");
 const selectFileInput = document.querySelector(".select-file-input");
 
+const delAllBtn = displayTable.querySelector(".header-wrapper .delete-all-btn");
+const undoAllBtn = displayTable.querySelector(".header-wrapper .undo-all-btn");
+const checkAllInput = displayTable.querySelector(".header-wrapper .check-all-input");
+
+const leftHeaderBtns = leftWrapper.querySelectorAll(".header-wrapper .btn-container button",);
+const uploadWrapper = leftWrapper.querySelector(".upload-wrapper");
+const descDropdown = leftTableWrapper.querySelector(".desc-dropdown");
+const descList = descDropdown.querySelector(".desc-list");
+
+
+//generate random delId function
 function getDelId() {
   let allQuotes = JSON.parse(sessionStorage.getItem("quotes"));
   let delId = Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
@@ -18,6 +29,10 @@ function getDelId() {
   return delId;
 }
 
+
+
+
+//delete row function
 function delRow(event) {
   const delBtn = event.target.parentElement;
   const row = delBtn.parentElement.parentElement;
@@ -72,6 +87,8 @@ delQuoteText.addEventListener("input", () => {
     del2YesBtn.classList.remove("active");
   }
 });
+
+//delete row function
 function undoRow(event) {
   const undoBtn = event.target.parentElement;
   const row = undoBtn.parentElement.parentElement;
@@ -95,6 +112,7 @@ function undoRow(event) {
   row.addEventListener("click", rowClickHandler);
 }
 
+//delete all rows function
 function deleteAllRow() {
   const bodyWrapper = displayTable.querySelector(".body-wrapper");
   const checkAllInput = displayTable.querySelector(".check-all-input");
@@ -136,6 +154,7 @@ function deleteAllRow() {
   };
 }
 
+//undo all rows function
 function undoAllRow() {
   const bodyWrapper = displayTable.querySelector(".body-wrapper");
   const tableRows = bodyWrapper.querySelectorAll(".table-row");
@@ -157,7 +176,7 @@ function undoAllRow() {
   undoAllBtn.classList.remove("selected", "active");
 }
 
-//select all
+//select all rows function
 function selectAllRow(event) {
   const bodyWrap = displayTable.querySelector(".body-wrapper");
   const tableRows = bodyWrap.querySelectorAll(".table-row");
@@ -176,12 +195,9 @@ function selectAllRow(event) {
   }
 }
 
-const delAllBtn = displayTable.querySelector(".header-wrapper .delete-all-btn");
-const undoAllBtn = displayTable.querySelector(".header-wrapper .undo-all-btn");
-const checkAllInput = displayTable.querySelector(
-  ".header-wrapper .check-all-input",
-);
 
+
+//enable delete all btn function
 function enableDeleteAllBtn() {
   const bodyWrapper = displayTable.querySelector(".body-wrapper");
   const checkLineInps = bodyWrapper.querySelectorAll(".check-line-input");
@@ -194,12 +210,14 @@ function enableDeleteAllBtn() {
   checkAllInput.checked = isAllChecked;
 }
 
+//add data to table function
 function openAddPopup() {
   popupOverlay.classList.add("active");
   addPopup.classList.add("active");
   editPopupData(addTable.querySelector(".body-wrapper"));
 }
 
+//edit popup data function
 editPopupData(addTable.querySelector(".body-wrapper"));
 function editPopupData(bodyWrap) {
   const tableRows = bodyWrap.querySelectorAll(".table-row");
@@ -222,10 +240,8 @@ function editPopupData(bodyWrap) {
 
       const margin = parseFloat(marginInp.value) || 0;
 
-      // selling = cost + margin%
       const sellingPrice = cost + (cost * margin) / 100;
 
-      // total = qty * selling
       const totalPrice = qty * sellingPrice;
 
       sellingPriceEl.textContent = sellingPrice.toFixed(2);
@@ -240,12 +256,14 @@ function editPopupData(bodyWrap) {
   });
 }
 
+
 function allowNumbers(inp) {
   inp.addEventListener("input", () => {
     inp.value = inp.value.replace(/\D/g, "");
   });
 }
 
+//add line in popup function
 function addLine(event) {
   const row = event.target.closest(".table-row");
   const bodyWrap = event.target.parentElement.parentElement.parentElement;
@@ -258,6 +276,7 @@ canceladdpopupBtn.addEventListener("click", (event) => {
   closeModal();
 });
 
+//add products to table and quote function
 const brands = [
   "Voltex",
   "Amperon",
@@ -278,7 +297,6 @@ const addLinesBtn = addPopup.querySelector(".add-lines-btn");
 addLinesBtn.addEventListener("click", () => {
   addProductsToQuote();
   updateQuoteTotals();
-  console.log(newQuote)
   renderDisplayTable(newQuote);
   approveQuoteBtn.classList.add("active");
   storeQuote();
@@ -293,7 +311,6 @@ addLinesBtn.addEventListener("click", () => {
 //add table data to array
 function addProductsToQuote() {
   const rows = addTable.querySelectorAll(".body-wrapper .table-row");
-
   rows.forEach((row) => {
     const productObj = {
       qty_requested:
@@ -377,6 +394,8 @@ const mailMinimizeBtn = document.querySelector(".minimize-btn");
 const imgCloseBtn = imgInfoContainer.querySelector(".img-close-btn");
 const imgInfoBtn = imgInfoContainer.querySelector(".info-btn");
 const imgPopup = document.querySelector(".img-popup");
+
+//mail wrapper expand and minimize function
 mailExpandBtn.addEventListener("click", () => {
   if (leftWrapper.classList.contains("maximize")) {
     leftWrapper.classList.remove("minimize","maximize");
@@ -437,13 +456,10 @@ imgCloseBtn.addEventListener("click", () => {
   mailImgContainers.forEach((c) => c.classList.remove("active"));
 });
 
-//left top btn click function
-const leftHeaderBtns = leftWrapper.querySelectorAll(
-  ".header-wrapper .btn-container button",
-);
-const uploadWrapper = leftWrapper.querySelector(".upload-wrapper");
+//left top tab btn click function
 
-leftHeaderBtns.forEach((btn) => {
+
+leftHeaderBtns.forEach(btn => {
   btn.addEventListener("click", () => {
     leftHeaderBtns.forEach((btn) => btn.classList.remove("active"));
     btn.classList.add("active");
@@ -473,6 +489,7 @@ leftHeaderBtns.forEach((btn) => {
   });
 });
 
+//excel upload function
 let exCelData = [];
 const expectedKeys = [
   "requested_id",
@@ -537,6 +554,8 @@ selectFileInput.addEventListener("input", (event) => {
   getJsonData(file);
   uploadBtn.classList.remove("not-active");
 });
+
+//get size of uploaded file 
 function formatSize(bytes) {
   if (bytes < 1024) return `${bytes} B`;
   if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
@@ -603,7 +622,7 @@ async function getJsonData(file) {
 
     return false;
   }
-  // else{
+
   selectedFileWrapper.innerHTML += `
    
     <div class="file-container success">
@@ -664,6 +683,7 @@ function getCrtData(exCelData) {
   });
   updateQuoteTotals();
 }
+
 //Fetch data from excel
 function parseSharedStrings(xml) {
   if (!xml) return [];
@@ -707,6 +727,7 @@ function parseSheetAsJSON(sheetXML, sharedStrings = []) {
   return json;
 }
 
+//get products from json file
 let products = [];
 let filteredProducts = [];
 const defaultLine = {
@@ -734,52 +755,8 @@ const defaultLine = {
   desc: "Integer etiam urna mauris in odio leo maecenas sed sem ac donec.",
 };
 
-async function getAllProducts() {
-  try {
-    const resp = await fetch("../assets/json/quote.json");
-    const data = await resp.json();
-    data.forEach((d) => {
-      const prods = d.products;
-      prods.forEach((p) => {
-        products.push(p);
-      });
-    });
-  } catch (err) {
-    console.error("Error:", err);
-  }
-}
+//description search function
 
-async function initProducts() {
-  await getAllProducts();
-
-  renderSuggestPopup(products);
-  searchSuggestPopup();
-  searchSourcingPopup();
-  renderSourcingPopup(products);
-  renderSupplierPopup(products);
-  initProductSearch();
-
-
-
-  setTimeout(() => {
-    loaderWrapper.classList.add("not-active");
-    if (typeof createQuoteWrapper !== "undefined" && createQuoteWrapper) {
-      createQuoteWrapper.classList.remove("active");
-    } 
-    else if (typeof quoteWrapper !== "undefined" && quoteWrapper) {
-      quoteWrapper.classList.add("active");
-    } 
-    else if (typeof existQuoteWrapper !== "undefined" && existQuoteWrapper) {
-      existQuoteWrapper.classList.add("active");
-    }
-  }, 300);
-
-}
-
-initProducts();
-
-const descDropdown = leftTableWrapper.querySelector(".desc-dropdown");
-const descList = descDropdown.querySelector(".desc-list");
 let currentDescInput = null;
 let searchedProduct = [];
 
@@ -824,6 +801,8 @@ function searchProducts(inp) {
   });
   uploadBtn.classList.remove("not-active");
 }
+
+//description dropdown click function
 function handleProductItemClick(e) {
   const li = e.target.closest("li");
 
@@ -844,6 +823,7 @@ function handleProductItemClick(e) {
   descDropdown.classList.remove("active");
 }
 
+//initialize description search function
 function initProductSearch() {
   descInputs.forEach((inp) => {
     inp.addEventListener("input", () => {
@@ -856,10 +836,10 @@ function initProductSearch() {
     });
   });
 }
-// let totalQuotes = [];
-// if(sessionStorage.getItem("searchedQuotes")){
+
 descDropdown.addEventListener("click", handleProductItemClick);
 
+//upload button click function
 uploadBtn.addEventListener("click", () => {
   if (leftTableWrapper.classList.contains("active")) {
     getSearchedProducts();
@@ -884,6 +864,7 @@ uploadBtn.addEventListener("click", () => {
   undoQuoteBtn.classList.add("active");
   approveQuoteBtn.classList.add("not-active")
 });
+
 
 function getSearchedProducts() {
   const newProducts = newQuote.products;
@@ -954,6 +935,7 @@ function delFile(event) {
   fileContainer.remove();
 }
 
+//store quote in storage 
 function storeQuote() {
   let found = false;
   const allQuotes = JSON.parse(sessionStorage.getItem("quotes"));

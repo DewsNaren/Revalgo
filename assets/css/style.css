@@ -852,7 +852,7 @@ header nav ul li a.new-quote-btn:hover {
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container {
   width: 62%;
-  max-height: calc(100% - clamp(20px, 1.965vw, 1.965vw));
+  max-height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -868,7 +868,7 @@ header nav ul li a.new-quote-btn:hover {
   border-radius: clamp(3px, 0.521vw, 0.521vw);
   background-color: white;
   height: 100%;
-  max-height: 100%;
+  max-height: calc(100% - clamp(27px, 1.71vw, 1.71vw));
   display: flex;
   flex-direction: column;
 }
@@ -964,6 +964,9 @@ header nav ul li a.new-quote-btn:hover {
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .top-container .filter-wrapper .filter-container {
   position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 4px clamp(9px, 0.79vw, 0.79vw);
+  border-radius: 3px;
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .top-container .filter-wrapper .filter-container .filter-text {
   display: flex;
@@ -978,11 +981,6 @@ header nav ul li a.new-quote-btn:hover {
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .top-container .filter-wrapper .filter-container .filter-text img {
   width: 15px, 0.989vw, 0.989vw;
   pointer-events: none;
-}
-.dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .top-container .filter-wrapper .filter-container {
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  padding: 4px clamp(9px, 0.79vw, 0.79vw);
-  border-radius: 3px;
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .top-container .filter-wrapper .filter-container .filter-dropdown {
   display: none;
@@ -1286,6 +1284,9 @@ header nav ul li a.new-quote-btn:hover {
   height: 100%;
   width: 100%;
 }
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .trend-chart-wrapper .trend-chart-container .trend-chart .highcharts-yaxis-labels span {
+  left: 0px !important;
+}
 .dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .trend-chart-wrapper .trend-chart-container .trend-chart .trend-x-label, .dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .trend-chart-wrapper .trend-chart-container .trend-chart .trend-y-label {
   font-size: clamp(10px, 0.63vw, 0.63vw);
   opacity: 0.9;
@@ -1406,19 +1407,19 @@ header nav ul li a.new-quote-btn:hover {
   background-color: transparent;
   border: none;
 }
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .btn-container button.dropdown-btn {
+  font-size: clamp(13px, 1.15vw, 1.15vw);
+}
 .dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .btn-container button.dropdown-btn img {
   width: clamp(13px, 1.15vw, 1.15vw);
   margin-right: 5px;
   transition: transform 0.3s ease;
 }
-.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .btn-container button.dropdown-btn {
+.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .btn-container button.dropdown-btn.collapsed {
   font-size: clamp(13px, 1.15vw, 1.15vw);
 }
 .dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .btn-container button.dropdown-btn.collapsed img {
   transform: rotate(180deg);
-}
-.dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .btn-container button.dropdown-btn.collapsed {
-  font-size: clamp(13px, 1.15vw, 1.15vw);
 }
 .dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .transaction-wrapper .btn-container button.view-more-btn {
   font-size: clamp(11px, 0.79vw, 0.79vw);
@@ -1531,6 +1532,7 @@ header nav ul li a.new-quote-btn:hover {
   font-size: 10px;
   color: rgba(0, 0, 0, 0.8);
   width: 100%;
+  margin-top: 10px;
 }
 .dashboard-wrapper.active {
   display: flex;
@@ -1688,6 +1690,9 @@ header nav ul li a.new-quote-btn:hover {
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .filter-container {
   position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 6px clamp(9px, 0.79vw, 0.79vw);
+  border-radius: 3px;
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .filter-container .filter-text {
   display: flex;
@@ -1702,11 +1707,6 @@ header nav ul li a.new-quote-btn:hover {
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .filter-container .filter-text img {
   width: clamp(15px, 0.989vw, 0.989vw);
   pointer-events: none;
-}
-.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .filter-container {
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  padding: 6px clamp(9px, 0.79vw, 0.79vw);
-  border-radius: 3px;
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .filter-container .filter-dropdown {
   display: none;
@@ -1734,6 +1734,9 @@ header nav ul li a.new-quote-btn:hover {
   cursor: pointer;
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .filter-container .filter-dropdown ul li:hover {
+  background: #f0f0f0;
+}
+.expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .filter-container .filter-dropdown ul li.active {
   background: #f0f0f0;
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .filter-wrapper .filter-container .filter-dropdown.active {
@@ -1920,12 +1923,12 @@ header nav ul li a.new-quote-btn:hover {
   background-color: transparent;
   border: none;
 }
+.expand-overlay .expand-modal.table .expand-modal-content .transaction-wrapper .btn-container button.dropdown-btn {
+  font-size: clamp(13px, 1.36vw, 1.36vw);
+}
 .expand-overlay .expand-modal.table .expand-modal-content .transaction-wrapper .btn-container button.dropdown-btn img {
   width: clamp(13px, 1.25vw, 1.25vw);
   margin-right: 5px;
-}
-.expand-overlay .expand-modal.table .expand-modal-content .transaction-wrapper .btn-container button.dropdown-btn {
-  font-size: clamp(13px, 1.36vw, 1.36vw);
 }
 .expand-overlay .expand-modal.table .expand-modal-content .transaction-wrapper .btn-container button.view-more-btn {
   font-size: clamp(11px, 0.79vw, 0.79vw);
@@ -2337,12 +2340,10 @@ header nav ul li a.new-quote-btn:hover {
   }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th span {
     gap: 5px;
+    font-size: 9px;
   }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th span img {
     width: 8px;
-  }
-  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th span {
-    font-size: 9px;
   }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:first-of-type {
     width: 2.067vw;
@@ -3481,6 +3482,8 @@ header nav ul li a.new-quote-btn:hover {
 }
 .popup-overlay .add-popup .add-table .body-wrapper .table-row p {
   margin-bottom: 0;
+  font-size: clamp(8px, 0.73vw, 0.73vw);
+  text-align: right;
 }
 .popup-overlay .add-popup .add-table .body-wrapper .table-row p input {
   width: 100%;
@@ -3491,10 +3494,6 @@ header nav ul li a.new-quote-btn:hover {
   outline: none;
   color: rgb(21, 71, 135);
   font-weight: 500;
-}
-.popup-overlay .add-popup .add-table .body-wrapper .table-row p {
-  font-size: clamp(8px, 0.73vw, 0.73vw);
-  text-align: right;
 }
 .popup-overlay .add-popup .add-table .body-wrapper .table-row p:nth-of-type(1) {
   padding-right: clamp(10px, 2.61vw, 2.61vw);
@@ -3624,12 +3623,10 @@ header nav ul li a.new-quote-btn:hover {
 .popup-overlay .img-popup .header .text-container p {
   color: rgba(0, 0, 0, 0.8);
   font-size: clamp(10px, 0.79vw, 0.79vw);
+  margin-bottom: 0;
 }
 .popup-overlay .img-popup .header .text-container p span {
   color: black;
-}
-.popup-overlay .img-popup .header .text-container p {
-  margin-bottom: 0;
 }
 .popup-overlay .img-popup .header .close-popup-btn {
   border: none;
@@ -4337,15 +4334,13 @@ header nav ul li a.new-quote-btn:hover {
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-body .table-row .desc-wrapper {
   position: relative;
   flex: 1;
+  /* dropdown */
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-body .table-row .desc-wrapper .desc-input {
   width: 100%;
   color: rgb(21, 71, 135);
   font-weight: 500;
   line-height: 1;
-}
-.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-body .table-row .desc-wrapper {
-  /* dropdown */
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-body .table-row .desc-wrapper .dropdown {
   position: absolute;
@@ -5084,6 +5079,7 @@ header nav ul li a.new-quote-btn:hover {
   gap: clamp(37px, 3.91vw, 3.91vw);
   width: 51%;
   padding-right: clamp(10px, 1.05vw, 1.05vw);
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .sourcing-dropdown .desc-wrapper .img-wrapper .thumbnail-img {
   width: clamp(83px, 6.41vw, 6.41vw);
@@ -5105,9 +5101,6 @@ header nav ul li a.new-quote-btn:hover {
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .sourcing-dropdown .desc-wrapper .desc-container p {
   color: #6c6c6c;
   font-size: clamp(10px, 0.73vw, 0.73vw);
-}
-.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .sourcing-dropdown .desc-wrapper {
-  border-right: 1px solid rgba(0, 0, 0, 0.2);
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .sourcing-dropdown .spec-wrapper {
   padding-left: clamp(10px, 1.57vw, 1.57vw);
@@ -6639,6 +6632,7 @@ header nav ul li a.new-quote-btn:hover {
   gap: clamp(37px, 3.91vw, 3.91vw);
   width: 51%;
   padding-right: clamp(10px, 1.05vw, 1.05vw);
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
 }
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .sourcing-dropdown .desc-wrapper .img-wrapper .thumbnail-img {
   width: clamp(83px, 6.41vw, 6.41vw);
@@ -6660,9 +6654,6 @@ header nav ul li a.new-quote-btn:hover {
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .sourcing-dropdown .desc-wrapper .desc-container p {
   color: #6c6c6c;
   font-size: clamp(10px, 0.73vw, 0.73vw);
-}
-.create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .sourcing-dropdown .desc-wrapper {
-  border-right: 1px solid rgba(0, 0, 0, 0.2);
 }
 .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .sourcing-dropdown .spec-wrapper {
   padding-left: clamp(10px, 1.57vw, 1.57vw);
@@ -7231,6 +7222,34 @@ header nav ul li a.new-quote-btn:hover {
   .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper {
     margin-top: clamp(12px, 1.57vw, 1.57vw);
   }
+  .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper {
+    padding: 0px 5px 0 0;
+  }
+  .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-header-container .test {
+    margin-bottom: clamp(4px, 0.4vw, 0.4vw);
+  }
+  .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-header-container .to-text {
+    margin-bottom: 0px;
+  }
+  .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container {
+    padding-top: clamp(5px, 0.43vw, 0.43vw) 0;
+  }
+  .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .title {
+    padding: clamp(6px, 0.63vw, 0.63vw) 0;
+  }
+  .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .list-wrapper .list-title {
+    margin-bottom: clamp(4px, 0.43vw, 0.43vw);
+  }
+  .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .list-wrapper .list {
+    margin-bottom: clamp(8px, 0.83vw, 0.83vw);
+  }
+  .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .bottom-container p:first-of-type {
+    margin-bottom: clamp(5px, 0.48vw, 0.48vw);
+  }
+  .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-info-container .img-header .btn-container button.info-btn span {
+    top: 5px;
+    right: -3px;
+  }
   .create-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper {
     padding-top: clamp(9px, 0.989vw, 0.989vw);
   }
@@ -7239,7 +7258,6 @@ header nav ul li a.new-quote-btn:hover {
   }
 }
 .exist-quote-wrapper {
-  margin-top: 6px;
   padding: clamp(15px, 1.57vw, 1.57vw) clamp(12px, 1.15vw, 1.15vw);
   display: none;
   flex-direction: column;
@@ -8907,11 +8925,11 @@ header nav ul li a.new-quote-btn:hover {
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:hover p:nth-of-type(12) button, .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:hover .add-line-note-btn {
   visibility: visible;
 }
-.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:nth-last-child(2) p.bottom-line {
-  display: none;
-}
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:nth-last-child(2) {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:nth-last-child(2) p.bottom-line {
+  display: none;
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .table-row:not(:first-of-type) {
   padding-top: clamp(4px, 0.68vw, 0.68vw);
@@ -8933,6 +8951,7 @@ header nav ul li a.new-quote-btn:hover {
   gap: clamp(37px, 3.91vw, 3.91vw);
   width: 51%;
   padding-right: clamp(10px, 1.05vw, 1.05vw);
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .sourcing-dropdown .desc-wrapper .img-wrapper .thumbnail-img {
   width: clamp(83px, 6.41vw, 6.41vw);
@@ -8954,9 +8973,6 @@ header nav ul li a.new-quote-btn:hover {
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .sourcing-dropdown .desc-wrapper .desc-container p {
   color: #6c6c6c;
   font-size: clamp(10px, 0.73vw, 0.73vw);
-}
-.exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .sourcing-dropdown .desc-wrapper {
-  border-right: 1px solid rgba(0, 0, 0, 0.2);
 }
 .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .right-wrapper .display-table .body-wrapper .sourcing-dropdown .spec-wrapper {
   padding-left: clamp(10px, 1.57vw, 1.57vw);
@@ -9524,6 +9540,34 @@ header nav ul li a.new-quote-btn:hover {
   }
 }
 @media screen and (max-width: 1400px) {
+  .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper {
+    padding: 0px 5px 0 0;
+  }
+  .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-header-container .test {
+    margin-bottom: clamp(4px, 0.4vw, 0.4vw);
+  }
+  .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-header-container .to-text {
+    margin-bottom: 0px;
+  }
+  .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container {
+    padding-top: clamp(5px, 0.43vw, 0.43vw) 0;
+  }
+  .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .title {
+    padding: clamp(6px, 0.63vw, 0.63vw) 0;
+  }
+  .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .list-wrapper .list-title {
+    margin-bottom: clamp(4px, 0.43vw, 0.43vw);
+  }
+  .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .list-wrapper .list {
+    margin-bottom: clamp(8px, 0.83vw, 0.83vw);
+  }
+  .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .text-container .bottom-container p:first-of-type {
+    margin-bottom: clamp(5px, 0.48vw, 0.48vw);
+  }
+  .exist-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-info-container .img-header .btn-container button.info-btn span {
+    top: 5px;
+    right: -3px;
+  }
   .exist-quote-wrapper .exist-quote-filter-wrapper .btn-container button {
     font-size: clamp(11px, 1.15vw, 1.15vw);
   }
@@ -10434,6 +10478,12 @@ header nav ul li a.new-quote-btn:hover {
 @media screen and (max-width: 1300px) {
   .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th span img {
     width: 8px;
+  }
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th:nth-of-type(3) {
+    width: clamp(80px, 15.57vw, 15.57vw);
+  }
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td:nth-of-type(3) {
+    width: clamp(80px, 15.57vw, 15.57vw);
   }
 }
 

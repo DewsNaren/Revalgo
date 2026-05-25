@@ -23,18 +23,9 @@ let selectedDatee;
 let selectedYear = new Date().getFullYear();
 
 const MONTHS = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
+  "January","February","March","April",
+  "May","June","July","August",
+  "September","October","November","December",
 ];
 
 const DAYS = ["S", "M", "T", "W", "T", "F", "S"];
@@ -142,7 +133,6 @@ function createDatepicker(datePicker) {
         datePicker.classList.remove("active");
 
         getSelectedDate(datePicker);
-        // console.log(startDate)
       });
 
       datesContainer.appendChild(btn);
@@ -299,7 +289,7 @@ function getSelectedDate(datePicker) {
 
   let startDate = start.trim() === "mm/dd/yyyy"? "05/01/2025": start;
 
-  let endDate = end.trim() === "mm/dd/yyyy"? "04/30/2026": end;
+  let endDate = end.trim() === "mm/dd/yyyy"? `${padZero(new Date().getDate())}/${padZero(new Date().getMonth()+1)}/${padZero(new Date().getFullYear())}`: end;
 
 updateDateFilter(filterType, startDate, endDate);
   changeStatusChips();
@@ -524,7 +514,7 @@ function createPagination(currentPage) {
 rowSelect.addEventListener("change", (e) => {
   const value = e.target.value;
   if (totalQuotes.length > value) {
-    itemsPerPage = value;
+    itemsPerPage = Number(value);
     updatePage(1);
   }
 });
@@ -828,14 +818,13 @@ const approvedEnd =
   searchInput.value = "";
   searchCustomerInput.value = "";
   receivedStart.textContent = "mm/dd/yyyy";
-receivedEnd.textContent = "mm/dd/yyyy";
+  receivedEnd.textContent = "mm/dd/yyyy";
+  approvedStart.textContent = "mm/dd/yyyy";
+  approvedEnd.textContent = "mm/dd/yyyy";
 
-approvedStart.textContent = "mm/dd/yyyy";
-approvedEnd.textContent = "mm/dd/yyyy";
+  updateDateFilter("received", `${padZero(new Date().getDate())}/${padZero(new Date().getMonth()+1)}/${padZero(new Date().getFullYear()-100)}`, `${padZero(new Date().getDate())}/${padZero(new Date().getMonth()+1)}/${padZero(new Date().getFullYear())}`);
 
-updateDateFilter("received", "05/01/2025", "04/30/2026");
-
-updateDateFilter("approved", "05/01/2025", "04/30/2026");
+  updateDateFilter("approved", `${padZero(new Date().getDate())}/${padZero(new Date().getMonth()+1)}/${padZero(new Date().getFullYear()-100)}`, `${padZero(new Date().getDate())}/${padZero(new Date().getMonth()+1)}/${padZero(new Date().getFullYear())}`);
 
   nameInputs.forEach((inp) => (inp.checked = false));
 

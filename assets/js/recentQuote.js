@@ -26,16 +26,41 @@ const qtyInputs = leftTableWrapper.querySelectorAll(".qty-input");
 const uploadBtnContainer = leftWrapper.querySelector(".upload-btn-container");
 const loaderWrapper = document.querySelector(".loader-wrapper");
 
-//Datepicker
+const backBtnContainer = document.querySelector(".back-btn-container");
+const CreateBtn = backBtnContainer.querySelector(".back-create-btn");
+const quoteStat = backBtnContainer.querySelector(".quote-status");
+const quickInfoWrapper = document.querySelector(".quick-info-wrapper");
+const formTitle = document.querySelector(".form-title");
+const formContainers = document.querySelectorAll(".form-container");
 const formPopup = document.querySelector(".form-popup");
+const cancelFormPopupBtn = formPopup.querySelector(".cancel-btn");
+const delQuoteBtn = document.querySelector(".del-quote-btn");
+const undoQuoteBtn = document.querySelector(".undo-quote-btn");
+const approveBtnContainer = document.querySelector(".approve-btn-container");
+
+const modalBox = document.querySelector(".expand-modal");
+const modalContent = document.querySelector(".expand-modal-content");
+const closePopupBtns = document.querySelectorAll(".close-popup-btn");
+const popups = document.querySelectorAll(".popup");
+
+const disTableBodyWrapper = displayTable.querySelector(".body-wrapper");
+const closeBtn = document.querySelector(".close-modal-btn");
+
+
+const errs = formPopup.querySelectorAll(".error");
+const updateForm = formPopup.querySelector(".update-form");
+const updateBtn = formPopup.querySelector(".update-btn");
 const formWrapper = formPopup.querySelector(".form-wrapper");
+
+const datepicker = formPopup.querySelector(".datepicker");
 const dateText = formPopup.querySelector(".date-text");
 const minDate = new Date();
 minDate.setFullYear(minDate.getFullYear() - 100);
 const maxDate = new Date();
-
 const calendarDays = document.querySelectorAll(".custom-date-day");
 
+
+//Datepicker
 calendarDays.forEach((dayBtn) => {
   dayBtn.addEventListener("click", () => {
     let day = Number(dayBtn.dataset.day);
@@ -59,18 +84,8 @@ let selectedDatee;
 let selectedYear = new Date().getFullYear();
 
 const MONTHS = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
+  "January","February","March","April","May","June","July",
+  "August","September","October","November","December",
 ];
 
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -94,9 +109,7 @@ function createDatepicker(datePicker) {
   const nextBtn = datePicker.querySelector(".next-month");
   const tags = datePicker.querySelectorAll(".tag");
   const yearEl = datePicker.querySelector(".year");
-  // let today = new Date();
-  // let current = new Date(today);
-  // let selectedDate = null;
+
 
   function renderCalendar() {
     const year = current.getFullYear();
@@ -234,7 +247,7 @@ function createDatepicker(datePicker) {
   renderCalendar();
 }
 
-const datepicker = formPopup.querySelector(".datepicker");
+
 
 createDatepicker(datepicker);
 
@@ -247,7 +260,6 @@ for (let i = 0; i < DAYS.length; i++) {
 }
 
 function getSelectedDate(datePicker) {
-  console.log("addsd");
   const monthNameEl = datePicker.querySelector(".month-name");
   const MonthArr = monthNameEl.textContent.split(" ");
   selectedMonth = Number(MONTHS.findIndex((m) => m === MonthArr[0])) + 1;
@@ -268,12 +280,10 @@ function getSelectedDate(datePicker) {
 }
 
 //validate dateinput
-
 function validDateInput(datePicker) {
   const parentEl = datePicker.parentElement;
   const dateInp = parentEl.querySelector(".date-input");
   const formContainer = dateInp.parentElement.parentElement;
-  console.log(formContainer);
   const errorElement = formContainer.querySelector(".error");
   if (dateInp.value == "") {
     formContainer.classList.add("error");
@@ -306,15 +316,6 @@ document.addEventListener("click", (e) => {
 });
 
 //popup and expand open close function
-const modalBox = document.querySelector(".expand-modal");
-const modalContent = document.querySelector(".expand-modal-content");
-const closePopupBtns = document.querySelectorAll(".close-popup-btn");
-const popups = document.querySelectorAll(".popup");
-
-const disTableBodyWrapper = displayTable.querySelector(".body-wrapper");
-const closeBtn = document.querySelector(".close-modal-btn");
-const errs = formPopup.querySelectorAll(".error");
-
 expandBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     const modalContent = document.querySelector(".expand-modal-content");
@@ -361,16 +362,7 @@ popupOverlay.addEventListener("click", (e) => {
   }
 });
 
-const backBtnContainer = document.querySelector(".back-btn-container");
-const CreateBtn = backBtnContainer.querySelector(".back-create-btn");
-const quoteStat = backBtnContainer.querySelector(".quote-status");
-const quickInfoWrapper = document.querySelector(".quick-info-wrapper");
-const formTitle = document.querySelector(".form-title");
-const formContainers = document.querySelectorAll(".form-container");
-const cancelFormPopupBtn = formPopup.querySelector(".cancel-btn");
-const delQuoteBtn = document.querySelector(".del-quote-btn");
-const undoQuoteBtn = document.querySelector(".undo-quote-btn");
-const approveBtnContainer = document.querySelector(".approve-btn-container");
+
 // const displayTable=document.querySelector(".display-table");
 
 let newQuote = "";
@@ -393,6 +385,7 @@ if (sessionStorage.getItem("selectedQuote")) {
   renderDisplayTable(newQuote);
 }
 
+//back btn function
 CreateBtn.addEventListener("click", (e) => {
   e.preventDefault();
   updateQuickInfoData();
@@ -403,6 +396,7 @@ CreateBtn.addEventListener("click", (e) => {
   window.location.href = "./dashboard.html";
 });
 
+//delete quote btn function
 delQuoteBtn.addEventListener("click", () => {
   quickOrderWrapper.classList.add("not-active");
   approveBtnContainer.classList.remove("not-active");
@@ -416,6 +410,7 @@ delQuoteBtn.addEventListener("click", () => {
   storeQuote();
 });
 
+//undo quote btn function
 undoQuoteBtn.addEventListener("click", () => {
   quickOrderWrapper.classList.remove("not-active");
   approveBtnContainer.classList.remove("not-active");
@@ -653,7 +648,7 @@ function enableDrag(bodyWrap) {
   });
 }
 
-// UPDATE LINE NUMBERS
+// update line numbers after drag and drop
 function updateLineNumbers(bodyWrap) {
   const tableRows = bodyWrap.querySelectorAll(".table-row");
   tableRows.forEach((row, index) => {
@@ -661,7 +656,7 @@ function updateLineNumbers(bodyWrap) {
   });
 }
 
-// UPDATE PRODUCTS ARRAY
+// update products order in newQuote after drag and drop
 function updateProductsOrder(bodyWrap) {
   const groups = bodyWrap.querySelectorAll(".row-group");
 
@@ -695,7 +690,6 @@ function rowClickHandler(e) {
 
   const pTag = e.target.closest("p");
 
-  // clicked directly on text/child inside p
   if (pTag && e.target !== pTag) {
     return;
   }
@@ -760,8 +754,9 @@ function editQuoteInfo(quoteInfoWrap) {
     });
   });
 }
+
+
 function updateFormData(quoteInfoWrap, editItem) {
-  // console.log(editItem)
   const wrapper = document.querySelector(`.${editItem}_text`);
 
   formContainers.forEach((container) => {
@@ -804,8 +799,7 @@ function updateFormData(quoteInfoWrap, editItem) {
   });
 }
 
-const updateForm = formPopup.querySelector(".update-form");
-const updateBtn = formPopup.querySelector(".update-btn");
+
 
 cancelFormPopupBtn.addEventListener("click", () => {
   updateForm.reset();
@@ -853,9 +847,9 @@ function validateUpdateForm(container) {
   });
 }
 
+
 let nameInp = "";
 let addrInp = "";
-
 function changeQuickInfo(inp, con) {
   const quoteInfoWrap = document.querySelector(".quick-info-wrapper");
   const editBtns = quoteInfoWrap.querySelectorAll(".edit-btn");
@@ -910,6 +904,7 @@ formContainers.forEach((container) => {
     });
   });
 });
+
 
 function editTableData(bodyWrap) {
   const tableRows = bodyWrap.querySelectorAll(".table-row");
@@ -972,10 +967,9 @@ function editTableData(bodyWrap) {
   });
 }
 
+
 function allowNumbers(inp) {
   inp.addEventListener("input", () => {
     inp.value = inp.value.replace(/\D/g, "");
   });
 }
-
-//loader function

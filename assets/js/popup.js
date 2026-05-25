@@ -11,9 +11,7 @@ const addLineNotePopup = document.querySelector(".add-line-note-popup");
 const addLineNoteBtn = addLineNotePopup.querySelector(".add-btn");
 const addLineNoteInput = addLineNotePopup.querySelector(".add-line-note-input");
 const addQuoteNotePopup = document.querySelector(".add-quote-note-popup");
-const addQuoteNoteInput = addQuoteNotePopup.querySelector(
-  ".add-quote-note-input",
-);
+const addQuoteNoteInput = addQuoteNotePopup.querySelector(".add-quote-note-input");
 const addQuoteNoteBtn = addQuoteNotePopup.querySelector(".add-btn");
 const imgUpdateBtn = imgPopup.querySelector(".update-btn");
 const selectAllWrapInput = imgPopup.querySelector(".select-all-input");
@@ -22,10 +20,51 @@ const selectImgInputs = imgPopup.querySelectorAll(".select-input");
 const acronymPopup = document.querySelector(".add-acronym-popup");
 const acronymText = document.querySelector(".acronym-text");
 const acronymInput = acronymPopup.querySelector(".add-acronym-input");
-const acronymChipContainer = acronymPopup.querySelector(
-  ".acronym-chip-container",
-);
+const acronymChipContainer = acronymPopup.querySelector(".acronym-chip-container",);
 const addAcronymBtn = acronymPopup.querySelector(".add-btn");
+const addNoteVal = addLineNoteInput.value.trim();
+const minSuggestBtn = modalContent.querySelector(".min-suggest-btn");
+const acronymItems = document.querySelectorAll(".acronym-item");
+const acronymDropdown=document.querySelector(".acronym-dropdown");
+
+
+
+function getAllProducts() {
+  const data = quotesData;
+  data.forEach((d) => {
+    const prods = d.products;
+    prods.forEach((p) => {
+        products.push(p);
+      });
+    });
+
+}
+
+function initProducts() {
+  renderSuggestPopup(products);
+  searchSuggestPopup();
+  searchSourcingPopup();
+  renderSourcingPopup(products);
+  renderSupplierPopup(products);
+  initProductSearch();
+
+  setTimeout(() => {
+    loaderWrapper.classList.add("not-active");
+    if (typeof createQuoteWrapper !== "undefined" && createQuoteWrapper) {
+      createQuoteWrapper.classList.remove("active");
+    } 
+    else if (typeof quoteWrapper !== "undefined" && quoteWrapper) {
+      quoteWrapper.classList.add("active");
+    } 
+    else if (typeof existQuoteWrapper !== "undefined" && existQuoteWrapper) {
+      existQuoteWrapper.classList.add("active");
+    }
+  }, 300);
+
+}
+
+initProducts();
+
 
 //suggest popup
 function renderSuggestPopup(products) {
@@ -54,6 +93,8 @@ function renderSuggestPopup(products) {
   SuggestProductClick(productsContainer.querySelectorAll(".product"));
 }
 
+
+//suggest popup search function
 function searchSuggestPopup() {
 
   const searchSuggestInput = suggestPopup.querySelector(".search-suggest-product");
@@ -92,7 +133,6 @@ function searchSuggestPopup() {
 //close modal
 function closeModal() {
   if (formPopup.classList.contains("active")) {
-    // updateForm.reset();
     errs.forEach((err) => err.classList.remove("active"));
     formPopup.classList.remove("active");
   }
@@ -183,6 +223,7 @@ function renderSourcingPopup(products) {
 
 }
 
+//sourcing popup search function
 function searchSourcingPopup() {
   const searchSourcingInput =sourcingPopup.querySelector(".search-sourcing-product");
 
@@ -272,9 +313,7 @@ function openSupplierPopup(event) {
   renderSupplierPopup(filP)
 }
 
-//suggest popup expand btn
-
-// const closeBtn = document.querySelector(".close-modal-btn");
+//suggest popup close function
 function closeSuggestPopup() {
   suggestPopup.classList.remove("active");
 }
@@ -302,6 +341,8 @@ document.addEventListener("click", (e) => {
   }
 });
 
+
+//expand popup close function
 function closeExpandPopup() {
   const suggestSource = modalContent.querySelector(".suggest-product-popup");
   const body = document.body;
@@ -310,7 +351,9 @@ function closeExpandPopup() {
   }
   closeModal();
 }
-const minSuggestBtn = modalContent.querySelector(".min-suggest-btn");
+
+
+
 function retrieveSuggestPopup() {
   const suggestSource = modalContent.querySelector(".suggest-product-popup");
   const body = document.body;
@@ -323,6 +366,7 @@ function retrieveSuggestPopup() {
   suggestPopup.classList.add("active");
 }
 
+//product click function in suggest popup
 function SuggestProductClick(suggestProducts) {
   suggestProducts.forEach((p) => {
     p.addEventListener("click", () => {
@@ -339,6 +383,7 @@ function SuggestProductClick(suggestProducts) {
   });
 }
 
+//update row data after selecting product from popup 
 function updateRow(product) {
   if (!currentRow) return;
   const delId = currentRow.querySelector(".del-id").textContent;
@@ -387,7 +432,7 @@ function updateRow(product) {
   newQuotP.supplier = product.supplier;
 }
 
-//source popup function
+//product click function in sourcing popup
 function SourceProductClick(sourcingProducts) {
   sourcingProducts.forEach((p) => {
     p.addEventListener("click", () => {
@@ -423,6 +468,7 @@ stockNoBtn.addEventListener("click", () => {
   closeModal();
 });
 
+
 function enableSourceText(event) {
   const row = event.target.closest(".table-row");
   const sourceText = row.querySelector(".sourcing");
@@ -436,7 +482,7 @@ closeSourcingBtn.addEventListener("click", () =>
   sourcingPopup.classList.remove("active"),
 );
 
-//supplier product click
+//sourcing popup open function
 function openSourcingPopup(event) {
   event.stopPropagation();
   const sourcing = event.target.closest(".sourcing");
@@ -453,6 +499,7 @@ function openSourcingPopup(event) {
 
 }
 
+//supplier product click
 function SupplierProductClick(supplierProducts) {
   supplierProducts.forEach((p) => {
     p.addEventListener("click", () => {
@@ -476,6 +523,7 @@ closeSupplierBtn.addEventListener("click", () =>
   supplierPopup.classList.remove("active"),
 );
 
+
 //approve btn click function
 approveQuoteBtn.addEventListener("click", () => {
   if (newQuote.products.length != 0) {
@@ -489,6 +537,7 @@ approveQuoteBtn.addEventListener("click", () => {
   }
 });
 
+//update quick info data to array
 function updateQuickInfoData() {
   const fields = ["po_no", "job_no", "buyer", "deleivery_date"];
 
@@ -515,6 +564,7 @@ function updateQuickInfoData() {
   });
 }
 
+//update table data to array
 function updateNewQuoteData() {
   const displayTable = document.querySelector(".display-table");
   const tableRows = displayTable.querySelectorAll(".body-wrapper .table-row");
@@ -528,6 +578,7 @@ function updateNewQuoteData() {
   });
 }
 
+//success popup confirm button function
 confirmSuccessBtn.addEventListener("click", () => {
   saveQuotes();
   const bodyWrap = displayTable.querySelector(".body-wrapper");
@@ -539,7 +590,7 @@ confirmSuccessBtn.addEventListener("click", () => {
   window.location.href = "./dashboard.html";
 });
 
-
+//save quotes in storage 
 function saveQuotes(){
   let found = false;
   const quotes = JSON.parse(sessionStorage.getItem("quotes"));
@@ -604,7 +655,7 @@ function openQuoteNotPopup() {
   addQuoteNotePopup.classList.add("active");
 }
 
-const addNoteVal = addLineNoteInput.value.trim();
+
 addQuoteNoteInput.addEventListener("input", () => {
   if (addQuoteNoteInput.value.trim() != "")
     addQuoteNoteBtn.classList.add("active");
@@ -757,13 +808,12 @@ imgUpdateBtn.addEventListener("click", () => {
   editQuoteInfo(document.querySelector(".quick-info-wrapper"))
 });
 
-//acronym function
+//acronym functions
 const acronymData = {};
 
 let currentAcronymItem = null;
 
-const acronymItems = document.querySelectorAll(".acronym-item");
-const acronymDropdown=document.querySelector(".acronym-dropdown");
+
 acronymItems.forEach((item) => {
   item.addEventListener("click", (e) => {
     acronymItems.forEach(item => item.classList.remove("active"))
@@ -786,10 +836,10 @@ acronymItems.forEach((item) => {
 document.addEventListener("click", () => {
   acronymDropdown.classList.remove("active");
 });
+
 function openAcronymPopup(el) {
   popupOverlay.classList.add("active");
   acronymPopup.classList.add("active");
-  console.log(acronymItems)
   currentAcronymItem = [...acronymItems].find(ac=>ac.classList.contains("active"));
 
   const key = getAcronymKey(currentAcronymItem);

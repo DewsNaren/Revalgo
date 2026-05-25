@@ -27,10 +27,6 @@ const loaderWrapper = document.querySelector(".loader-wrapper");
 const quoteStat = createQuoteWrapper.querySelector(".quote-status");
 const minimizeBtn=document.querySelector(".minimize-btn");
 
-if (sessionStorage.getItem("selectedQuote")) {
-  sessionStorage.removeItem("selectedQuote");
-}
-//modal
 const quickContentWrapper = document.querySelector(".quick-content-wrapper");
 const popups = document.querySelectorAll(".popup");
 const formPopup = document.querySelector(".form-popup");
@@ -40,6 +36,44 @@ const cancelFormPopupBtn = formPopup.querySelector(".cancel-btn");
 const errs = formPopup.querySelectorAll(".error");
 const closePopupBtns = document.querySelectorAll(".close-popup-btn");
 
+const formWrapper = formPopup.querySelector(".form-wrapper");
+const dateText = formPopup.querySelector(".date-text");
+
+const calendarDays = document.querySelectorAll(".custom-date-day");
+const datepicker = formPopup.querySelector(".datepicker");
+
+const CreateBtn = createQuoteWrapper.querySelector(".back-create-btn");
+const createBtns = createInpWrapper.querySelectorAll(".btn-container button");
+const newBtn = createInpWrapper.querySelector(".new-btn");
+const existBtn = createInpWrapper.querySelector(".exist-btn");
+
+const createInputCon = createInpWrapper.querySelector(".create-input-container",);
+const createInput = createInpWrapper.querySelector(".create-quote-input");
+const existInput = createInpWrapper.querySelector(".exist-quote-input");
+const existSearchBtn = createInpWrapper.querySelector(".exist-search-quote-btn",);
+const inpContainer = createInpWrapper.querySelector(".input-container");
+
+const createQuoteBtn = inpContainer.querySelector(".create-quote-btn");
+const nextBtn = inpContainer.querySelector(".next-btn");
+const quoteDropdown = document.querySelector(".quote-dropdown");
+
+
+const leftWrapper = quickContentWrapper.querySelector(".left-wrapper");
+
+const leftTableWrapper = leftWrapper.querySelector(".table-wrapper");
+const uploadBtnContainer = leftWrapper.querySelector(".upload-btn-container");
+
+const displayTable = document.querySelector(".display-table");
+
+const descInputs = leftTableWrapper.querySelectorAll(".desc-input");
+const qtyInputs = leftTableWrapper.querySelectorAll(".qty-input");
+
+const quickInfoWrapper = quoteOrderWrapper.querySelector(".quick-info-wrapper");
+if (sessionStorage.getItem("selectedQuote")) {
+  sessionStorage.removeItem("selectedQuote");
+}
+
+//modal
 closePopupBtns.forEach((btn) =>
   btn.addEventListener("click", () => {
     closeModal();
@@ -53,12 +87,6 @@ popupOverlay.addEventListener("click", (e) => {
 });
 
 //Datepicker
-
-const formWrapper = formPopup.querySelector(".form-wrapper");
-const dateText = formPopup.querySelector(".date-text");
-
-const calendarDays = document.querySelectorAll(".custom-date-day");
-
 calendarDays.forEach((dayBtn) => {
   dayBtn.addEventListener("click", () => {
     let day = Number(dayBtn.dataset.day);
@@ -111,8 +139,8 @@ if (current < minDate) {
 if (current > maxDate) {
   current = new Date(maxDate);
 }
-//create datepicker
 
+//create datepicker
 function createDatepicker(datePicker) {
   const monthNameEl = datePicker.querySelector(".month-name");
   const datesContainer = datePicker.querySelector(".dates");
@@ -120,9 +148,7 @@ function createDatepicker(datePicker) {
   const nextBtn = datePicker.querySelector(".next-month");
   const tags = datePicker.querySelectorAll(".tag");
   const yearEl = datePicker.querySelector(".year");
-  // let today = new Date();
-  // let current = new Date(today);
-  // let selectedDate = null;
+
 
   function renderCalendar() {
     const year = current.getFullYear();
@@ -260,7 +286,7 @@ function createDatepicker(datePicker) {
   renderCalendar();
 }
 
-const datepicker = formPopup.querySelector(".datepicker");
+
 
 createDatepicker(datepicker);
 
@@ -298,7 +324,6 @@ function validDateInput(datePicker) {
   const parentEl = datePicker.parentElement;
   const dateInp = parentEl.querySelector(".date-input");
   const formContainer = dateInp.parentElement.parentElement;
-  console.log(formContainer);
   const errorElement = formContainer.querySelector(".error");
   if (dateInp.value == "") {
     formContainer.classList.add("error");
@@ -349,9 +374,7 @@ function formatDate(date) {
 
   return `${day}-${month}-${year}`;
 }
-const receivedDate = getRandomDate(minDate, maxDate);
 
-const approvedDate = getRandomDate(receivedDate, maxDate);
 
 let newQuote = {
   mode: `${modes[Math.floor(Math.random() * modes.length)]}`,
@@ -375,31 +398,7 @@ let newQuote = {
 };
 
 
-const CreateBtn = createQuoteWrapper.querySelector(".back-create-btn");
 
-const createBtns = createInpWrapper.querySelectorAll(".btn-container button");
-
-const newBtn = createInpWrapper.querySelector(".new-btn");
-const existBtn = createInpWrapper.querySelector(".exist-btn");
-
-const createInputCon = createInpWrapper.querySelector(
-  ".create-input-container",
-);
-
-const createInput = createInpWrapper.querySelector(".create-quote-input");
-const existInput = createInpWrapper.querySelector(".exist-quote-input");
-const existSearchBtn = createInpWrapper.querySelector(
-  ".exist-search-quote-btn",
-);
-
-const inpContainer = createInpWrapper.querySelector(".input-container");
-
-const createQuoteBtn = inpContainer.querySelector(".create-quote-btn");
-const nextBtn = inpContainer.querySelector(".next-btn");
-
-const quoteDropdown = document.querySelector(".quote-dropdown");
-
-const quickInfoWrapper = quoteOrderWrapper.querySelector(".quick-info-wrapper");
 
 createBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
@@ -616,7 +615,6 @@ createQuoteBtn.addEventListener("click", () => {
 function validateQuoteId(inp) {
   const val = inp.value;
   const err = createInput.nextElementSibling;
-  console.log(val);
   if (val.trim() === "") {
     err.textContent = "please enter the quote id";
   } else if (val.length < 7) {
@@ -771,7 +769,6 @@ function editQuoteInfo(quoteInfoWrap) {
 }
 
 function updateFormData(quoteInfoWrap, editItem) {
-  // console.log(editItem)
   const wrapper = document.querySelector(`.${editItem}_text`);
 
   formContainers.forEach((container) => {
@@ -918,14 +915,7 @@ formContainers.forEach((container) => {
   });
 });
 
-//mail img container
-const leftWrapper = quickContentWrapper.querySelector(".left-wrapper");
-
-const leftTableWrapper = leftWrapper.querySelector(".table-wrapper");
-const uploadBtnContainer = leftWrapper.querySelector(".upload-btn-container");
-
-const displayTable = document.querySelector(".display-table");
-
+//render display table
 function renderDisplayTable(newQuote) {
   const bodyWrapper = displayTable.querySelector(".body-wrapper");
   bodyWrapper.innerHTML = "";
@@ -1232,9 +1222,8 @@ function updateProductsOrder(bodyWrap) {
   storeQuote();
 }
 
-//select all
-const descInputs = leftTableWrapper.querySelectorAll(".desc-input");
-const qtyInputs = leftTableWrapper.querySelectorAll(".qty-input");
+
+
 function checkDeleted(bodyWrap) {
   const rows = bodyWrap.querySelectorAll(".table-row");
   rows.forEach((row) => {
@@ -1254,6 +1243,7 @@ function checkDeleted(bodyWrap) {
   });
 }
 
+//back btn function 
 CreateBtn.addEventListener("click", (e) => {
   e.preventDefault();
   updateQuickInfoData();

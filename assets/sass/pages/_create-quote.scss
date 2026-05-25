@@ -2204,13 +2204,52 @@
         }
         .quick-order-wrapper .quick-content-wrapper{
             margin-top:  clamp(12px, $fs-30px, $fs-30px);
-             .left-wrapper  .body-wrapper .upload-wrapper{
-                padding-top: clamp(9px, $fs-19px, $fs-19px);
-                .selected-file{
-                    padding-top:clamp(15px, $fs-26px, $fs-26px);
-
+             .left-wrapper  .body-wrapper{
+                .mail-wrapper{
+                    padding: 0px 5px 0 0;
+                    .mail-header-container{
+                        .test {
+                            margin-bottom: clamp(4px, $fs-7px, $fs-7px);
+                        }
+                        
+                        .to-text{
+                            margin-bottom: 0px;
+                        }
+                    } 
+                    .mail-body-container{
+                        padding-top: clamp(5px, $fs-8px, $fs-8px) 0;
+                        .text-container{
+                            .title {
+                                padding: clamp(6px, $fs-12px, $fs-12px) 0;
+                            }
+                            .list-wrapper{
+                                .list-title{
+                                    margin-bottom: clamp(4px, $fs-8px, $fs-8px);
+                                }
+                                .list{
+                                    margin-bottom:  clamp(8px, $fs-16px, $fs-16px);
+                                
+                                }
+                            }
+                            .bottom-container p:first-of-type {
+                                margin-bottom: clamp(5px, $fs-9px, $fs-9px);
+                            }
+                        } 
+                        .img-info-container
+                        .img-header .btn-container button.info-btn span {
+                            top: 5px;
+                            right: -3px;
+                        }
+                    }
                 }
-            }
+                .upload-wrapper{
+                    padding-top: clamp(9px, $fs-19px, $fs-19px);
+                    .selected-file{
+                        padding-top:clamp(15px, $fs-26px, $fs-26px);
+
+                    }
+                }
+             } 
         } 
        
     }
