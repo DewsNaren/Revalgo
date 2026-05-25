@@ -1051,6 +1051,7 @@ importBtn.addEventListener("click", () => {
     quoteStat.classList.add("active")
     quoteStat.classList.add("pending");
     quoteStat.textContent ="Pending";
+    storeQuote();
   }
 });
 
