@@ -1029,7 +1029,7 @@ importBtn.addEventListener("click", () => {
     );
     newQuote = { ...selectedQuote };
     newQuote.status = "pending";
-    newQuote.received_date=`${padZero(new Date().getDate())}-${padZero(new Date().getMonth())}-${padZero(new Date().getFullYear())}`;
+    newQuote.received_date=`${padZero(new Date().getDate())}-${padZero(new Date().getMonth()+1)}-${padZero(new Date().getFullYear())}`;
     newQuote.approved_date="-",
     newQuote.products = filProds;
     newQuote.id = newId;

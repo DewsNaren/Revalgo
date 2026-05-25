@@ -547,7 +547,7 @@ function saveQuotes(){
     if (q.id === newQuote.id) {
       newQuote.status="approved";
       if (newQuote.approved_date=="-") {
-        newQuote.approved_date= `${padZero(new Date().getDate())}-${padZero(new Date().getMonth())}-${padZero(new Date().getFullYear())}`;
+        newQuote.approved_date= `${padZero(new Date().getDate())}-${padZero(new Date().getMonth()+1)}-${padZero(new Date().getFullYear())}`;
       }
       quotes[i] = newQuote;
       
@@ -557,7 +557,7 @@ function saveQuotes(){
 
   if (!found) {
     newQuote.status = "approved";
-    newQuote.approved_date= `${padZero(new Date().getDate())}-${padZero(new Date().getMonth())}-${padZero(new Date().getFullYear())}`,
+    newQuote.approved_date= `${padZero(new Date().getDate())}-${padZero(new Date().getMonth()+1)}-${padZero(new Date().getFullYear())}`,
     quotes.push(newQuote);
   }
   sessionStorage.setItem("quotes", JSON.stringify(quotes));

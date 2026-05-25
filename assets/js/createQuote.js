@@ -359,7 +359,7 @@ let newQuote = {
   name: `${loginDetails ? loginDetails.username : "ram"}`,
   number:
   Math.floor(Math.random() * (99999999999 - 10000000000 + 1)) + 10000000000,
-  received_date: `${padZero(new Date().getDate())}-${padZero(new Date().getMonth())}-${padZero(new Date().getFullYear())}`,
+  received_date: `${padZero(new Date().getDate())}-${padZero(new Date().getMonth()+1)}-${padZero(new Date().getFullYear())}`,
   approved_date:"-",
   status: "pending",
   total_line_no: 0,
@@ -373,6 +373,7 @@ let newQuote = {
   lines: 0,
   products: [],
 };
+
 
 const CreateBtn = createQuoteWrapper.querySelector(".back-create-btn");
 
@@ -646,6 +647,9 @@ function validateQuoteId(inp) {
 //
 if (sessionStorage.getItem("newId")) {
   newQuote.id = sessionStorage.getItem("newId");
+  quoteStat.classList.add("active")
+  quoteStat.classList.add("pending");
+  quoteStat.textContent ="Pending";
   createInpWrapper.classList.remove("active");
   quoteOrderWrapper.classList.add("active");
   approveBtnContainer.classList.add("active");
@@ -661,7 +665,7 @@ undoQuoteBtn.addEventListener("click", () => {
   approveQuoteBtn.classList.remove("not-active");
   approveQuoteBtn.classList.add("active");
   newQuote.status = "pending";
-  newQuote.received_date=`${new Date().getDate()}-${new Date().getMonth()}-${new Date().getFullYear()}`;
+  newQuote.received_date=`${new Date().getDate()}-${new Date().getMonth()+1}-${new Date().getFullYear()}`;
   quoteStat.classList.remove(`deleted`);
   quoteStat.classList.add(`${newQuote.status}`);
   quoteStat.textContent = `${newQuote.status}`;

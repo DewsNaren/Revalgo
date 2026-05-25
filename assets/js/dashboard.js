@@ -1854,9 +1854,10 @@ function filterQuoteByRevenue(filteredQuote) {
   filteredQuote.forEach((q) => {
     const date = parseDate(q.received_date);
     const monthIndex = date.getMonth();
-    monthData[monthIndex]+=Math.round(parseFloat(q.total_price));
+   monthData[monthIndex] += Math.round(parseFloat(q.total_price.replace(/,/g, "")));
   });
   return monthData;
+
 }
 
 //export function
