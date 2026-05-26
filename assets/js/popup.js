@@ -26,28 +26,30 @@ const addNoteVal = addLineNoteInput.value.trim();
 const minSuggestBtn = modalContent.querySelector(".min-suggest-btn");
 const acronymItems = document.querySelectorAll(".acronym-item");
 const acronymDropdown=document.querySelector(".acronym-dropdown");
+const updateBtn = formPopup.querySelector(".update-btn");
 
-
+let products = [];
+let filteredProducts = [];
 
 function getAllProducts() {
   const data = quotesData;
   data.forEach((d) => {
     const prods = d.products;
     prods.forEach((p) => {
-        products.push(p);
-      });
+      products.push(p);
     });
+  });
 
 }
 
 function initProducts() {
+  getAllProducts(); 
   renderSuggestPopup(products);
   searchSuggestPopup();
   searchSourcingPopup();
   renderSourcingPopup(products);
   renderSupplierPopup(products);
   initProductSearch();
-
   setTimeout(() => {
     loaderWrapper.classList.add("not-active");
     if (typeof createQuoteWrapper !== "undefined" && createQuoteWrapper) {
@@ -156,10 +158,24 @@ function closeModal() {
   popups.forEach((pop) => pop.classList.remove("active"));
 }
 
+//popup close function
+closePopupBtns.forEach((btn) =>
+  btn.addEventListener("click", () => {
+    closeModal();
+  }),
+);
+
+popupOverlay.addEventListener("click", (e) => {
+  if (e.target === popupOverlay) {
+    closeModal();
+  }
+});
+
+
 //expand  btn function
 expandBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
-    const type = btn.dataset.type;
+    // const type = btn.dataset.type;
     const target = btn.dataset.target;
     const modalData = btn.dataset.modal;
     const source = document.querySelector(target);
@@ -171,6 +187,8 @@ expandBtns.forEach((btn) => {
     }
   });
 });
+
+
 
 //supplier popup function
 function renderSupplierPopup(products) {
@@ -197,7 +215,6 @@ function renderSupplierPopup(products) {
 
 //sourcing popup function
 function renderSourcingPopup(products) {
-
   const productsContainer =sourcingPopup.querySelector(".products");
   let html = "";
   if (products.length !== 0) {
@@ -523,6 +540,92 @@ closeSupplierBtn.addEventListener("click", () =>
   supplierPopup.classList.remove("active"),
 );
 
+
+//form popup
+cancelFormPopupBtn.addEventListener("click", () => {
+  closeModal();
+});
+
+//update btn function
+updateBtn.addEventListener("click", () => {
+  formContainers.forEach((container) => {
+    if (container.classList.contains("active")) {
+      validateUpdateForm(container);
+    }
+  });
+});
+
+//validate update form
+function validateUpdateForm(container) {
+  const inpFields = container.querySelectorAll("input, textarea");
+
+  const errEl = container.querySelector(".error");
+
+  let isValid = true;
+
+  inpFields.forEach((inpField) => {
+    const val = inpField.value.trim();
+
+    if (val === "") {
+      isValid = false;
+
+      errEl.classList.add("active");
+
+      errEl.textContent = `Please enter the ${inpField.placeholder}`;
+    }
+  });
+
+  if (!isValid) return;
+
+  errEl.classList.remove("active");
+
+  const con = container.dataset.con;
+
+  inpFields.forEach((inpField) => {
+    changeQuickInfo(inpField, con);
+  });
+}
+
+let nameInp = "";
+let addrInp = "";
+//update changed form  data in ui
+function changeQuickInfo(inp, con) {
+  const quoteInfoWrap = document.querySelector(".quick-info-wrapper");
+  const editBtns = quoteInfoWrap.querySelectorAll(".edit-btn");
+  editBtns.forEach((btn) => {
+    const editItem = btn.dataset.edit;
+    const info = btn.closest(".info");
+
+    if (editItem == con) {
+      if (con == "ship_to" || con == "bill_to") {
+        if (inp.name == "name") {
+          nameInp = inp;
+          const nameText = info.querySelector(".name");
+          nameText.textContent = inp.value;
+        }
+        if (inp.name == "address") {
+          const addr = info.querySelector(".address");
+          addrInp = inp;
+          addr.innerHTML = inp.value.replace(/\n/g, "<br>");
+        }
+        if (nameInp && addrInp) {
+          if (nameInp.value.trim() !== "" && addrInp.value.trim() !== "")
+            formPopup.classList.remove("active");
+          popupOverlay.classList.remove("active");
+          errs.forEach((err) => err.classList.remove("active"));
+        }
+      } else {
+        const text = info.querySelector(".text");
+        text.textContent = inp.value;
+        formPopup.classList.remove("active");
+        popupOverlay.classList.remove("active");
+        errs.forEach((err) => err.classList.remove("active"));
+      }
+    }
+  });
+  updateQuickInfoData();
+  storeQuote();
+}
 
 //approve btn click function
 approveQuoteBtn.addEventListener("click", () => {

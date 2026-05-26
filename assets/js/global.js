@@ -515,7 +515,7 @@ rowSelect.addEventListener("change", (e) => {
   const value = e.target.value;
   itemsPerPage = Number(value);
   updatePage(1);
-
+  
 });
 
 function updatePage(page) {

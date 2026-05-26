@@ -10,11 +10,7 @@ const formPopup = document.querySelector(".form-popup");
 const approveQuoteBtn = document.querySelector(".approve-btn");
 const successPopup = document.querySelector(".success-popup");
 const delPopup1 = document.querySelector(".del-popup-1");
-const delPopup2 = document.querySelector(".del-popup-2");
 const del1YesBtn = delPopup1.querySelector(".yes-btn");
-const del2YesBtn = delPopup2.querySelector(".yes-btn");
-const delPopup2Id = delPopup2.querySelector(".text .id");
-const delQuoteText = delPopup2.querySelector(".del-quote-text");
 const successidText = successPopup.querySelector(".text .id");
 const confirmSuccessBtn = successPopup.querySelector(".ok-btn");
 const addBtn = document.querySelector(".add-btn-container .add-btn");
@@ -37,6 +33,7 @@ const minimizeBtn=document.querySelector(".minimize-btn");
 const existFilterWrapper = document.querySelector(
   ".exist-quote-filter-wrapper",
 );
+const updateForm = formPopup.querySelector(".update-form");
 
 const newBtn = document.querySelector(".new-btn");
 newBtn.addEventListener(
@@ -910,17 +907,7 @@ const cancelSelectedBtn = selectedItemPopup.querySelector(".cancel-btn");
 const selectedCheckedAllInput =
   selectedItemPopup.querySelector(".select-all-items");
 
-closePopupBtns.forEach((btn) =>
-  btn.addEventListener("click", () => {
-    closeModal();
-  }),
-);
 
-popupOverlay.addEventListener("click", (e) => {
-  if (e.target === popupOverlay) {
-    closeModal();
-  }
-});
 
 //get products
 let selectedQuote;
@@ -1060,44 +1047,8 @@ function updatenewQuoteId(newQuote) {
   delQuoteBtn.classList.add("active");
 }
 
-CreateBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  if(newQuote.length>0){
-    updateQuickInfoData();
-    updateQuoteTotals();
-    updateNewQuoteData();
-    newQuote.status = "pending";
-    storeQuote();
-  }
-  window.location.href = "./dashboard.html";
-});
 
-delQuoteBtn.addEventListener("click", () => {
-  quickOrderWrapper.classList.add("not-active");
-  delQuoteBtn.classList.remove("active");
-  undoQuoteBtn.classList.add("active");
-  approveQuoteBtn.classList.remove("active");
-  approveQuoteBtn.classList.add("not-active");
-  quoteStat.classList.remove("pending", "approved");
-  newQuote.status = "deleted";
-  quoteStat.classList.add(`${newQuote.status}`);
-  quoteStat.textContent = `${newQuote.status}`;
-  updateQuoteTotals();
-  updateNewQuoteData();
-  storeQuote();
-});
-undoQuoteBtn.addEventListener("click", () => {
-  quickOrderWrapper.classList.remove("not-active");
-  undoQuoteBtn.classList.remove("active");
-  delQuoteBtn.classList.add("active");
-  approveQuoteBtn.classList.remove("not-active");
-  approveQuoteBtn.classList.add("active");
-  newQuote.status = "pending";
-  quoteStat.classList.remove(`deleted`);
-  quoteStat.classList.add(`${newQuote.status}`);
-  quoteStat.textContent = `${newQuote.status}`;
-  storeQuote();
-});
+
 
 //render quote data
 
@@ -1190,7 +1141,6 @@ function editQuoteInfo(quoteInfoWrap) {
 
 function updateFormData(quoteInfoWrap, editItem) {
   const wrapper = document.querySelector(`.${editItem}_text`);
-
   formContainers.forEach((container) => {
     if (container.classList.contains(editItem)) {
       if (editItem === "bill_to" || editItem == "ship_to") {
@@ -1232,93 +1182,41 @@ function updateFormData(quoteInfoWrap, editItem) {
 }
 
 //update form function
-const updateForm = formPopup.querySelector(".update-form");
-const updateBtn = formPopup.querySelector(".update-btn");
 
-cancelFormPopupBtn.addEventListener("click", () => {
-  closeModal();
-});
 
-updateBtn.addEventListener("click", () => {
-  formContainers.forEach((container) => {
-    if (container.classList.contains("active")) {
-      validateUpdateForm(container);
-    }
-  });
-});
 
-//validate update form
-function validateUpdateForm(container) {
-  const inpFields = container.querySelectorAll("input, textarea");
 
-  const errEl = container.querySelector(".error");
+// function validateUpdateForm(container) {
+//   const inpFields = container.querySelectorAll("input, textarea");
 
-  let isValid = true;
+//   const errEl = container.querySelector(".error");
 
-  inpFields.forEach((inpField) => {
-    const val = inpField.value.trim();
+//   let isValid = true;
 
-    if (val === "") {
-      isValid = false;
+//   inpFields.forEach((inpField) => {
+//     const val = inpField.value.trim();
 
-      errEl.classList.add("active");
+//     if (val === "") {
+//       isValid = false;
 
-      errEl.textContent = `Please enter the ${inpField.placeholder}`;
-    }
-  });
+//       errEl.classList.add("active");
 
-  if (!isValid) return;
+//       errEl.textContent = `Please enter the ${inpField.placeholder}`;
+//     }
+//   });
 
-  errEl.classList.remove("active");
+//   if (!isValid) return;
 
-  const con = container.dataset.con;
+//   errEl.classList.remove("active");
 
-  inpFields.forEach((inpField) => {
-    changeQuickInfo(inpField, con);
-  });
-}
+//   const con = container.dataset.con;
 
-//update changed form  data in ui
-let nameInp = "";
-let addrInp = "";
-function changeQuickInfo(inp, con) {
-  const quoteInfoWrap = document.querySelector(".quick-info-wrapper");
-  const editBtns = quoteInfoWrap.querySelectorAll(".edit-btn");
-  editBtns.forEach((btn) => {
-    const editItem = btn.dataset.edit;
-    const info = btn.closest(".info");
+//   inpFields.forEach((inpField) => {
+//     changeQuickInfo(inpField, con);
+//   });
+// }
 
-    if (editItem == con) {
-      if (con == "ship_to" || con == "bill_to") {
-        if (inp.name == "name") {
-          nameInp = inp;
-          const nameText = info.querySelector(".name");
-          nameText.textContent = inp.value;
-        }
-        if (inp.name == "address") {
-          const addr = info.querySelector(".address");
-          addrInp = inp;
-          addr.innerHTML = inp.value.replace(/\n/g, "<br>");
-        }
-        if (nameInp && addrInp) {
-          if (nameInp.value.trim() !== "" && addrInp.value.trim() !== "")
-            formPopup.classList.remove("active");
-          popupOverlay.classList.remove("active");
-          errs.forEach((err) => err.classList.remove("active"));
-        }
-      } else {
-        const text = info.querySelector(".text");
-        text.textContent = inp.value;
-        // updateForm.reset();
-        formPopup.classList.remove("active");
-        popupOverlay.classList.remove("active");
-        errs.forEach((err) => err.classList.remove("active"));
-      }
-    }
-    updateQuickInfoData();
-    storeQuote();
-  });
-}
+
 
 //input listeners to the update form inputs
 formContainers.forEach((container) => {
@@ -1553,7 +1451,7 @@ function enableDrag(bodyWrap) {
   let canDrag = false;
 
   groups.forEach((group, index) => {
-    // STORE ORIGINAL PRODUCT INDEX
+    // store original index
     group.dataset.index = index;
 
     const row = group.querySelector(".table-row");
@@ -1562,17 +1460,16 @@ function enableDrag(bodyWrap) {
 
     group.draggable = true;
 
-    // ENABLE DRAG
+    // enable drag
     handle.addEventListener("mousedown", () => {
       canDrag = true;
     });
 
-    // DISABLE DRAG
+    // disable drag
     document.addEventListener("mouseup", () => {
       canDrag = false;
     });
 
-    // START
     group.addEventListener("dragstart", (e) => {
       if (!canDrag) {
         e.preventDefault();
@@ -1587,19 +1484,15 @@ function enableDrag(bodyWrap) {
       });
     });
 
-    // END
     group.addEventListener("dragend", () => {
       group.classList.remove("dragging");
 
       draggedGroup = null;
 
       updateLineNumbers(bodyWrap);
-
-      // UPDATE PRODUCTS ORDER
       updateProductsOrder(bodyWrap);
     });
 
-    // LIVE SHIFTING
     group.addEventListener("dragover", (e) => {
       e.preventDefault();
 
@@ -1609,12 +1502,10 @@ function enableDrag(bodyWrap) {
 
       const offset = e.clientY - rect.top;
 
-      // TOP HALF
       if (offset < rect.height / 2) {
         bodyWrap.insertBefore(draggedGroup, group);
       }
 
-      // BOTTOM HALF
       else {
         bodyWrap.insertBefore(draggedGroup, group.nextSibling);
       }

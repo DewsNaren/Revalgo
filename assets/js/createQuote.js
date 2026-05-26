@@ -5,11 +5,7 @@ const expandModal = popupOverlay.querySelector(".expand-modal");
 const modalContent = document.querySelector(".expand-modal-content");
 const expandBtns = document.querySelectorAll(".expand-btn");
 const delPopup1 = document.querySelector(".del-popup-1");
-const delPopup2 = document.querySelector(".del-popup-2");
-const delPopup2Id = delPopup2.querySelector(".text .id");
-const delQuoteText = delPopup2.querySelector(".del-quote-text");
 const del1YesBtn = delPopup1.querySelector(".yes-btn");
-const del2YesBtn = delPopup2.querySelector(".yes-btn");
 const addPopup = document.querySelector(".add-popup");
 const addTable = addPopup.querySelector(".add-table");
 const addLineBtns = addTable.querySelectorAll(".add-line-btn");
@@ -67,24 +63,12 @@ const displayTable = document.querySelector(".display-table");
 
 const descInputs = leftTableWrapper.querySelectorAll(".desc-input");
 const qtyInputs = leftTableWrapper.querySelectorAll(".qty-input");
-
+const updateForm = formPopup.querySelector(".update-form");
 const quickInfoWrapper = quoteOrderWrapper.querySelector(".quick-info-wrapper");
 if (sessionStorage.getItem("selectedQuote")) {
   sessionStorage.removeItem("selectedQuote");
 }
 
-//modal
-closePopupBtns.forEach((btn) =>
-  btn.addEventListener("click", () => {
-    closeModal();
-  }),
-);
-
-popupOverlay.addEventListener("click", (e) => {
-  if (e.target === popupOverlay) {
-    closeModal();
-  }
-});
 
 //Datepicker
 calendarDays.forEach((dayBtn) => {
@@ -398,8 +382,6 @@ let newQuote = {
 };
 
 
-
-
 createBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     createBtns.forEach((btn) => btn.classList.remove("active"));
@@ -538,8 +520,10 @@ function handleExistSearchItemClick(e) {
   quoteDropdown.classList.remove("active");
   window.location.href = "./existing-quote.html";
 }
+
 quoteDropdown.addEventListener("click", handleExistSearchItemClick);
 initializeExistSearch();
+
 function initializeExistSearch() {
   allQuotes = JSON.parse(sessionStorage.getItem("quotes"));
   existInput.addEventListener("input", () => {
@@ -656,39 +640,8 @@ if (sessionStorage.getItem("newId")) {
   sessionStorage.removeItem("newId");
 }
 
-undoQuoteBtn.addEventListener("click", () => {
-  quickOrderWrapper.classList.remove("not-active");
-  undoQuoteBtn.classList.remove("active");
-  delQuoteBtn.classList.add("active");
-  approveQuoteBtn.classList.remove("not-active");
-  approveQuoteBtn.classList.add("active");
-  newQuote.status = "pending";
-  newQuote.received_date=`${new Date().getDate()}-${new Date().getMonth()+1}-${new Date().getFullYear()}`;
-  quoteStat.classList.remove(`deleted`);
-  quoteStat.classList.add(`${newQuote.status}`);
-  quoteStat.textContent = `${newQuote.status}`;
-  storeQuote();
-});
-
-delQuoteBtn.addEventListener("click", () => {
-  quickOrderWrapper.classList.add("not-active");
-  delQuoteBtn.classList.remove("active");
-  undoQuoteBtn.classList.add("active");
-  quoteStat.classList.remove("pending", "approved");
-  newQuote.status = "deleted";
-  quoteStat.classList.add(`${newQuote.status}`);
-  quoteStat.textContent = `${newQuote.status}`;
-  approveQuoteBtn.classList.remove("active");
-  approveQuoteBtn.classList.add("not-active");
-  updateQuoteTotals();
-  updateNewQuoteData();
-  storeQuote();
-});
-// renderQuickInfo(JSON.parse(sessionStorage.getItem("newQuote")));
-
 function renderQuickInfo(newQuote) {
   CreateBtn.querySelector("span").textContent = `#${newQuote.id}`;
-
   const splittedBill = newQuote.bill_to.split("\n");
   const splittedShip = newQuote.ship_to.split("\n");
   quickInfoWrapper.innerHTML = "";
@@ -811,92 +764,7 @@ function updateFormData(quoteInfoWrap, editItem) {
   });
 }
 
-const updateForm = formPopup.querySelector(".update-form");
-const updateBtn = formPopup.querySelector(".update-btn");
 
-cancelFormPopupBtn.addEventListener("click", () => {
-  closeModal();
-});
-
-updateBtn.addEventListener("click", () => {
-  formContainers.forEach((container) => {
-    if (container.classList.contains("active")) {
-      validateUpdateForm(container);
-    }
-  });
-});
-
-function validateUpdateForm(container) {
-  const inpFields = container.querySelectorAll("input, textarea");
-
-  const errEl = container.querySelector(".error");
-
-  let isValid = true;
-
-  inpFields.forEach((inpField) => {
-    const val = inpField.value.trim();
-
-    if (val === "") {
-      isValid = false;
-
-      errEl.classList.add("active");
-
-      errEl.textContent = `Please enter the ${inpField.placeholder}`;
-    }
-  });
-
-  if (!isValid) return;
-
-  errEl.classList.remove("active");
-
-  const con = container.dataset.con;
-
-  inpFields.forEach((inpField) => {
-    changeQuickInfo(inpField, con);
-  });
-}
-
-let nameInp = "";
-let addrInp = "";
-
-function changeQuickInfo(inp, con) {
-  const quoteInfoWrap = document.querySelector(".quick-info-wrapper");
-  const editBtns = quoteInfoWrap.querySelectorAll(".edit-btn");
-  editBtns.forEach((btn) => {
-    const editItem = btn.dataset.edit;
-    const info = btn.closest(".info");
-
-    if (editItem == con) {
-      if (con == "ship_to" || con == "bill_to") {
-        if (inp.name == "name") {
-          nameInp = inp;
-          const nameText = info.querySelector(".name");
-          nameText.textContent = inp.value;
-        }
-        if (inp.name == "address") {
-          const addr = info.querySelector(".address");
-          addrInp = inp;
-          addr.innerHTML = inp.value.replace(/\n/g, "<br>");
-        }
-        if (nameInp && addrInp) {
-          if (nameInp.value.trim() !== "" && addrInp.value.trim() !== "")
-            formPopup.classList.remove("active");
-          popupOverlay.classList.remove("active");
-          errs.forEach((err) => err.classList.remove("active"));
-        }
-      } else {
-        const text = info.querySelector(".text");
-        text.textContent = inp.value;
-        // updateForm.reset();
-        formPopup.classList.remove("active");
-        popupOverlay.classList.remove("active");
-        errs.forEach((err) => err.classList.remove("active"));
-      }
-    }
-  });
-  updateQuickInfoData();
-  storeQuote();
-}
 
 formContainers.forEach((container) => {
   const inpFields = container.querySelectorAll("input, textarea");
@@ -1125,7 +993,7 @@ function enableDrag(bodyWrap) {
   let canDrag = false;
 
   groups.forEach((group, index) => {
-    // STORE ORIGINAL PRODUCT INDEX
+    // store original index
     group.dataset.index = index;
 
     const row = group.querySelector(".table-row");
@@ -1134,17 +1002,16 @@ function enableDrag(bodyWrap) {
 
     group.draggable = true;
 
-    // ENABLE DRAG
+    // enable drag
     handle.addEventListener("mousedown", () => {
       canDrag = true;
     });
 
-    // DISABLE DRAG
+    // disable drag
     document.addEventListener("mouseup", () => {
       canDrag = false;
     });
 
-    // START
     group.addEventListener("dragstart", (e) => {
       if (!canDrag) {
         e.preventDefault();
@@ -1159,19 +1026,15 @@ function enableDrag(bodyWrap) {
       });
     });
 
-    // END
     group.addEventListener("dragend", () => {
       group.classList.remove("dragging");
 
       draggedGroup = null;
 
       updateLineNumbers(bodyWrap);
-
-      // UPDATE PRODUCTS ORDER
       updateProductsOrder(bodyWrap);
     });
 
-    // LIVE SHIFTING
     group.addEventListener("dragover", (e) => {
       e.preventDefault();
 
@@ -1181,12 +1044,10 @@ function enableDrag(bodyWrap) {
 
       const offset = e.clientY - rect.top;
 
-      // TOP HALF
       if (offset < rect.height / 2) {
         bodyWrap.insertBefore(draggedGroup, group);
       }
 
-      // BOTTOM HALF
       else {
         bodyWrap.insertBefore(draggedGroup, group.nextSibling);
       }
@@ -1222,8 +1083,6 @@ function updateProductsOrder(bodyWrap) {
   storeQuote();
 }
 
-
-
 function checkDeleted(bodyWrap) {
   const rows = bodyWrap.querySelectorAll(".table-row");
   rows.forEach((row) => {
@@ -1242,15 +1101,4 @@ function checkDeleted(bodyWrap) {
     }
   });
 }
-
-//back btn function 
-CreateBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  updateQuickInfoData();
-  updateQuoteTotals();
-  updateNewQuoteData();
-  newQuote.status = "pending";
-  storeQuote();
-  window.location.href = "./dashboard.html";
-});
 

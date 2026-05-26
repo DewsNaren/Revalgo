@@ -29,7 +29,35 @@ function getDelId() {
   return delId;
 }
 
+//delete quote function
+delQuoteBtn.addEventListener("click", () => {
+  quickOrderWrapper.classList.add("not-active");
+  delQuoteBtn.classList.remove("active");
+  undoQuoteBtn.classList.add("active");
+  approveQuoteBtn.classList.remove("active");
+  approveQuoteBtn.classList.add("not-active");
+  quoteStat.classList.remove("pending", "approved");
+  newQuote.status = "deleted";
+  quoteStat.classList.add(`${newQuote.status}`);
+  quoteStat.textContent = `${newQuote.status}`;
+  updateQuoteTotals();
+  updateNewQuoteData();
+  storeQuote();
+});
 
+//undo quote function
+undoQuoteBtn.addEventListener("click", () => {
+  quickOrderWrapper.classList.remove("not-active");
+  undoQuoteBtn.classList.remove("active");
+  delQuoteBtn.classList.add("active");
+  approveQuoteBtn.classList.remove("not-active");
+  approveQuoteBtn.classList.add("active");
+  newQuote.status = "pending";
+  quoteStat.classList.remove(`deleted`);
+  quoteStat.classList.add(`${newQuote.status}`);
+  quoteStat.textContent = `${newQuote.status}`;
+  storeQuote();
+});
 
 
 //delete row function
@@ -45,11 +73,8 @@ function delRow(event) {
   popupOverlay.classList.add("active");
   del1YesBtn.onclick = () => {
     delPopup1.classList.remove("active");
-    delPopup2.classList.add("active");
-    delPopup2Id.textContent = `#${newQuote.id}`;
-    del2YesBtn.onclick = () => {
+
       delBtn.classList.remove("active");
-      delQuoteText.value = "";
       row.classList.add("not-active");
       undoBtn.classList.add("active");
 
@@ -74,19 +99,10 @@ function delRow(event) {
       approveQuoteBtn.classList.add("active");
 
       closeModal();
-    };
   
 }
 }
 
-
-delQuoteText.addEventListener("input", () => {
-  if (delQuoteText.value.trim() != "") {
-    del2YesBtn.classList.add("active");
-  } else {
-    del2YesBtn.classList.remove("active");
-  }
-});
 
 //delete row function
 function undoRow(event) {
@@ -134,9 +150,7 @@ function deleteAllRow() {
     </div>`;
     newQuote.products = [];
     delAllBtn.classList.remove("selected", "active");
-
     // undoAllBtn.classList.add("selected", "active");
-
     approveQuoteBtn.classList.remove("active");
     approveQuoteBtn.classList.add("not-active");
     quoteStat.classList.remove("pending");
@@ -457,8 +471,6 @@ imgCloseBtn.addEventListener("click", () => {
 });
 
 //left top tab btn click function
-
-
 leftHeaderBtns.forEach(btn => {
   btn.addEventListener("click", () => {
     leftHeaderBtns.forEach((btn) => btn.classList.remove("active"));
@@ -727,9 +739,7 @@ function parseSheetAsJSON(sheetXML, sharedStrings = []) {
   return json;
 }
 
-//get products from json file
-let products = [];
-let filteredProducts = [];
+//get products from  quote js
 const defaultLine = {
   id: "NYECL8728122",
   requested_id: "ID7387985",
@@ -956,3 +966,14 @@ function storeQuote() {
   }
   sessionStorage.setItem("quotes", JSON.stringify(allQuotes));
 }
+
+//back btn function 
+CreateBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+    updateQuickInfoData();
+    updateQuoteTotals();
+    updateNewQuoteData();
+    newQuote.status = "pending";
+    storeQuote();
+  window.location.href = "./dashboard.html";
+});
