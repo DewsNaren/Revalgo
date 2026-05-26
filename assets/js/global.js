@@ -513,10 +513,9 @@ function createPagination(currentPage) {
 
 rowSelect.addEventListener("change", (e) => {
   const value = e.target.value;
-  if (totalQuotes.length > value) {
-    itemsPerPage = Number(value);
-    updatePage(1);
-  }
+  itemsPerPage = Number(value);
+  updatePage(1);
+
 });
 
 function updatePage(page) {
