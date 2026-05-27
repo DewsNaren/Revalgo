@@ -1658,6 +1658,10 @@
                     &:hover{
                         background-color: $blue-85;
                     }
+                    &.not-active{
+                        opacity: 0.5;
+                        pointer-events: none;
+                    }
                     
                 }
                 &.cancel-btn{

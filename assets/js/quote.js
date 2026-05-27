@@ -6640,3 +6640,12 @@ const quotesData=[
     ]
   }
 ]
+
+
+function loadQuotes() {
+  if(!sessionStorage.getItem("quotes")){
+    sessionStorage.setItem('quotes',JSON.stringify(quotesData));
+  }
+}
+
+loadQuotes();

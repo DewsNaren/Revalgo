@@ -71,8 +71,7 @@ let selectedDate = null;
 
 
 //get quotes from storage
-async function initializeQuotes() {
-  await loadQuotes();
+function initializeQuotes() {
   quotes = JSON.parse(sessionStorage.getItem('quotes'));
   filteredQuotes = JSON.parse(sessionStorage.getItem('quotes'));
   filterQuotesByDate(quotes, format(start), format(end));
@@ -697,16 +696,34 @@ expandBtns.forEach((btn) => {
       modalTrendChartWrapper?.classList.remove("active");
       modalaccurChartWrapper?.classList.remove("active");
       modalTransactionWrapper?.classList.remove("active");
-      if (target == ".trend-chart-wrapper") {
+      if (target === ".trend-chart-wrapper") {
         modalTrendChartWrapper.classList.add("active");
-      } else if (target === ".accuracy-chart-wrapper") {
-        modalAccurChart.reflow();
-        modalaccurChartWrapper.classList.add("active");
+
+
+        const totalData = modalTrendChart.series[0].options.data;
+        const filteredData = modalTrendChart.series[1].options.data;
+        let filterIt;
+        tableBtns.forEach(btn=>{
+          if( btn.classList.contains("active")){
+            filterIt=btn.dataset.filter;
+          }
+        })
+        renderModalTrendChart(totalData, filteredData, filterIt)
       }
-    }
+      else if (target === ".accuracy-chart-wrapper") {
+        modalaccurChartWrapper.classList.add("active");
+        const targetValue = modalAccurChart.series[0].options.data[0];
+        modalAccurChart.series[0].points[0].update(0, true, false);
+        setTimeout(() => {
+          renderModalAccurChart(targetValue);
+        },50)
+      }
     overlay.classList.add("active");
+    }
   });
 });
+
+
 
 // close modal button function
 function closeModal() {
@@ -1428,6 +1445,7 @@ let lastSmall = window.innerWidth < 1600;
 //modal trend chart
 let modalTrendChart;
 
+
 function renderModalTrendChart(totalQuotes, filterQuotes, filterItem) {
   modalTrendChart = Highcharts.chart("trend-modal-chart", {
     chart: {
@@ -1572,8 +1590,8 @@ function getmodalAccurSizes() {
     pivotRadius: w <= 1600 ? 6 : 7,
   };
 }
-
-const modalAccurChart = Highcharts.chart("accuracy-modal-chart", {
+let modalAccurChart;
+ modalAccurChart = Highcharts.chart("accuracy-modal-chart", {
   chart: {
     type: "gauge",
     plotBackgroundColor: null,
@@ -1581,7 +1599,7 @@ const modalAccurChart = Highcharts.chart("accuracy-modal-chart", {
     plotBorderWidth: 0,
     plotShadow: false,
     height: "68%",
-    spacingBottom: 20,
+    spacingBottom: 30,
     // useHTML:true,
     styledMode: true,
     reflow: true,
@@ -1740,14 +1758,13 @@ function drawModalCustomArc(chart) {
   chart.customLabels.push(label0, label100);
 }
 
-function renderModalAccurChart(Data) {
-  modalAccurChart.update({
-    series: [
-      {
-        data: [Data],
-      },
-    ],
-  });
+function renderModalAccurChart(data) {
+  setTimeout(() => {
+    modalAccurChart.series[0].points[0].update(data, true, {
+      duration: 1000,
+      easing: "easeOutCubic",
+    });
+  }, 50);
 }
 
 //resize listener
@@ -1819,6 +1836,7 @@ function getTrendChartData(dateFilteredQuotes, filterItem) {
   
 
   renderModalTrendChart(totalQuotes, filterQuotes, filterItem);
+
 }
 
 //filter quote by statusfor trend chart

@@ -2230,6 +2230,7 @@ header nav ul li a.new-quote-btn:hover {
   font-weight: normal;
   position: absolute;
   color: #141313;
+  left: -25px;
 }
 .expand-overlay .expand-modal.chart .expand-modal-content .accuracy-chart-wrapper.active {
   display: flex;
@@ -3971,6 +3972,10 @@ header nav ul li a.new-quote-btn:hover {
 .popup-overlay .form-popup .btn-container button.update-btn:hover {
   background-color: #015685;
 }
+.popup-overlay .form-popup .btn-container button.update-btn.not-active {
+  opacity: 0.5;
+  pointer-events: none;
+}
 .popup-overlay .form-popup .btn-container button.cancel-btn {
   background-color: white;
   color: rgb(21, 71, 135);
@@ -4238,6 +4243,9 @@ header nav ul li a.new-quote-btn:hover {
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .header-wrapper .btn-container button.email-btn {
   padding-inline: clamp(18px, 1.8vw, 1.8vw);
+}
+.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .header-wrapper .btn-container button.not-active {
+  display: none;
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .header-wrapper .mail-expand-btn {
   padding-right: clamp(8px, 0.79vw, 0.79vw);

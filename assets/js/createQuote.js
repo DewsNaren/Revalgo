@@ -764,25 +764,6 @@ function updateFormData(quoteInfoWrap, editItem) {
   });
 }
 
-
-
-formContainers.forEach((container) => {
-  const inpFields = container.querySelectorAll("input, textarea");
-
-  const errEl = container.querySelector(".error");
-
-  inpFields.forEach((inp) => {
-    inp.addEventListener("input", () => {
-      if (inp.value.trim() !== "") {
-        errEl.classList.remove("active");
-      } else {
-        errEl.classList.add("active");
-        errEl.textContent = `Please enter the ${inp.placeholder}`;
-      }
-    });
-  });
-});
-
 //render display table
 function renderDisplayTable(newQuote) {
   const bodyWrapper = displayTable.querySelector(".body-wrapper");
@@ -1102,3 +1083,51 @@ function checkDeleted(bodyWrap) {
   });
 }
 
+function deleteAllRow() {
+  const bodyWrapper = displayTable.querySelector(".body-wrapper");
+  const checkAllInput = displayTable.querySelector(".check-all-input");
+  const tableRows = bodyWrapper.querySelectorAll(".table-row");
+
+  popupOverlay.classList.add("active");
+
+  delPopup1.classList.add("active");
+
+  delPopup1.querySelector(".text").textContent =
+    "Do you want to Delete All lines?";
+
+  del1YesBtn.onclick = () => {
+
+    bodyWrapper.innerHTML = "";
+    bodyWrapper.innerHTML = `<div class="add-btn-container">
+    <button type="button" onclick="openAddPopup()"><img src="./assets/images/create_quote/add_item_icon.png" alt="add"></button>
+    <p class="text">Click here to Add Item</p>
+    </div>`;
+    newQuote.products = [];
+    delAllBtn.classList.remove("selected", "active");
+    approveQuoteBtn.classList.remove("active");
+    approveQuoteBtn.classList.add("not-active");
+    quoteStat.classList.remove("pending");
+    quoteStat.classList.add("deleted");
+    quoteStat.textContent ="Deleted";
+    delQuoteBtn.classList.remove("active");
+    undoQuoteBtn.classList.add("active");
+    quickOrderWrapper.classList.add("not-active");
+    checkAllInput.checked = false;
+    updateQuickInfoData();
+    updateQuoteTotals();
+    updateNewQuoteData();
+    storeQuote();
+    closeModal();
+  };
+}
+
+//back btn function 
+CreateBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+    updateQuickInfoData();
+    updateQuoteTotals();
+    updateNewQuoteData();
+    newQuote.status = "pending";
+    storeQuote();
+  window.location.href = "./dashboard.html";
+});

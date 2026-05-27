@@ -290,6 +290,9 @@
                             &.email-btn{
                                 padding-inline:clamp(18px, $fs-35px, $fs-35px);
                             }
+                            &.not-active{
+                                display: none;
+                            }
 
                         }
                         
@@ -782,6 +785,7 @@
                         }
                    }
                 }
+               
                 &.minimize{
                     width: clamp(20px, $fs-40px, $fs-40px);
                     margin-right: clamp(10px, $fs-20px, $fs-20px);

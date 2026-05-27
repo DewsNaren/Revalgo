@@ -402,6 +402,7 @@ let selectedStatus = [];
 if (sessionStorage.getItem("searchedQuotes")) {
   totalQuotes = JSON.parse(sessionStorage.getItem("searchedQuotes"));
   filteredData = [...totalQuotes];
+  filteredData.sort((a, b) => a.name.localeCompare(b.name));
   totalItem.textContent = `${totalQuotes.length} items`;
   createPagination(currentPage);
   renderFilterTable(currentPage);
@@ -566,7 +567,7 @@ function applyFilters() {
       matchesStatus
     );
   });
-
+  filteredData.sort((a, b) => a.name.localeCompare(b.name));
   updatePage(1);
 }
 
@@ -776,7 +777,6 @@ function closeChip(event) {
       }
     });
 
-    // REMOVE FROM ARRAY
     selectedModes = selectedModes.filter(
       (mode) => mode.toLowerCase() !== val
     );
@@ -1026,7 +1026,7 @@ const tabHeaderSpans = filterTable.querySelectorAll("th span");
 function getPrice(price) {
   return parseFloat(price.replace(/[^\d.]/g, "").replace(/\.(?=.*\.)/g, ""));
 }
-let isAscending = true;
+let isAscending = false;
 tabHeaderSpans.forEach((sp) => {
   sp.addEventListener("click", () => {
     const filteredCopy = [...filteredData];

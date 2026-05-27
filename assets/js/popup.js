@@ -32,7 +32,7 @@ let products = [];
 let filteredProducts = [];
 
 function getAllProducts() {
-  const data = quotesData;
+  const data = JSON.parse(sessionStorage.getItem('quotes'));
   data.forEach((d) => {
     const prods = d.products;
     prods.forEach((p) => {
@@ -273,6 +273,7 @@ function searchSourcingPopup() {
 let imgRect = "";
 let currentRow = "";
 function openSuggestPopup(event) {
+  if(newQuote.status == "approved") return;
   const reqId=event.target.parentElement.querySelector(".requested-id").textContent;
   event.stopPropagation();
   const img = event.target.closest(".down-arrow-img");
@@ -316,6 +317,7 @@ window.addEventListener("resize", updatePopupPosition(imgRect, suggestPopup));
 
 //open supplier popup
 function openSupplierPopup(event) {
+  if(newQuote.status == "approved") return;
   event.stopPropagation();
   const supplierText = event.target.closest(".supplier-text");
   const dropDownText=event.target.parentElement.parentElement;
@@ -399,6 +401,120 @@ function SuggestProductClick(suggestProducts) {
     });
   });
 }
+
+let currentDescInput = null;
+let searchedProduct = [];
+
+function searchProducts(inp) {
+  const value = inp.value.trim().toLowerCase();
+
+  const descDropdown = document.querySelector(".desc-dropdown");
+
+  const descList = descDropdown.querySelector(".desc-list");
+
+  descList.innerHTML = "";
+
+  if (value === "") {
+    descDropdown.classList.remove("active");
+
+    return;
+  }
+
+  const rect = inp.getBoundingClientRect();
+
+  descDropdown.style.top = `${rect.bottom + window.scrollY + 4}px`;
+
+  descDropdown.style.left = `${rect.left + window.scrollX}px`;
+
+  const spaceBelow = window.innerHeight - rect.bottom;
+
+  descDropdown.style.maxHeight = `${spaceBelow - 20}px`;
+  descDropdown.classList.add("active");
+  console.log(products);
+  filteredProducts = products.filter((p) => {
+
+  const desc = p.desc?.toLowerCase() || "";
+
+  const isMatch = desc.includes(value);
+
+  if (isMatch) {
+    descList.innerHTML += `
+      <li data-id="${p.id}">
+        ${p.desc}
+      </li>
+    `;
+  }
+
+  return isMatch;
+
+});
+  uploadBtn.classList.remove("not-active");
+}
+
+
+
+//description dropdown click function
+function handleProductItemClick(e) {
+
+  const li = e.target.closest("li");
+
+  if (!li) return;
+
+  searchedProduct = [];
+
+  currentDescInput.value = li.textContent.trim();
+  descInputs.forEach((inp) => {
+    if (inp.value.trim()) {
+      const val = inp.value.trim().toLowerCase();
+      products.forEach((p) => {
+        if (p.desc?.toLowerCase().includes(val)) {
+          searchedProduct.push(p);
+        }
+
+      });
+    }
+  });
+  descDropdown.classList.remove("active");
+}
+
+//initialize description search function
+function initProductSearch() {
+  descInputs.forEach((inp) => {
+    inp.addEventListener("input", () => {
+      currentDescInput = inp;
+      searchProducts(inp);
+      const allEmpty = [...descInputs].every((inp) => inp.value.trim() == "");
+      if (allEmpty) {
+        uploadBtn.classList.add("not-active");
+      }
+    });
+  });
+}
+
+descDropdown.addEventListener("click", handleProductItemClick);
+
+//upload button click function
+uploadBtn.addEventListener("click", () => {
+  if (leftTableWrapper.classList.contains("active")) {
+    getSearchedProducts();
+    renderDisplayTable(newQuote);
+    uploadBtn.classList.add("not-active");
+    approveQuoteBtn.classList.add("active");
+    const addBtn = document.querySelector(".add-btn-container .add-btn");
+  }
+  if (uploadWrapper.classList.contains("active")) {
+    getCrtData(exCelData);
+    exCelData = [];
+    renderDisplayTable(newQuote);
+    storeQuote();
+    selectFileInput.value = "";
+    selectedFileWrapper.innerHTML = "";
+    uploadBtn.classList.add("not-active");
+  }
+  approveQuoteBtn.classList.add("active");
+  approveQuoteBtn.classList.remove("not-active");
+
+});
 
 //update row data after selecting product from popup 
 function updateRow(product) {
@@ -487,6 +603,7 @@ stockNoBtn.addEventListener("click", () => {
 
 
 function enableSourceText(event) {
+  if(newQuote.status == "approved") return;
   const row = event.target.closest(".table-row");
   const sourceText = row.querySelector(".sourcing");
   sourceText.classList.toggle("active");
@@ -501,6 +618,7 @@ closeSourcingBtn.addEventListener("click", () =>
 
 //sourcing popup open function
 function openSourcingPopup(event) {
+  if(newQuote.status == "approved") return;
   event.stopPropagation();
   const sourcing = event.target.closest(".sourcing");
   const reqId=event.target.parentElement.querySelector(".requested-id").textContent;
@@ -627,6 +745,35 @@ function changeQuickInfo(inp, con) {
   storeQuote();
 }
 
+//input listeners to the update form inputs
+function validateFields() {
+  const activeContainers = document.querySelectorAll(".form-container.active");
+
+  activeContainers.forEach((container) => {
+    const inpFields = container.querySelectorAll("input, textarea");
+
+    const errEl = container.querySelector(".error");
+
+    const emptyField = [...inpFields].find((inp) => inp.value.trim() === "");
+    if (emptyField) {
+      errEl.classList.add("active");
+      errEl.textContent = `Please enter the ${emptyField.placeholder}`;
+      updateBtn.classList.add("not-active");
+    } else {
+      errEl.classList.remove("active");
+      updateBtn.classList.remove("not-active");
+    }
+  });
+}
+
+formContainers.forEach((container) => {
+  const inpFields = container.querySelectorAll("input, textarea");
+  inpFields.forEach((inp) => {
+    inp.addEventListener("input", validateFields);
+  });
+});
+
+// validateFields();
 //approve btn click function
 approveQuoteBtn.addEventListener("click", () => {
   if (newQuote.products.length != 0) {
@@ -800,6 +947,7 @@ selectAllWrapInput.addEventListener("change", () => {
 });
 
 selectImgInputs.forEach((inp) => {
+    if(newQuote.status == "approved") return;
   inp.addEventListener("input", () => {
     const checkedInputs = [...selectImgInputs].filter((inp) => inp.checked);
 
@@ -838,6 +986,7 @@ selectImgInputs.forEach((inp) => {
 
 //update img popup data
 imgUpdateBtn.addEventListener("click", () => {
+
   const delDateText = quickInfoWrapper.querySelector(".deleivery_date_text");
 
   const billContainer = quickInfoWrapper.querySelector(".bill_to_text");

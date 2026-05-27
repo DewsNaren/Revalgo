@@ -62,6 +62,7 @@ undoQuoteBtn.addEventListener("click", () => {
 
 //delete row function
 function delRow(event) {
+  if(newQuote.status === "approved") return;
   const delBtn = event.target.parentElement;
   const row = delBtn.parentElement.parentElement;
   const undoBtn = row.querySelector(".undo-line-btn");
@@ -128,45 +129,6 @@ function undoRow(event) {
   row.addEventListener("click", rowClickHandler);
 }
 
-//delete all rows function
-function deleteAllRow() {
-  const bodyWrapper = displayTable.querySelector(".body-wrapper");
-  const checkAllInput = displayTable.querySelector(".check-all-input");
-  const tableRows = bodyWrapper.querySelectorAll(".table-row");
-
-  popupOverlay.classList.add("active");
-
-  delPopup1.classList.add("active");
-
-  delPopup1.querySelector(".text").textContent =
-    "Do you want to Delete All lines?";
-
-  del1YesBtn.onclick = () => {
-
-    bodyWrapper.innerHTML = "";
-    bodyWrapper.innerHTML = `<div class="add-btn-container">
-    <button type="button" onclick="openAddPopup()"><img src="./assets/images/create_quote/add_item_icon.png" alt="add"></button>
-    <p class="text">Click here to Add Item</p>
-    </div>`;
-    newQuote.products = [];
-    delAllBtn.classList.remove("selected", "active");
-    // undoAllBtn.classList.add("selected", "active");
-    approveQuoteBtn.classList.remove("active");
-    approveQuoteBtn.classList.add("not-active");
-    quoteStat.classList.remove("pending");
-    quoteStat.classList.add("deleted");
-    quoteStat.textContent ="Deleted";
-    delQuoteBtn.classList.remove("active");
-    undoQuoteBtn.classList.add("active");
-    approveQuoteBtn.classList.add("not-active")
-    checkAllInput.checked = false;
-    updateQuickInfoData();
-    updateQuoteTotals();
-    updateNewQuoteData();
-    storeQuote();
-    closeModal();
-  };
-}
 
 //undo all rows function
 function undoAllRow() {
@@ -192,6 +154,7 @@ function undoAllRow() {
 
 //select all rows function
 function selectAllRow(event) {
+  if(newQuote.status === "approved") return;
   const bodyWrap = displayTable.querySelector(".body-wrapper");
   const tableRows = bodyWrap.querySelectorAll(".table-row");
   const isChecked = event.target.checked;
@@ -213,6 +176,7 @@ function selectAllRow(event) {
 
 //enable delete all btn function
 function enableDeleteAllBtn() {
+  if(newQuote.status === "approved") return;
   const bodyWrapper = displayTable.querySelector(".body-wrapper");
   const checkLineInps = bodyWrapper.querySelectorAll(".check-line-input");
   const isChecked = [...checkLineInps].some((inp) => inp.checked);
@@ -312,6 +276,7 @@ addLinesBtn.addEventListener("click", () => {
   addProductsToQuote();
   updateQuoteTotals();
   renderDisplayTable(newQuote);
+  approveQuoteBtn.classList.remove("not-active");
   approveQuoteBtn.classList.add("active");
   storeQuote();
   closeModal();
@@ -431,15 +396,19 @@ mailMinimizeBtn.addEventListener("click", () => {
     leftWrapper.classList.remove("maximize");
     rightWrapper.classList.remove("maximize");
     rightWrapper.classList.remove("minimize");
-    uploadBtnContainer.classList.add("active");
     mailMinimizeBtn.classList.remove("minimize","maximize");
+    if (!mailWrapper.classList.contains("active")) {
+      uploadBtnContainer.classList.add("active");
+    }
   } else {
     leftWrapper.classList.add("minimize");
     leftWrapper.classList.remove("maximize");
     rightWrapper.classList.add("maximize");
     rightWrapper.classList.remove("minimize");
-    uploadBtnContainer.classList.remove("active");
     mailMinimizeBtn.classList.add("minimize");
+    if (!mailWrapper.classList.contains("active")) {
+      uploadBtnContainer.classList.remove("active");
+    }
   }
 });
 
@@ -483,20 +452,24 @@ leftHeaderBtns.forEach(btn => {
     const wrappper = leftWrapper.querySelector(target);
 
     wrappper.classList.add("active");
-    if (target != ".mail-wrapper") {
-      uploadBtnContainer.classList.add("active");
+    if (target ==".mail-wrapper") {
+      uploadBtnContainer.classList.remove("active");
       uploadBtn.classList.add("not-active");
     }
-    if (target == ".table-wrapper") {
+    else if (target == ".table-wrapper") {
       const hasVal = [...descInputs].some((inp) => inp.value.trim() !== "");
       if (hasVal) {
         uploadBtn.classList.remove("not-active");
       }
+       uploadBtnContainer.classList.add("active");
+      uploadBtn.classList.add("not-active");
     }
-    if (target == ".upload-wrapper") {
+    else if (target == ".upload-wrapper") {
       if (selectFileInput.value != "") {
         uploadBtn.classList.remove("not-active");
       }
+      uploadBtnContainer.classList.add("active");
+      uploadBtn.classList.add("not-active");
     }
   });
 });
@@ -743,7 +716,7 @@ function parseSheetAsJSON(sheetXML, sharedStrings = []) {
 const defaultLine = {
   id: "NYECL8728122",
   requested_id: "ID7387985",
-  qty_requested: 25,
+  qty_requested: 22,
   margin: 10,
   selling_price: 78.1,
   total_cost: 1952.5,
@@ -753,7 +726,7 @@ const defaultLine = {
   title: "Torp, Graham and Legros",
   lead_time: 5,
   location: "Fengjiang",
-  updated_date: "05-03-2021",
+  updated_date: `${padZero(new Date().getDate())}-${padZero(new Date().getMonth()+1)}-${padZero(new Date().getFullYear())}`,
   stock: "Ns",
   supplier: "Direct Trading",
   brand: "Flexduct",
@@ -766,178 +739,98 @@ const defaultLine = {
 };
 
 //description search function
-
-let currentDescInput = null;
-let searchedProduct = [];
-
-function searchProducts(inp) {
-  const value = inp.value.trim().toLowerCase();
-
-  const descDropdown = document.querySelector(".desc-dropdown");
-
-  const descList = descDropdown.querySelector(".desc-list");
-
-  descList.innerHTML = "";
-
-  if (value === "") {
-    descDropdown.classList.remove("active");
-
-    return;
-  }
-
-  const rect = inp.getBoundingClientRect();
-
-  descDropdown.style.top = `${rect.bottom + window.scrollY + 4}px`;
-
-  descDropdown.style.left = `${rect.left + window.scrollX}px`;
-
-  const spaceBelow = window.innerHeight - rect.bottom;
-
-  descDropdown.style.maxHeight = `${spaceBelow - 20}px`;
-  descDropdown.classList.add("active");
-
-  filteredProducts = products.filter((p) => {
-    const isMatch = p.desc.toLowerCase().includes(value);
-
-    if (isMatch) {
-      descList.innerHTML += `
-        <li data-id="${p.id}">
-          ${p.desc}
-        </li>
-      `;
-    }
-
-    return isMatch;
-  });
-  uploadBtn.classList.remove("not-active");
-}
-
-//description dropdown click function
-function handleProductItemClick(e) {
-  const li = e.target.closest("li");
-
-  if (!li) return;
-
-  searchedProduct = [];
-  currentDescInput.value = li.textContent.trim();
+function getSearchedProducts(){
+  const descs = [];
 
   descInputs.forEach((inp) => {
-    if (inp.value) {
-      const val = inp.value;
-      products.forEach((p) => {
-        if (p.desc.includes(val)) searchedProduct.push(p);
-      });
+    if (inp.value.trim() !== "") {
+      descs.push(inp.value.trim());
     }
   });
 
-  descDropdown.classList.remove("active");
-}
+  if (descs.length > 0) {
 
-//initialize description search function
-function initProductSearch() {
-  descInputs.forEach((inp) => {
-    inp.addEventListener("input", () => {
-      currentDescInput = inp;
-      searchProducts(inp);
-      const allEmpty = [...descInputs].every((inp) => inp.value.trim() == "");
-      if (allEmpty) {
-        uploadBtn.classList.add("not-active");
-      }
-    });
-  });
-}
+    descs.forEach((d) => {
 
-descDropdown.addEventListener("click", handleProductItemClick);
-
-//upload button click function
-uploadBtn.addEventListener("click", () => {
-  if (leftTableWrapper.classList.contains("active")) {
-    getSearchedProducts();
-    renderDisplayTable(newQuote);
-    uploadBtn.classList.add("not-active");
-    approveQuoteBtn.classList.add("active");
-    const addBtn = document.querySelector(".add-btn-container .add-btn");
-  }
-  if (uploadWrapper.classList.contains("active")) {
-    getCrtData(exCelData);
-    exCelData = [];
-    renderDisplayTable(newQuote);
-    storeQuote();
-    selectFileInput.value = "";
-    selectedFileWrapper.innerHTML = "";
-    uploadBtn.classList.add("not-active");
-  }
-  quoteStat.classList.remove("pending");
-  quoteStat.classList.add("deleted");
-  quoteStat.textContent ="Deleted";
-  delQuoteBtn.classList.remove("active");
-  undoQuoteBtn.classList.add("active");
-  approveQuoteBtn.classList.add("not-active")
-});
-
-
-function getSearchedProducts() {
-  const newProducts = newQuote.products;
-  if (searchedProduct.length > 0) {
-    searchedProduct.forEach((p) => {
-      const existingProduct = newQuote.products.find(
-        (prod) => prod.requested_id === p.requested_id,
+      const matchedProduct = searchedProduct.find(
+        (p) => p.desc?.trim().toLowerCase() === d.toLowerCase()
       );
+      if (matchedProduct) {
 
-      if (existingProduct) {
-        existingProduct.qty_requested += Number(p.qty_requested || 0);
-        existingProduct.total_cost =
-          existingProduct.qty_requested * existingProduct.selling_price;
-      } else {
-        p.delId = getDelId();
-        newQuote.products.push(p);
+        const existingProduct = newQuote.products.find(
+          (prod) => prod.requested_id === matchedProduct.requested_id
+        );
+
+        if (existingProduct) {
+
+          existingProduct.qty_requested += Number(
+            matchedProduct.qty_requested || 0
+          );
+
+          existingProduct.total_cost =
+            existingProduct.qty_requested *
+            existingProduct.selling_price;
+
+        } else {
+
+          matchedProduct.delId = getDelId();
+          newQuote.products.push(matchedProduct);
+
+        }
+
       }
-    });
-  } else {
-    const descs = [];
-    descInputs.forEach((inp) => {
-      if (inp.value.trim() != "") {
-        descs.push(inp.value);
-      }
-    });
-    if (descs.length > 0) {
-      descs.forEach((d) => {
-        const newLine = { ...defaultLine, desc: d, delId: getDelId() };
-        const prods = newQuote.products;
+
+      else {
+
+        const newLine = {...defaultLine,desc: d,delId: getDelId(),};
+
         let newReqId =
           Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
+
         let isExists =
-          allQuotes.forEach((q) =>
-            [...q.products].some((q) => q.requested_id === "ID" + newReqId),
+          allQuotes.some((q) =>
+            q.products.some(
+              (p) => p.requested_id === "ID" + newReqId
+            )
           ) ||
           newQuote.products.some(
-            (prod) => prod.requested_id === "ID" + newReqId,
+            (p) => p.requested_id === "ID" + newReqId
           );
 
         while (isExists) {
+
           newReqId =
             Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
 
           isExists =
-            [...allQuotes.products].some(
-              (q) => q.requested_id === "ID" + newReqId,
+            allQuotes.some((q) =>
+              q.products.some(
+                (p) => p.requested_id === "ID" + newReqId
+              )
             ) ||
             newQuote.products.some(
-              (prod) => prod.requested_id === "ID" + newReqId,
+              (p) => p.requested_id === "ID" + newReqId
             );
         }
+
         newLine.requested_id = "ID" + newReqId;
-        newLine.delId = getDelId();
+
         newQuote.products.push(newLine);
-      });
-    }
+
+      }
+
+    });
+
+    searchedProduct = [];
+    descInputs.forEach((inp) => (inp.value = ""));
+    qtyInputs.forEach((inp) => (inp.value = ""));
+    updateQuoteTotals();
+    storeQuote();
   }
-  searchedProduct = [];
-  descInputs.forEach((inp) => (inp.value = ""));
-  qtyInputs.forEach((inp) => (inp.value = ""));
-  updateQuoteTotals();
-  storeQuote();
 }
+
+
+
 
 //del file function
 function delFile(event) {
@@ -967,13 +860,3 @@ function storeQuote() {
   sessionStorage.setItem("quotes", JSON.stringify(allQuotes));
 }
 
-//back btn function 
-CreateBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-    updateQuickInfoData();
-    updateQuoteTotals();
-    updateNewQuoteData();
-    newQuote.status = "pending";
-    storeQuote();
-  window.location.href = "./dashboard.html";
-});

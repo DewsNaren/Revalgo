@@ -313,6 +313,8 @@ document.addEventListener("click", (e) => {
 // const displayTable=document.querySelector(".display-table");
 let newQuote = "";
 // let allQuotes=[];
+const quickOrderBtn= quickOrderWrapper.querySelector(".quick-order-btn");
+const tabUploadBtn= quickOrderWrapper.querySelector(".upload-btn");
 if (sessionStorage.getItem("selectedQuote")) {
   newQuote = JSON.parse(sessionStorage.getItem("selectedQuote"));
   allQuotes = JSON.parse(sessionStorage.getItem("quotes"));
@@ -326,6 +328,17 @@ if (sessionStorage.getItem("selectedQuote")) {
   }
   if (newQuote.status == "approved" || newQuote.status == "deleted") {
     approveQuoteBtn.classList.add("not-active");
+  }
+  if(newQuote.status == "pending"){
+    quickOrderBtn.classList.remove("not-active");
+    tabUploadBtn.classList.remove("not-active");
+  }
+  if (newQuote.status == "approved") {
+    delQuoteBtn.classList.remove("active");
+    undoQuoteBtn.classList.remove("active");
+    approveQuoteBtn.classList.add("not-active");
+    quickOrderBtn.classList.add("not-active");
+    tabUploadBtn.classList.add("not-active");
   }
   renderQuickInfo(newQuote);
   renderDisplayTable(newQuote);
@@ -388,7 +401,9 @@ function renderQuickInfo(newQuote) {
         </div>
       </div>
   `;
+  if(newQuote.status != "approved"){
   editQuoteInfo(document.querySelector(".quick-info-wrapper"));
+  }
 }
 
 function renderDisplayTable(newQuote) {
@@ -398,14 +413,13 @@ function renderDisplayTable(newQuote) {
   const products = newQuote.products;
 
   products.forEach((p, i) => {
-    bodyWrapper.innerHTML += `
-    <div class="row-group" draggable="true">
+    bodyWrapper.innerHTML += `<div class="row-group" draggable="true">
     <div class="${p.isDeleted == true ? "table-row not-active" : "table-row"}" >
-      <p><img src="./assets/images/global/drag_menu.png" alt="drag menu" class="drag-handle"   data-index="${i}"  ></p>
+      <p>${newQuote.status != "approved" ? '<img src="./assets/images/global/drag_menu.png" alt="drag menu" class="drag-handle"   data-index="${i}"  >' : ''}</p>
       <p><input type="checkbox" class="check-line-input" onclick="enableDeleteAllBtn()"></p>
       <p><span class="line-no">${i + 1}</span>
       </p>
-      <p><input type="text" value="${p.qty_requested}" name="qty-requested" autocomplete="off"></p>
+      <p><input type="text" value="${p.qty_requested}" name="qty-requested" autocomplete="off" ${newQuote.status == "approved" ? "readonly" : ""}></p>
       <p>
         <span class="title-text">${p.title ? p.title : "Mjhsjhs"}</span>
         <span class="dropdown-text">
@@ -421,8 +435,8 @@ function renderDisplayTable(newQuote) {
       <p><span class="score">${p.score}</span>
       </p>
       <p> <span class="available-qty">${p.available_qty}</span></p>
-      <p><span>$<input type="text" value="${p.unit_cost}" name="cost" autocomplete="off"></span></p>
-      <p><span><input type="text" value="${p.margin}" name="margin" autocomplete="off">%</span></p>
+      <p><span>$<input type="text" value="${p.unit_cost}" name="cost" autocomplete="off" ${newQuote.status == "approved" ? "readonly" : ""}></span></p>
+      <p><span><input type="text" value="${p.margin}" name="margin" autocomplete="off" ${newQuote.status == "approved" ? "readonly" : ""}>%</span></p>
       <p><span class="selling-price">$${p.selling_price}</span></p>
       <p><span class="total-cost">$${p.total_cost.toFixed(2)}</span></p>
       <p>
@@ -467,14 +481,17 @@ function renderDisplayTable(newQuote) {
     </div>
     `;
   });
-  bodyWrapper.innerHTML += `<div class="add-btn-container left">
-    <button type="button" onclick="openAddPopup()"><img src="./assets/images/create_quote/add_item_icon.png" alt="add"></button>
-    <p class="text">Click here to Add Item</p>
-    </div>`;
-  clickTable(displayTable.querySelector(".body-wrapper"));
-  editTableData(displayTable.querySelector(".body-wrapper"));
-  checkDeleted(displayTable.querySelector(".body-wrapper"));
-  enableDrag(displayTable.querySelector(".body-wrapper"));
+  if(quoteStat.textContent != "approved"){
+    bodyWrapper.innerHTML += `<div class="add-btn-container left">
+      <button type="button" onclick="openAddPopup()"><img src="./assets/images/create_quote/add_item_icon.png" alt="add"></button>
+      <p class="text">Click here to Add Item</p>
+      </div>`;
+    clickTable(displayTable.querySelector(".body-wrapper"));
+    editTableData(displayTable.querySelector(".body-wrapper"));
+    checkDeleted(displayTable.querySelector(".body-wrapper"));
+    enableDrag(displayTable.querySelector(".body-wrapper"));
+  }
+
 }
 
 // drag function
@@ -700,25 +717,6 @@ function updateFormData(quoteInfoWrap, editItem) {
 }
 
 
-//add input event listeners
-formContainers.forEach((container) => {
-  const inpFields = container.querySelectorAll("input, textarea");
-
-  const errEl = container.querySelector(".error");
-
-  inpFields.forEach((inp) => {
-    inp.addEventListener("input", () => {
-      if (inp.value.trim() !== "") {
-        errEl.classList.remove("active");
-      } else {
-        errEl.classList.add("active");
-        errEl.textContent = `Please enter the ${inp.placeholder}`;
-      }
-    });
-  });
-});
-
-
 function editTableData(bodyWrap) {
   const tableRows = bodyWrap.querySelectorAll(".table-row");
 
@@ -785,3 +783,47 @@ function allowNumbers(inp) {
     inp.value = inp.value.replace(/\D/g, "");
   });
 }
+
+function deleteAllRow() {
+  const bodyWrapper = displayTable.querySelector(".body-wrapper");
+  const checkAllInput = displayTable.querySelector(".check-all-input");
+  const tableRows = bodyWrapper.querySelectorAll(".table-row");
+
+  popupOverlay.classList.add("active");
+
+  delPopup1.classList.add("active");
+
+  delPopup1.querySelector(".text").textContent =
+    "Do you want to Delete All lines?";
+
+  del1YesBtn.onclick = () => {
+
+    bodyWrapper.innerHTML = "";
+    if(quoteStat.textContent!="approved"){
+      bodyWrapper.innerHTML = `<div class="add-btn-container">
+      <button type="button" onclick="openAddPopup()"><img src="./assets/images/create_quote/add_item_icon.png" alt="add"></button>
+      <p class="text">Click here to Add Item</p>
+      </div>`;
+    }
+    newQuote.products = [];
+    delAllBtn.classList.remove("selected", "active");
+    approveQuoteBtn.classList.remove("active");
+    approveQuoteBtn.classList.add("not-active");
+    approveQuoteBtn.classList.add("not-active")
+    checkAllInput.checked = false;
+    updateQuickInfoData();
+    updateQuoteTotals();
+    updateNewQuoteData();
+    storeQuote();
+    closeModal();
+  };
+}
+
+CreateBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+    updateQuickInfoData();
+    updateQuoteTotals();
+    updateNewQuoteData();
+    storeQuote();
+  window.location.href = "./dashboard.html";
+});

@@ -11,17 +11,12 @@ const poList=header.querySelector(".po-list");
 const globalDropDown=header.querySelector(".global-dropdown")
 let searchedQuotes=[];
 
-function loadQuotes() {
-  if(!sessionStorage.getItem("quotes")){
-    sessionStorage.setItem('quotes',JSON.stringify(quotesData));
-  }
-}
 
-loadQuotes();
 
 function init() {
-  loadQuotes();
-  initializeSearch();
+  if(sessionStorage.getItem("quotes")){
+    initializeSearch();
+  }
 }
 
 init();
