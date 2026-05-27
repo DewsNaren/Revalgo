@@ -347,6 +347,7 @@ function addProductsToQuote() {
 //update line count
 function updateQuoteTotals() {
   if (newQuote) {
+    if(newQuote.products) {
     newQuote.lines = newQuote.products.length;
 
     newQuote.total_line_no = newQuote.products.length;
@@ -358,6 +359,7 @@ function updateQuoteTotals() {
     const linesText = quickInfoWrapper.querySelector(".lines_text");
     totPriceText.textContent = `$${newQuote.total_price}`;
     linesText.textContent = newQuote.products.length;
+    }
   }
 }
 
@@ -513,7 +515,7 @@ selectFileInput.addEventListener("input", (event) => {
         <div class="file">
           <div class="file-info">
             <img src="./assets/images/create_quote/email_pad_psd_icon.png" alt="pdf"> 
-            ${file.name.length > 10 ? file.name.slice(0, 20) + "..." : file.name}
+            ${file.name.length > 18 ? file.name.slice(0, 18) + "..." : file.name}
             (${formatSize(file.size)})
           </div>
 
@@ -580,7 +582,7 @@ async function getJsonData(file) {
             <img src="./assets/images/create_quote/email_pad_psd_icon.png" alt="pdf">
 
             ${
-              file.name.length > 10 ? file.name.slice(0, 20) + "..." : file.name
+              file.name.length > 18 ? file.name.slice(0, 18) + "..." : file.name
             }
 
             (${formatSize(file.size)})
@@ -614,7 +616,7 @@ async function getJsonData(file) {
       <div class="file">
         <div class="file-info">
           <img src="./assets/images/create_quote/email_pad_pdf_icon.png" alt="pdf"> 
-          ${file.name.length > 10 ? file.name.slice(0, 20) + "..." : file.name}
+          ${file.name.length > 18 ? file.name.slice(0, 18) + "..." : file.name}
           (${formatSize(file.size)})
         </div>
 

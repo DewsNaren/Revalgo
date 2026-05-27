@@ -721,6 +721,10 @@ header nav ul li a.new-quote-btn:hover {
   font-weight: 500;
   background-color: transparent;
 }
+.dashboard-wrapper .dashboard-header-wrapper .header-container .dropdown-wrapper .date-filter .date-picker .calendar .content .date.faded.current-day, .dashboard-wrapper .dashboard-header-wrapper .header-container .dropdown-wrapper .date-filter .date-picker .calendar .content .date.disabled.current-day {
+  background-color: transparent;
+  color: #5c5c5c;
+}
 .dashboard-wrapper .dashboard-header-wrapper .header-container .dropdown-wrapper .date-filter .date-picker .calendar .content .date.faded:hover, .dashboard-wrapper .dashboard-header-wrapper .header-container .dropdown-wrapper .date-filter .date-picker .calendar .content .date.disabled:hover {
   color: #999fa6;
   background-color: transparent;
@@ -1202,6 +1206,9 @@ header nav ul li a.new-quote-btn:hover {
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container.not-active {
   display: none;
+}
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container.large {
+  width: 100%;
 }
 .dashboard-wrapper .dashboard-body-wrapper .chart-wrapper {
   flex: 1;
@@ -2373,6 +2380,9 @@ header nav ul li a.new-quote-btn:hover {
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:first-of-type {
     width: 2.067vw;
   }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(3) {
+    width: 12.76vw;
+  }
   .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(7) {
     width: clamp(65px, 4.69vw, 4.69vw);
   }
@@ -2398,14 +2408,20 @@ header nav ul li a.new-quote-btn:hover {
     padding-inline: 5px;
     border-radius: 2px;
   }
-  .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody th:last-of-type {
+  .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(3) {
+    width: 13.7vw;
+  }
+  .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th:last-of-type {
     width: clamp(40px, 3.5vw, 3.5vw);
   }
-  .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody td:last-of-type {
-    width: clamp(40px, 3.5vw, 3.5vw);
-  }
-  thead tr th span img {
+  .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th span img {
     width: 8px;
+  }
+  .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:last-of-type {
+    width: clamp(40px, 3.5vw, 3.5vw);
+  }
+  .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(3) {
+    width: 13.7vw;
   }
 }
 @media print {
@@ -7796,6 +7812,10 @@ header nav ul li a.new-quote-btn:hover {
   border: none;
   font-weight: 500;
 }
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .date.faded.current-day {
+  background-color: transparent;
+  color: #999fa6;
+}
 .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .date.current-date {
   border: 2px solid rgba(0, 0, 0, 0.8);
 }
@@ -7920,6 +7940,10 @@ header nav ul li a.new-quote-btn:hover {
   pointer-events: none;
   font-weight: 500;
   background-color: transparent;
+}
+.exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .date.faded.current-day {
+  background-color: transparent;
+  color: #999fa6;
 }
 .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .date.faded:hover {
   border: none;
@@ -9614,6 +9638,9 @@ header nav ul li a.new-quote-btn:hover {
   }
 }
 @media screen and (max-width: 1300px) {
+  .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper {
+    padding: clamp(15px, 1.57vw, 1.57vw) clamp(15px, 1.57vw, 1.57vw) clamp(12px, 1.304vw, 1.304vw);
+  }
   .exist-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table thead tr th span img {
     width: 8px;
   }
@@ -10020,6 +10047,10 @@ header nav ul li a.new-quote-btn:hover {
   font-weight: 500;
   background-color: transparent;
 }
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .date.faded.current-day {
+  background-color: transparent;
+  color: #999fa6;
+}
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .date.faded:hover {
   border: none;
   font-weight: 500;
@@ -10149,6 +10180,10 @@ header nav ul li a.new-quote-btn:hover {
   pointer-events: none;
   font-weight: 500;
   background-color: transparent;
+}
+.global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .date.faded.current-day {
+  background-color: transparent;
+  color: #999fa6;
 }
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .date.faded:hover {
   border: none;
@@ -10507,6 +10542,9 @@ header nav ul li a.new-quote-btn:hover {
 @media screen and (max-width: 1300px) {
   .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th span img {
     width: 8px;
+  }
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th:nth-of-type(2) {
+    width: clamp(100px, 8.89vw, 8.89vw);
   }
   .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th:nth-of-type(3) {
     width: clamp(80px, 15.57vw, 15.57vw);

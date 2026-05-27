@@ -798,8 +798,8 @@ function renderDisplayTable(newQuote) {
       <p><span class="score">${p.score}</span>
       </p>
       <p> <span class="available-qty">${p.available_qty}</span></p>
-      <p><span>$<input type="text" value="${p.unit_cost}" name="cost"></span></p>
-      <p><span><input type="text" value="${p.margin}" name="margin">%</span></p>
+      <p><span>$<input type="text" value="${p.unit_cost}" name="cost" autocomplete="off"></span></p>
+      <p><span><input type="text" value="${p.margin}" name="margin" autocomplete="off">%</span></p>
       <p><span class="selling-price">$${p.selling_price.toFixed(2)}</span></p>
       <p><span class="total-cost">$${p.total_cost.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span></p>
       

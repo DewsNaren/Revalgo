@@ -424,6 +424,10 @@
                             font-weight: 500;
                             background-color: transparent;
                           }
+                          &.current-day{
+                            background-color: transparent;
+                            color: $grey-a6;
+                          }
                           &:hover {
                             border: none;
                             font-weight: 500;
@@ -563,6 +567,10 @@
                   pointer-events: none;
                   font-weight: 500;
                   background-color: transparent;
+                }
+                &.current-day{
+                  background-color: transparent;
+                  color: $grey-a6;
                 }
                 &:hover {
                   border: none;
@@ -971,6 +979,9 @@
       thead tr th {
         span img {
           width: 8px;
+        }
+        &:nth-of-type(2) {
+          width: clamp(100px, $fs-170px, $fs-170px);
         }
         &:nth-of-type(3) {
           width: clamp(80px, $fs-299px, $fs-299px);

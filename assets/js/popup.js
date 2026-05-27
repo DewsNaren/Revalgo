@@ -35,9 +35,11 @@ function getAllProducts() {
   const data = JSON.parse(sessionStorage.getItem('quotes'));
   data.forEach((d) => {
     const prods = d.products;
-    prods.forEach((p) => {
-      products.push(p);
-    });
+    if (prods) {
+      prods.forEach((p) => {
+        products.push(p);
+      });
+    }
   });
 
 }
@@ -776,7 +778,6 @@ formContainers.forEach((container) => {
 // validateFields();
 //approve btn click function
 approveQuoteBtn.addEventListener("click", () => {
-  if (newQuote.products.length != 0) {
     updateQuickInfoData();
     updateNewQuoteData();
     updateQuoteTotals();
@@ -784,7 +785,16 @@ approveQuoteBtn.addEventListener("click", () => {
     popupOverlay.classList.add("active");
     successPopup.classList.add("active");
     successidText.textContent = ` #${newQuote.id}`;
-  }
+    saveQuotes();
+    const bodyWrap = displayTable.querySelector(".body-wrapper");
+    bodyWrap.innerHTML = "";
+    bodyWrap.innerHTML = `<div class="add-btn-container ">
+    <button type="button"><img src="./assets/images/create_quote/add_item_icon.png" alt="add"></button>
+    <p class="text">Click here to Add Item</p>
+    </div>`;
+    setTimeout(() => {
+      window.location.href = "./dashboard.html";
+    }, 300);
 });
 
 //update quick info data to array
@@ -830,13 +840,6 @@ function updateNewQuoteData() {
 
 //success popup confirm button function
 confirmSuccessBtn.addEventListener("click", () => {
-  saveQuotes();
-  const bodyWrap = displayTable.querySelector(".body-wrapper");
-  bodyWrap.innerHTML = "";
-  bodyWrap.innerHTML = `<div class="add-btn-container ">
-    <button type="button"><img src="./assets/images/create_quote/add_item_icon.png" alt="add"></button>
-    <p class="text">Click here to Add Item</p>
-    </div>`;
   window.location.href = "./dashboard.html";
 });
 

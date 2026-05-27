@@ -608,33 +608,120 @@ document.addEventListener("click", (e) => {
 });
 renderWidgets();
 function renderWidgets() {
+
   const widgetInputs = widgetDropdown.querySelectorAll("input");
+
   const trendWrapper = document.querySelector(".trend-chart-wrapper");
   const accuracyWrapper = document.querySelector(".accuracy-chart-wrapper");
   const transactionWrapper = document.querySelector(".transaction-wrapper");
+  const chartWrapper = document.querySelector(".chart-wrapper");
+
+  const selectAllInput =
+    widgetDropdown.querySelector("#select-all");
+
+  const widgetSelectInputs =
+    widgetDropdown.querySelectorAll(".widget-select-input");
+
+  function updateSelectAll() {
+    selectAllInput.checked = [...widgetSelectInputs].every(
+      (inp) => inp.checked
+    );
+  }
+
+  function updateDashboardVisibility() {
+
+    const anyChecked = [...widgetSelectInputs].some(inp => inp.checked);
+
+    dashBoardBodyWrapper.classList.toggle("not-active",!anyChecked);
+  }
+
+  function updateQuoteTableSize() {
+    const onlyQuotesVisible =
+    !quotesContainer.classList.contains("not-active") &&
+    trendWrapper.classList.contains("not-active") &&
+    accuracyWrapper.classList.contains("not-active") &&
+    transactionWrapper.classList.contains("not-active");
+
+    quotesContainer.classList.toggle("large",onlyQuotesVisible);
+  }
 
   widgetInputs.forEach((inp) => {
+
     inp.addEventListener("change", () => {
-      if (inp.id == "select-all") {
-        if (inp.checked) {
-          widgetInputs.forEach((inp) => (inp.checked = true));
-          dashBoardBodyWrapper.classList.remove("not-active");
-        } else {
-          widgetInputs.forEach((inp) => (inp.checked = false));
-          dashBoardBodyWrapper.classList.add("not-active");
-        }
-      } else if (inp.id == "recent") {
+
+      if (inp.id === "select-all") {
+
+        widgetInputs.forEach((input) => {
+          input.checked = inp.checked;
+        });
+
+        quotesContainer.classList.toggle("not-active",!inp.checked);
+
+        trendWrapper.classList.toggle("not-active",!inp.checked);
+
+        accuracyWrapper.classList.toggle("not-active",!inp.checked);
+
+        transactionWrapper.classList.toggle("not-active",!inp.checked);
+
+        trendWrapper.classList.remove("minimize");
+        accuracyWrapper.classList.remove("minimize");
+        transactionWrapper.classList.remove("maximize");
+      }
+
+      else if (inp.id === "recent") {
+
+        updateSelectAll();
+
         quotesContainer.classList.toggle("not-active");
+
         trendWrapper.classList.toggle("minimize");
         accuracyWrapper.classList.toggle("minimize");
         transactionWrapper.classList.toggle("maximize");
-      } else if (inp.id == "trend") {
-        trendWrapper.classList.toggle("not-active");
-      } else if (inp.id == "accuracy") {
-        accuracyWrapper.classList.toggle("not-active");
-      } else {
-        transactionWrapper.classList.toggle("not-active");
+
       }
+
+      else if (inp.id === "trend") {
+
+        updateSelectAll();
+
+        trendWrapper.classList.toggle("not-active");
+
+        trendWrapper.classList.remove("minimize");
+        if(quotesContainer.classList.contains("not-active")){
+          if(!trendWrapper.classList.contains("not-active")){
+           trendWrapper.classList.add("minimize");
+          }
+        }
+      }
+
+      else if (inp.id === "accuracy") {
+
+        updateSelectAll();
+
+        accuracyWrapper.classList.toggle("not-active");
+
+        accuracyWrapper.classList.remove("minimize");
+        if(quotesContainer.classList.contains("not-active")){
+          if(!accuracyWrapper.classList.contains("not-active")){
+           accuracyWrapper.classList.add("minimize");
+          }
+        }
+      }
+
+      else if (inp.id === "transaction") {
+
+        updateSelectAll();
+
+        transactionWrapper.classList.toggle("not-active");
+
+        transactionWrapper.classList.remove("maximize");
+        if(quotesContainer.classList.contains("not-active")){
+          transactionWrapper.classList.add("maximize");
+        }
+      }
+
+      updateDashboardVisibility();
+      updateQuoteTableSize();
     });
   });
 }
@@ -977,7 +1064,7 @@ document.addEventListener("click", (e) => {
 
 //sort
 let sortedQuote;
-let isAscending = true;
+let isAscending = false;
 function parseDate(dateStr) {
   const [day, month, year] = dateStr.split("-");
 
@@ -987,6 +1074,7 @@ function parseDate(dateStr) {
 tabHeaderSpans.forEach((sp) => {
   sp.addEventListener("click", () => {
     const filteredCopy = [...filteredQuotes];
+
     const sortItem = sp.dataset.sort;
     if (isAscending) {
       if (sortItem == "id") {
@@ -1599,9 +1687,7 @@ let modalAccurChart;
     plotBackgroundImage: null,
     plotBorderWidth: 0,
     plotShadow: false,
-    height: "68%",
-    spacingBottom: 30,
-    // useHTML:true,
+    height: "65%",
     styledMode: true,
     reflow: true,
 
@@ -1648,7 +1734,7 @@ let modalAccurChart;
         useHTML: true,
         format: '<div class="accur-label">{y}</div>',
         borderWidth: 0,
-        y: 55,
+        y: 25,
         // x:-25,
         verticalAlign: "bottom",
       },
@@ -1800,8 +1886,13 @@ window.addEventListener("resize", () => {
       true,
     );
   } else {
+    if(accurChart ){
     accurChart.reflow();
-    modalAccurChart.reflow();
+  }
+    // if(modalAccurChart){
+    //   modalAccurChart.reflow();
+    // }
+  
   }
 
   if (trendChart) {

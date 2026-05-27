@@ -268,6 +268,10 @@
                                     font-weight: 500;
                                     background-color: transparent;
                                 }
+                                &.current-day{
+                                    background-color: transparent;
+                                    color: $grey-5c;
+                                }
                                 &:hover{
                                     color: $grey-a6;
                                     background-color: transparent;
@@ -812,13 +816,16 @@
         &.not-active{
             display: none;
         }
+        &.large{
+            width: 100%;
+        }
     }
     .chart-wrapper{
         flex: 1;
         display: flex;
         flex-direction: column;
         gap: clamp(10px,$fs-24px, $fs-24px);
-          height: 100%; 
+        height: 100%; 
         .chart-container{
             display: flex;
             gap: clamp(7px,$fs-14px, $fs-14px);
@@ -2102,10 +2109,11 @@
         }
         }
     }
-    .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper
-     .quote-table thead tr th span img{
-        width: 10px;
-     }
+    .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table{
+        thead tr th span img{
+            width: 10px;
+        }
+    }
 }
 
 
@@ -2169,14 +2177,12 @@
             } 
         }
     }
-    .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper
-     .quote-table{ 
-        thead{
-            tr th span img{
-                width: 9px;
-            }
+    .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table{
+        thead tr th span img{
+            width: 9px;
+            
         }
-     }
+    }
 }
 
 
@@ -2208,6 +2214,9 @@
                             }
                             &:first-of-type {
                                 width: $fs-40px;
+                            }
+                            &:nth-of-type(3) {
+                                width: $fs-245px;
                             }
                             
                              &:nth-of-type(7){
@@ -2245,25 +2254,34 @@
             }
         }
     }
-    .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper
-     .quote-table{
-        tbody{
-            th{
-                &:last-of-type {
-                    width: clamp(40px,$fs-67px, $fs-67px);
-                }
+    .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table{
+        thead tr th{
+            &:nth-of-type(3){
+                            width: $fs-263px;
             }
-             td{
-                
-                &:last-of-type {
-                    width: clamp(40px,$fs-67px, $fs-67px);
-                }
+            &:last-of-type {
+                width: clamp(40px,$fs-67px, $fs-67px);
+            }
+            span img{
+                width: 8px;
             }
         }
-     } thead tr th span img{
-        width: 8px;
-     }
+        tbody{
+                    
+            tr td{
+                        
+                &:last-of-type {
+                    width: clamp(40px,$fs-67px, $fs-67px);
+                }
+                &:nth-of-type(3){
+                    width: $fs-263px;
+                }
+            }
+        }   
+    } 
 }
+
+
 
 
 @media print{
