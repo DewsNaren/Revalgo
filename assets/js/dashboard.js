@@ -718,8 +718,9 @@ expandBtns.forEach((btn) => {
           renderModalAccurChart(targetValue);
         },50)
       }
-    overlay.classList.add("active");
+
     }
+    overlay.classList.add("active");
   });
 });
 

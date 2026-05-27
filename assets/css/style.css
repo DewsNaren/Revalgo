@@ -1636,7 +1636,7 @@ header nav ul li a.new-quote-btn:hover {
   position: relative;
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .top-container .btn-container button span {
-  font-size: clamp(7px, 0.521vw, 0.521vw);
+  font-size: clamp(8px, 0.521vw, 0.521vw);
   width: clamp(10px, 1.15vw, 1.15vw);
   height: clamp(10px, 1.15vw, 1.15vw);
   border-radius: 50%;
