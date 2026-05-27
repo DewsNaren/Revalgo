@@ -12,12 +12,8 @@ const globalDropDown=header.querySelector(".global-dropdown")
 let searchedQuotes=[];
 
 function loadQuotes() {
-  try {
-    if(!sessionStorage.getItem("quotes")){
-      sessionStorage.setItem('quotes',JSON.stringify(quotesData));
-    }
-  } catch (err) {
-    console.error("Error:", err)
+  if(!sessionStorage.getItem("quotes")){
+    sessionStorage.setItem('quotes',JSON.stringify(quotesData));
   }
 }
 

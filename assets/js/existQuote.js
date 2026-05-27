@@ -948,6 +948,10 @@ function selectAllItems() {
 
   const tableRows = selectedTBody.querySelectorAll("tr");
   // const checkedInputs=tBody.querySelectorAll("tr td input[type='checkbox']").checked;
+  if (!tableRows.length){
+    importBtn.classList.add("active");
+    return;
+  }
   const isAllChecked = [...tableRows].every(
     (row) => row.querySelector("input[type='checkbox']").checked,
   );

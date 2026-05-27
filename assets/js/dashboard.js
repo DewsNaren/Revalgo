@@ -73,9 +73,8 @@ let selectedDate = null;
 //get quotes from storage
 async function initializeQuotes() {
   await loadQuotes();
-
-  quotes = quotesData;
-  filteredQuotes = quotesData;
+  quotes = JSON.parse(sessionStorage.getItem('quotes'));
+  filteredQuotes = JSON.parse(sessionStorage.getItem('quotes'));
   filterQuotesByDate(quotes, format(start), format(end));
   setTimeout(() => {
     loaderWrapper.classList.add("not-active");
@@ -118,11 +117,11 @@ function handleSelection(value) {
     case "lastWeek": {
       const current = new Date();
 
-      const day = current.getDay();
-      const diff = day === 0 ? 6 : day - 1;
+      // const day = current.getDay();
+      // const diff = day === 0 ? 6 : day - 1;
 
       end = new Date(current);
-      end.setDate(current.getDate() - diff - 1);
+      // end.setDate(current.getDate() - diff - 1);
 
       start = new Date(end);
       start.setDate(end.getDate() - 6);
@@ -157,6 +156,7 @@ function filterQuotesByDate(quotes, start, end) {
   const endDate = end.replaceAll("/", "-");
   const startObj = parseDate(startDate);
   const endObj = parseDate(endDate);
+
   dateFilteredQuotes = quotes.filter((q) => {
     const quoteDate = parseDate(q.received_date);
 
@@ -179,6 +179,7 @@ function filterQuotesByDate(quotes, start, end) {
 }
 
 
+
 startDate.addEventListener("click", () => {
   activeDate = "start";
   showCalendar();
@@ -195,6 +196,7 @@ function showCalendar() {
 
 function format(date) {
   return date.toLocaleDateString("en-GB");
+  
 }
 
 function selectDate(year, month, day) {
