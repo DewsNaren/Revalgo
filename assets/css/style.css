@@ -1210,6 +1210,24 @@ header nav ul li a.new-quote-btn:hover {
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container.large {
   width: 100%;
 }
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container.large .table-wrapper .quote-table thead tr th:nth-of-type(2) {
+  width: 13.5vw;
+}
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container.large .table-wrapper .quote-table thead tr th:nth-of-type(3) {
+  width: 16.2vw;
+}
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container.large .table-wrapper .quote-table thead tr th:nth-of-type(7) {
+  width: clamp(75px, 6.8vw, 6.8vw);
+}
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container.large .table-wrapper .quote-table tbody tr td:nth-of-type(2) {
+  width: 13.5vw;
+}
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container.large .table-wrapper .quote-table tbody tr td:nth-of-type(3) {
+  width: 16.2vw;
+}
+.dashboard-wrapper .dashboard-body-wrapper .quotes-container.large .table-wrapper .quote-table tbody tr td:nth-of-type(7) {
+  width: clamp(75px, 6.8vw, 6.8vw);
+}
 .dashboard-wrapper .dashboard-body-wrapper .chart-wrapper {
   flex: 1;
   display: flex;

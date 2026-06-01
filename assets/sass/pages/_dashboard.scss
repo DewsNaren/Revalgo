@@ -818,6 +818,37 @@
         }
         &.large{
             width: 100%;
+            .table-wrapper{
+                .quote-table{
+                 thead tr{
+                    th{
+                        &:nth-of-type(2){
+                            width: $fs-250px;
+                        }
+                        &:nth-of-type(3){
+                            width: $fs-311px;
+                        }
+                        &:nth-of-type(7){
+                            width: clamp(75px,$fs-130px, $fs-130px);
+                        }
+                    }
+                 }
+                 tbody tr{
+                    td{
+                        &:nth-of-type(2){
+                            width: $fs-250px;
+                        }
+                        &:nth-of-type(3){
+                            width: $fs-311px;
+                        }
+                        &:nth-of-type(7){
+                            width: clamp(75px,$fs-130px, $fs-130px);
+                        }
+
+                    }
+                 }
+                }
+            }
         }
     }
     .chart-wrapper{
