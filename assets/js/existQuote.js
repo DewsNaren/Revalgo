@@ -1181,44 +1181,6 @@ function updateFormData(quoteInfoWrap, editItem) {
   });
 }
 
-//update form function
-
-
-
-
-// function validateUpdateForm(container) {
-//   const inpFields = container.querySelectorAll("input, textarea");
-
-//   const errEl = container.querySelector(".error");
-
-//   let isValid = true;
-
-//   inpFields.forEach((inpField) => {
-//     const val = inpField.value.trim();
-
-//     if (val === "") {
-//       isValid = false;
-
-//       errEl.classList.add("active");
-
-//       errEl.textContent = `Please enter the ${inpField.placeholder}`;
-//     }
-//   });
-
-//   if (!isValid) return;
-
-//   errEl.classList.remove("active");
-
-//   const con = container.dataset.con;
-
-//   inpFields.forEach((inpField) => {
-//     changeQuickInfo(inpField, con);
-//   });
-// }
-
-
-
-
 
 //render display table
 if (sessionStorage.getItem("newQuote")) {

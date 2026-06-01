@@ -401,9 +401,7 @@ function renderQuickInfo(newQuote) {
         </div>
       </div>
   `;
-  if(newQuote.status != "approved"){
   editQuoteInfo(document.querySelector(".quick-info-wrapper"));
-  }
 }
 
 function renderDisplayTable(newQuote) {
