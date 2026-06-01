@@ -515,6 +515,7 @@ uploadBtn.addEventListener("click", () => {
   }
   approveQuoteBtn.classList.add("active");
   approveQuoteBtn.classList.remove("not-active");
+  newQuote.status="pending";
 
 });
 

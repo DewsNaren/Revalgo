@@ -284,7 +284,8 @@ addLinesBtn.addEventListener("click", () => {
   quoteStat.classList.add("pending");
   quoteStat.textContent="Pending";
   undoQuoteBtn.classList.remove("active");
-  delQuoteBtn.classList.add("active")
+  delQuoteBtn.classList.add("active");
+  newQuote.status="pending";
 });
 
 //add table data to array

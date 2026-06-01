@@ -1525,6 +1525,7 @@ function deleteAllRow() {
     <p class="text">Click here to Add Item</p>
     </div>`;
     newQuote.products = [];
+    newQuote.status="deleted";
     delAllBtn.classList.remove("selected", "active");
     // undoAllBtn.classList.add("selected", "active");
     approveQuoteBtn.classList.remove("active");
