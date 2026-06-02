@@ -9,6 +9,7 @@ function ValidateLoginForm(){
     const passwordVal=loginPassword.value;
 
     if(!validateUsername(loginName, nameVal)){
+        console.log(loginName,nameVal);
         success=false;
     }
         
@@ -19,9 +20,8 @@ function ValidateLoginForm(){
     
 }
 
-function validateUsername(nameVal){
+function validateUsername(loginName, nameVal){
     if (nameVal === "") {
-        
         setError(loginName,"please enter the username");
        return false;
     }
@@ -34,7 +34,7 @@ function validateUsername(nameVal){
 
 loginName.addEventListener('input',()=>{
     const nameVal=loginName.value;
-    validateUsername(nameVal)
+    validateUsername(loginName,nameVal)
 })
 loginPassword.addEventListener('input',()=>{
     validatePassword(loginPassword.value,loginPassword)
@@ -82,9 +82,6 @@ loginBtn.addEventListener("click",(e)=>{
         loginForm.reset();
 
         window.location.href="./dashboard.html"
-    }
-    else{
-        console.log("not validate");
     }
 })
 

@@ -668,6 +668,7 @@ function editQuoteInfo(quoteInfoWrap) {
   const editBtns = quoteInfoWrap.querySelectorAll(".edit-btn");
   editBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
+      updateBtn.classList.add("not-active");
       popupOverlay.classList.add("active");
       formPopup.classList.add("active");
       const editItem = btn.dataset.edit;

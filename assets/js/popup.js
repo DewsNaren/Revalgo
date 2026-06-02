@@ -881,7 +881,9 @@ function saveQuotes(){
     newQuote.approved_date= `${padZero(new Date().getDate())}-${padZero(new Date().getMonth()+1)}-${padZero(new Date().getFullYear())}`,
     quotes.push(newQuote);
   }
-  console.log(newQuote.status);
+   if(sessionStorage.getItem("newQuote")){
+    sessionStorage.setItem("newQuote",JSON.stringify(newQuote))
+  }
   sessionStorage.setItem("quotes", JSON.stringify(quotes));
 }
 
@@ -894,7 +896,13 @@ function openLineNotePopup(event) {
   const delId = clickedRow.querySelector(".del-id").textContent;
   const product = newQuote.products.find((p) => String(p.delId) === delId);
   if (product) {
-    if (product.lineNote) addLineNoteInput.value = product.lineNote;
+    if (product.lineNote){ 
+      addLineNoteInput.value = product.lineNote;
+    }
+    else{
+      addLineNoteInput.value = "";
+    }
+
   }
 }
 
@@ -968,7 +976,7 @@ selectAllWrapInput.addEventListener("change", () => {
 });
 
 selectImgInputs.forEach((inp) => {
-    if(newQuote.status == "approved") return;
+    if(newQuote.status == "approved" || newQuote.status == "deleted") return;
   inp.addEventListener("input", () => {
     const checkedInputs = [...selectImgInputs].filter((inp) => inp.checked);
 

@@ -908,6 +908,9 @@ function storeQuote() {
   if (!found) {
     allQuotes.push(newQuote);
   }
+  if(sessionStorage.getItem("newQuote")){
+    sessionStorage.setItem("newQuote",JSON.stringify(newQuote))
+  }
   sessionStorage.setItem("quotes", JSON.stringify(allQuotes));
 }
 

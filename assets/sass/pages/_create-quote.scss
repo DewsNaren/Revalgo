@@ -1720,6 +1720,744 @@
         }
 
     }
+    .exist-quote-filter-wrapper{
+        margin-top: clamp(6px, $fs-12px, $fs-12px);
+        display: none;
+        flex-direction: column;
+        flex: 1;
+        min-height: 0;
+        .btn-container{
+            box-shadow: $box-shadow-3;
+            width: fit-content;
+            margin: auto;
+            border-radius:  clamp(4px, $fs-8px, $fs-8px);
+            overflow: hidden;
+            margin-top: 4px;
+            button{
+                display: inline-flex;
+                align-items: center;
+                gap:clamp(5px, $fs-15px, $fs-15px);
+                background-color: $white;
+                border: none;
+                font-size: clamp(12px, $fs-24px, $fs-24px);
+                color: $grey-80;
+                font-weight: 600;
+                img{
+                    width: clamp(14px, $fs-29px, $fs-29px);
+                }
+                .img-grey{
+                    display: inline;
+                }
+                .img-blue{
+                    display: none;
+                }
+                &.active,&:hover{
+                    color: $blue-87;
+                    background-color: $blue-2ff;
+                    .img-grey{
+                        display: none;
+                    }
+                    .img-blue{
+                        display: inline;
+                    }
+                }
+               
+            }
+            .new-btn{
+                padding:clamp(6px, $fs-13px, $fs-13px) clamp(14px, $fs-80_5px, $fs-80_5px);
+            }
+            .exist-btn{
+                padding:clamp(6px, $fs-13px, $fs-13px) clamp(14px, $fs-26px, $fs-26px);
+            }
+        }
+        .filter-outer-wrapper{
+            // overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            max-height: 100%;
+            min-height: 0;
+            padding:clamp(23px, $fs-45px, $fs-45px) clamp(23px, $fs-45px, $fs-45px) clamp(15px, $fs-30px, $fs-30px);
+            .header-wrapper{
+                h2{
+                    text-transform: uppercase;
+                    font-size: clamp(6px, $fs-20px, $fs-20px);
+                    color: $grey-80;
+                    margin-bottom: clamp(6px, $fs-10px, $fs-10px);
+                    span{
+                        text-transform: none;
+                        color: $black-80;
+                        font-weight: 600;
+                        margin-left: 5px;
+                    }
+                }
+                .total-item{
+                    font-size: clamp(12px, $fs-14px, $fs-14px);
+                    color: $grey-80;
+                    line-height: 1;
+                    font-weight: 500;
+                }
+            }
+            .filter-inner-wrapper{
+                display: flex;
+                gap:clamp(6px, $fs-12px, $fs-12px);
+                flex: 1;
+                min-height: 0;
+                .clear-all-filter-btn {
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-end;
+                    text-wrap: nowrap;
+                    border: none;
+                    background-color: transparent;
+                    color: $red-08;
+                    text-align: right;
+                    font-size: clamp(9px, $fs-15px, $fs-15px);
+                    cursor: pointer;
+                    margin-bottom: 5px;
+                }
+                .filter-wrapper{
+                    padding: clamp(6px, $fs-20px, $fs-20px) clamp(10px, $fs-20px, $fs-20px);
+                    width: clamp(250px, 19.5%, 19.5%);
+                    box-shadow: $box-shadow-3;
+                    border-radius: clamp(4px, $fs-10px, $fs-10px);
+                    overflow-y: auto;
+                    max-height: 100%; 
+                    .filter-header{
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        font-size: clamp(12px, $fs-19px, $fs-19px);
+                        margin-bottom: 0;
+                        line-height: 1;
+                        padding-bottom: clamp(4px, $fs-8px, $fs-8px);
+                        border-bottom: 1px solid $grey-93;
+
+                        img{
+                            width: clamp(11px, $fs-20px, $fs-20px);
+                            cursor: pointer;
+                            transform: rotate(180deg);
+                        }
+                        .down-arrow-btn {
+                            width: fit-content;
+                            background: transparent;
+                            border: none;
+                            box-shadow: none;
+                            padding: 0;
+
+                            &::after {
+                                display: none;
+                            }
+                            .down-arrow {
+                                width: clamp(11px, $fs-20px, $fs-20px);
+                                transform: rotate(180deg);
+                                transition: transform 0.2s ease;
+                            }
+
+                            &.collapsed {
+                                .down-arrow {
+                                transform: rotate(0deg);
+                                }
+                            }
+                        }
+                    }
+
+                    .filter-container{
+                        display: flex;
+                        flex-direction: column;
+                        gap: clamp(4px, $fs-10px, $fs-10px);
+                        padding: clamp(12px, $fs-21px, $fs-21px) 0;
+                        border-bottom: 1px solid #ddd;
+                        h3{
+                            font-size: clamp(12px, $fs-17px, $fs-17px);
+                            margin-bottom: 0;
+                            line-height: 1;
+                            padding-bottom: clamp(4px, $fs-8px, $fs-8px);
+                            cursor: pointer;
+                             span{
+                                    line-height: 1;
+                                    margin-right: 2px;
+                                }
+                                .minus{
+                                    display: none;
+                                    
+                                }
+
+                                &.collapsed{
+                                    .minus{
+                                        display: inline;
+                                    }
+                                    .plus{
+                                        display: none;
+                                    }
+
+                                }
+                        }
+                        h4 {
+                            font-size: clamp(11px, $fs-15px, $fs-15px);
+                            margin-bottom: 5px;
+                            line-height: 1;
+                            padding-bottom: clamp(4px, $fs-8px, $fs-8px);
+                            color: $grey-34;
+                            margin-left: clamp(4px, $fs-8px, $fs-8px);
+                        }
+                        .filter-subheader{
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                             
+                            h3{
+                                width: fit-content;
+                               
+                            }
+
+                            .control-btn-container{
+                                display: flex;
+                                align-items: center;
+                                gap:clamp(12px, $fs-19px, $fs-19px);
+                                button{
+                                    background-color: transparent;
+                                    border: none;
+                                    font-size: clamp(7px, $fs-11px, $fs-11px);
+                                    color: $blue-87;
+                                    position: relative;
+                                    
+                                }
+                            }
+                        }
+                        .filter-chip-container{
+                            display: flex;
+                            align-items: center;
+                            justify-content: flex-end;
+                            gap: 5px;
+                            margin-top: 4px;
+                            margin-left: clamp(8px, $fs-15px, $fs-15px);
+                            .filter-chip{
+                                padding:5px clamp(8px, $fs-10px, $fs-10px);
+                                background-color: $white;
+                                border-radius: 20px;
+                                font-size: clamp(10px, $fs-15px, $fs-15px);
+                                color: $grey-80;
+                                border: 1px solid $grey-80;
+                                text-transform: capitalize;
+                                &.active{
+                                    background-color: $blue-87;
+                                    color: $white-80;
+                                    
+                                }
+                            }
+                           
+                        }
+                        .search-container{
+                            border: 1px solid #ccc;
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            gap: clamp(8px, $fs-15px, $fs-15px);
+                            padding: 5px clamp(8px, $fs-10px, $fs-10px);
+                            border-radius: 5px;
+                            margin-left: clamp(8px, $fs-15px, $fs-15px);
+                            width: 90%;
+                            input{
+                                border: none;
+                                outline: none;
+                                font-size: clamp(9px, $fs-13px, $fs-13px);
+                                flex: 1;
+
+                                &::placeholder{
+                                    font-size: clamp(9px, $fs-13px, $fs-13px);
+
+                                }
+                                &:-webkit-autofill{
+                                    -webkit-box-shadow: 0 0 0 1000px #fff inset;
+                                    -webkit-text-fill-color: $black;
+                                    transition: background-color 9999s ease-in-out 0s;
+                                }
+
+                            }
+                            button{
+                                background-color: transparent;
+                                border: none;
+                            
+                                img{
+                                    width: clamp(11px, $fs-16px, $fs-16px);
+                                }
+                            }
+                        }
+                        .checkbox-filter-container{
+                            display: flex;
+                            flex-direction: column;
+                            gap: clamp(3px, $fs-7px, $fs-7px);
+                            margin-left: clamp(8px, $fs-15px, $fs-15px);
+                            .checkbox-filter{
+                                display: flex;
+                                align-items: center;
+                                gap: clamp(8px, $fs-15px, $fs-15px);
+                                padding: 5px 0 0;
+                                input{
+                                    width: clamp(9px, $fs-19px, $fs-19px);
+                                    height:clamp(9px, $fs-19px, $fs-19px);
+                                    border-radius: 5px;
+                                    accent-color: $blue-87;
+                                }
+                                label{
+                                    font-size: clamp(12px, $fs-16px, $fs-16px);
+                                    color: $grey-80;
+                                }
+                                &.hidden{
+                                    display: none;
+                                }
+                            }
+                        }
+                        .see-more-link{
+                            margin-top: 4px;
+                            font-size: clamp(9px, $fs-13px, $fs-13px);
+                            color: $blue-87;
+                            font-weight: 500;
+                            margin-left: clamp(8px, $fs-15px, $fs-15px);
+
+                            &.not-active{
+                                display: none;
+                            }
+                        }
+                        &:last-of-type{
+                            border-bottom: none;
+                        }
+                        .date-outer-wrapper{
+                            .date-wrapper{
+                                display: flex;
+                                align-items: center;
+                                gap: clamp(8px, $fs-15px, $fs-15px);
+                                margin-left: clamp(8px, $fs-15px, $fs-15px);
+                                .date-container{
+                                    position: relative;
+                                    .date-label{
+                                        font-size: clamp(12px, $fs-16px, $fs-16px);
+                                        color: $grey-80;
+                                        line-height: 1;
+                                        margin-bottom: clamp(4px, $fs-8px, $fs-8px)
+                                    }
+                                    .date-text{
+                                        font-size: clamp(10px, $fs-14px, $fs-14px);
+                                        color: $grey-80;
+                                        white-space: nowrap;
+                                        display: flex;
+                                        align-items: center;
+                                        border: 1px solid #ccc;
+                                        padding: 4px 5px;
+                                        border-radius: 4px;
+                                        img{
+                                            width: clamp(11px, $fs-18px, $fs-18px);
+                                            margin-left: clamp(6px, $fs-14px, $fs-14px);
+                                        }
+                                        &.active{
+                                            color: $blue-87;
+                                            border-color: $blue-87;
+                                            img {
+                                                filter: brightness(0) saturate(100%) 
+                                                    invert(20%) sepia(45%) saturate(1500%) 
+                                                    hue-rotate(190deg) brightness(90%) contrast(95%);
+                                            }
+                                        }
+                                    }
+                                    .datepicker {
+                                        position: fixed;
+                                        background-color: $white-f5;
+                                        box-shadow: $box-shadow-2;
+                                        padding: 0px;
+                                        max-height: 0;
+                                        overflow: hidden;
+                                        z-index: 6;
+                                        top: 100%;
+                                        button {
+                                            cursor: pointer;
+                                            outline: none;
+                                        }
+                                        .datepicker-top {
+                                            margin-bottom: 20px;
+                                            // .tag {
+                                            //     margin-right: 7px;
+                                            //     margin-top: 7px;
+                                            //     background-color: $white-ec;
+                                            //     border-radius: 5px;
+                                            //     padding: clamp(6px, 1%, 1%) $fs-14px;
+                                            //     border: none;
+                                            //     font-size:clamp(10px, $fs-14px, $fs-14px);
+                                            // }
+                                            // .tag:hover {
+                                            //     color: $white;
+                                            //     background-color: $black-80;
+                                            // }
+                                            .month-selector {
+                                                display: flex;
+                                                align-items: center;
+                                                justify-content: space-between;
+                                                position: relative;
+                                                .year-wrapper{
+                                                    display: flex;
+                                                    align-items: center;
+                                                    font-size: clamp(13px, $fs-17px, $fs-17px);
+                                                    gap: 5px;
+                                                    .month-name,.year{
+                                                        color: $black;
+                                                    }  
+                                                    .year{
+                                                        color: $black;
+                                                    }
+
+                                                }
+                                            }
+                                        }
+                                    .datepicker-calendar{
+                                        visibility: visible;
+                                        .days {
+                                            display: grid;
+                                            grid-template-columns: repeat(7, 1fr);
+                                            grid-row-gap: 15px;
+                                            margin-top: 15px;
+                                            margin-bottom: 20px;
+                                        }
+                                        .dates {
+                                            display: grid;
+                                            grid-template-columns: repeat(7, 1fr);
+                                            grid-column-gap: clamp(5px, $fs-10px, $fs-10px);
+                                            grid-row-gap: clamp(5px, $fs-15px, $fs-15px);
+                                        }
+                                        .date {
+                                            justify-self: center;
+                                            border: none;
+                                            margin: 0;
+                                            padding: 0;
+                                            width: clamp(14px, $fs-25px, $fs-25px);
+                                            display: flex;
+                                            justify-content: center;
+                                            align-items: center;
+                                            background-color: transparent;
+                                            border: 2px solid transparent;
+                                            color: $black-70;
+                                            // font-weight: 800;
+                                            cursor: pointer;
+                                            display: block;
+                                            font-size: clamp(8px, $fs-14px, $fs-14px);
+                                            font-weight: 500;
+                                            &:hover,&:focus {
+                                                border: 2px solid $black-30;
+                                                font-weight: 600;
+                                            }
+                                            &.faded {
+                                                color: $grey-a6;
+                                                &:focus {
+                                                    color: $grey-a6;
+                                                    border: 2px solid transparent;
+                                                    pointer-events: none;
+                                                    font-weight: 500;
+                                                    background-color: transparent;
+                                                }
+                                                &:hover{
+                                                    border: none;
+                                                    font-weight: 500;
+                                                }
+                                                 &.current-day{
+                                                    background-color: transparent;
+                                                    color: $grey-a6;
+                                                }
+                                            }
+                                            &.current-date {
+                                                border: 2px solid $black-80;
+                                            }
+                                            &.current-day {
+                                                color: $white;
+                                                border: 2px solid $black-80;
+                                                background-color: $blue-3ff;
+                                            }
+                                            
+                                        }
+                                        .day {
+                                            color: $black-90;
+                                            font-weight: 500;
+                                            font-size: clamp(12px, $fs-16px, $fs-16px);
+                                            justify-self: center;
+                                        }
+                                        
+                                        &.not-active{
+                                            visibility: hidden;
+                                        }
+                                    }
+                                    &.active {
+                                        padding: clamp(8px, $fs-15px, $fs-15px);
+                                        max-height: 411px;
+                                        overflow: visible;
+                                            
+                                    }
+                                    }
+                            
+                                }
+                                &:first-of-type{
+                                    margin-bottom: clamp(7px, $fs-15px, $fs-15px);
+                                }
+                            
+                            }
+                        }
+                    }
+                     &::-webkit-scrollbar {
+                        width: 4px;
+                    }
+
+                    &::-webkit-scrollbar-thumb {
+                        background: rgba(161, 161, 161, 0.5);
+                        border-radius: 4px;
+                                
+                    }
+                }
+                .datepicker{
+                    position: fixed;
+                    background-color: $white-f5;
+                    box-shadow: $box-shadow-2;
+                    padding: 0px;
+                    max-height: 0;
+                    overflow: hidden;
+                    z-index: 6;
+                    top: 100%;
+                    button {
+                        cursor: pointer;
+                        outline: none;
+                    }
+                    .datepicker-top {
+                        margin-bottom: 20px;
+                                        
+                        .month-selector {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            position: relative;
+                            .year-wrapper{
+                                display: flex;
+                                align-items: center;
+                                font-size: clamp(13px, $fs-17px, $fs-17px);
+                                gap: 5px;
+                                .month-name,.year{
+                                    color: $black;
+                                }
+                            }
+                            .arrow {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                border: none;
+                                background-color: $white;
+                                    width: clamp(15px, $fs-29px, $fs-29px);
+                                height: clamp(15px, $fs-29px, $fs-29px);
+                                border-radius: 12px;
+                                img {
+                                    width: clamp(11px, $fs-22px, $fs-22px);
+                                }
+                            }
+                        }
+                    }
+                    .datepicker-calendar{
+                        visibility: visible;
+                        .days {
+                            display: grid;
+                            grid-template-columns: repeat(7, 1fr);
+                            grid-row-gap: 15px;
+                            margin-top: 15px;
+                            margin-bottom: 20px;
+                        }
+                        .dates {
+                           display: grid;
+                            grid-template-columns: repeat(7, 1fr);
+                            grid-column-gap: clamp(5px, $fs-10px, $fs-10px);
+                            grid-row-gap: clamp(5px, $fs-15px, $fs-15px);
+                        }
+                        .date {
+                            justify-self: center;
+                            border: none;
+                            margin: 0;
+                            padding: 0;
+                            width: clamp(14px, $fs-25px, $fs-25px);
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background-color: transparent;
+                            border: 2px solid transparent;
+                            color: $black-70;
+                            border-radius: 50%;
+                            cursor: pointer;
+                            display: block;
+                            font-size: clamp(8px, $fs-14px, $fs-14px);
+                            font-weight: 500;
+                            &:hover,&:focus {
+                                 border: 2px solid $black-30;
+                                font-weight: 600;
+                            }
+                            &.faded {
+                                color: $grey-a6;
+                                &:focus {
+                                    color: $grey-a6;
+                                    border: 2px solid transparent;
+                                        pointer-events: none;
+                                    font-weight: 500;
+                                    background-color: transparent;
+                                }
+                                &.current-day{
+                                    background-color: transparent;
+                                    color: $grey-a6;
+                                }
+                                &:hover{
+                                    border: none;
+                                    font-weight: 500;
+                                }
+                            }
+                            &.current-date {
+                                border: 2px solid $black-80;
+                            }
+                            &.current-day {
+                                color: $blue-87;
+                                border: 2px solid $blue-87;
+                                // background-color: $blue-3ff;
+                            }
+                                        
+                        }
+                        .day {
+                            color: $black-90;
+                            font-weight: 500;
+                            font-size: clamp(12px, $fs-16px, $fs-16px);
+                            justify-self: center;
+                        }
+                                    
+                        &.not-active{
+                            visibility: hidden;
+                        }
+                    }
+                    &.active {
+                        padding: clamp(8px, $fs-15px, $fs-15px);
+                        max-height: 411px;
+                        overflow: visible;
+                                        
+                    }
+                }                
+               
+                .filter-table{
+                    table-layout: fixed;
+                    display: flex;
+                    flex-direction: column;
+                    flex: 1;
+
+                    thead {
+                        display: table;
+                        width: 100%;
+                        table-layout: fixed;
+                        flex-shrink: 0;
+                        background-color: $grey-f1;
+                        border-top-left-radius: clamp(4px, $fs-10px, $fs-10px);
+                        border-top-right-radius: clamp(4px, $fs-10px, $fs-10px);
+                        tr {
+                            
+                            border-bottom: 1px solid rgba(0,0,0,0.6);
+                            th {
+                                font-size: clamp(10px, $fs-15px, $fs-15px);
+                                color: $black-90;
+                                font-weight: 500;
+                                padding: clamp(8px, $fs-15px, $fs-15px) clamp(10px, $fs-20px, $fs-20px) clamp(8px, $fs-15px, $fs-15px);
+                                text-align: left;
+                                white-space: nowrap;
+                                span {
+
+                                    display: inline-flex;
+                                    align-items: center;
+                                    gap: clamp(7px, $fs-15px, $fs-15px);
+                                    font-size: clamp(10px, $fs-15px, $fs-15px);
+                                    color: $black-90;
+                                    font-weight: 500;
+                                    cursor: pointer;
+                                }
+
+                                &:first-of-type{
+                                    padding-left: clamp(12px, $fs-40px, $fs-40px);
+                                }
+                            }
+                        }
+                    }
+                     tbody{
+                        display: block;
+                        flex: 1;
+                        overflow-y: auto;       
+                        tr{
+                            display: table;
+                            width: 100%;
+                            table-layout: fixed;
+                            td{
+                                        font-size: clamp(10px, $fs-15px, $fs-15px);
+                                        padding: clamp(8px, $fs-15px, $fs-15px) clamp(10px, $fs-20px, $fs-20px) clamp(8px, $fs-15px, $fs-15px);
+                                        color: rgba(0,0,0,0.85);
+                                        border-bottom: 1px solid #ccc;
+                                        
+                                        &:first-of-type{
+                                            padding-left: clamp(12px, $fs-40px, $fs-40px);
+                                            cursor: pointer;
+                                        }
+                                        &:nth-of-type(5) span{
+                                            color:  $red-00;
+                                            background-color: $red-26;
+                                            padding: 2px 4px;
+                                            border-radius: 10px;
+                                            &.approved{
+                                                color: $green-2c;
+                                                background-color: $green-dc;
+                                            }
+                                            &.pending{
+                                                color: $orange-29;
+                                                background-color: $orange-cf;
+                                            }
+                                            
+                                        }
+                                        &:nth-of-type(6) {
+                                            text-align: center;
+                                            // padding-right: clamp(10px, $fs-85px, $fs-85px);
+                                            // width: 150px;
+                                            // margin-right: ;
+                                            span{
+                                                 padding-right: clamp(30px, $fs-65px, $fs-65px);
+                                            }
+                                        }
+                                        &:last-of-type {
+                                            font-weight: 600;
+                                        }
+
+
+                            }
+                            &:last-of-type td {
+                                border-bottom: none;
+                            }
+                            &.active{
+                                background-color: $blue-2ff;                                  
+                            }
+                        }
+                        .not-found{
+                            text-align: center;
+                            padding-top: clamp(10px, $fs-20px, $fs-20px) ;
+                            font-size: clamp(10px, $fs-15px, $fs-15px);
+                            margin-bottom: 0;
+                        }
+                        &::-webkit-scrollbar {
+                            width: 4px;
+                        }
+
+                        &::-webkit-scrollbar-thumb {
+                            background: rgba(161, 161, 161, 0.5);
+                            border-radius: 4px;
+                                
+                        }
+                    }
+                }
+
+            }
+
+        }
+        &.active{
+            display: flex;
+        }
+    }
     &.active{
         display: none;
     }

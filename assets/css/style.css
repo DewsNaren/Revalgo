@@ -7251,6 +7251,678 @@ header nav ul li a.new-quote-btn:hover {
   opacity: 0.5;
   pointer-events: none;
 }
+.create-quote-wrapper .exist-quote-filter-wrapper {
+  margin-top: clamp(6px, 0.63vw, 0.63vw);
+  display: none;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .btn-container {
+  box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.12);
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: auto;
+  border-radius: clamp(4px, 0.43vw, 0.43vw);
+  overflow: hidden;
+  margin-top: 4px;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .btn-container button {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(5px, 0.79vw, 0.79vw);
+  background-color: white;
+  border: none;
+  font-size: clamp(12px, 1.25vw, 1.25vw);
+  color: #818080;
+  font-weight: 600;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .btn-container button img {
+  width: clamp(14px, 1.5vw, 1.5vw);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .btn-container button .img-grey {
+  display: inline;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .btn-container button .img-blue {
+  display: none;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .btn-container button.active, .create-quote-wrapper .exist-quote-filter-wrapper .btn-container button:hover {
+  color: rgb(21, 71, 135);
+  background-color: #e8f2ff;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .btn-container button.active .img-grey, .create-quote-wrapper .exist-quote-filter-wrapper .btn-container button:hover .img-grey {
+  display: none;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .btn-container button.active .img-blue, .create-quote-wrapper .exist-quote-filter-wrapper .btn-container button:hover .img-blue {
+  display: inline;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .btn-container .new-btn {
+  padding: clamp(6px, 0.68vw, 0.68vw) clamp(14px, 4.211vw, 4.211vw);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .btn-container .exist-btn {
+  padding: clamp(6px, 0.68vw, 0.68vw) clamp(14px, 1.36vw, 1.36vw);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  max-height: 100%;
+  min-height: 0;
+  padding: clamp(23px, 2.34vw, 2.34vw) clamp(23px, 2.34vw, 2.34vw) clamp(15px, 1.57vw, 1.57vw);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .header-wrapper h2 {
+  text-transform: uppercase;
+  font-size: clamp(6px, 1.05vw, 1.05vw);
+  color: #818080;
+  margin-bottom: clamp(6px, 0.521vw, 0.521vw);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .header-wrapper h2 span {
+  text-transform: none;
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 600;
+  margin-left: 5px;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .header-wrapper .total-item {
+  font-size: clamp(12px, 0.73vw, 0.73vw);
+  color: #818080;
+  line-height: 1;
+  font-weight: 500;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper {
+  display: flex;
+  gap: clamp(6px, 0.63vw, 0.63vw);
+  flex: 1;
+  min-height: 0;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .clear-all-filter-btn {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  text-wrap: nowrap;
+  border: none;
+  background-color: transparent;
+  color: #eb0808;
+  text-align: right;
+  font-size: clamp(9px, 0.79vw, 0.79vw);
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper {
+  padding: clamp(6px, 1.05vw, 1.05vw) clamp(10px, 1.05vw, 1.05vw);
+  width: clamp(250px, 19.5%, 19.5%);
+  box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.12);
+  border-radius: clamp(4px, 0.521vw, 0.521vw);
+  overflow-y: auto;
+  max-height: 100%;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: clamp(12px, 0.989vw, 0.989vw);
+  margin-bottom: 0;
+  line-height: 1;
+  padding-bottom: clamp(4px, 0.43vw, 0.43vw);
+  border-bottom: 1px solid rgba(147, 147, 147, 0.8);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-header img {
+  width: clamp(11px, 1.05vw, 1.05vw);
+  cursor: pointer;
+  transform: rotate(180deg);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-header .down-arrow-btn {
+  width: -moz-fit-content;
+  width: fit-content;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-header .down-arrow-btn::after {
+  display: none;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-header .down-arrow-btn .down-arrow {
+  width: clamp(11px, 1.05vw, 1.05vw);
+  transform: rotate(180deg);
+  transition: transform 0.2s ease;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-header .down-arrow-btn.collapsed .down-arrow {
+  transform: rotate(0deg);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(4px, 0.521vw, 0.521vw);
+  padding: clamp(12px, 1.1vw, 1.1vw) 0;
+  border-bottom: 1px solid #ddd;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container h3 {
+  font-size: clamp(12px, 0.89vw, 0.89vw);
+  margin-bottom: 0;
+  line-height: 1;
+  padding-bottom: clamp(4px, 0.43vw, 0.43vw);
+  cursor: pointer;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container h3 span {
+  line-height: 1;
+  margin-right: 2px;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container h3 .minus {
+  display: none;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container h3.collapsed .minus {
+  display: inline;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container h3.collapsed .plus {
+  display: none;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container h4 {
+  font-size: clamp(11px, 0.79vw, 0.79vw);
+  margin-bottom: 5px;
+  line-height: 1;
+  padding-bottom: clamp(4px, 0.43vw, 0.43vw);
+  color: #343434;
+  margin-left: clamp(4px, 0.43vw, 0.43vw);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .filter-subheader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .filter-subheader h3 {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .filter-subheader .control-btn-container {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 0.989vw, 0.989vw);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .filter-subheader .control-btn-container button {
+  background-color: transparent;
+  border: none;
+  font-size: clamp(7px, 0.578vw, 0.578vw);
+  color: rgb(21, 71, 135);
+  position: relative;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .filter-chip-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
+  margin-top: 4px;
+  margin-left: clamp(8px, 0.79vw, 0.79vw);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .filter-chip-container .filter-chip {
+  padding: 5px clamp(8px, 0.521vw, 0.521vw);
+  background-color: white;
+  border-radius: 20px;
+  font-size: clamp(10px, 0.79vw, 0.79vw);
+  color: #818080;
+  border: 1px solid #818080;
+  text-transform: capitalize;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .filter-chip-container .filter-chip.active {
+  background-color: rgb(21, 71, 135);
+  color: rgba(255, 255, 255, 0.8);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .search-container {
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(8px, 0.79vw, 0.79vw);
+  padding: 5px clamp(8px, 0.521vw, 0.521vw);
+  border-radius: 5px;
+  margin-left: clamp(8px, 0.79vw, 0.79vw);
+  width: 90%;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .search-container input {
+  border: none;
+  outline: none;
+  font-size: clamp(9px, 0.68vw, 0.68vw);
+  flex: 1;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .search-container input::-moz-placeholder {
+  font-size: clamp(9px, 0.68vw, 0.68vw);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .search-container input::placeholder {
+  font-size: clamp(9px, 0.68vw, 0.68vw);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .search-container input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #fff inset;
+  -webkit-text-fill-color: black;
+  -webkit-transition: background-color 9999s ease-in-out 0s;
+  transition: background-color 9999s ease-in-out 0s;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .search-container button {
+  background-color: transparent;
+  border: none;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .search-container button img {
+  width: clamp(11px, 0.83vw, 0.83vw);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .checkbox-filter-container {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3px, 0.4vw, 0.4vw);
+  margin-left: clamp(8px, 0.79vw, 0.79vw);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .checkbox-filter-container .checkbox-filter {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 0.79vw, 0.79vw);
+  padding: 5px 0 0;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .checkbox-filter-container .checkbox-filter input {
+  width: clamp(9px, 0.989vw, 0.989vw);
+  height: clamp(9px, 0.989vw, 0.989vw);
+  border-radius: 5px;
+  accent-color: rgb(21, 71, 135);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .checkbox-filter-container .checkbox-filter label {
+  font-size: clamp(12px, 0.83vw, 0.83vw);
+  color: #818080;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .checkbox-filter-container .checkbox-filter.hidden {
+  display: none;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .see-more-link {
+  margin-top: 4px;
+  font-size: clamp(9px, 0.68vw, 0.68vw);
+  color: rgb(21, 71, 135);
+  font-weight: 500;
+  margin-left: clamp(8px, 0.79vw, 0.79vw);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .see-more-link.not-active {
+  display: none;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container:last-of-type {
+  border-bottom: none;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 0.79vw, 0.79vw);
+  margin-left: clamp(8px, 0.79vw, 0.79vw);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container {
+  position: relative;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .date-label {
+  font-size: clamp(12px, 0.83vw, 0.83vw);
+  color: #818080;
+  line-height: 1;
+  margin-bottom: clamp(4px, 0.43vw, 0.43vw);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .date-text {
+  font-size: clamp(10px, 0.73vw, 0.73vw);
+  color: #818080;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 4px 5px;
+  border-radius: 4px;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .date-text img {
+  width: clamp(11px, 0.93vw, 0.93vw);
+  margin-left: clamp(6px, 0.73vw, 0.73vw);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .date-text.active {
+  color: rgb(21, 71, 135);
+  border-color: rgb(21, 71, 135);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .date-text.active img {
+  filter: brightness(0) saturate(100%) invert(20%) sepia(45%) saturate(1500%) hue-rotate(190deg) brightness(90%) contrast(95%);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker {
+  position: fixed;
+  background-color: #f5f5f5;
+  box-shadow: 0px 6px 7px -2px rgba(0, 0, 0, 0.2);
+  padding: 0px;
+  max-height: 0;
+  overflow: hidden;
+  z-index: 6;
+  top: 100%;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker button {
+  cursor: pointer;
+  outline: none;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-top {
+  margin-bottom: 20px;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-top .month-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper {
+  display: flex;
+  align-items: center;
+  font-size: clamp(13px, 0.89vw, 0.89vw);
+  gap: 5px;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .month-name, .create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .year {
+  color: black;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-top .month-selector .year-wrapper .year {
+  color: black;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar {
+  visibility: visible;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-row-gap: 15px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-column-gap: clamp(5px, 0.521vw, 0.521vw);
+  grid-row-gap: clamp(5px, 0.79vw, 0.79vw);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .date {
+  justify-self: center;
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: clamp(14px, 1.304vw, 1.304vw);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: 2px solid transparent;
+  color: rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  display: block;
+  font-size: clamp(8px, 0.73vw, 0.73vw);
+  font-weight: 500;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .date:hover, .create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .date:focus {
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  font-weight: 600;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .date.faded {
+  color: #999fa6;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .date.faded:focus {
+  color: #999fa6;
+  border: 2px solid transparent;
+  pointer-events: none;
+  font-weight: 500;
+  background-color: transparent;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .date.faded:hover {
+  border: none;
+  font-weight: 500;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .date.faded.current-day {
+  background-color: transparent;
+  color: #999fa6;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .date.current-date {
+  border: 2px solid rgba(0, 0, 0, 0.8);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .date.current-day {
+  color: white;
+  border: 2px solid rgba(0, 0, 0, 0.8);
+  background-color: #0073ff;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar .day {
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 500;
+  font-size: clamp(12px, 0.83vw, 0.83vw);
+  justify-self: center;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker .datepicker-calendar.not-active {
+  visibility: hidden;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper .date-container .datepicker.active {
+  padding: clamp(8px, 0.79vw, 0.79vw);
+  max-height: 411px;
+  overflow: visible;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper .filter-container .date-outer-wrapper .date-wrapper:first-of-type {
+  margin-bottom: clamp(7px, 0.79vw, 0.79vw);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper::-webkit-scrollbar {
+  width: 4px;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(161, 161, 161, 0.5);
+  border-radius: 4px;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker {
+  position: fixed;
+  background-color: #f5f5f5;
+  box-shadow: 0px 6px 7px -2px rgba(0, 0, 0, 0.2);
+  padding: 0px;
+  max-height: 0;
+  overflow: hidden;
+  z-index: 6;
+  top: 100%;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker button {
+  cursor: pointer;
+  outline: none;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top {
+  margin-bottom: 20px;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper {
+  display: flex;
+  align-items: center;
+  font-size: clamp(13px, 0.89vw, 0.89vw);
+  gap: 5px;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .month-name, .create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .year-wrapper .year {
+  color: black;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: white;
+  width: clamp(15px, 1.5vw, 1.5vw);
+  height: clamp(15px, 1.5vw, 1.5vw);
+  border-radius: 12px;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-top .month-selector .arrow img {
+  width: clamp(11px, 1.15vw, 1.15vw);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar {
+  visibility: visible;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-row-gap: 15px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-column-gap: clamp(5px, 0.521vw, 0.521vw);
+  grid-row-gap: clamp(5px, 0.79vw, 0.79vw);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .date {
+  justify-self: center;
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: clamp(14px, 1.304vw, 1.304vw);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: 2px solid transparent;
+  color: rgba(0, 0, 0, 0.7);
+  border-radius: 50%;
+  cursor: pointer;
+  display: block;
+  font-size: clamp(8px, 0.73vw, 0.73vw);
+  font-weight: 500;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .date:hover, .create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .date:focus {
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  font-weight: 600;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .date.faded {
+  color: #999fa6;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .date.faded:focus {
+  color: #999fa6;
+  border: 2px solid transparent;
+  pointer-events: none;
+  font-weight: 500;
+  background-color: transparent;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .date.faded.current-day {
+  background-color: transparent;
+  color: #999fa6;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .date.faded:hover {
+  border: none;
+  font-weight: 500;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .date.current-date {
+  border: 2px solid rgba(0, 0, 0, 0.8);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .date.current-day {
+  color: rgb(21, 71, 135);
+  border: 2px solid rgb(21, 71, 135);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar .day {
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 500;
+  font-size: clamp(12px, 0.83vw, 0.83vw);
+  justify-self: center;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker .datepicker-calendar.not-active {
+  visibility: hidden;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .datepicker.active {
+  padding: clamp(8px, 0.79vw, 0.79vw);
+  max-height: 411px;
+  overflow: visible;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table {
+  table-layout: fixed;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table thead {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  flex-shrink: 0;
+  background-color: #f1f1f1;
+  border-top-left-radius: clamp(4px, 0.521vw, 0.521vw);
+  border-top-right-radius: clamp(4px, 0.521vw, 0.521vw);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table thead tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table thead tr th {
+  font-size: clamp(10px, 0.79vw, 0.79vw);
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 500;
+  padding: clamp(8px, 0.79vw, 0.79vw) clamp(10px, 1.05vw, 1.05vw) clamp(8px, 0.79vw, 0.79vw);
+  text-align: left;
+  white-space: nowrap;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table thead tr th span {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(7px, 0.79vw, 0.79vw);
+  font-size: clamp(10px, 0.79vw, 0.79vw);
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 500;
+  cursor: pointer;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table thead tr th:first-of-type {
+  padding-left: clamp(12px, 2.067vw, 2.067vw);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table tbody {
+  display: block;
+  flex: 1;
+  overflow-y: auto;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table tbody tr td {
+  font-size: clamp(10px, 0.79vw, 0.79vw);
+  padding: clamp(8px, 0.79vw, 0.79vw) clamp(10px, 1.05vw, 1.05vw) clamp(8px, 0.79vw, 0.79vw);
+  color: rgba(0, 0, 0, 0.85);
+  border-bottom: 1px solid #ccc;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table tbody tr td:first-of-type {
+  padding-left: clamp(12px, 2.067vw, 2.067vw);
+  cursor: pointer;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table tbody tr td:nth-of-type(5) span {
+  color: #ff0000;
+  background-color: #ffd6d6;
+  padding: 2px 4px;
+  border-radius: 10px;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table tbody tr td:nth-of-type(5) span.approved {
+  color: #136b2c;
+  background-color: #dff1dc;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table tbody tr td:nth-of-type(5) span.pending {
+  color: #ff7129;
+  background-color: #ffdfcf;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table tbody tr td:nth-of-type(6) {
+  text-align: center;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table tbody tr td:nth-of-type(6) span {
+  padding-right: clamp(30px, 3.4vw, 3.4vw);
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table tbody tr td:last-of-type {
+  font-weight: 600;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table tbody tr:last-of-type td {
+  border-bottom: none;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table tbody tr.active {
+  background-color: #e8f2ff;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table tbody .not-found {
+  text-align: center;
+  padding-top: clamp(10px, 1.05vw, 1.05vw);
+  font-size: clamp(10px, 0.79vw, 0.79vw);
+  margin-bottom: 0;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table tbody::-webkit-scrollbar {
+  width: 4px;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table tbody::-webkit-scrollbar-thumb {
+  background: rgba(161, 161, 161, 0.5);
+  border-radius: 4px;
+}
+.create-quote-wrapper .exist-quote-filter-wrapper.active {
+  display: flex;
+}
 .create-quote-wrapper.active {
   display: none;
 }

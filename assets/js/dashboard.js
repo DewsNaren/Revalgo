@@ -856,7 +856,12 @@ overlay.addEventListener("click", (e) => {
 
 //table
 function getPrice(price) {
-  return parseFloat(price.replace(/[^\d.]/g, "").replace(/\.(?=.*\.)/g, ""));
+  console.log(price)
+  return parseFloat(
+    String(price)
+      .replace(/[^\d.]/g, "")
+      .replace(/\.(?=.*\.)/g, "")
+  );
 }
 
 function renderQuoteTable(data) {
@@ -908,8 +913,6 @@ function gotoCreateQuote(event) {
 }
 
 //handle undo
-
-
 
 function tableClickHandler(quoteTable) {
   const idBtns = quoteTable.querySelectorAll(".quote-id-btn");
@@ -992,7 +995,7 @@ function renderQuoteCounts(data) {
         break;
     }
     const str = d.total_price;
-
+     
     const num = getPrice(str);
 
     totalPrice += num;
@@ -1005,6 +1008,9 @@ function renderQuoteCounts(data) {
   totalCounts.forEach((c) => (c.textContent = approve + pend));
   allCount.textContent = data.length;
   totalRev.textContent = "$" + totalPrice.toFixed(2);
+
+  const counters = document.querySelectorAll('.stat-text');
+  counters.forEach(counter => observer.observe(counter));
 }
 
 //filter function
@@ -1966,4 +1972,48 @@ exportBtn.addEventListener("click", () => {
 window.addEventListener('load', () => {
   initializeQuotes();
 });
+
+//counter animation
+function animateCounter(counter, duration = 2000) {
+  const target = +counter.textContent.replace(/[^0-9.-]+/g, "");
+  const symbol=counter.dataset.symbol;
+  const variable=counter.dataset.var;
+  const steps = 100; 
+  const increment = target / steps; 
+  const intervalTime = duration / steps; 
+  let current = 0;
+  let stepCount = 0;
+
+  const timer = setInterval(() => {
+    current += increment;
+    stepCount++;
+
+    if (stepCount >= steps) {
+      if(variable){
+        counter.textContent =`${variable} ${target}` 
+      }
+      else{
+          counter.textContent =`${target}` 
+        }
+      clearInterval(timer);
+    } 
+    else {
+      if(variable){
+          counter.innerHTML =`${variable} ${Math.floor(current)} ` 
+      }
+      else{
+        counter.innerHTML =`${Math.floor(current)}` 
+      }
+    }
+  }, intervalTime);
+}
+
+const observer = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCounter(entry.target, 2000); 
+      obs.unobserve(entry.target); 
+    }
+  });
+}, { threshold: 0.5 });
 
