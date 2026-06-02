@@ -211,6 +211,8 @@ function createDatepicker(datePicker) {
         validDateInput(datePicker);
 
         datePicker.classList.remove("active");
+        const updateBtn = formPopup.querySelector(".update-btn");
+        updateBtn.classList.remove("not-active");
       });
 
       datesContainer.appendChild(btn);
@@ -697,7 +699,9 @@ function renderQuickInfo(newQuote) {
         </div>
       </div>
   `;
-  editQuoteInfo(document.querySelector(".quick-info-wrapper"));
+  if(newQuote.status!="deleted") {
+    editQuoteInfo(document.querySelector(".quick-info-wrapper"));
+  }
 }
 
 function editQuoteInfo(quoteInfoWrap) {
@@ -773,12 +777,12 @@ function renderDisplayTable(newQuote) {
 
   products.forEach((p, i) => {
     bodyWrapper.innerHTML += `<div class="row-group" draggable="true">
-    <div class="${p.isDeleted == true ? "table-row not-active" : "table-row"}">
+     <div class="${p.isDeleted? "table-row not-active":newQuote.status === "deleted"? "table-row not-hover": "table-row"}">
       <p><img src="./assets/images/global/drag_menu.png" alt="drag menu" class="drag-handle"   data-index="${i}"  ></p>
       <p><input type="checkbox" class="check-line-input" onclick="enableDeleteAllBtn()"></p>
       <p><span class="line-no">${i + 1}</span>
       </p>
-      <p><input type="text" value="${p.qty_requested}" name="qty-requested" autocomplete="off"></p>
+      <p><input type="text" value="${p.qty_requested}" name="qty-requested" autocomplete="off" ${newQuote.status == "approved" ? "readonly" : ""}></p>
       <p>
         <span class="title-text">${p.title ? p.title : "Mjhsjhs"}</span>
         <span class="dropdown-text">
@@ -798,8 +802,8 @@ function renderDisplayTable(newQuote) {
       <p><span class="score">${p.score}</span>
       </p>
       <p> <span class="available-qty">${p.available_qty}</span></p>
-      <p><span>$<input type="text" value="${p.unit_cost}" name="cost" autocomplete="off"></span></p>
-      <p><span><input type="text" value="${p.margin}" name="margin" autocomplete="off">%</span></p>
+      <p><span>$<input type="text" value="${p.unit_cost}" name="cost" autocomplete="off" ${newQuote.status == "approved" ? "readonly" : ""}></span></p>
+      <p><span><input type="text" value="${p.margin}" name="margin" autocomplete="off" ${newQuote.status == "approved" ? "readonly" : ""}>%</span></p>
       <p><span class="selling-price">$${p.selling_price.toFixed(2)}</span></p>
       <p><span class="total-cost">$${p.total_cost.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span></p>
       
@@ -843,17 +847,22 @@ function renderDisplayTable(newQuote) {
     </div>
     </div>
     `;
-    bodyWrapper.innerHTML += `
-    <div class="add-btn-container left">
+    
+  });
+  
+
+
+  const rows=displayTable.querySelectorAll(".body-wrapper .table-row");
+  if(newQuote.status != "approved"){
+    bodyWrapper.innerHTML += ` <div class="${newQuote.products.length > 0 ? "add-btn-container left" : "add-btn-container"}">
       <button type="button" class="add-btn" onclick="openAddPopup()"> <img src="./assets/images/create_quote/add_item_icon.png" alt="add"></button>
       <p class="text">Click here to Add Item</p>
-    </div>
-    `;
-  });
-  clickTable(displayTable.querySelector(".body-wrapper"));
-  editTableData(displayTable.querySelector(".body-wrapper"));
-  checkDeleted(displayTable.querySelector(".body-wrapper"));
-  enableDrag(displayTable.querySelector(".body-wrapper"));
+    </div>`;
+    clickTable(displayTable.querySelector(".body-wrapper"));
+    editTableData(displayTable.querySelector(".body-wrapper"));
+    checkDeleted(displayTable.querySelector(".body-wrapper"));
+    enableDrag(displayTable.querySelector(".body-wrapper"));
+  }
 }
 
 function clickTable(bodyWrap) {
@@ -948,8 +957,10 @@ function editTableData(bodyWrap) {
 
         product.total_cost = Number(totalPrice.toFixed(2));
       }
-      updateQuoteTotals();
-      storeQuote();
+      if(newQuote.status=="pending"){
+        updateQuoteTotals();
+        storeQuote();
+      }
     }
 
     [qtyInp, costInp, marginInp].forEach((inp) => {
@@ -1011,9 +1022,10 @@ function enableDrag(bodyWrap) {
       group.classList.remove("dragging");
 
       draggedGroup = null;
-
-      updateLineNumbers(bodyWrap);
-      updateProductsOrder(bodyWrap);
+      if(newQuote.status=="pending"){
+        updateLineNumbers(bodyWrap);
+        updateProductsOrder(bodyWrap);
+      }
     });
 
     group.addEventListener("dragover", (e) => {
@@ -1126,8 +1138,8 @@ function deleteAllRow() {
 CreateBtn.addEventListener("click", (e) => {
   e.preventDefault();
     updateQuickInfoData();
-    updateQuoteTotals();
     updateNewQuoteData();
+    updateQuoteTotals();
     newQuote.status = "pending";
     storeQuote();
   window.location.href = "./dashboard.html";

@@ -335,12 +335,10 @@ function getSelectedDate(datePicker) {
 
   const end = wrapper.querySelector(".end-text").childNodes[0].textContent;
 
-  let startDate = start.trim() === "mm/dd/yyyy"? "05/01/2025": start;
+  let startDate = start === "mm/dd/yyyy" ? null : start;
+  let endDate = end === "mm/dd/yyyy" ? null : end;
 
-  let endDate = end.trim() === "mm/dd/yyyy"? "04/30/2026": end;
-
-updateDateFilter(filterType, startDate, endDate);
-  // changeStatusChips();
+  updateDateFilter(filterType, startDate, endDate);
 }
 
 //form popup datetext
@@ -390,6 +388,8 @@ formDateText.addEventListener("click", () => {
       errorElement.textContent = "";
 
       datePicker.classList.remove("active");
+      const updateBtn = formPopup.querySelector(".update-btn");
+      updateBtn.classList.remove("not-active");
     });
   });
 });
@@ -581,28 +581,20 @@ function resetFilters() {
   filterChipBtns.forEach((btn) => btn.classList.remove("active"));
   const nameInputs = document.querySelectorAll(".customer-filter input");
   const modeInputs = document.querySelectorAll(".mode-filter input");
-    const receivedStart =
-  document.querySelector(".received-start-text").childNodes[0];
+  const receivedStart =document.querySelector(".received-start-text").childNodes[0];
+  const receivedEnd =document.querySelector(".received-end-text").childNodes[0];
+  const approvedStart =document.querySelector(".approved-start-text").childNodes[0];
+  const approvedEnd =document.querySelector(".approved-end-text").childNodes[0];
 
-const receivedEnd =
-  document.querySelector(".received-end-text").childNodes[0];
-
-const approvedStart =
-  document.querySelector(".approved-start-text").childNodes[0];
-
-const approvedEnd =
-  document.querySelector(".approved-end-text").childNodes[0];
-  searchInput.value = "";
   searchCustomerInput.value = "";
   receivedStart.textContent = "mm/dd/yyyy";
-receivedEnd.textContent = "mm/dd/yyyy";
+  receivedEnd.textContent = "mm/dd/yyyy";
 
-approvedStart.textContent = "mm/dd/yyyy";
-approvedEnd.textContent = "mm/dd/yyyy";
+  approvedStart.textContent = "mm/dd/yyyy";
+  approvedEnd.textContent = "mm/dd/yyyy";
 
-  updateDateFilter("received", `${padZero(new Date().getDate())}/${padZero(new Date().getMonth()+1)}/${padZero(new Date().getFullYear()-100)}`, `${padZero(new Date().getDate())}/${padZero(new Date().getMonth()+1)}/${padZero(new Date().getFullYear())}`);
-
-  updateDateFilter("approved", `${padZero(new Date().getDate())}/${padZero(new Date().getMonth()+1)}/${padZero(new Date().getFullYear()-100)}`, `${padZero(new Date().getDate())}/${padZero(new Date().getMonth()+1)}/${padZero(new Date().getFullYear())}`);
+  updateDateFilter("received", null, null);
+  updateDateFilter("approved", null, null);
 
   nameInputs.forEach((inp) => (inp.checked = false));
 
@@ -623,6 +615,7 @@ function enableFilterChipClick(filterChipBtns) {
 
 function statusFilter() {
   const filterChipBtns = document.querySelectorAll(".filter-chip-btn");
+  selectedStatus=[];
   selectedStatus = [...filterChipBtns]
     .filter((btn) => btn.classList.contains("active"))
     .map((btn) => btn.textContent.trim().toLowerCase());
@@ -647,18 +640,25 @@ function updateDateFilter(type, start, end) {
   applyFilters();
 }
 
-function checkDateFilter(quoteDateStr,startDateStr,endDateStr) {
-  if (!startDateStr || !endDateStr) {
-    return true;
-  }
-
+function checkDateFilter(quoteDateStr, startDateStr, endDateStr) {
+  if (!quoteDateStr) return false;
   const quoteDate = parseQuoteDate(quoteDateStr);
 
-  const startDate = parsePickerDate(startDateStr);
+  if (startDateStr && startDateStr.trim() !== "mm/dd/yyyy") {
+    const startDate = parsePickerDate(startDateStr);
+    if (quoteDate < startDate) {
+      return false;
+    }
+  }
+  
+  if (endDateStr && endDateStr.trim() !== "mm/dd/yyyy") {
+    const endDate = parsePickerDate(endDateStr);
+    if (quoteDate > endDate) {
+      return false;
+    }
+  }
 
-  const endDate = parsePickerDate(endDateStr);
-
-  return quoteDate >= startDate && quoteDate <= endDate;
+  return true;
 }
 
 // name filter
@@ -1039,6 +1039,10 @@ importBtn.addEventListener("click", () => {
     quoteStat.classList.add("pending");
     quoteStat.textContent ="Pending";
     storeQuote();
+    if(newQuote.products.length==0) {
+      approveQuoteBtn.classList.remove("active");
+      approveQuoteBtn.classList.add("not-active");
+    }
   }
 });
 
@@ -1114,7 +1118,9 @@ function renderQuickInfo(newQuote) {
         </div>
       </div>
   `;
-  editQuoteInfo(document.querySelector(".quick-info-wrapper"));
+ if(newQuote.status!="deleted") {
+    editQuoteInfo(document.querySelector(".quick-info-wrapper"));
+  }
 }
 
 //edit quote info
@@ -1196,12 +1202,12 @@ function renderDisplayTable(newQuote) {
 
   products.forEach((p, i) => {
     bodyWrapper.innerHTML += `<div class="row-group" draggable="true">
-    <div class="${p.isDeleted == true ? "table-row not-active" : "table-row"}">
+    <div class="${p.isDeleted? "table-row not-active": newQuote.status === "deleted"? "table-row not-hover": "table-row"}">
       <p><img src="./assets/images/global/drag_menu.png" alt="drag menu" class="drag-handle"   data-index="${i}"  ></p>
       <p><input type="checkbox" class="check-line-input" onclick=enableDeleteAllBtn()></p>
       <p><span class="line-no">${i + 1}</span>
       </p>
-      <p><input type="text" value="${p.qty_requested}" name="qty-requested"></p>
+      <p><input type="text" value="${p.qty_requested}" name="qty-requested" autocomplete="off" ${newQuote.status == "approved" ? "readonly" : ""}></p>
       <p>
         <span class="title-text">${p.title ? p.title : "Mjhsjhs"}</span>
         <span class="dropdown-text">
@@ -1221,8 +1227,8 @@ function renderDisplayTable(newQuote) {
       <p><span class="score">${p.score}</span>
       </p>
       <p> <span class="available-qty">${p.available_qty}</span></p>
-      <p><span>$<input type="text" value="${p.unit_cost}" name="cost"></span></p>
-      <p><span><input type="text" value="${p.margin}" name="margin">%</span></p>
+      <p><span>$<input type="text" value="${p.unit_cost}" name="cost" autocomplete="off" ${newQuote.status == "approved" ? "readonly" : ""}></span></p>
+      <p><span><input type="text" value="${p.margin}" name="margin" autocomplete="off" ${newQuote.status == "approved" ? "readonly" : ""}>%</span></p>
       <p><span class="selling-price">$${p.selling_price}</span></p>
       <p><span class="total-cost">$${p.total_cost.toFixed(2)}</span></p>
       <p>
@@ -1266,14 +1272,17 @@ function renderDisplayTable(newQuote) {
     </div>
     `;
   });
-  bodyWrapper.innerHTML += `<div class="add-btn-container left">
-    <button type="button" onclick="openAddPopup()"><img src="./assets/images/create_quote/add_item_icon.png" alt="add"></button>
-    <p class="text">Click here to Add Item</p>
+  const rows=displayTable.querySelectorAll(".body-wrapper .table-row");
+  if(newQuote.status != "approved"){
+    bodyWrapper.innerHTML += ` <div class="${newQuote.products.length > 0 ? "add-btn-container left" : "add-btn-container"}">
+      <button type="button" class="add-btn" onclick="openAddPopup()"> <img src="./assets/images/create_quote/add_item_icon.png" alt="add"></button>
+      <p class="text">Click here to Add Item</p>
     </div>`;
-  clickTable(displayTable.querySelector(".body-wrapper"));
-  editTableData(displayTable.querySelector(".body-wrapper"));
-  checkDeleted(displayTable.querySelector(".body-wrapper"));
-  enableDrag(displayTable.querySelector(".body-wrapper"));
+    clickTable(displayTable.querySelector(".body-wrapper"));
+    editTableData(displayTable.querySelector(".body-wrapper"));
+    checkDeleted(displayTable.querySelector(".body-wrapper"));
+    enableDrag(displayTable.querySelector(".body-wrapper"));
+  }
 }
 
 //click function
@@ -1369,8 +1378,10 @@ function editTableData(bodyWrap) {
 
         product.total_cost = Number(totalPrice.toFixed(2));
       }
-      updateQuoteTotals();
-      storeQuote();
+      if(newQuote.status=="pending"){
+        updateQuoteTotals();
+        storeQuote();
+      }
     }
 
     [qtyInp, costInp, marginInp].forEach((inp) => {
@@ -1433,8 +1444,10 @@ function enableDrag(bodyWrap) {
 
       draggedGroup = null;
 
-      updateLineNumbers(bodyWrap);
-      updateProductsOrder(bodyWrap);
+      if(newQuote.status=="pending"){
+        updateLineNumbers(bodyWrap);
+        updateProductsOrder(bodyWrap);
+      }
     });
 
     group.addEventListener("dragover", (e) => {
@@ -1550,8 +1563,8 @@ function deleteAllRow() {
 CreateBtn.addEventListener("click", (e) => {
     e.preventDefault();
     updateQuickInfoData();
-    updateQuoteTotals();
     updateNewQuoteData();
+    updateQuoteTotals();
     newQuote.status = "pending";
     storeQuote();
     window.location.href = "./dashboard.html";

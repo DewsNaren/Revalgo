@@ -43,6 +43,9 @@ delQuoteBtn.addEventListener("click", () => {
   updateQuoteTotals();
   updateNewQuoteData();
   storeQuote();
+  renderDisplayTable(newQuote);
+  renderQuickInfo(newQuote);
+ 
 });
 
 //undo quote function
@@ -50,20 +53,35 @@ undoQuoteBtn.addEventListener("click", () => {
   quickOrderWrapper.classList.remove("not-active");
   undoQuoteBtn.classList.remove("active");
   delQuoteBtn.classList.add("active");
-  approveQuoteBtn.classList.remove("not-active");
-  approveQuoteBtn.classList.add("active");
+ 
   newQuote.status = "pending";
   quoteStat.classList.remove(`deleted`);
   quoteStat.classList.add(`${newQuote.status}`);
   quoteStat.textContent = `${newQuote.status}`;
   storeQuote();
+  if(newQuote.products.length==0){
+    approveQuoteBtn.classList.remove("active");
+    approveQuoteBtn.classList.add("not-active");
+  }
+  else{
+    approveQuoteBtn.classList.remove("not-active");
+    approveQuoteBtn.classList.add("active");
+  }
+  const bodyWrapper = displayTable.querySelector(".body-wrapper");
+  const rows=bodyWrapper.querySelectorAll(".table-row");
+  rows.forEach((row)=>{ 
+    row.classList.remove("not-hover");
+  })
+  renderDisplayTable(newQuote);
+  renderQuickInfo(newQuote);
+  initProductSearch();
 });
 
 
 //delete row function
 function delRow(event) {
-  if(newQuote.status === "approved") return;
-  const delBtn = event.target.parentElement;
+  if(newQuote.status === "approved" || newQuote.status === "deleted") return;
+  const delBtn = event.target.closest(".delete-line-btn");
   const row = delBtn.parentElement.parentElement;
   const undoBtn = row.querySelector(".undo-line-btn");
   const lineNo = row.querySelector(".line-no").textContent;
@@ -74,34 +92,40 @@ function delRow(event) {
   popupOverlay.classList.add("active");
   del1YesBtn.onclick = () => {
     delPopup1.classList.remove("active");
+    delBtn.classList.remove("active");
+    row.classList.add("not-active");
+    undoBtn.classList.add("active");
 
-      delBtn.classList.remove("active");
-      row.classList.add("not-active");
-      undoBtn.classList.add("active");
+    const paras = row.querySelectorAll("p");
+    const delId = row.querySelector(".del-id").textContent;
+    const product = newQuote.products.find((p) => String(p.delId) === delId);
 
-      const paras = row.querySelectorAll("p");
-      const delId = row.querySelector(".del-id").textContent;
-      const product = newQuote.products.find((p) => String(p.delId) === delId);
+    if (product) {
+      product.isDeleted = true;
+    }
 
-      if (product) {
-        product.isDeleted = true;
-      }
+    paras.forEach((p) => {
+      p.style.pointerEvents = "none";
+    });
 
-      paras.forEach((p) => {
-        p.style.pointerEvents = "none";
-      });
+    delBtn.style.pointerEvents = "auto";
 
-      delBtn.style.pointerEvents = "auto";
+    undoBtn.style.pointerEvents = "auto";
 
-      undoBtn.style.pointerEvents = "auto";
+    row.removeEventListener("click", rowClickHandler);
 
-      row.removeEventListener("click", rowClickHandler);
+    approveQuoteBtn.classList.add("active");
 
-      approveQuoteBtn.classList.add("active");
+    closeModal();
+    storeQuote();
+    const isAllDeleted = newQuote.products.every((p) => p.isDeleted);
+    if (isAllDeleted) {
+      approveQuoteBtn.classList.remove("active");
+      approveQuoteBtn.classList.add("not-active");
+    }
 
-      closeModal();
-  
-}
+  }
+
 }
 
 
@@ -127,6 +151,15 @@ function undoRow(event) {
   delAllBtn.classList.add("selected", "active");
   undoAllBtn.classList.remove("selected", "active");
   row.addEventListener("click", rowClickHandler);
+  if(newQuote.products.length>0){
+    approveQuoteBtn.classList.remove("not-active");
+    approveQuoteBtn.classList.add("active");
+   
+  }
+  console.log(newQuote.products);
+  updateNewQuoteData();
+  updateQuoteTotals();
+  storeQuote();
 }
 
 
@@ -154,7 +187,6 @@ function undoAllRow() {
 
 //select all rows function
 function selectAllRow(event) {
-  if(newQuote.status === "approved") return;
   const bodyWrap = displayTable.querySelector(".body-wrapper");
   const tableRows = bodyWrap.querySelectorAll(".table-row");
   const isChecked = event.target.checked;
@@ -163,6 +195,7 @@ function selectAllRow(event) {
     const inp = row.querySelector("input[type='checkbox']");
     inp.checked = isChecked;
   });
+    if(newQuote.status === "approved" || newQuote.status === "deleted") return;
   if (!undoAllBtn.classList.contains("selected")) {
     if (isChecked) {
       delAllBtn.classList.add("active", "selected");
@@ -176,20 +209,23 @@ function selectAllRow(event) {
 
 //enable delete all btn function
 function enableDeleteAllBtn() {
-  if(newQuote.status === "approved") return;
+  
   const bodyWrapper = displayTable.querySelector(".body-wrapper");
   const checkLineInps = bodyWrapper.querySelectorAll(".check-line-input");
   const isChecked = [...checkLineInps].some((inp) => inp.checked);
   const isAllChecked = [...checkLineInps].every((inp) => inp.checked);
+  checkAllInput.checked = isAllChecked;
+  if(newQuote.status === "approved" || newQuote.status === "deleted") return;
 
   if (isChecked) delAllBtn.classList.add("selected");
   else delAllBtn.classList.remove("selected");
 
-  checkAllInput.checked = isAllChecked;
+  
 }
 
 //add data to table function
 function openAddPopup() {
+  if(newQuote.status === "approved" || newQuote.status === "deleted") return;
   popupOverlay.classList.add("active");
   addPopup.classList.add("active");
   editPopupData(addTable.querySelector(".body-wrapper"));
@@ -276,8 +312,7 @@ addLinesBtn.addEventListener("click", () => {
   addProductsToQuote();
   updateQuoteTotals();
   renderDisplayTable(newQuote);
-  approveQuoteBtn.classList.remove("not-active");
-  approveQuoteBtn.classList.add("active");
+  
   storeQuote();
   closeModal();
   quoteStat.classList.remove("deleted");
@@ -286,6 +321,14 @@ addLinesBtn.addEventListener("click", () => {
   undoQuoteBtn.classList.remove("active");
   delQuoteBtn.classList.add("active");
   newQuote.status="pending";
+  const isAllDeleted = newQuote.products.every((p) => p.isDeleted);
+  if (!isAllDeleted) {
+    approveQuoteBtn.classList.remove("not-active");
+    approveQuoteBtn.classList.add("active");
+  }
+  // else{
+    
+  // }
 });
 
 //add table data to array
@@ -497,51 +540,55 @@ const expectedKeys = [
 ];
 
 //file upload function
-selectFileInput.addEventListener("input", (event) => {
-  const file = selectFileInput.files[0];
 
-  if (!file) {
-    console.log("No file selected");
-    return;
-  }
+  selectFileInput.addEventListener("input", (event) => {
+    if(newQuote.status === "pending"){
+      const file = selectFileInput.files[0];
 
-  const validTypes = [
-    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    "application/vnd.ms-excel",
-  ];
+      if (!file) {
+        console.log("No file selected");
+        return;
+      }
 
-  if (!validTypes.includes(file.type)) {
-    selectedFileWrapper.innerHTML += `
-      <div class="file-container error">
-        <div class="file">
-          <div class="file-info">
-            <img src="./assets/images/create_quote/email_pad_psd_icon.png" alt="pdf"> 
-            ${file.name.length > 18 ? file.name.slice(0, 18) + "..." : file.name}
-            (${formatSize(file.size)})
+      const validTypes = [
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "application/vnd.ms-excel",
+      ];
+
+      if (!validTypes.includes(file.type)) {
+        selectedFileWrapper.innerHTML += `
+          <div class="file-container error">
+            <div class="file">
+              <div class="file-info">
+                <img src="./assets/images/create_quote/email_pad_psd_icon.png" alt="pdf"> 
+                ${file.name.length > 18 ? file.name.slice(0, 18) + "..." : file.name}
+                (${formatSize(file.size)})
+              </div>
+
+              <button type="button" class="del-file-btn" onclick="delFile(event)">
+                <img src="./assets/images/global/delete_icon.png" alt="delete">
+              </button>
+            </div>
+
+            <p class="file-text">
+              <img src="./assets/images/create_quote/error_icon.png" alt="Error icon">
+
+              <span class="status-text">
+                <span class="status">Error: </span>
+                Format is not Supported
+              </span>
+            </p>
           </div>
+        `;
 
-          <button type="button" class="del-file-btn" onclick="delFile(event)">
-            <img src="./assets/images/global/delete_icon.png" alt="delete">
-          </button>
-        </div>
+        return;
+      }
 
-        <p class="file-text">
-          <img src="./assets/images/create_quote/error_icon.png" alt="Error icon">
-
-          <span class="status-text">
-            <span class="status">Error: </span>
-            Format is not Supported
-          </span>
-        </p>
-      </div>
-    `;
-
-    return;
-  }
-
-  getJsonData(file);
-  uploadBtn.classList.remove("not-active");
-});
+      getJsonData(file);
+      uploadBtn.classList.remove("not-active");
+    }
+    exCelData=[];
+  });
 
 //get size of uploaded file 
 function formatSize(bytes) {
@@ -847,6 +894,7 @@ function storeQuote() {
   const allQuotes = JSON.parse(sessionStorage.getItem("quotes"));
   allQuotes.forEach((q, i) => {
     if (q.id === newQuote.id) {
+      console.log( allQuotes[i]);
       allQuotes[i] = newQuote;
       found = true;
       if(sessionStorage.getItem('selectedQuote')){

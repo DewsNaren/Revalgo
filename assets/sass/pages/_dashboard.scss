@@ -262,7 +262,6 @@
                             &.faded, &.disabled {
                                 color: $grey-a6;
                                 &:focus {
-                                    background-color: transparent;
                                     color: $blue-de;
                                     pointer-events: none;
                                     font-weight: 500;

@@ -183,6 +183,8 @@ function createDatepicker(datePicker) {
         validDateInput(datePicker);
 
         datePicker.classList.remove("active");
+        const updateBtn = formPopup.querySelector(".update-btn");
+        updateBtn.classList.remove("not-active");
       });
 
       datesContainer.appendChild(btn);
@@ -326,6 +328,7 @@ if (sessionStorage.getItem("selectedQuote")) {
     undoQuoteBtn.classList.add("active");
     quickOrderWrapper.classList.add("not-active");
   }
+  
   if (newQuote.status == "approved" || newQuote.status == "deleted") {
     approveQuoteBtn.classList.add("not-active");
   }
@@ -340,10 +343,14 @@ if (sessionStorage.getItem("selectedQuote")) {
     quickOrderBtn.classList.add("not-active");
     tabUploadBtn.classList.add("not-active");
   }
+  if (newQuote.products.length==0){
+    approveQuoteBtn.classList.remove("active");
+    approveQuoteBtn.classList.add("not-active");
+  }
   renderQuickInfo(newQuote);
   renderDisplayTable(newQuote);
+ 
 }
-
 
 function renderQuickInfo(newQuote) {
   const splittedBill = newQuote.bill_to.split("\n");
@@ -401,95 +408,101 @@ function renderQuickInfo(newQuote) {
         </div>
       </div>
   `;
-  editQuoteInfo(document.querySelector(".quick-info-wrapper"));
+  if(newQuote.status!="deleted") {
+    editQuoteInfo(document.querySelector(".quick-info-wrapper"));
+  }
 }
 
 function renderDisplayTable(newQuote) {
   const bodyWrapper = displayTable.querySelector(".body-wrapper");
   bodyWrapper.innerHTML = "";
-
   const products = newQuote.products;
+  
+ 
+    products.forEach((p, i) => {
+      bodyWrapper.innerHTML += `<div class="row-group" draggable="true">
+      <div class="${p.isDeleted? "table-row not-active": newQuote.status === "deleted"? "table-row not-hover": "table-row"}">
+        <p>${newQuote.status != "approved" ? '<img src="./assets/images/global/drag_menu.png" alt="drag menu" class="drag-handle"   data-index="${i}"  >' : ''}</p>
+        <p><input type="checkbox" class="check-line-input" onclick="enableDeleteAllBtn()"></p>
+        <p><span class="line-no">${i + 1}</span>
+        </p>
+        <p><input type="text" value="${p.qty_requested}" name="qty-requested" autocomplete="off" ${newQuote.status == "approved" ? "readonly" : ""}></p>
+        <p>
+          <span class="title-text">${p.title ? p.title : "Mjhsjhs"}</span>
+          <span class="dropdown-text">
+            <img src="./assets/images/global/down_arrow.png" alt="down-arrow" class="down-arrow-img" onclick=openSuggestPopup(event)> <span class="id requested-id">${p.requested_id}</span> - 
+            <span class="detail" onclick="enableSourceText(event)">tydlx4ypi6</span> - 
+            <span class="${p.isSource == true ? "sourcing active" : "sourcing"}" onclick="openSourcingPopup(event)"><img src="./assets/images/orderpad/sourcing_icon.png" alt="sourcing">Sourcing</span>
+            <span class="${p.isStock == true ? "stock-wrapper active" : "stock-wrapper"}">
+            <span class="supplier-text text-uppercase" onclick="openSupplierPopup(event)">${p.supplier ? p.supplier : "eaton"}</span> - <span class="${p.stock === "Ns" ? "stock-text  red" : "stock-text green"}">${p.stock}<span class="tooltiptext">${p.stock == "S" ? "Stock" : "Non Stock"}</span> </span>&nbsp; - </span>
+            <span class="tag-text"><img src="./assets/images/global/tag.png" alt="tag">${p.brand}</span>
+            </span>
+          <span class="text">${p.desc ? p.desc : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus hic facere, veniam in distinctio id tempora voluptatum? Facilis eius aut numquam. Alias perferendis sunt veniam reprehenderit officiis quas delectus."}</span>  
+        </p>
+        <p><span class="score">${p.score}</span>
+        </p>
+        <p> <span class="available-qty">${p.available_qty}</span></p>
+        <p><span>$<input type="text" value="${p.unit_cost}" name="cost" autocomplete="off" ${newQuote.status == "approved" ? "readonly" : ""}></span></p>
+        <p><span><input type="text" value="${p.margin}" name="margin" autocomplete="off" ${newQuote.status == "approved" ? "readonly" : ""}>%</span></p>
+        <p><span class="selling-price">$${p.selling_price}</span></p>
+        <p><span class="total-cost">$${p.total_cost.toFixed(2)}</span></p>
+        <p>
+          <button type="button" class="delete-line-btn active" onclick=delRow(event)><img src="./assets/images/global/delete_icon.png" alt="delete"></button>
+          <button type="button" class="undo-line-btn" onclick=undoRow(event)> <img src="./assets/images/dashboard/undo_icon.png" alt="undo"></button>
+        </p>
+        <button class="add-line-note-btn" onclick="openLineNotePopup(event)"><img src="./assets/images/create_quote/add_note_grey_bg.png"  class="${p.lineNote ? "img-grey " : "img-grey active"}" alt="add note grey"> <img src="./assets/images/create_quote/add_note icon_blue.png" class="${p.lineNote ? "img-blue active" : "img-blue"}" alt="add note blue "></button>
+        <p class="del-id">${p.delId}</p>
+      </div>
+      
+      <div class="${p.isSourcing == true ? "sourcing-dropdown active" : "sourcing-dropdown"}">
+        <div class="desc-wrapper">
+          <div class="img-wrapper">
+            <div><img src="./assets/images/orderpad/${p.sourceImg}.png" class="thumbnail-img" alt="default"></div>
+          </div>
 
-  products.forEach((p, i) => {
-    bodyWrapper.innerHTML += `<div class="row-group" draggable="true">
-    <div class="${p.isDeleted == true ? "table-row not-active" : "table-row"}" >
-      <p>${newQuote.status != "approved" ? '<img src="./assets/images/global/drag_menu.png" alt="drag menu" class="drag-handle"   data-index="${i}"  >' : ''}</p>
-      <p><input type="checkbox" class="check-line-input" onclick="enableDeleteAllBtn()"></p>
-      <p><span class="line-no">${i + 1}</span>
-      </p>
-      <p><input type="text" value="${p.qty_requested}" name="qty-requested" autocomplete="off" ${newQuote.status == "approved" ? "readonly" : ""}></p>
-      <p>
-        <span class="title-text">${p.title ? p.title : "Mjhsjhs"}</span>
-        <span class="dropdown-text">
-          <img src="./assets/images/global/down_arrow.png" alt="down-arrow" class="down-arrow-img" onclick=openSuggestPopup(event)> <span class="id requested-id">${p.requested_id}</span> - 
-          <span class="detail" onclick="enableSourceText(event)">tydlx4ypi6</span> - 
-          <span class="${p.isSource == true ? "sourcing active" : "sourcing"}" onclick="openSourcingPopup(event)"><img src="./assets/images/orderpad/sourcing_icon.png" alt="sourcing">Sourcing</span>
-          <span class="${p.isStock == true ? "stock-wrapper active" : "stock-wrapper"}">
-          <span class="supplier-text text-uppercase" onclick="openSupplierPopup(event)">${p.supplier ? p.supplier : "eaton"}</span> - <span class="${p.stock === "Ns" ? "stock-text  red" : "stock-text green"}">${p.stock}<span class="tooltiptext">${p.stock == "S" ? "Stock" : "Non Stock"}</span> </span>&nbsp; - </span>
-          <span class="tag-text"><img src="./assets/images/global/tag.png" alt="tag">${p.brand}</span>
-          </span>
-        <span class="text">${p.desc ? p.desc : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus hic facere, veniam in distinctio id tempora voluptatum? Facilis eius aut numquam. Alias perferendis sunt veniam reprehenderit officiis quas delectus."}</span>  
-      </p>
-      <p><span class="score">${p.score}</span>
-      </p>
-      <p> <span class="available-qty">${p.available_qty}</span></p>
-      <p><span>$<input type="text" value="${p.unit_cost}" name="cost" autocomplete="off" ${newQuote.status == "approved" ? "readonly" : ""}></span></p>
-      <p><span><input type="text" value="${p.margin}" name="margin" autocomplete="off" ${newQuote.status == "approved" ? "readonly" : ""}>%</span></p>
-      <p><span class="selling-price">$${p.selling_price}</span></p>
-      <p><span class="total-cost">$${p.total_cost.toFixed(2)}</span></p>
-      <p>
-        <button type="button" class="delete-line-btn active" onclick=delRow(event)><img src="./assets/images/global/delete_icon.png" alt="delete"></button>
-        <button type="button" class="undo-line-btn" onclick=undoRow(event)> <img src="./assets/images/dashboard/undo_icon.png" alt="undo"></button>
-      </p>
-      <button class="add-line-note-btn" onclick="openLineNotePopup(event)"><img src="./assets/images/create_quote/add_note_grey_bg.png"  class="${p.lineNote ? "img-grey " : "img-grey active"}" alt="add note grey"> <img src="./assets/images/create_quote/add_note icon_blue.png" class="${p.lineNote ? "img-blue active" : "img-blue"}" alt="add note blue "></button>
-      <p class="del-id">${p.delId}</p>
-    </div>
-    
-    <div class="${p.isSourcing == true ? "sourcing-dropdown active" : "sourcing-dropdown"}">
-      <div class="desc-wrapper">
-        <div class="img-wrapper">
-          <div><img src="./assets/images/orderpad/${p.sourceImg}.png" class="thumbnail-img" alt="default"></div>
+          <div class="desc-container">
+            <h3>Description</h3>
+            <p>${p.desc ? p.desc : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."}</p>
+          </div>
         </div>
 
-        <div class="desc-container">
-          <h3>Description</h3>
-          <p>${p.desc ? p.desc : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."}</p>
+        <div class="spec-wrapper">
+          <h3>Specifications</h3>
+          <div class="content-container">
+            <div class="left-content">
+              <p><span class="label">Wire Size</span> <span class="value">${p.wire_size} AWG</span></p>
+              <p><span class="label">Material</span> <span class="value">Ploepropylene</span></p>
+              <p><span class="label">Specifications</span> <span class="value">#10 Fork Material </span></p>
+              <p><span class="label">Dimensions</span> <span class="value">1-1/2 In L</span></p>
+            </div>
+            <div class="right-content">
+              <p><span class="label">Housing Material</span> <span class="value">${p.housing_material}</span></p>
+              <p><span class="label">Number of outlets</span> <span class="value">${p.outlet}</span></p>
+              <p><span class="label">Brand</span> <span class="value">${p.brand}</span></p>
+              <p><span class="label">Type</span> <span class="value">${p.type}</span></p>
+            </div>
+                                                      
+          </div>
         </div>
       </div>
-
-      <div class="spec-wrapper">
-        <h3>Specifications</h3>
-        <div class="content-container">
-          <div class="left-content">
-            <p><span class="label">Wire Size</span> <span class="value">${p.wire_size} AWG</span></p>
-            <p><span class="label">Material</span> <span class="value">Ploepropylene</span></p>
-            <p><span class="label">Specifications</span> <span class="value">#10 Fork Material </span></p>
-            <p><span class="label">Dimensions</span> <span class="value">1-1/2 In L</span></p>
-          </div>
-          <div class="right-content">
-            <p><span class="label">Housing Material</span> <span class="value">${p.housing_material}</span></p>
-            <p><span class="label">Number of outlets</span> <span class="value">${p.outlet}</span></p>
-            <p><span class="label">Brand</span> <span class="value">${p.brand}</span></p>
-            <p><span class="label">Type</span> <span class="value">${p.type}</span></p>
-          </div>
-                                                    
-        </div>
       </div>
-    </div>
-    </div>
-    `;
-  });
-  if(quoteStat.textContent != "approved"){
-    bodyWrapper.innerHTML += `<div class="add-btn-container left">
-      <button type="button" onclick="openAddPopup()"><img src="./assets/images/create_quote/add_item_icon.png" alt="add"></button>
+      `;
+    });
+
+
+  const rows=displayTable.querySelectorAll(".body-wrapper .table-row");
+  if(newQuote.status != "approved"){
+    bodyWrapper.innerHTML += ` <div class="${newQuote.products.length > 0 ? "add-btn-container left" : "add-btn-container"}">
+      <button type="button" class="add-btn" onclick="openAddPopup()"> <img src="./assets/images/create_quote/add_item_icon.png" alt="add"></button>
       <p class="text">Click here to Add Item</p>
-      </div>`;
+    </div>`;
     clickTable(displayTable.querySelector(".body-wrapper"));
     editTableData(displayTable.querySelector(".body-wrapper"));
     checkDeleted(displayTable.querySelector(".body-wrapper"));
     enableDrag(displayTable.querySelector(".body-wrapper"));
   }
 
+  
 }
 
 // drag function
@@ -539,8 +552,10 @@ function enableDrag(bodyWrap) {
 
       draggedGroup = null;
 
-      updateLineNumbers(bodyWrap);
-      updateProductsOrder(bodyWrap);
+      if(newQuote.status == "pending"){
+        updateLineNumbers(bodyWrap);
+        updateProductsOrder(bodyWrap);
+      }
     });
 
     group.addEventListener("dragover", (e) => {
@@ -665,7 +680,7 @@ function editQuoteInfo(quoteInfoWrap) {
           container.classList.add("active");
         }
       });
-      updateFormData(quoteInfoWrap, editItem);
+        updateFormData(quoteInfoWrap, editItem);
     });
   });
 }
@@ -764,8 +779,11 @@ function editTableData(bodyWrap) {
 
         product.total_cost = Number(totalPrice.toFixed(2));
       }
-      updateQuoteTotals();
-      storeQuote();
+      if(newQuote.status =="pending"){
+        updateQuoteTotals();
+        storeQuote();
+      }
+      
     }
 
     [qtyInp, costInp, marginInp].forEach((inp) => {
@@ -820,8 +838,8 @@ function deleteAllRow() {
 CreateBtn.addEventListener("click", (e) => {
   e.preventDefault();
     updateQuickInfoData();
-    updateQuoteTotals();
     updateNewQuoteData();
+    updateQuoteTotals();
     storeQuote();
   window.location.href = "./dashboard.html";
 });

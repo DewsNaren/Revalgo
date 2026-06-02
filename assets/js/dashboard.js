@@ -161,7 +161,7 @@ function filterQuotesByDate(quotes, start, end) {
 
     return quoteDate >= startObj && quoteDate <= endObj;
   });
-  dateFilteredQuotes=dateFilteredQuotes.sort((a, b) => a.name.localeCompare(b.name))
+  // dateFilteredQuotes=dateFilteredQuotes.sort((a, b) => a.name.localeCompare(b.name))
 
   renderQuoteTable(dateFilteredQuotes);
 
@@ -1848,7 +1848,7 @@ function drawModalCustomArc(chart) {
 function renderModalAccurChart(data) {
   setTimeout(() => {
     modalAccurChart.series[0].points[0].update(data, true, {
-      duration: 1000,
+      duration: 900,
       easing: "easeOutCubic",
     });
   }, 50);

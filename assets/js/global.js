@@ -283,15 +283,13 @@ function getSelectedDate(datePicker) {
 
   const wrapper = container.parentElement;
 
-  const start = wrapper.querySelector(".start-text").childNodes[0].textContent;
+  const start = wrapper.querySelector(".start-text").childNodes[0].textContent.trim();
+  const end = wrapper.querySelector(".end-text").childNodes[0].textContent.trim();
 
-  const end = wrapper.querySelector(".end-text").childNodes[0].textContent;
+  let startDate = start === "mm/dd/yyyy" ? null : start;
+  let endDate = end === "mm/dd/yyyy" ? null : end;
 
-  let startDate = start.trim() === "mm/dd/yyyy"? "05/01/2025": start;
-
-  let endDate = end.trim() === "mm/dd/yyyy"? `${padZero(new Date().getDate())}/${padZero(new Date().getMonth()+1)}/${padZero(new Date().getFullYear())}`: end;
-
-updateDateFilter(filterType, startDate, endDate);
+  updateDateFilter(filterType, startDate, endDate);
   changeStatusChips();
 }
 
@@ -330,20 +328,19 @@ function handleScroll() {
   const viewportWidth = window.innerWidth;
   const viewportHeight = window.innerHeight;
 
-  // ---------- Horizontal Position ----------
+
   let left = rect.left;
 
   if (left + pickerWidth > viewportWidth) {
     left = viewportWidth - pickerWidth - 10;
   }
 
-  // ---------- Vertical Position ----------
+
   const spaceBelow = viewportHeight - rect.bottom;
   const spaceAbove = rect.top;
 
   let top;
 
-  // Show above if not enough space below
   if (spaceBelow < pickerHeight && spaceAbove > pickerHeight) {
     top = rect.top - pickerHeight - 5;
   } else {
@@ -694,16 +691,14 @@ function closeChip(event) {
 
   const filterChipBtns = document.querySelectorAll(".filter-chip-btn");
 
-  if (type == "status") {
-
+  if (type === "status") {
     filterChipBtns.forEach((btn) => {
-      if (btn.textContent.trim().toLowerCase() == val) {
+      if (btn.textContent.trim().toLowerCase() === val) {
         btn.classList.remove("active");
       }
     });
-
-  } else if (type == "name") {
-
+  } 
+  else if (type === "name") {
     const checkedNameInputs = document.querySelectorAll(
       ".customer-filter input:checked"
     );
@@ -714,59 +709,28 @@ function closeChip(event) {
       }
     });
 
-    // REMOVE FROM ARRAY
     selectedNames = selectedNames.filter(
       (name) => name.toLowerCase() !== val
     );
-
   } 
+ 
   else if (type === "received-start-date") {
-
-  document.querySelector(".received-start-text").childNodes[0].textContent =
-    "mm/dd/yyyy";
-
-  updateDateFilter(
-    "received",
-    "05/01/2025",
-    dateFilters.received.end || "04/30/2026"
-  );
-
-} else if (type === "received-end-date") {
-
-  document.querySelector(".received-end-text").childNodes[0].textContent =
-    "mm/dd/yyyy";
-
-  updateDateFilter(
-    "received",
-    dateFilters.received.start || "05/01/2025",
-    "04/30/2026"
-  );
-
-} else if (type === "approved-start-date") {
-
-  document.querySelector(".approved-start-text").childNodes[0].textContent =
-    "mm/dd/yyyy";
-
-  updateDateFilter(
-    "approved",
-    "05/01/2025",
-    dateFilters.approved.end || "04/30/2026"
-  );
-
-} else if (type === "approved-end-date") {
-
-  document.querySelector(".approved-end-text").childNodes[0].textContent =
-    "mm/dd/yyyy";
-
-  updateDateFilter(
-    "approved",
-    dateFilters.approved.start || "05/01/2025",
-    "04/30/2026"
-  );
-
-}
-  else if (type == "mode") {
-
+    document.querySelector(".received-start-text").childNodes[0].textContent = "mm/dd/yyyy";
+    updateDateFilter("received", null, dateFilters.received.end);
+  } 
+  else if (type === "received-end-date") {
+    document.querySelector(".received-end-text").childNodes[0].textContent = "mm/dd/yyyy";
+    updateDateFilter("received", dateFilters.received.start, null);
+  } 
+  else if (type === "approved-start-date") {
+    document.querySelector(".approved-start-text").childNodes[0].textContent = "mm/dd/yyyy";
+    updateDateFilter("approved", null, dateFilters.approved.end);
+  } 
+  else if (type === "approved-end-date") {
+    document.querySelector(".approved-end-text").childNodes[0].textContent = "mm/dd/yyyy";
+    updateDateFilter("approved", dateFilters.approved.start, null);
+  }
+  else if (type === "mode") {
     const checkedModeInputs = document.querySelectorAll(
       ".mode-filter input:checked"
     );
@@ -784,7 +748,6 @@ function closeChip(event) {
 
   changeStatusChips();
 }
-
 clearAllStatusBtn.addEventListener("click", () => {
   resetFilters();
 });
@@ -821,9 +784,8 @@ const approvedEnd =
   approvedStart.textContent = "mm/dd/yyyy";
   approvedEnd.textContent = "mm/dd/yyyy";
 
-  updateDateFilter("received", `${padZero(new Date().getDate())}/${padZero(new Date().getMonth()+1)}/${padZero(new Date().getFullYear()-100)}`, `${padZero(new Date().getDate())}/${padZero(new Date().getMonth()+1)}/${padZero(new Date().getFullYear())}`);
-
-  updateDateFilter("approved", `${padZero(new Date().getDate())}/${padZero(new Date().getMonth()+1)}/${padZero(new Date().getFullYear()-100)}`, `${padZero(new Date().getDate())}/${padZero(new Date().getMonth()+1)}/${padZero(new Date().getFullYear())}`);
+  updateDateFilter("received", null, null);
+  updateDateFilter("approved", null, null);
 
   nameInputs.forEach((inp) => (inp.checked = false));
 
@@ -853,20 +815,26 @@ function updateDateFilter(type, start, end) {
   applyFilters();
 }
 
-function checkDateFilter(quoteDateStr,startDateStr,endDateStr) {
-  if (!startDateStr || !endDateStr) {
-    return true;
-  }
-
+function checkDateFilter(quoteDateStr, startDateStr, endDateStr) {
+  if (!quoteDateStr) return false;
   const quoteDate = parseQuoteDate(quoteDateStr);
 
-  const startDate = parsePickerDate(startDateStr);
+  if (startDateStr && startDateStr.trim() !== "mm/dd/yyyy") {
+    const startDate = parsePickerDate(startDateStr);
+    if (quoteDate < startDate) {
+      return false;
+    }
+  }
+  
+  if (endDateStr && endDateStr.trim() !== "mm/dd/yyyy") {
+    const endDate = parsePickerDate(endDateStr);
+    if (quoteDate > endDate) {
+      return false;
+    }
+  }
 
-  const endDate = parsePickerDate(endDateStr);
-
-  return quoteDate >= startDate && quoteDate <= endDate;
+  return true;
 }
-
 // name filter
 const searchCustomerInput = document.querySelector(".search-customer-input");
 const searchCustomerBtn = document.querySelector(".search-customer-btn");

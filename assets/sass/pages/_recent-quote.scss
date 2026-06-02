@@ -379,9 +379,7 @@
                                         color: $blue-87;
                                         font-weight: 500;
                                         line-height: 1;
-                                    }
-                            
-                                    /* dropdown */
+                                    }                           
                                     .dropdown {
                                         position: absolute;
                                         top: 100%;
@@ -1231,6 +1229,16 @@
                                     visibility: visible;
                                 }
                             }
+
+                            &.not-hover:hover{
+                                background-color: transparent;
+                                p:nth-of-type(12) button,.add-line-note-btn{
+                                    visibility: hidden;
+                                }
+                            }
+                           
+
+
                             &.not-active{
                                 background-color: $grey-f15;
                                 
@@ -1240,8 +1248,6 @@
                                     opacity: 0.5;
                                 }
                                 
-                              
-                               
                             }
 
                     

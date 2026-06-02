@@ -27,7 +27,7 @@ const minSuggestBtn = modalContent.querySelector(".min-suggest-btn");
 const acronymItems = document.querySelectorAll(".acronym-item");
 const acronymDropdown=document.querySelector(".acronym-dropdown");
 const updateBtn = formPopup.querySelector(".update-btn");
-
+const logo= document.querySelector(".logo");
 let products = [];
 let filteredProducts = [];
 
@@ -51,7 +51,9 @@ function initProducts() {
   searchSourcingPopup();
   renderSourcingPopup(products);
   renderSupplierPopup(products);
-  initProductSearch();
+  if(newQuote.status == "pending"){
+    initProductSearch();
+  }
   setTimeout(() => {
     loaderWrapper.classList.add("not-active");
     if (typeof createQuoteWrapper !== "undefined" && createQuoteWrapper) {
@@ -275,7 +277,7 @@ function searchSourcingPopup() {
 let imgRect = "";
 let currentRow = "";
 function openSuggestPopup(event) {
-  if(newQuote.status == "approved") return;
+  if(newQuote.status == "approved" || newQuote.status == "deleted") return;
   const reqId=event.target.parentElement.querySelector(".requested-id").textContent;
   event.stopPropagation();
   const img = event.target.closest(".down-arrow-img");
@@ -432,13 +434,13 @@ function searchProducts(inp) {
 
   descDropdown.style.maxHeight = `${spaceBelow - 20}px`;
   descDropdown.classList.add("active");
-  console.log(products);
+
   filteredProducts = products.filter((p) => {
 
   const desc = p.desc?.toLowerCase() || "";
 
   const isMatch = desc.includes(value);
-
+console.log(isMatch, desc, value,descList);
   if (isMatch) {
     descList.innerHTML += `
       <li data-id="${p.id}">
@@ -471,6 +473,7 @@ function handleProductItemClick(e) {
       products.forEach((p) => {
         if (p.desc?.toLowerCase().includes(val)) {
           searchedProduct.push(p);
+          
         }
 
       });
@@ -483,6 +486,9 @@ function handleProductItemClick(e) {
 function initProductSearch() {
   descInputs.forEach((inp) => {
     inp.addEventListener("input", () => {
+       console.log("skdf")
+      if(newQuote.status != "pending") return;
+     
       currentDescInput = inp;
       searchProducts(inp);
       const allEmpty = [...descInputs].every((inp) => inp.value.trim() == "");
@@ -503,6 +509,7 @@ uploadBtn.addEventListener("click", () => {
     uploadBtn.classList.add("not-active");
     approveQuoteBtn.classList.add("active");
     const addBtn = document.querySelector(".add-btn-container .add-btn");
+    descDropdown.classList.remove("active");
   }
   if (uploadWrapper.classList.contains("active")) {
     getCrtData(exCelData);
@@ -606,7 +613,7 @@ stockNoBtn.addEventListener("click", () => {
 
 
 function enableSourceText(event) {
-  if(newQuote.status == "approved") return;
+  if(newQuote.status == "approved" || newQuote.status == "deleted") return;
   const row = event.target.closest(".table-row");
   const sourceText = row.querySelector(".sourcing");
   sourceText.classList.toggle("active");
@@ -621,7 +628,7 @@ closeSourcingBtn.addEventListener("click", () =>
 
 //sourcing popup open function
 function openSourcingPopup(event) {
-  if(newQuote.status == "approved") return;
+  if(newQuote.status == "approved" || newQuote.status == "deleted") return;
   event.stopPropagation();
   const sourcing = event.target.closest(".sourcing");
   const reqId=event.target.parentElement.querySelector(".requested-id").textContent;
@@ -669,6 +676,7 @@ cancelFormPopupBtn.addEventListener("click", () => {
 
 //update btn function
 updateBtn.addEventListener("click", () => {
+
   formContainers.forEach((container) => {
     if (container.classList.contains("active")) {
       validateUpdateForm(container);
@@ -704,6 +712,7 @@ function validateUpdateForm(container) {
 
   inpFields.forEach((inpField) => {
     changeQuickInfo(inpField, con);
+    updateBtn.classList.add("not-active");
   });
 }
 
@@ -746,6 +755,8 @@ function changeQuickInfo(inp, con) {
   });
   updateQuickInfoData();
   storeQuote();
+  // updateBtn.classList.remove("active");
+  
 }
 
 //input listeners to the update form inputs
@@ -787,15 +798,14 @@ approveQuoteBtn.addEventListener("click", () => {
     successPopup.classList.add("active");
     successidText.textContent = ` #${newQuote.id}`;
     saveQuotes();
-    const bodyWrap = displayTable.querySelector(".body-wrapper");
-    bodyWrap.innerHTML = "";
-    bodyWrap.innerHTML = `<div class="add-btn-container ">
-    <button type="button"><img src="./assets/images/create_quote/add_item_icon.png" alt="add"></button>
-    <p class="text">Click here to Add Item</p>
-    </div>`;
-    setTimeout(() => {
-      window.location.href = "./dashboard.html";
-    }, 300);
+    approveQuoteBtn.classList.remove("active");
+    approveQuoteBtn.classList.add("not-active");
+    delQuoteBtn.classList.remove("active");
+    quoteStat.textContent="Approved";
+    quoteStat.classList.remove("pending","deleted");
+    quoteStat.classList.add("approved");
+    renderDisplayTable(newQuote);
+    renderQuickInfo(newQuote);
 });
 
 //update quick info data to array
@@ -837,11 +847,17 @@ function updateNewQuoteData() {
       newQuote.products = newQuote.products.filter((p) => p.delId !== delId);
     }
   });
+
+  if(newQuote.products.length == 0){
+   approveQuoteBtn.classList.remove("active");
+   approveQuoteBtn.classList.add("not-active");
+  }
 }
 
 //success popup confirm button function
 confirmSuccessBtn.addEventListener("click", () => {
-  window.location.href = "./dashboard.html";
+  // window.location.href = "./dashboard.html";
+  closeModal();
 });
 
 //save quotes in storage 
@@ -865,6 +881,7 @@ function saveQuotes(){
     newQuote.approved_date= `${padZero(new Date().getDate())}-${padZero(new Date().getMonth()+1)}-${padZero(new Date().getFullYear())}`,
     quotes.push(newQuote);
   }
+  console.log(newQuote.status);
   sessionStorage.setItem("quotes", JSON.stringify(quotes));
 }
 
@@ -1172,3 +1189,11 @@ function renderAcronymChip(value, save = true) {
 
   acronymInput.value = "";
 }
+
+logo.addEventListener("click", () => {
+  updateQuickInfoData();
+  updateNewQuoteData();
+  updateQuoteTotals();
+  storeQuote();
+  window.location.href = "./dashboard.html";
+})
