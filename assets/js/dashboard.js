@@ -856,7 +856,6 @@ overlay.addEventListener("click", (e) => {
 
 //table
 function getPrice(price) {
-  console.log(price)
   return parseFloat(
     String(price)
       .replace(/[^\d.]/g, "")
@@ -883,7 +882,7 @@ function renderQuoteTable(data) {
         <td>${
           d.status === "deleted"
             ? `<span class="undo-btn">Undo</span>`
-            : `<a href="./create-quote.html" class="create-quote-link" onclick="gotoCreateQuote(event)">
+            : `<a href="./new-quote.html" class="create-quote-link" onclick="gotoCreateQuote(event)">
           <img src="./assets/images/dashboard/add_icon.png" alt="add"> </a>`
         }
       </td>
@@ -909,7 +908,7 @@ function gotoCreateQuote(event) {
     isExists = quotes.some((q) => q.id === newId);
   }
   sessionStorage.setItem("newId", newId);
-  window.location.href = "./create-quote.html";
+  window.location.href = "./new-quote.html";
 }
 
 //handle undo
@@ -2017,3 +2016,29 @@ const observer = new IntersectionObserver((entries, obs) => {
   });
 }, { threshold: 0.5 });
 
+function delStoredData(){
+  if (sessionStorage.getItem("selectedQuote")) {
+    sessionStorage.removeItem("selectedQuote");
+  }
+   if (sessionStorage.getItem("newId")) {
+    sessionStorage.removeItem("newId");
+  }
+
+  if (sessionStorage.getItem("newQuote")) {
+    sessionStorage.removeItem("newQuote");
+  }
+  if (sessionStorage.getItem("oldId")) {
+    sessionStorage.removeItem("oldId");
+  }
+
+
+  if (sessionStorage.getItem("isApproved")) {
+    sessionStorage.removeItem("isApproved");
+  }
+
+  if (sessionStorage.getItem("isDeleted")) {
+    sessionStorage.removeItem("isDeleted");
+  }
+}
+
+delStoredData();

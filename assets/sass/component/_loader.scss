@@ -8,6 +8,7 @@
   align-items: center;
   justify-content: center;
   background-color: $white;
+  z-index: 7;
   .loader {
     width: clamp(25px, $fs-50px, $fs-50px);
     aspect-ratio: 1;

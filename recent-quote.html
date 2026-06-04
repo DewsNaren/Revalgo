@@ -12,7 +12,7 @@
         <title>Recent Quotes | Revalgo</title>
         <link rel="icon" type="image/x-icon" href="./assets/images/global/favicon.ico" />
         <link rel="stylesheet" href="./assets/vendor/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="./assets/css/style.css">
+         <link rel="stylesheet" href="./assets/sass/style.css" />
     </head>
     <body>
         <header>
@@ -856,14 +856,12 @@
                             <div class="text-wrapper">
                                 <p class="label">Ship Via</p>
                                 <textarea name="ship-via" id="ship" class="ship_to"></textarea>
-                                <!-- <p class="value text-uppercase">-</p> -->
                             </div>
                         </div>
                         <div class="input-container">
                             <input type="checkbox" name="select" class="select-input">
                             <div class="text-wrapper">
                                 <p class="label">Order Date</p>
-                                <!-- <p class="value text-uppercase">3/30/2027</p> -->
                                 <input name="order-date" id="order-date" class="order-date" placeholder="dd/mm/yyyy"></input>
                             </div>
                         </div>
@@ -880,7 +878,6 @@
                             <div class="text-wrapper">
                                 <p class="label">Deliver To</p>
                                 <input type="text" name="deliever_to" id="deliever_to" class="deliever_to">
-                                <!-- <p class="value">2702 - Brighstar, 650 5th Ave, FI 29 Brighstar Capital 650 5th Ave., 29th FI, NewYork NY 10019</p> -->
                             </div>
                         </div>
                         <div class="input-container">
@@ -896,7 +893,6 @@
                             <div class="text-wrapper">
                                 <p class="label">Work For</p>
                                 <input type="text" name="work" id="work" class="work">
-                                <!-- <p class="value">Structure Tone, Inc. 2707 Brighstar, 650 5th Ave, Fi 29 Brighstar Capital NewYork NY 10019</p> -->
                             </div>
                         </div>
                     </div>
@@ -919,10 +915,7 @@
                     <button type="button" class="close-popup-btn"><img src="./assets/images/global/close_modal.webp" alt="close"></button>
                 </div>
                 <div class="body">
-
-                    <!-- <div class="edit-acronym"> -->
                     <p type="text" class="acronym-text"></p>
-                    <!-- </div> -->
                     <input type="text" class="add-acronym-input" name="add-acronym"   placeholder="Add Acronym Text" autocomplete="off">
                     <div class="acronym-chip-container">
                     </div>
@@ -1034,6 +1027,7 @@
             <div class="loader"></div>
         </div>
         <script src="./assets/js/header.js"></script>
+         <script src="./assets/js/quoteHelper.js"></script>
         <script src="./assets/js/recentQuote.js"></script>
         <script src="./assets/js/table.js"></script>
         <script src="./assets/js/popup.js"></script>

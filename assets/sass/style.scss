@@ -6,11 +6,12 @@
 
 //quote view
 @use "./pages/recent-quote" as *;
+
 //create quote
 @use "./pages/create-quote" as *;
 
-//existing quote
-@use "./pages/exist-quote" as *;
+//new quote
+@use "./pages/new-quote" as *;
 
 //global
 @use "./pages/global" as *;

@@ -13,8 +13,11 @@ const addLineNoteInput = addLineNotePopup.querySelector(".add-line-note-input");
 const addQuoteNotePopup = document.querySelector(".add-quote-note-popup");
 const addQuoteNoteInput = addQuoteNotePopup.querySelector(".add-quote-note-input");
 const addQuoteNoteBtn = addQuoteNotePopup.querySelector(".add-btn");
+
+// const imgPopup = document.querySelector(".img-popup");
 const imgUpdateBtn = imgPopup.querySelector(".update-btn");
 const selectAllWrapInput = imgPopup.querySelector(".select-all-input");
+
 const imgPopCount = imgPopup.querySelector(".title span");
 const selectImgInputs = imgPopup.querySelectorAll(".select-input");
 const acronymPopup = document.querySelector(".add-acronym-popup");
@@ -179,7 +182,6 @@ popupOverlay.addEventListener("click", (e) => {
 //expand  btn function
 expandBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
-    // const type = btn.dataset.type;
     const target = btn.dataset.target;
     const modalData = btn.dataset.modal;
     const source = document.querySelector(target);
@@ -440,7 +442,6 @@ function searchProducts(inp) {
   const desc = p.desc?.toLowerCase() || "";
 
   const isMatch = desc.includes(value);
-console.log(isMatch, desc, value,descList);
   if (isMatch) {
     descList.innerHTML += `
       <li data-id="${p.id}">
@@ -486,7 +487,6 @@ function handleProductItemClick(e) {
 function initProductSearch() {
   descInputs.forEach((inp) => {
     inp.addEventListener("input", () => {
-       console.log("skdf")
       if(newQuote.status != "pending") return;
      
       currentDescInput = inp;
@@ -861,32 +861,100 @@ confirmSuccessBtn.addEventListener("click", () => {
 });
 
 //save quotes in storage 
-function saveQuotes(){
+// function saveQuotes(){
+//   let found = false;
+//   const quotes = JSON.parse(sessionStorage.getItem("quotes"));
+
+//   quotes.forEach((q, i) => {
+//     if (q.id === newQuote.id) {
+
+//       newQuote.status="approved";
+//       if (newQuote.approved_date=="-") {
+//         newQuote.approved_date= `${padZero(new Date().getDate())}-${padZero(new Date().getMonth()+1)}-${padZero(new Date().getFullYear())}`;
+//       }
+//       quotes[i] = newQuote;
+      
+//       found = true;
+//     }
+//   });
+  
+//   if (!found) {
+//     newQuote.status = "approved";
+//     newQuote.approved_date= `${padZero(new Date().getDate())}-${padZero(new Date().getMonth()+1)}-${padZero(new Date().getFullYear())}`,
+//     quotes.push(newQuote);
+//   console.log("hjhhj")
+//     if(sessionStorage.getItem("newQuote")){
+//       sessionStorage.setItem("newQuote",JSON.stringify(newQuote))
+//     }
+//     if (sessionStorage.getItem("selectedQuote")) {
+//     const selQuote = JSON.parse(sessionStorage.getItem("selectedQuote"));
+
+//     if (!sessionStorage.getItem("oldId") || selQuote.old_id === sessionStorage.getItem("oldId")) {
+//       selQuote.status = "approved";
+//       if (selQuote.approved_date === "-") {
+//         selQuote.approved_date = today;
+//       }
+//       sessionStorage.setItem("selectedQuote", JSON.stringify(selQuote));
+//     }
+//   }
+//   }
+
+//   sessionStorage.setItem("quotes", JSON.stringify(quotes));
+// }
+
+function saveQuotes() {
   let found = false;
-  const quotes = JSON.parse(sessionStorage.getItem("quotes"));
+
+  let quotes = JSON.parse(sessionStorage.getItem("quotes")) || [];
+  const today = `${padZero(new Date().getDate())}-${padZero(new Date().getMonth() + 1)}-${padZero(new Date().getFullYear())}`;
+
   quotes.forEach((q, i) => {
     if (q.id === newQuote.id) {
-      newQuote.status="approved";
-      if (newQuote.approved_date=="-") {
-        newQuote.approved_date= `${padZero(new Date().getDate())}-${padZero(new Date().getMonth()+1)}-${padZero(new Date().getFullYear())}`;
+      newQuote.status = "approved";
+      if (newQuote.approved_date === "-") {
+        newQuote.approved_date = today;
       }
       quotes[i] = newQuote;
-      
       found = true;
     }
   });
 
   if (!found) {
     newQuote.status = "approved";
-    newQuote.approved_date= `${padZero(new Date().getDate())}-${padZero(new Date().getMonth()+1)}-${padZero(new Date().getFullYear())}`,
+    newQuote.approved_date = today;
     quotes.push(newQuote);
   }
-   if(sessionStorage.getItem("newQuote")){
-    sessionStorage.setItem("newQuote",JSON.stringify(newQuote))
+
+  
+
+  if (sessionStorage.getItem("selectedQuote")) {
+    
+    const selQuote = JSON.parse(sessionStorage.getItem("selectedQuote"));
+    if(sessionStorage.getItem("oldId")){
+      if ( selQuote.old_id === Number(sessionStorage.getItem("oldId"))) {
+        selQuote.status = "approved";
+        if (selQuote.approved_date === "-") {
+          selQuote.approved_date = today;
+        }
+        sessionStorage.setItem("selectedQuote", JSON.stringify(selQuote));
+        sessionStorage.setItem("isApproved", true);
+        if(sessionStorage.getItem("isDeleted")){
+          sessionStorage.removeItem("isDeleted")
+        }
+      }
+    }
+  }
+
+  if (sessionStorage.getItem("newQuote")) {
+    const storedNewQuote = JSON.parse(sessionStorage.getItem("newQuote"));
+    storedNewQuote.status = "approved";
+    if (storedNewQuote.approved_date === "-") {
+      storedNewQuote.approved_date = today;
+    }
+    sessionStorage.setItem("newQuote", JSON.stringify(storedNewQuote));
   }
   sessionStorage.setItem("quotes", JSON.stringify(quotes));
 }
-
 //add line note function
 let clickedRow = "";
 function openLineNotePopup(event) {
@@ -923,6 +991,7 @@ addLineNoteBtn.addEventListener("click", () => {
       product.lineNote = addNoteVal;
       greyAddImg.classList.remove("active");
       blueAddImg.classList.add("active");
+      storeQuote();
       closeModal();
     }
   }
@@ -976,7 +1045,7 @@ selectAllWrapInput.addEventListener("change", () => {
 });
 
 selectImgInputs.forEach((inp) => {
-    if(newQuote.status == "approved" || newQuote.status == "deleted") return;
+  if(newQuote.status == "approved" || newQuote.status == "deleted") return;
   inp.addEventListener("input", () => {
     const checkedInputs = [...selectImgInputs].filter((inp) => inp.checked);
 
@@ -1075,6 +1144,7 @@ imgUpdateBtn.addEventListener("click", () => {
         const minDate = new Date();
         minDate.setFullYear(minDate.getFullYear() - 100);
         const maxDate = new Date();
+        maxDate.setFullYear(maxDate.getFullYear() +1);
 
         const [day, month, year] = inp.value.split("/");
 

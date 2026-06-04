@@ -1,4 +1,3 @@
-
 (function () {
   const pages = [
     'create-quote.html',

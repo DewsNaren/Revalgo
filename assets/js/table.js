@@ -38,14 +38,19 @@ delQuoteBtn.addEventListener("click", () => {
   approveQuoteBtn.classList.add("not-active");
   quoteStat.classList.remove("pending", "approved");
   newQuote.status = "deleted";
+  quickOrderWrapper.classList.add('active');
   quoteStat.classList.add(`${newQuote.status}`);
   quoteStat.textContent = `${newQuote.status}`;
   updateQuoteTotals();
   updateNewQuoteData();
   storeQuote();
+
   renderDisplayTable(newQuote);
   renderQuickInfo(newQuote);
- 
+  
+  if(sessionStorage.getItem("isApproved")){
+    sessionStorage.removeItem("isApproved")
+  }
 });
 
 //undo quote function
@@ -72,6 +77,13 @@ undoQuoteBtn.addEventListener("click", () => {
   rows.forEach((row)=>{ 
     row.classList.remove("not-hover");
   })
+  if(sessionStorage.getItem("isApproved")){
+    sessionStorage.removeItem("isApproved")
+  }
+  if(sessionStorage.getItem('isDeleted')){
+    sessionStorage.removeItem('isDeleted')
+  }
+
   renderDisplayTable(newQuote);
   renderQuickInfo(newQuote);
   initProductSearch();
@@ -156,7 +168,6 @@ function undoRow(event) {
     approveQuoteBtn.classList.add("active");
    
   }
-  console.log(newQuote.products);
   updateNewQuoteData();
   updateQuoteTotals();
   storeQuote();
@@ -446,12 +457,14 @@ mailMinimizeBtn.addEventListener("click", () => {
     if (!mailWrapper.classList.contains("active")) {
       uploadBtnContainer.classList.add("active");
     }
-  } else {
+  } 
+  else {
     leftWrapper.classList.add("minimize");
     leftWrapper.classList.remove("maximize");
     rightWrapper.classList.add("maximize");
     rightWrapper.classList.remove("minimize");
     mailMinimizeBtn.classList.add("minimize");
+    mailMinimizeBtn.classList.remove("maximize");
     if (!mailWrapper.classList.contains("active")) {
       uploadBtnContainer.classList.remove("active");
     }
@@ -894,13 +907,20 @@ function storeQuote() {
   const allQuotes = JSON.parse(sessionStorage.getItem("quotes"));
   allQuotes.forEach((q, i) => {
     if (q.id === newQuote.id) {
-      console.log( allQuotes[i]);
       allQuotes[i] = newQuote;
       found = true;
       if(sessionStorage.getItem('selectedQuote')){
         const selQuote=JSON.parse(sessionStorage.getItem('selectedQuote'))
         if(selQuote.id === newQuote.id){
           sessionStorage.setItem('selectedQuote',JSON.stringify(newQuote))
+        }
+        if(sessionStorage.getItem('oldId')){
+          if(selQuote.old_id === sessionStorage.getItem('oldId')){
+            sessionStorage.setItem('selectedQuote',JSON.stringify(newQuote))
+          }
+          if (newQuote.status=="deleted") {
+              sessionStorage.setItem('isDeleted',true)
+          }
         }
       }
     }

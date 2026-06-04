@@ -9,7 +9,6 @@ function ValidateLoginForm(){
     const passwordVal=loginPassword.value;
 
     if(!validateUsername(loginName, nameVal)){
-        console.log(loginName,nameVal);
         success=false;
     }
         
@@ -100,3 +99,30 @@ function storeLoginData(){
 if(localStorage.getItem("loginDetails")){
     localStorage.removeItem("loginDetails"); 
 }
+
+function delStoredData(){
+  if (sessionStorage.getItem("selectedQuote")) {
+    sessionStorage.removeItem("selectedQuote");
+  }
+   if (sessionStorage.getItem("newId")) {
+    sessionStorage.removeItem("newId");
+  }
+
+  if (sessionStorage.getItem("newQuote")) {
+    sessionStorage.removeItem("newQuote");
+  }
+  if (sessionStorage.getItem("oldId")) {
+    sessionStorage.removeItem("oldId");
+  }
+
+
+  if (sessionStorage.getItem("isApproved")) {
+    sessionStorage.removeItem("isApproved");
+  }
+
+  if (sessionStorage.getItem("isDeleted")) {
+    sessionStorage.removeItem("isDeleted");
+  }
+}
+
+delStoredData();

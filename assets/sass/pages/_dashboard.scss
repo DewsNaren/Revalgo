@@ -82,7 +82,6 @@
                     padding: 10px 10px 5px 8px;
                     font-size: clamp(11px, $fs-14px, $fs-14px);
                     cursor: pointer;
-
                     &:hover {
                         background: #f0f0f0;
                     }
@@ -815,40 +814,8 @@
         &.not-active{
             display: none;
         }
-        &.large{
-            width: 100%;
-            .table-wrapper{
-                .quote-table{
-                 thead tr{
-                    th{
-                        &:nth-of-type(2){
-                            width: $fs-250px;
-                        }
-                        &:nth-of-type(3){
-                            width: $fs-311px;
-                        }
-                        &:nth-of-type(7){
-                            width: clamp(75px,$fs-130px, $fs-130px);
-                        }
-                    }
-                 }
-                 tbody tr{
-                    td{
-                        &:nth-of-type(2){
-                            width: $fs-250px;
-                        }
-                        &:nth-of-type(3){
-                            width: $fs-311px;
-                        }
-                        &:nth-of-type(7){
-                            width: clamp(75px,$fs-130px, $fs-130px);
-                        }
 
-                    }
-                 }
-                }
-            }
-        }
+       
     }
     .chart-wrapper{
         flex: 1;
@@ -1261,8 +1228,45 @@
         }
     }
     &.not-active{
-    display: none;
-  }
+        display: none;
+    }
+    &:has(.quotes-container.large) {
+        gap: 0;
+        .quotes-container{
+            width: 100%;
+            .table-wrapper{
+                .quote-table{
+                 thead tr{
+                    th{
+                        &:nth-of-type(2){
+                            width: $fs-250px;
+                        }
+                        &:nth-of-type(3){
+                            width: $fs-311px;
+                        }
+                        &:nth-of-type(7){
+                            width: clamp(75px,$fs-130px, $fs-130px);
+                        }
+                    }
+                 }
+                 tbody tr{
+                    td{
+                        &:nth-of-type(2){
+                            width: $fs-250px;
+                        }
+                        &:nth-of-type(3){
+                            width: $fs-311px;
+                        }
+                        &:nth-of-type(7){
+                            width: clamp(75px,$fs-130px, $fs-130px);
+                        }
+
+                    }
+                 }
+                }
+            }
+        }
+    }
   }
   .copyright-container{
     display: none;
