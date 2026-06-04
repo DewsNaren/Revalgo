@@ -259,7 +259,7 @@
 
                 }
                 .body-wrapper{
-                   padding: clamp(8px, $fs-15px, $fs-15px) clamp(10px, $fs-20px, $fs-20px) clamp(15px, $fs-30px, $fs-30px)  clamp(10px, $fs-20px, $fs-20px);
+                   padding: clamp(8px, $fs-15px, $fs-15px) 0 clamp(15px, $fs-30px, $fs-30px)  clamp(10px, $fs-20px, $fs-20px);
                    display: flex;
                    flex-direction: column;
                     min-height: 0;
@@ -273,7 +273,7 @@
                         flex-direction: column;
                         min-height: 0;
                         max-height: 100%;
-
+                        margin-right: clamp(10px, $fs-20px, $fs-20px);
                         .table-header{
                             display: flex;
                             background-color: $blue-1ff;
@@ -350,12 +350,13 @@
                        
                    }
                    .upload-wrapper{
-                        padding: clamp(13px, $fs-28px, $fs-28px) clamp(17px, $fs-35px, $fs-35px) 0 clamp(7px, $fs-15px, $fs-15px);
+                        padding: clamp(13px, $fs-28px, $fs-28px) clamp(15px, $fs-30px, $fs-30px) 0 clamp(7px, $fs-15px, $fs-15px);
                         display: none;
                         flex: 1;
                         overflow-y: auto;
                         min-height: 0;
                         max-height: 100%;
+
                         .select-input-wrapper{
                             label,.label{
                                 display: block;
@@ -466,6 +467,7 @@
                         min-height: 0;
                         max-height: 100%;
                         flex-direction: column;
+                        padding-right: clamp(10px, $fs-20px, $fs-20px);
                         .mail-header-container{
                             border-bottom: 1px solid #686868;
                             text-wrap: nowrap;
@@ -674,26 +676,7 @@
                         }
 
                    }
-                   .minimize-btn{
-                    position: absolute;
-                    right: calc(clamp(8px, $fs-10px, $fs-10px)* -1);
-                    top: 50%;
-                    transform: translateY(-50%);
-                    border-top-left-radius: 50%;
-                    border-bottom-left-radius: 50%;
-                    border: none;
-                    background-color: transparent;
-                    box-shadow: $box-shadow-1;
-                    width: clamp(8px, $fs-36px, $fs-36px);
-                    height: clamp(8px, $fs-36px, $fs-36px);
-                    display: flex;
-                    align-items: center;
-                    justify-content: flex-start;
-                    img{
-                        padding-left: clamp(3px, $fs-7px, $fs-7px);
-                        width: clamp(12px, $fs-24px, $fs-24px);
-                    }
-                   }
+
                    .upload-btn-container{
                         text-align: center;
                         margin-top: clamp(10px, $fs-35px, $fs-35px);
@@ -1513,7 +1496,7 @@
     .new-quote-wrapper{
         .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper {
             .mail-wrapper{
-                    padding: 0px 5px 0 0;
+                padding: 0 clamp(8px, $fs-18px, $fs-18px) 0 0;
                     .mail-header-container{
                         .test {
                             margin-bottom: clamp(4px, $fs-7px, $fs-7px);

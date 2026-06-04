@@ -84,7 +84,7 @@ if (sessionStorage.getItem("selectedQuote")) {
   oldQuoteText.innerHTML = `(Old Quote ID #${selectedQuote.old_id})`;
   oldQuoteText.classList.add("active");
   newQuote={...selectedQuote}
-  
+  console.log(newQuote)
   quickOrderWrapper.classList.add("active");
   approveBtnContainer.classList.add("active");
   updatenewQuoteId(newQuote)
@@ -131,8 +131,9 @@ if (sessionStorage.getItem("selectedQuote")) {
 //get new Quote
 if (sessionStorage.getItem("newId")) {
   
-  newQuote.id = sessionStorage.getItem("newId");
+  newQuote.id = Number(sessionStorage.getItem("newId"));
   if(!sessionStorage.getItem("newQuote")){
+  
     newQuote.status= "pending";
     sessionStorage.setItem("newQuote",JSON.stringify(newQuote));
   }

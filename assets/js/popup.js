@@ -488,16 +488,41 @@ function initProductSearch() {
   descInputs.forEach((inp) => {
     inp.addEventListener("input", () => {
       if(newQuote.status != "pending") return;
-     
-      currentDescInput = inp;
-      searchProducts(inp);
-      const allEmpty = [...descInputs].every((inp) => inp.value.trim() == "");
-      if (allEmpty) {
-        uploadBtn.classList.add("not-active");
+      const row=inp.closest(".table-row");
+      const qtyVal=row.querySelector(".qty-input").value;
+      if (qtyVal.trim() !="") {
+        currentDescInput = inp;
+        searchProducts(inp);
+        const allEmpty = [...descInputs].every((inp) => inp.value.trim() == "");
+        if (allEmpty) {
+          uploadBtn.classList.add("not-active");
+        }
       }
+     
     });
   });
 }
+
+
+
+qtyInputs.forEach(inp=>{
+  const row=inp.closest(".table-row");
+  const descInput=row.querySelector(".desc-input");
+  descInput.disabled = true;
+  inp.addEventListener("input", () => {
+    inp.value = inp.value.replace(/\D/g, "");
+    const hasQty = inp.value.trim() != "";
+    descInput.disabled = !hasQty;
+    uploadBtn.classList.remove("not-active");
+    if(hasQty){
+      uploadBtn.classList.remove("not-active");
+    }
+    if(inp.value.trim() == ""){
+      descDropdown.classList.remove("active");
+      uploadBtn.classList.add("not-active");
+    }
+  });
+});
 
 descDropdown.addEventListener("click", handleProductItemClick);
 
@@ -843,7 +868,7 @@ function updateNewQuoteData() {
   tableRows.forEach((row) => {
     if (row.classList.contains("not-active")) {
       const delId = Number(row.querySelector(".del-id").textContent);
-
+      console.log(delId)
       newQuote.products = newQuote.products.filter((p) => p.delId !== delId);
     }
   });
@@ -861,47 +886,6 @@ confirmSuccessBtn.addEventListener("click", () => {
 });
 
 //save quotes in storage 
-// function saveQuotes(){
-//   let found = false;
-//   const quotes = JSON.parse(sessionStorage.getItem("quotes"));
-
-//   quotes.forEach((q, i) => {
-//     if (q.id === newQuote.id) {
-
-//       newQuote.status="approved";
-//       if (newQuote.approved_date=="-") {
-//         newQuote.approved_date= `${padZero(new Date().getDate())}-${padZero(new Date().getMonth()+1)}-${padZero(new Date().getFullYear())}`;
-//       }
-//       quotes[i] = newQuote;
-      
-//       found = true;
-//     }
-//   });
-  
-//   if (!found) {
-//     newQuote.status = "approved";
-//     newQuote.approved_date= `${padZero(new Date().getDate())}-${padZero(new Date().getMonth()+1)}-${padZero(new Date().getFullYear())}`,
-//     quotes.push(newQuote);
-//   console.log("hjhhj")
-//     if(sessionStorage.getItem("newQuote")){
-//       sessionStorage.setItem("newQuote",JSON.stringify(newQuote))
-//     }
-//     if (sessionStorage.getItem("selectedQuote")) {
-//     const selQuote = JSON.parse(sessionStorage.getItem("selectedQuote"));
-
-//     if (!sessionStorage.getItem("oldId") || selQuote.old_id === sessionStorage.getItem("oldId")) {
-//       selQuote.status = "approved";
-//       if (selQuote.approved_date === "-") {
-//         selQuote.approved_date = today;
-//       }
-//       sessionStorage.setItem("selectedQuote", JSON.stringify(selQuote));
-//     }
-//   }
-//   }
-
-//   sessionStorage.setItem("quotes", JSON.stringify(quotes));
-// }
-
 function saveQuotes() {
   let found = false;
 
@@ -925,23 +909,25 @@ function saveQuotes() {
     quotes.push(newQuote);
   }
 
-  
 
   if (sessionStorage.getItem("selectedQuote")) {
     
     const selQuote = JSON.parse(sessionStorage.getItem("selectedQuote"));
     if(sessionStorage.getItem("oldId")){
-      if ( selQuote.old_id === Number(sessionStorage.getItem("oldId"))) {
-        selQuote.status = "approved";
+      if (selQuote.old_id === Number(sessionStorage.getItem("oldId"))) {
+        newQuote.status = "approved";
         if (selQuote.approved_date === "-") {
           selQuote.approved_date = today;
         }
-        sessionStorage.setItem("selectedQuote", JSON.stringify(selQuote));
+        sessionStorage.setItem("selectedQuote", JSON.stringify(newQuote));
         sessionStorage.setItem("isApproved", true);
         if(sessionStorage.getItem("isDeleted")){
           sessionStorage.removeItem("isDeleted")
         }
       }
+    }
+    if(selQuote.id===newQuote.id){
+      sessionStorage.setItem("selectedQuote", JSON.stringify(newQuote));
     }
   }
 
@@ -953,6 +939,7 @@ function saveQuotes() {
     }
     sessionStorage.setItem("newQuote", JSON.stringify(storedNewQuote));
   }
+
   sessionStorage.setItem("quotes", JSON.stringify(quotes));
 }
 //add line note function

@@ -213,16 +213,17 @@ function openSelectedPopup(clickedId, q) {
     `;
   });
   clickCheckInput(document.querySelector(".selected-table tbody"));
+  if(products.length==0){
+    importBtn.classList.remove("not-active");
+    importBtn.classList.add("active");
+  }
 }
 
 function selectAllItems() {
   const selectedTBody = document.querySelector(".selected-table tbody");
 
   const tableRows = selectedTBody.querySelectorAll("tr");
-  if (!tableRows.length){
-    importBtn.classList.add("active");
-    return;
-  }
+
   const isAllChecked = [...tableRows].every(
     (row) => row.querySelector("input[type='checkbox']").checked,
   );

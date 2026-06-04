@@ -42,7 +42,7 @@ delQuoteBtn.addEventListener("click", () => {
   quoteStat.classList.add(`${newQuote.status}`);
   quoteStat.textContent = `${newQuote.status}`;
   updateQuoteTotals();
-  updateNewQuoteData();
+  // updateNewQuoteData();
   storeQuote();
 
   renderDisplayTable(newQuote);
@@ -168,7 +168,6 @@ function undoRow(event) {
     approveQuoteBtn.classList.add("active");
    
   }
-  updateNewQuoteData();
   updateQuoteTotals();
   storeQuote();
 }
@@ -803,7 +802,18 @@ const defaultLine = {
 
 //description search function
 function getSearchedProducts(){
+  const orderTableBody=document.querySelector(".left-wrapper .table-wrapper .table-body");
+  const rows=orderTableBody.querySelectorAll(".table-row")
   const descs = [];
+  const rowsData = [];
+  rows.forEach(row => {
+    const qtyVal=Number(row.querySelector(".qty-input").value);
+    const descVal=row.querySelector(".desc-input").value;
+    if(qtyVal && descVal)
+      rowsData.push({qty:qtyVal,desc:descVal})
+
+  });
+  console.log(rowsData)
 
   descInputs.forEach((inp) => {
     if (inp.value.trim() !== "") {
@@ -811,12 +821,12 @@ function getSearchedProducts(){
     }
   });
 
-  if (descs.length > 0) {
+  if (rowsData.length > 0) {
 
-    descs.forEach((d) => {
+    rowsData.forEach(({qty,desc}) => {
 
       const matchedProduct = searchedProduct.find(
-        (p) => p.desc?.trim().toLowerCase() === d.toLowerCase()
+        (p) => p.desc?.trim().toLowerCase() === desc.toLowerCase()
       );
       if (matchedProduct) {
 
@@ -826,16 +836,14 @@ function getSearchedProducts(){
 
         if (existingProduct) {
 
-          existingProduct.qty_requested += Number(
-            matchedProduct.qty_requested || 0
-          );
+          existingProduct.qty_requested += qty;
 
           existingProduct.total_cost =
             existingProduct.qty_requested *
             existingProduct.selling_price;
 
         } else {
-
+          matchedProduct.qty_requested=qty;
           matchedProduct.delId = getDelId();
           newQuote.products.push(matchedProduct);
 
@@ -845,7 +853,7 @@ function getSearchedProducts(){
 
       else {
 
-        const newLine = {...defaultLine,desc: d,delId: getDelId(),};
+        const newLine = {...defaultLine,desc: desc,delId: getDelId(), qty_requested:qty};
 
         let newReqId =
           Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
@@ -885,8 +893,11 @@ function getSearchedProducts(){
     });
 
     searchedProduct = [];
-    descInputs.forEach((inp) => (inp.value = ""));
-    qtyInputs.forEach((inp) => (inp.value = ""));
+    descInputs.forEach(inp => {
+      inp.value = ""
+      inp.disabled=true;
+    });
+    qtyInputs.forEach(inp => inp.value = "");
     updateQuoteTotals();
     storeQuote();
   }

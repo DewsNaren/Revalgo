@@ -4663,7 +4663,7 @@ header nav ul li a.new-quote-btn:hover {
   width: clamp(9px, 0.989vw, 0.989vw);
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper {
-  padding: clamp(8px, 0.79vw, 0.79vw) clamp(10px, 1.05vw, 1.05vw) clamp(15px, 1.57vw, 1.57vw) clamp(10px, 1.05vw, 1.05vw);
+  padding: clamp(8px, 0.79vw, 0.79vw) 0 clamp(15px, 1.57vw, 1.57vw) clamp(10px, 1.05vw, 1.05vw);
   display: flex;
   flex-direction: column;
   min-height: 0;
@@ -4679,6 +4679,7 @@ header nav ul li a.new-quote-btn:hover {
   flex-direction: column;
   min-height: 0;
   max-height: 100%;
+  margin-right: clamp(10px, 1.05vw, 1.05vw);
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-header {
   display: flex;
@@ -4778,7 +4779,7 @@ header nav ul li a.new-quote-btn:hover {
   display: flex;
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper {
-  padding: clamp(13px, 1.45vw, 1.45vw) clamp(17px, 1.8vw, 1.8vw) 0 clamp(7px, 0.79vw, 0.79vw);
+  padding: clamp(13px, 1.45vw, 1.45vw) clamp(15px, 1.57vw, 1.57vw) 0 clamp(7px, 0.79vw, 0.79vw);
   display: none;
   flex: 1;
   overflow-y: auto;
@@ -4883,6 +4884,7 @@ header nav ul li a.new-quote-btn:hover {
   min-height: 0;
   max-height: 100%;
   flex-direction: column;
+  padding-right: clamp(10px, 1.05vw, 1.05vw);
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-header-container {
   border-bottom: 1px solid #686868;
@@ -5037,26 +5039,6 @@ header nav ul li a.new-quote-btn:hover {
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper.active {
   display: flex;
-}
-.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .minimize-btn {
-  position: absolute;
-  right: calc(clamp(8px, 0.521vw, 0.521vw) * -1);
-  top: 50%;
-  transform: translateY(-50%);
-  border-top-left-radius: 50%;
-  border-bottom-left-radius: 50%;
-  border: none;
-  background-color: transparent;
-  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.23);
-  width: clamp(8px, 1.9vw, 1.9vw);
-  height: clamp(8px, 1.9vw, 1.9vw);
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .minimize-btn img {
-  padding-left: clamp(3px, 0.4vw, 0.4vw);
-  width: clamp(12px, 1.25vw, 1.25vw);
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-btn-container {
   text-align: center;
@@ -5668,28 +5650,28 @@ header nav ul li a.new-quote-btn:hover {
 .minimize-btn {
   position: fixed;
   right: calc(clamp(8px, 0.521vw, 0.521vw) * -1);
-  left: 24.9%;
+  left: calc(24.9% - clamp(14px, 1.25vw, 1.25vw));
   bottom: 30%;
-  border-radius: 50%;
+  border-radius: 22px 0 0 22px;
   border: none;
   background-color: white;
   box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.23);
-  width: clamp(8px, 1.9vw, 1.9vw);
-  height: clamp(8px, 1.9vw, 1.9vw);
+  width: clamp(14px, 1.25vw, 1.25vw);
+  height: clamp(20px, 2.3vw, 2.3vw);
   display: flex;
   align-items: center;
   justify-content: flex-start;
   transition: left 0.5s ease-in;
 }
 .minimize-btn img {
-  padding-left: clamp(3px, 0.4vw, 0.4vw);
+  padding-left: 3px;
   width: clamp(12px, 1.25vw, 1.25vw);
 }
 .minimize-btn.minimize {
-  left: clamp(20px, 3.4vw, 3.4vw);
+  left: clamp(20px, 2.067vw, 2.067vw);
 }
 .minimize-btn.maximize {
-  left: 50%;
+  left: calc(50% - clamp(14px, 1.25vw, 1.25vw));
 }
 .minimize-btn.not-active {
   display: none;
@@ -5757,7 +5739,7 @@ header nav ul li a.new-quote-btn:hover {
     padding-bottom: clamp(10px, 1.15vw, 1.15vw);
   }
   .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper {
-    padding: 0px 5px 0 0;
+    padding: 0px clamp(8px, 0.93vw, 0.93vw) 0 0;
   }
   .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-header-container .test {
     margin-bottom: clamp(4px, 0.4vw, 0.4vw);
@@ -6981,7 +6963,7 @@ header nav ul li a.new-quote-btn:hover {
   width: clamp(9px, 0.989vw, 0.989vw);
 }
 .new-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper {
-  padding: clamp(8px, 0.79vw, 0.79vw) clamp(10px, 1.05vw, 1.05vw) clamp(15px, 1.57vw, 1.57vw) clamp(10px, 1.05vw, 1.05vw);
+  padding: clamp(8px, 0.79vw, 0.79vw) 0 clamp(15px, 1.57vw, 1.57vw) clamp(10px, 1.05vw, 1.05vw);
   display: flex;
   flex-direction: column;
   min-height: 0;
@@ -6996,6 +6978,7 @@ header nav ul li a.new-quote-btn:hover {
   flex-direction: column;
   min-height: 0;
   max-height: 100%;
+  margin-right: clamp(10px, 1.05vw, 1.05vw);
 }
 .new-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper .table-header {
   display: flex;
@@ -7058,7 +7041,7 @@ header nav ul li a.new-quote-btn:hover {
   display: flex;
 }
 .new-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-wrapper {
-  padding: clamp(13px, 1.45vw, 1.45vw) clamp(17px, 1.8vw, 1.8vw) 0 clamp(7px, 0.79vw, 0.79vw);
+  padding: clamp(13px, 1.45vw, 1.45vw) clamp(15px, 1.57vw, 1.57vw) 0 clamp(7px, 0.79vw, 0.79vw);
   display: none;
   flex: 1;
   overflow-y: auto;
@@ -7159,6 +7142,7 @@ header nav ul li a.new-quote-btn:hover {
   min-height: 0;
   max-height: 100%;
   flex-direction: column;
+  padding-right: clamp(10px, 1.05vw, 1.05vw);
 }
 .new-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-header-container {
   border-bottom: 1px solid #686868;
@@ -7337,26 +7321,6 @@ header nav ul li a.new-quote-btn:hover {
 }
 .new-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper.active {
   display: flex;
-}
-.new-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .minimize-btn {
-  position: absolute;
-  right: calc(clamp(8px, 0.521vw, 0.521vw) * -1);
-  top: 50%;
-  transform: translateY(-50%);
-  border-top-left-radius: 50%;
-  border-bottom-left-radius: 50%;
-  border: none;
-  background-color: transparent;
-  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.23);
-  width: clamp(8px, 1.9vw, 1.9vw);
-  height: clamp(8px, 1.9vw, 1.9vw);
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-.new-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .minimize-btn img {
-  padding-left: clamp(3px, 0.4vw, 0.4vw);
-  width: clamp(12px, 1.25vw, 1.25vw);
 }
 .new-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-btn-container {
   text-align: center;
@@ -7996,7 +7960,7 @@ header nav ul li a.new-quote-btn:hover {
 
 @media screen and (max-width: 1400px) {
   .new-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper {
-    padding: 0px 5px 0 0;
+    padding: 0 clamp(8px, 0.93vw, 0.93vw) 0 0;
   }
   .new-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-header-container .test {
     margin-bottom: clamp(4px, 0.4vw, 0.4vw);

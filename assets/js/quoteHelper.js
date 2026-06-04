@@ -1,5 +1,4 @@
 
-
 //datepicker
 const formPopup = document.querySelector(".form-popup");
 const datepicker = formPopup.querySelector(".datepicker");

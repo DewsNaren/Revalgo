@@ -898,8 +898,10 @@ function renderQuoteTable(data) {
   }
 }
 
+  const loginDetails = JSON.parse(localStorage.getItem("loginDetails"));
 function gotoCreateQuote(event) {
   event.preventDefault();
+  let selectedQuote;
   let newId = "";
   newId = Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
   let isExists = quotes.some((q) => q.id === newId);
@@ -907,8 +909,21 @@ function gotoCreateQuote(event) {
     newId = Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000;
     isExists = quotes.some((q) => q.id === newId);
   }
-  sessionStorage.setItem("newId", newId);
-  window.location.href = "./new-quote.html";
+  const row=event.target.parentElement.closest("tr");
+
+  selectedQuote=[...quotes].find(q=> q.id === Number(row.dataset.id));
+
+  if(selectedQuote){
+    selectedQuote.old_id=selectedQuote.id;
+    selectedQuote.id=newId;
+    selectedQuote.status="pending"
+    selectedQuote.received_date=`${padZero(new Date().getDate())}-${padZero(new Date().getMonth()+1)}-${padZero(new Date().getFullYear())}`;
+    selectedQuote.approved_date="-",
+    selectedQuote.name=  `${loginDetails ? loginDetails.username : "ram"}`;
+  }
+  sessionStorage.setItem("selectedQuote",JSON.stringify(selectedQuote))
+  sessionStorage.setItem("oldId",JSON.stringify(selectedQuote.old_id))
+  window.location.href="./new-quote.html"
 }
 
 //handle undo
@@ -1009,7 +1024,8 @@ function renderQuoteCounts(data) {
   totalRev.textContent = "$" + totalPrice.toFixed(2);
 
   const counters = document.querySelectorAll('.stat-text');
-  counters.forEach(counter => observer.observe(counter));
+  counters.forEach(counter => animateCounter(counter, 2000));
+  
 }
 
 //filter function
@@ -1894,10 +1910,6 @@ window.addEventListener("resize", () => {
     if(accurChart ){
     accurChart.reflow();
   }
-    // if(modalAccurChart){
-    //   modalAccurChart.reflow();
-    // }
-  
   }
 
   if (trendChart) {
@@ -1975,7 +1987,6 @@ window.addEventListener('load', () => {
 //counter animation
 function animateCounter(counter, duration = 2000) {
   const target = +counter.textContent.replace(/[^0-9.-]+/g, "");
-  const symbol=counter.dataset.symbol;
   const variable=counter.dataset.var;
   const steps = 100; 
   const increment = target / steps; 
@@ -2006,15 +2017,6 @@ function animateCounter(counter, duration = 2000) {
     }
   }, intervalTime);
 }
-
-const observer = new IntersectionObserver((entries, obs) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      animateCounter(entry.target, 2000); 
-      obs.unobserve(entry.target); 
-    }
-  });
-}, { threshold: 0.5 });
 
 function delStoredData(){
   if (sessionStorage.getItem("selectedQuote")) {
