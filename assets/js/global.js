@@ -56,6 +56,12 @@ function getSelectedDate(datePicker) {
 
 //get searched quotes
 if (sessionStorage.getItem("searchedQuotes")) {
+  if(sessionStorage.getItem("searchedType")){
+    if(sessionStorage.getItem("searchedType") == "name"){
+      isName=true;
+    }
+  }
+  // allQuotes=JSON.parse(sessionStorage.getItem("quotes"))
   totalQuotes = JSON.parse(sessionStorage.getItem("searchedQuotes"));
   filteredData = [...totalQuotes];
   filteredData.sort((a, b) => a.name.localeCompare(b.name));
@@ -65,11 +71,14 @@ if (sessionStorage.getItem("searchedQuotes")) {
   changeNameFilters(filteredData);
   changeModes(filteredData);
   changeFilterChip(filteredData);
+ 
+
 }
 
 if (sessionStorage.getItem("searchedItem")) {
   searchText.textContent = sessionStorage.getItem("searchedItem");
 }
+
 
 //render quotes into table
 function renderFilterTable(currentPage) {

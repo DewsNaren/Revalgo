@@ -13,6 +13,8 @@ const clearAllFilterBtn = document.querySelector(".clear-all-filter-btn");
 const statusContainer = document.querySelector(".status-container");
 const statusChipContainer = document.querySelector(".status-chip-container");
 
+let isName=false;
+
 
 function padZero(num) {
   return num > 9 ? num : "0" + num;
@@ -322,6 +324,7 @@ filterWrapper.addEventListener("scroll", handleScroll);
 
 
 //table filter 
+// let allQuotes=[];
 let totalQuotes = [];
 let filteredData = [];
 
@@ -413,62 +416,99 @@ function searchNames() {
   changeNameFilters(filteredNameQuotes);
 }
 
+
 function changeNameFilters(filData) {
-  const customerFilterWrapper = document.querySelector(
-    ".customer-filter-wrapper",
-  );
-  const customerFilterContainer = document.querySelector(
-    ".customer-filter-container",
-  );
-  const custMoreLink = customerFilterWrapper.querySelector(".see-more-link");
-  const totalNames = [...new Set(filData.map((q) => q.name))];
+  console.log(isName)
+    const customerFilterWrapper = document.querySelector(
+      ".customer-filter-wrapper",
+    );
+    const customerFilterContainer = document.querySelector(
+      ".customer-filter-container",
+    );
+    const custMoreLink = customerFilterWrapper.querySelector(".see-more-link");
+    let totalNames=[];
+    // console.log(totalQuotes)
+    if(isName){
+      totalNames = [...new Set(allQuotes.map((q) => q.name))];
+      statusChipContainer.innerHTML ="";
+      statusContainer.classList.add("active");
+      let selectedName=[...new Set(filData.map((q) => q.name))];
+      [...new Set(filData.map((q) => q.name))].forEach(name=>{
 
-  customerFilterContainer.innerHTML = "";
+      selectedNames=[...new Set(filData.map((q) => q.name))]
+      statusChipContainer.innerHTML += `
+        <span class="chip " onclick="closeChip(event)"
+              data-type="name" 
+              data-value="${name}">
+          ${name}
+          <span class="close-chip" >
+            <img src="./assets/images/global/close_modal.webp" alt="close">
+          </span>
+        </span>
+      `;
+      })
+    }
 
-  totalNames.forEach((name, index) => {
-    const div = document.createElement("div");
-    div.className = "customer-filter checkbox-filter";
-    if (index >= 5) div.classList.add("hidden");
-    div.innerHTML = `
-      <input type="checkbox" name="customer-name" id="${name}" value="${name}">
-      <label for="${name}" class="filter-label">${name}</label>`;
-    customerFilterContainer.appendChild(div);
-  });
+    else{
+      totalNames = [...new Set(filData.map((q) => q.name))];
+    }
+    console.log(totalNames)
+    customerFilterContainer.innerHTML = "";
 
-  if (totalNames.length > 5) {
-    custMoreLink.classList.remove("not-active");
-    custMoreLink.textContent = `See More`;
-
-    custMoreLink.onclick = (e) => {
-      e.preventDefault();
-      const hiddenBrands = customerFilterWrapper.querySelectorAll(".hidden");
-      if (hiddenBrands.length > 0) {
-        hiddenBrands.forEach((el) => el.classList.remove("hidden"));
-        custMoreLink.textContent = "See Less";
-      } else {
-        customerFilterWrapper
-          .querySelectorAll(".checkbox-filter")
-          .forEach((el, i) => {
-            if (i >= 5) el.classList.add("hidden");
-          });
-        custMoreLink.textContent = `See More`;
-      }
-    };
-  } else {
-    custMoreLink.classList.add("not-active");
-  }
-
-  const customCheckBoxInputs = document.querySelectorAll(
-    ".customer-filter input[type='checkbox']",
-  );
-  if (customCheckBoxInputs) {
-    customCheckBoxInputs.forEach((input) => {
-      input.addEventListener("change", () => {
-        handleCustomerFilter();
-      });
+    selectedNames.forEach((name, index) => {
+      const div = document.createElement("div");
+      div.className = "customer-filter checkbox-filter";
+      if (index >= 5) div.classList.add("hidden");
+      div.innerHTML = `
+        <input type="checkbox" name="customer-name" id="${name}" value="${name}">
+        <label for="${name}" class="filter-label">${name}</label>`;
+      customerFilterContainer.appendChild(div);
     });
-  }
+
+    if (totalNames.length > 5) {
+      custMoreLink.classList.remove("not-active");
+      custMoreLink.textContent = `See More`;
+
+      custMoreLink.onclick = (e) => {
+        e.preventDefault();
+        const hiddenBrands = customerFilterWrapper.querySelectorAll(".hidden");
+        if (hiddenBrands.length > 0) {
+          hiddenBrands.forEach((el) => el.classList.remove("hidden"));
+          custMoreLink.textContent = "See Less";
+        } else {
+          customerFilterWrapper
+            .querySelectorAll(".checkbox-filter")
+            .forEach((el, i) => {
+              if (i >= 5) el.classList.add("hidden");
+            });
+          custMoreLink.textContent = `See More`;
+        }
+      };
+    } else {
+      custMoreLink.classList.add("not-active");
+    }
+
+    const customCheckBoxInputs = document.querySelectorAll(
+      ".customer-filter input[type='checkbox']",
+    );
+    if (customCheckBoxInputs) {
+      customCheckBoxInputs.forEach((input) => {
+        input.addEventListener("change", () => {
+          handleCustomerFilter();
+        });
+      });
+    }
+    if(isName){
+      customCheckBoxInputs.forEach(inp=>{
+        selectedName.forEach(name=>{
+          if(inp.value.toLowerCase() === name.toLowerCase()){
+            inp.checked = true;
+          }
+        })
+      })
+    }
 }
+
 
 searchCustomerInput.addEventListener("input", searchNames);
 searchCustomerBtn.addEventListener("click", searchNames);
@@ -505,7 +545,7 @@ function getPrice(price) {
 
 //overall filter function
 function applyFilters() {
-  filteredData = totalQuotes.filter((q) => {
+  filteredData = allQuotes.filter((q) => {
     const matchesSearch =
       !searchValue ||
       q.id.toString().includes(searchValue) ||

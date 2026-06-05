@@ -271,6 +271,22 @@ function renderDisplayTable(newQuote) {
     checkDeleted(displayTable.querySelector(".body-wrapper"));
     enableDrag(displayTable.querySelector(".body-wrapper"));
   }
+  const tableRows = displayTable.querySelectorAll(".body-wrapper .table-row");
+  tableRows.forEach((row) => {
+    if (row.classList.contains("not-active")) {
+      row.removeEventListener("click", rowClickHandler);
+    }
+  });
+  const delAllBtn=displayTable.querySelector(".delete-all-btn");
+  const undoAllBtn=displayTable.querySelector(".undo-all-btn");
+  if(newQuote.isAllDeleted){
+    delAllBtn.classList.remove("selected","active");
+    undoAllBtn.classList.add("selected","active");
+  }
+
+  else{
+    undoAllBtn.classList.remove("selected","active");
+  }
 }
 
 
@@ -282,34 +298,60 @@ function deleteAllRow() {
 
   popupOverlay.classList.add("active");
   delPopup1.classList.add("active");
-  delPopup1.querySelector(".text").textContent ="Do you want to Delete All lines?";
+  delPopup1.querySelector(".text").textContent ="Do you want to Delete Selected lines?";
 
   del1YesBtn.onclick = () => {
 
-    bodyWrapper.innerHTML = "";
-    bodyWrapper.innerHTML = `<div class="add-btn-container">
-    <button type="button" onclick="openAddPopup()"><img src="./assets/images/create_quote/add_item_icon.png" alt="add"></button>
-    <p class="text">Click here to Add Item</p>
-    </div>`;
-    newQuote.products = [];
-    newQuote.status="deleted";
+    // bodyWrapper.innerHTML = "";
+    // bodyWrapper.innerHTML = `<div class="add-btn-container">
+    // <button type="button" onclick="openAddPopup()"><img src="./assets/images/create_quote/add_item_icon.png" alt="add"></button>
+    // <p class="text">Click here to Add Item</p>
+    // </div>`;
+    // newQuote.products = [];
+    tableRows.forEach(row => {
+      const chkInput=row.querySelector(".check-line-input");
+      if(chkInput.checked){
+        const delBtn = row.querySelector(".delete-line-btn");
+        const undoBtn = row.querySelector(".undo-line-btn");
+        const delId = row.querySelector(".del-id").textContent;
+        row.classList.add("not-active");
+        delBtn.classList.remove("active");
+        undoBtn.classList.add("active");
+        const paras = row.querySelectorAll("p");
+        paras.forEach((p) => {
+          p.style.pointerEvents = "none";
+        });
+        delBtn.style.pointerEvents = "auto";
+        undoBtn.style.pointerEvents = "auto";
+        row.removeEventListener("click", rowClickHandler);
+        const product = newQuote.products.find((p) => String(p.delId) === delId);
+
+        if (product) {
+          product.isDeleted = true;
+        }
+      }
+    })
+    // newQuote.status="deleted";
+    newQuote.isAllDeleted=true;
     delAllBtn.classList.remove("selected", "active");
-    approveQuoteBtn.classList.remove("active");
-    approveQuoteBtn.classList.add("not-active");
-    quoteStat.classList.remove("pending");
-    quoteStat.classList.add("deleted");
-    quoteStat.textContent ="Deleted";
-    delQuoteBtn.classList.remove("active");
-    undoQuoteBtn.classList.add("active");
-    approveQuoteBtn.classList.add("not-active")
-    quickOrderWrapper.classList.add("not-active");
-    checkAllInput.checked = false;
+    undoAllBtn.classList.add("selected", "active");
+    // approveQuoteBtn.classList.remove("active");
+    // approveQuoteBtn.classList.add("not-active");
+    // quoteStat.classList.remove("pending");
+    // quoteStat.classList.add("deleted");
+    // quoteStat.textContent ="Deleted";
+    // delQuoteBtn.classList.remove("active");
+    // undoQuoteBtn.classList.add("active");
+    // approveQuoteBtn.classList.add("not-active")
+    // quickOrderWrapper.classList.add("not-active");
+    // checkAllInput.checked = false;
     updateQuickInfoData();
     updateQuoteTotals();
-    updateNewQuoteData();
+    // updateNewQuoteData();
     storeQuote();
     closeModal();
   };
+  // newQuote.isAllDeleted=true;
 }
 
 //store quote

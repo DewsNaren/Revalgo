@@ -500,6 +500,7 @@ header nav ul li a.new-quote-btn:hover {
 }
 .dashboard-wrapper .dashboard-header-wrapper .header-container .dropdown-wrapper .date-filter {
   position: relative;
+  border-bottom: 1px solid rgb(21, 71, 135);
 }
 .dashboard-wrapper .dashboard-header-wrapper .header-container .dropdown-wrapper .date-filter .date-dropdown {
   display: flex;
@@ -511,7 +512,6 @@ header nav ul li a.new-quote-btn:hover {
   align-items: center;
   justify-content: space-between;
   padding-bottom: 5px;
-  border-bottom: 1px solid rgb(21, 71, 135);
   font-size: clamp(11px, 0.79vw, 0.79vw);
   cursor: pointer;
 }
@@ -520,16 +520,16 @@ header nav ul li a.new-quote-btn:hover {
   margin-left: 5px;
 }
 .dashboard-wrapper .dashboard-header-wrapper .header-container .dropdown-wrapper .date-filter .date-dropdown .custom-text {
-  display: none;
+  display: flex;
+  visibility: hidden;
   gap: 5px;
-  border-bottom: 1px solid rgb(21, 71, 135);
   font-size: clamp(11px, 0.79vw, 0.79vw);
   color: #5c5c5c;
   font-weight: normal;
   padding-left: clamp(7px, 0.79vw, 0.79vw);
 }
 .dashboard-wrapper .dashboard-header-wrapper .header-container .dropdown-wrapper .date-filter .date-dropdown .custom-text.active {
-  display: flex;
+  visibility: visible;
 }
 .dashboard-wrapper .dashboard-header-wrapper .header-container .dropdown-wrapper .date-filter .dropdown-menu {
   display: none;
@@ -1042,6 +1042,7 @@ header nav ul li a.new-quote-btn:hover {
   display: flex;
   flex-direction: column;
   flex: 1;
+  min-height: 0;
 }
 .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead {
   display: table;
@@ -1215,7 +1216,7 @@ header nav ul li a.new-quote-btn:hover {
 }
 .dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .trend-chart-wrapper .trend-chart-container {
   border: 1px solid rgba(0, 0, 0, 0.2);
-  height: 13.7vw;
+  height: clamp(180px, 13.7vw, 13.7vw);
   background-color: white;
   border-radius: clamp(5px, 0.79vw, 0.79vw);
   padding: clamp(6px, 0.63vw, 0.63vw) clamp(10px, 1.05vw, 1.05vw) 0;
@@ -1316,7 +1317,7 @@ header nav ul li a.new-quote-btn:hover {
 }
 .dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .accuracy-chart-wrapper .accuracy-chart-container {
   border: 1px solid rgba(0, 0, 0, 0.2);
-  height: 13.7vw;
+  height: clamp(180px, 13.7vw, 13.7vw);
   background-color: white;
   border-radius: clamp(5px, 0.79vw, 0.79vw);
   padding: clamp(6px, 0.63vw, 0.63vw) clamp(10px, 1.05vw, 1.05vw);
@@ -1793,6 +1794,7 @@ header nav ul li a.new-quote-btn:hover {
   display: flex;
   flex-direction: column;
   flex: 1;
+  min-height: 0;
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead {
   display: table;
@@ -1838,7 +1840,7 @@ header nav ul li a.new-quote-btn:hover {
   width: clamp(70px, 5.75vw, 5.75vw);
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(7) {
-  width: clamp(75px, 5.75vw, 5.75vw);
+  width: clamp(65px, 5.75vw, 5.75vw);
 }
 .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(8) {
   width: clamp(100px, 8.5vw, 8.5vw);
@@ -2425,6 +2427,106 @@ header nav ul li a.new-quote-btn:hover {
   }
   .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(3) {
     width: 13.7vw;
+  }
+}
+@media screen and (max-width: 1180px) {
+  .dashboard-wrapper {
+    padding: clamp(12px, 1.304vw, 1.304vw) clamp(12px, 1.05vw, 1.05vw);
+  }
+  .dashboard-wrapper .dashboard-header-wrapper {
+    margin-bottom: clamp(15px, 1.57vw, 1.57vw);
+  }
+  .dashboard-wrapper .dashboard-header-wrapper .header-container .dropdown-wrapper .widget-btn .widget-dropdown-menu li input {
+    border-radius: 2px;
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper {
+    padding: clamp(8px, 1.05vw, 1.05vw) clamp(8px, 1.05vw, 1.05vw);
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th {
+    padding: clamp(7px, 0.521vw, 0.521vw) clamp(9px, 0.79vw, 0.79vw) clamp(7px, 0.521vw, 0.521vw) 0;
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th span {
+    gap: 5px;
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th span img {
+    width: 8px;
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th span {
+    font-size: 9px;
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:first-of-type {
+    width: 2.067vw;
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(3) {
+    width: 12.76vw;
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(6) {
+    width: clamp(60px, 5.2vw, 5.2vw);
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(7) {
+    width: clamp(60px, 4.69vw, 4.69vw);
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(8) {
+    width: clamp(65px, 5.2vw, 5.2vw);
+    padding-right: 0;
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td {
+    font-size: 9px;
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:first-of-type {
+    width: 2.067vw;
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(6) {
+    width: clamp(60px, 5.2vw, 5.2vw);
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(7) {
+    width: clamp(65px, 4.69vw, 4.69vw);
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(8) {
+    padding-left: 0;
+    width: clamp(60px, 4.2vw, 4.2vw);
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .quotes-container .table-wrapper .quote-table tbody tr td:last-of-type {
+    width: clamp(40px, 3.6vw, 3.6vw);
+    padding-inline: 5px;
+    border-radius: 2px;
+  }
+  .expand-overlay .expand-modal.table.quotes {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 1130px) {
+  .expand-overlay .expand-modal.table.quotes {
+    width: 88%;
+  }
+  .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th {
+    padding: clamp(7px, 0.521vw, 0.521vw) 7px clamp(7px, 0.521vw, 0.521vw) 0;
+  }
+  .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(3) {
+    width: 13.7vw;
+  }
+  .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th:nth-of-type(7) {
+    width: clamp(60px, 5.75vw, 5.75vw);
+  }
+  .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th:last-of-type {
+    width: clamp(40px, 3.5vw, 3.5vw);
+  }
+  .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table thead tr th span img {
+    width: 8px;
+  }
+  .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:last-of-type {
+    width: clamp(40px, 3.5vw, 3.5vw);
+  }
+  .expand-overlay .expand-modal.table .expand-modal-content .quotes-container .table-wrapper .quote-table tbody tr td:nth-of-type(3) {
+    width: 13.7vw;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .trend-chart-wrapper .trend-chart-container {
+    height: 160px;
+  }
+  .dashboard-wrapper .dashboard-body-wrapper .chart-wrapper .chart-container .accuracy-chart-wrapper .accuracy-chart-container {
+    height: 160px;
   }
 }
 @media print {
@@ -4539,6 +4641,11 @@ header nav ul li a.new-quote-btn:hover {
   color: white;
   background-color: rgb(21, 71, 135);
 }
+.quote-wrapper .recent-quote-wrapper .top-btn-wrapper .approve-btn-container button.add-note-btn.blue {
+  background-color: #49b4ff;
+  color: white;
+  border: #49b4ff;
+}
 .quote-wrapper .recent-quote-wrapper .top-btn-wrapper .approve-btn-container button.approve-btn {
   color: white;
   background-color: rgb(21, 71, 135);
@@ -4647,7 +4754,7 @@ header nav ul li a.new-quote-btn:hover {
   color: rgb(21, 71, 135);
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .header-wrapper .btn-container button.upload-btn {
-  padding-inline: clamp(18px, 1.57vw, 1.57vw);
+  padding-inline: clamp(15px, 1.57vw, 1.57vw);
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .header-wrapper .btn-container button.email-btn {
   padding-inline: clamp(18px, 1.8vw, 1.8vw);
@@ -4990,7 +5097,7 @@ header nav ul li a.new-quote-btn:hover {
   width: clamp(8px, 0.68vw, 0.68vw);
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-info-container .sample-img-wrapper {
-  width: clamp(246px, 21vw, 399px);
+  width: clamp(240px, 21vw, 399px);
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-info-container .sample-img-wrapper img {
   display: block;
@@ -5039,6 +5146,27 @@ header nav ul li a.new-quote-btn:hover {
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper.active {
   display: flex;
+}
+.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .minimize-btn {
+  position: absolute;
+  right: calc(clamp(8px, 0.521vw, 0.521vw) * -1);
+  top: 50%;
+  transform: translateY(-50%);
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+  border: none;
+  background-color: transparent;
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.23);
+  width: clamp(8px, 1.9vw, 1.9vw);
+  height: clamp(8px, 1.9vw, 1.9vw);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #fff;
+}
+.quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .minimize-btn img {
+  padding-left: clamp(3px, 0.4vw, 0.4vw);
+  width: clamp(12px, 1.25vw, 1.25vw);
 }
 .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-btn-container {
   text-align: center;
@@ -5647,36 +5775,6 @@ header nav ul li a.new-quote-btn:hover {
   display: flex;
 }
 
-.minimize-btn {
-  position: fixed;
-  right: calc(clamp(8px, 0.521vw, 0.521vw) * -1);
-  left: calc(24.9% - clamp(14px, 1.25vw, 1.25vw));
-  bottom: 30%;
-  border-radius: 22px 0 0 22px;
-  border: none;
-  background-color: white;
-  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.23);
-  width: clamp(14px, 1.25vw, 1.25vw);
-  height: clamp(20px, 2.3vw, 2.3vw);
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  transition: left 0.5s ease-in;
-}
-.minimize-btn img {
-  padding-left: 3px;
-  width: clamp(12px, 1.25vw, 1.25vw);
-}
-.minimize-btn.minimize {
-  left: clamp(20px, 2.067vw, 2.067vw);
-}
-.minimize-btn.maximize {
-  left: calc(50% - clamp(14px, 1.25vw, 1.25vw));
-}
-.minimize-btn.not-active {
-  display: none;
-}
-
 .row-group {
   transition: transform 0.18s ease, background-color 0.18s ease;
 }
@@ -5770,6 +5868,14 @@ header nav ul li a.new-quote-btn:hover {
 @media screen and (max-width: 1300px) {
   .quote-wrapper {
     padding: clamp(12px, 1.15vw, 1.15vw) clamp(12px, 1.05vw, 1.05vw);
+  }
+}
+@media screen and (max-width: 1130px) {
+  .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper {
+    width: 250px;
+  }
+  .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .header-wrapper .btn-container button {
+    font-size: 10px;
   }
 }
 .create-quote-wrapper {
@@ -6735,6 +6841,17 @@ header nav ul li a.new-quote-btn:hover {
     width: 8px;
   }
 }
+@media screen and (max-width: 1130px) {
+  .create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper {
+    padding: clamp(10px, 1.05vw, 1.05vw) clamp(10px, 1.05vw, 1.05vw) clamp(10px, 1.304vw, 1.304vw);
+  }
+  .create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table thead tr th:nth-of-type(5) {
+    width: 80px;
+  }
+  .create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table tbody tr td:nth-of-type(5) {
+    width: 80px;
+  }
+}
 .new-quote-wrapper {
   padding: clamp(15px, 1.57vw, 1.57vw) clamp(12px, 1.15vw, 1.15vw);
   display: none;
@@ -6843,6 +6960,9 @@ header nav ul li a.new-quote-btn:hover {
 .new-quote-wrapper .top-btn-wrapper .approve-btn-container button.add-note-btn:hover {
   color: white;
   background-color: rgb(21, 71, 135);
+}
+.new-quote-wrapper .top-btn-wrapper .approve-btn-container button.add-note-btn.blue {
+  background-color: #49b4ff;
 }
 .new-quote-wrapper .top-btn-wrapper .approve-btn-container button.approve-btn {
   color: white;
@@ -6970,6 +7090,7 @@ header nav ul li a.new-quote-btn:hover {
   max-height: 100%;
   position: relative;
   overflow: hidden;
+  height: 100%;
 }
 .new-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .table-wrapper {
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -7248,7 +7369,7 @@ header nav ul li a.new-quote-btn:hover {
   width: clamp(8px, 0.68vw, 0.68vw);
 }
 .new-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-info-container .sample-img-wrapper {
-  width: clamp(246px, 21vw, 399px);
+  width: clamp(240px, 21vw, 399px);
 }
 .new-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-info-container .sample-img-wrapper img {
   display: block;
@@ -7321,6 +7442,27 @@ header nav ul li a.new-quote-btn:hover {
 }
 .new-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper.active {
   display: flex;
+}
+.new-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .minimize-btn {
+  position: absolute;
+  right: calc(clamp(8px, 0.521vw, 0.521vw) * -1);
+  top: 50%;
+  transform: translateY(-50%);
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+  border: none;
+  background-color: transparent;
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.23);
+  width: clamp(8px, 1.9vw, 1.9vw);
+  height: clamp(8px, 1.9vw, 1.9vw);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #fff;
+}
+.new-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .minimize-btn img {
+  padding-left: clamp(3px, 0.4vw, 0.4vw);
+  width: clamp(12px, 1.25vw, 1.25vw);
 }
 .new-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .upload-btn-container {
   text-align: center;
@@ -7986,6 +8128,19 @@ header nav ul li a.new-quote-btn:hover {
   .new-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper .body-wrapper .mail-wrapper .mail-body-container .img-info-container .img-header .btn-container button.info-btn span {
     top: 5px;
     right: -3px;
+  }
+}
+@media screen and (max-width: 1180px) {
+  .new-quote-wrapper .quick-order-wrapper .quick-info-wrapper {
+    gap: clamp(30px, 4.2vw, 4.2vw);
+  }
+}
+@media screen and (max-width: 1130px) {
+  .new-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper {
+    width: 250px;
+  }
+  .header-wrapper .btn-container button {
+    font-size: 10px;
   }
 }
 .global-wrapper {
@@ -8681,10 +8836,10 @@ header nav ul li a.new-quote-btn:hover {
   width: 8.5vw;
 }
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th:nth-of-type(7) {
-  width: 7.5vw;
+  width: clamp(85px, 7.5vw, 7.5vw);
 }
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th:nth-of-type(7) span {
-  width: 4.69vw;
+  width: clamp(53px, 4.69vw, 4.69vw);
 }
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody {
   display: block;
@@ -8735,7 +8890,8 @@ header nav ul li a.new-quote-btn:hover {
   width: 7.5vw;
 }
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td:nth-of-type(7) span {
-  width: 4.69vw;
+  display: block;
+  width: clamp(52px, 4.69vw, 4.69vw);
   padding-right: clamp(30px, 3.4vw, 3.4vw);
 }
 .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td:last-of-type {
@@ -8884,5 +9040,79 @@ header nav ul li a.new-quote-btn:hover {
   }
   .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td:nth-of-type(3) {
     width: clamp(80px, 15.57vw, 15.57vw);
+  }
+}
+@media screen and (max-width: 1180px) {
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th {
+    padding-inline: 10px;
+  }
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th:nth-of-type(2) {
+    width: clamp(80px, 7.5vw, 7.5vw);
+  }
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th:nth-of-type(3) {
+    width: clamp(80px, 15.57vw, 15.57vw);
+  }
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th:nth-of-type(6) {
+    width: 80px;
+  }
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td:nth-of-type(2) {
+    width: clamp(80px, 7.5vw, 7.5vw);
+  }
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td:nth-of-type(3) {
+    width: clamp(80px, 15.57vw, 15.57vw);
+  }
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td:nth-of-type(6) {
+    width: 80px;
+  }
+}
+@media screen and (max-width: 1130px) {
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th {
+    padding-inline: 5px;
+  }
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th span img {
+    width: 8px;
+  }
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th:first-of-type {
+    padding-inline: 5px;
+  }
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th:nth-of-type(2) {
+    width: clamp(70px, 6.8vw, 6.8vw);
+  }
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th:nth-of-type(3) {
+    width: clamp(80px, 13.7vw, 13.7vw);
+  }
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th:nth-of-type(4), .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th:nth-of-type(5) {
+    width: clamp(104px, 8.5vw, 8.5vw);
+  }
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th:nth-of-type(6), .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th:nth-of-type(7) {
+    width: 70px;
+  }
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table thead tr th:last-of-type {
+    width: 90px;
+  }
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td {
+    padding-inline: 5px;
+  }
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td:first-of-type {
+    padding-inline: 5px;
+  }
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td:nth-of-type(2) {
+    width: clamp(70px, 6.8vw, 6.8vw);
+  }
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td:nth-of-type(3) {
+    width: clamp(80px, 13.7vw, 13.7vw);
+  }
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td:nth-of-type(4), .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td:nth-of-type(5) {
+    width: clamp(104px, 8.5vw, 8.5vw);
+  }
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td:nth-of-type(6), .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td:nth-of-type(7) {
+    width: 70px;
+  }
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td:nth-of-type(7) span {
+    display: block;
+    width: clamp(52px, 4.69vw, 4.69vw);
+  }
+  .global-wrapper .quote-filter-wrapper .filter-outer-wrapper .filter-inner-wrapper .filter-table-wrapper .filter-table tbody tr td:last-of-type {
+    width: 86px;
   }
 }/*# sourceMappingURL=style.css.map */

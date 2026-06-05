@@ -130,10 +130,12 @@ function delRow(event) {
 
     closeModal();
     storeQuote();
+    const delCount=newQuote.products.filter((p) => p.isDeleted);
     const isAllDeleted = newQuote.products.every((p) => p.isDeleted);
     if (isAllDeleted) {
       approveQuoteBtn.classList.remove("active");
       approveQuoteBtn.classList.add("not-active");
+      
     }
 
   }
@@ -144,7 +146,7 @@ function delRow(event) {
 //delete row function
 function undoRow(event) {
   const undoBtn = event.target.parentElement;
-  const row = undoBtn.parentElement.parentElement;
+  const row = undoBtn.closest(".table-row");
   const delBtn = row.querySelector(".delete-line-btn");
 
   row.classList.remove("not-active");
@@ -160,8 +162,13 @@ function undoRow(event) {
   if (product) {
     product.isDeleted = false;
   }
-  delAllBtn.classList.add("selected", "active");
-  undoAllBtn.classList.remove("selected", "active");
+  const delCount = newQuote.products.filter((p) => p.isDeleted);
+
+  // delAllBtn.classList.add("selected", "active");
+  // if(undoAllBtn.classList.contains("active") && delCount.length == 1){
+  //   undoAllBtn.classList.remove("selected", "active");
+  // }
+  
   row.addEventListener("click", rowClickHandler);
   if(newQuote.products.length>0){
     approveQuoteBtn.classList.remove("not-active");
@@ -178,21 +185,32 @@ function undoAllRow() {
   const bodyWrapper = displayTable.querySelector(".body-wrapper");
   const tableRows = bodyWrapper.querySelectorAll(".table-row");
   tableRows.forEach((row) => {
-    const delBtn = row.querySelector(".delete-line-btn");
-    const undoBtn = row.querySelector(".undo-line-btn");
-    row.classList.remove("not-active");
-    delBtn.classList.add("active");
-    undoBtn.classList.remove("active");
-    const paras = row.querySelectorAll("p");
-    paras.forEach((p) => {
-      p.style.pointerEvents = "auto";
-    });
+    if(row.classList.contains("not-active")){
+      const delBtn = row.querySelector(".delete-line-btn");
+      const undoBtn = row.querySelector(".undo-line-btn");
+      const delId = row.querySelector(".del-id").textContent;
+      row.classList.remove("not-active");
+      delBtn.classList.add("active");
+      undoBtn.classList.remove("active");
+      const paras = row.querySelectorAll("p");
+      paras.forEach((p) => {
+        p.style.pointerEvents = "auto";
+      });
+      row.addEventListener("click", rowClickHandler);
+      const product = newQuote.products.find((p) => String(p.delId) === delId);
 
-    row.removeEventListener("click", rowClickHandler);
+      if (product) {
+        product.isDeleted = false;
+      }
+    }
+    
   });
+  newQuote.isAllDeleted=false;
   approveQuoteBtn.classList.add("active");
-  delAllBtn.classList.add("selected", "active");
   undoAllBtn.classList.remove("selected", "active");
+  updateQuickInfoData();
+  updateQuoteTotals();
+  storeQuote();
 }
 
 //select all rows function
@@ -219,18 +237,17 @@ function selectAllRow(event) {
 
 //enable delete all btn function
 function enableDeleteAllBtn() {
-  
   const bodyWrapper = displayTable.querySelector(".body-wrapper");
   const checkLineInps = bodyWrapper.querySelectorAll(".check-line-input");
-  const isChecked = [...checkLineInps].some((inp) => inp.checked);
-  const isAllChecked = [...checkLineInps].every((inp) => inp.checked);
+
+  const checkedCount = [...checkLineInps].filter(inp => inp.checked).length;
+  const isChecked = checkedCount > 1;
+  const isAllChecked = [...checkLineInps].every(inp => inp.checked);
   checkAllInput.checked = isAllChecked;
-  if(newQuote.status === "approved" || newQuote.status === "deleted") return;
 
-  if (isChecked) delAllBtn.classList.add("selected");
-  else delAllBtn.classList.remove("selected");
+  if (newQuote.status === "approved" || newQuote.status === "deleted") return;
 
-  
+  delAllBtn.classList.toggle("selected", isChecked);
 }
 
 //add data to table function
@@ -289,8 +306,9 @@ function allowNumbers(inp) {
 
 //add line in popup function
 function addLine(event) {
+  
   const row = event.target.closest(".table-row");
-  const bodyWrap = event.target.parentElement.parentElement.parentElement;
+  const bodyWrap = row.parentElement;
   const cloned = row.cloneNode(true);
   bodyWrap.appendChild(cloned);
   editPopupData(addTable.querySelector(".body-wrapper"));
@@ -336,9 +354,6 @@ addLinesBtn.addEventListener("click", () => {
     approveQuoteBtn.classList.remove("not-active");
     approveQuoteBtn.classList.add("active");
   }
-  // else{
-    
-  // }
 });
 
 //add table data to array
@@ -435,14 +450,11 @@ mailExpandBtn.addEventListener("click", () => {
   if (leftWrapper.classList.contains("maximize")) {
     leftWrapper.classList.remove("minimize","maximize");
     rightWrapper.classList.remove("maximize","minimize");
-    mailMinimizeBtn.classList.remove("minimize","maximize");
   } else {
     leftWrapper.classList.remove("minimize");
     leftWrapper.classList.add("maximize");
     rightWrapper.classList.remove("maximize");
     rightWrapper.classList.add("minimize");
-    mailMinimizeBtn.classList.remove("minimize");
-    mailMinimizeBtn.classList.add("maximize")
   }
 });
 
@@ -452,7 +464,6 @@ mailMinimizeBtn.addEventListener("click", () => {
     leftWrapper.classList.remove("maximize");
     rightWrapper.classList.remove("maximize");
     rightWrapper.classList.remove("minimize");
-    mailMinimizeBtn.classList.remove("minimize","maximize");
     if (!mailWrapper.classList.contains("active")) {
       uploadBtnContainer.classList.add("active");
     }
@@ -462,8 +473,6 @@ mailMinimizeBtn.addEventListener("click", () => {
     leftWrapper.classList.remove("maximize");
     rightWrapper.classList.add("maximize");
     rightWrapper.classList.remove("minimize");
-    mailMinimizeBtn.classList.add("minimize");
-    mailMinimizeBtn.classList.remove("maximize");
     if (!mailWrapper.classList.contains("active")) {
       uploadBtnContainer.classList.remove("active");
     }

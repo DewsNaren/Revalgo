@@ -1085,12 +1085,27 @@
 
 @media screen and (max-width:1300px){
     .create-quote-wrapper
-     .exist-quote-filter-wrapper .filter-outer-wrapper{ 
+    .exist-quote-filter-wrapper .filter-outer-wrapper{ 
         padding:clamp(15px, $fs-30px, $fs-30px) clamp(15px, $fs-30px, $fs-30px)  clamp(12px, $fs-25px, $fs-25px);
-    .filter-inner-wrapper .filter-table thead tr th span {
-        img{
-            width: 8px;
+        .filter-inner-wrapper .filter-table thead tr th span {
+            img{
+                width: 8px;
+            }
         }
     }
 }
+
+@media screen and (max-width: 1130px) {
+    .create-quote-wrapper .exist-quote-filter-wrapper .filter-outer-wrapper {
+        padding:clamp(10px, $fs-20px, $fs-20px) clamp(10px, $fs-20px, $fs-20px)  clamp(10px, $fs-25px, $fs-25px);
+        .filter-inner-wrapper .filter-table {
+            thead tr th:nth-of-type(5){
+                width: 80px;
+            }
+            tbody tr td:nth-of-type(5){
+                width: 80px;
+            }
+        }
+    }
+
 }

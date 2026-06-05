@@ -53,7 +53,8 @@ function searchHeaderQuotes() {
 
   globalDropDown.classList.add("active");
 
-   searchedQuotes = allQuotes.filter(q => {
+    const uniqueNames = new Set();
+    searchedQuotes = allQuotes.filter(q => {
 
     const isIdMatch =q.id.toString().toLowerCase().includes(value);
 
@@ -63,24 +64,24 @@ function searchHeaderQuotes() {
 
     // render lists
     if (isIdMatch) {
-    idList.innerHTML += `
-      <li 
-        data-type="id"
-        data-value="${q.id}">
-        ${q.id}
-      </li>
-    `;
-  }
+      idList.innerHTML += `
+        <li 
+          data-type="id"
+          data-value="${q.id}">
+          ${q.id}
+        </li>
+      `;
+    }
 
-  if (isNameMatch) {
-    nameList.innerHTML += `
-      <li 
-        data-type="name"
-        data-value="${q.name}">
-        ${q.name}
-      </li>
-    `;
-  }
+    if (isNameMatch && !uniqueNames.has(q.name.toLowerCase())) {
+      uniqueNames.add(q.name.toLowerCase());
+
+      nameList.innerHTML += `
+        <li data-type="name" data-value="${q.name}">
+          ${q.name}
+        </li>
+      `;
+    }
 
   if (isPoMatch) {
     poList.innerHTML += `
@@ -152,6 +153,7 @@ function handleSearchItemClick(e){
     "searchedQuotes",
     JSON.stringify(filteredQuote)
   );
+  sessionStorage.setItem("searchedType",type);
 
   sessionStorage.setItem(
     "searchedItem",

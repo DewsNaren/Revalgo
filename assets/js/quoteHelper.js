@@ -398,8 +398,7 @@ function rowClickHandler(e) {
   const row = e.currentTarget;
 
   const pTag = e.target.closest("p");
-
-  // clicked directly on text/child inside p
+  
   if (pTag && e.target !== pTag) {
     return;
   }

@@ -115,6 +115,10 @@
                         color: $white;
                         background-color: $blue-87;
                     }
+                    &.blue{
+                        background-color: $blue-4ff;
+                        
+                    }
                     // box-shadow: none;
                 }
                 &.approve-btn{
@@ -266,6 +270,7 @@
                     max-height: 100%;
                     position: relative;
                     overflow: hidden;
+                    height: 100%;
                    .table-wrapper{
                         border: 1px solid rgba(0,0,0,0.2);
                         flex: 1;
@@ -585,7 +590,7 @@
                                     }
                                 }
                                 .sample-img-wrapper{
-                                    width: clamp(246px, $fs-400px,399px);
+                                    width: clamp(240px, $fs-400px,399px);
                                     img{
                                         display: block;
                                         width: 100%;
@@ -676,6 +681,27 @@
                         }
 
                    }
+                    .minimize-btn{
+                        position: absolute;
+                        right: calc(clamp(8px, $fs-10px, $fs-10px)* -1);
+                        top: 50%;
+                        transform: translateY(-50%);
+                        border-top-left-radius: 50%;
+                        border-bottom-left-radius: 50%;
+                        border: none;
+                        background-color: transparent;
+                        box-shadow: $box-shadow-1;
+                        width: clamp(8px, $fs-36px, $fs-36px);
+                        height: clamp(8px, $fs-36px, $fs-36px);
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-start;
+                        background-color: #fff;
+                        img{
+                            padding-left: clamp(3px, $fs-7px, $fs-7px);
+                            width: clamp(12px, $fs-24px, $fs-24px);
+                        }
+                    }
 
                    .upload-btn-container{
                         text-align: center;
@@ -1537,3 +1563,18 @@
     }
 }
 
+@media screen and (max-width:1180px){
+    .new-quote-wrapper .quick-order-wrapper .quick-info-wrapper {
+        gap:clamp(30px, $fs-80px, $fs-80px);
+    }
+}
+
+@media screen and (max-width:1130px){
+    .new-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper{
+        width: 250px;
+    } .header-wrapper .btn-container button {
+        font-size: 10px;
+    }
+}
+
+// .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper {

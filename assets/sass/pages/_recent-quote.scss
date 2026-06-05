@@ -155,6 +155,11 @@
                         color: $white;
                         background-color: $blue-87;
                     }
+                    &.blue{
+                        background-color: $blue-4ff;
+                        color: $white;    
+                        border: $blue-4ff;
+                    }   
                     // box-shadow: none;
                 }
                 &.approve-btn{
@@ -284,7 +289,7 @@
                                 color: $blue-87;
                             }
                             &.upload-btn{
-                                padding-inline:clamp(18px, $fs-30px, $fs-30px);
+                                padding-inline:clamp(15px, $fs-30px, $fs-30px);
                                 
                             }
                             &.email-btn{
@@ -675,7 +680,7 @@
                                     }
                                 }
                                 .sample-img-wrapper{
-                                    width: clamp(246px, $fs-400px,399px);
+                                    width: clamp(240px, $fs-400px,399px);
                                     img{
                                         display: block;
                                         width: 100%;
@@ -740,7 +745,27 @@
                         }
 
                    }
-
+                   .minimize-btn{
+                    position: absolute;
+                    right: calc(clamp(8px, $fs-10px, $fs-10px)* -1);
+                    top: 50%;
+                    transform: translateY(-50%);
+                    border-top-left-radius: 50%;
+                    border-bottom-left-radius: 50%;
+                    border: none;
+                    background-color: transparent;
+                    box-shadow: $box-shadow-1;
+                    width: clamp(8px, $fs-36px, $fs-36px);
+                    height: clamp(8px, $fs-36px, $fs-36px);
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    background-color: #fff;
+                    img{
+                        padding-left: clamp(3px, $fs-7px, $fs-7px);
+                        width: clamp(12px, $fs-24px, $fs-24px);
+                    }
+                   }
                    .upload-btn-container {
                         text-align: center;
                         margin-top: clamp(10px, $fs-35px, $fs-35px);
@@ -1539,36 +1564,6 @@
   }
 }
 
-.minimize-btn{
-    position: fixed;
-    right: calc(clamp(8px, $fs-10px, $fs-10px)* -1);
-    left: calc(24.9% - clamp(14px, $fs-24px, $fs-24px));
-    bottom: 30%;
-    border-radius: 22px 0 0 22px;
-    border: none;
-    background-color: $white;
-    box-shadow: $box-shadow-1;
-    width: clamp(14px, $fs-24px, $fs-24px);
-    height: clamp(20px, $fs-44px, $fs-44px);
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    transition: left 0.5s ease-in;
-    img{
-       padding-left:3px;
-        width: clamp(12px, $fs-24px, $fs-24px);
-    }
-    &.minimize{
-        left:  clamp(20px, $fs-40px, $fs-40px);
-    }
-    &.maximize{
-        left:calc( 50% - clamp(14px, $fs-24px, $fs-24px));
-    }
-    &.not-active{
-        display: none;
-    }
-
-}
 .row-group{
     transition:
     transform .18s ease,
@@ -1695,4 +1690,12 @@
     .quote-wrapper{
         padding: clamp(12px, $fs-22px, $fs-22px) clamp(12px, $fs-20px, $fs-20px);
     }
+}
+@media screen and (max-width:1130px){
+    .quote-wrapper .recent-quote-wrapper .quick-order-wrapper .quick-content-wrapper .left-wrapper{
+        width: 250px;
+        .header-wrapper .btn-container button{
+            font-size: 10px;
+        }
+    } 
 }

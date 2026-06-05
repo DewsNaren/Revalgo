@@ -13,8 +13,8 @@ const addLineNoteInput = addLineNotePopup.querySelector(".add-line-note-input");
 const addQuoteNotePopup = document.querySelector(".add-quote-note-popup");
 const addQuoteNoteInput = addQuoteNotePopup.querySelector(".add-quote-note-input");
 const addQuoteNoteBtn = addQuoteNotePopup.querySelector(".add-btn");
+const addNoteBtn=document.querySelector(".add-note-btn");
 
-// const imgPopup = document.querySelector(".img-popup");
 const imgUpdateBtn = imgPopup.querySelector(".update-btn");
 const selectAllWrapInput = imgPopup.querySelector(".select-all-input");
 
@@ -36,14 +36,16 @@ let filteredProducts = [];
 
 function getAllProducts() {
   const data = JSON.parse(sessionStorage.getItem('quotes'));
-  data.forEach((d) => {
-    const prods = d.products;
-    if (prods) {
-      prods.forEach((p) => {
-        products.push(p);
-      });
-    }
-  });
+  if(data){
+    data.forEach((d) => {
+      const prods = d.products;
+      if (prods) {
+        prods.forEach((p) => {
+          products.push(p);
+        });
+      }
+    });
+  }
 
 }
 
@@ -785,24 +787,31 @@ function changeQuickInfo(inp, con) {
 }
 
 //input listeners to the update form inputs
+
 function validateFields() {
   const activeContainers = document.querySelectorAll(".form-container.active");
 
+  let hasEmptyField = false;
+
   activeContainers.forEach((container) => {
     const inpFields = container.querySelectorAll("input, textarea");
-
     const errEl = container.querySelector(".error");
 
-    const emptyField = [...inpFields].find((inp) => inp.value.trim() === "");
+    const emptyField = [...inpFields].find(
+      (inp) => inp.value.trim() === ""
+    );
+
     if (emptyField) {
+      hasEmptyField = true;
+
       errEl.classList.add("active");
       errEl.textContent = `Please enter the ${emptyField.placeholder}`;
-      updateBtn.classList.add("not-active");
     } else {
       errEl.classList.remove("active");
-      updateBtn.classList.remove("not-active");
     }
   });
+
+  updateBtn.classList.toggle("not-active", hasEmptyField);
 }
 
 formContainers.forEach((container) => {
@@ -994,9 +1003,19 @@ function openQuoteNotPopup() {
 addQuoteNoteInput.addEventListener("input", () => {
   if (addQuoteNoteInput.value.trim() != "")
     addQuoteNoteBtn.classList.add("active");
-  else addQuoteNoteBtn.classList.remove("active");
+  else{
+    addQuoteNoteBtn.classList.remove("active");
+    addNoteBtn.classList.remove("blue");
+  } 
 });
 
+addQuoteNoteBtn.addEventListener('click',()=>{
+  if (addQuoteNoteInput.value.trim() != "")
+    addNoteBtn.classList.add("blue");
+  else
+    addNoteBtn.classList.remove("blue");
+  closeModal();
+})
 //select img-popup
 selectAllWrapInput.addEventListener("change", () => {
   if (selectAllWrapInput.checked) {
